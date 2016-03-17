@@ -1,0 +1,33 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OVG
+PROJECTNAME=Paints
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

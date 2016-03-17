@@ -1,0 +1,264 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON                    "icon1.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOG  0, 0, 281, 127
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_STATICEDGE
+CAPTION "Play/Record/Voice Modem Dialog"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "File",IDC_BUTTON_FILE,13,12,20,14
+    PUSHBUTTON      "Play",IDC_BUTTON_PLAY,13,30,20,13
+    CONTROL         "",IDC_SLIDER_PLAY_VOL,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,38,38,17,82,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VOLUME_BOX,38,13,16,13,NOT WS_GROUP | WS_TABSTOP,WS_EX_STATICEDGE
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP,13,47,20,14
+    CONTROL         "Voice Modem",IDC_VOICE_MODEM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,141,15,56,8
+    PUSHBUTTON      "Dial",IDC_DIAL,141,39,43,10
+    PUSHBUTTON      "Hang Up",IDC_HANG_UP,141,51,43,10
+    PUSHBUTTON      "Answer",IDC_ANSWER,141,63,43,10
+    EDITTEXT        IDC_DIAL_EDIT_BOX,141,25,59,12,ES_AUTOHSCROLL
+    CONTROL         "0",IDC_AP_0,"Button",BS_AUTORADIOBUTTON | BS_NOTIFY | WS_GROUP | WS_TABSTOP,147,85,19,9
+    CONTROL         "1",IDC_AP_1,"Button",BS_AUTORADIOBUTTON | BS_NOTIFY | WS_TABSTOP,175,85,18,9
+    CONTROL         "2",IDC_AP_2,"Button",BS_AUTORADIOBUTTON | BS_NOTIFY | WS_TABSTOP,147,99,19,9
+    PUSHBUTTON      "Rec File",IDC_BUTTON_REC_FILE,65,13,29,14
+    PUSHBUTTON      "Rec",IDC_BUTTON_RECORDING,96,13,16,14
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP_REC,113,13,18,14
+    CONTROL         "",IDC_SLIDER_VOICE_VOL_IN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,215,31,17,82,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_VOICE_VOL_OUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,254,31,17,82,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VOLUME_VOICE_IN,214,16,17,11,NOT WS_GROUP | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VOLUME_VOICE_OUT,253,15,19,12,NOT WS_GROUP | WS_TABSTOP,WS_EX_STATICEDGE
+    CONTROL         "3",IDC_AP_3,"Button",BS_AUTORADIOBUTTON | BS_NOTIFY | WS_TABSTOP,175,99,19,9
+    GROUPBOX        "Audio Profiles",IDC_STATIC,142,75,53,39
+    CTEXT           "0",IDC_VOL_OUT_MIN,239,32,12,8
+    CTEXT           "0000",IDC_VOL_OUT_MAX,235,104,17,8
+    LTEXT           "0",IDC_VOL_IN_MIN,201,32,12,8,NOT WS_GROUP | WS_TABSTOP
+    LTEXT           "0",IDC_VOL_IN_MAX,203,104,10,8,WS_TABSTOP
+    CTEXT           "100%",IDC_VOL_PLAY_MAX,16,112,19,8
+    CONTROL         "",IDC_SLIDER_MIC_ANALOG_GAIN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,77,50,17,70,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VOLUME_MIC_ANALOG,77,34,17,8,NOT WS_GROUP | WS_TABSTOP,WS_EX_STATICEDGE
+    LTEXT           "0",IDC_VOL_MIC_ANALOG_MAX,67,112,10,8,WS_TABSTOP
+    LTEXT           "0",IDC_VOL_MIC_ANALOG_MIN,67,47,10,8,WS_TABSTOP
+    LTEXT           "",IDC_VOLUME_MIC_DIGITAL,112,34,17,8,NOT WS_GROUP | WS_TABSTOP,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_MIC_DIGITAL_GAIN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,112,50,17,70,WS_EX_STATICEDGE
+    LTEXT           "0",IDC_VOL_MIC_DIGITAL_MAX,96,112,15,8,WS_TABSTOP
+    LTEXT           "0",IDC_VOL_MIC_DIGITAL_MIN,97,47,14,8,WS_TABSTOP
+    CONTROL         "BT",IDC_BT_ON_OFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,189,44,21,9
+    GROUPBOX        "   Modem Settings        V_IN           V_OUT ",IDC_STATIC_MODEM,137,2,137,118,0,WS_EX_STATICEDGE
+    GROUPBOX        "Record",IDC_STATIC_REC,63,2,70,121,0,WS_EX_STATICEDGE
+    CONTROL         "BT",IDC_CHECK_BT_HS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,92,24,10
+    CONTROL         "Ext",IDC_CHECK_EXT_AUDIO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,75,27,10
+    GROUPBOX        "Static",IDC_IDC_STATIC_PLAY,7,2,51,121
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 274
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 120
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_DIGVOICE            ICON                    "DigVoice.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 125, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "About DigVoice"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            IDI_DIGVOICE,IDC_STATIC,11,17,20,20
+    LTEXT           "DigVoice Version 1.0",IDC_STATIC,38,10,70,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2010",IDC_STATIC,38,25,70,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 118
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_FILE_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      IDM_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_DIGVOICE ACCELERATORS 
+BEGIN
+    "A",            IDM_HELP_ABOUT,         VIRTKEY, CONTROL, NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)\r\n"
+    "LANGUAGE 13, 1\r\n"
+    "#pragma code_page(1255)\r\n"
+    "#include ""DigVoice.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "DigVoice"
+    IDC_DIGVOICE            "DIGVOICE"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLS               "Tools"
+END
+
+#endif    // Hebrew resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+LANGUAGE 13, 1
+#pragma code_page(1255)
+#include "DigVoice.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

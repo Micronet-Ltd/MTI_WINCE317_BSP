@@ -1,0 +1,245 @@
+ wince6_proxy
+
+ Timestamp is 4c9a7097 (Wed Sep 22 17:09:43 2010)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 00000526H .rdata                  CODE
+ 0001:00000548 00000029H .rdata$debug            CODE
+ 0001:00000574 00003accH .text                   CODE
+ 0001:00004040 00000020H .xdata                  CODE
+ 0001:00004060 00000028H .idata$2                CODE
+ 0001:00004088 00000014H .idata$3                CODE
+ 0001:0000409c 0000009cH .idata$4                CODE
+ 0001:00004138 00000016H .idata$6                CODE
+ 0001:00004150 000000a0H .edata                  CODE
+ 0002:00000000 0000009cH .idata$5                DATA
+ 0002:0000009c 0000000cH .data                   DATA
+ 0002:000000a8 00000450H .bss                    DATA
+ 0003:00000000 00000258H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     10001000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     10001004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     10001008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     1000100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     10001010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     10001014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     10001018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     1000101c     corelib0:crt0init.obj
+ 0001:0000003c       ??_C@_1CM@CMBCGNFF@?$AA?2?$AAP?$AAo?$AAw?$AAe?$AAr?$AAV?$AAR?$AA?2?$AAP?$AAV?$AAR?$AAK?$AAe?$AAr?$AAn?$AAe?$AAl?$AA1?$AA2?$AA5?$AA?$AA@ 1000103c     wince6_proxy.obj
+ 0001:00000068       ??_C@_1CM@KDHAPKAC@?$AA?2?$AAP?$AAo?$AAw?$AAe?$AAr?$AAV?$AAR?$AA?2?$AAP?$AAV?$AAR?$AAK?$AAe?$AAr?$AAn?$AAe?$AAl?$AA1?$AA2?$AA1?$AA?$AA@ 10001068     wince6_proxy.obj
+ 0001:00000094       ??_C@_1M@DMCDIEDK@?$AAP?$AAK?$AAM?$AA1?$AA?3?$AA?$AA@ 10001094     wince6_proxy.obj
+ 0001:000000a0       ??_C@_0BJ@JODNLMDK@PVRGetDisplayClassJTable?$AA@ 100010a0     wince6_proxy.obj
+ 0001:000000bc       ??_C@_1BG@HJHAPHEG@?$AA?$CK?$AA_?$AAR?$AAe?$AAv?$AA1?$AA2?$AA1?$AA?4?$AA?$CK?$AA?$AA@ 100010bc     wince6_proxy.obj
+ 0001:000000d4       ??_C@_1BG@PNDKPJLM@?$AA?$CK?$AA_?$AAR?$AAe?$AAv?$AA1?$AA2?$AA5?$AA?4?$AA?$CK?$AA?$AA@ 100010d4     wince6_proxy.obj
+ 0001:000000ec       ??_C@_1BE@IBBOHCDA@?$AA?2?$AAW?$AAi?$AAn?$AAd?$AAo?$AAw?$AAs?$AA?2?$AA?$AA@ 100010ec     wince6_proxy.obj
+ 0001:00000100       ??_C@_0DN@EACPMEIM@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10001100     srvkmcmn:hash.obj
+ 0001:00000140       ??_C@_0CH@DNLNNLHH@HASH_Create_Extended?3?5InitialSiz@ 10001140     srvkmcmn:hash.obj
+ 0001:00000168       ??_C@_0FE@GMCLDFNB@Likely?5Cause?3?5client?5drivers?5not@ 10001168     srvkmcmn:hash.obj
+ 0001:000001bc       ??_C@_0CK@JEOFEIEN@HASH_Delete?3?5leak?5detected?5in?5ha@ 100011bc     srvkmcmn:hash.obj
+ 0001:000001e8       ??_C@_0M@ONNJEOBP@HASH_Delete?$AA@ 100011e8     srvkmcmn:hash.obj
+ 0001:000001f4       ??_C@_0CI@LEDLCMON@HASH_Insert_Extended?3?5invalid?5pa@ 100011f4     srvkmcmn:hash.obj
+ 0001:0000021c       ??_C@_0DD@BGFONFBF@HASH_Insert_Extended?3?5Hash?$DN?$CF08X?0@ 1000121c     srvkmcmn:hash.obj
+ 0001:00000250       ??_C@_0CA@CFAJLCAF@_ChainInsert?3?5invalid?5parameter?$AA@ 10001250     srvkmcmn:hash.obj
+ 0001:00000270       ??_C@_0DE@NEOLFAFA@HASH_Resize?3?5oldsize?$DN0x?$CFx?5?5newsi@ 10001270     srvkmcmn:hash.obj
+ 0001:000002a4       ??_C@_0CF@CFGOAJCO@_Rehash?3?5call?5to?5_ChainInsert?5fa@ 100012a4     srvkmcmn:hash.obj
+ 0001:000002cc       ??_C@_0CH@GPFFHIIO@HASH_Insert?3?5Hash?$DN?$CF08X?0?5k?$DN0x?$CFx?0?5@ 100012cc     srvkmcmn:hash.obj
+ 0001:000002f4       ??_C@_0DG@MINLHOCN@HASH_Remove_Extended?3?5Hash?$DN?$CF08X?0@ 100012f4     srvkmcmn:hash.obj
+ 0001:0000032c       ??_C@_0DC@KPNHJCIL@HASH_Remove_Extended?3?5Hash?$DN?$CF08X?0@ 1000132c     srvkmcmn:hash.obj
+ 0001:00000360       ??_C@_0CG@CJBFLAFN@HASH_Remove_Extended?3?5Null?5hash?5@ 10001360     srvkmcmn:hash.obj
+ 0001:00000388       ??_C@_0CL@BBOOOLIH@HASH_Remove_Extended?3?5Hash?$DN?$CF08X?0@ 10001388     srvkmcmn:hash.obj
+ 0001:000003b4       ??_C@_0BP@JEEPMLNF@HASH_Remove?3?5Hash?$DN?$CF08X?0?5k?$DN0x?$CFx?$AA@ 100013b4     srvkmcmn:hash.obj
+ 0001:000003d4       ??_C@_0CP@FIADDFIH@HASH_Retrieve?3?5Hash?$DN?$CF08X?0?5pKey?$DN?$CF@ 100013d4     srvkmcmn:hash.obj
+ 0001:00000404       ??_C@_0CL@GODDFBLN@HASH_Retrieve?3?5Hash?$DN?$CF08X?0?5pKey?$DN?$CF@ 10001404     srvkmcmn:hash.obj
+ 0001:00000430       ??_C@_0CI@IFKANGKO@HASH_Retrieve_Extended?3?5Null?5has@ 10001430     srvkmcmn:hash.obj
+ 0001:00000458       ??_C@_0CN@MBBAKGML@HASH_Retrieve_Extended?3?5Hash?$DN?$CF08@ 10001458     srvkmcmn:hash.obj
+ 0001:00000488       ??_C@_0CB@IDJKKOEH@HASH_Retrieve?3?5Hash?$DN?$CF08X?0?5k?$DN0x?$CFx@ 10001488     srvkmcmn:hash.obj
+ 0001:000004ac       ??_C@_09BCKBAPGD@?5?$FL?$CFd?0?5?$CFs?$FN?$AA@ 100014ac     srvclkm:pvr_debug.obj
+ 0001:000004b8       ??_C@_05CIJMOPAN@PVR?3?5?$AA@ 100014b8     srvclkm:pvr_debug.obj
+ 0001:000004c0       ??_C@_0BM@LGIDEPML@PVR?3?$CIUnknown?5message?5level?$CJ?$AA@ 100014c0     srvclkm:pvr_debug.obj
+ 0001:000004dc       ??_C@_0BA@LJIGOOPJ@PVR?3?$CIVerbose?$CJ?3?5?$AA@ 100014dc     srvclkm:pvr_debug.obj
+ 0001:000004ec       ??_C@_0BA@FLEDLDFA@PVR?3?$CIMessage?$CJ?3?5?$AA@ 100014ec     srvclkm:pvr_debug.obj
+ 0001:000004fc       ??_C@_0BA@IABEPDBD@PVR?3?$CIWarning?$CJ?3?5?$AA@ 100014fc     srvclkm:pvr_debug.obj
+ 0001:0000050c       ??_C@_0O@PMFKIKPB@PVR?3?$CIError?$CJ?3?5?$AA@ 1000150c     srvclkm:pvr_debug.obj
+ 0001:0000051c       ??_C@_0O@LBOJPNFF@PVR?3?$CIFatal?$CJ?3?5?$AA@ 1000151c     srvclkm:pvr_debug.obj
+ 0001:0000052c       ??_C@_0BI@NLGOAFIB@Debug?5assertion?5failed?$CB?$AA@ 1000152c     srvclkm:pvr_debug.obj
+ 0001:00000544       ??_C@_01EEMJAFIK@?6?$AA@   10001544     srvclkm:pvr_debug.obj
+ 0001:00000574       OpenPVRServices            10001574 f   wince6_proxy.obj
+ 0001:00000688       GetLibFuncAddr             10001688 f   wince6_proxy.obj
+ 0001:0000076c       ClosePVRServices           1000176c f   wince6_proxy.obj
+ 0001:000007a4       InitializePVRLibraries     100017a4 f   wince6_proxy.obj
+ 0001:00000a6c       W5P_Init                   10001a6c f   wince6_proxy.obj
+ 0001:00001868       W5P_IOControl              10002868 f   wince6_proxy.obj
+ 0001:00001bb4       W5P_Deinit                 10002bb4 f   wince6_proxy.obj
+ 0001:00001c08       W5P_Open                   10002c08 f   wince6_proxy.obj
+ 0001:00001c30       W5P_Close                  10002c30 f   wince6_proxy.obj
+ 0001:00001c58       OSAllocMem_Impl            10002c58 f   wince6_proxy.obj
+ 0001:00001c9c       OSFreeMem_Impl             10002c9c f   wince6_proxy.obj
+ 0001:00001ccc       OSMemCopy                  10002ccc f   wince6_proxy.obj
+ 0001:00001cf0       OSMemSet                   10002cf0 f   wince6_proxy.obj
+ 0001:00001d18       CREATE_CALLER_RES_LIST     10002d18 f i wince6_proxy.obj
+ 0001:00001d9c       DESTROY_CALLER_RES_LIST    10002d9c f i wince6_proxy.obj
+ 0001:00001e18       HASH_RESOURCE_IN_RES_LIST  10002e18 f i wince6_proxy.obj
+ 0001:00001e54       RETRIEVE_RESOURCE_FROM_RES_LIST 10002e54 f i wince6_proxy.obj
+ 0001:00001e9c       REMOVE_RESOURCE_FROM_RES_LIST 10002e9c f i wince6_proxy.obj
+ 0001:00001efc       RETRIEVE_SWAPCHAININFO_FROM_RES_LIST 10002efc f i wince6_proxy.obj
+ 0001:00001f44       REMOVE_SWAPCHAININFO_FROM_RES_LIST 10002f44 f i wince6_proxy.obj
+ 0001:00001fb0       HASH_SWAPCHAINFO_IN_RES_LIST 10002fb0 f i wince6_proxy.obj
+ 0001:00001fec       HASH_Func_Default          10002fec f   srvkmcmn:hash.obj
+ 0001:00002170       HASH_Key_Comp_Default      10003170 f   srvkmcmn:hash.obj
+ 0001:00002260       HASH_Create_Extended       10003260 f   srvkmcmn:hash.obj
+ 0001:000023e4       HASH_Create                100033e4 f   srvkmcmn:hash.obj
+ 0001:0000242c       HASH_Delete                1000342c f   srvkmcmn:hash.obj
+ 0001:00002520       HASH_Insert_Extended       10003520 f   srvkmcmn:hash.obj
+ 0001:00002a80       HASH_Insert                10003a80 f   srvkmcmn:hash.obj
+ 0001:00002af4       HASH_Remove_Extended       10003af4 f   srvkmcmn:hash.obj
+ 0001:00002de0       HASH_Remove                10003de0 f   srvkmcmn:hash.obj
+ 0001:00002e48       HASH_Retrieve_Extended     10003e48 f   srvkmcmn:hash.obj
+ 0001:00003054       HASH_Retrieve              10004054 f   srvkmcmn:hash.obj
+ 0001:000030c4       PVRSRVDebugPrintf          100040c4 f   srvclkm:pvr_debug.obj
+ 0001:00003420       PVRSRVDebugAssertFail      10004420 f   srvclkm:pvr_debug.obj
+ 0001:00003458       PVRSRVTrace                10004458 f   srvclkm:pvr_debug.obj
+ 0001:00003588       ActivateDevice             10004588 f   coredll:COREDLL.dll
+ 0001:00003598       CreateFileW                10004598 f   coredll:COREDLL.dll
+ 0001:000035a8       DeviceIoControl            100045a8 f   coredll:COREDLL.dll
+ 0001:000035b8       CloseHandle                100045b8 f   coredll:COREDLL.dll
+ 0001:000035c8       FindClose                  100045c8 f   coredll:COREDLL.dll
+ 0001:000035d8       FindNextFileW              100045d8 f   coredll:COREDLL.dll
+ 0001:000035e8       CopyFileW                  100045e8 f   coredll:COREDLL.dll
+ 0001:000035f8       FindFirstFileW             100045f8 f   coredll:COREDLL.dll
+ 0001:00003608       ExtEscape                  10004608 f   coredll:COREDLL.dll
+ 0001:00003618       GetDC                      10004618 f   coredll:COREDLL.dll
+ 0001:00003628       ReleaseDC                  10004628 f   coredll:COREDLL.dll
+ 0001:00003638       OutputDebugStringW         10004638 f   coredll:COREDLL.dll
+ 0001:00003648       MmMapIoSpace               10004648 f   ceddk:CEDDK.dll
+ 0001:00003658       DllMain                    10004658 f   corelib0:dllmain.obj
+ 0001:00003694       _DllMainCRTStartup         10004694 f   corelib0:pegdmain.obj
+ 0001:0000383c       __security_init_cookie     1000483c f   corelib0:seccinit.obj
+ 0001:00003904       __GSHandlerCheck           10004904 f   corelib0:gshandler.obj
+ 0001:0000394c       __GSHandlerCheckCommon     1000494c f   corelib0:gshandler.obj
+ 0001:000039f4       __security_check_cookie    100049f4 f   corelib0:armsecgs.obj
+ 0001:00003a08       __gsfailure                10004a08 f   corelib0:armsecgs.obj
+ 0001:00003a4c       exit                       10004a4c f   corelib0:cexit.obj
+ 0001:00003b90       _exit                      10004b90 f   corelib0:cexit.obj
+ 0001:00003bb4       _cexit                     10004bb4 f   corelib0:cexit.obj
+ 0001:00003bd0       _c_exit                    10004bd0 f   corelib0:cexit.obj
+ 0001:00003bec       GetCurrentProcess          10004bec f i corelib0:cexit.obj
+ 0001:00003c04       _initterm                  10004c04 f   corelib0:crt0dat.obj
+ 0001:00003c58       _cinit                     10004c58 f   corelib0:crt0dat.obj
+ 0001:00003c8c       _onexit                    10004c8c f   corelib0:onexit.obj
+ 0001:00003e6c       atexit                     10004e6c f   corelib0:onexit.obj
+ 0001:00003ec0       strcmp                     10004ec0 f   corelib1:COREDLL.dll
+ 0001:00003ed0       wcslen                     10004ed0 f   corelib1:COREDLL.dll
+ 0001:00003ee0       wcscat                     10004ee0 f   corelib1:COREDLL.dll
+ 0001:00003ef0       wcscpy                     10004ef0 f   corelib1:COREDLL.dll
+ 0001:00003f00       memcpy                     10004f00 f   corelib1:COREDLL.dll
+ 0001:00003f10       calloc                     10004f10 f   corelib1:COREDLL.dll
+ 0001:00003f20       free                       10004f20 f   corelib1:COREDLL.dll
+ 0001:00003f30       malloc                     10004f30 f   corelib1:COREDLL.dll
+ 0001:00003f40       memset                     10004f40 f   corelib1:COREDLL.dll
+ 0001:00003f50       __rt_udiv                  10004f50 f   corelib1:COREDLL.dll
+ 0001:00003f60       sprintf                    10004f60 f   corelib1:COREDLL.dll
+ 0001:00003f70       vsprintf                   10004f70 f   corelib1:COREDLL.dll
+ 0001:00003f80       strlen                     10004f80 f   corelib1:COREDLL.dll
+ 0001:00003f90       strcpy                     10004f90 f   corelib1:COREDLL.dll
+ 0001:00003fa0       strcat                     10004fa0 f   corelib1:COREDLL.dll
+ 0001:00003fb0       _vsnprintf                 10004fb0 f   corelib1:COREDLL.dll
+ 0001:00003fc0       _XcptFilter                10004fc0 f   corelib1:COREDLL.dll
+ 0001:00003fd0       __C_specific_handler       10004fd0 f   corelib1:COREDLL.dll
+ 0001:00003fe0       __security_gen_cookie2     10004fe0 f   corelib1:COREDLL.dll
+ 0001:00003ff0       __report_gsfailure         10004ff0 f   corelib1:COREDLL.dll
+ 0001:00004000       realloc                    10005000 f   corelib1:COREDLL.dll
+ 0001:00004010       _msize                     10005010 f   corelib1:COREDLL.dll
+ 0001:00004020       DisableThreadLibraryCalls  10005020 f   coredll:COREDLL.dll
+ 0001:00004030       TerminateProcess           10005030 f   coredll:COREDLL.dll
+ 0001:00004060       __IMPORT_DESCRIPTOR_COREDLL 10005060     coredll:COREDLL.dll
+ 0001:00004074       __IMPORT_DESCRIPTOR_CEDDK  10005074     ceddk:CEDDK.dll
+ 0001:00004088       __NULL_IMPORT_DESCRIPTOR   10005088     coredll:COREDLL.dll
+ 0002:00000000       __imp_MmMapIoSpace         10006000     ceddk:CEDDK.dll
+ 0002:00000004       \177CEDDK_NULL_THUNK_DATA  10006004     ceddk:CEDDK.dll
+ 0002:00000008       __imp_DeviceIoControl      10006008     coredll:COREDLL.dll
+ 0002:0000000c       __imp_CloseHandle          1000600c     coredll:COREDLL.dll
+ 0002:00000010       __imp_FindClose            10006010     coredll:COREDLL.dll
+ 0002:00000014       __imp_FindNextFileW        10006014     coredll:COREDLL.dll
+ 0002:00000018       __imp_CopyFileW            10006018     coredll:COREDLL.dll
+ 0002:0000001c       __imp_CreateFileW          1000601c     coredll:COREDLL.dll
+ 0002:00000020       __imp_ExtEscape            10006020     coredll:COREDLL.dll
+ 0002:00000024       __imp_GetDC                10006024     coredll:COREDLL.dll
+ 0002:00000028       __imp_ReleaseDC            10006028     coredll:COREDLL.dll
+ 0002:0000002c       __imp_OutputDebugStringW   1000602c     coredll:COREDLL.dll
+ 0002:00000030       __imp_FindFirstFileW       10006030     coredll:COREDLL.dll
+ 0002:00000034       __imp_ActivateDevice       10006034     coredll:COREDLL.dll
+ 0002:00000038       __imp_strcmp               10006038     corelib1:COREDLL.dll
+ 0002:0000003c       __imp_wcslen               1000603c     corelib1:COREDLL.dll
+ 0002:00000040       __imp_wcscat               10006040     corelib1:COREDLL.dll
+ 0002:00000044       __imp_wcscpy               10006044     corelib1:COREDLL.dll
+ 0002:00000048       __imp_memcpy               10006048     corelib1:COREDLL.dll
+ 0002:0000004c       __imp_calloc               1000604c     corelib1:COREDLL.dll
+ 0002:00000050       __imp_free                 10006050     corelib1:COREDLL.dll
+ 0002:00000054       __imp_malloc               10006054     corelib1:COREDLL.dll
+ 0002:00000058       __imp_memset               10006058     corelib1:COREDLL.dll
+ 0002:0000005c       __imp___rt_udiv            1000605c     corelib1:COREDLL.dll
+ 0002:00000060       __imp_sprintf              10006060     corelib1:COREDLL.dll
+ 0002:00000064       __imp_vsprintf             10006064     corelib1:COREDLL.dll
+ 0002:00000068       __imp_strlen               10006068     corelib1:COREDLL.dll
+ 0002:0000006c       __imp_strcpy               1000606c     corelib1:COREDLL.dll
+ 0002:00000070       __imp_strcat               10006070     corelib1:COREDLL.dll
+ 0002:00000074       __imp__vsnprintf           10006074     corelib1:COREDLL.dll
+ 0002:00000078       __imp__XcptFilter          10006078     corelib1:COREDLL.dll
+ 0002:0000007c       __imp___C_specific_handler 1000607c     corelib1:COREDLL.dll
+ 0002:00000080       __imp___security_gen_cookie2 10006080     corelib1:COREDLL.dll
+ 0002:00000084       __imp___report_gsfailure   10006084     corelib1:COREDLL.dll
+ 0002:00000088       __imp_realloc              10006088     corelib1:COREDLL.dll
+ 0002:0000008c       __imp__msize               1000608c     corelib1:COREDLL.dll
+ 0002:00000090       __imp_DisableThreadLibraryCalls 10006090     coredll:COREDLL.dll
+ 0002:00000094       __imp_TerminateProcess     10006094     coredll:COREDLL.dll
+ 0002:00000098       \177COREDLL_NULL_THUNK_DATA 10006098     coredll:COREDLL.dll
+ 0002:0000009c       gPVRDebugLevel             1000609c     srvclkm:pvr_debug.obj
+ 0002:000000a0       __security_cookie          100060a0     corelib0:seccinit.obj
+ 0002:000000a4       __security_cookie_complement 100060a4     corelib0:seccinit.obj
+ 0002:000004e9       _exitflag                  100064e9     corelib0:cexit.obj
+ 0002:000004ec       __onexitend                100064ec     <common>
+ 0002:000004f0       __onexitbegin              100064f0     <common>
+ 0002:000004f4       _pRawDllMain               100064f4     <common>
+
+ entry point at        0001:00003694
+
+ Static symbols
+
+ 0001:00000c4c       Wrap_OpenDCDevice          10001c4c f   wince6_proxy.obj
+ 0001:00000d08       Wrap_CloseDCDevice         10001d08 f   wince6_proxy.obj
+ 0001:00000d90       Wrap_EnumDCFormats         10001d90 f   wince6_proxy.obj
+ 0001:00000e2c       Wrap_EnumDCDims            10001e2c f   wince6_proxy.obj
+ 0001:00000ed0       Wrap_GetDCSystemBuffer     10001ed0 f   wince6_proxy.obj
+ 0001:00000f74       Wrap_GetDCInfo             10001f74 f   wince6_proxy.obj
+ 0001:00000fec       Wrap_GetDCBufferAddr       10001fec f   wince6_proxy.obj
+ 0001:000011ac       Wrap_CreateDCSwapChain     100021ac f   wince6_proxy.obj
+ 0001:0000127c       Wrap_DestroyDCSwapChain    1000227c f   wince6_proxy.obj
+ 0001:0000138c       Wrap_SetDCDstRect          1000238c f   wince6_proxy.obj
+ 0001:00001414       Wrap_SetDCSrcRect          10002414 f   wince6_proxy.obj
+ 0001:0000149c       Wrap_SetDCDstColourKey     1000249c f   wince6_proxy.obj
+ 0001:0000151c       Wrap_SetDCSrcColourKey     1000251c f   wince6_proxy.obj
+ 0001:0000159c       Wrap_GetDCBuffers          1000259c f   wince6_proxy.obj
+ 0001:000016ec       Wrap_SwapToDCBuffer        100026ec f   wince6_proxy.obj
+ 0001:00001784       Wrap_SwapToDCSystem        10002784 f   wince6_proxy.obj
+ 0001:000017fc       Wrap_SetDCState            100027fc f   wince6_proxy.obj
+ 0001:00001ab4       Wrap_ProcessCMD0           10002ab4 f   wince6_proxy.obj
+ 0001:00001b34       Wrap_ProcessCMD1           10002b34 f   wince6_proxy.obj
+ 0001:000026cc       _ChainInsert               100036cc f   srvkmcmn:hash.obj
+ 0001:00002814       _Resize                    10003814 f   srvkmcmn:hash.obj
+ 0001:000029a0       _Rehash                    100039a0 f   srvkmcmn:hash.obj
+ 0001:000036e8       _DllMainCRTStartupHelper   100046e8 f   corelib0:pegdmain.obj
+ 0001:00003a70       doexit                     10004a70 f   corelib0:cexit.obj

@@ -1,0 +1,12 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!INCLUDE "..\..\sources.inc"
+
+TARGETNAME=$(OMAP3530)_oal_cpuidle
+TARGETTYPE=LIBRARY
+
+#INCLUDES=$(INCLUDES)
+
+SOURCES=
+
+ARM_SOURCES=\
+    cpu.s

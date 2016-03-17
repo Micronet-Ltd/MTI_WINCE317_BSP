@@ -1,0 +1,26 @@
+;
+; Datalight Common Utilities
+;
+; The following lines must be added to the PROJECT.BIB to include the
+; generic DCL specific utilities and tests in the build image.
+;
+
+MODULES
+;   Name             Path                                           Memory Type
+;   ---------------  ---------------------------------------------  -----------
+    dlfilespy.dll    $(_FLATRELEASEDIR)\dlfilespy.dll               NK
+    dlshellext.dll   $(_FLATRELEASEDIR)\dlshellext.dll              NK
+
+FILES
+;   Name             Path                                           Memory Type
+;   ---------------  ---------------------------------------------  -----------
+    dcltest.exe      $(_FLATRELEASEDIR)\dcltest.exe                 NK
+    deviotest.exe    $(_FLATRELEASEDIR)\deviotest.exe               NK
+    dlpart.exe       $(_FLATRELEASEDIR)\dlpart.exe                  NK
+    dlshell.exe      $(_FLATRELEASEDIR)\dlshell.exe                 NK
+    fsiotest.exe     $(_FLATRELEASEDIR)\fsiotest.exe                NK
+    fsstresstest.exe $(_FLATRELEASEDIR)\fsstresstest.exe            NK
+    loaddrv.exe      $(_FLATRELEASEDIR)\loaddrv.exe                 NK
+    windlshell.exe   $(_FLATRELEASEDIR)\windlshell.exe              NK
+    winfsiotest.exe  $(_FLATRELEASEDIR)\winfsiotest.exe             NK
+

@@ -1,0 +1,29 @@
+;
+; Copyright (c) Micronet.  All rights reserved.
+;
+; AIO driver
+;
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\AIO]
+	"Dll"="AIOdrvr.Dll"
+	"Prefix"="AIO"
+	"Index"=dword:1
+    "Order"=dword:1F          ; should be after GPIO driver
+    
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\AIO\Input1]    
+    "StableTime"= dword:0
+    "DebounceTime"=dword:4E20
+
+    
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\AIO\Input2]    
+    "StableTime"= dword:0
+    "DebounceTime"=dword:4E20
+    
+    
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\AIO\Input3]    
+    "StableTime"= dword:0
+    "DebounceTime"=dword:4E20    
+    
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\AIO\Input4]    
+    "StableTime"= dword:0
+    "DebounceTime"=dword:4E20     

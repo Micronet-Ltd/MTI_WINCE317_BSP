@@ -1,0 +1,45 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES
+PROJECTNAME=EvilSkull
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Iris.obj \
+	$(OBJDIR)\Metal.obj \
+	$(OBJDIR)\Fire02.obj \
+	$(OBJDIR)\Fire03.obj \
+	$(OBJDIR)\EvilSkull_float.obj \
+	$(OBJDIR)\EvilSkull_fixed.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Iris.cpp \
+	$(APPROOT)\Content\Metal.cpp \
+	$(APPROOT)\Content\Fire02.cpp \
+	$(APPROOT)\Content\Fire03.cpp \
+	$(APPROOT)\Content\EvilSkull_float.cpp \
+	$(APPROOT)\Content\EvilSkull_fixed.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

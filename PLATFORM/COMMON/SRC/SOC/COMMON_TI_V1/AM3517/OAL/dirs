@@ -1,0 +1,7 @@
+DIRS=\
+	MISC\
+	PADCFG\
+	PRCM\
+	CPUIDLE\
+	POWER
+

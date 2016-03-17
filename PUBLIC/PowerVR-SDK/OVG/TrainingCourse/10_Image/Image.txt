@@ -1,0 +1,13 @@
+
+Demo title: 		Image
+
+Demonstrates: 		How to use OpenVG images
+
+Short Description:	How to use OpenVG images
+
+Full Description:	
+This training course shows you how to use OpenVG images. It starts off with the creation of two images. The first is populated whith image data from memory. The second image is initially cleared to a single colour and then a section of the first image is copied to it.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

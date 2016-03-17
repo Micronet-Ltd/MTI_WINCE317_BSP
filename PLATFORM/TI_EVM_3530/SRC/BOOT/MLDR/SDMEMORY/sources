@@ -1,0 +1,79 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+!endif
+TARGETNAME=ebootsd
+TARGETTYPE=PROGRAM
+RELEASETYPE=PLATFORM
+WINCECPU=1
+SYNCHRONIZE_DRAIN=1
+
+EXEENTRY=StartUp
+EXEBASE=0x00000000
+
+# Disable the generation unnecessary stack checking code in boot loader
+STACK_CHECK_DISABLE=1
+
+#
+# BUILD builds these targets in the post build step.  BootImage build 
+# rules are defined in makefile.inc.  Building BootImage turns EBOOT.EXE 
+# into EBOOT.BIN / EBOOT.SRE
+#
+WINCETARGETFILES=BootImage
+
+NOMIPS16CODE=1
+WINCEOEM=1
+
+CDEFINES=$(CDEFINES) -DCOREDLL -DBUILDING_EBOOT_SD
+LDEFINES=/DEBUG /DEBUGTYPE:CV /FIXED:NO
+
+INCLUDES=$(INCLUDES); \
+		 $(_PUBLICROOT)\common\oak\drivers\block\msflashfmd\inc; \
+         $(_TARGETPLATROOT)\SRC\BOOT; \
+INCLUDES=$(INCLUDES);..\
+		 
+
+SOURCES=\
+    ..\main.c \
+    ..\map.c \
+    ..\menu.c \
+    ..\stub.c \
+    flash.c \
+    cfg.c
+	
+ARM_SOURCES=\
+    ..\startup.s \
+    ..\jumpto.s
+
+TARGETLIBS= \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_debug_uart.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_stall.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_display.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_fmdnand.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_tps659xx.lib \
+    $(_TARGETPLATLIB)\$(_CPUINDPATH)\lcd_vga_boot.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_twl.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_i2c.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_io.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_log.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_other.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_blnk.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\mldr_blcommon.lib \
+    $(_EBOOTLIBS)\$(_CPUDEPPATH)\bootpart.lib \
+    $(_EBOOTLIBS)\$(_CPUDEPPATH)\eboot.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\gsnull.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\fulllibc.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_bootstubs.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_hdq.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_sdmemory.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_fatfs.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_sdhc.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\spi_boot_lib.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_cpuver_omap35xx_tps659xx_ti_v1.lib

@@ -1,0 +1,277 @@
+;
+; FlashFX registry keys.
+;
+; These all live in the boot hive
+; For guidance look here:
+; http://msdn2.microsoft.com/en-us/library/aa916296.aspx
+; http://msdn2.microsoft.com/en-us/library/aa916278.aspx
+;
+
+; The following settings can be set to individually set to FATFS or
+; RELIANCE as desired.  Note that in the ffxconf.h file, the settings
+; FFXCONF_FATSUPPORT and/or FFXCONF_RELIANCESUPPORT must be enabled
+; appropriately.
+;
+; To disable creation of the APPFILESYS CE Store, set DLFFX_NOAPPDISK 
+; in the system environment.  The APPFILESYS value will not be used.
+;
+#define APPFILESYS	FATFS
+#define USERFILESYS	FATFS
+
+
+;
+; The following GUIDs are used to indicate that FlashFX is a block
+; device driver, and that it is power-managed.
+;
+#define CE_DRIVER_BLOCK_GUID                  "{A4E7EDDA-E575-4252-9D6B-4195D48BB865}"
+#define CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID "{8DD679CE-8AB4-43c8-A14A-EA4963FAA715}"
+
+
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+; @CESYSGEN IF FILESYS_FSREGHIVE
+; HIVE BOOT SECTION
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX-System]
+    "Flags"=dword:00011000
+
+; END HIVE BOOT SECTION
+; @CESYSGEN ELSE
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX-System]
+    "Flags"=dword:00010000
+
+; @CESYSGEN ENDIF FILESYS_FSREGHIVE
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+
+
+;-- Storage Manager Configuration ----------------------------------------------
+; @CESYSGEN IF CE_MODULES_FATFSD || CE_MODULES_TFAT || CE_MODULES_IMGFS
+; @CESYSGEN IF CE_MODULES_FSDMGR
+; HIVE BOOT SECTION
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-System]
+    "DriverPath"="Drivers\\BuiltIn\\FlashFX-System"
+    "LoadFlags"=dword:1
+    "BootPhase"=dword:0
+    "Order"=dword:0
+
+
+IF IMGULDR
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-System\IMGFS]
+    "XIP"=dword:0
+
+IF DLFFX_NOAPPDISK !
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-App\$(APPFILESYS)]
+    "FormatTFAT"=dword:1
+    "EnableWriteBack"=dword:1
+    "Folder"="Application"
+
+ENDIF
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-User\$(USERFILESYS)]
+    "FormatTFAT"=dword:1
+    "EnableWriteBack"=dword:1
+    "Folder"="OSRoot"
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX-System]
+    "UpdateReadOnly"=dword:1
+
+; Enable this section to use the Shell Extensions in the Update Loader
+;[HKEY_LOCAL_MACHINE\Software\Microsoft\TxtShell\Extensions]
+;    "DatalightShell"="dlshellext.dll"
+;    "FlashFXShell"="fxshellext.dll"
+
+
+ELSE
+
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-System\IMGFS]
+    "MountHidden"=dword:1
+    "MountAsROM"=dword:1
+    "XIP"=dword:0
+
+IF DLFFX_NOAPPDISK !
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-App\$(APPFILESYS)]
+    "MountHidden"=dword:0
+    "Flags"=dword:00000014
+    "FormatTFAT"=dword:1
+    "EnableWriteBack"=dword:1
+    "Util"="fatutil.dll"
+
+ENDIF
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-User\$(USERFILESYS)]
+    "MountAsBootable"=dword:1
+    "MountAsRoot"=dword:1
+    "Flags"=dword:00000014
+    "FormatTFAT"=dword:1
+    "EnableWriteBack"=dword:1
+    "CheckForFormat"=dword:1
+    "Util"="fatutil.dll"
+
+; @CESYSGEN IF CE_MODULES_FSREPLXFILT
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-User\$(USERFILESYS)\Filters\fsreplxfilt]
+    "Dll"="fsreplxfilt.dll"
+    "Order"=dword:1 		; must be loaded before other filters
+; @CESYSGEN ENDIF CE_MODULES_FSREPLXFILT
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\TxtShell\Extensions]
+    "DatalightShell"="dlshellext.dll"
+    "FlashFXShell"="fxshellext.dll"
+    "RelianceShell"="relshellext.dll"
+
+ENDIF IMGULDR
+
+; END HIVE BOOT SECTION
+; @CESYSGEN ENDIF CE_MODULES_FSDMGR
+; @CESYSGEN ENDIF CE_MODULES_FATFSD || CE_MODULES_TFAT || CE_MODULES_IMGFS
+; -----------------------------------------------------------------------------
+
+
+
+
+; -----------------------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_FATFSD || CE_MODULES_TFAT || CE_MODULES_IMGFS
+; @CESYSGEN IF CE_MODULES_FSDMGR
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+IF BSP_NONAND !
+; HIVE BOOT SECTION
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX-System]
+    "Prefix"="DSK"
+    "Dll"="FlashFX.DLL"
+    "Index"=dword:1
+    "Order"=dword:0
+    "IClass"=multi_sz:$(CE_DRIVER_BLOCK_GUID), $(CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID)
+    "Profile"="FlashFX-System"
+
+; END HIVE BOOT SECTION
+ENDIF BSP_NONAND !
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+; @CESYSGEN ENDIF CE_MODULES_FSDMGR
+; @CESYSGEN ENDIF CE_MODULES_FATFSD || CE_MODULES_TFAT || CE_MODULES_IMGFS
+; -----------------------------------------------------------------------------
+
+
+; --- Hive Boot Settings ------------------------------------------------------
+
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+; @CESYSGEN IF FILESYS_FSREGHIVE
+; HIVE BOOT SECTION
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX-System]
+    "DeviceNum"=dword:0
+    "DiskNum"=dword:FFFFFFFF	; FFFFFFFF causes the first available Disk number to be used
+    "DiskFlags"=dword:0
+    "Start"=dword:FFFFFFFF      ; FFFFFFFF causes the value to be automatically calculated
+    "Length"=dword:00011000     ; FFFFFFFF causes the value to be automatically calculated
+    "Format"=dword:0            ; Read-only Disk cannot be formatted (at this level)
+
+IF DLFFX_NOAPPDISK !
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX-App]
+    "DLL"="FlashFX.DLL"
+    "Prefix"="DSK"
+    "Order"=dword:2
+    "Index"=dword:2
+    "DeviceNum"=dword:0
+    "DiskNum"=dword:FFFFFFFF	; FFFFFFFF causes the first available Disk number to be used
+    "DiskFlags"=dword:0	        ; 2 - allows the Disk to span multiple Devices
+    "Start"=dword:FFFFFFFF      ; FFFFFFFF causes the value to be automatically calculated
+    "Length"=dword:00008000     ; FFFFFFFF causes the value to be automatically calculated
+    "Format"=dword:1            ; Format the Disk as needed
+    "IClass"=multi_sz:$(CE_DRIVER_BLOCK_GUID), $(CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID)
+    "Profile"="FlashFX-App"
+    "Flags"=dword:00011000
+
+ENDIF
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX-User]
+    "DLL"="FlashFX.DLL"
+    "Prefix"="DSK"
+    "Order"=dword:3
+    "Index"=dword:3
+    "DeviceNum"=dword:0
+    "DiskNum"=dword:FFFFFFFF	; FFFFFFFF causes the first available Disk number to be used
+    "DiskFlags"=dword:2         ; 2 - allows the Disk to span multiple Devices
+    "Start"=dword:FFFFFFFF      ; FFFFFFFF causes the value to be automatically calculated
+    "Length"=dword:FFFFFFFF     ; FFFFFFFF causes the value to be automatically calculated
+    "Format"=dword:1            ; Format the Disk as needed
+    "IClass"=multi_sz:$(CE_DRIVER_BLOCK_GUID), $(CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID)
+    "Profile"="FlashFX-User"
+    "Flags"=dword:00011000
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-System]
+    "AutoPart"=dword:1
+    "AutoMount"=dword:1
+    "AutoFormat"=dword:1
+    "DefaultFileSystem"=""
+
+IF DLFFX_NOAPPDISK !
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-App]
+    "Name"="FlashFX-App"
+    "Flags"=dword:00000014
+    "Folder"="Application"
+    "DefaultFileSystem"="$(APPFILESYS)"
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-App\$(APPFILESYS)]
+    "Folder"="Application"
+    "Flags"=dword:00000014
+
+ENDIF
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFX-User]
+    "DefaultFileSystem"="$(USERFILESYS)"
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Reliance]
+    "FriendlyName"="Datalight Reliance File System"
+    "DLL"="Reliance.dll"
+    "FolderName"="Application"
+    "TransactionFlags"=dword:15DA7
+    "TransactionTimer"=dword:0
+    "FlashMedia"=dword:1
+    "AutoFormat"=dword:1
+    "EnableCache"=dword:1       ; Used for Reliance Nitro
+    "EnableWriteBack"=dword:1	; Used for Reliance Nitro
+    "CacheSize"=dword:100       ; Used for Reliance Nitro
+    "CECacheBlocks"=dword:100   ; Used for Reliance "Classic"
+    "CacheDll"="diskcache.dll"
+    "Paging"=dword:1
+
+;
+; NOTE: Datalight does NOT recommend using cachefilt.dll with Reliance
+;       at this time, as it appears to be detrimental to performance.
+;
+;[HKEY_LOCAL_MACHINE\System\StorageManager\Reliance\Filters\CacheFilt]
+;    "Dll"="CacheFilt.dll"
+;    "Order"=dword:2
+;
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\PartitionTable]
+    "07"="RELIANCE"
+
+
+IF IMGNOPERFMAN !
+ 
+[HKEY_LOCAL_MACHINE\System\StorageManager\Filters\fsdspy]
+    "DLL"="fsdspy.dll"
+    "Order"=dword:1
+    "Paging"=dword:1
+    "Flags"=dword:1000
+ 
+ENDIF
+
+
+; END HIVE BOOT SECTION
+; @CESYSGEN ENDIF FILESYS_FSREGHIVE
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;------------------------------------------------------------------------------
+
+
+
+
+

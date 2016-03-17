@@ -1,0 +1,91 @@
+
+LIBRARY     MicUserSdk
+
+EXPORTS
+    DllMain		                    @1
+    
+	MIC_AIOOpen	                    @2
+	MIC_AIOClose		            @3
+	MIC_AIOGetInputInfo		     	@4
+	MIC_AIORegisterForStateChange   @5
+	MIC_AIOStartStateChangeNotify   @6
+	MIC_AIOStopStateChangeNotify    @7	
+	MIC_AIOWaitForStateChange       @8
+	MIC_AIOSetSignalStabilityTime   @9
+	MIC_AIOGetSignalStabilityTime   @10
+	MIC_AIOSetInputMode             @11
+	
+	MIC_AIOSetOutputState           @20
+	MIC_AIOSetOutputMode            @21
+	MIC_AIOGetOutputInfo            @22
+	
+; AIN Module	
+    MIC_AINOpen                     @30
+	MIC_AINClose                    @31
+	MIC_AINRawRead                  @32  
+	MIC_AINmVRead                   @33
+	MIC_AINAvmVRead                 @34
+		
+; OWR Module	
+	MIC_OWROpen                     @40
+	MIC_OWRClose                    @41
+    MIC_OneWireRead                 @45
+	MIC_OneWireEventRegistering     @46  
+	MIC_OneWirePrivateAccess        @47
+	MIC_OneWireWaitForEvent         @48
+	MIC_OneWireReadASCII            @49
+		
+	MIC_GetSwUpdateFlags			@60
+	MIC_SetSwUpdateFlags			@61
+	MIC_GetParamBlock				@62
+	MIC_GetBspSwVerstion			@63
+	MIC_LightSenseOpen				@64
+	MIC_LightSenseClose				@65
+	MIC_GetBspVersString			@66
+	MIC_IsHWExist					@67
+	MIC_GetBspSwVersionExt			@68
+	
+	MIC_GSMPower                    @90
+	MIC_GSMConfig                   @91
+	MIC_GSMVoice                    @92
+	MIC_GSMVoiceCMD                 @93
+	MIC_GSMGetPowerStatus           @94
+	
+;   and will be additional config. functions ... ???
+	
+	MIC_GPSPower					@100
+	MIC_GPSGetPowerStatus			@101
+	
+	MIC_SwitchKeysMap			@110
+	
+; @CESYSGEN IF SYSGEN_BTH_MODEM
+	MIC_BTModemActivate				@120
+	MIC_BTModemDeactivate			@121
+	MIC_BTModemNotifyRegister		@122
+;@CESYSGEN ENDIF	
+	
+	
+; Audio gateway
+	
+	 MIC_AGHSOpen                   @130
+	 MIC_AGHSClose                  @131
+	 MIC_AGHSControl                @132
+     MIC_AGHSEventRegistering       @133
+     MIC_AGHSGetEvent               @134
+     MIC_AGHSWaitForEvent           @135
+
+; Wireless module
+	MIC_WirelessModulePower				@140
+	MIC_WirelessModuleGetPowerStatus	@141
+
+; Temperature sensor
+	MIC_TemperatureSensorOpen			@150
+	MIC_TemperatureSensorClose			@151
+	MIC_TemperatureSensorRegister		@152
+	MIC_TemperatureSensorDeregister		@153
+	MIC_TemperatureSensorGet			@154
+	MIC_TemperatureSensorForceEnqueue	@155
+	MIC_TemperatureSensorGetRawData		@156
+
+; USB Serial device
+	MIC_EnumUsbSerialDevices			@170

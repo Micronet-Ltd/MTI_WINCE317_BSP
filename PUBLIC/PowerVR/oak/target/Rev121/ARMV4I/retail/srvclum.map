@@ -1,0 +1,368 @@
+ srvclum
+
+ Timestamp is 4c9a6144 (Wed Sep 22 16:04:20 2010)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 0000109cH .rdata                  CODE
+ 0001:000010bc 00000024H .rdata$debug            CODE
+ 0001:000010e0 0000f768H .text                   CODE
+ 0001:00010848 00000048H .xdata                  CODE
+ 0001:00010890 00000014H .idata$2                CODE
+ 0001:000108a4 00000014H .idata$3                CODE
+ 0001:000108b8 000000b8H .idata$4                CODE
+ 0001:00010970 0000000cH .idata$6                CODE
+ 0001:00010980 00000a9bH .edata                  CODE
+ 0002:00000000 000000b8H .idata$5                DATA
+ 0002:000000b8 000016d0H .data                   DATA
+ 0002:00001788 00000418H .bss                    DATA
+ 0003:00000000 00000650H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     10001000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     10001004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     10001008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     1000100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     10001010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     10001014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     10001018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     1000101c     corelib0:crt0init.obj
+ 0001:00000248       ??_C@_15MAOEGKJF@?$AA?$CF?$AAS?$AA?$AA@ 10001248     srvclient_wince.obj
+ 0001:00000250       ??_C@_09PDOEPFPA@?$FLdefault?$FN?$AA@ 10001250     pvr_apphint.obj
+ 0001:0000025c       ??_C@_04LIFAFMCE@?$FL?$CFs?$FN?$AA@ 1000125c     pvr_apphint.obj
+ 0001:00000264       ??_C@_01KDCPPGHE@r?$AA@    10001264     pvr_apphint.obj
+ 0001:00000268       ??_C@_0M@IIKDEAIO@powervr?4ini?$AA@ 10001268     pvr_apphint.obj
+ 0001:00000274       ??_C@_0BF@HAPGGGPH@?2windows?2powervr?4ini?$AA@ 10001274     pvr_apphint.obj
+ 0001:0000028c       ??_C@_1M@DMCDIEDK@?$AAP?$AAK?$AAM?$AA1?$AA?3?$AA?$AA@ 1000128c     srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:00000298       ??_C@_09KIHBNIPC@?5?$CI?$CFu?0?$CFs?$CJ?6?$AA@ 10001298     srvclientenvumcmn:pvr_debug.obj
+ 0001:000002a4       ??_C@_05CIJMOPAN@PVR?3?5?$AA@ 100012a4     srvclientenvumcmn:pvr_debug.obj
+ 0001:000002ac       ??_C@_0BI@NLGOAFIB@Debug?5assertion?5failed?$CB?$AA@ 100012ac     srvclientenvumcmn:pvr_debug.obj
+ 0001:000002c4       ??_C@_01EEMJAFIK@?6?$AA@   100012c4     srvclientenvumcmn:pvr_debug.obj
+ 0001:000002c8       ??_C@_0BF@JAPCMFOG@MTModePixelThreshold?$AA@ 100012c8     srvclientsgx:sgxrender_targets.obj
+ 0001:000002e0       ??_C@_0BD@CEJJAMAG@NumPixelPartitions?$AA@ 100012e0     srvclientsgx:sgxrender_context.obj
+ 0001:000002f4       ??_C@_0BE@MDMDMIME@NumVertexPartitions?$AA@ 100012f4     srvclientsgx:sgxrender_context.obj
+ 0001:00000308       ??_C@_06HLKHBNKH@PBSize?$AA@ 10001308     srvclientsgx:sgxrender_context.obj
+ 0001:000009cc       ??_C@_0N@EMGKHBNG@PDSThreshold?$AA@ 100019cc     srvclientsgx:sgxpb.obj
+ 0001:000009dc       ??_C@_0BA@PNIFOOAA@GlobalThreshold?$AA@ 100019dc     srvclientsgx:sgxpb.obj
+ 0001:000009ec       ??_C@_0N@HADJGBAO@ZLSThreshold?$AA@ 100019ec     srvclientsgx:sgxpb.obj
+ 0001:000009fc       ??_C@_0M@MLMDFGLM@TAThreshold?$AA@ 100019fc     srvclientsgx:sgxpb.obj
+ 0001:00000a08       ??_C@_0BB@PPHBJPP@EDMProtectTATest?$AA@ 10001a08     srvclientsgx:sgxpb.obj
+ 0001:000010e0       PDSGeneratePixelEventProgram 100020e0 f   pds.obj
+ 0001:00001168       WriteEndOfRenderUSSECode   10002168 f   pixevent.obj
+ 0001:00001198       WriteEndOfTileUSSECode     10002198 f   pixevent.obj
+ 0001:0000125c       SGXSubmitTransferBridge    1000225c f   bridged_sgx_glue.obj
+ 0001:000012e8       SGXRegisterHWRenderContext 100022e8 f   bridged_sgx_glue.obj
+ 0001:00001378       SGXUnregisterHWRenderContext 10002378 f   bridged_sgx_glue.obj
+ 0001:000013ec       SGXRegisterHWTransferContext 100023ec f   bridged_sgx_glue.obj
+ 0001:0000147c       SGXUnregisterHWTransferContext 1000247c f   bridged_sgx_glue.obj
+ 0001:000014f0       SGXFlushHWRenderTarget     100024f0 f   bridged_sgx_glue.obj
+ 0001:00001560       SGXDoKick                  10002560 f   bridged_sgx_glue.obj
+ 0001:000015ec       SGXScheduleProcessQueues   100025ec f   bridged_sgx_glue.obj
+ 0001:00001650       SGXGetClientInfo           10002650 f   bridged_sgx_glue.obj
+ 0001:00001770       SGXReleaseClientInfo       10002770 f   bridged_sgx_glue.obj
+ 0001:00001824       SGXGetInternalDevInfo      10002824 f   bridged_sgx_glue.obj
+ 0001:000018c8       SGXGetMiscInfo             100028c8 f   bridged_sgx_glue.obj
+ 0001:00001928       SGXReadHWPerfCounters      10002928 f   bridged_sgx_glue.obj
+ 0001:000019e0       SGXReadHWPerfCB            100029e0 f   bridged_sgx_glue.obj
+ 0001:00001a74       SGX2DQueryBlitsComplete    10002a74 f   bridged_sgx_glue.obj
+ 0001:00001af0       SGXConnectionCheck         10002af0 f   bridged_sgx_glue.obj
+ 0001:00001b5c       SGXDumpMKTrace             10002b5c f   bridged_sgx_glue.obj
+ 0001:00001b98       PVRSRVEnumerateDeviceClass 10002b98 f   bridged_pvr_glue.obj
+ 0001:00001c54       PVRSRVConnectServices      10002c54 f   bridged_pvr_glue.obj
+ 0001:00001c8c       PVRSRVDisconnect           10002c8c f   bridged_pvr_glue.obj
+ 0001:00001ca0       PVRSRVEnumerateDevices     10002ca0 f   bridged_pvr_glue.obj
+ 0001:00001d48       PVRSRVAcquireDeviceData    10002d48 f   bridged_pvr_glue.obj
+ 0001:00001dd0       PVRSRVCreateDeviceMemContext 10002dd0 f   bridged_pvr_glue.obj
+ 0001:00001ea4       PVRSRVDestroyDeviceMemContext 10002ea4 f   bridged_pvr_glue.obj
+ 0001:00001f18       PVRSRVGetDeviceMemHeapInfo 10002f18 f   bridged_pvr_glue.obj
+ 0001:00001fe8       PVRSRVExportDeviceMem      10002fe8 f   bridged_pvr_glue.obj
+ 0001:00002078       PVRSRVWrapExtMemory        10003078 f   bridged_pvr_glue.obj
+ 0001:00002280       PVRSRVUnwrapExtMemory      10003280 f   bridged_pvr_glue.obj
+ 0001:00002330       PVRSRVMapDeviceClassMemory 10003330 f   bridged_pvr_glue.obj
+ 0001:00002498       PVRSRVUnmapDeviceClassMemory 10003498 f   bridged_pvr_glue.obj
+ 0001:00002548       PVRSRVGetMiscInfo          10003548 f   bridged_pvr_glue.obj
+ 0001:0000262c       PVRSRVMapPhysToUserSpace   1000362c f   bridged_pvr_glue.obj
+ 0001:000026bc       PVRSRVUnmapPhysToUserSpace 100036bc f   bridged_pvr_glue.obj
+ 0001:00002714       PVRSRVGetMMUContextPDDevPAddr 10003714 f   bridged_pvr_glue.obj
+ 0001:00002770       PVRSRVUnmapDeviceMemory    10003770 f   bridged_pvr_glue.obj
+ 0001:00002808       PVRSRVModifyPendingSyncOps 10003808 f   bridged_pvr_glue.obj
+ 0001:000028b4       PVRSRVModifyCompleteSyncOps 100038b4 f   bridged_pvr_glue.obj
+ 0001:00002928       PVRSRVConnect              10003928 f   bridged_pvr_glue.obj
+ 0001:00002a3c       PVRSRVOpenBCDevice         10003a3c f   bridged_pvr_bc_glue.obj
+ 0001:00002ad0       PVRSRVCloseBCDevice        10003ad0 f   bridged_pvr_bc_glue.obj
+ 0001:00002b50       PVRSRVGetBCBufferInfo      10003b50 f   bridged_pvr_bc_glue.obj
+ 0001:00002c04       PVRSRVGetBCBuffer          10003c04 f   bridged_pvr_bc_glue.obj
+ 0001:00002c94       PVRSRVOpenDCDevice         10003c94 f   bridged_pvr_dc_glue.obj
+ 0001:00002d28       PVRSRVCloseDCDevice        10003d28 f   bridged_pvr_dc_glue.obj
+ 0001:00002dac       PVRSRVEnumDCFormats        10003dac f   bridged_pvr_dc_glue.obj
+ 0001:00002e70       PVRSRVEnumDCDims           10003e70 f   bridged_pvr_dc_glue.obj
+ 0001:00002f44       PVRSRVGetDCSystemBuffer    10003f44 f   bridged_pvr_dc_glue.obj
+ 0001:00002fd0       PVRSRVGetDCInfo            10003fd0 f   bridged_pvr_dc_glue.obj
+ 0001:00003098       PVRSRVCreateDCSwapChain    10004098 f   bridged_pvr_dc_glue.obj
+ 0001:000031c0       PVRSRVDestroyDCSwapChain   100041c0 f   bridged_pvr_dc_glue.obj
+ 0001:00003230       PVRSRVSetDCDstRect         10004230 f   bridged_pvr_dc_glue.obj
+ 0001:000032cc       PVRSRVGetDCBuffers         100042cc f   bridged_pvr_dc_glue.obj
+ 0001:0000337c       PVRSRVSwapToDCBuffer       1000437c f   bridged_pvr_dc_glue.obj
+ 0001:0000345c       PVRSRVSwapToDCSystem       1000445c f   bridged_pvr_dc_glue.obj
+ 0001:000034d0       PVRPMapKMem                100044d0 f   srvclient_wince.obj
+ 0001:000034d8       PVRUnMapKMem               100044d8 f   srvclient_wince.obj
+ 0001:000034e8       PVRSRVEventObjectOpen      100044e8 f   srvclient_wince.obj
+ 0001:00003554       PVRSRVEventObjectClose     10004554 f   srvclient_wince.obj
+ 0001:0000355c       PVRSRVEventObjectWait      1000455c f   srvclient_wince.obj
+ 0001:0000359c       PVRSRVUnlockResource       1000459c f   srvclient_wince.obj
+ 0001:000035d0       PVRSRVCallocUserModeMem    100045d0 f   srvclient_wince.obj
+ 0001:000035e8       PVRSRVReallocUserModeMem   100045e8 f   srvclient_wince.obj
+ 0001:000035f8       PVRSRVClockus              100045f8 f   srvclient_wince.obj
+ 0001:00003614       PVRSRVWaitus               10004614 f   srvclient_wince.obj
+ 0001:00003654       PVRSRVMemCopy              10004654 f   srvclient_wince.obj
+ 0001:00003664       PVRSRVMemSet               10004664 f   srvclient_wince.obj
+ 0001:00003674       PVRSRVCreateMutex          10004674 f   srvclient_wince.obj
+ 0001:000036a4       PVRSRVDestroyMutex         100046a4 f   srvclient_wince.obj
+ 0001:000036b8       PVRSRVUnlockMutex          100046b8 f   srvclient_wince.obj
+ 0001:000036dc       PVRSRVLockResource         100046dc f   srvclient_wince.obj
+ 0001:00003744       PVRSRVLockMutex            10004744 f   srvclient_wince.obj
+ 0001:00003838       FindAppHintInFile          10004838 f   pvr_apphint.obj
+ 0001:00003a48       FindAppHint                10004a48 f   pvr_apphint.obj
+ 0001:00003ae4       PVRSRVCreateAppHintState   10004ae4 f   pvr_apphint.obj
+ 0001:00003b14       PVRSRVFreeAppHintState     10004b14 f   pvr_apphint.obj
+ 0001:00003b2c       PVRSRVGetAppHint           10004b2c f   pvr_apphint.obj
+ 0001:00003bac       PVRSRVAllocUserModeMem     10004bac f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003bbc       PVRSRVFreeUserModeMem      10004bbc f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003bcc       PVRSRVReleaseThreadQuanta  10004bcc f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003be0       PVRSRVGetCurrentProcessID  10004be0 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003bf4       PVRSRVSetLocale            10004bf4 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003c04       PVRSRVLoadLibrary          10004c04 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003c80       PVRSRVUnloadLibrary        10004c80 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003ca8       PVRSRVGetLibFuncAddr       10004ca8 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003d48       OSIsProcessPrivileged      10004d48 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00003d50       PVRSRVBridgeCall           10004d50 f   srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:00003e00       OpenServices               10004e00 f   srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:00003e88       CloseServices              10004e88 f   srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:00003ef4       PVRSRVReleaseMiscInfo      10004ef4 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00003fc4       PVRSRVAllocDeviceMem       10004fc4 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:000040f0       PVRSRVFreeDeviceMem        100050f0 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:000041e0       PVRSRVMapDeviceMemory      100051e0 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00004374       PVRSRVAllocUserModeMemTracking 10005374 f   srvclientenvumcmn:memchk.obj
+ 0001:0000437c       PVRSRVCallocUserModeMemTracking 1000537c f   srvclientenvumcmn:memchk.obj
+ 0001:00004384       PVRSRVFreeUserModeMemTracking 10005384 f   srvclientenvumcmn:memchk.obj
+ 0001:00004388       PVRSRVReallocUserModeMemTracking 10005388 f   srvclientenvumcmn:memchk.obj
+ 0001:00004398       PVRSRVDebugPrintf          10005398 f   srvclientenvumcmn:pvr_debug.obj
+ 0001:000044c4       PVRSRVDebugAssertFail      100054c4 f   srvclientenvumcmn:pvr_debug.obj
+ 0001:000044f0       PVRSRVTrace                100054f0 f   srvclientenvumcmn:pvr_debug.obj
+ 0001:0000524c       SGXRemoveRenderTarget      1000624c f   srvclientsgx:sgxrender_targets.obj
+ 0001:000052f4       SGXAddRenderTarget         100062f4 f   srvclientsgx:sgxrender_targets.obj
+ 0001:0000578c       SGXDestroyRenderContext    1000678c f   srvclientsgx:sgxrender_context.obj
+ 0001:00005810       SGXCreateRenderContext     10006810 f   srvclientsgx:sgxrender_context.obj
+ 0001:00006584       SGXDestroyTransferContext  10007584 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:00006710       SGXCreateTransferContext   10007710 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:00006d2c       SGXGetHWPerfCounters       10007d2c f   srvclientsgx:sgxhwperf_client.obj
+ 0001:00007654       SGXKickTA                  10008654 f   srvclientsgx:sgxkick_client.obj
+ 0001:0000cc08       SGXQueueTransfer           1000dc08 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000d058       CreateCCB                  1000e058 f   srvclientsgx:sgxutils_client.obj
+ 0001:0000d1ac       DestroyCCB                 1000e1ac f   srvclientsgx:sgxutils_client.obj
+ 0001:0000d1dc       SGXAcquireCCB              1000e1dc f   srvclientsgx:sgxutils_client.obj
+ 0001:0000d2c8       SGXSetContextPriority      1000e2c8 f   srvclientsgx:sgxutils_client.obj
+ 0001:0000d7c8       DestroyPerContextPB        1000e7c8 f   srvclientsgx:sgxpb.obj
+ 0001:0000d858       CreatePerContextPB         1000e858 f   srvclientsgx:sgxpb.obj
+ 0001:0000da38       SGXTQ_FixedIntDiv          1000ea38 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000da7c       SGXTQ_FixedToFloat         1000ea7c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000db2c       SGXTQ_FixedToF16           1000eb2c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000dbdc       SGXTQ_GetTAGFormat         1000ebdc f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000de28       SGXTQ_GetPBEFormat         1000ee28 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e01c       SGXTQ_FilterFromEnum       1000f01c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e04c       SGXTQ_RotationFromEnum     1000f04c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e08c       SGXTQ_MemLayoutFromEnum    1000f08c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e160       SGXTQ_ShaderFromAlpha      1000f160 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e1b8       SGXTQ_ShaderFromRop        1000f1b8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e2e0       SGXTQ_GetStrideGran        1000f2e0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e310       SGXTQ_GetSurfaceStride     1000f310 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e468       SGXTQ_GetSurfaceWidth      1000f468 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e554       SGXTQ_SetTAGState          1000f554 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e6a0       SGXTQ_SetUSSEKick          1000f6a0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e6fc       SGXTQ_SetDMAState          1000f6fc f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e754       SGXTQ_SetupStridedBlit     1000f754 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e8d0       SGXTQ_SetPBEState          1000f8d0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000e9f0       SGXTQ_CreateCB             1000f9f0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ea90       SGXTQ_DestroyCB            1000fa90 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000eab0       SGXTQ_AcquireCB            1000fab0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ec58       SGXTQ_BeginCB              1000fc58 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ec70       SGXTQ_FlushCB              1000fc70 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ec88       SGXTQ_SetupTransferRegs    1000fc88 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ed88       SGXTQ_SetupTransferRenderBox 1000fd88 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000edc8       SGXTQ_SetupTransferClipRenderBox 1000fdc8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ef14       SGXTQ_CreateISPResource    1000ff14 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f13c       SGXTQ_CreateISPF2DResource 1001013c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f318       SGXTQ_StagingBufferAcquireSpace 10010318 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f418       SGXTQ_GetStagingBufferDevVAddr 10010418 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f428       SGXTQ_UpdateStagingBuffer  10010428 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f444       SGXTQ_ClampInputRects      10010444 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f4c8       SGXTQ_CopyToStagingBuffer  100104c8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f524       SGXTQ_FloatIntDiv          10010524 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f664       SGXTQ_CreateUSEEOTHandler  10010664 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f850       SGXTQ_CreatePDSPixeventHandler 10010850 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000fac4       SGXTQ_CreatePDSPrimResource 10010ac4 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000fca0       SGXTQ_CreatePDSSecResource 10010ca0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ff4c       SGXTQ_CreateUSEResource    10010f4c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0001012c       PVRSRVPollForValue         1001112c f   srvclientcmn:resources.obj
+ 0001:000101ec       __GetUserKData             100111ec f   coredll:COREDLL.dll
+ 0001:000101fc       CreateEventW               100111fc f   coredll:COREDLL.dll
+ 0001:0001020c       WaitForSingleObject        1001120c f   coredll:COREDLL.dll
+ 0001:0001021c       GetTickCount               1001121c f   coredll:COREDLL.dll
+ 0001:0001022c       InterlockedCompareExchange 1001122c f   coredll:COREDLL.dll
+ 0001:0001023c       WideCharToMultiByte        1001123c f   coredll:COREDLL.dll
+ 0001:0001024c       GetModuleFileNameW         1001124c f   coredll:COREDLL.dll
+ 0001:0001025c       Sleep                      1001125c f   coredll:COREDLL.dll
+ 0001:0001026c       LoadLibraryW               1001126c f   coredll:COREDLL.dll
+ 0001:0001027c       FreeLibrary                1001127c f   coredll:COREDLL.dll
+ 0001:0001028c       GetProcAddressW            1001128c f   coredll:COREDLL.dll
+ 0001:0001029c       DeviceIoControl            1001129c f   coredll:COREDLL.dll
+ 0001:000102ac       CreateFileW                100112ac f   coredll:COREDLL.dll
+ 0001:000102bc       CloseHandle                100112bc f   coredll:COREDLL.dll
+ 0001:000102cc       OutputDebugStringW         100112cc f   coredll:COREDLL.dll
+ 0001:000102dc       DllMain                    100112dc f   corelib0:dllmain.obj
+ 0001:000103f8       _DllMainCRTStartup         100113f8 f   corelib0:pegdmain.obj
+ 0001:00010428       __GSHandlerCheckCommon     10011428 f   corelib0:gshandler.obj
+ 0001:00010464       __GSHandlerCheck           10011464 f   corelib0:gshandler.obj
+ 0001:00010488       __security_init_cookie     10011488 f   corelib0:seccinit.obj
+ 0001:000104e4       __security_check_cookie    100114e4 f   corelib0:armsecgs.obj
+ 0001:000104f8       __gsfailure                100114f8 f   corelib0:armsecgs.obj
+ 0001:00010604       _cexit                     10011604 f   corelib0:cexit.obj
+ 0001:00010620       _initterm                  10011620 f   corelib0:crt0dat.obj
+ 0001:00010654       _cinit                     10011654 f   corelib0:crt0dat.obj
+ 0001:00010688       memcpy                     10011688 f   corelib1:COREDLL.dll
+ 0001:00010698       swprintf                   10011698 f   corelib1:COREDLL.dll
+ 0001:000106a8       calloc                     100116a8 f   corelib1:COREDLL.dll
+ 0001:000106b8       realloc                    100116b8 f   corelib1:COREDLL.dll
+ 0001:000106c8       memset                     100116c8 f   corelib1:COREDLL.dll
+ 0001:000106d8       strlen                     100116d8 f   corelib1:COREDLL.dll
+ 0001:000106e8       strrchr                    100116e8 f   corelib1:COREDLL.dll
+ 0001:000106f8       strcpy                     100116f8 f   corelib1:COREDLL.dll
+ 0001:00010708       fclose                     10011708 f   corelib1:COREDLL.dll
+ 0001:00010718       _stricmp                   10011718 f   corelib1:COREDLL.dll
+ 0001:00010728       atof                       10011728 f   corelib1:COREDLL.dll
+ 0001:00010738       atoi                       10011738 f   corelib1:COREDLL.dll
+ 0001:00010748       strstr                     10011748 f   corelib1:COREDLL.dll
+ 0001:00010758       fgets                      10011758 f   corelib1:COREDLL.dll
+ 0001:00010768       sprintf                    10011768 f   corelib1:COREDLL.dll
+ 0001:00010778       fopen                      10011778 f   corelib1:COREDLL.dll
+ 0001:00010788       malloc                     10011788 f   corelib1:COREDLL.dll
+ 0001:00010798       free                       10011798 f   corelib1:COREDLL.dll
+ 0001:000107a8       vsprintf                   100117a8 f   corelib1:COREDLL.dll
+ 0001:000107b8       strncpy                    100117b8 f   corelib1:COREDLL.dll
+ 0001:000107c8       _vsnprintf                 100117c8 f   corelib1:COREDLL.dll
+ 0001:000107d8       strcat                     100117d8 f   corelib1:COREDLL.dll
+ 0001:000107e8       _XcptFilter                100117e8 f   corelib1:COREDLL.dll
+ 0001:000107f8       __C_specific_handler       100117f8 f   corelib1:COREDLL.dll
+ 0001:00010808       __security_gen_cookie2     10011808 f   corelib1:COREDLL.dll
+ 0001:00010818       __report_gsfailure         10011818 f   corelib1:COREDLL.dll
+ 0001:00010828       DisableThreadLibraryCalls  10011828 f   coredll:COREDLL.dll
+ 0001:00010838       TerminateProcess           10011838 f   coredll:COREDLL.dll
+ 0001:00010890       __IMPORT_DESCRIPTOR_COREDLL 10011890     coredll:COREDLL.dll
+ 0001:000108a4       __NULL_IMPORT_DESCRIPTOR   100118a4     coredll:COREDLL.dll
+ 0002:00000000       __imp___GetUserKData       10013000     coredll:COREDLL.dll
+ 0002:00000004       __imp_CreateEventW         10013004     coredll:COREDLL.dll
+ 0002:00000008       __imp_WaitForSingleObject  10013008     coredll:COREDLL.dll
+ 0002:0000000c       __imp_GetTickCount         1001300c     coredll:COREDLL.dll
+ 0002:00000010       __imp_InterlockedCompareExchange 10013010     coredll:COREDLL.dll
+ 0002:00000014       __imp_WideCharToMultiByte  10013014     coredll:COREDLL.dll
+ 0002:00000018       __imp_GetModuleFileNameW   10013018     coredll:COREDLL.dll
+ 0002:0000001c       __imp_Sleep                1001301c     coredll:COREDLL.dll
+ 0002:00000020       __imp_LoadLibraryW         10013020     coredll:COREDLL.dll
+ 0002:00000024       __imp_FreeLibrary          10013024     coredll:COREDLL.dll
+ 0002:00000028       __imp_GetProcAddressW      10013028     coredll:COREDLL.dll
+ 0002:0000002c       __imp_DeviceIoControl      1001302c     coredll:COREDLL.dll
+ 0002:00000030       __imp_CreateFileW          10013030     coredll:COREDLL.dll
+ 0002:00000034       __imp_CloseHandle          10013034     coredll:COREDLL.dll
+ 0002:00000038       __imp_OutputDebugStringW   10013038     coredll:COREDLL.dll
+ 0002:0000003c       __imp_memcpy               1001303c     corelib1:COREDLL.dll
+ 0002:00000040       __imp_swprintf             10013040     corelib1:COREDLL.dll
+ 0002:00000044       __imp_calloc               10013044     corelib1:COREDLL.dll
+ 0002:00000048       __imp_realloc              10013048     corelib1:COREDLL.dll
+ 0002:0000004c       __imp_memset               1001304c     corelib1:COREDLL.dll
+ 0002:00000050       __imp_strlen               10013050     corelib1:COREDLL.dll
+ 0002:00000054       __imp_strrchr              10013054     corelib1:COREDLL.dll
+ 0002:00000058       __imp_strcpy               10013058     corelib1:COREDLL.dll
+ 0002:0000005c       __imp_fclose               1001305c     corelib1:COREDLL.dll
+ 0002:00000060       __imp__stricmp             10013060     corelib1:COREDLL.dll
+ 0002:00000064       __imp_atof                 10013064     corelib1:COREDLL.dll
+ 0002:00000068       __imp_atoi                 10013068     corelib1:COREDLL.dll
+ 0002:0000006c       __imp_strstr               1001306c     corelib1:COREDLL.dll
+ 0002:00000070       __imp_fgets                10013070     corelib1:COREDLL.dll
+ 0002:00000074       __imp_sprintf              10013074     corelib1:COREDLL.dll
+ 0002:00000078       __imp_fopen                10013078     corelib1:COREDLL.dll
+ 0002:0000007c       __imp___dtos               1001307c     corelib1:COREDLL.dll
+ 0002:00000080       __imp_malloc               10013080     corelib1:COREDLL.dll
+ 0002:00000084       __imp_free                 10013084     corelib1:COREDLL.dll
+ 0002:00000088       __imp_vsprintf             10013088     corelib1:COREDLL.dll
+ 0002:0000008c       __imp_strncpy              1001308c     corelib1:COREDLL.dll
+ 0002:00000090       __imp__vsnprintf           10013090     corelib1:COREDLL.dll
+ 0002:00000094       __imp_strcat               10013094     corelib1:COREDLL.dll
+ 0002:00000098       __imp___rt_udiv            10013098     corelib1:COREDLL.dll
+ 0002:0000009c       __imp__XcptFilter          1001309c     corelib1:COREDLL.dll
+ 0002:000000a0       __imp___C_specific_handler 100130a0     corelib1:COREDLL.dll
+ 0002:000000a4       __imp___security_gen_cookie2 100130a4     corelib1:COREDLL.dll
+ 0002:000000a8       __imp___report_gsfailure   100130a8     corelib1:COREDLL.dll
+ 0002:000000ac       __imp_DisableThreadLibraryCalls 100130ac     coredll:COREDLL.dll
+ 0002:000000b0       __imp_TerminateProcess     100130b0     coredll:COREDLL.dll
+ 0002:000000b4       \177COREDLL_NULL_THUNK_DATA 100130b4     coredll:COREDLL.dll
+ 0002:000000bc       gPVRDebugLevel             100130bc     srvclientenvumcmn:pvr_debug.obj
+ 0002:000000c0       pbtransferqueue_use        100130c0     srvclientsgx:sgxtransfer_context.obj
+ 0002:00000758       pbsubtwiddled_eot          10013758     srvclientsgx:sgxtransfer_context.obj
+ 0002:00001780       __security_cookie          10014780     corelib0:seccinit.obj
+ 0002:00001784       __security_cookie_complement 10014784     corelib0:seccinit.obj
+ 0002:00001b91       _exitflag                  10014b91     corelib0:cexit.obj
+ 0002:00001b94       __onexitend                10014b94     <common>
+ 0002:00001b98       __onexitbegin              10014b98     <common>
+ 0002:00001b9c       _pRawDllMain               10014b9c     <common>
+
+ entry point at        0001:000103f8
+
+ Static symbols
+
+ 0001:00003774       GetApplicationName         10004774 f   pvr_apphint.obj
+ 0001:000045ac       FillLastRgnLUT             100055ac f   srvclientsgx:sgxrender_targets.obj
+ 0001:0000472c       CreateDeviceSyncList       1000572c f   srvclientsgx:sgxrender_targets.obj
+ 0001:00004848       SetupBackgroundObj         10005848 f   srvclientsgx:sgxrender_targets.obj
+ 0001:00004994       SetupRTDataSet             10005994 f   srvclientsgx:sgxrender_targets.obj
+ 0001:00005090       FreeRTDataSet              10006090 f   srvclientsgx:sgxrender_targets.obj
+ 0001:00005cf0       SGXTQ_CreateUSEResources   10006cf0 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:00006060       SGXTQ_CreatePDSPrimResources 10007060 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0000620c       SGXTQ_CreatePDSSecResources 1000720c f   srvclientsgx:sgxtransfer_context.obj
+ 0001:000063ec       SGXTQ_CreateUSEEOTHandlers 100073ec f   srvclientsgx:sgxtransfer_context.obj
+ 0001:00006510       SGXTQ_FreeResourceArray    10007510 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:00006e68       Setup3DRegs                10007e68 f   srvclientsgx:sgxkick_client.obj
+ 0001:000070b8       SetupTARegs                100080b8 f   srvclientsgx:sgxkick_client.obj
+ 0001:00007214       Update3DRegs               10008214 f   srvclientsgx:sgxkick_client.obj
+ 0001:0000747c       SGXKickSubmit              1000847c f   srvclientsgx:sgxkick_client.obj
+ 0001:00007cbc       PrepareNormalBlit          10008cbc f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00009010       PrepareTextureUpload       1000a010 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00009774       PrepareMipGen              1000a774 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00009d58       PrepareFillOp              1000ad58 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000a3fc       PrepareBufferBlt           1000b3fc f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000a888       PrepareCustomOp            1000b888 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000ac74       PrepareFullCustomOp        1000bc74 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000aec4       PrepareCustomShaderBlit    1000bec4 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000b5f0       PrepareClipBlit            1000c5f0 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000baa4       PrepareColourLUTBlit       1000caa4 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000c184       PrepareVideoBlit           1000d184 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000c9d4       SGXSubmitTransfer          1000d9d4 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000d420       SetupPBDesc                1000e420 f   srvclientsgx:sgxpb.obj
+ 0001:0000d590       DestroyPBBlock             1000e590 f   srvclientsgx:sgxpb.obj
+ 0001:0000d61c       CreatePBBlock              1000e61c f   srvclientsgx:sgxpb.obj
+ 0001:0000d9e4       SGXTQ_FindNearestLog2      1000e9e4 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000ee3c       SGXTQ_WritePDSStatesAndDMS 1000fe3c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0000f574       SGXTQ_CreateResource       10010574 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:000102fc       _DllMainCRTStartupHelper   100112fc f   corelib0:pegdmain.obj
+ 0001:0001053c       doexit                     1001153c f   corelib0:cexit.obj

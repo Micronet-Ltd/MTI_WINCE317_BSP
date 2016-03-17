@@ -1,0 +1,263 @@
+; HIVE BOOT SECTION
+
+;
+; Power Manager interfaces.  These list the interface classes that the Power
+; Manager will monitor for new devices.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\Interfaces]
+    "{A32942B7-920C-486b-B0E6-92A702A99B35}"="Generic power-manageable devices"
+    "{8DD679CE-8AB4-43c8-A14A-EA4963FAA715}"="Power-manageable block devices"
+; @CESYSGEN IF CE_MODULES_NDIS
+    "{98C5250D-C29A-4985-AE5F-AFE5367E5006}"="Power-manageable NDIS miniports"
+; @CESYSGEN ENDIF CE_MODULES_NDIS
+; @CESYSGEN IF CE_MODULES_GWES
+    "{EB91C7C9-8BF6-4a2d-9AB8-69724EED97D1}"="Power-manageable display"
+; @CESYSGEN ENDIF CE_MODULES_GWES
+    "{A32942B8-920C-486b-B0E6-92A702A9AB89}"="Generic Power-manageable resume"
+;
+; Default System Power States
+;
+; OEMs may choose to customize this set of system power states to
+; reflect the capabilities of their platform.  For example, they
+; may wish to create power states reflecting critical battery
+; levels, in or out of cradle, on or off of AC power.  If the Power
+; Manager module is actively determining when to switch system power
+; states, OEMs may need to update the PM source code when they
+; add new power states.
+;
+; To remove these state definitions from the configuration for a platform,
+; include the line:
+;   [-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State]
+; in the device's platform.reg file.  Uncomment the line in the
+; platform.reg file.
+;
+
+;
+; In this system power state, the user is interacting actively with
+; the system.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\On]
+    "Default"=dword:0           ; D0
+    "Flags"=dword:00010000      ; POWER_STATE_ON
+
+; @CESYSGEN IF PM_PM_DEFAULT_PDD
+
+;
+; In this system power state, the user may be interacting with the
+; system, but not actively.  For instance, they might be looking at
+; the screen or they might not.  In this power state the system is
+; "idle" but still in use by the user, so all devices still be
+; operational (but possibly with some latency).
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\UserIdle]
+    "Default"=dword:1           ; D1
+    "Flags"=dword:01000000      ; POWER_STATE_USERIDLE
+
+;
+; In this system power state, the user is not considered to be using
+; the system, even passively.  However, the system is not suspended
+; and system programs may be doing work on the user's behalf.  In this
+; power state the system is "idle" but might still be used by system
+; programs.  Devices that aren't actively doing work might be powered
+; down.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\SystemIdle]
+    "Default"=dword:2           ; D2
+    "Flags"=dword:00100000      ; POWER_STATE_IDLE
+
+; @CESYSGEN IF CE_MODULES_GWES
+;
+; Turn the display off during SystemIdle.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\SystemIdle\{EB91C7C9-8BF6-4a2d-9AB8-69724EED97D1}]
+    "Default"=dword:2           ; temporarry D2  ;D3
+; @CESYSGEN ENDIF CE_MODULES_GWES
+
+; @CESYSGEN ENDIF ; PM_PM_DEFAULT_PDD
+
+;
+; In this system power state, the system is suspended.  Devices are turned
+; off, interrupts are not being serviced, and the CPU is stopped.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\Suspend]
+    "Default"=dword:3           ; D3
+    "Flags"=dword:200000        ; POWER_STATE_SUSPEND
+
+;
+; Entering this system power state reboots the system with a clean object
+; store.  If an OEM includes this state in their platform, they must
+; support KernelIoControl() with IOCTL_HAL_REBOOT.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\ColdReboot]
+    "Default"=dword:4           ; D4
+    "Flags"=dword:800000        ; POWER_STATE_RESET
+
+;
+; Entering this system power state reboots the system.  If an OEM includes this state in
+; their platform, they must support KernelIoControl() with IOCTL_HAL_REBOOT.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\Reboot]
+    "Default"=dword:4           ; D4
+    "Flags"=dword:800000        ; POWER_STATE_RESET
+
+;;;;
+;;;; Entering this system power state shuts down the system.  All devices are powered off,
+;;;; resuming may require user intervention.  The system will cold boot on resume.
+;;;; Supporting this power state requires that the OEM customize the Power Manager
+;;;; to recognize POWER_STATE_OFF and take platform-specific action to remove
+;;;; power.
+;;;;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\ShutDown]
+    "Default"=dword:4           ; D4
+    "Flags"=dword:20000         ; POWER_STATE_OFF
+
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\Resuming]
+    "Default"=dword:2           ; D2
+    "Flags"=dword:10000000      ; POWER_STATE_PASSWORD
+
+
+;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\Resuming\{EB91C7C9-8BF6-4a2d-9AB8-69724EED97D1}]
+ ;   "Default"=dword:4           ; D4
+; @CESYSGEN IF CE_MODULES_NDIS
+
+;
+; Since we generally don't want arbitrary network adapters to be wake
+; sources, override the default suspend setting to turn adapters completely
+; off.  Add adapters to this section that we DO want to be wake sources, or
+; have the application using the adapter use the SetPowerRequirement() API
+; to make it a wake source.
+;
+; NDIS maps power manager device power states to NDIS device power states
+; as follows:
+;   PM State                        NDIS State
+;
+;       D0                      NdisDeviceStateD0
+;       D1                      NdisDeviceStateD0
+;       D2                      NdisDeviceStateD0
+;
+;       D4                      NdisDeviceStateD3
+;       D3                      See below.
+;
+; Note on D3:  If an adapter supports wake sources, NDIS will map
+; the PM device power state D3 to the highest-power-consuming state
+; reported by the miniport driver in response to an OID_PNP_CAPABILITIES
+; query. For example, suppose the miniport reports:
+;       MinLinkChangeWakeUp     NdisDeviceStateD2
+;       MinMagicPacketWakeUp    NdisDeviceStateD1
+;       MinPatternWakeUp        NdisDeviceStateD2
+; For this miniport, NDIS translates D3 from Power Manager to
+; NdisDeviceStateD1.
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\Suspend\{98C5250D-C29A-4985-AE5F-AFE5367E5006}]
+    "Default"=dword:4           ; D4
+
+; @CESYSGEN ENDIF CE_MODULES_NDIS
+
+;
+; Default Activity Timers
+;
+
+;
+; These registry values set up activity timers inside the Power Manager.
+; GWES and/or other system components need to reset them periodically
+; to keep the associated inactivity event from being set.
+;
+; OEMs can define other timers instead of or in addition to the ones in this
+; file.  Generally this will be done in conjunction with modifications to
+; the Power Manager platform sources.
+;
+; Defining timers causes the PM to create a set of named events for resetting
+; the timer and for obtaining its activity status.  See the PM documentation
+; for more information.
+;
+; To remove these timer definitions from the configuration for a platform,
+; include the line:
+;   [-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\ActivityTimers]
+; in the device's platform.reg file.  Uncomment the line in the
+; platform.reg file.
+;
+;
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\ActivityTimers\UserActivity]
+    "TimeoutMs"=dword:64                        ; in milli seconds
+
+; @CESYSGEN IF PM_PM_DEFAULT_PDD
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\ActivityTimers\SystemActivity]
+    "TimeoutMs"=dword:64                        ; in milli seconds
+; @CESYSGEN ENDIF ; PM_PM_DEFAULT_PDD
+
+;
+; Default System Power State Transition Timeouts
+;
+
+; These registry values configure the interval of time the Power Manager allows
+; to pass during periods of inactivity before updating the system power state.
+; The sample implementation of the power manager uses them as follows:
+;   On AC power, the system will be in the "On" system power state as ;
+;       long as the UserActivity activity timer has not expired.
+;   Once the UserActivity timer expires, the PM will transition to the
+;       "UserIdle" system power state after ACUserIdle seconds of user
+;       inactivity.
+;   After ACSystemIdle seconds of continued user inactivity, the PM will
+;       transition to the "SystemIdle" system power state.
+;   The PM will keep the system in the SystemIdle power state for as long
+;       as the SystemActivity activity timer has not expired.  Once it expires,
+;       the PM will wait ACSuspend seconds before transitioning to the "Suspend"
+;       system power state.
+; Resetting the UserActivity activity timer at any time prior to entering
+; the Suspend system power state will cause the system to go back to the "On"
+; system power state.  The PM implements a similar algorithm on battery power
+; using the BattUserIdle, BattSystemIdle, and BattSuspend timeouts.
+;
+; OEMs can change this state machine by customizing the PM for their platform.
+;
+; To remove these timeout definitions from the configuration for a platform,
+; include the line:
+;   [-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\Timeouts]
+; in the device's platform.reg file.  Uncomment the line in the
+; platform.reg file.
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\Timeouts]
+; @CESYSGEN IF PM_PM_DEFAULT_PDD
+   ; "ACUserIdle"=dword:3c               ; in seconds
+   ; "ACSystemIdle"=dword:12c    ; in seconds
+   ; "ACSuspend"=dword:0                 ; in seconds
+    
+     "ACUserIdle"=dword:1E               ; 30 in seconds
+     "ACSystemIdle"=dword:1E              ; in seconds
+IF WINCEDEBUG=debug
+    "ACSuspend"=dword:0                 ; in seconds
+ELSE
+    "ACSuspend"=dword:0					; temporrary 3c                 ; in seconds
+ENDIF 
+    "ACOff"=dword:E10
+    "DefACOff"=dword:E10
+    "ACResumeTest"=dword:3C
+        
+    "BattUserIdle"=dword:0A             ; 10 in seconds
+    "BattSystemIdle"=dword:0A           ; 10 in seconds
+    "BattSuspend"=dword:0A              ; 10 in seconds
+    "BattOff"=dword:E10
+    "DefBattOff"=dword:E10
+    ;"BattResumeTest"=dword:1E
+;     "BattOff"=dword:E10                ; 3600 in sec
+    "BattResumeTest"=dword:3C          ; 60 in sec
+; @CESYSGEN ENDIF ; PM_PM_DEFAULT_PDD
+;;;     "BatteryPoll"=dword:1f4         ; battery polling interval, in milliseonds
+
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\PSC]
+"IgnitionSwitchControlEnable"=dword:0
+"IgnStableTime"=dword:7d0                  ; 2000 ms
+"ExtSourceStableTime"=dword:c8             ; 200 ms
+"CradleStableTime"=dword:c8                ; 200 ms
+"PerformAction"=dword:1                    ; 0 - suspend, 1 -Shutdown
+"PerformActionDelay"=dword:5
+"PreventPollTime"=dword:3e8                ;1000 ms
+"PowerSourceChange"="power.source.event"
+"ShutDownAbsolute"=dword:0                    ; 0 - disable, 1 - enable
+"AnalogInputCheck"=dword:0                    ; 0 - disable, 1 - enable
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles]
+	"ActivityEvent"=-
+; END HIVE BOOT SECTION

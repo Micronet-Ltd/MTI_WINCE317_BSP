@@ -1,0 +1,179 @@
+!if 0
+Common definitions for TI Wilink build
+!endif
+
+!INCLUDE $(_TARGETPLATROOT)\sources.cmn
+
+DK_ROOT=$(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\
+
+TI_RELEASE=PLATFORM
+
+!IF "$(BSP_TI_WIFI_USE_STD_SDIO)" == "1"
+DRV_BSP_NAME=standard_bus
+DRV_BSP_CE_NAME=tis
+PLATFORM_SDIO = $(DK_ROOT)\platforms\hw\$(DRV_BSP_NAME)\wince
+!ENDIF
+!IF "$(BSP_TI_WIFI_USE_STD_SDIO)" != "1"
+DRV_BSP_NAME=$(_TGTPLAT)
+DRV_BSP_CE_NAME=sdi
+PLATFORM_SDIO = $(DK_ROOT)\platforms\hw\host_platform_$(DRV_BSP_NAME)\SDIO_Driver
+!ENDIF
+
+TWD_ROOT=$(DK_ROOT)\TWD
+STAD_ROOT=$(DK_ROOT)\stad
+
+!IF "$(BSP_TI_WIFI_USE_STD_SDIO)" == "1"
+EXTDRV_INCLUDE=$(DK_ROOT)\external_drivers\$(_TGTPLAT)\wince\sdio\SdioBusDrv
+!ELSE
+EXTDRV_INCLUDE=$(DK_ROOT)\platforms\hw\host_platform_$(_TGTPLAT)\inc
+!ENDIF
+
+EXTAPP_ROOT=$(DK_ROOT)\external_apps\wince
+OS_ROOT=$(DK_ROOT)\platforms\os\wince
+
+
+TWD_INCLUDES= \
+        $(TWD_ROOT)\Ctrl; \
+        $(TWD_ROOT)\Ctrl\Export_Inc; \
+        $(TWD_ROOT)\Data_Service; \
+        $(TWD_ROOT)\Data_Service\Export_Inc; \
+        $(TWD_ROOT)\FirmwareApi; \
+        $(TWD_ROOT)\FW_Transfer; \
+        $(TWD_ROOT)\FW_Transfer\Export_Inc; \
+        $(TWD_ROOT)\MacServices; \
+        $(TWD_ROOT)\MacServices\Export_Inc; \
+        $(TWD_ROOT)\TWDriver; \
+        $(TWD_ROOT)\TwIf; \
+
+STAD_INCLUDES= \
+        $(STAD_ROOT)\src\AirLink_Managment; \
+        $(STAD_ROOT)\src\Application; \
+        $(STAD_ROOT)\src\Connection_Managment; \
+        $(STAD_ROOT)\src\Ctrl_Interface; \
+        $(STAD_ROOT)\src\Data_link; \
+        $(STAD_ROOT)\src\Sta_Management; \
+        $(STAD_ROOT)\Export_Inc; \
+
+EXTDRV_INCLUDES=\
+        $(EXTDRV_INCLUDE); \        
+
+APP_INCLUDES= \
+	$(DK_ROOT)\CUDK\configurationutility\inc; \
+	$(DK_ROOT)\CUDK\os\common\inc; \
+	$(DK_ROOT)\CUDK\os\win\inc; \
+	$(DK_ROOT)\CUDK\logger\wince\inc; \
+
+PLATFORM_INCLUDES= \
+        $(DK_ROOT)\platforms\os\common\inc; \
+        $(DK_ROOT)\platforms\os\wince\Export_Inc; \
+        $(DK_ROOT)\platforms\os\wince\src; \
+        $(PLATFORM_SDIO); \
+
+!IF "$(_TGTPLAT)" == "TI_EVM_3530"
+INCLUDES = \
+	$(INCLUDES); \
+	$(PLATFORM_INCLUDES)\
+	$(APP_INCLUDES)\
+	$(EXTDRV_INCLUDES)\
+	$(STAD_INCLUDES)\
+	$(TWD_INCLUDES)\
+	$(_PLATFORMROOT)\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\OMAP35XX\INC
+!ENDIF 
+!IF "$(_TGTPLAT)" != "TI_EVM_3530"
+INCLUDES = \
+	$(INCLUDES); \
+	$(PLATFORM_INCLUDES)\
+	$(APP_INCLUDES)\
+	$(EXTDRV_INCLUDES)\
+	$(STAD_INCLUDES)\
+	$(TWD_INCLUDES)\
+	$(_PLATFORMROOT)\COMMON\SRC\SOC\COMMON_TI_V1\OMAP3530\INC
+!ENDIF 
+	
+	
+
+!IF "$(BSP_TI_WIFI_CCX_ENABLED)" == "1"
+CDEFINES= $(CDEFINES) \
+	-DCCX_MODULE_INCLUDED
+
+STAD_INCLUDES= $(STAD_INCLUDES) \
+        $(STAD_ROOT)\src\XCC; \
+        $(STAD_ROOT)\Export_Inc\XCC; \
+        $(DK_ROOT)\utils\XCC;
+
+APP_INCLUDES=  $(APP_INCLUDES) \
+        $(DK_ROOT)\CUDK\configurationutility\xcc;
+!ENDIF
+
+
+INCLUDES= \
+        $(INCLUDES); \
+        $(STAD_INCLUDES); \
+        $(TWD_INCLUDES); \
+        $(EXTDRV_INCLUDES); \
+        $(PLATFORM_INCLUDES); \
+        $(APP_INCLUDES); \
+        $(DK_ROOT)\utils;  \
+        $(DK_ROOT)\Test;  \
+        $(OS_ROOT)\Export_Inc; \
+        $(DK_ROOT)\Txn;  \
+
+CDEFINES= $(CDEFINES) \
+	-D__BYTE_ORDER_LITTLE_ENDIAN \
+	-DCONFIGURE_BSS_TYPE_STA \
+	-DTNETW1251=1 \
+	-DTIWLN_MAJOR_VERSION=5 \
+	-DTIWLN_MINOR_VERSION=1 \
+	-DNOT_SUPPORT_08_BIT_ACCESS_COMMAND \
+	-DFOUR_ALIGNMENT \
+	-DFIRMWARE_DYNAMIC_LOAD \
+	-DNDIS51_MINIPORT=1 \
+	-D_WINDOWS \
+	-DHOST_COMPILE \
+	-DFW_RUNNING_AS_STA \
+	-DWINCE5_BUILD \
+	-DAKU30_SUPPORT \
+	-DPERIODIC_WAKEUP \
+	-DNO_WPA_SUPPL \
+	-DTI_DBG \
+	-DREPORT_LOG \
+	-DTNETW1273 \
+	-DTI_TRACE_BUF \
+	
+
+!if 0
+	-DSDIO_1_BIT
+!endif
+ 
+
+!IF "$(FPGA1273_STAGE_)" == "1"
+CDEFINES= $(CDEFINES) \
+	-DFPGA1273_STAGE_
+!ENDIF
+
+!IF "$(BSP_TI_WIFI_USE_SDIO)"=="1"
+CDEFINES= $(CDEFINES) \
+        -DHW_ACCESS_SDIO
+!ENDIF
+
+!IF "$(BSP_TI_WIFI_USE_WSPI)"=="1"
+CDEFINES= $(CDEFINES) \
+        -DWSPI
+!ENDIF
+
+!IF "$(BSP_TI_WIFI_POLLINGIRQ)"=="1"
+CDEFINES= $(CDEFINES) \
+        -DPRIODIC_INTERRUPT
+!ENDIF
+
+!IF "$(TI_WIFI_BMTRACE)"=="1"
+CDEFINES= $(CDEFINES) \
+        -DTIWLAN_BMTRACE
+!ENDIF
+
+!IF "$(USE_IRQ_ACTIVE_HIGH)"=="1"
+CDEFINES= $(CDEFINES) \
+        -DUSE_IRQ_ACTIVE_HIGH
+!ENDIF
+
+WARNISERROR=

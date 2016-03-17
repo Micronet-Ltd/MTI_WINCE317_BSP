@@ -1,0 +1,82 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+!ifndef WINCEDEBUG
+	WINCEDEBUG = retail
+!endif
+
+TOOLSAPI	 = $(SDKROOT)\Tools\$(API)
+PVRENGINE	 = $(SDKROOT)\Extras\PVREngine
+
+!ifndef PVRENGINELIB
+PVRENGINELIB = $(PVRENGINE)\$(API)\Build\PlatformBuilder\oak\lib\$(_TGTCPU)\$(WINCEDEBUG)\
+!endif
+
+!ifndef TOOLSLIB
+TOOLSLIB	 = $(TOOLSAPI)\Build\PlatformBuilder\oak\lib\$(_TGTCPU)\$(WINCEDEBUG)\
+!endif
+
+API = OGLES2
+PROJECTNAME=PODPlayer
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(PROJECTNAME).obj \
+	$(OBJDIR)\PVRES.obj \
+	$(OBJDIR)\PVRESParser.obj
+		
+SOURCES = \
+	$(APPROOT)\$(PROJECTNAME).cpp \
+	$(APPROOT)\PVRES.cpp \
+	$(APPROOT)\PVRESParser.cpp
+	
+
+!INCLUDE $(SDKROOT)\Builds\PlatformBuilder\sources.cmn
+
+
+PLATFORM = WindowsCE7
+
+CDEFINES = $(CDEFINES) -DBUILD_$(API)=1
+
+TARGETLIBS = \
+	$(TARGETLIBS)		\
+	
+	
+TARGETLIBS= \
+	$(TARGETLIBS)						\
+	$(BUILDSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib						\
+	$(SDKROOT)\Builds\$(API)\$(PLATFORM)$(_TGTCPU)\Lib\libGLESv2.lib	\
+	$(SDKROOT)\Builds\$(API)\$(PLATFORM)$(_TGTCPU)\Lib\libegl.lib		\
+	$(PVRENGINELIB)\$(API)PVREngine.lib									\
+	$(TOOLSLIB)\$(API)Tools.lib
+	
+INCLUDES=\
+	$(INCLUDES)									\
+	$(APPROOT);									\
+	..\..;										\
+	$(SDKROOT)\Builds\$(API)\Include;			\
+	$(SDKROOT)\Builds\$(API)\WindowsPC\Include;	\
+	$(PVRENGINE);								\
+	$(PVRENGINE)\Include;						\
+	$(PVRENGINE)\Include\$(API);				\
+	$(SDKROOT)\Tools\$(API);					\
+	$(SDKROOT)\Shell;
+

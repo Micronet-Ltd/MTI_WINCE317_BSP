@@ -1,0 +1,26 @@
+TARGETNAME=vsp
+RELEASETYPE=PLATFORM
+TARGETTYPE=DYNLINK
+
+FILE_VIEW_ROOT_FOLDER= \
+    vsp.def \
+    vsp.reg \
+
+FILE_VIEW_RESOURCE_FOLDER= \
+
+FILE_VIEW_INCLUDES_FOLDER= \
+    vsp.h \
+    ObjectList.h \
+    RegistryHelper.h \
+
+CDEFINES=$(CDEFINES) -DWINCE
+
+INCLUDES=$(_TARGETPLATROOT)\SRC\drivers\ftdi; \
+	$(_TARGETPLATROOT)\SRC\SDK\INC;
+
+SOURCES= \
+    vsp.cpp \
+
+TARGETLIBS= \
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\coredll.lib \
+

@@ -1,0 +1,493 @@
+<html>
+<head>
+<title>
+DCL OS Abstraction Symbols
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL OS Abstraction Symbols
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL OS Abstraction Symbols">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        These preprocessor symbols are used to implement the operating system
+        abstraction.  Typically they define OS characteristics or behaviors
+        so that the OS abstraction code can operate properly, resulting in a
+        uniform OS abstraction presented to the other layers of software.
+
+<p>        These preprocessor symbols are typically constant for the OS, and have
+        global scope.  However, for some OS abstractions, some of these
+        symbols may be superseded at the project level.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_ALIGNSIZE">DCL_ALIGNSIZE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Define data alignment boundaries as required by the operating system
+        and enforced by the compiler.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_CPU_ALIGNSIZE">DCL_CPU_ALIGNSIZE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Define the CPU specific alignment requirements.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_IOCTL_BLOCKDEV">DCL_IOCTL_BLOCKDEV</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The OS specific IOCTL number used to send requests to a block
+        device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_IOCTL_FILESYS">DCL_IOCTL_FILESYS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The OS specific IOCTL number used to send requests to a file
+        system.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_IOCTL_MAX_REQUESTS">DCL_IOCTL_MAX_REQUESTS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Specifies the maximum number of devices which may be opened via
+        the external requestor interface.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_OSFEATURE_CONSOLEINPUT">DCL_OSFEATURE_CONSOLEINPUT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        A TRUE or FALSE value which defines whether the OS abstraction supports
+        console-input.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_OSFEATURE_THREADS">DCL_OSFEATURE_THREADS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        A TRUE or FALSE value which defines whether the OS supports threads or
+        not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_OSFEATURE_UNICODE">DCL_OSFEATURE_UNICODE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        A TRUE or FALSE value which defines whether the OS supports Unicode
+        or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_OSNAME">DCL_OSNAME</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Defines the name of the OS abstraction, and may be mixed case.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_PATHSEPCHAR">DCL_PATHSEPCHAR</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The default character used as a path separator.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_PATHSEPSTR">DCL_PATHSEPSTR</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The default character used as a path separator, in string form.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DCL_ALIGNSIZE"></a>
+<a NAME="DCL_ALIGNSIZE"></a>
+DCL_ALIGNSIZE
+</h3>
+<div class=SectionText>
+
+        Define data alignment boundaries as required by the operating system
+        and enforced by the compiler.  This value is used by Datalight software
+        as the minimum boundary on which declared structures and allocated
+        memory must be aligned.
+
+<p>        DCL_ALIGNSIZE may not be greater than the alignment enforced by the
+        compiler when allotting space for the maximum size native type
+        (<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> or <a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a>).  There is no practical reason for this value to
+        ever be less than 4 since all the modern compilers Datalight currently
+        deals with ensure that 32-bit values are always aligned, even when
+        using processor such as x86 which does not require it.
+
+<p>        DCL_ALIGNSIZE is always the exact with of the <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> data type,
+        and is always as large or larger than <a HREF="#DCL_CPU_ALIGNSIZE">DCL_CPU_ALIGNSIZE</a>.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_CPU_ALIGNSIZE"></a>
+<a NAME="DCL_CPU_ALIGNSIZE"></a>
+DCL_CPU_ALIGNSIZE
+</h3>
+<div class=SectionText>
+
+        Define the CPU specific alignment requirements.  Most processors used
+        in the embedded environment have strict data alignment requirements,
+        and the compilers used therein ensure this alignment.  However some
+        processors, notably the x86 do not require alignment, even though it is
+        desirable for performance reasons.
+
+<p>        This setting is normally only used by code which is doing memory-mapped
+        I/O.
+
+<p>
+
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_IOCTL_BLOCKDEV"></a>
+<a NAME="DCL_IOCTL_BLOCKDEV"></a>
+DCL_IOCTL_BLOCKDEV
+</h3>
+<div class=SectionText>
+
+        The OS specific IOCTL number used to send requests to a block
+        device.  The default value for this setting is specified in the
+        OS-specific <a HREF=UD640_Headers.c.htm#dlosconf.h>dlosconf.h</a> file, but may be superseded at the project
+        level by defining it in <a HREF=UD720_ProjectFiles.c.htm#dclconf.h>dclconf.h</a>.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_IOCTL_FILESYS"></a>
+<a NAME="DCL_IOCTL_FILESYS"></a>
+DCL_IOCTL_FILESYS
+</h3>
+<div class=SectionText>
+
+        The OS specific IOCTL number used to send requests to a file
+        system.  The default value for this setting is specified in the
+        OS-specific <a HREF=UD640_Headers.c.htm#dlosconf.h>dlosconf.h</a> file, but may be superseded at the project
+        level by defining it in <a HREF=UD720_ProjectFiles.c.htm#dclconf.h>dclconf.h</a>.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_IOCTL_MAX_REQUESTS"></a>
+<a NAME="DCL_IOCTL_MAX_REQUESTS"></a>
+DCL_IOCTL_MAX_REQUESTS
+</h3>
+<div class=SectionText>
+
+        Specifies the maximum number of devices which may be opened via
+        the external requestor interface.  This is typically set to zero
+        in environments which do not support a requestor interface.  The
+        default value for this setting is specified in the OS-specific
+        <a HREF=UD640_Headers.c.htm#dlosconf.h>dlosconf.h</a> file, but may be superseded at the project level by
+        defining it in <a HREF=UD720_ProjectFiles.c.htm#dclconf.h>dclconf.h</a>.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_OSFEATURE_CONSOLEINPUT"></a>
+<a NAME="DCL_OSFEATURE_CONSOLEINPUT"></a>
+DCL_OSFEATURE_CONSOLEINPUT
+</h3>
+<div class=SectionText>
+
+        A TRUE or FALSE value which defines whether the OS abstraction supports
+        console-input.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_OSFEATURE_THREADS"></a>
+<a NAME="DCL_OSFEATURE_THREADS"></a>
+DCL_OSFEATURE_THREADS
+</h3>
+<div class=SectionText>
+
+        A TRUE or FALSE value which defines whether the OS supports threads or
+        not.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_OSFEATURE_UNICODE"></a>
+<a NAME="DCL_OSFEATURE_UNICODE"></a>
+DCL_OSFEATURE_UNICODE
+</h3>
+<div class=SectionText>
+
+        A TRUE or FALSE value which defines whether the OS supports Unicode
+        or not.  If this symbol is TRUE, then the data type <a HREF=UD660_DataTypes.c.htm#D_WCHAR>D_WCHAR</a> must be
+        defined.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_OSNAME"></a>
+<a NAME="DCL_OSNAME"></a>
+DCL_OSNAME
+</h3>
+<div class=SectionText>
+
+        Defines the name of the OS abstraction, and may be mixed case.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_PATHSEPCHAR"></a>
+<a NAME="DCL_PATHSEPCHAR"></a>
+DCL_PATHSEPCHAR
+</h3>
+<div class=SectionText>
+
+        The default character used as a path separator.  This does not imply
+        that other path separator characters are not legal, just that this
+        will be the default character used.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_PATHSEPSTR"></a>
+<a NAME="DCL_PATHSEPSTR"></a>
+DCL_PATHSEPSTR
+</h3>
+<div class=SectionText>
+
+        The default character used as a path separator, in string form.  This
+        does not imply that other path separator characters are not legal, just
+        that this will be the default character used.
+
+<p>        
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

@@ -1,0 +1,16 @@
+LIBRARY	wl1271helper
+EXPORTS
+	DllMain				@1
+	WL_BIPCalibration	@2
+	WL_RadioTest		@3
+	WL_GetStatus		@21
+	WL_TurnOn			@22
+	WL_TurnOff			@23
+	WL_SaveStartupState	@24
+	WL_GetStartupState	@25
+	BT_GetStatus		@26
+	BT_TurnOn			@27
+	BT_TurnOff			@28
+	BT_SaveStartupState	@29
+	BT_GetStartupState	@30
+	

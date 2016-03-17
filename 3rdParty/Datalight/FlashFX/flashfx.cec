@@ -1,0 +1,83 @@
+CECInfo
+(
+	Name ( "FlashFX.cec" )
+	CECVersion ( 4.00 )
+	Description ( "FlashFX Tera Flash Media Manager" )
+	GUID ( {084F3A20-E217-11D4-8F5C-005004E14E7A} )
+	Vendor ( "Datalight, Inc." )
+)
+ComponentType
+(
+	Name ( "FlashFX Tera" )
+	GUID ( {084F3A20-E217-11D4-8F5C-005004E14E7A} )
+	Description ( "FlashFX Tera Flash Media Manager" )
+	Vendor ( "Datalight, Inc." )
+	MaxResolvedImpsAllowed( 1 )
+	Implementations
+	(
+		Implementation
+		(
+			Name ( "FlashFX Tera" )
+			GUID ( {9CD4F1F1-E23B-11D4-8F5C-005004E14E7A} )
+			Description ( "FlashFX Tera Flash Media Manager" )
+			Version ( "v2.1.1 Build 2128DF" )
+			Locale ( 0409 )
+			Vendor ( "Datalight, Inc." )
+			Date ( "04/24/2012" )
+			Variable( "FX_ROOT", "c:\dl\flashfx" )
+			Variable( "FX_PROJNAME", "MYPROJ" )
+			Variable( "FX_DEBUG", "0" )
+			SizeIsCPUDependent( 1 )
+			BuildMethods
+			(
+				BuildMethod
+				(
+					GUID ( {5A1277DC-DBCD-4B75-B159-DFB18CB64CFF} )
+					Step ( PreBSP )
+					CPU ( "default" )
+					Action ( '#CUSTOM( "$(FX_ROOT)", "$(FX_ROOT)\DCL\HOST\WIN32\MSWCEPB\CEPBPREP.BAT $(FX_ROOT) $(FX_PROJNAME) $(FX_DEBUG)")' )
+				)
+				BuildMethod
+				(
+					GUID ( {445112B0-229A-4A18-8C0F-D3CF61AD3893} )
+					Step ( BSP )
+					CPU ( "default" )
+					Action ( '#BUILD( DIRS, "$(FX_ROOT)" )' )
+				)
+				BuildMethod
+				(
+					GUID ( {ED2F6BD7-0AF3-47C7-B16F-901FD7AFC6A7} )
+					Step ( PreMAKEIMG )
+					CPU ( "default" )
+					Action ( '#COPY("$(FX_ROOT)\projects\$(FX_PROJNAME)\flashfx.reg", "$(_FLATRELEASEDIR)")' )
+				)
+			)
+			BibInfo
+			(
+				Files
+				(
+					File
+					(
+						GUID ( {BFA422B7-B14F-4472-A9A6-E4D1EEDF6ABF} )
+						CPU ( "default" )
+						BibRecord ( '#MODULES( "flashfx.dll",  "$(_FLATRELEASEDIR)\flashfx.dll",  "NK", "SH" )' )
+						BibRecord ( '#MODULES( "dcltest.exe",  "$(_FLATRELEASEDIR)\dcltest.exe",  "NK", "" )' )
+						BibRecord ( '#MODULES( "fmsltest.exe", "$(_FLATRELEASEDIR)\fmsltest.exe", "NK", "" )' )
+						BibRecord ( '#MODULES( "vbftest.exe",  "$(_FLATRELEASEDIR)\vbftest.exe",  "NK", "" )' )
+						BibRecord ( '#MODULES( "fsiotest.exe", "$(_FLATRELEASEDIR)\fsiotest.exe", "NK", "" )' )
+						BibRecord ( '#MODULES( "mtstress.exe", "$(_FLATRELEASEDIR)\mtstress.exe", "NK", "" )' )
+						BibRecord ( '#MODULES( "fxchk.exe",    "$(_FLATRELEASEDIR)\fxchk.exe",    "NK", "" )' )
+						BibRecord ( '#MODULES( "fxfmt.exe",    "$(_FLATRELEASEDIR)\fxfmt.exe",    "NK", "" )' )
+						BibRecord ( '#MODULES( "fxdump.exe",   "$(_FLATRELEASEDIR)\fxdump.exe",   "NK", "" )' )
+						BibRecord ( '#MODULES( "fximage.exe",  "$(_FLATRELEASEDIR)\fximage.exe",  "NK", "" )' )
+						BibRecord ( '#MODULES( "fxinfo.exe",   "$(_FLATRELEASEDIR)\fxinfo.exe",   "NK", "" )' )
+ 						BibRecord ( '#MODULES( "fxremnt.exe",  "$(_FLATRELEASEDIR)\fxremnt.exe",  "NK", "" )' )
+						BibRecord ( '#MODULES( "fxreclm.exe",  "$(_FLATRELEASEDIR)\fxreclm.exe",  "NK", "" )' )
+						BibRecord ( '#MODULES( "fxshell.exe",  "$(_FLATRELEASEDIR)\fxshell.exe",  "NK", "" )' )
+						BibRecord ( '#MODULES( "savereg.exe",  "$(_FLATRELEASEDIR)\savereg.exe",  "NK", "" )' )
+					)
+				)
+			)
+		)
+	)
+)

@@ -1,0 +1,39 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+TARGETNAME=ceddk_omap35xx_tps659xx_ti_v1
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+DEFFILE=ceddk.def
+DLLENTRY=_DllMainCRTStartup
+
+SOURCES= 
+
+SOURCELIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_map_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_dma_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_i2c_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_misc_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_bus_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_base_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_pmext_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\ddk_io.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\ddk_bus.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\ddk_dma.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\ddk_map.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\ddk_time.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\ddk_power.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib

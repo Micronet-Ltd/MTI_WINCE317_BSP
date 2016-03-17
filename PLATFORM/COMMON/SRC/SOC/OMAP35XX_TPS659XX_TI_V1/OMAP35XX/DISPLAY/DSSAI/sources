@@ -1,0 +1,28 @@
+!if 0
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+!endif
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+TARGETNAME=dssai_omap35xx_tps659xx_ti_v1
+TARGETTYPE=LIBRARY
+SYNCHRONIZE_DRAIN=1
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO -DUSE_PMX_WRAPPER
+
+
+
+SOURCES= \
+    dssai.cpp \
+    dssai_debug.cpp \
+    dssai_globals.cpp \
+    heap.cpp \
+    surfmgr_flat.cpp \
+    surfmgr_vrfb.cpp

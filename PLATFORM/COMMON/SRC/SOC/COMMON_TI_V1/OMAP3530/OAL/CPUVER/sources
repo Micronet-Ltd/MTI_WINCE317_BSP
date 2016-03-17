@@ -1,0 +1,10 @@
+!INCLUDE "..\..\sources.inc"
+
+TARGETNAME=$(OMAP3530)_oalcpuver
+TARGETTYPE=LIBRARY
+
+#INCLUDES=$(INCLUDES)
+
+SOURCES=\
+    oalcpuver.c \
+

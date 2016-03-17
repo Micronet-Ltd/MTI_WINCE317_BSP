@@ -1,0 +1,192 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOG  0, 0, 220, 141
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Bluetooth audio demo application"
+FONT 8, "MS Shell Dlg"
+BEGIN
+	LTEXT           "max.",IDC_STATIC,192,41,17,8
+    LTEXT           "max.",IDC_STATIC,191,87,17,8
+	CONTROL         "Mute",IDC_CHECK_REC_MUTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,32,10
+    CONTROL         "",IDC_SLIDER_REC,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,89,39,100,15
+    CONTROL         "Activation",IDC_CHECK_ACTIVATION,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,48,10
+    LTEXT           "Gain:",IDC_STATIC,64,42,18,8
+    CONTROL         "Mute",IDC_CHECK_PLAY_MUTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,87,32,10
+    CONTROL         "",IDC_SLIDER_PLAY,"msctls_trackbar32",TBS_BOTH | TBS_NOTICKS | WS_TABSTOP,89,84,100,15
+    LTEXT           "Volume:",IDC_STATIC,64,87,26,8
+    GROUPBOX        "Recording line",IDC_STATIC,7,25,206,40
+    GROUPBOX        "Playback line",IDC_STATIC,7,70,206,40
+    CONTROL         "Simulate echo",IDC_CHECK_ACTIVATION2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,89,7,60,10
+    DEFPUSHBUTTON   "Exit",IDC_BUTTON_EXIT,179,120,34,14
+    LTEXT           "Status:",IDC_STATIC,7,117,24,8
+    LTEXT           "<status>",IDC_STATIC_STATUS,35,117,128,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 213
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 134
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BTAUDIO_DEMO        ICON                    "btaudio_demo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "E&xit",                       IDM_FILE_EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      IDM_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_BTAUDIO_DEMO ACCELERATORS 
+BEGIN
+    "A",            IDM_HELP_ABOUT,         VIRTKEY, CONTROL, NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)\r\n"
+    "LANGUAGE 13, 1\r\n"
+    "#pragma code_page(1255)\r\n"
+    "#include ""btaudio_demo.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "btaudio_demo"
+    IDC_BTAUDIO_DEMO        "BTAUDIO_DEMO"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLS               "Tools"
+END
+
+#endif    // Hebrew resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+LANGUAGE 13, 1
+#pragma code_page(1255)
+#include "btaudio_demo.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

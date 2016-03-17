@@ -1,0 +1,258 @@
+<html>
+<head>
+<title>
+File System Performance Testing
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+File System Performance Testing
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): File System Performance Testing">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        The FlashFX SDK for Windows CE includes a generic file system I/O test
+        called FSIOTEST.  FSIOTEST is a file system independent test, and does
+        not require or use any Datalight specific file system or block driver
+        technology.  Additionally, it is available for all the operating
+        systems which Datalight supports.
+
+<p>        <h4>Overview</h4>
+
+<p>        FSIOTEST is designed to test a wide variety of file system performance characteristics, including:
+        <ul>
+<li>Sequential I/O
+        <li>Random I/O
+        <li>Directory Striping
+        <li>Directory Scanning
+        <li>Fragmentation Characteristics
+</ul>
+        It should be noted that FSIOTEST, as well as all other performance
+        tests provided by Datalight, are specifically constructed so that any
+        time spent displaying intermediate data or results is not part of what
+        is being timed when throughput numbers are being calculated.  This
+        ensures that accurate results are gathered, even if the output device
+        to which the results are being sent is very slow.  Of course the
+        overall time it takes to complete the test will be affected by a slow
+        output device, however this is not normally a primary performance
+        metric.
+
+<p>        FSIOTEST can be invoked in a variety of ways on the
+        target device:
+        <ul>
+<li>It is built as a standalone executable -- fsiotest.exe, which can be run via a command-prompt, or by using the 's' command in the Target Control window.
+        <li>It is built in as a command in Datalight Shell -- dlshell.exe.
+        <li>It is built in as a command in the FlashFX Shell -- fxshell.exe.
+        <li>It is built in as a command in the Datalight Shell when used as a Target Control Extension -- dlshellext.dll.
+        <li>It is built in as a command in the FlashFX Shell when used as a Target Control Extension -- fxshellext.dll.
+</ul>
+        Because FSIOTEST is a generic solution, not requiring FlashFX or any
+        other Datalight technology, it can be built into, or dynamically
+        loaded, in a variety of target environments which do not use any other
+        Datalight products.  For example, fsiotest.exe, dlshell.exe, or
+        dlshellext.dll can be loaded on a target device using non-Datalight
+        block devices and file systems.
+
+<p>        For example, to compare the performance of the MSFlash solution with
+        the Datalight FlashFX solution, the Datalight Shell can be built into
+        an otherwise virgin Windows CE installation, and FSIOTEST run against
+        the user store.  Those results can then be directly compared with the
+        FSIOTEST results from a test run on the Datalight solution.
+
+<p>        This provides a much more accurate, apples-to-apples comparison of
+        different solutions.
+
+<p>        <b>Running FSIOTEST</b>
+
+<p>        FSIOTEST contains a wide variety of tests, some of which are primarily
+        used by Datalight internally.  The standard set of tests is invoked by
+        using the "/DLPERF" command-line option.  Run "FSIOTEST /?" for a
+        complete rundown on the effects of that option, as well as other
+        options.  When running on Windows CE or Windows Mobile, you must also
+        use the "/P:VolumeName" option to specify the volume to be tested.
+
+<p>        To get the best accuracy when comparing various solutions, it is vital
+        to ensure the following things:
+        <ul>
+<li>Ensure that the volume size in the solutions being tested is similar.  They don't need to exactly the same, but they should be similar within 10% or so.  Because FSIOTEST defaults to an automatic configuration mode so that it can scale to run on very small or very large disks, similar volume sizes is an important factor.
+        <li>Similarly, ensure that the logical block or cluster size for the solutions is the same, if at all possible.  This is a key factor for how FSIOTEST automatically scales for different geometries.  If necessary reformat TFAT with a different cluster size as needed.
+        <li>If you are redirecting output for the test to a file, try to ensure that the file is on a different volume than that being tested.
+        <li>Always ensure that the file system is freshly formatted before starting the test.  Simply ensuring that the disk is empty is not enough.  When working on a flash disk of any sort, because there is always a logical to physical mapping of sectors to flash pages, even a disk which is empty from a file system perspective, may be very dirty from a flash perspective, and this will greatly skew results.
+</ul>
+        Upon startup FSIOTEST will display information similar to
+        the following:
+
+<p>        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#68&#67&#76&#32&#70&#105&#108&#101&#32&#83&#121&#115&#116&#101&#109&#32&#73&#47&#79&#32&#80&#101&#114&#102&#111&#114&#109&#97&#110&#99&#101&#32&#84&#101&#115&#116&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#68&#97&#116&#97&#108&#105&#103&#104&#116&#32&#67&#111&#109&#109&#111&#110&#32&#76&#105&#98&#114&#97&#114&#105&#101&#115&#32&#118&#50&#46&#54&#32&#66&#117&#105&#108&#100&#32&#55&#53&#50&#66&#80&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#67&#111&#112&#121&#114&#105&#103&#104&#116&#32&#40&#99&#41&#32&#49&#57&#57&#51&#45&#50&#48&#48&#57&#32&#68&#97&#116&#97&#108&#105&#103&#104&#116&#44&#32&#73&#110&#99&#46&#32&#32&#65&#108&#108&#32&#82&#105&#103&#104&#116&#115&#32&#82&#101&#115&#101&#114&#118&#101&#100&#32&#87&#111&#114&#108&#100&#119&#105&#100&#101&#46&#32&#32&#32&#32&#124
+        &#124&#32&#32&#87&#105&#110&#67&#69&#32&#69&#100&#105&#116&#105&#111&#110&#32&#102&#111&#114&#32&#97&#114&#109&#118&#52&#105&#32&#45&#45&#32&#67&#111&#109&#112&#105&#108&#101&#100&#32&#74&#97&#110&#32&#50&#52&#32&#50&#48&#48&#57&#32&#97&#116&#32&#49&#57&#58&#49&#52&#58&#49&#53&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#84&#101&#115&#116&#32&#80&#97&#114&#97&#109&#101&#116&#101&#114&#115&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#84&#101&#115&#116&#32&#67&#97&#115&#101&#115&#58&#32&#32&#47&#83&#69&#81&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#68&#101&#118&#105&#99&#101&#32&#78&#97&#109&#101&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#68&#83&#75&#50&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#70&#105&#108&#101&#32&#83&#121&#115&#116&#101&#109&#32&#84&#111&#116&#97&#108&#32&#83&#105&#122&#101&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#50&#57&#57&#57&#54&#32&#75&#66&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#70&#105&#108&#101&#32&#83&#121&#115&#116&#101&#109&#32&#70&#114&#101&#101&#32&#83&#112&#97&#99&#101&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#50&#57&#57&#56&#52&#32&#75&#66&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#70&#105&#108&#101&#32&#83&#121&#115&#116&#101&#109&#32&#66&#108&#111&#99&#107&#32&#83&#105&#122&#101&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#52&#48&#57&#54&#32&#66&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#77&#97&#120&#32&#84&#101&#115&#116&#32&#70&#105&#108&#101&#32&#83&#105&#122&#101&#32&#40&#47&#77&#65&#88&#41&#58&#32&#32&#32&#32&#32&#32&#32&#50&#48&#52&#56&#32&#75&#66&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#77&#97&#120&#32&#66&#117&#102&#102&#101&#114&#32&#83&#105&#122&#101&#32&#40&#47&#66&#41&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#49&#54&#51&#56&#52&#32&#66&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#82&#97&#110&#100&#111&#109&#32&#83&#101&#101&#100&#58&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#56&#53&#48&#56&#52&#50&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        This information can be used to help ensure that an apples-to-apples
+        comparison is being done.  In particular, the "File System Block Size",
+        "Max Test File Size" and "Max Buffer Size" values should be examined
+        closely.  The latter two of those values are dynamically calculated
+        based on "File System Free Space" and the "File System Block Size"
+        sizes.  Virtually all the standard tests self-configure themselves
+        based off of those values.  If they prove to be different on the
+        various platforms being tested, then the test results will most
+        certainly be skewed and must be viewed skeptically.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

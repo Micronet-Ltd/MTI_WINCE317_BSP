@@ -1,0 +1,1070 @@
+<html>
+<head>
+<title>
+Porting Guide: Creating a New ToolSet Abstraction
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Porting Guide: Creating a New ToolSet Abstraction
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Porting Guide: Creating a New ToolSet Abstraction">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        Creating a new ToolSet abstraction involves implementing a set of
+        batch files, make files, and header files which together make up
+        the ToolSet.
+
+<p>        <b>Note</b> --The Datalight Toolset abstraction allows a common build
+        process to be used across a wide range of environments and tools.
+        However, OEMs may choose not to use the Datalight ToolSet abstraction
+        at all, but rather implement a completely proprietary build process.
+
+<p>        It is strongly recommended that a new ToolSet be made by cloning an
+        existing ToolSet.  Examining the existing ToolSet abstractions and
+        finding one that is a close match to your new tool chain will save lots
+        of time.  For example, if your new tool chain is using GNU based
+        compilers, modeling your new ToolSet abstraction on one of the many
+        GNU-based ToolSets will be ideal.
+
+<p>        <h4>Build Process Components</h4>
+
+<p>        The abstracted build process consists of four distinct components,
+        which are:
+
+<p>        <b>The PRODUCT Directory</b>
+
+<p>        The PRODUCT directory contains information about the specific product
+        being built.  This includes such information as the product name,
+        version, and master MAKE file.
+
+<p>        <b>The DCL\HOST Directory Structure</b>
+
+<p>        The dcl\host directory tree contains all the various ToolSet
+        implementations.  Under the host directory is a subdirectory that
+        corresponds to the host build environment.  All the ToolSets supplied
+        by Datalight are Win32 based implementations and can be found under the
+        dcl\host\win32 directory tree.  If you were to implement a ToolSet for
+        a Linux hosted build environment, a LINUX directory tree would be
+        created off host, and it would contain all the ToolSets for Linux
+        hosted environments.
+
+<p>        Each Datalight supplied ToolSet is implemented in a subdirectory under
+        dcl\host\win32 that has the same name as the ToolSet.  For example, the
+        ToolSet "mswcepb" is implemented in the dcl\host\win32\mswcepb
+        directory, and the ToolSet "ads12" is implemented in the
+        dcl\host\win32\ads12 directory.
+
+<p>        The host directory tree does NOT contain any knowledge about the
+        specific product being built.
+
+<p>        The remainder of this section assumes that you are working with
+        Win32-based development tools, which use ToolSets based off the
+        dcl\host\win32 directory tree.
+
+<p>        <b>The Development Tool Chain</b>
+
+<p>        The development tool chain is the actual compilers and linkers used to
+        build the product.  Datalight does not supply these tools, however
+        Datalight may supply ToolSet implementations that allow given
+        development tools to be used.
+
+<p>        The development tools may be installed anywhere on the development
+        system.
+
+<p>        <b>The Product MAKE Files</b>
+
+<p>        Each directory in the product contains a MAKE file that defines the
+        modules to be built, and any dependencies that are required.  These
+        MAKE files are GNU Make compatible, and are completely ToolSet
+        agnostic.
+
+<p>        <h4>Product Components</h4>
+
+<p>        The PRODUCT directory, off the root of the product tree, contains build
+        information that is unique to the product.  The product components
+        typically do not need to be modified when adding support for a new
+        ToolSet.  Required components are:
+
+<p>        <b>PRODINFO.BAT</b>
+
+<p>        This batch file defines general product information, specifically, the
+        following environment variables:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+P_PRODUCT
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+must be set to the product name.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_PRODUCTNUM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+must be set to the product number, which must match the value found in dlapi.h.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_OSDIR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+must be set to the relative path component name for the OS layer, if any.  If this value is defined, it must be terminated with a backslash.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_PREFIX
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+must be set to the two letter, uppercase prefix for the product.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_TREES
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+defines the directory trees to build, relative to the root of the product.  The trees are processed in the order specified.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_BUILDDATE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+must be set to the product build date.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_VERSION
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+must be set to the product version string.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>CLEANEXT.BAT</b>
+
+<p>        This is a helper batch file that is used during the clean process.  It
+        must simply delete files of whatever extension are relevant for the
+        given product.  Typically this would be deleting object code and other
+        intermediate files generated during the build process.
+
+<p>        <b>IGNORE.TXT</b>
+
+<p>        This is a text file that lists error and warning messages that should
+        be ignored during the build process.  The default behavior of the
+        product build process is to consider the occurrence of any error or
+        warning to be fatal, and the build will fail.  However, some types of
+        messages are benign and can be ignored.  Those messages are defined in
+        this file.
+
+<p>        <b>ProductName.MAK</b>
+
+<p>        This is the MAKE file for product-wide information. For example, global
+        headers that are product wide, should be listed in this file.  Lists of
+        library objects should be defined here.
+
+<p>        <h4>Project Components</h4>
+
+<p>        The PROJECT abstraction is a collection of configuration components and
+        batch commands that are used to build the PRODUCT for a given target OS
+        and hardware platform using a specific ToolSet.
+
+<p>        New projects are created with the NEWPROJ batch file (described
+        elsewhere).  Within the Linux environment, NEWPROJ is a shell script.
+        Please refer to the Linux documentation for details related to the use
+        of NEWPROJ.SH. While the process as described below is consistent, the
+        file names generated under Linux are different. A project is created in
+        a Project Directory that has the same name as the project.  newproj.bat
+        creates a new project by copying the contents of two directories, and
+        auto-generating a third file on the fly.  The dcl\host\win32\newproj
+        directory, as well as the wince\newproj directory contents are copied
+        into the new Project Directory, and the <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> file is
+        auto-generated.
+
+<p>        A Project Directory, minimally, will contain the
+        following files:
+
+<p>        <b>PRJINFO.BAT</b>
+
+<p>        <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> contains the default project settings, as specified on the
+        newproj.bat command-line, or derived by newproj.bat. The settings
+        defined in <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> are a critical part of the build process and are
+        used throughout the ToolSet implementation.  The following environment
+        variables must be initialized in <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a>:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+P_ROOT
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The root of the product installation.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_PROJDIR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The full path specification to the project directory.
+        P_OS- The name of the OS being targeted.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_TOOLSET
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The name of the ToolSet being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_TOOLROOT
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The full path specification to the root of the development tools.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_CPUFAMILY
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The CPU family name.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+P_CPUTYPE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The CPU type name.
+</td>
+</tr>
+</table>
+
+<p>
+        <h4>Note</h4> It is important to note that the values associated with the P_OS,
+        P_TOOLSET, P_CPUFAMILY, and P_CPUTYPE variables must be completely
+        lowercase.
+
+<p>        <b>PRJBUILD.BAT</b>
+
+<p>        <a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a> is copied from the dcl\host\win32\newproj directory and is
+        used to invoke the product build process.  <a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a> is typically
+        minimally implemented to contain just enough logic to pass control to
+        makeall.bat (described later).
+
+<p>        <b>PRJCLEAN.BAT</b>
+
+<p>        <a HREF=UD720_ProjectFiles.c.htm#prjclean.bat>prjclean.bat</a> is copied from the dcl\host\win32\newproj directory and is
+        used to invoke the product clean process.  <a HREF=UD720_ProjectFiles.c.htm#prjclean.bat>prjclean.bat</a> is typically
+        minimally implemented to contain just enough logic to pass control to
+        clean.bat (described later).
+
+<p>        <b>Product Specific Configuration Files</b>
+
+<p>        When newproj.bat creates a new project, it copies the entire contents
+        of the wince\newproj directory into the new Project Directory.
+        Typically this will consist of at least a simple "prodmain.c" file as
+        well as a project configuration header file.
+
+<p>        <h4>Host Build Environment Components</h4>
+
+<p>        The host build environment components reside in the DCL\HOST\HostName
+        directory tree ( dcl\host\win32 in this example).  This directory
+        contains a subdirectory for each supported ToolSet, with the exact same
+        name as the ToolSet.  Additionally, this directory has subdirectories
+        named os, newproj, and bin, which are described in this section.
+
+<p>        <b>The OS Directory</b>
+
+<p>        The os directory contains initialization batch files for each OS that
+        is supported.  These batch files have the exact same name as the
+        abbreviated OS name, as defined by the DCL abstraction.
+
+<p>        <b>The NEWPROJ Directory</b>
+
+<p>        This directory contains files that are used when a new project is
+        created using newproj.bat.  The files from this directory are copied
+        into the new Project Directory, along with the files from the OS
+        specific newproj directory (for the overall product being used).
+
+<p>        <b>The BIN Directory</b>
+
+<p>        This directory contains generic ToolSet components (batch files and
+        executable programs) that are shared across ToolSets.  Additionally, it
+        contains default implementations of a number of ToolSet components that
+        will be used if a given ToolSet does not need to override the default
+        behavior.
+
+<p>        These components are common to all ToolSets designed to run on a given
+        host and do not need to be modified.  This section contains a brief
+        description of the major components (some helper files are not
+        covered).
+
+<p>        <u>GNU Make (GMAKEW32.EXE)</u>
+
+<p>        All the Datalight supplied ToolSets are designed to use a version of
+        GNU Make for Win32, which is supplied in the SDK.  This MAKE program is
+        used even though the development tools being used may contain their own
+        version of MAKE.  Using a standard version of MAKE allows all the MAKE
+        files distributed throughout the Datalight product directory tree to be
+        consistent regardless which ToolSet and what development tools are
+        used.
+
+<p>        <u>The MAKEALL Batch File</u>
+
+<p>        This is the batch file that manages the overall product build process.
+        This batch file is called by <a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a>.  MAKEALL performs a number
+        of actions:
+        <ul>
+<li>It validates that the information defined in <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> is reasonably correct.
+        <li>It calls the dcl\host\win32\os\wince.bat file to initialize any OS-specific settings.
+        <li>It calls toolinit.bat to initialize the ToolSet.
+        <li>It determines what portions of the build process can use the default ToolSet implementations in the BIN directory, and what portions must use the ToolSet specific code.
+        <li>It initializes a number of environment variables used during the build process.
+        <li>It invokes the build process.
+        <li>It examines the buildn.log file and displays any errors.
+</ul>
+        <u>The NEWPROJ Batch File</u>
+
+<p>        This batch file is used to create new projects.  It validates the
+        specified settings and copies the contents of the
+        dcl\host\win32\newproj and wince\newproj directories into the new
+        Project Directory.
+
+<p>        For convenience, a duplicate copy of newproj.bat resides in the product
+        root directory.
+
+<p>        <u>The CLEAN Batch File</u>
+
+<p>        This batch file is used to clean the product, and is called by
+        <a HREF=UD720_ProjectFiles.c.htm#prjclean.bat>prjclean.bat</a>.
+
+<p>        <u>Default Implementations</u>
+
+<p>        There are a number of default batch utility implementations that exist
+        in the BIN directory.  For any given ToolSet where one of these batch
+        files does not exist, the default implementation found in this
+        directory will be used.  The following batch files implement this
+        default functionality:
+
+<p>        <ul>
+<li>addlibs.bat
+        <li>bldlayer.bat
+        <li>makelib.bat
+        <li>traverse.bat
+</ul>
+        See the next section, ToolSet Components for detailed information on
+        the functionality of these batch files.
+
+<p>        <h4>ToolSet Components</h4>
+
+<p>        The following documentation is based on the various Win32 specific
+        ToolSet components located in the dcl\host\win32 directory tree.
+        Should you be implementing a ToolSet for a different host build
+        environment, use this documentation as a guide, but realize that
+        specifics will differ.
+
+<p>        A number of ToolSet components are optional.  If they exist in the
+        ToolSet directory, they will be used, and if they do not exist there,
+        then they will either be ignored or the default implementation found in
+        the dcl\host\win32\bin directory will be used.
+
+<p>        Before creating a new ToolSet, Datalight recommends that you examine
+        several of the supplied ToolSets for examples.
+
+<p>        <h4>NOTE</h4>  While the "mswcepb" ToolSet is a great example of the
+        flexibility of the ToolSet abstraction, it is not a good example of a
+        typical ToolSet.  Choose a different ToolSet to use as an example.
+
+<p>        <b>ToolSetName.h</b>
+
+<p>        Each ToolSet must have a header file located in the dcl\include\toolset
+        directory.  This header file must have the exact same name as the
+        ToolSet.  Typically this file contains information that is specific to
+        the development tools being used, such as basic data types.  See the
+        existing ToolSet header files for more information.
+
+<p>        <b>The DETECT Batch File</b>
+
+<p>        This is an optional batch file that is used during new project creation
+        to attempt to automatically detect the location of the tool root to use
+        for the P_TOOLROOT environment variable setting.
+
+<p>        The requirements for this batch file are very simple – if the tool root
+        can be determined, the path must be assigned to the P_TOOLROOT
+        environment variable.  If the tool root cannot be determined, the
+        P_TOOLROOT variable must be left blank.
+
+<p>        detect.bat takes one command-line parameter – the OS name.  This is
+        useful when a given ToolSet can be used with more than one operating
+        system.
+
+<p>        If this batch file does not exist in the ToolSet directory, or if
+        detect.bat cannot determine the P_TOOLROOT setting, the NEWPROJ batch
+        file will require that the user specify the tool root as a parameter.
+
+<p>        <b>The CPUCHECK Batch File</b>
+
+<p>        This is a required batch file that is used to determine if the user
+        specified CPU is valid for a given ToolSet.  It is called both by
+        newproj.bat when a new project is being created, and by makeall.bat
+        when the product is being built.
+
+<p>        The first and only parameter to this batch file is the P_CPUTYPE
+        value.  The CPUCHECK batch file must validate this value and set the
+        appropriate P_CPUFAMILY value.  If the specified CPU type is not value,
+        CPUCHECK must display a list of the valid types.
+
+<p>        <b>The TOOLINIT Batch File</b>
+
+<p>        This is a required batch file that is used to initialize basic settings
+        for the ToolSet. The following environment variables must be
+        initialized:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+B_INPATH
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Internal variable for storing the linker location.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_TOOLBIN
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be set to the directory relative to the P_TOOLROOT setting where the tool executables reside. Typically this value is set to "BIN".
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_TOOLINC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be set to the directory relative to the P_TOOLROOT setting where the tool includes reside. Typically this value is set to "INC" or "INCLUDE".
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_TOOLLIB
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be set to the directory relative to the P_TOOLROOT setting where the tool libraries reside. Typically this value is set to "LIB".
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_CC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be set to the executable name for the C compiler. If the B_INPATH variable is not set, this variable must include the full path to the compiler. If B_INPATH is set to '1', this variable must be set to the executable name only.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_ASM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be set to the executable name for the assembler. If the B_INPATH variable is not set, this variable must include the full path to the assembler. If B_INPATH is set to '1', this variable must be set to the executable name only. This setting may not be necessary if you are not building any assembly language components.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_LINK
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be set to the executable name for the linker. If the B_INPATH variable is not set, this variable must include the full path to the linker. If B_INPATH is set to '1', this variable must be set to the executable name only.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_LIB
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be set to the executable name for the object code librarian. If the B_INPATH variable is not set, this variable must include the full path to the librarian. If B_INPATH is set to '1', this variable must be set to the executable name only.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+B_MAKE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This should be set to gmakew32.exe. This is the GNU Make program for Win32, that is supplied with the SDK and is typically used regardless whether the development tools in question happen to come with its own make program.
+</td>
+</tr>
+</table>
+
+<p>
+        When toolinit.bat is called, the P_OS, P_CPUTYPE, and P_CPUFAMILY are
+        already initialized according to the instructions in <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a>.  It
+        is not a bad idea to have toolinit.bat do a reality check on these
+        settings.
+
+<p>        For example, if the development tools are specifically designed to
+        target a MIPS processor but the P_CPUTYPE and P_CPUFAMILY settings
+        indicate differently, TOOLINIT should fail and set the B_ERROR
+        environment variable accordingly.  Upon exit, the B_ERROR environment
+        variable should be cleared if everything worked, and should be set to a
+        short error message if TOOLINIT failed.
+
+<p>        <b>The toolset.mak File</b>
+
+<p>        This is a required MAKE file that is used to initialize a number of
+        items that are used throughout the build process.  This is the most
+        significant component of any given ToolSet.
+
+<p>        _The B_TOOLSETNUM Setting_
+
+<p>        The B_TOOLSETNUM variable must be set to a unique identifier that is
+        passed to each compiled\assembled module for use in the very rare case
+        that conditional code must be used based on the development tools being
+        used.  The ToolSet number must be unique and must match the identifiers
+        found in dltlset.h and dltlset.inc.  See the comments in dltlset.h for
+        guidelines on picking the ToolSet number.  In rare cases, the ToolSet
+        number may be initialized in toolinit.bat rather than toolset.mak.
+
+<p>        <u>The TOOLSETINIT Target</u>
+
+<p>        The TOOLSETINIT target is used by every MAKE file throughout the
+        product directory tree.  This target is responsible for preparing each
+        directory in the product tree to be built.  For most ToolSets this
+        involves creating the C and assembly language response files used
+        during compilation and assembly.
+
+<p>        These response files initialize the typical compiler and assembler
+        flags, and additionally must perform the following actions:
+        <ul>
+<li>The B_TOOLSETNUM symbol must be defined to match the B_TOOLSETNUM setting.
+        <li>The <a HREF=UD690_PreprocSymbols.c.htm#D_DEBUG>D_DEBUG</a> symbol must be defined to match the B_DEBUG level.
+        <li>The include path must be set to include (in order):
+        <li>The P_PROJDIR directory
+         -The wince\include directory
+        <li>The product include directory
+</ul>
+        If both of the symbols B_OSINC and B_NEEDSOSHEADERS are defined, the
+        include path must also include the B_OSINC directory.
+
+<p>        <u>Linker Settings</u>
+
+<p>        The B_LFLAGS setting must be defined to set standard linker flags.
+
+<p>        The B_LIBADDCMD must be set to the character used by the linker to
+        continue a list of libraries on another line.  Not all linkers require
+        this setting.  See the usage in the ProductName.mak to better
+        understand how it is used.
+
+<p>        <u>Default Rules</u>
+
+<p>        Rules must be defined that instruct the C compiler and assembler how to
+        create object code files.  The build process uses the extension .obd
+        for DEBUG object code, and .obr for RELEASE object code.
+
+<p>        If response files are used in the ToolSet/development tools
+        combination, the rules must include the proper commands to utilize the
+        response files.
+
+<p>        The build process using GNU Make redirects all output to the buildn.log
+        file in the P_PROJDIR directory (where 'n' is the debug level).
+        However some compilers will only send output to a file specified on the
+        command-line.  In this case, choose a file with the extension .ERR and
+        the build process automatically appends the information to the
+        buildn.log file.
+
+<p>        <b>The MAKELIB Batch File</b>
+
+<p>        This optional batch file is used to build libraries.  A default
+        implementation of this batch file exists in the dcl\host\win32\bin
+        directory.  If makelib.bat does not exist in the ToolSet directory, the
+        one in BIN will be used.
+
+<p>        If the BIN version of makelib.bat does not work for your new ToolSet,
+        you must write one that does.
+
+<p>        makelib.bat is responsible for adding object code modules to a
+        library.  It must be able to create a brand new library as well as add
+        modules to an existing library.
+
+<p>        The first parameter to MAKELIB is the output library name, which may or
+        may not already exist.  The remaining parameters are the libraries and
+        object code modules to add to the output library.  Wildcards may be
+        used.
+
+<p>        Upon exit, the B_ERROR environment variable should be cleared if
+        everything worked, and should be set to send a short error message if
+        MAKELIB failed.
+
+<p>        <b>The ADDLIBS Batch File</b>
+
+<p>        This optional batch file is used to add the contents of one library to
+        another.  A default implementation of this batch file exists in the
+        dcl\host\win32\bin directory.  If addlibs.bat does not exist in the
+        ToolSet directory, the one in BIN will be used.
+
+<p>        If the BIN version of addlibs.bat does not work for your new ToolSet,
+        you must write one that does.  However, not all OSs require the ADDLIBS
+        functionality.  If the ToolSet is used with an OS which builds
+        everything into a device driver, such as is the case with DOS and
+        Windows CE, the ADDLIBS functionality is not used.  If the ToolSet is
+        used with OSs that build everything into one big library, such as is
+        the case with VxWorks and Nucleus, the ADDLIBS functionality is
+        required.
+
+<p>        The first parameter to ADDLIBS is the output library name.  The
+        remaining parameters are the libraries to add to the output library.
+        Both the source and destination library must exist in the current
+        directory -- path specifications may not be used.
+
+<p>        Upon exit, the B_ERROR environment variable should be cleared if
+        everything worked, and should be set to send a short error message if
+        MAKELIB failed.
+
+<p>        <b>The TRAVERSE Batch File</b>
+
+<p>        This optional batch file is used during the build process to traverse
+        the product directory tree.  A default implementation of this batch
+        file exists in the dcl\host\win32\bin directory.  If traverse.bat does
+        not exist in the ToolSet directory, the one in BIN will be used.
+
+<p>        If the BIN version of traverse.bat does not work for your new ToolSet,
+        you must write one that does.
+
+<p>        On entry, the first parameter will be the name of the current directory
+        being processed.  Subsequent parameters will be the subdirectories to
+        process.  The subdirectories must be processed in the order specified.
+
+<p>        As each subdirectory is processed, if it contains a .mak file with the
+        same name as the directory, B_BLDCMD must be executed passing the make
+        file name as a parameter.  If instead the subdirectory contains a .bat
+        file with the same name as the directory, it must be called, continuing
+        the traversal.  If the directory contains both .mak and .bat files with
+        the same name as the directory, the .mak file must be processed and the
+        .bat file should be ignored.
+
+<p>        As each .mak file or .bat file is processed, traverse.bat must change
+        into the target directory prior to executing the command, and change
+        back to the original directory once the command is complete.
+
+<p>        If neither a .mak nor a .bat file are found, but the directory contains
+        a "product" subdirectory with a prodinfo.bat file, the tree will be
+        built as a subproduct.  The subproduct must build using the exact same
+        CPU and ToolSet settings as the parent product.  This product nesting
+        is only allowed to one subproduct level.
+
+<p>        "." is a special case subdirectory name and may not be combined with
+        any other directory names.  This flag is only used by project.bat and
+        indicates that the first parameter is actually the "project" directory
+        and that the project specific make file in that directory should be
+        processed. This must be handled in this fashion because the project
+        directory may not be in the product tree and therefore cannot be
+        traversed to using the normal process.
+
+<p>        Upon exit, the B_ERROR environment variable should be cleared if
+        everything worked, and should be set to send a short error message if
+        TRAVERSE failed.
+
+<p>        <b>The BLDLAYER Batch File</b>
+
+<p>        This optional batch file is used during the build process to build each
+        directory containing source code.  A default implementation of this
+        batch file exists in the dcl\host\win32\bin directory.  If bldlayer.bat
+        does not exist in the ToolSet directory, the one in BIN will be used.
+
+<p>        If the BIN version of bldlayer.bat does not work for your new ToolSet,
+        you must write one that does.
+
+<p>        On entry, the first parameter will be the name of the product layer
+        directory.  Every valid product layer must contain a .mak file with the
+        exact same name.
+
+<p>        The second parameter may be an optional target to build, and must be
+        passed to B_MAKE.
+
+<p>        BLDLAYER must call the B_MAKE program to build the given layer.  Upon
+        completion BLDLAYER must append any .err files to the buildn.log file
+        located in the P_PROJDIR directory.
+
+<p>        <h4>Steps for Creating a New ToolSet</h4>
+
+<p>        The following general steps should be used to create a new Win32 hosted
+        ToolSet.
+
+<p>        <b>Clone an Existing ToolSet</b>
+
+<p>        Typically the quickest way to create a new ToolSet is to clone an
+        existing ToolSet which is close to the one you want. Prior to doing
+        this you must choose a ToolSet to clone, and doing this requires
+        understanding that there are three general ToolSet styles, which are:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Special ToolSets such as MSWCEPB which are designed to interface to a specific IDE.  Generally these should not be used as examples.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Response file driven ToolSets, in which the toolset.mak file creates a response file for use by the C compiler.  A good example of this style of ToolSet is the rvds30 ToolSet.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Command-line driven ToolSets, which rather than using a response file, simply use (sometimes extremely) long command-lines.  The gnuvx6x and gnunu ToolSets are examples of this type of ToolSet.
+</td>
+</tr>
+</table>
+
+<p>
+        To clone a ToolSet, choose a source ToolSet according to the criteria
+        above, then xcopy the contents of the dcl\host\win32\srcname to a
+        destination directory which exactly matches the name of the new ToolSet.
+
+<p>        In the dcl\include\toolset directory copy the source toolsetname.h file
+        to the target ToolSet name.
+
+<p>        <b>Assign a ToolSet Number</b>
+
+<p>        Each ToolSet abstraction has a unique number which are enumerated in
+        dltlset.h and dltlset.inc.  This number must then be assigned to the
+        B_TOOLSETNUM variable (normally) coded in the toolset.mak file.
+
+<p>        <b>Update toolsetname.h and dltlinit.h</b>
+
+<p>        Update the toolsetname.h file cloned earlier to contain appropriate
+        definitions and types for the target environment.
+
+<p>        Edit the dltlinit.h to add the check for the new ToolSet, and add logic
+        to include toolsetname.h.
+
+<p>        <b>Implement detect.bat</b>
+
+<p>        If the system environment, or some other mechanism can be used to
+        determine the location where the tools are installed, update detect.bat
+        to initialize the P_TOOLROOT variable accordingly.  If such a
+        determination is not possible or practical, edit detect.bat to ensure
+        that the P_TOOLROOT variable is cleared.
+
+<p>        <b>Implement cpucheck.bat</b>
+
+<p>        The CPUCHECK batch file is responsible for taking a CPU type value,
+        passed on the command-line and determining the proper CPU family value,
+        initializing the P_CPUFAMILY environment variable.  For ToolSets which
+        only support one target CPU family, this can be as simple as a singe
+        SET statement.  For ToolSets which target multiple CPU families, the
+        batch file must contain the necessary logic to determine which family
+        the specified CPU type belongs to.
+
+<p>        <b>Implement toolinit.bat</b>
+
+<p>        The TOOLINIT batch file is responsible for initialization of the
+        ToolSet.  With the exception of detect.bat, no other ToolSet components
+        are used until after toolinit.bat has been called.  TOOLINIT must
+        ensure that the following items are handled:
+
+<p>        The /Info command-line parameter must display basic information about
+        the tools, CPUs, and/or versions supported by this ToolSet.
+
+<p>        The /NewProj command-line parameter must be supported to do validation
+        that the target CPU and OS settings are valid.
+
+<p>        The B_TOOLBIN, B_TOOLLIB, B_TOOLINC, B_CC, B_LIB, B_LIBEXT, and B_MAKE
+        environment variables must be initialized.
+
+<p>        The B_ASM environment variable must be initialized if the ToolSet is to
+        support building assembly language modules.  If not, this environment
+        variable must be cleared.
+
+<p>        If there are compiler or assembler command-line switches which are more
+        easily processed in batch language than in make language, those may be
+        handled in toolinit.bat, and made available as environment variables
+        for use by toolset.mak.  It is up to the implementer to decide where
+        this distinction resides.
+
+<p>        <b>Implement toolset.mak</b>
+
+<p>        The TOOLSET make file is responsible for implementing the basic logic
+        required to compile/assemble a given source file.  Depending on whether
+        the ToolSet is response file oriented or command-line driven, the
+        implementation details will differ, however the same end-result is
+        achieved.
+
+<p>        The toolset.mak file is designed to initialize a number of settings
+        which will in turn be used by dcl.mak to automatically initialize
+        standard settings generic fashion.  In particular the B_CDEFCMD and
+        B_CINCCMD settings must be initialized to the appropriate C compiler
+        switches used to define symbols on the command-line and specific
+        include paths, respectively.  If the ToolSet will be assembling source
+        code as well, the B_ASMINCCMD setting must be initialized.  Finally,
+        the TOOSETINIT target must include dependencies for "GENERIC_DEFINES"
+        and "GENERIC_INCLUDES", which will be processed by dcl.mak.
+
+<p>        If this is a response file oriented ToolSet, toolset.mak must contain
+        logic to create the C compiler (and possibly the assembler, if
+        supported) response files.  This can be done by adding the appropriate
+        dependencies to the TOOLSETINIT target.
+
+<p>        It is the responsibility of the combination of logic from toolinit.bat
+        and toolset.mak to generate the appropriate command-line switches to
+        properly build the code for the desired target CPU.  Typically for
+        targets which have many CPU variants, this is handled in toolinit.bat
+        since batch language is somewhat more flexible and familiar for many
+        than make language.
+
+<p>        If special linker flags are required, toolset.mak can initialize them
+        with the L_FLAGS setting.  Similarly, if the linker requires a special
+        symbol to allow libraries to be specified on multiple lines, set the
+        B_LIBADDCMD value accordingly.
+
+<p>        Finally, the toolset.mak file is responsible for defining the make
+        rules for creating object code from source code.  Object modules for
+        debug builds use the extension .obd and object modules for release
+        builds use the extension .obr.
+
+<p>        <b>Implement MAKELIB, ADDLIBS, TRAVERSE, and BLDLAYER (if Necessary)</b>
+
+<p>        A default implementation of each of these batch files exists in the
+        dcl\host\win32\bin directory.  For any of these default implementations
+        which will NOT work for your new ToolSet, make a copy of the batch file
+        in the ToolSet specific directory, and update the batch file to
+        implement the described behavior (as described earlier, and in the
+        comments in the files).  This is most often necessary for the
+        makelib.bat and addlibs.bat files.  traverse.bat and bldlayer.bat
+        rarely need to be changed to support a new ToolSet.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

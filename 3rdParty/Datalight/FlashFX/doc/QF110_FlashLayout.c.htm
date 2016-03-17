@@ -1,0 +1,310 @@
+<html>
+<head>
+<title>
+Flash Layout Design Considerations
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Flash Layout Design Considerations
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Flash Layout Design Considerations">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        The purpose for this section of the documentation is to highlight design 
+        considerations which must be taken into account when choosing storage 
+        management solutions, and integrating them into complex environments.
+ 
+<p>        <h4>Design Considerations</h4>
+
+<p>        There are a large number of factors which must be considered when 
+        integrating FlashFX into a target environment.  Due to differences in 
+        hardware platforms, flash technologies, OEM requirements, BSP 
+        implementations, and the target OS, it is expected that the process of 
+        integrating FlashFX into a given target environment will be 
+        significantly different from other targets, even if both environments 
+        happen to be using the exact same version of the target OS.  Therefore, 
+        it is critical that the integrator have a thorough understanding of the 
+        issues discussed in this document.
+
+<p>        Note that most of the discussion in these Design Considerations 
+        revolves around the complexities introduced by using NAND flash 
+        technology.  If you are not using NAND, many of these issues are 
+        greatly simplified or eliminated.
+
+<p>        <h4>NAND Bad Block Management</h4>
+
+<p>        NAND flash technology requires significantly more management logic in 
+        software than does NOR, for example, in that it requires bad block 
+        management.  While FlashFX supports both NAND and NOR, the additional 
+        complexity of NAND tends to make other issues more complex, 
+        particularly image creation and device manufacturing.  
+
+<p>        There are two general approaches to managing NAND
+        bad blocks:
+
+<p>        <b>Skip-a-Block</b>
+
+<p>        This mechanism simply skips a bad block when it is encountered, and writes the data to the next available good block.  The advantage to this approach is simplicity; however it has several significant disadvantages, which are:
+        <ul>
+<li>The mechanism works OK for blocks which are marked bad from the factory, but does not easily accommodate blocks which may go bad during normal usage.  If a bad block develops after the initial programming, the only way to "skip" the block and yet still maintain the linear integrity of the subsequent data, is to pick up all that data and shift it down a block.  This is generally not very practical.
+        <li>The mechanism does not lend itself well to randomly accessing data.  Without some in-memory record of which blocks are bad, to read from a given logical offset, the code would have to scan every block to determine which ones are bad, and calculate the correct offset from which to read.  Whether this is done once at initialization time, or dynamically at run time, it can have a significant performance impact.
+        <li>The mechanism can be inefficient in the usage of the flash array.  There is no guarantee that the relative locations of bad blocks in the flash array are evenly distributed.  Therefore, if the flash datasheet specifies that (for example) up to 24 out of every 1024 blocks could go bad over the course of the flash lifetime, it could be that most or all those blocks occur in a very small area of the flash.  This makes reserving space very inefficient if you need to be completely safe and reliable.  Supposing you have a 40 block portion of the flash in which the bad blocks are managed in this "skip-a-block" fashion.  Using general ratio above, you would need to reserve at least 64 blocks (40+24) to ensure that at both initial programming time, as well as over the life of the array, that the 40 blocks of data will fit in the prescribed area.  The inefficiency is compounded if you have multiple, separate areas which are managed in the skip-a-block fashion.
+        <li>Without the buffers described in the previous point, it is difficult for the various OS components to be located at fixed boundaries in the flash.  Related to this is the fact that the mechanism can result in a varying amount of available flash once the device is initially brought up.  For example, two OEM devices rolling off the manufacturing line next to each other may report a different amount of available storage space, even though everything else about them is otherwise identical -- only the bad blocks in the NAND chip differ.
+</ul>
+        <b>Remap Blocks</b>
+
+<p>        The remap mechanism sets asides a pool of blocks which are used as 
+        substitutes when a block is found to be bad -- whether at initial 
+        programming time, or later during device operation.  Since all the 
+        flash I/O passes through the flash manager, it simply needs to know 
+        when a given block is bad, and therefore redirect the I/O request to 
+        the substitute block.  Typically the pool of substitute blocks is 
+        placed at the end of the flash array, and the number of available 
+        blocks is correspondingly reduced.  This is transparent to the 
+        application -- as far as it is concerned, all the flash appears to be 
+        good -- the usable flash array is just a little bit smaller.  
+
+<p>        Because a single pool of substitute blocks is set aside from the very 
+        beginning, all the OEM devices will report the exact same amount of 
+        usable flash, whether measured at manufacturing time, or at the moment 
+        before the device bricks.
+
+<p>        Some disadvantages to the remap mechanism
+        are:
+        <ul>
+<li>It is more complex, and requires sophisticated algorithms to manage in a robust manner which is immune to unexpected power loss.  
+        <li>Device manufacturing is more complex, since the process requires on-the-fly generation of the on-media structures used to manage the remap table.
+</ul>
+
+<p>        Most flash managers, including FlashFX, use the "remap" mechanism to 
+        deal with bad blocks.
+        
+<p>        <b>Manufacturing Considerations</b>
+
+<p>        While the "remap" method is the more complex of the two mechanisms to 
+        deal with at manufacturing time, there is one case which is even more 
+        complex -- and that is mixing the two mechanisms, such that part of the 
+        flash is managed using one mechanism, and another part of the flash is 
+        managed by another.  The same goes for mixing two different remap 
+        mechanisms.
+
+<p>        Unfortunately, this is not all that uncommon, due to the fact that most 
+        every reference board manufacturer provides some scheme to deal with 
+        bad blocks.  Usually it is the skip-a-block method, but sometimes it is 
+        a proprietary (manufacturer specific) remap method.  Regardless, it 
+        will almost certainly be different than the scheme used by the real 
+        flash manager, such as FlashFX.
+
+<p>        The reason this is a manufacturing problem is that the production line 
+        flash burners must be aware of which regions of the flash chip are 
+        managed by which bad block mechanisms.  Whether it is a skip-a-block 
+        mechanism combined with a remap mechanism, or two different remap 
+        mechanisms, it is highly undesirable.
+
+<p>        <b>Therefore, it is highly preferable that all the flash be managed by a single flash manager, and consequently a single bad block manager. Achieving this typically requires modification of the various bootloader components.</b>  
+        
+<p>        <b>No Overlapping Mechanisms</b>
+
+<p>        As discussed in the previous section, using different bad block 
+        management mechanisms for different ranges of the flash array is a 
+        possibility, albeit undesirable.  
+
+<p>        What cannot be done, and this is a very critical point to keep in mind, 
+        is that if a given range of flash memory is to be managed by the 
+        FlashFX Bad Block Manager, no other entity which is not using FlashFX 
+        can read or write from that area of flash.  
+
+<p>        <h4>There are two minor exceptions to this case</h4>
+        <ul>
+<li>In the case of the manufacturing process burn software, Datalight typically provides its BBM structure layout so the manufacturing process can build the bad block tables on the fly.  This is acceptable because the manufacturing process is a controlled environment, meaning that unexpected power loss is generally not going to happen on the production line, and therefore, recovery processes at system startup are not needed.
+        <li>A second place where a non-FlashFX implementation may legitimately write data which is to later be managed by FlashFX, is when a block, or blocks are guaranteed to be good.  If a given block cannot go bad, then FlashFX will never need to remap it, and therefore it is always going to be where you think it going to be.  In this event it is acceptable for a non-FlashFX aware entity to read or write it.  This scenario is discussed in more detail in subsequent sections.
+</ul>
+
+<p>        The ramifications of this requirement are best illustrated with an 
+        example.  During development, a typical cycle is to build the various 
+        bootloader components into a single binary image, and burn that onto 
+        the flash using the platform vendor's JTAG tools.  The board can then 
+        be booted up, and the bootloader components, manages the process of 
+        downloading the OS image into flash and booting it.  If the bootloader 
+        components themselves are not located in an area of the flash which is 
+        managed by FlashFX, this works OK.  However as discussed previously, it 
+        is desirable to have a single bad block management scheme, rather than 
+        multiple.  A second disadvantage to this approach is that if FlashFX is 
+        not managing the areas of flash which contain the bootloader, updating 
+        them in the field may be a much more complex process.
+
+<p>        The bottom line can be summed up rather simply -- what is convenient for 
+        development purposes is difficult for manufacturing, while what is best 
+        for manufacturing makes things harder for general development.
+
+<p>        <b>Mixing and Matching</b>
+
+<p>        It is the OEM's responsibility to take the components provided by the 
+        BSP developer and adapt them to be suitable for his requirements.
+
+<p>        Therefore, there really isn't any one "right" way to do things, it is 
+        highly dependent on the OEM's requirements.  Fortunately FlashFX can be 
+        configured to work in a variety of configurations.
+
+<p>        <h4>NAND Bootstrap Mechanisms</h4>
+
+<p>        The boot mechanisms are unique for each target hardware platform and 
+        BSP implementation.  This tends to be more complex with NAND than it is 
+        with NOR, since the NAND may have bad blocks, and you cannot 
+        execute-in-place (XIP) with NAND like you can with NOR.  
+
+<p>        When using NAND flash, Datalight highly recommends using flash in which 
+        the first erase block is guaranteed to be good from the factory, and to 
+        be certified for a reasonable minimum number of erases.  This greatly 
+        simplifies the boot process, as will become evident in the following 
+        discussions.
+
+<p>        See the section "Integrating FlashFX into a Bootloader" for more 
+        detailed information about integrating FlashFX into a bootloader.
+
+<p>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

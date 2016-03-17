@@ -1,0 +1,43 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES
+PROJECTNAME=OptimizeMesh
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Sphere_fixed.obj \
+	$(OBJDIR)\Sphere_float.obj \
+	$(OBJDIR)\SphereOpt_fixed.obj \
+	$(OBJDIR)\SphereOpt_float.obj \
+	$(OBJDIR)\model_texture.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Sphere_fixed.cpp \
+	$(APPROOT)\Content\Sphere_float.cpp \
+	$(APPROOT)\Content\SphereOpt_fixed.cpp \
+	$(APPROOT)\Content\SphereOpt_float.cpp \
+	$(APPROOT)\Content\model_texture.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

@@ -1,0 +1,13 @@
+TARGETNAME=SoftResetUtil
+TARGETTYPE=PROGRAM
+
+SOURCES= \
+    SoftResetUtil.c\
+
+INCLUDES=\
+    $(_PUBLICROOT)\common\oak\inc;
+
+TARGETLIBS=\
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\coredll.lib
+
+EXEENTRY=main

@@ -1,0 +1,15 @@
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=Data_Service
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+txCtrlBlk.c \
+txHwQueue.c \
+RxQueue.c

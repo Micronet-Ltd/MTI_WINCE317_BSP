@@ -1,0 +1,18 @@
+;
+; Copyright (c) Micronet.  All rights reserved.
+;
+; CDS driver
+;
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\CDS]
+"Dll"="cds.Dll"
+"Prefix"="CDS"
+"Index"=dword:1
+"Order"=dword:12 ; Should be loaded after Pwrkey driver, as it holds the thermistor companion chip temperature module
+"InitDoneEventName"="CdsInitCompleteEvent"
+"MJThereshold"=dword:73
+"IThereshold"=dword:69
+"LTThereshold"=dword:64
+"FeatureState"=dword:1
+"MaximalADC"=dword:0
+"NumOfTimesMjtBreach"=dword:0

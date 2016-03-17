@@ -1,0 +1,108 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "newres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""newres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOG  0, 0, 145, 169
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Audio Diagnostics"
+FONT 8, "System"
+BEGIN
+    PUSHBUTTON      "&Play",IDC_PLAY,15,18,31,14
+    PUSHBUTTON      "S&top",IDC_STOP_PLAY,15,57,31,14
+    PUSHBUTTON      "||",IDC_PO,15,38,31,14
+    SCROLLBAR       IDC_SCROL_VOL,85,18,10,40,SBS_VERT
+    LTEXT           "Static",IDC_VOLUME,51,20,28,10,NOT WS_GROUP
+    PUSHBUTTON      "&Record",IDC_RECORD,15,97,31,14
+    PUSHBUTTON      "&Stop",IDC_STOP,15,117,31,14
+    EDITTEXT        IDC_EDIT_SR,65,95,40,14,ES_AUTOHSCROLL
+    CONTROL         "Stereo",IDC_CHECK_STEREO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,64,116,37,10
+    PUSHBUTTON      "Aply",IDOK,34,151,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,87,151,50,14
+    GROUPBOX        " Play                           Volume",IDC_STATIC,7,9,129,68,WS_GROUP
+    GROUPBOX        "ADC Routes      Record/Sampling Rate",IDC_STATIC,7,85,130,49,WS_GROUP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 167
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

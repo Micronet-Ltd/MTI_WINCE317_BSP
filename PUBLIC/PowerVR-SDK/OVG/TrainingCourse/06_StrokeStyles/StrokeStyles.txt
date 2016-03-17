@@ -1,0 +1,13 @@
+
+Demo title: 		StrokeStyles
+
+Demonstrates: 		Simple example showing the different stroke styles in OpenVG
+
+Short Description:	Simple example showing the different stroke styles in OpenVG
+
+Full Description:	
+Simple example showing the different stroke styles in OpenVG. The arrow keys are used to change the stroke styles.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

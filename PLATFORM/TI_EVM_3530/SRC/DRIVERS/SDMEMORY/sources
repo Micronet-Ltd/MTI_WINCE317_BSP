@@ -1,0 +1,39 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+!endif
+
+# Copyright (c) 2001-2002 BSQUARE Corporation. All rights reserved.
+# DO NOT REMOVE --- BEGIN EXTERNALLY DEVELOPED SOURCE CODE ID 40973--- DO NOT REMOVE
+
+#  SD Memory Card client driver files
+
+TARGETDEFNAME=SDMemory
+DEFFILE=$(TARGETDEFNAME).def
+
+TARGETNAME=$(TARGETDEFNAME)
+RELEASETYPE=PLATFORM
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib      \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib     \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\sdcardlib.lib
+    
+SOURCES = SDMemMain.cpp   \
+          SDMemDiskIO.cpp \
+          SDMemCardIO.cpp \
+          
+# DO NOT REMOVE --- END EXTERNALLY DEVELOPED SOURCE CODE ID --- DO NOT REMOVE
+

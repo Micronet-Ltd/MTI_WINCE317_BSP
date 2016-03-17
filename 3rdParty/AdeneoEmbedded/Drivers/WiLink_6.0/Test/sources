@@ -1,0 +1,35 @@
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=Test
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+CDEFINES= $(CDEFINES) -DTI_DBG -DREPORT_LOG
+
+SOURCES= \
+debug.c \
+ctrlDbg.c \
+TxDbg.c \
+RxDbg.c \
+HealthMonitorDbg.c \
+measurementDbg.c \
+PowerMgrDebug.c \
+qosMngrDbg.c \
+roamingMgrDebug.c \
+rsnDbg.c \
+scanCncnDbg.c \
+ScanMngrDbg.c \
+scrDbg.c \
+siteMgrDebug.c \
+connDebug.c \
+smeDebug.c \
+SoftGeminiDbg.c \
+TWD_Debug.c \
+fwdriverdebug.c \
+MibDbg.c \
+TwIfDebug.c

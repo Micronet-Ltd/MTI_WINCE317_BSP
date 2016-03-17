@@ -1,0 +1,155 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_PLAY_RECORD_DIALOG DIALOG  0, 0, 251, 127
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Play/Record"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "File",IDC_BUTTON_FILE,7,7,34,14
+    PUSHBUTTON      "Play",IDC_BUTTON_PLAY,7,24,34,14
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP,7,41,34,14
+    LTEXT           "",IDC_VOLUME_BOX,60,7,22,11,0,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_PLAY_VOL,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | TBS_ENABLESELRANGE | WS_TABSTOP,62,18,17,75,WS_EX_STATICEDGE
+    LTEXT           "100%",IDC_VOL_PLAY_MAX,40,76,24,8
+    CONTROL         "",IDC_PLAY_PROGRESS_BAR,"msctls_progress32",WS_BORDER,7,111,92,10
+    LTEXT           "",IDC_PLAY_PROGRESS,7,96,43,11,0,WS_EX_STATICEDGE
+    CONTROL         "Ext",IDC_CHECK_EXT_AUDIO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,61,25,10
+    PUSHBUTTON      "Rec File",IDC_BUTTON_REC_FILE,160,7,35,14
+    LTEXT           "0%",IDC_VOL_PLAY_MIN,46,19,13,11
+    PUSHBUTTON      "Rec",IDC_BUTTON_RECORDING,202,7,19,14
+    PUSHBUTTON      "Stop",IDC_BUTTON_STOP_REC,225,7,19,14
+    CONTROL         "",IDC_SLIDER_MIC_ANALOG_GAIN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | TBS_ENABLESELRANGE | WS_TABSTOP,161,40,17,81,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_MIC_DIGITAL_GAIN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | TBS_ENABLESELRANGE | WS_TABSTOP,227,40,17,81,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VOLUME_MIC_ANALOG,161,25,17,11,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_VOLUME_MIC_DIGITAL,227,23,17,11,0,WS_EX_STATICEDGE
+    LTEXT           "0",IDC_VOL_MIC_ANALOG_MAX,151,113,10,8
+    LTEXT           "0",IDC_VOL_MIC_ANALOG_MIN,150,38,10,8
+    LTEXT           "0",IDC_VOL_MIC_DIGITAL_MAX,215,113,10,8
+    LTEXT           "0",IDC_VOL_MIC_DIGITAL_MIN,214,38,10,8
+    CONTROL         "BT",IDC_CHECK_BT_HS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,77,20,10
+    ICON            IDI_BT_ICON_GREY,IDC_BT,33,77,20,20
+    CONTROL         "Mute",IDC_PLAYBACK_MUTE,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,50,96,36,10
+    CONTROL         "Mute",IDC_RECORD_MUTE,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,187,24,31,10
+    CONTROL         "",IDC_REC_PROGRESS_BAR,"msctls_progress32",WS_BORDER | 0x4,204,53,9,59
+    CONTROL         "",IDC_SLIDER_PLAY_MASTER_VOL,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | TBS_ENABLESELRANGE | WS_TABSTOP,118,32,17,75,WS_EX_STATICEDGE
+    LTEXT           "",IDC_MASTER_VOLUME_BOX,116,20,22,11,0,WS_EX_STATICEDGE
+    CONTROL         "Mute",IDC_PLAYBACK_MASTER_MUTE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,115,108,31,10
+    GROUPBOX        "Master Vol",IDC_STATIC,102,7,45,114
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_PLAY_RECORD_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 244
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 121
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BT_ON_BITMAP        BITMAP                  "greenlamp.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_PLAY                ICON                    "play.ico"
+IDI_BT_ICON             ICON                    "icon1.ico"
+IDI_BT_ICON_GREY        ICON                    "ico00001.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Hebrew resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

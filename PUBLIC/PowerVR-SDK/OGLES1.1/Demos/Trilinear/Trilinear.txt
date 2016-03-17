@@ -1,0 +1,14 @@
+
+Demo title: 		Trilinear
+
+Demonstrates: 		Texture filter comparison
+
+Short Description:	Illustrates the visual difference between different texture filter modes.
+
+Full Description:	
+This demo illustrates the visual difference between different texture filter modes: GL_LINEAR (Bilinear with no MIPMapping), GL_LINEAR_MIPMAP_NEAREST (Bilinear with MIPMapping) and GL_LINEAR_MIPMAP_LINEAR (Trilinear).  
+ 
+VGP: 			Not Required
+Polygon Count: 		2258
+Vertex Count: 		1486
+

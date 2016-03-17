@@ -1,0 +1,5 @@
+base referer
+rect $classCPVRTPaint.html 7,82 105,108
+rect $classCPVRTPath.html 129,82 223,108
+rect $classCPVRTStroke.html 247,82 353,108
+rect $classCPVRTSVGNode.html 377,82 505,108

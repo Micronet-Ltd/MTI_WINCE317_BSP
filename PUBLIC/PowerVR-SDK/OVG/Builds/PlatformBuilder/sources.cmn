@@ -1,0 +1,52 @@
+!if 0
+/***************************************************************************
+ * Name        : sources.cmn
+ * Title       : SGX OMAP WinCE common makefile
+ * Author(s)   : Imagination Technologies
+ * Created	   : 29/02/2008
+ *
+ * Copyright   : 2008-2009 by Imagination Technologies. All rights reserved.
+ *
+ * Description : SGX WinCE driver common makefile.
+ *
+ * Platform    : WinCE
+ *
+ ****************************************************************************/
+!endif
+
+# OMAP properties
+SGX_CORE = SGX530
+
+
+# WinCE6's properties
+WINCEOEM=1
+WINCEPROJ=POWERVR
+WINCETREE=winceos
+
+RELEASETYPE=OAK
+
+!IFNDEF SG_OUTPUT_ROOT
+SG_OUTPUT_ROOT=$(_PROJECTROOT)\cesysgen
+!ENDIF
+
+BUILDSDKROOT=$(SG_OUTPUT_ROOT)\sdk
+BUILDOAKROOT=$(SG_OUTPUT_ROOT)\oak
+BUILDDDKROOT=$(SG_OUTPUT_ROOT)\ddk
+
+# Uncomment to build the libs/exes in the WinCE700 release dirs
+# __PROJROOT = $(_PUBLICROOT)\$(WINCEPROJ)
+# TOOLSLIB   = $(_RELEASELIBDIR)
+
+__PROJROOT = .
+
+OBJDIR=$(_OBJDIR)
+
+INCLUDES=$(BUILDOAKROOT)\inc;$(BUILDSDKROOT)\inc;$(BUILDDDKROOT)\inc;$(INCLUDES)
+
+!IFDEF DEBUG
+CDEFINES= $(CDEFINES) -DDEBUG
+!ENDIF
+
+!IFDEF PVRSHELL_DEMO
+CDEFINES= $(CDEFINES) -DPVRSHELL_FPS_OUTPUT -DPVRSHELL_FPS_DEFAULT_OUTPUT=true -DPVRSHELL_SWAP_INTERVAL=0
+!ENDIF

@@ -1,0 +1,35 @@
+;
+; Copyright (c) Micronet.  All rights reserved.
+;
+; GPS driver
+;
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\GPS]
+    "Dll"="GPSdrvr.Dll"
+    "Prefix"="COM"
+    "Index"=dword:7
+    "Order"=dword:70          ; should be after HCI driver
+    "PowerMask"=dword:11             ;support d0, d4
+    "StartupOn"=dword:0
+    "EnableExternalGPS"=dword:1      ; enable by default
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}",
+					  "{CC5195AC-BA49-48a0-BE17-DF6D1B0173DD}"
+    
+
+
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\5446_421\Default\Default\USBSER_CLASS]
+   "Prefix"="COV"
+   "Dll"="USBSer.DLL"
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\5446_422\Default\Default\USBSER_CLASS]
+   "Prefix"="COV"
+   "Dll"="USBSer.DLL"
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\USBSER_CLASS]
+   "Prefix"="COV"
+   "Dll"="USBSer.DLL"
+   "InitialIndex"=dword:00000005
+   "DeviceArrayIndex"=dword:1
+   "RxBufferSize"=dword:4000
+   "IClass"="{CC5195AC-BA49-48a0-BE17-DF6D1B0173DD}"
+   "Index"=dword:1

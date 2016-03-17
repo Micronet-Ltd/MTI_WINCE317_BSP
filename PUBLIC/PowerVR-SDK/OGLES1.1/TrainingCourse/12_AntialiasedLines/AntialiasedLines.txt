@@ -1,0 +1,18 @@
+Demo title: 		AntialiasedLines
+
+Demonstrates: 		How to render antialiased lines.
+
+Short Description:	How to render antialiased lines.
+
+Full Description:
+	
+OGLES
+
+This trainingcourse shows how to render antialiased lines with round caps using texture filtering and blending.
+
+OGL
+
+This trainingcourse shows how to render antialiased lines with round caps using texture filtering and blending.
+
+polygon count:		174
+Vertex Count: 		58-232

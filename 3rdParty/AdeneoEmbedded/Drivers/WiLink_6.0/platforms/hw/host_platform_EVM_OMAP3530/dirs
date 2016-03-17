@@ -1,0 +1,7 @@
+DIRS=\
+	Platform_Driver\
+	SDIO_Driver\
+	BTHCI\
+	BT_Driver\
+	inc\
+

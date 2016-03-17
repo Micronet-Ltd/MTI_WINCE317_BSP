@@ -1,0 +1,10 @@
+RELEASETYPE=PLATFORM
+TARGETNAME=Simple
+TARGETTYPE=PROGRAM
+WINCEOEM=1
+
+TARGETLIBS= \
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib
+
+SOURCES=Simple.c TestLoop.s

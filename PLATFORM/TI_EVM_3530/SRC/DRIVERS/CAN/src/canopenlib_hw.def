@@ -1,0 +1,19 @@
+
+;
+; MCP2515 CAN Bus Driver for Micronet MXL Board
+;
+
+
+LIBRARY     canopenlib_hw
+
+EXPORTS
+    CAN_Init
+    CAN_Deinit
+    CAN_Open
+    CAN_Close
+    CAN_Read
+    CAN_Write
+    CAN_Seek
+    CAN_PowerUp
+    CAN_PowerDown
+    CAN_IOControl

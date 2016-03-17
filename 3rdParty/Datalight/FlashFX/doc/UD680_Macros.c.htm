@@ -1,0 +1,1964 @@
+<html>
+<head>
+<title>
+DCL Preprocessor Macros
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Preprocessor Macros
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Preprocessor Macros">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLABS">DCLABS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the absolute value of a number.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLABSDIFF">DCLABSDIFF</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the absolute difference between two unsigned numbers.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLALIGNEDBITMAP">DCLALIGNEDBITMAP</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Declare a general bitmap buffer of the type <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>, which is
+    guaranteed to be aligned on a <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> boundary.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLALIGNEDBUFFER">DCLALIGNEDBUFFER</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Declare a <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> aligned byte buffer which is large enough
+    to hold the specified number of bits.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLALIGNEDSTRUCT">DCLALIGNEDSTRUCT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Declare an instance of a structure which is guaranteed to start
+    on a <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> aligned boundary.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLALIGNPAD">DCLALIGNPAD</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determines then number of bytes needed to make a value a multiple
+    of <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLBITCLEAR">DCLBITCLEAR</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Clear a bit in an array of elements of the type pointed to by ptr.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLBITGET">DCLBITGET</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get the value of a bit in an array of elements of the type
+    pointed to by ptr.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLBITMAP">DCLBITMAP</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Declare a byte oriented buffer which is large enough to hold the
+    specified number of bits.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLBITMAPDIMENSION">DCLBITMAPDIMENSION</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the number of bytes required to contain the specified
+    number of bits.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLBITSET">DCLBITSET</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set a bit in an array of elements of the type pointed to by ptr.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLCONTAINEROF">DCLCONTAINEROF</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Give a pointer to a member of a structure, the member name, and
+    the type of the structure, derive a pointer to the structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLDIMENSIONOF">DCLDIMENSIONOF</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the number of elements in an array.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLFUNC">DCLFUNC</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Define a DCL function name using a product prefix from the
+    master product.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLISALIGNED">DCLISALIGNED</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine if the specified value is aligned on the specified
+    byte boundary.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLISHEXDIGIT">DCLISHEXDIGIT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determined if the specified character is in the class [a-fA-F].
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLISPOWEROF2">DCLISPOWEROF2</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine whether a value is a power-of-two.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLLOWESTSETBIT">DCLLOWESTSETBIT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Mask off all the bits except the lowest bit which is set.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLMAX">DCLMAX</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the numerically greater of a set of 2 values.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLMEMGETn">DCLMEMGETn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Dereference the given memory address as an    n     bit width type.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLMEMPUTn">DCLMEMPUTn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write a given value to an address as an n-bit wide write.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLMIN">DCLMIN</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the numerically smaller of a set of 2 values.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLMIN3">DCLMIN3</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the numerically least of a set of 3 values.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLNEXTPOW2BOUNDARY">DCLNEXTPOW2BOUNDARY</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Adjust a number up to the next value which is evenly divisible
+    by a power-of-two value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLOFFSETOF">DCLOFFSETOF</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Given a structure type and the name of a member of the structure,
+    derive the offset in bytes of that member relative to the
+    beginning of the structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLPRINTF">DCLPRINTF</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Display debug output if the module is compiled with a <a HREF=UD690_PreprocSymbols.c.htm#D_DEBUG>D_DEBUG</a>
+    level >= to "nLevel".
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLSIZEOFMEMBER">DCLSIZEOFMEMBER</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the size of a structure member, without having to
+    actually instantiate the structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLSTRINGIZE">DCLSTRINGIZE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    It takes two levels of preprocessor macro substitution to turn
+    a plain text sequence into a string literal.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLTRACEPRINTF">DCLTRACEPRINTF</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Display debug output if the module in question is compiled with
+    a <a HREF=UD690_PreprocSymbols.c.htm#D_DEBUG>D_DEBUG</a> level >= to "nLevel" and if the <a HREF=UD140_ProjectSettings.c.htm#DCLTRACEMASK>DCLTRACEMASK</a> value
+    specifies that the given class is to be handled.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLXOR">DCLXOR</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine the logical exclusive-or evaluation of two values.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCL_PAD">DCL_PAD</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Pad an array to a total byte length that is some multiple of
+    <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#TRACEGLOBALSTART">TRACEGLOBALSTART</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Force all trace messages less than or equal to the specified debug
+    level to be displayed, regardless of the trace class flags.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#TRACEGLOBALSTOP">TRACEGLOBALSTOP</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Stop global tracing which was started with                             TRACEGLOBALSTART    .
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DCLABS"></a>
+<a NAME="DCLABS"></a>
+DCLABS
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLABS</font>(val)                 ( (val) < 0 ? -(val) : (val) )
+</div>
+<div class=SectionText>
+
+    Determine the absolute value of a number.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the absolute value of the number.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLABSDIFF"></a>
+<a NAME="DCLABSDIFF"></a>
+DCLABSDIFF
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLABSDIFF</font>(<br>&nbsp;&nbsp;&nbsp; val1,<br>&nbsp;&nbsp;&nbsp; val2)      ( (val1) < (val2) ? ((val2)-(val1)) : ((val1)-(val2)) )
+</div>
+<div class=SectionText>
+
+    Determine the absolute difference between two unsigned numbers.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The first value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+val2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The second value
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the absolute difference between the values.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLALIGNEDBITMAP"></a>
+<a NAME="DCLALIGNEDBITMAP"></a>
+DCLALIGNEDBITMAP
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLALIGNEDBITMAP</font>(<br>&nbsp;&nbsp;&nbsp; un,<br>&nbsp;&nbsp;&nbsp; nam,<br>&nbsp;&nbsp;&nbsp; siz)          \
+</div>
+<div class=SectionText>
+
+    Declare a general bitmap buffer of the type <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>, which is
+    guaranteed to be aligned on a <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> boundary.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+un
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The union name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nam
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The field name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+siz
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes in the field
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLALIGNEDBUFFER"></a>
+<a NAME="DCLALIGNEDBUFFER"></a>
+DCLALIGNEDBUFFER
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLALIGNEDBUFFER</font>(<br>&nbsp;&nbsp;&nbsp; un,<br>&nbsp;&nbsp;&nbsp; nam,<br>&nbsp;&nbsp;&nbsp; siz)          \
+</div>
+<div class=SectionText>
+
+    Declare a <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> aligned byte buffer which is large enough
+    to hold the specified number of bits.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+un
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The union name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nam
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The field name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+siz
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes in the field
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLALIGNEDSTRUCT"></a>
+<a NAME="DCLALIGNEDSTRUCT"></a>
+DCLALIGNEDSTRUCT
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLALIGNEDSTRUCT</font>(<br>&nbsp;&nbsp;&nbsp; un,<br>&nbsp;&nbsp;&nbsp; str,<br>&nbsp;&nbsp;&nbsp; nam)          \
+</div>
+<div class=SectionText>
+
+    Declare an instance of a structure which is guaranteed to start
+    on a <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> aligned boundary.
+
+<p>    This macro uses a union of the specified structure and
+    <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a>, which is guaranteed to be aligned on a
+    <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> boundary, as well has have an overall length
+    which is evenly divisible by <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+un
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The union name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+str
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The structure name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nam
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The name of the field
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLALIGNPAD"></a>
+<a NAME="DCLALIGNPAD"></a>
+DCLALIGNPAD
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLALIGNPAD</font>(val)                                    \
+</div>
+<div class=SectionText>
+
+    Determines then number of bytes needed to make a value a multiple
+    of <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to examine
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The amount required to pad the value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLBITCLEAR"></a>
+<a NAME="DCLBITCLEAR"></a>
+DCLBITCLEAR
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLBITCLEAR</font>(<br>&nbsp;&nbsp;&nbsp; ptr,<br>&nbsp;&nbsp;&nbsp; bit)                                       \
+</div>
+<div class=SectionText>
+
+    Clear a bit in an array of elements of the type pointed to by ptr.
+    The element type must not be wider than an int.  See the note
+    regarding byte-ordering in the documentation for <a HREF="#DCLBITGET">DCLBITGET</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ptr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the first element of the array.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+bit
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The zero-based number of the bit to clear.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLBITGET"></a>
+<a NAME="DCLBITGET"></a>
+DCLBITGET
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLBITGET</font>(<br>&nbsp;&nbsp;&nbsp; ptr,<br>&nbsp;&nbsp;&nbsp; bit)                                         \
+</div>
+<div class=SectionText>
+
+    Get the value of a bit in an array of elements of the type
+    pointed to by ptr.  The element type must not be wider than
+    an int.
+
+<p>    <b>Note</b> -- The DCLBITGET, <a HREF="#DCLBITSET">DCLBITSET</a>, and <a HREF="#DCLBITCLEAR">DCLBITCLEAR</a> macros
+              make no adjustments for byte-ordering.  This means that
+              when using datatypes wider than a byte on a big-endian
+              system, that a function such as <a HREF=UD750_Misc.c.htm#DclBitCountArray>DclBitCountArray()</a> will
+              not function properly unless the total count of bits is
+              evenly divisible by the number of bits in the integral
+              data type.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ptr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the first element of the array.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+bit
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The zero-based number of the bit to retrieve.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the bit value, 0 or 1.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLBITMAP"></a>
+<a NAME="DCLBITMAP"></a>
+DCLBITMAP
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLBITMAP</font>(<br>&nbsp;&nbsp;&nbsp; nam,<br>&nbsp;&nbsp;&nbsp; siz) <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> nam[DCLBITMAPDIMENSION(siz)]
+</div>
+<div class=SectionText>
+
+    Declare a byte oriented buffer which is large enough to hold the
+    specified number of bits.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nam
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The field name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+siz
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bits in the array
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLBITMAPDIMENSION"></a>
+<a NAME="DCLBITMAPDIMENSION"></a>
+DCLBITMAPDIMENSION
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLBITMAPDIMENSION</font>(n) (((n) + (CHAR_BIT-1)) / CHAR_BIT)
+</div>
+<div class=SectionText>
+
+    Determine the number of bytes required to contain the specified
+    number of bits.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+siz
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bits in the array
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The number of bytes required.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLBITSET"></a>
+<a NAME="DCLBITSET"></a>
+DCLBITSET
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLBITSET</font>(<br>&nbsp;&nbsp;&nbsp; ptr,<br>&nbsp;&nbsp;&nbsp; bit)                                         \
+</div>
+<div class=SectionText>
+
+    Set a bit in an array of elements of the type pointed to by ptr.
+    The element type must not be wider than an int.  See the note
+    regarding byte-ordering in the documentation for <a HREF="#DCLBITGET">DCLBITGET</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ptr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the first element of the array.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+bit
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The zero-based number of the bit to set.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLCONTAINEROF"></a>
+<a NAME="DCLCONTAINEROF"></a>
+DCLCONTAINEROF
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLCONTAINEROF</font>(<br>&nbsp;&nbsp;&nbsp; p,<br>&nbsp;&nbsp;&nbsp; type,<br>&nbsp;&nbsp;&nbsp; member) ((type *) ((char *) (p) - DCLOFFSETOF(type, member)))
+</div>
+<div class=SectionText>
+
+    Give a pointer to a member of a structure, the member name, and
+    the type of the structure, derive a pointer to the structure.
+
+<p>    This default definition will work for most processor
+    architectures.  It may be overridden for OS environments,
+    toolsets, or architectures that have special requirements.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+p
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to a structure member
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+type
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The structure type
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+member
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The name of the member of the structure to which p
+                  points
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer of type (type *).
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLDIMENSIONOF"></a>
+<a NAME="DCLDIMENSIONOF"></a>
+DCLDIMENSIONOF
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLDIMENSIONOF</font>(obj)     (sizeof(obj) / sizeof((obj)[0]))
+</div>
+<div class=SectionText>
+
+    Determine the number of elements in an array.  This is a very
+    sharp-edged tool: use it on an array and it's fine; use it
+    on a pointer and you'll hurt yourself with no warning.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+obj
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The object to process
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the number of elements in the array.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLFUNC"></a>
+<a NAME="DCLFUNC"></a>
+DCLFUNC
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLFUNC</font>(fn)             fn
+</div>
+<div class=SectionText>
+
+    Define a DCL function name using a product prefix from the
+    master product.  This allows it to be possible (however
+    undesirable) to include separate instances of DCL are
+    necessary multiple Datalight products are used in a
+    monolithic environment.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLISALIGNED"></a>
+<a NAME="DCLISALIGNED"></a>
+DCLISALIGNED
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLISALIGNED</font>(<br>&nbsp;&nbsp;&nbsp; val,<br>&nbsp;&nbsp;&nbsp; align)    (!(align) || (((val) & ((align)-1)) == 0))
+</div>
+<div class=SectionText>
+
+    Determine if the specified value is aligned on the specified
+    byte boundary.  If "align" is 0, then "value" is considered to
+    be aligned.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to examine
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+align
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The alignment value
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the value is aligned, or FALSE if not.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLISHEXDIGIT"></a>
+<a NAME="DCLISHEXDIGIT"></a>
+DCLISHEXDIGIT
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLISHEXDIGIT</font>(c)    (DCLISHEXDIGITL(c) || DCLISHEXDIGITU(c))
+</div>
+<div class=SectionText>
+
+    Determined if the specified character is in the class [a-fA-F].
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+c
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The character to examine.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the character is a hex digit, or FALSE if it
+        is not.
+
+<p>    <h4>See Also</h4>
+        <ul>
+<li>DclIsDigit
+</ul>
+
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLISPOWEROF2"></a>
+<a NAME="DCLISPOWEROF2"></a>
+DCLISPOWEROF2
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLISPOWEROF2</font>(val)      (DCLLOWESTSETBIT(val) == (val))
+</div>
+<div class=SectionText>
+
+    Determine whether a value is a power-of-two.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to operate on
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the value is a power-of-two or FALSE if not.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLLOWESTSETBIT"></a>
+<a NAME="DCLLOWESTSETBIT"></a>
+DCLLOWESTSETBIT
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLLOWESTSETBIT</font>(val)    ((val) & ((~(val)) + 1))
+</div>
+<div class=SectionText>
+
+    Mask off all the bits except the lowest bit which is set.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to operate on
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a value with only lowest original bit set.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLMAX"></a>
+<a NAME="DCLMAX"></a>
+DCLMAX
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLMAX</font>(<br>&nbsp;&nbsp;&nbsp; val1,<br>&nbsp;&nbsp;&nbsp; val2)          ( (val1) > (val2) ? (val1) : (val2) )
+</div>
+<div class=SectionText>
+
+    Determine the numerically greater of a set of 2 values.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The first value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+val2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The second value
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the greater of the two values.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLMEMGETn"></a>
+<a NAME="DCLMEMGETn"></a>
+DCLMEMGETn
+</h3>
+<div class=SectionText>
+
+    Dereference the given memory address as an <b>n</b> bit width type.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+addr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+address to dereference
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An n-bit wide int.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLMEMPUTn"></a>
+<a NAME="DCLMEMPUTn"></a>
+DCLMEMPUTn
+</h3>
+<div class=SectionText>
+
+    Write a given value to an address as an n-bit wide write.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+addr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+target address for the write
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+data
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+data value to write to memory
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLMIN"></a>
+<a NAME="DCLMIN"></a>
+DCLMIN
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLMIN</font>(<br>&nbsp;&nbsp;&nbsp; val1,<br>&nbsp;&nbsp;&nbsp; val2)          ( (val1) < (val2) ? (val1) : (val2) )
+</div>
+<div class=SectionText>
+
+    Determine the numerically smaller of a set of 2 values.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The first value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+val2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The second value
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the lesser of the two values.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLMIN3"></a>
+<a NAME="DCLMIN3"></a>
+DCLMIN3
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLMIN3</font>(<br>&nbsp;&nbsp;&nbsp; val1,<br>&nbsp;&nbsp;&nbsp; val2,<br>&nbsp;&nbsp;&nbsp; val3)   ( DCLMIN((val1), DCLMIN((val2), (val3))) )
+</div>
+<div class=SectionText>
+
+    Determine the numerically least of a set of 3 values.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The first value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+val2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The second value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+val3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The third value
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the lesser of the three values.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLNEXTPOW2BOUNDARY"></a>
+<a NAME="DCLNEXTPOW2BOUNDARY"></a>
+DCLNEXTPOW2BOUNDARY
+</h3>
+<div class=Api>
+<font class=ApiName>DCLNEXTPOW2BOUNDARY</font>(<br>&nbsp;&nbsp;&nbsp; 3,<br>&nbsp;&nbsp;&nbsp; 0) == 3;
+</div>
+<div class=SectionText>
+
+    Adjust a number up to the next value which is evenly divisible
+    by a power-of-two value.
+
+<p>    Note that the result is not necessarily a power-of-two value.  If
+    the boundary value is zero, the original value will be returned.
+
+<p>    <h4>Examples</h4>
+        DCLNEXTPOW2BOUNDARY(3, 0) == 3;
+        DCLNEXTPOW2BOUNDARY(4, 2) == 4;
+        DCLNEXTPOW2BOUNDARY(4, 4) == 4;
+        DCLNEXTPOW2BOUNDARY(5, 2) == 6;
+        DCLNEXTPOW2BOUNDARY(5, 4) == 8;
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to operate on
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+bound
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The boundary value which must be a power-of-two
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the adjusted value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLOFFSETOF"></a>
+<a NAME="DCLOFFSETOF"></a>
+DCLOFFSETOF
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLOFFSETOF</font>(<br>&nbsp;&nbsp;&nbsp; type,<br>&nbsp;&nbsp;&nbsp; member) (((char *) &((type *) 0)->member) - (char *) 0)
+</div>
+<div class=SectionText>
+
+    Given a structure type and the name of a member of the structure,
+    derive the offset in bytes of that member relative to the
+    beginning of the structure.
+
+<p>    This default definition will work for most processor
+    architectures.  It may be overridden for OS environments,
+    toolsets, or architectures that have special requirements.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+type
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The structure type
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+member
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The name of the member of the structure to which p
+                  points
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer of type (type *).
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLPRINTF"></a>
+<a NAME="DCLPRINTF"></a>
+DCLPRINTF
+</h3>
+<div class=Api>
+<font class=ApiName>DCLPRINTF</font>(<br>&nbsp;&nbsp;&nbsp; nLevel,<br>&nbsp;&nbsp;&nbsp; (<a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> args));
+</div>
+<div class=SectionText>
+
+    Display debug output if the module is compiled with a <a HREF=UD690_PreprocSymbols.c.htm#D_DEBUG>D_DEBUG</a>
+    level >= to "nLevel".
+
+<p>    DCLPRINTF may <only> be used from with the DCL code base.
+
+<p>    Note that specifying nLevel as '0' is not suppported -- use
+    <a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> instead.
+
+<p>    The syntax is...
+
+<p>    DCLPRINTF(nLevel, (<a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> args));
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nLevel
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The debug level, from 1 to 3
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+(<a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> args)
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The standard <a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> arguments
+                           enclosed in parenthesis.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLSIZEOFMEMBER"></a>
+<a NAME="DCLSIZEOFMEMBER"></a>
+DCLSIZEOFMEMBER
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLSIZEOFMEMBER</font>(<br>&nbsp;&nbsp;&nbsp; typ,<br>&nbsp;&nbsp;&nbsp; mem)   (sizeof((typ*)NULL)->mem)
+</div>
+<div class=SectionText>
+
+    Determine the size of a structure member, without having to
+    actually instantiate the structure.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+typ
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The structure type name
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+mem
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The member name
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The size of the member.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLSTRINGIZE"></a>
+<a NAME="DCLSTRINGIZE"></a>
+DCLSTRINGIZE
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLSTRINGIZE</font>(x) DCLSTRINGIZE2(x)
+</div>
+<div class=SectionText>
+
+    It takes two levels of preprocessor macro substitution to turn
+    a plain text sequence into a string literal.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLTRACEPRINTF"></a>
+<a NAME="DCLTRACEPRINTF"></a>
+DCLTRACEPRINTF
+</h3>
+<div class=Api>
+<font class=ApiName>DCLTRACEPRINTF</font>((MAKETRACEFLAGS(DCLTRACE_class, nLevel, flags), <a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> args));
+</div>
+<div class=SectionText>
+
+    Display debug output if the module in question is compiled with
+    a <a HREF=UD690_PreprocSymbols.c.htm#D_DEBUG>D_DEBUG</a> level >= to "nLevel" and if the <a HREF=UD140_ProjectSettings.c.htm#DCLTRACEMASK>DCLTRACEMASK</a> value
+    specifies that the given class is to be handled.
+
+<p>    The syntax is...
+
+<p>    DCLTRACEPRINTF((MAKETRACEFLAGS(DCLTRACE_class, nLevel, flags), <a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> args));
+
+<p>    The "DCLTRACE_class" value may be "TRACEALWAYS" so that no class
+    match is required in the TRACEDCLMASK value.  This is useful for
+    debug output that you want to always display (assuming "nLevel"
+    matches), similar to <a HREF="#DCLPRINTF">DCLPRINTF</a>, however unlike <a HREF="#DCLPRINTF">DCLPRINTF</a> it
+    gives the ability to specify indentation.
+
+<p>    The "ulFlags" parameter may be TRACEINDENT, TRACEUNDENT, or
+    TRACENODENT.  Indents must match undents, however the debug
+    level "nlevel" does NOT need to be the same where indents and
+    undents are specified.  TRACEOFF disables tracing until a
+    TRACEON is received.  Nested TRACEOFFs must be matched by an
+    equal number of TRACEONs.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulFlags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The trace flags, as described above.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+(<a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> args)
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The standard <a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> arguments
+                           enclosed in parenthesis.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLXOR"></a>
+<a NAME="DCLXOR"></a>
+DCLXOR
+</h3>
+<div class=Api>
+#define <font class=ApiName>DCLXOR</font>(<br>&nbsp;&nbsp;&nbsp; val1,<br>&nbsp;&nbsp;&nbsp; val2)          ( ((val1) != 0) ^ ((val2) != 0) )
+</div>
+<div class=SectionText>
+
+    Determine the logical exclusive-or evaluation of two values.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+val1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The first value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+val2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The second value
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if exactly one value is nonzero or FALSE if not.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCL_PAD"></a>
+<a NAME="DCL_PAD"></a>
+DCL_PAD
+</h3>
+<div class=Api>
+You would apply this macro as:  char a[<font class=ApiName>DCL_PAD</font>(5, char)];<br>
+</div>
+<div class=SectionText>
+
+    Pad an array to a total byte length that is some multiple of
+    <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a>.  This allows facilitates maintaining alignment
+    of structure members even if they are declared as arrays of
+    configurable length.  By keeping the fields <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a>
+    aligned and the array lengths as multiples of <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a>
+    then arrays of such structures will also be aligned.
+
+<p>    <h4>Example</h4>
+       Consider the standard array allocation:  char a[5];
+
+<p>       <h4>You would apply this macro as</h4>  char a[DCL_PAD(5, char)];
+
+<p>       And the resulting allocation for the array would be 8 bytes
+       (assuming <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a> is 4).
+
+<p>    <h4>Parameters</h4>
+        n = the number of elements actually needed in the array
+        t = the fundamental data type of each array element.  Make sure
+            sizeof(t) <= <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a>
+
+<p>    <h4>Return Value</h4>
+        Returns the count of necessary padding bytes.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="TRACEGLOBALSTART"></a>
+<a NAME="TRACEGLOBALSTART"></a>
+TRACEGLOBALSTART
+</h3>
+<div class=Api>
+#define <font class=ApiName>TRACEGLOBALSTART</font>(<br>&nbsp;&nbsp;&nbsp; nLevel,<br>&nbsp;&nbsp;&nbsp; szMessage)      \
+</div>
+<div class=SectionText>
+
+    Force all trace messages less than or equal to the specified debug
+    level to be displayed, regardless of the trace class flags.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nLevel
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The debug level, from 0 to 3.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+szMessage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The null-terminated message to display.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="TRACEGLOBALSTOP"></a>
+<a NAME="TRACEGLOBALSTOP"></a>
+TRACEGLOBALSTOP
+</h3>
+<div class=SectionText>
+
+    Stop global tracing which was started with <a HREF="#TRACEGLOBALSTART">TRACEGLOBALSTART</a>.
+
+<p>    <h4>Parameters</h4>
+        None.
+
+<p>    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

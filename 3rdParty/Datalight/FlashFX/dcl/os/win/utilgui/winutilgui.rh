@@ -1,0 +1,11 @@
+#define IDD_EDITDLG                     101
+
+#define IDC_EDIT_TEXT      			    1001
+#define IDC_EDIT_PROMPT                 1002
+
+
+
+#define IDD_SETTINGSDLG                 201
+
+#define IDC_SETTINGS_ESCKEYTOEXIT       2001
+

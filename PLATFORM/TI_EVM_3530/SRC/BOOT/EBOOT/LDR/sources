@@ -1,0 +1,50 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+!endif
+!IF 0
+
+
+Module Name:
+
+    sources.
+
+Abstract:
+
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+!ENDIF
+
+TARGETNAME=ldr_protocol
+TARGETTYPE=LIBRARY
+CDEFINES=$(CDEFINES) -DIN_KERNEL -DWINCEMACRO -DCOREDLL
+NOMIPS16CODE=1
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+INCLUDES=  $(INCLUDES);$(_TARGETPLATROOT)\SRC\INC; \
+           $(_TARGETPLATROOT)\SRC\BOOT; \
+           $(_TARGETPLATROOT)\SRC\BOOT\EBOOT; \
+           $(_PUBLICROOT)\common\oak\DRIVERS\ETHDBG\EBOOT;\
+           $(_PLATFORMROOT)\common\src\inc; \
+           $(_PUBLICROOT)\common\oak\inc; \
+           
+
+
+SOURCES=		\
+    ldrtransp.c \
+    ldrcmds.c
+
+#xref ModuleMembership nk.exe
+#xref VIGUID {def8f7dd-da16-4c16-9493-b16c539b456d}
+#xref VSGUID {ddda28e0-bccd-4d28-bae9-96eff28bd616}

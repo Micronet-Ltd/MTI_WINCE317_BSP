@@ -1,0 +1,46 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+!INCLUDE $(SDKROOT)\Builds\PlatformBuilder\sources.cmn
+
+PLATFORM = WindowsCE7
+API = OVG
+PROJECTNAME=HelloTriangle
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\OVGHelloTriangle_Windows.obj
+	
+SOURCES = \
+	$(APPROOT)\OVGHelloTriangle_Windows.cpp
+	
+INCLUDES=\
+	$(INCLUDES)									\
+	$(APPROOT);									\
+	$(SDKROOT)\Builds\$(API)\Include;
+
+TARGETLIBS = \
+	$(BUILDSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib		\
+	$(SDKROOT)\Builds\$(API)\$(PLATFORM)$(_TGTCPU)\Lib\libopenvgu.lib	\
+	$(SDKROOT)\Builds\$(API)\$(PLATFORM)$(_TGTCPU)\Lib\libopenvg.lib	\
+	$(SDKROOT)\Builds\$(API)\$(PLATFORM)$(_TGTCPU)\Lib\libegl.lib
+
+

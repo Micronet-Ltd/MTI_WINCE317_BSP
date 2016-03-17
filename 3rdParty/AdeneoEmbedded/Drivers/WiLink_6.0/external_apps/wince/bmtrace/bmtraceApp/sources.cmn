@@ -1,0 +1,3 @@
+
+!INCLUDE $(_TARGETPLATROOT)\sources.cmn
+

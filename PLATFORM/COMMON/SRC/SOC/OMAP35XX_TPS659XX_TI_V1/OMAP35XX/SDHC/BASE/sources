@@ -1,0 +1,29 @@
+!if 0
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+!endif
+
+!IF "$(_TGTPLAT)" != "TI_EVM_3530"
+SKIPBUILD=1
+!ENDIF 
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+TARGETNAME=sdhcbase_omap35xx_tps659xx_ti_v1
+TARGETTYPE=LIBRARY
+SYNCHRONIZE_DRAIN=1
+
+# OMAP hardware can use direct access to memory
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+INCLUDES=$(INCLUDES);.\
+
+SOURCES= \
+    SDHCMain.cpp \
+    SDHC.cpp \
+    dma.cpp 
+          

@@ -1,0 +1,12 @@
+Demo title: 		BlendModes
+
+Demonstrates: 		How to use the 6 different blend modes in OpenVG
+
+Short Description:	How to use the 6 different blend modes in OpenVG
+
+Full Description:	
+This training course shows how to use different blend modes in OpenVG. To do this it shows 6 cubes, each is identical except for the blend mode they use. Behind each cube is a text string showing the name of the blend mode that it is using.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

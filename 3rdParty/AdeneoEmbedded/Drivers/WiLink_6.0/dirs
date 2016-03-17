@@ -1,0 +1,10 @@
+DIRS=\
+    platforms \
+    stad \
+    TWD \
+    Txn \
+    utils \
+    Test \
+    CUDK \
+    external_drivers \
+    external_apps

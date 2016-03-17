@@ -1,0 +1,6 @@
+DIRS= \
+    USB2COM  \
+    MUSBMHDRC\
+    PDD   
+
+

@@ -1,0 +1,9 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+
+DIRS=\
+	host_platform_EVM_OMAP3530\
+	host_platform_TI_EVM_3530\
+
+

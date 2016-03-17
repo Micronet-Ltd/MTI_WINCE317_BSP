@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="arm asm"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="arm asm"
+			CommandLine="armasm -g -ARCH 4T -coff -list $(InputName).list $(InputName).obj&#x0D;&#x0A;"
+			Outputs="$(InputName).obj"
+			FileExtensions="*.s"
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

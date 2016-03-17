@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>
+SDK Installation
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+SDK Installation
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): SDK Installation">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        The FlashFX Tera Kit includes all the source code, header files, utility
+        programs, and data files that are needed to create a FlashFX Tera device
+        driver that is customized for your specific operating system, flash
+        array, and target hardware. In most cases, the distribution method of
+        FlashFX Tera is a compressed zip file containing a setup program. In
+        some cases a CD-ROM may be provide. To install the kit from a CD-ROM,
+        place the distribution CD-ROM in the CD drive on any Windows 2000 or
+        later system, and run SETUP.EXE.
+
+<p>        For an electronic distribution, extract the contents of the zip file to
+        a location of your choosing and run the SETUP.EXE installer.
+
+<p>        The installation program creates the directory tree and copies all the
+        necessary files to the hard disk.  Additionally, the installation
+        process creates several Windows shortcuts to the FlashFX Tera development
+        environment.  It is recommended that the default installation path be
+        used to ensure compatibility with other Datalight products.
+
+<p>        Please review the readme.txt file to learn of any last minute changes
+        or updates that were not available at the time this manual was
+        published.
+
+<p>        <b>Installing License Keys</b>
+
+<p>        <b>Note</b> --Until License Keys are applied, FlashFX Tera will operate in an
+        evaluation mode which will limit the FlashFX Tera disk size. All
+        functions are operational, however the maximim size of a Disk will
+        be limited to 1/4 the Device size.
+
+<p>        License Keys are obtained from Datalight at the time of kit purchase.
+        The license keys are applied through #DEFINEs within the file
+        <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>. Create the following entries at the end of header file with
+        the values provided by Datalight:
+
+<p>        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#47&#42&#32&#32&#76&#105&#99&#101&#110&#115&#101&#32&#75&#101&#121&#115&#32&#102&#111&#114&#32&#70&#117&#108&#108&#32&#70&#117&#110&#99&#116&#105&#111&#110&#97&#108&#105&#116&#121&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#70&#70&#88&#95&#76&#73&#67&#69&#78&#83&#69&#95&#73&#68&#32&#32&#32&#32&#32&#32&#32&#32&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#70&#70&#88&#95&#65&#67&#84&#73&#86&#65&#84&#73&#79&#78&#95&#75&#69&#89&#32&#32&#32&#32&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#35&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        <b>Obtaining Core Source</b>
+
+<p>        Under the default delivery of FlashFX Tera, source code to core
+        functionality is provided within obfuscated source code (that is
+        compilable but not human readable). Core source kits may be purchased
+        from Datalight. The core source kit installs over the existing
+        installation. With core source installed, the license keys are no
+        longer necessary to utilize the full flash array.
+
+<p>        <h4>Installation on Non-Windows Host Systems</h4>
+
+<p>        Regardless of the host and target environments, the FlashFX Tera Kit is
+        provided for use on Win32 environments. The files, after installing
+        into a Win32 environment may then be copied onto the non-Windows hosted
+        development system.
+
+<p>        Some systems differ in their translations of carriage return and
+        linefeed characters inserted at the end of each line in text files.  If
+        the target system translates these characters differently than Windows,
+        a utility may be needed to change each line to use the appropriate
+        character sequence.
+
+<p>        Please contact Datalight support for advice and assistance if you are
+        building FlashFX Tera on a non-Windows hosted development system such as
+        Linux or Solaris.
+
+<p>        <h4>SDK Layout</h4>
+
+<p>        In installed FlashFX SDK have a directory structure similar to that
+        shown below.
+
+<p>        <P>
+<div class=Figure>
+<IMG SRC="FfxDirectoryStructure.gif">
+</div>
+</P>
+
+
+<p>        The diagram show above uses mixed case names for the purpose of
+        readability, however the actual directory names are lower case.
+
+<p>        <b>Note</b> -- Some kits may contain slight variations in the directory
+        structure, particularly within the OS tree.
+
+<p>        FlashFX Tera typically comes with built in support for a number of
+        common reference platforms.  This code will reside in the projects
+        directory tree.  See the readme.txt file for more information about
+        these preconfigured projects.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

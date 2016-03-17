@@ -1,0 +1,52 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+
+!IF "$(BSP_NOWILINK4)"=="1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=ticon
+TARGETTYPE=PROGRAM
+RELEASETYPE=$(TI_RELEASE)
+!INCLUDE $(DK_ROOT)\sources_cudk.cmn
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+
+!IF "$(TI_ZOOM2_PLATFORM)"=="1"
+SDKLIBS=$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)
+TARGETLIBS= $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\coredll.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\osapi_um.lib \
+	$(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\ws2.lib
+!ELSE
+SDKLIBS=$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)
+TARGETLIBS= $(SDKLIBS)\coredll.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\osapi_um.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\ws2.lib
+!ENDIF
+
+
+	
+!if "$(BSP_TI_WIFI_CCX_ENABLED)" == "1"
+TARGETLIBS= \
+    $(TARGETLIBS) \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\cu_ccx_lib.lib
+!endif
+
+	
+
+EXEENTRY=mainACRTStartup
+
+CDEFINES= $(CDEFINES) \
+	-D_USER_MODE \
+	-DWPA_ENTERPRISE \
+	-DEXTENDED_API
+
+# Ensure there are no trailing spaces
+SOURCES= \
+    ticon.c \
+    console.c \
+    cu_cmd.c \
+    cu_common.c

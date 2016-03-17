@@ -1,0 +1,124 @@
+;
+; Datalight FlashFX Driver
+;
+
+;
+; The following GUIDs are used to indicate that FlashFX is a block
+; device driver, and that it is power-managed.
+;
+#define CE_DRIVER_BLOCK_GUID                  "{A4E7EDDA-E575-4252-9D6B-4195D48BB865}"
+#define CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID "{8DD679CE-8AB4-43c8-A14A-EA4963FAA715}"
+
+
+; HIVE BOOT SECTION
+
+; Index     - The index for CE device name, where '1' means "DSK1".
+; DeviceNum - The FlashFX DEVn upon which to create DISKn
+; DiskNum   - The DISKn number to assign
+; Start     - The starting offset for DISKn within FlashFX DEVn
+; Length    - The DISKn length, or FFFFFFFF to use the remainder of DEVn
+; Format    - The auto-format state:
+;    0 - Don't auto-format
+;    1 - Format when needed
+;    2 - Format always
+;
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX]
+;[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MSFlash]
+    "DLL"="FlashFX.DLL"
+    "Prefix"="DSK"
+    "Ioctl"=dword:4
+    "Order"=dword:1
+    "Index"=dword:1
+    "DeviceNum"=dword:0
+    "DiskNum"=dword:0
+    "DiskFlags"=dword:0
+    "Start"=dword:0
+    "Length"=dword:FFFFFFFF
+    "Format"=dword:1
+;    "Order"=dword:0
+;	"BootPhase"=dword:0
+    "Flags"=dword:1000
+;	"FSD"="exfat.dll"
+    "IClass"=multi_sz:$(CE_DRIVER_BLOCK_GUID), $(CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID)
+;    "ProfileName"="FlashFXDisk1Profile"
+    "Profile"="FFXProfile"
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\AutoLoad\FFXProfile]
+;[HKEY_LOCAL_MACHINE\System\StorageManager\AutoLoad\FlashFXDisk1Profile]
+    "DriverPath"="Drivers\\BuiltIn\\FlashFX"
+;    "DriverPath"="Drivers\\BuiltIn\\MSFlash"
+    "MountAsBootable"=dword:1
+    "BootPhase"=dword:1
+    "LoadFlags"=dword:1
+[HKEY_LOCAL_MACHINE\System\StorageManager\AutoLoad\ObjectStore]
+   "Folder"="RAM Disk"
+   "MountPermanent"=dword:0
+   "MountAsBootable"=dword:0
+   "MountAsRoot"=dword:0
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\EXFAT]
+    "DisableAutoFormat"=dword:0
+;    "DisableAutoScan"=dword:0
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\FATFS]
+    "DisableAutoFormat"=dword:0
+
+;[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFXDisk1Profile]
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FFXProfile]
+;    "DriverPath"="Drivers\\BuiltIn\\MSFlash"
+    "DriverPath"="Drivers\\BuiltIn\\FlashFX"
+    "CheckForFormat"=dword:1
+    "MountAsBootable"=dword:1
+    "AutoMount"=dword:1
+    "AutoPart"=dword:0
+    "AutoFormat"=dword:1
+    "MountFlags"=dword:2
+    "LoadFlags"=dword:1
+    "BootPhase"=dword:1
+;;	"FormatTFAT"=dword:1
+;    "Order"=dword:0
+    "Name"="Datalight FlashFX"
+    "Folder"="FlashFX Disk"
+    "DefaultFileSystem"="FATFS"
+    "PartitionDriver"="mspart.dll"
+
+;[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFXDisk1Profile\FATFS]
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FFXProfile\FATFS]
+    "MountAsRoot"=dword:1
+	"MountPermanent"=dword:1 
+    "MountAsBootable"=dword:1
+	"AutoMount"=dword:1
+	"AutoPart"=dword:1
+	"AutoFormat"=dword:1
+    "Flags"=dword:00000014
+    "FormatExfat"=dword:1
+;;    "FormatTFAT"=dword:1
+    "FormatClusterSize"=dword:2000
+    "FormatFatVersion"=dword:20
+    "FormatNumberOfFats"=dword:2
+    "FullFormat"=dword:1
+    "EnableWriteBack"=dword:0
+    "TransactData"=dword:1
+    "ReservedClusters"=dword:10
+    "SectorsPerSyncAtInit"=dword:64
+	"TfatMarkAlways"=dword:1
+    "NonatomicSector"=dword:1
+
+; This setting is required when using FlashFX and Reliance together under
+; CE 4.1, and is benign otherwise.  For CE 4.2 and later, the Reliance REG
+; file contains the partition table information.
+;
+;HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFXDisk1Profile\PartitionTable]
+HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FFXProfile\PartitionTable]
+    "07"="RELIANCE"
+
+;;[HKEY_LOCAL_MACHINE\System\StorageManager\FATFS\FormatOptions]
+;;    "FormatTFAT"=dword:1
+[HKEY_LOCAL_MACHINE\Software\Microsoft\TxtShell\Extensions]
+    "DatalightShell"="dlshellext.dll"
+    "FlashFXShell"="fxshellext.dll"
+
+; END HIVE BOOT SECTION
+
+
+

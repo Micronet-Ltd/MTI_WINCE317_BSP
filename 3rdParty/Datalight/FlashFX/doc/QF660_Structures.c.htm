@@ -1,0 +1,1096 @@
+<html>
+<head>
+<title>
+FlashFX API: Structures, Enumerations, and Handles
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+FlashFX API: Structures, Enumerations, and Handles
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): FlashFX API: Structures, Enumerations, and Handles">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXALLOCSETTINGS">FFXALLOCSETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Allocator configuration settings for FlashFX Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXBBMSETTINGS">FFXBBMSETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    BBM settings for a FlashFX Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCOMPSETTINGS">FFXCOMPSETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Compaction configuration settings for a FlashFX Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDEVCONFIG">FFXDEVCONFIG</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The master Device configuration structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDEVGEOMETRY">FFXDEVGEOMETRY</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    FlashFX Device geometry settings as returned by
+    <a HREF=QF760_DFWDevice.c.htm#FfxDriverDeviceGeometry>FfxDriverDeviceGeometry()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDEVHANDLE">FFXDEVHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A handle to a Device created with <a HREF=QF760_DFWDevice.c.htm#FfxDriverDeviceCreate>FfxDriverDeviceCreate()</a> or
+    <a HREF=QF760_DFWDevice.c.htm#FfxDriverDeviceCreateParam>FfxDriverDeviceCreateParam()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDEVLATENCY">FFXDEVLATENCY</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Latency configuration characteristics for a FlashFX Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDEVSETTINGS">FFXDEVSETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Basic configuration settings for a FlashFX Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDEVTIMING">FFXDEVTIMING</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Timing characteristics for a FlashFX Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDISKCONFIG">FFXDISKCONFIG</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The master Device configuration structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDISKGEOMETRY">FFXDISKGEOMETRY</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    FlashFX Disk geometry settings as returned by
+    <a HREF=QF780_DFWDisk.c.htm#FfxDriverDiskGeometry>FfxDriverDiskGeometry()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDISKHANDLE">FFXDISKHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A handle to a Disk created with <a HREF=QF780_DFWDisk.c.htm#FfxDriverDiskCreate>FfxDriverDiskCreate()</a> or
+    <a HREF=QF780_DFWDisk.c.htm#FfxDriverDiskCreateParam>FfxDriverDiskCreateParam()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXDISKSETTINGS">FFXDISKSETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Basic configuration settings for a FlashFX Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXFMLHANDLE">FFXFMLHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A handle to an FML instance created with <a HREF=QF900_FML.c.htm#FfxFmlCreate>FfxFmlCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXFORMATSETTINGS">FFXFORMATSETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Format settings for a FlashFX Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXIOREQUEST">FFXIOREQUEST</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A structure containing header information for an I/O request
+    operation.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXIOSTATUS">FFXIOSTATUS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Contains the results of an I/O request.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXLOADERDEVHANDLE">FFXLOADERDEVHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A handle to an FlashFX Loader Device object, created with
+    <a HREF=QF820_DFWLoader.c.htm#FfxLoaderDeviceCreate>FfxLoaderDeviceCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXLOADERDEVINFO">FFXLOADERDEVINFO</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A structure containing information about a FlashFX Loader Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXLOADERDISKHANDLE">FFXLOADERDISKHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A handle to an FlashFX Loader Disk object, created with
+    <a HREF=QF820_DFWLoader.c.htm#FfxLoaderDiskCreate>FfxLoaderDiskCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXLOADERDISKINFO">FFXLOADERDISKINFO</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A structure containing information about a FlashFX Loader Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXLOADERHANDLE">FFXLOADERHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A handle to a FlashFX Loader object, created with <a HREF=QF820_DFWLoader.c.htm#FfxLoaderCreate>FfxLoaderCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXSTATUS">FFXSTATUS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A structured status code used to return error/status information.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="FFXALLOCSETTINGS"></a>
+<a NAME="FFXALLOCSETTINGS"></a>
+FFXALLOCSETTINGS
+</h3>
+<div class=SectionText>
+
+    Allocator configuration settings for FlashFX Disk.
+
+<p>    This structure is used during device driver initialization
+    to specify the allocator settings for a Disk.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXBBMSETTINGS"></a>
+<a NAME="FFXBBMSETTINGS"></a>
+FFXBBMSETTINGS
+</h3>
+<div class=SectionText>
+
+    BBM settings for a FlashFX Device.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCOMPSETTINGS"></a>
+<a NAME="FFXCOMPSETTINGS"></a>
+FFXCOMPSETTINGS
+</h3>
+<div class=SectionText>
+
+    Compaction configuration settings for a FlashFX Disk.
+
+<p>    This structure is used during device driver initialization
+    to specify the compaction settings for a Disk.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDEVCONFIG"></a>
+<a NAME="FFXDEVCONFIG"></a>
+FFXDEVCONFIG
+</h3>
+<div class=SectionText>
+
+    The master Device configuration structure.
+
+<p>    This structure contains embedded <a HREF="#FFXDEVSETTINGS">FFXDEVSETTINGS</a>, <a HREF="#FFXDEVTIMING">FFXDEVTIMING</a>,
+    <a HREF="#FFXDEVLATENCY">FFXDEVLATENCY</a>, and <a HREF="#FFXBBMSETTINGS">FFXBBMSETTINGS</a> structures.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDEVGEOMETRY"></a>
+<a NAME="FFXDEVGEOMETRY"></a>
+FFXDEVGEOMETRY
+</h3>
+<div class=SectionText>
+
+    FlashFX Device geometry settings as returned by
+    <a HREF=QF760_DFWDevice.c.htm#FfxDriverDeviceGeometry>FfxDriverDeviceGeometry()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDEVHANDLE"></a>
+<a NAME="FFXDEVHANDLE"></a>
+FFXDEVHANDLE
+</h3>
+<div class=SectionText>
+
+    A handle to a Device created with <a HREF=QF760_DFWDevice.c.htm#FfxDriverDeviceCreate>FfxDriverDeviceCreate()</a> or
+    <a HREF=QF760_DFWDevice.c.htm#FfxDriverDeviceCreateParam>FfxDriverDeviceCreateParam()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDEVLATENCY"></a>
+<a NAME="FFXDEVLATENCY"></a>
+FFXDEVLATENCY
+</h3>
+<div class=SectionText>
+
+    Latency configuration characteristics for a FlashFX Device.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDEVSETTINGS"></a>
+<a NAME="FFXDEVSETTINGS"></a>
+FFXDEVSETTINGS
+</h3>
+<div class=SectionText>
+
+    Basic configuration settings for a FlashFX Device.
+
+<p>    pBaseFlashAddress may be BAD_ADDRESS (0xFFFFFFFF) if the flash
+    is not memory mapped, such as is the case with NAND, or when
+    using the various RAM or FILE based FIMs/NTMs.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDEVTIMING"></a>
+<a NAME="FFXDEVTIMING"></a>
+FFXDEVTIMING
+</h3>
+<div class=SectionText>
+
+    Timing characteristics for a FlashFX Device.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDISKCONFIG"></a>
+<a NAME="FFXDISKCONFIG"></a>
+FFXDISKCONFIG
+</h3>
+<div class=SectionText>
+
+    The master Device configuration structure.
+
+<p>    This structure contains embedded <a HREF="#FFXDISKSETTINGS">FFXDISKSETTINGS</a>, <a HREF="#FFXALLOCSETTINGS">FFXALLOCSETTINGS</a>,
+    <a HREF="#FFXFORMATSETTINGS">FFXFORMATSETTINGS</a>, and <a HREF="#FFXCOMPSETTINGS">FFXCOMPSETTINGS</a> structures.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDISKGEOMETRY"></a>
+<a NAME="FFXDISKGEOMETRY"></a>
+FFXDISKGEOMETRY
+</h3>
+<div class=SectionText>
+
+    FlashFX Disk geometry settings as returned by
+    <a HREF=QF780_DFWDisk.c.htm#FfxDriverDiskGeometry>FfxDriverDiskGeometry()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDISKHANDLE"></a>
+<a NAME="FFXDISKHANDLE"></a>
+FFXDISKHANDLE
+</h3>
+<div class=SectionText>
+
+    A handle to a Disk created with <a HREF=QF780_DFWDisk.c.htm#FfxDriverDiskCreate>FfxDriverDiskCreate()</a> or
+    <a HREF=QF780_DFWDisk.c.htm#FfxDriverDiskCreateParam>FfxDriverDiskCreateParam()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXDISKSETTINGS"></a>
+<a NAME="FFXDISKSETTINGS"></a>
+FFXDISKSETTINGS
+</h3>
+<div class=SectionText>
+
+    Basic configuration settings for a FlashFX Disk.
+
+<p>    This structure is used to store the initialization time disk
+    configuration settings.  The actual Disk offset and size may
+    be adjusted fall within Device constraints (Device size and
+    erase block boundaries).
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXFMLHANDLE"></a>
+<a NAME="FFXFMLHANDLE"></a>
+FFXFMLHANDLE
+</h3>
+<div class=SectionText>
+
+    A handle to an FML instance created with <a HREF=QF900_FML.c.htm#FfxFmlCreate>FfxFmlCreate()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXFORMATSETTINGS"></a>
+<a NAME="FFXFORMATSETTINGS"></a>
+FFXFORMATSETTINGS
+</h3>
+<div class=SectionText>
+
+    Format settings for a FlashFX Disk.
+
+<p>    This structure is used during device driver initialization
+    to specify how the Disk is to be formatted.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXIOREQUEST"></a>
+<a NAME="FFXIOREQUEST"></a>
+FFXIOREQUEST
+</h3>
+<div class=SectionText>
+
+    A structure containing header information for an I/O request
+    operation.
+
+<p>    FFXIOREQUEST is defined to be the same thing as DCLIOREQUEST.
+
+<p>    All I/O request packets are defined as structures, with the
+    FFXIOREQUEST structure being the first element.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXIOSTATUS"></a>
+<a NAME="FFXIOSTATUS"></a>
+FFXIOSTATUS
+</h3>
+<div class=SectionText>
+
+    Contains the results of an I/O request.  The FFXIOSTATUS structure
+    has the following layout:
+
+<p>	<pre>
+    &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#116&#121&#112&#101&#100&#101&#102&#32&#115&#116&#114&#117&#99&#116&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#123&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#117&#108&#67&#111&#117&#110&#116&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#70&#70&#88&#83&#84&#65&#84&#85&#83&#32&#32&#32&#102&#102&#120&#83&#116&#97&#116&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#117&#108&#70&#108&#97&#103&#115&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#117&#110&#105&#111&#110&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#123&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#117&#108&#68&#101&#118&#105&#99&#101&#83&#116&#97&#116&#117&#115&#59&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#117&#108&#66&#108&#111&#99&#107&#83&#116&#97&#116&#117&#115&#59&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#117&#108&#80&#97&#103&#101&#83&#116&#97&#116&#117&#115&#59&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#117&#108&#66&#121&#116&#101&#83&#116&#97&#116&#117&#115&#59&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#125&#32&#111&#112&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#125&#32&#70&#70&#88&#73&#79&#83&#84&#65&#84&#85&#83&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+	</pre>
+
+<p>    
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<b>ulcount</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of elements which were successfully
+                transferred.
+</td>
+</tr>
+
+<p>    
+<tr class=Def>
+<td class=Def>
+<b>ffxStat</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The standard <a HREF="#FFXSTATUS">FFXSTATUS</a> value.
+</td>
+</tr>
+
+<p>    
+<tr class=Def>
+<td class=Def>
+<b>ulFlags</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Flags pertaining to the results, including the
+                operation type, which will be one of the following
+                (all other bits are reserved):
+              <ul>
+</td>
+</tr>
+
+<p>
+<tr class=Def>
+<td class=Def>
+<li>IOFLAGS_UNKNOWN
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+0x00000000
+</td>
+</tr>
+
+<p>              
+<tr class=Def>
+<td class=Def>
+<li>IOFLAGS_BLOCK
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+0x10000000
+</td>
+</tr>
+
+<p>              
+<tr class=Def>
+<td class=Def>
+<li>IOFLAGS_PAGE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+0x20000000
+</td>
+</tr>
+
+<p>              
+<tr class=Def>
+<td class=Def>
+<li>IOFLAGS_BYTE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+0x30000000
+</td>
+</tr>
+
+<p>              
+<tr class=Def>
+<td class=Def>
+<li>IOFLAGS_DEVICE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+0x40000000
+</ul>
+</td>
+</tr>
+
+<p>    
+<tr class=Def>
+<td class=Def>
+<b>op.ulxxxStatus</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Status information specific to each operation type.
+</td>
+</tr>
+</table>
+
+<p>
+
+<p>    For IOFLAGS_BLOCK operations, op.ulBlockStatus will be one of
+    the following values:
+        <ul>
+<li>BLOCKSTATUS_NOTBAD
+        <li>BLOCKSTATUS_IOERROR
+        <li>BLOCKSTATUS_FACTORYBAD
+        <li>BLOCKSTATUS_MARKEDBAD
+        <li>BLOCKSTATUS_LEGACYNOTBAD
+        <li>BLOCKSTATUS_BBMBLOCK
+        <li>BLOCKSTATUS_LEGACYFACTORYBAD
+        <li>BLOCKSTATUS_BBMREMAPPED
+        <li>BLOCKSTATUS_SOFT_LOCKED
+        <li>BLOCKSTATUS_DEV_LOCKED
+        <li>BLOCKSTATUS_DEV_LOCKFROZEN
+</ul>
+    For IOFLAGS_PAGE operations, op.ulPageStatus will be one of
+    the following values:
+        <ul>
+<li>PAGESTATUS_UNKNOWN
+        <li>PAGESTATUS_DATACORRECTED
+        <li>PAGESTATUS_WRITTENWITHECC
+        <li>PAGESTATUS_UNWRITTEN
+</ul>
+   The following methods are used to determine the state of
+   an operation:
+
+<p>   1) If ffxStat == FFXSTAT_SUCCESS, then the operation was entirely
+      successful.  ulCount will indicate the count of elements
+      transferred, however examining this value is not necessary.
+
+<p>   2) If ffxStat == FFXSTAT_FIMIOERROR, then the operation <may> have
+      been partially successful.  ulCount will indicate the number of
+      elements that were transferred successfully, if any.  The
+      element indicated by ulCount+1 will be the element where the
+      I/O error occurred.  For write operations, it should be assumed
+      that the element where the I/O error occurred was modified.
+
+<p>   3) If ffxStat == FFXSTAT_FIMUNCORRECTABLEDATA, then the operation
+      <may> have been partially successful.  ulCount will indicate
+      the number of elements that were transferred successfully, if
+      any.  The element indicated by ulCount+1 will be the element
+      where the uncorrectable error occurred.  This ffxStat value
+      is only legitimate for read operations.
+
+<p>    In all cases, for read operations, where one or more elements are
+    successfully returned, if the PAGESTATUS_DATACORRECTED flag is
+    set within the op.ulPageStatus field, then a correctable error
+    was encountered and fixed.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXLOADERDEVHANDLE"></a>
+<a NAME="FFXLOADERDEVHANDLE"></a>
+FFXLOADERDEVHANDLE
+</h3>
+<div class=SectionText>
+
+    A handle to an FlashFX Loader Device object, created with
+    <a HREF=QF820_DFWLoader.c.htm#FfxLoaderDeviceCreate>FfxLoaderDeviceCreate()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXLOADERDEVINFO"></a>
+<a NAME="FFXLOADERDEVINFO"></a>
+FFXLOADERDEVINFO
+</h3>
+<div class=SectionText>
+
+    A structure containing information about a FlashFX Loader Device.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXLOADERDISKHANDLE"></a>
+<a NAME="FFXLOADERDISKHANDLE"></a>
+FFXLOADERDISKHANDLE
+</h3>
+<div class=SectionText>
+
+    A handle to an FlashFX Loader Disk object, created with
+    <a HREF=QF820_DFWLoader.c.htm#FfxLoaderDiskCreate>FfxLoaderDiskCreate()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXLOADERDISKINFO"></a>
+<a NAME="FFXLOADERDISKINFO"></a>
+FFXLOADERDISKINFO
+</h3>
+<div class=SectionText>
+
+    A structure containing information about a FlashFX Loader Disk.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXLOADERHANDLE"></a>
+<a NAME="FFXLOADERHANDLE"></a>
+FFXLOADERHANDLE
+</h3>
+<div class=SectionText>
+
+    A handle to a FlashFX Loader object, created with <a HREF=QF820_DFWLoader.c.htm#FfxLoaderCreate>FfxLoaderCreate()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXSTATUS"></a>
+<a NAME="FFXSTATUS"></a>
+FFXSTATUS
+</h3>
+<div class=SectionText>
+
+    A structured status code used to return error/status information.
+
+<p>    FFXSTATUS is a 32-bit structured status code which is based on
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a>.  See the <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> definition for a detailed description
+    of the layout.
+
+<p>    <h4>The following Locales are defined for FlashFX</h4>
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_GENERAL
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+1 (reserved, same as DCLLOCALE_GENERAL)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_OESERV
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+2
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_VBF
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+3
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_FIM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+4
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_EXTAPI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+5
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_DRIVERFW
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+6
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_OSDRIVER
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+7
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_PROJHOOKS
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+8
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_DOSDEV
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+9
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_LOADER
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+10
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_FML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+11
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_MISC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+12
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_DEVMGR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+13
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_MEDIAMGR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+14
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXLOCALE_BBM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+15
+</td>
+</tr>
+</table>
+
+<p>
+
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+!IF "$(_TGTPLAT)" != "TI_EVM_3530"
+SKIPBUILD=1
+!ENDIF
+
+!IF "$(HOST_PLAT_EVM_OMAP3530)" != "1"
+SKIPBUILD=1
+!ENDIF
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+TARGETNAME=brf6300
+TARGETTYPE=DYNLINK
+
+DEFFILE=bthci.def
+DLLENTRY=_DllMainCRTStartup
+SYNCHRONIZE_DRAIN=1
+
+SOURCES=
+
+SOURCELIBS= \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\brf6300_$(_TGTPLAT).lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib
+    
+TARGETLIBS=\
+     $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\ceosutil.lib \
+     $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+
+
+						     
+
+FILE_VIEW_INCLUDES_FOLDER= \
+
+FILE_VIEW_RESOURCE_FOLDER= \
+
+FILE_VIEW_ROOT_FOLDER= \ 
+
+POSTLINK_PASS_CMD=postlink.bat

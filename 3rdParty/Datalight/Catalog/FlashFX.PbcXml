@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CatalogFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequiredVersion="6.00" xsi:schemaLocation="urn:Microsoft.PlatformBuilder/Catalog PbcXml600.xsd" xmlns="urn:Microsoft.PlatformBuilder/Catalog">
+  <FileInformation Id="FileInformation:FlashFX">
+    <Title>FlashFX Block device Support</Title>
+    <Description>FlashFX Block device</Description>
+    <Comment>Datalight</Comment>
+    <Vendor>Datalight</Vendor>
+    <OSVersion>6.00</OSVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </FileInformation>
+  <Item Id="Item:Datalight:FlashFX">
+    <Title>FlashFX Support:: Micron NANDs</Title>
+    <Description>Enable support for Micron NANDs</Description>
+    <Comment>FlashFX Block device</Comment>
+    <Variable>BSP_FLASHFX</Variable>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Project>$(_WINCEROOT)\3RDPARTY\DATALIGHT\FLASHFX\PROJECTS\beagleboard.pbpxml</Project>
+    <Location ConditionLocation="">\Datalight\FlashFX\</Location>
+    <Notification>
+      <Title>You will need to perform a SYSGEN when selecting this item for the first time</Title>
+      <Html />
+    </Notification>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\3RDPARTY\DATALIGHT\FLASHFX\PROJECTS</Title>
+      <Path>$(_WINCEROOT)\3RDPARTY\DATALIGHT\FLASHFX\PROJECTS</Path>
+    </SourceCode>
+  </Item>
+</CatalogFile>

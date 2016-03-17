@@ -1,0 +1,43 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES
+PROJECTNAME=PolyBump
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Head_clonespacePVRTC.obj \
+	$(OBJDIR)\Head_clonespaceBGRA.obj \
+	$(OBJDIR)\Head_diffuse.obj \
+	$(OBJDIR)\Head_float.obj \
+	$(OBJDIR)\Head_fixed.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Head_clonespacePVRTC.cpp \
+	$(APPROOT)\Content\Head_clonespaceBGRA.cpp \
+	$(APPROOT)\Content\Head_diffuse.cpp \
+	$(APPROOT)\Content\Head_float.cpp \
+	$(APPROOT)\Content\Head_fixed.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

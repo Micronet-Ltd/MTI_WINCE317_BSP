@@ -1,0 +1,21 @@
+
+LIBRARY     canopenlib
+
+EXPORTS
+    DllMain		                    @1
+    
+; CAN Module
+	canPortLibraryInit              @2
+	canPortOpen                     @3
+	canPortClose                    @4  
+	canPortBitrateSet               @5
+	canPortEcho                     @6
+	canPortGoBusOn                  @7
+	canPortGoBusOff                 @8
+	canPortWrite                    @9
+	canPortRead                     @10
+	canPortGetConfig                @11
+	canPortSetConfig                @12
+	canPortReset                    @13
+;   and will be additional config. functions ... ???
+	

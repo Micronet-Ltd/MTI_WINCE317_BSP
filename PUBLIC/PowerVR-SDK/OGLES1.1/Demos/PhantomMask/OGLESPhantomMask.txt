@@ -1,0 +1,19 @@
+
+Demo title: 		PhantomMask
+
+Demonstrates: 		VGP Spherical Harmonics Lighting
+
+Short Description:	Shows a mask lit using spherical harmonics and regular diffuse vertex lighting. 
+
+Full Description:	
+Spherical Harmonic lighting is a real-time rendering technique that uses a pre-process step - the projection of the lights, of the model and of the transfer function onto the spherical harmonic basis - to render realistically scenes using any type of light source. It is primarily used to reproduce diffuse lighting.
+
+This demo shows a mask lit using spherical harmonics and regular diffuse vertex lighting. The diffuse vertex lighting case requires at least four light sources to implement lighting which is kind of equivalent to the spherical harmonics case for this scene. Implementing four diffuse lights requires more vertex program instructions than the spherical harmonics calculations. Realistically many more vertex lights would have to be added to fully match the result of the spherical harmonics lighting. 
+
+This demo requires 3D hardware which supports GL_IMG_vertex_program.
+
+VGP: 			Required
+Polygon Count: 		3500
+Vertex Count: 		2200
+
+

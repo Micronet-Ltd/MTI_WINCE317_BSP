@@ -1,0 +1,13 @@
+#include <windows.h>
+#include "winutilgui.rh"
+
+IDD_SETTINGSDLG DIALOG 0, 0, 120, 55
+STYLE DS_MODALFRAME | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Options"
+FONT 8, "System"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,15,34,40,15
+    PUSHBUTTON      "Cancel",IDCANCEL,64,34,40,15
+    CONTROL         "[&Esc] key exits the program",IDC_SETTINGS_ESCKEYTOEXIT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,5,100,25
+END
+

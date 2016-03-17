@@ -1,0 +1,954 @@
+<html>
+<head>
+<title>
+Porting Guide: Creating a New NTM
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Porting Guide: Creating a New NTM
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Porting Guide: Creating a New NTM">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        FlashFX Tera uses a NAND Technology Module (NTM) to interface with NAND
+        flash memory and NAND controllers.  The NTM is a portion of FMSL which
+        provides the algorithms needed for a specific flash device or family of
+        devices.  One or more NTMs are linked as part of the FlashFX Tera driver
+        to support various flash parts that may be used in the embedded
+        device.  The NAND FIM maintains a list of these NTMs and calls each as
+        needed to access the particular flash parts.
+
+<p>        The NTM interfaces FlashFX Tera to a specific flash part or class of
+        parts.
+
+<p>        An NTM provides the read/write/erase functionality for a particular
+        flash part or family of parts. Use the source code for existing NTMs
+        located in the fmsl\nand directory tree as a basis for implementing the
+        required NTM functions.
+
+<p>        <b>Note</b> -- FlashFX Tera uses a single NAND FIM to support all NAND
+        parts. Specialized NAND support is implemented in NTMs.  It would be an
+        exceptionally rare circumstance when a new NAND FIM needs to be written.
+
+<p>        <h4>NTMs included with FlashFX Tera</h4>
+
+<p>        You may not need to build an NTM because FlashFX Tera includes several
+        NTMs that are ready for use with your FlashFX Tera driver.  Source code
+        for the FIMs is included in the fmsl\nand directory tree.  Some NTMs
+        support multiple flash parts and flash controllers.  The
+        <a HREF="FlashFX_Supported_Hardware.pdf">FlashFX Supported Hardware</a>
+        document, located in the DOC directory, and on the Datalight web site,
+        lists the parts that are supported by each NTM.
+
+<p>        <b>NTM Naming Conventions</b>
+
+<p>        NTMs included in the FlashFX Tera kit are prefixed with the letters
+        "nt".  Various NTM related helper functions within the fmsl\nand
+        directory are also prefixed with "nt".
+
+<p>        Some NTMs have a Project Hooks component which allows for project
+        specific customization of the NTM functionality, without having to
+        modify the NTM itself.  The default implementations of these FlashFX
+        specific Project Hooks are located in the hooks directory for each
+        operating system, and are prefixed with "fh" (FlashFX Hooks), with the
+        remainder of the name being the same as the NTM.  For example, the
+        "CAD" NTM is named ntcad.c and its hooks module is named fhcad.c.
+
+<p>        For clarity, it is convenient to ensure that the device name for the
+        NTM (specified in the FIMDEVICE declaration) is the same as the file
+        name (without the prefix).  Therefore the device name for the "CAD" NTM
+        described above is FFXNTM_cad.
+
+<p>        The two letter prefixes, and the lowercase naming conventions are used
+        for consistency, but there is nothing inherent that enforces these
+        conventions.
+
+<p>        NTMs that are based on an existing NTM but are exclusively targeted
+        toward MLC NAND devices have the string "mlc" appended to the end of
+        both their file names and device names.
+
+<p>        The following NTMs are included in the FlashFX Tera kit, as of this
+        writing.  See the README file for any more recent information on NTMs
+        which may not have made it into this documentation.  Additionally see
+        the FlashFX Supported Hardware document for more details on NTM
+        features.
+
+<p>        <b>nt1nand.c</b>
+
+<p>        The "1nand" NTM is used for systems using Samsung OneNAND and
+        FlexOneNAND. Compatible devices from other manufacturers should
+        also be supported, but may not have been specifically tested by
+        Datalight. MLC and SLC partitions for FlexOneNAND are supported,
+        but not simultaneously by a single FIM device.
+
+<p>        The 1nand NTM interfaces with the FlashFX Tera Project Hooks module
+        implemented in fh1nand.c.
+
+<p>        <b>ntcad.c</b>
+
+<p>        The "CAD" NTM implements the old-style NAND functionality which was a
+        part of the NAND FIM in versions of FlashFX prior to v3.0.  This
+        functionality has been factored so that the NAND FIM is a separate
+        entity, and the CAD NTM includes logic for those kinds of NAND
+        interfaces where the NAND commands, addresses, and data (C-A-D) are
+        discretely programmed.
+
+<p>        <b>Note</b> -- If you are migrating from a version of FlashFX Pro prior to
+        v3.0, and were originally using the NAND FIM, you should be able to use
+        the CAD NTM with little change to your code.  The hooks interface which
+        was formerly implemented in phnand.c in the old code is now located in
+        fhcad.c.  The function names have been changed, however the
+        functionality is largely the same.  Please contact Datalight if you
+        need assistance in migrating this module.
+
+<p>        Generally the CAD NTM works with NAND hardware where there is no NAND
+        controller at all, or where it is relatively primitive in nature.
+        Depending on the style of NAND controller, the CAD NTM may work with
+        systems which provide hardware ECC capability.
+
+<p>        The CAD NTM interfaces with the FlashFX Tera Project Hooks module
+        implemented in fhcad.c.
+
+<p>        In order to use the CAD NTM, you will need to copy fhcad.c to your
+        Project Directory and customize the entry points for your specific
+        hardware. The default implementation is non-functional.
+
+<p>        The CAD NTM will work with both small and large block NAND (512B and
+        2KB pages, respectively).  This NTM also has the ability to emulate
+        512B pages when using large block NAND.  This is controlled by changing
+        a #define in the ntcad.c module.  Datalight recommends choosing this
+        option only if you are using a file system which does not support 2KB
+        sectors, as enabling this feature will adversely affect performance.
+
+<p>        The CAD NTM does not support MLC devices; if you wish to use MLC,
+        please use the CADMLC NTM listed below.
+
+<p>        <b>ntcadmlc.c</b>
+
+<p>        This NTM is a version of the CAD NTM and uses many of the same
+        algorithms and procedures, but it is specifically targeted toward
+        MLC NAND devices. Many of the statements above about CAD still apply,
+        but functionality has been extended to include support for multi-bit
+        EDC mechanisms and enlarged spare area formats needed to store
+        larger numbers of ECC syndromes. See the discussion of MLC support
+        below.
+
+<p>        One notable algorithmic difference between the CADMLC NTM and the
+        CAD NTM is that CADMLC will not support small-block emulation.
+
+<p>        The CADMLC NTM will work with standard large-block and small-block
+        SLC NAND devices, but due to the marginally greater overhead in
+        maintaining the ability to handle MLC, it is suggested that if it
+        is known that your application will never have need for MLC support,
+        then you should use the CAD NTM.
+
+<p>        <b>ntlsi.c</b>
+
+<p>        The "LSI" NTM is used for systems using the LSI NAND controller.  This
+        NTM is still in the experimental stage, however it may be used as a
+        basis for implementing an NTM which uses a similar style of NAND
+        controller.
+
+<p>        <b>ntmicron.c</b>
+
+<p>        The "Micron" NTM is an implementation of the CAD NTM, which has been
+        modified to only work with Micron NAND flash, and to take advantage of
+        Micron specific special features, such as dual-plane operations and
+        cache read/write modes.
+
+<p>        The Micron NTM does not support MLC devices, however Micron MLC devices
+        will work with the CADMLC NTM. If your application requires both MLC
+        density and the performance enhancements offered by Micron-specific
+        feature sets, please contact Datalight Support.
+
+<p>        The Micron NTM uses a Project Hooks module named fhmicron.c.
+
+<p>        <b>ntmx31.c</b>
+
+<p>        The "MX31" NTM is used for systems using the FreeScale iMX31 NAND
+        controller.
+
+<p>        Current revisions of the MX31 controller are not designed to handle
+        MLC NAND devices, and so the Datalight MX31 NTM does not support
+        MLC.
+
+<p>        The MX31 NTM uses a Project Hooks module named fhmx31.c.
+
+<p>        <b>ntmx51.c</b>
+
+<p>        The "MX51" NTM is used for systems using the FreeScale iMX51 NAND
+        controller.
+
+<p>        It will support devices up to 4K page size and needing
+        up to 8 bits of error correction per 512-byte segment. "MX51DIGI" is
+        a sample project that works with Windows Embedded Compact 7, and
+        "linux-2.6\MX51-Digi" is a sample project that works under Linux.
+        
+<p>        The MX51 NTM uses a Project Hooks module named fhmx51.c.
+
+<p>        <b>ntpageio.c</b>
+
+<p>        The "PageIO" NTM is used for systems where page oriented commands are
+        used to read and write NAND flash.  Rather than discretely programming
+        pins, and then reading/writing bytes, the PageIO NTM reads and writes
+        an entire page at a time.  This NTM is typically used when using a NAND
+        controller which imposes this style of operation.
+
+<p>        The PageIO NTM interfaces with the FlashFX Tera Project Hooks module
+        implemented in fhpageio.c.
+
+<p>        In order to use the PageIO NTM, you will need to copy fhpageio.c to
+        your project directory and customize the entry points for your specific
+        hardware. The default implementation is non-functional.
+
+<p>        The PageIO NTM will work with both small NAND only.  This NTM also has
+        the ability to emulate 2KB pages when using small block NAND.  This is
+        controlled by changing a #define in the ntpageio.c module.  Datalight
+        recommends choosing this option only if performance tests indicate that
+        it is beneficial.  In particular, if the NAND controller being used
+        does not allow the spare area to be read independently from the main
+        page data (you have to read everything, just to retrieve the spare
+        data), this option may prove to be beneficial.
+
+<p>        This NTM has a special feature which allows it to function as a "file"
+        based NTM.  Set the USE_FILEIO_HOOKS_MODULE setting to TRUE to cause a
+        special hooks module (fmsl\nand\fhpageio_file.c) to be linked in, which
+        will direct all access to a file.  This is useful for testing and
+        debugging purposes.
+
+<p>        The PageIO NTM does not support MLC NAND devices.
+
+<p>        <b>ntpxa320.c</b>
+
+<p>        The "PXA320" NTM is for use with the Marvell PXA320 processor and NAND
+        controller.  This NTM contains special support for Micron cache-mode
+        operations, should a Micron chip with those capabilities be in use.
+
+<p>        Like the MX31, the PXA320 controller is not specifically designed to
+        handle the requirements of MLC devices, and so the Datalight PXA320 NTM
+        does not support MLC.
+
+<p>        The PXA320 NTM uses a Project Hooks module named fhpxa320.c.
+
+<p>        <b>ntram.c</b>
+
+<p>        The "RAM" NTM uses RAM to simulate NAND flash, and is useful for testing
+        and debugging other areas of FlashFX.  Generally the new NAND Simulator
+        is the preferred way to simulate NAND using RAM.
+
+<p>        <b>ntsim.c</b>
+
+<p>        The "SIM" NTM implements a NAND Simulator which may be backed with RAM
+        or file storage. It supports testing of a wide variety of device geometries
+        and configurations. Individual chip-specific command sets are not simulated.
+        SIM is intended as a testing mechanism. If you wish to use it, please
+        contact Datalight Support.
+
+<p>        Both SLC and MLC NAND configurations are supported within this single
+        NTM. See the discussion of MLC support below.
+
+<p>        <b>ntstdclrnand.c</b>
+
+<p>        The "Standard ClearNAND" NTM supports Micron Standard ClearNAND devices, 
+        which feature an on-board EDC mechanism that is transparent to the software.
+
+<p>        It uses a hooks module called "fhstdclrnand.c".
+
+<p>        <b>nteclrnand.c</b>
+
+<p>        The "Enhanced ClearNAND" NTM supports Micron Enhanced ClearNAND devices,
+        which feature on board EDC as well as a pipelined command queue and
+        a volume concept that allows concurrent access to many devices. FlashFX
+        currently does not take full advantage of all the performance enhancements
+        that are available.
+
+<p>        It uses a hooks module called "fheclrnand.c".
+
+<p>        <h4>Creating a New NTM</h4>
+
+<p>        The NTMs (NAND Technology Modules) are implemented in the fmsl\nand directory, along with the NAND FIM.
+
+<p>        NTMs included in the FlashFX Tera kit are prefixed with the letters
+        "nt".  Various NTM related helper functions within the fmsl\nand
+        directory are also prefixed with "nt".  When writing a new NTM, it is
+        highly recommended that you examine the existing NTMs supplied with
+        FlashFX Tera, find one which is closest to the model you need to
+        support, and model your new NTM on that.
+
+<p>        For additional details regarding specific NTM functions, see the
+        FlashFX Tera API Reference manual, and refer to the existing code
+        contained in the FMSL directory tree.
+
+<p>        <b>NTM Requirements</b>
+
+<p>        FlashFX Tera requires that NTMs have certain basic capabilities, which
+        are:
+        <ul>
+<li>The NTM must be able to atomically write a page and its spare area.  This is a necessity for FlashFX Tera to handle write interruption conditions (such as power loss).
+        <li>The NTM must be able to store a two byte tag somewhere in the spare area.  It is required that this tag either be protected by a native EDC scheme, or that the FlashFX Tera NTM helper functions (FfxNtmHelpTagEncode/Decode for one-bit EDC, and <a HREF=QF942_NTMHelp.c.htm#FfxNtmPECCTagEncode>FfxNtmPECCTagEncode()</a>/Decode if stronger EDC is required), be used to protect the tag.  Using one-bit helper functions requires two additional bytes in the spare area for the tag checkbyte and ECC. Using the PECC (parameterized ECC) helper functions requires four additional bytes in the spare area for storage of a CRC for the tag, in addition to any space within the spare area needed for storing ECCs covering the main page and portions of the spare area. The tag and tag CRC must be stored in a spare area location that is covered by the EDC mechanism.
+        <li>If the FlashFX Tera internal 1-bit software ECC algorithms are being used, there must be space in the spare area for 3 ECC bytes for every 256 bytes in the main page.  If the NTM uses the FlashFX Tera parameterized EDC mechanism (which supports configurable EDC mechanisms), there must be space in the spare area to contain all of the ECCs for the mechanism in use, as well as FlashFX Tera metadata -- see the section below on MLC support and the parameterized EDC mechanism. If the NTM is using hardware ECC, it is the responsibility of the NTM to ensure that the spare area is constructed in a fashion compatible with the hardware ECC generator.
+        <li>If designated for SLC NAND flash, The NTM must be able to invalidate the tag data (by overwriting it) stored in the spare area. This is necessary due to accomplish atomic disk operations. The VBF NAND Media Manager code depends on the ability to overwrite the EUH tag in order to invalidate an erase unit before beginning to erase it. This is essential, as there is no guarantee that an erase will complete. If a unit had been partially erased but still appeared to be valid, it could result in loss of user data. Overwriting the tag prevents this possibility.
+        <li>With MLC NAND flash, it is considered an invalid operation to attempt to overwrite a page of flash that has already been written, and unexpected results may occur under any attempt to do so. Therefore, for MLC NAND flash, FlashFX Tera does not attempt tag invalidation by the means described above. This being the case, the tag must be protected by a CRC powerful enough to obviate the possibility that power interruptions during an erase may corrupt a tag and yet leave it in a state where it still looks valid. Even so, it is very strongly recommended that device manufacturer's specifications with regard to power interruptions not be violated.
+</ul>
+        <b>NTM Issues to Consider</b>
+
+<p>        There are a variety of issues to consider when writing a new NTM.  Some
+        of these are:
+        <ul>
+<li>Will the NTM support many different kinds of NAND flash, or just a limited selection?
+        <li>If so, will it need to support NAND flash with different spare area formats?
+        <li>If so, will it need to support both small and large block NAND?
+        <li>Will the NTM support NAND controllers?
+        <li>If so, is it one specific controller, or will it be many?
+        <li>If so, does that controller impose any particular format on the spare area? And if so, does that format co-exist with the factory bad block marking scheme defined by the NAND flash manufacturer?
+        <li>Will the NTM use a matching FlashFX Tera Project Hooks module, or will it be completely self-contained?
+        <li>Must the NTM support MLC NAND flash?
+        <li>If so, how strong must the EDC protection be?
+        <li>If so, will the ECCs generated by the EDC mechanism fit in the spare area?
+        <li>If so, will the tags and the main page data be protected by the same EDC mechanism?
+</ul>
+        <b>An Overview of Factory Spare Area Formats</b>
+
+<p>        Different types of NAND flash have different mechanisms for marking
+        factory bad blocks.  These fall into three basic categories:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+AnyBitZero
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This type of flash always uses an 8-bit interface, and
+        comes from the factory in an erased state (all bits set to 1's).  When
+        factory fresh, should any bit in a block happen to not be 1, the block
+        is to be considered bad.  A typical example of this type of flash is
+        the old style Toshiba flash parts.  Throughout the FlashFX Tera NAND
+        code, this kind of flash is referred to as "AnyBitZero".
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+SSFDC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This type of flash always uses an 8-bit interface, and uses a
+        factory bad block marking scheme which dictates that any bad block will
+        be denoted by a zero bit in byte offset 5 in the spare area for either
+        of the first two pages in a block.  Should either of these two bytes be
+        anything other than 0xFF, the block is to be considered factory bad.
+        This is the format dictated by the SSFDC specification, and throughout
+        the FlashFX Tera NAND code, this kind of flash is referred to as "SSFDC".
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+OffsetZero
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This type of flash uses an 8 or 16-bit interface, and uses
+        a factory bad block marking scheme which dictates that any bad block
+        will be denoted by a zero bit in byte/word offset 0 in the spare area
+        for either of the first two pages in a block.  Should either of these
+        two bytes or words be anything other than 0xFF/0xFFFF, the block is to
+        be considered factory bad.  All current flash which uses 2KB pages, or
+        which uses a 16-bit interface, falls into this category.  Throughout
+        the FlashFX Tera NAND code, this kind of flash is referred to as
+        "OffsetZero".
+</td>
+</tr>
+</table>
+
+<p>
+        Raw NAND flash does not impose any other requirements on the spare
+        area, however specific NAND controllers may do so.  A key design issue
+        to be aware of is NAND controllers which impose a spare area format
+        which conflicts with the NAND manufacturer's bad block marking scheme.
+        The implication is that factory bad blocks may become permanently lost.
+
+<p>        Most MLC NAND flash falls into the category of OffsetZero; however, use
+        of MLC NAND flash will generate a new set of considerations for how the
+        spare area is formatted. See the discussion of MLC flash and parameterized
+        EDC mechanisms below.
+
+<p>        <b>Warning -- Most NAND manufacturer's data sheets explicitly prohibit ever writing to a factory bad block. Doing so may permanently render the flash unusable.</b>
+
+<p>        See the FlashFX Tera source code modules nandid.c and nandid.h for a
+        detailed look at all the various NAND flash parts which FlashFX Tera
+        supports and the various combinations of spare area formats.
+
+<p>        <b>FlashFX Tera Factory Bad Block Handling</b>
+
+<p>        Versions of FlashFX prior to FlashFX Pro v3.0 were designed such that
+        during a BBM initial format, BBM scanned the flash for bad blocks using
+        the "AnyBitZero" scheme.  Although very slow, this worked because the
+        SSFDC and OffsetZero marking styles inherently ensured that a bit
+        somewhere in the block was zero.  Once BBM found a bad block, it
+        proceeded to explicitly mark the block in SSFDC style, by writing zero
+        to offset 5 in the spare area of every page in the block.
+
+<p>        Beginning with FlashFX Pro v3.0, the factory bad block marking scheme
+        has changed.  During the BBM initial format, the flash is scanned for
+        factory bad blocks according to the appropriate algorithm for the type
+        of flash being used.
+
+<p>        For SSFDC and OffsetZero types of flash, factory bad blocks are
+        recorded in BBM's internal tables, and no explicit marking of the
+        blocks is done (they are already marked, or we would not have
+        discovered them in the first place).
+
+<p>        AnyBitZero types of flash are no longer supported by FlashFX Tera out of
+        the box. If you wish to use such a device, please contact Datalight
+        Support.
+
+<p>        <b>Spare Area Formats for SLC NAND devices</b>
+
+<p>        There are three methods that factories use to mark bad blocks, which
+        are all supported by FlashFX Tera: AnyBitZero, SSFDC and OffsetZero. The
+        latter two formats use specific bits in the spare area to indicate that
+        a block is bad while the first uses any zero bit in a block to indicate
+        a bad block. FlashFX Tera will reserve all factory bad block markings
+        and stores that information along with additional information in the
+        spare area. In order to track the different styles of factory bad
+        block, FlashFX Tera uses several different formats for the spare area.
+
+<p>        The source code file fxnandapi.h contains the definitions of the three
+        different spare area formats which FlashFX Tera uses, as shown below.
+
+<p>        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#47&#42&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#49&#54&#45&#98&#121&#116&#101&#32&#115&#112&#97&#114&#101&#32&#97&#114&#101&#97&#32&#108&#97&#121&#111&#117&#116&#32&#102&#111&#114&#32&#70&#108&#97&#115&#104&#70&#88&#32&#118&#101&#114&#115&#105&#111&#110&#115&#32&#112&#114&#105&#111&#114&#32&#116&#111&#32&#118&#51&#46&#48&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#76&#69&#71&#65&#67&#89&#95&#72&#73&#68&#68&#69&#78&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#48&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#76&#69&#71&#65&#67&#89&#95&#66&#76&#79&#67&#75&#83&#84&#65&#84&#85&#83&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#40&#52&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#76&#69&#71&#65&#67&#89&#95&#70&#65&#67&#84&#79&#82&#89&#66&#65&#68&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#40&#53&#41&#32&#47&#42&#32&#65&#115&#32&#100&#101&#102&#105&#110&#101&#100&#32&#98&#121&#32&#83&#83&#70&#68&#67&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#76&#69&#71&#65&#67&#89&#95&#69&#67&#67&#50&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#56&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#76&#69&#71&#65&#67&#89&#95&#69&#67&#67&#49&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#49&#50&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#76&#69&#71&#65&#67&#89&#95&#71&#79&#79&#68&#95&#69&#67&#67&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#48&#120&#55&#70&#70&#70&#70&#70&#70&#70&#76&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#47&#42&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#49&#54&#45&#98&#121&#116&#101&#32&#115&#112&#97&#114&#101&#32&#97&#114&#101&#97&#32&#108&#97&#121&#111&#117&#116&#32&#102&#111&#114&#32&#83&#83&#70&#68&#67&#32&#115&#116&#121&#108&#101&#32&#102&#108&#97&#115&#104&#46&#32&#32&#84&#104&#101&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#34&#65&#110&#121&#66&#105&#116&#90&#101&#114&#111&#34&#32&#84&#111&#115&#104&#105&#98&#97&#32&#115&#116&#121&#108&#101&#32&#102&#108&#97&#115&#104&#32&#116&#117&#114&#110&#115&#32&#105&#110&#116&#111&#32&#116&#104&#105&#115&#32&#97&#102&#116&#101&#114&#32&#119&#101&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#102&#111&#114&#109&#97&#116&#44&#32&#115&#105&#110&#99&#101&#32&#119&#101&#32&#119&#114&#105&#116&#101&#32&#116&#104&#101&#32&#102&#97&#99&#116&#111&#114&#121&#32&#109&#97&#114&#107&#32&#97&#116&#32&#83&#83&#70&#68&#67&#32&#111&#102&#102&#115&#101&#116&#32&#53&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#84&#65&#71&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#48&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#84&#65&#71&#95&#76&#69&#78&#71&#84&#72&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#52&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#82&#69&#83&#69&#82&#86&#69&#68&#95&#49&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#40&#52&#41&#32&#47&#42&#32&#85&#115&#101&#100&#32&#98&#121&#32&#112&#114&#101&#32&#70&#70&#88&#45&#118&#51&#46&#48&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#70&#65&#67&#84&#79&#82&#89&#66&#65&#68&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#40&#53&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#77&#65&#82&#75&#69&#68&#66&#65&#68&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#40&#54&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#70&#76&#65&#71&#83&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#55&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#69&#67&#67&#50&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#56&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#82&#69&#83&#69&#82&#86&#69&#68&#95&#50&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#40&#49&#49&#41&#32&#47&#42&#32&#78&#111&#116&#32&#117&#115&#101&#100&#32&#98&#121&#32&#100&#101&#102&#97&#117&#108&#116&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#69&#67&#67&#49&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#49&#50&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#82&#69&#83&#69&#82&#86&#69&#68&#95&#51&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#40&#49&#53&#41&#32&#47&#42&#32&#78&#111&#116&#32&#117&#115&#101&#100&#32&#98&#121&#32&#100&#101&#102&#97&#117&#108&#116&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#70&#65&#67&#84&#79&#82&#89&#66&#65&#68&#95&#76&#69&#78&#71&#84&#72&#32&#32&#32&#32&#32&#32&#32&#40&#49&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#83&#83&#70&#68&#67&#95&#69&#67&#67&#95&#76&#69&#78&#71&#84&#72&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#51&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#47&#42&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#49&#54&#45&#98&#121&#116&#101&#32&#115&#112&#97&#114&#101&#32&#97&#114&#101&#97&#32&#102&#111&#114&#109&#97&#116&#32&#102&#111&#114&#32&#116&#104&#101&#32&#34&#79&#102&#102&#115&#101&#116&#90&#101&#114&#111&#34&#32&#115&#116&#121&#108&#101&#32&#102&#108&#97&#115&#104&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#70&#111&#114&#32&#50&#75&#66&#45&#112&#97&#103&#101&#32&#102&#108&#97&#115&#104&#44&#32&#116&#104&#101&#114&#101&#32&#97&#114&#101&#32&#52&#32&#111&#102&#32&#116&#104&#101&#115&#101&#32&#105&#116&#101&#109&#115&#32&#105&#110&#32&#97&#110&#32&#97&#114&#114&#97&#121&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#70&#65&#67&#84&#79&#82&#89&#66&#65&#68&#95&#79&#70&#70&#83&#69&#84&#32&#32&#40&#48&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#70&#65&#67&#84&#79&#82&#89&#66&#65&#68&#95&#76&#69&#78&#71&#84&#72&#32&#32&#40&#50&#41&#32&#47&#42&#32&#49&#47&#50&#32&#98&#97&#115&#101&#100&#32&#111&#110&#32&#56&#47&#49&#54&#45&#98&#105&#116&#32&#105&#110&#116&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#69&#67&#67&#49&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#40&#50&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#83&#83&#70&#68&#67&#95&#66&#65&#68&#95&#82&#69&#83&#69&#82&#86&#69&#68&#32&#40&#53&#41&#32&#47&#42&#32&#114&#101&#115&#101&#114&#118&#101&#100&#32&#116&#111&#32&#97&#118&#111&#105&#100&#32&#108&#101&#103&#97&#99&#121&#32&#99&#111&#110&#102&#108&#105&#99&#116&#115&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#77&#65&#82&#75&#69&#68&#66&#65&#68&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#40&#54&#41&#32&#47&#42&#32&#109&#97&#114&#107&#101&#100&#32&#98&#97&#100&#32&#98&#121&#32&#70&#108&#97&#115&#104&#70&#88&#32&#32&#32&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#70&#76&#65&#71&#83&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#40&#55&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#69&#67&#67&#50&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#40&#56&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#82&#69&#83&#69&#82&#86&#69&#68&#95&#49&#95&#79&#70&#70&#83&#69&#84&#32&#40&#49&#49&#41&#32&#47&#42&#32&#78&#111&#116&#32&#117&#115&#101&#100&#32&#98&#121&#32&#100&#101&#102&#97&#117&#108&#116&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#84&#65&#71&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#40&#49&#50&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#84&#65&#71&#95&#76&#69&#78&#71&#84&#72&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#52&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#82&#69&#83&#69&#82&#86&#69&#68&#95&#50&#95&#79&#70&#70&#83&#69&#84&#32&#40&#49&#53&#41&#32&#47&#42&#32&#78&#111&#116&#32&#117&#115&#101&#100&#32&#98&#121&#32&#100&#101&#102&#97&#117&#108&#116&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#79&#70&#70&#83&#69&#84&#90&#69&#82&#79&#95&#69&#67&#67&#95&#76&#69&#78&#71&#84&#72&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#51&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        The "nslegacy" style is that used by earlier versions of FlashFX.
+        Starting with FlashFX Pro v3.0, flash is no longer written with this
+        format (though the SSFDC style is very similar).
+
+<p>        Note how there is not a specific layout for the AnyBitZero style of
+        flash.  This is because once we have detected the bad blocks in this
+        flash, we mark them as bad using the SSFDC style factory bad block
+        mark.  Therefore, the spare area format we use for this flash is the
+        SSFDC style.
+
+<p>        <b>The key fields in these structures are</b>
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+Tag
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+At least two bytes is required to store the tag, and preferably 4 bytes, if the FlashFX Tera mechanisms are used to provide error correction for the tag.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FBB
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Factory Bad Block mark – varies by type of flash.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ECC1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 3-byte ECC for the first 256 bytes of data in the page.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ECC2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 3-byte ECC for the second 256 bytes of data in the page.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+Flags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A one byte status field.  As defined in fxnandapi.h. this value is used to determine if the page is unwritten, written with ECC, or written by BBM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+MarkedBad
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This field is not currently used by FlashFX Tera.  Blocks which are discovered to be bad, subsequent to initial formatting are recorded internally in BBM's tables.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Spare Area Formats for 2KB Page Flash</b>
+
+<p>        The spare area formats described above are 16-bytes long each. 2KB-page
+        flash has 64-byte of spare area, and has 8 different 256 byte segments,
+        each of which requires its own 3-byte ECC value.
+
+<p>        The FlashFX Tera default behavior is to simply treat the 64-byte spare
+        area as an array of 4 16-byte areas.  The Tag and Flags fields must
+        match between the 4 areas.
+
+<p>        <b>Spare Area Formats for MLC NAND Flash</b>
+
+<p>        MLC NAND flash introduces a new set of demands on the spare area format.
+        those demands are the result of the following factors:
+        <ul>
+<li>MLC devices don't support FlashFX Tera's traditional method of tag invalidation, and thus additional fields are needed in the spare area for storage of a CRC for the tag to provide robust bit error detection.
+        <li>MLC devices often require very strong EDC mechanisms to ensure adequate rated device life, which requires additional space in the spare area for storage of ECC syndromes.
+        <li>MLC's EDC requirements will cause a severe performance penalty if a software EDC mechanism is used. Therefore, to enable acceptable read performance in such configurations, FlashFX Tera combines the EDC mechanism with a CRC error detection mechanism for the main page data, and a field must be set aside in the spare area to store a CRC for the main page.
+        <li>MLC's bit-error rates introduce the requirement for an expanded field to store Datalight page status flags.
+</ul>
+        FlashFX Tera is delivered with one sample spare area format for MLC devices.
+        It is designed for devices that have 64 bytes of spare area per 2 KBytes of
+        main page, but can easily be adapted for Micron and Samsung devices that
+        feature 109 bytes of spare area per 2 KBytes of main page data. For more
+        information, see the discussion of MLC flash and parameterized EDC.
+
+<p>        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#47&#42&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#54&#52&#45&#98&#121&#116&#101&#32&#115&#112&#97&#114&#101&#32&#97&#114&#101&#97&#32&#108&#97&#121&#111&#117&#116&#32&#102&#111&#114&#32&#115&#116&#97&#110&#100&#97&#114&#100&#32&#77&#76&#67&#32&#102&#108&#97&#115&#104&#46&#32&#32&#84&#104&#101&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#34&#65&#110&#121&#66&#105&#116&#90&#101&#114&#111&#34&#32&#84&#111&#115&#104&#105&#98&#97&#32&#115&#116&#121&#108&#101&#32&#102&#108&#97&#115&#104&#32&#116&#117&#114&#110&#115&#32&#105&#110&#116&#111&#32&#116&#104&#105&#115&#32&#97&#102&#116&#101&#114&#32&#119&#101&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#102&#111&#114&#109&#97&#116&#44&#32&#115&#105&#110&#99&#101&#32&#119&#101&#32&#119&#114&#105&#116&#101&#32&#116&#104&#101&#32&#102&#97&#99&#116&#111&#114&#121&#32&#109&#97&#114&#107&#32&#97&#116&#32&#83&#83&#70&#68&#67&#32&#111&#102&#102&#115&#101&#116&#32&#53&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#70&#65&#67&#84&#79&#82&#89&#66&#65&#68&#95&#79&#70&#70&#83&#69&#84&#32&#32&#40&#48&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#70&#65&#67&#84&#79&#82&#89&#66&#65&#68&#95&#76&#69&#78&#71&#84&#72&#32&#32&#40&#50&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#84&#65&#71&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#50&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#84&#65&#71&#95&#76&#69&#78&#71&#84&#72&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#52&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#69&#67&#67&#49&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#32&#40&#54&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#70&#76&#65&#71&#83&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#40&#49&#56&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#69&#67&#67&#50&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#40&#50&#50&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#69&#67&#67&#51&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#40&#51&#56&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#69&#67&#67&#52&#95&#79&#70&#70&#83&#69&#84&#32&#32&#32&#32&#32&#32&#32&#40&#53&#52&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#69&#67&#67&#95&#76&#69&#78&#71&#84&#72&#32&#32&#32&#32&#32&#32&#32&#32&#40&#49&#48&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#83&#80&#65&#82&#69&#83&#73&#90&#69&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#54&#52&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#84&#65&#71&#67&#82&#67&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#51&#52&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#100&#101&#102&#105&#110&#101&#32&#78&#83&#68&#69&#70&#65&#85&#76&#84&#77&#76&#67&#95&#77&#65&#73&#78&#67&#82&#67&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#40&#53&#48&#41&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        <b>Spare Area Format Summary</b>
+
+<p>        Depending on the style of NAND flash you are supporting, and the
+        requirements/limitations of the NAND controller you are using, you may
+        choose to construct the spare area format in any fashion which meets
+        the FlashFX Tera basic requirements:
+        <ul>
+<li>There must be space in the page to store a minimum two byte Tag value (may require four bytes).
+        <li>The spare area format should accommodate the factory bad block mark in safe fashion.
+        <li>The spare area format must hold the ECC values (however long they may be) for the data in the main page.
+        <li>The spare area must allot one byte for the FlashFX Tera Flags field for SLC devices, and four bytes for the FlashFX Tera flags field for MLC devices.
+        <li>For SLC NAND flash, there are a variety of NTM helper functions located in the \fmsl\nand\nthelp.c and fmsl\nand\ntlegacy.c modules.  Depending on the style of spare area you choose, these functions may or may not be appropriate for your needs.
+        <li>For MLC NAND Flash, there are a variety of NTM helper functions located in \fmsl\nand\ntpecchelp.c and a flexible method for creating custom EDC mechanisms in \fmsl\nand\ntpecc.c.
+</ul>
+        <h4>MLC NAND Considerations</h4>
+
+<p>        FlashFX Tera includes updates to support MLC NAND flash devices. These are
+        different from SLC devices because of their high natural bit error rate and
+        the special considerations that must be given in how the device is written.
+
+<p>        <b>MLC-enabled NTMs</b>
+
+<p>        A typical NTM must be enhanced in several ways to support
+        MLC devices:
+        <ul>
+<li>Its NtmInfo structure must be expanded to include scratch buffers for spare area and main page data. This is because spare areas for MLC devices are not always the same, and cannot be allocated on the stack using ANSI-C mechanisms.
+        <li>An appropriate spare area format must be chosen or designed that meets the requirements for MLC as outlined above.
+        <li>Its operations for reading and writing must use the Parameterized EDC Mechanism, introduced in FlashFX Tera. This is discussed below.
+        <li>Its operations for retrieving block and page status information must be modified to take the spare area format into account.
+        <li>Its operations for encoding and decoding tags must take MLC requirements into account. Default mechanisms for this are given in \fmsl\nand\ntpecchelp.c.
+        <li>Its EDC requirements must be taken into consideration, and an appropriate EDC algorithm must be merged into the Parameterized EDC Mechanism, as discussed below.
+        <li>It must encode error information into its returned status structure, and be sure that correctable errors are given the appropriate chance to be processed by FlashFX Tera's error manager.
+</ul>
+        FlashFX Tera comes with two NTMs that are preconfigured to manage MLC devices; the SIM NTM
+        (in a simulated environment- useful for testing parameterized EDC modules) and the CADMLC
+        NTM. These NTMs may be used as templates to show how the above enhancements are made.
+
+<p>        <b>Parameterized EDC Mechanism</b>
+
+<p>        Because MLC devices pose a wide variety of Error Detection and Correction challenges
+        on flash management solutions, FlashFX Tera introduces the concept of the Parameterized
+        EDC Mechanism. It provides a flexible interface by which customers can attach their
+        own custom EDC mechanisms to FlashFX Tera, so that customers have final control over
+        the EDC in use by their products. Relevant data structures are given in \include\ecc.h,
+        relevant support functions are given in \fmsl\nand\ntpecchelp.c, and example implementations
+        of parameterized EDC modules and their attachment to FlashFX Tera are given in
+        \fmsl\nand\ntpecc.c.
+
+<p>        <h4>NTM Initialization</h4>
+
+<p>        NTMs use a Create/Destroy metaphor, in similar fashion to other areas
+        of FlashFX Tera.
+
+<p>        <a HREF=QF940_NTM.c.htm#FfxNtmCreate>FfxNtmCreate()</a> Functionality
+
+<p>        An NTM's Create function is responsible for performing the following
+        operations:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+It must allocate memory as needed to store the instance specific NTM data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+It must query the device bounds information using the FfxDevGetArrayBounds function.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If the NTM uses a Project Hooks module, it may need to call the hooks level Create function.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+It must detect the NAND flash and/or NAND controller, as necessary to ensure that it is appropriate for the NTM to be initializing. This may be done via a hooks level function, either through the hooks level Create or through another method that varies depending on the NTM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+5
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If the NTM must support MLC devices, it must allocate necessary scratch buffers and acquire the necessary EDC processor to ensure reliable device operation.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+6
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Once the amount of NAND flash is detected, the NTM must call FfxDevApplyArrayBounds to apply the limits which the OEM developer has specified.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+7
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM must fill in the fields in an NTMINFO structure, and return a pointer to this structure to the caller. This is the only means by which the NAND FIM (and all higher layers of FlashFX Tera) knows any characteristics of the NAND flash.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+8
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Finally, upon successful completion, the NTM must return an NTMHANDLE to the caller. This handle is treated as opaque by the rest of the driver, and is typically a pointer to the private NTMDATA (instance data) structure.
+</td>
+</tr>
+</table>
+
+<p>
+        Should the NTM fail to initialize, it must ensure that all allocated
+        resources are released, and return NULL to the caller.
+
+<p>        See the variety of <a HREF=QF940_NTM.c.htm#FfxNtmCreate>FfxNtmCreate()</a> functions available as samples in the
+        working NTMs which are provided in the FlashFX Tera kit.
+
+<p>        <b>Handling Reserved Space</b>
+
+<p>        The handling of reserved space in FlashFX Tera is handled entirely
+        internally by its Device Manager, at the DevMgr layer. NTMs need
+        not concern themselves at all with reserved space processing.
+
+<p>        <b>The NTM Declaration</b>
+
+<p>        The NTM should declare a NANDTECHNOLOGYMODULE structure filled out with
+        the entry points into the NTM. The NAND FIM uses these function
+        pointers to access the NTM. The name of this entity should be in the
+        form "FFXNTM_ntmname", where "ntmname" is the lowercase name of the
+        file, but not including the leading "nt".  The structure should be
+        declared in the NTM and an extern declaration of it should be placed in
+        the NAND FIM code. Finally, the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file should select the
+        appropriate NTMs it is using by using a pointer to that structure. The
+        following is a sample declaration.
+
+<p>        <b>Integrating a New NTM Into FlashFX Tera</b>
+
+<p>        The FIMs are compiled into the fxnand.lib and linked into FlashFX Tera
+        as needed.  To add support for a new FIM, the following files must be
+        modified:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nand.mak
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add the file to the Dependencies section.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nand.c
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add an extern declaration of the NANDTECHNOLOGYMODULE struct for your NTM.
+</td>
+</tr>
+</table>
+
+<p>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

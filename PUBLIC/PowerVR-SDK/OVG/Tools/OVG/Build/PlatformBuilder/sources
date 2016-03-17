@@ -1,0 +1,60 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+# Title        : Tools makefile
+# Author       : 
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies.  All rights reserved.
+#              : No part of this software, either material or conceptual 
+#              : may be copied or distributed, transmitted, transcribed,
+#              : stored in a retrieval system or translated into any 
+#              : human or computer language in any form by any means,
+#              : electronic, mechanical, manual or other-wise, or 
+#              : disclosed to third parties without the express written
+#              : permission of VideoLogic Limited, Unit 8, HomePark
+#              : Industrial Estate, King's Langley, Hertfordshire,
+#              : WD4 8LZ, U.K.
+#
+# Description  : Makefile for Tools
+#
+# Platform     : Platform Builder
+#
+# $Revision: 1.5 $
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+!INCLUDE $(SDKROOT)\Builds\PlatformBuilder\sources.cmn
+
+API=OVG
+TARGETNAME=$(API)Tools
+TARGETTYPE=LIBRARY
+
+WINCETARGETFILE0=\
+	$(OBJDIR)\PVRTLoadPVG.obj	\
+	$(OBJDIR)\PVRTPrintVG.obj	\
+	$(OBJDIR)\PVRTSVGObject.obj \
+	$(OBJDIR)\PVRTSVGParser.obj \
+	$(OBJDIR)\PVRTResourceFile.obj	\
+	$(OBJDIR)\PVRTMatrixF.obj	\
+	$(OBJDIR)\PVRTString.obj \
+	$(OBJDIR)\PVRTVector.obj \
+    $(OBJDIR)\PVRTError.obj \
+    $(OBJDIR)\PVRTTexture.obj \
+    $(OBJDIR)\PVRTImage.obj
+
+CDEFINES = $(CDEFINES) -DBUILD_$(API)=1
+
+INCLUDES=\
+	$(INCLUDES)								\
+	$(SDKROOT)\Tools;						\
+	$(SDKROOT)\Tools\OVG;					\
+	$(SDKROOT)\Builds\OVG\Include;
+
+SOURCES=
+	 
+SOURCELIBS = $(WINCETARGETFILE0)

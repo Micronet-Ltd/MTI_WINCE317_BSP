@@ -1,0 +1,56 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_IGNI_ICON             ICON    DISCARDABLE     "ignition.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+//EXSTYLE WS_EX_CAPTIONOKBTN
+
+
+IDD_IGNIDLG DIALOG DISCARDABLE 6, 15, 189, 80
+STYLE WS_OVERLAPPED | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Ignition Switch Control"
+BEGIN
+    CONTROL         "Enable Ignition Switch Control",IDC_IGNI_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,6,110,10
+    COMBOBOX        IDC_IGNSTABLE,107,23,69,80,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_ACT,107,40,69,30,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_ACT_DELAY,107,57,69,80,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Ignition Stable Time:",IDC_STATIC,13,27,69,10
+    LTEXT           "Action Delay:",IDC_STATIC,13,61,66,10
+    LTEXT           "Perform Action:",IDC_STATIC,13,44,66,10
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_IGNI_TITLE			"Ignition"
+    IDS_IGNI_DESCRIPTION		"Ignition Switch Control"
+END
+
+
+
+
+

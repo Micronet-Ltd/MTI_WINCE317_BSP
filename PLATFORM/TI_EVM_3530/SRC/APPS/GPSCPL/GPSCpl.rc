@@ -1,0 +1,56 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_GPSDLG DIALOG DISCARDABLE 0, 0, 148, 54
+STYLE WS_OVERLAPPED | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "GPS Power Control"
+BEGIN
+    CONTROL         "GPS Power On",IDC_GPS_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,42,15,62,10
+    CONTROL         130,IDC_ON,"Static",SS_BITMAP | NOT WS_VISIBLE | WS_DISABLED,7,6,29,24
+    CONTROL         131,IDC_OFF,"Static",SS_BITMAP | NOT WS_VISIBLE,7,6,29,24
+    CONTROL         132,IDC_ABSENT,"Static",SS_BITMAP | NOT WS_VISIBLE,7,6,32,30
+    CTEXT           "",IDC_STATUS,7,39,134,8
+    CONTROL         "&Save as Default",IDC_CHECK_SAVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,42,29,62,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ON                  BITMAP                  "GPSOn.bmp"
+IDB_OFF                 BITMAP                  "GPSOff.bmp"
+IDB_ABSENT              BITMAP                  "GPSAbsent.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_GPS                 ICON         DISCARDABLE           "gps.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "GPS Power Settings"
+    IDS_INFO                "GPS Power Control"
+END
+

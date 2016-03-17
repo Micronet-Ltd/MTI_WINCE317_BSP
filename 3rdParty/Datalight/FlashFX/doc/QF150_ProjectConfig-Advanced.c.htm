@@ -1,0 +1,728 @@
+<html>
+<head>
+<title>
+Project Configuration: Advanced Topics
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Project Configuration: Advanced Topics
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Project Configuration: Advanced Topics">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        <h4>Compaction</h4>
+
+<p>        Compaction is the process of collecting sparsely placed, valid data
+        from a number of units on the flash, into a single unit.  Once a unit
+        has had all its valid data moved somewhere else, it can then be erased,
+        and used for future operations.  This process is sometimes called
+        "garbage collection".  During the normal course of write operations,
+        FlashFX Tera may need to perform compaction in order to complete the
+        write.  This is referred to as synchronous compaction.
+
+<p>        Background compaction improves apparent write performance by reducing
+        the need for compaction operations that must be completed synchronously
+        with write requests.  Background compaction is designed to perform
+        compaction operations while the system is otherwise idle (or at least
+        while it is idle from the perspective of FlashFX Tera).  Regardless how
+        features such as background compaction are configured, a certain level
+        of synchronous compaction will always be necessary.
+
+<p>        <b>Compaction Models</b>
+
+<p>        FlashFX Tera includes three different compaction models.  The compaction
+        model is set via the <a HREF=QF160_ProjectSettings.c.htm#FFX_COMPACTIONMODEL>FFX_COMPACTIONMODEL</a> setting which is typically set
+        to a default value in the <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> file for the specific FlashFX Tera
+        port.  The default compaction model may be different for different
+        operating systems.  The three compaction models are:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_NONE>FFX_COMPACT_NONE</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This option only performs compaction as needed during the course of writes, making it synchronous in nature.  This is the simplest compaction model to use, but results in the slowest overall performance.  Regardless of the compaction model selected, synchronous compaction operations will very likely always happen to one degree or another.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDIDLE>FFX_COMPACT_BACKGROUNDIDLE</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This option performs background compaction operations in system idle time.  Typically this option is used in those operating systems where threading is either not supported, or is not practical.  To implement this, an idle loop somewhere in the system is modified to call FfxDriverCompactIfIdle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDTHREAD>FFX_COMPACT_BACKGROUNDTHREAD</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This option performs background compaction operations on a separate, low priority thread.  This is the default setting for those operating systems which support threads.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Implementation Notes</b>
+
+<p>        When either of the background compaction models are used, only one unit
+        will be compacted at a time.  In the case of the "idle loop" model,
+        control will be returned to the idle loop after a successful
+        compaction.  In the case of the "thread" model, after a successful
+        compaction, the thread will sleep for a short period of time (typically
+        1 millisecond is requested), allowing other threads to gain control.
+        Eventually the thread will be scheduled and the process will repeat.
+
+<p>        Once the compaction thread can find nothing else to compact, it will
+        sleep for a longer period of time. This prevents the thread from
+        starving other, equal or lower priority threads.
+
+<p>        Typically a given port of FlashFX Tera to an OS implements one of the
+        two background compaction models if feasible, and it is not possible to
+        change from one to the other without making actual coding changes to
+        the port.  However, either of the background compaction models may be
+        disabled by simply changing the <a HREF=QF160_ProjectSettings.c.htm#FFX_COMPACTIONMODEL>FFX_COMPACTIONMODEL</a> setting to
+        <a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_NONE>FFX_COMPACT_NONE</a> in the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file.
+
+<p>        When using the "thread" model, the thread priority configuration
+        setting (described earlier) defaults to DCL_THREADPRIORITY_IDLE,
+        however many operating systems do not have a clearly delineated "idle"
+        thread class, but rather leave this completely up to the embedded
+        developer.  Therefore a close examination of the default FlashFX Tera
+        thread priority mappings, relative to the actual priorities used in the
+        embedded application is strongly recommended.
+
+<p>        <b>Disk Spanning</b>
+
+<p>        Disks are now allowed to span multiple Devices, so long as the
+        underlying characteristics of each Device are substantially
+        similar, meaning that the Device type, descirptive flags, locking
+        characteristics, erase block size and logical page size are
+        the same. Further, for NAND devices, the spare area size and
+        metadata size must also be the same.
+
+<p>        Disk spanning enables large disks to be created out of smaller
+        Devices, and can be used in lieu of configuring a Device to span
+        arrays of chips.
+
+<p>        To enable Disk Spanning, the <a HREF=QF680_PreprocSymbols.c.htm#FFX_DISK_SPANDEVICES>FFX_DISK_SPANDEVICES</a> flag must be set
+        in the Disk's FFX_DISKn_SETTINGS macro in the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file. Once
+        that is done, in the same FFX_DISKn_SETTINGS macro set the first
+        device number, offset and the total amount of space desired,
+        and the Disk creation algorithms will scan starting at the desired
+        offset into the indicated device and try to create the disk.
+        Devices are searched in numerical order according to the FlashFX Tera
+        Device numbering convention. If there is insufficient space to
+        meet the requirement or there are other configuration errors
+        (such as overlapping Disks, insufficient space in the remaining
+        Devices or Devices of incompatible characteristics), the Disk
+        creation will fail.
+
+<p>        There can be no holes or unused areas within the span of the Disk.
+        Note also that in a spanning configuration, use of the FFX_REMAINING
+        macro is not effective across more than one Device, and the
+        resulting Disk will only encompass the first Device. Otherwise
+        the Device scanning code in the creation algorithm would not know
+        when to stop.
+
+<p>        <b>Important Notes About Disk Spanning</b>
+
+<p>        FlashFX Tera's Bad Block Manager maintains its metadata at the end of
+        each chip it manages. Because of this, the Disk Spanning feature
+        can expose these blocks used by the Bad Block Manager. As a result
+        there are special rules when creating spanning Disks.
+
+<p>        <ul>
+<li>Disks that use RAW FML Disk mmappings cannont span devices.
+        <li>Spanning Disks cannot be created over any Device that encompasses multiple chips.
+</ul>
+        In addition the the above, a normally-mapped Disk will still permit
+        the use of the RAW FML interfaces. It is critically important to use
+        utmost care when using the RAW FML interfaces on spanned Disks.
+        Careless usage of these interfaces can damage or destroy the 
+        Bad Block Manager's metadata, rendering the disk unmountable.
+        Use of these interfaces is not required in normal applications,
+        but is used by Datalight in some of the unit tests. Refrain from
+        using the RAW interfaces with normally-mapped FML disks if
+        possible. If it is required to do so, be absolutely sure it
+        is done with the utmost care.
+        
+<p>        <h4><b>QuickMount Feature</h4></b>
+
+<p>        When using FlashFX Tera on larger and larger arrays of flash, mount
+        time can become an issue because FlashFX Tera must scan the entire
+        media in order to build up its disk state information. FlashFX Tera
+        introduces the QuickMount feature, which instructs VBF (FlashFX Tera's 
+        allocator) for to reserve a small amount of space for each disk
+        containing a VBF format and configured in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> to use the 
+        QuickMount feature. This space is used by QuickMount to save internal
+        state information during a dismount of the disk. Upon remount, the
+        QuickMount code will look for this saved state information, and if
+        it is found and determined to be valid, it will use this rather than
+        scan the disk. Once used, the state information will be invalidated
+        before any other activity can occur on the disk, preventing the
+        possibility that stale state information can persist. If upon disk
+        creation a valid saved state is not found, FlashFX Tera will perform
+        a traditional scan of the media as it has always done.
+
+<p>        The QuickMount feature is switched on in the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file by
+        setting <a HREF=QF160_ProjectSettings.c.htm#FFXCONF_QUICKMOUNTSUPPORT>FFXCONF_QUICKMOUNTSUPPORT</a> to TRUE. Once that is done, the
+        QuickMount feature may be turned on and off for individual disks
+        by setting FFX_DISKn_ALLOCATOR for the individual disk desired
+        to FFX_QUICKMOUNT_ALLOCATOR_SETTINGS. See the file fxmacros.h for
+        a description of this setting.
+
+<p>        <h4>Notes About the QuickMount Feature</h4>
+
+<p>        First, QuickMount is a VBF-specific feature, and requires the use of
+        the FlashFX Tera VBF Allocator. Attempting to configure a project or
+        disk that does not use the VBF Allocator and has QuickMount enabled
+        will result in a build-time error.
+
+<p>        Second, in order to use the QuickMount feature on a disk, it will
+        need to be formatted. If the disk in question already has a valid
+        VBF format on it that does not use QuickMount, FlashFX Tera will
+        continue to use that format as if QuickMount were disabled for that
+        disk even if it is enabled in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>. This is to avoid unplanned
+        and unwanted reformats of a disk. To use QuickMount with such a
+        disk, you will have to force a reformat either through other disk
+        configuration options or manually using other FlashFX Tera disk
+        management tools.
+
+<p>        The converse is not true. A disk formatted with QuickMount enabled
+        will not be recognized as a valid format by FlashFX Tera without
+        QuickMount enabled, and depending on other configuration settings
+        will either reformat automatically or fail to mount.
+
+<p>        Finally, a word should be said about the interaction between the
+        QuickMount feature and other FlashFX Tera tools. It is well-known
+        that some FlashFX Tera tools will destroy a VBF or filesystem format
+        if they are run on a disk that contains one. Historically such
+        issues manifested themselves as a failure to recognize the format,
+        and in systems where the FlashFX Tera device driver can be subjected
+        to such tests when installed and operating in the OS, all manner
+        of undesirable behavior can result. It has always been important
+        to take care with how such tools are exercised, but the QuickMount
+        feature magnifies that. The reason is that such tools (primarily
+        FMSL Test) can destroy the on-media data structures of the VBF
+        or filesystem format, while leaving the QuickMount structures
+        intact. Upon the next mount, the QuickMount feature will
+        successfully mount the disk without knowledge that the data it
+        contains has been altered. At this point the OS may try to use
+        the disk, and all sorts of problems can show up that are very
+        difficult to figure out without knowledge of what has been
+        done.
+
+<p>        <h4><b>Modifying the Project Hooks Layer</h4></b>
+
+<p>        The <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file is the primary means of customizing the most
+        commonly used configuration options in FlashFX Tera.  The Project Hooks
+        layer is designed to provide an even more flexible mechanism to allow a
+        project to customize and extend the functionality of FlashFX Tera by
+        providing well documented hooks into various FlashFX Tera processes –
+        hence the name "Project Hooks".
+
+<p>        The default implementations of the Project Hooks layer modules are
+        often different for each operating system that FlashFX Tera supports,
+        and are located in the os\wince\hooks directory.
+
+<p>        <b>FlashFX Tera Project Hooks components</b>
+
+<p>        This section describes the various Project Hooks modules in detail.  It
+        should be noted that while there are quite a few Project Hooks modules,
+        only in rare circumstances do many of them need to be modified for a
+        given FlashFX Tera implementation.  For example, a typical FlashFX Tera
+        implementation will require anywhere from zero to two of the Project
+        Hooks modules to be modified.
+
+<p>        <b>ffxmain.c</b> is a unique part of the Project Hooks interface, in that
+        the default implementations of all the other Project Hooks modules
+        remain in the os\wince\hooks directory until such time as the
+        developer makes his own copy, as described below, whereas there is
+        always a default implementation of this file placed in the Project
+        Directory.
+
+<p>        Some of the purposes ffxmain.c can
+        serve include:
+
+<p>        <ul>
+<li>It acts as a stub module so that in the case where you have no other project specific code, it will allow the project library to be created properly.
+        <li>It may be used to contain any project-specific code you might have.
+        <li>It allows your project code to control whether the FlashFX Tera device driver loads or not.
+        <li>The function FfxProjMain is called by the FlashFX Tera device driver during the driver initialization process, immediately prior to displaying the FlashFX copyright messages.  This function returns TRUE or FALSE.  TRUE indicates that the driver should proceed to load normally.  FALSE indicates that the driver load process should be aborted.
+</ul>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<b>fhaccess.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains the <a HREF=QF960_ProjectHooks.c.htm#FfxHookAccessBegin>FfxHookAccessBegin()</a> and <a HREF=QF960_ProjectHooks.c.htm#FfxHookAccessEnd>FfxHookAccessEnd()</a> functions which are called by the FMSL whenever access to the flash memory is starting or has completed.  These functions are typically used in projects where access to the flash requires control of a Vpp setting.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhbbm.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains functionality for hooking into the BBM format process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhdevice.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains routines for creating and destroying Devices.  This interface provides the ability for the given project to associate data with individual device instances, as they are created and destroyed by the OS level device driver.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhdisk.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains routines for creating and destroying Disks.  This interface provides the ability for the given project to associate data with individual device instances, as they are created and destroyed by the OS level device driver.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhecc.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains hook functions for customizing ECC processing.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhinit.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains the <a HREF=QF960_ProjectHooks.c.htm#FfxHookDriverCreate>FfxHookDriverCreate()</a> and <a HREF=QF960_ProjectHooks.c.htm#FfxHookDriverDestroy>FfxHookDriverDestroy()</a> functions which are used at initialization and shutdown time.  These functions provide the ability to supply customized, project specific startup and shutdown functionality.  These functions are called once at initialization and shutdown time, regardless how many drive instances may be in use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhoption.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains <a HREF=QF960_ProjectHooks.c.htm#FfxHookOptionGet>FfxHookOptionGet()</a> function.  FlashFX Tera uses a hierarchical configuration interface that is designed to give the project level code the ultimate decision in how FlashFX Tera is configured at run-time.  The FlashFX Tera run-time configuration options are defined in the fxoption.h header file.  Configuration options that are not handled by <a HREF=QF960_ProjectHooks.c.htm#FfxHookOptionGet>FfxHookOptionGet()</a> are passed to FfxDriverOptionGet – which is where most options are handled.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhwindow.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains the <a HREF=QF960_ProjectHooks.c.htm#FfxHookMapWindow>FfxHookMapWindow()</a> function which is used to map flash into a memory window as the flash is accessed.  For linearly mapped flash arrays, these functions may return a window start and size that encompass the entire flash array.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>NTM Specific Hooks Modules</b>
+
+<p>        The following modules contain the hook functions which are specific to
+        individual NTMs.  The hook module name is the same as that of the NTM,
+        with an "fh" prefix rather than the "nt" prefix.  See the NTM
+        implementation section of this documentation for more information about
+        the NAND control interface.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<b>fh1nand.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains hooks functions for the OneNAND NTM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhpageio.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains hooks functions for the PageIO NTM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhcad.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains hooks functions for the CAD NTM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhmicron.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains hooks functions for the Micron NTM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhmx31.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains hooks functions for the MX31 NTM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>fhpxa320.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains hooks functions for the PXA320 NTM.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Enhancing Project Hooks Functionality</b>
+
+<p>        <b>Note --  you should never modify the files in the hooks directory – instead, copy the required files into your Project Directory and modify them there.</b>
+
+<p>        Follow these steps to modify one or more of these files for
+        your project:
+        <ul>
+<li>Copy the desired file or files from the os\wince\hooks directory into your Project Directory.  You do not need to rename the files.
+        <li>Make your changes as required.
+        <li>Edit the ffxproj.mak file for your project and in the "Dependencies" section of the make file, add your new modules.
+</ul>
+        The FlashFX Tera build process and make file structure is designed so
+        that your newly modified files will take precedence over the default
+        implementations in the os\wince\hooks directory.
+
+<p>        <b>ECC Processing</b>
+
+<p>        In some cases a useful performance increase may be obtained by
+        implementing the ECC calculations in hardware.  Some NTMs are
+        designed to be able to take advantage of a hardware ECC implementation
+        by calling functions at the beginning and end of data transfers.  The
+        default implementation of these functions is to perform the ECC
+        calculation in software, but a project is free to provide an alternate
+        implementation.  This could be optimized assembly code or could use
+        actual ECC calculation hardware.
+
+<p>        There are only two functions that need to be implemented to support
+        hardware ECC.  The NTM calls <a HREF=QF960_ProjectHooks.c.htm#FfxHookEccCalcStart>FfxHookEccCalcStart()</a> just before
+        starting a data transfer for a read or write operation, and calls
+        <a HREF=QF960_ProjectHooks.c.htm#FfxHookEccCalcRead>FfxHookEccCalcRead()</a> just after the transfer is completed.
+
+<p>        These functions are designed to allow a variety of hardware
+        implementations. Often, the ECC calculation hardware is part of the
+        interface to the NAND flash chips, and calculates the ECC directly from
+        the data written to or read from the flash.  This requires initializing
+        the calculation before starting the transfer and reading the result
+        when the transfer is completed.  Sometimes the calculation may be
+        performed by a coprocessor that is capable of operating on the data in
+        the buffer.  In this case, the ECC calculation may be performed
+        concurrently with a write, but must not start until after the buffer is
+        filled by a read.
+
+<p>        <h4>Customizing the OS Services Layer</h4>
+
+<p>        The default implementation of the FlashFX Tera OS Services layer is
+        located in the os\wince\services directory.  Do not
+        confuse the FlashFX Tera OS Services with the DCL OS Services.  The
+        FlashFX Tera OS Services are a very limited set of functions which are
+        exclusively used by FlashFX Tera.  The DCL OS Services are a wider set
+        of functions which are used by multiple Datalight products.  Please see
+        the DCL documentation for more information on the OS Services modules
+        found there.
+
+<p>        <b>Note</b> -- It is rare that any of the modules in the OS Services layer
+        need to be modified.  These modules are designed to function correctly
+        for each individual OS that FlashFX Tera supports, and typically do not
+        need to be changed.  One example of a circumstance where they might
+        need to be changed is when implementing FlashFX Tera in a boot loader,
+        as described later in this manual.  Another example would be if you are
+        modifying FlashFX Tera to work with a version of the operating system
+        that was not previously supported.
+
+<p>        This section describes the various FlashFX Tera specific OS Services
+        modules.  The functions mentioned in these modules are described in
+        detail in the FlashFX Tera API Function Reference Manual.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<b>oedelay.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains the <a HREF=QF950_OSServices.c.htm#_sysdelay>_sysdelay()</a> function.  This function provides microsecond resolution delays to accommodate slow devices. It is used primarily by the NOR and Sibley FIMs.  If you are using NAND only, this function may not be required.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<b>oeintr.c</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains the <a HREF=QF950_OSServices.c.htm#_sysinterruptdisable>_sysinterruptdisable()</a> and <a HREF=QF950_OSServices.c.htm#_sysinterruptrestore>_sysinterruptrestore()</a> functions.  Note that these functions may not be implemented in all OS Layers, as they are only used in rare circumstances in custom, platform specific code.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Enhancing OS Services Functionality</b>
+
+<p>        <b>Note -- You should never modify the files in the services directory – instead, copy the required files into your Project Directory and modify them there.</b>
+
+<p>        Follow these steps to modify one or more of these files for
+        your project:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Copy the desired file or files from the os\wince\services directory into your Project Directory.  You do not need to rename the files.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Make your changes as required.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Edit the ffxproj.mak file for your project and update the Dependencies section
+</td>
+</tr>
+</table>
+
+<p>
+        The FlashFX Tera build process and makefile structure is designed so
+        that your newly modified files will take precedence over the default
+        implementations in the os\wince\services directory.
+
+<p>        <h4>Configuring VBF</h4>
+
+<p>        Most developers will not need to customize the VBF configuration,
+        however it may be desirable or necessary in some cases.  VBF
+        configuration settings are set in <a HREF=QF640_Headers.c.htm#vbfconf.h>vbfconf.h</a>, which is located in the
+        include directory.
+
+<p>        To make custom VBF changes, it is recommended that the original
+        <a HREF=QF640_Headers.c.htm#vbfconf.h>vbfconf.h</a> file be copied into your Project Directory and modified
+        there.  The include path ordering will ensure that the copy in the
+        Project Directory takes precedence over the one in the general include
+        directory.
+
+<p>        See the <i>"FlashFX Project Settings Reference"</i> section for details on
+        VBF settings which can be configured.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

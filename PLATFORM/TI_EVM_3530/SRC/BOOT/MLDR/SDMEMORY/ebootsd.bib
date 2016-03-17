@@ -1,0 +1,42 @@
+; Copyright (c) 2007, 2013 Micronet Ltd. All rights reserved.
+; by Vladimir Zatulovsky
+;
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+; File: eboot.bib
+;
+; This file define EBOOT image layout. Before modifying this file refer to
+; image_cfg.h file for other code layout and 
+; dependence.
+;
+
+MEMORY
+
+;   Name       Start     Size      Type
+;   -------    --------  --------  ----
+    ARGS       80000000  00001000  RESERVED
+    EBOOTSD    85E00000  00040000  RAMIMAGE
+    RAM        85E80000  00050000  RAM
+    STACK      85EE0000  00020000  RESERVED
+
+CONFIG
+    COMPRESSION=OFF
+    PROFILE=OFF
+    KERNELFIXUPS=ON
+
+    ROMSTART=85E00000
+    ROMWIDTH=32
+    ROMSIZE=40000
+
+MODULES
+; Name      Path                                        Memory
+; --------  ------------------------------------------  ---------
+  nk.exe    $(_RAWFILETGT)\$(WINCEDEBUG)\ebootsd.exe    EBOOTSD

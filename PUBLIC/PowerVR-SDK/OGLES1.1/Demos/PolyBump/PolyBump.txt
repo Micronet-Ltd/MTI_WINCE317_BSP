@@ -1,0 +1,15 @@
+
+Demo title: 		PolyBump
+
+Demonstrates: 		DOT3 per-pixel Lighting
+
+Short Description:	Illustrates the PolyBump technology developed by Crytek to enhance 3D-rendering quality without increasing the overhead in real-time rendering.  
+
+Full Description:	
+This demo illustrates the Polybump technology developed by Crytek to enhance 3D-rendering quality without increasing the overhead in real-time rendering. It allows users to create and render an extremely low poly model using per pixel DOT3 lighting. The DOT3 NormalMap is automatically generated from an ultra high poly model. As a result when displaying the low polygon model with the DOT3 map generated from the high polygon object there is virtually no visible difference between the two. Rendering time is greatly decreased and bandwidth is compressed. In this demo a model of a highly detailed human head is show even though there are only 276 polygons in the model. 
+ 
+VGP: 			Not Required
+Polygon Count: 		276
+Vertex Count: 		153
+
+

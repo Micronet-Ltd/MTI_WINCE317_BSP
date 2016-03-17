@@ -1,0 +1,1054 @@
+ srvclum
+
+ Timestamp is 4c9a7095 (Wed Sep 22 17:09:41 2010)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 00005e8fH .rdata                  CODE
+ 0001:00005eb0 00000024H .rdata$debug            CODE
+ 0001:00005ed4 0002e490H .text                   CODE
+ 0001:00034364 00000064H .xdata                  CODE
+ 0001:000343c8 00000014H .idata$2                CODE
+ 0001:000343dc 00000014H .idata$3                CODE
+ 0001:000343f0 00000110H .idata$4                CODE
+ 0001:00034500 0000000cH .idata$6                CODE
+ 0001:00034510 00000b40H .edata                  CODE
+ 0002:00000000 00000110H .idata$5                DATA
+ 0002:00000110 000016d8H .data                   DATA
+ 0002:000017e8 00000470H .bss                    DATA
+ 0003:00000000 00000d58H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0001:00000000       __xc_a                     10001000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     10001004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     10001008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     1000100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     10001010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     10001014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     10001018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     1000101c     corelib0:crt0init.obj
+ 0001:000000e0       ??_C@_0CP@BLJCOKPF@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2cod@ 100010e0     pds.obj
+ 0001:00000110       ??_C@_0BP@NFBGHLCM@PDSGeneratePixelEventProgram?$CI?$CJ?$AA@ 10001110     pds.obj
+ 0001:00000130       ??_C@_0CC@PGCKEBHB@PDSGeneratePixelShaderSAProgram?$CI@ 10001130     pds.obj
+ 0001:00000154       ??_C@_0CI@MECGHJNF@PDSGenerateStaticPixelShaderSAPr@ 10001154     pds.obj
+ 0001:0000017c       ??_C@_0CA@BNMMMKJA@PDSGeneratePixelShaderProgram?$CI?$CJ?$AA@ 1000117c     pds.obj
+ 0001:0000019c       ??_C@_0BO@LFANJAEO@PDSGenerateStateCopyProgram?$CI?$CJ?$AA@ 1000119c     pds.obj
+ 0001:000001bc       ??_C@_0CD@DHPMMCBB@PDSGenerateVertexShaderSAProgram@ 100011bc     pds.obj
+ 0001:000001e0       ??_C@_0CH@OKAPIIMC@PDSGenerateStaticVertexShaderPro@ 100011e0     pds.obj
+ 0001:00000208       ??_C@_0CB@DOFLMPOO@PDSGenerateVertexShaderProgram?$CI?$CJ@ 10001208     pds.obj
+ 0001:0000022c       ??_C@_0CA@DLBJABAO@PDSGenerateConstUploadProgram?$CI?$CJ?$AA@ 1000122c     pds.obj
+ 0001:0000024c       ??_C@_0CD@JNNANOAP@PDSGenerateTerminateStateProgram@ 1000124c     pds.obj
+ 0001:00000270       ??_C@_0CA@JFFAOOOI@PDSPatchTerminateStateProgram?$CI?$CJ?$AA@ 10001270     pds.obj
+ 0001:000003f8       ??_C@_0CC@MEMGCBGM@SGXFindSharedPBDesc?3?5KM?5failed?5?$CF@ 100013f8     bridged_sgx_glue.obj
+ 0001:0000041c       ??_C@_0CH@HPFCPFJ@SGXFindSharedPBDesc?3?5BridgeCall?5@ 1000141c     bridged_sgx_glue.obj
+ 0001:00000444       ??_C@_0CE@POABMOKP@SGXFindSharedPBDesc?3?5Invalid?5par@ 10001444     bridged_sgx_glue.obj
+ 0001:00000468       ??_C@_0FA@FGCIGIEP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10001468     bridged_sgx_glue.obj
+ 0001:000004b8       ??_C@_0BE@EJIEKJCG@SGXFindSharedPBDesc?$AA@ 100014b8     bridged_sgx_glue.obj
+ 0001:000004cc       ??_C@_0CI@LJJMDMPD@SGXUnrefSharedPBDesc?3?5BridgeCall@ 100014cc     bridged_sgx_glue.obj
+ 0001:000004f4       ??_C@_0CF@OCDCFHEC@SGXUnrefSharedPBDesc?3?5Invalid?5pa@ 100014f4     bridged_sgx_glue.obj
+ 0001:0000051c       ??_C@_0BF@IFMGACJJ@SGXUnrefSharedPBDesc?$AA@ 1000151c     bridged_sgx_glue.obj
+ 0001:00000534       ??_C@_0CB@GLJGFLHJ@SGXAddSharedPBDesc?3?5KM?5failed?5?$CFd@ 10001534     bridged_sgx_glue.obj
+ 0001:00000558       ??_C@_0CG@OOFEPJMF@SGXAddSharedPBDesc?3?5BridgeCall?5f@ 10001558     bridged_sgx_glue.obj
+ 0001:00000580       ??_C@_0CD@HJGEBPMJ@SGXAddSharedPBDesc?3?5Invalid?5para@ 10001580     bridged_sgx_glue.obj
+ 0001:000005a4       ??_C@_0BD@JBGOILGK@SGXAddSharedPBDesc?$AA@ 100015a4     bridged_sgx_glue.obj
+ 0001:000005b8       ??_C@_0CF@MFBLBMF@SGXSubmitTransfer?3?5BridgeCall?5fa@ 100015b8     bridged_sgx_glue.obj
+ 0001:000005e0       ??_C@_0CC@PKCPBABF@SGXSubmitTransfer?3?5Invalid?5param@ 100015e0     bridged_sgx_glue.obj
+ 0001:00000604       ??_C@_0BC@PAENNMGA@SGXSubmitTransfer?$AA@ 10001604     bridged_sgx_glue.obj
+ 0001:00000618       ??_C@_0CJ@FADAEPJN@SGXRegisterHWRenderContext?3?5KM?5f@ 10001618     bridged_sgx_glue.obj
+ 0001:00000644       ??_C@_0CO@NDMJGPI@SGXRegisterHWRenderContext?3?5Brid@ 10001644     bridged_sgx_glue.obj
+ 0001:00000674       ??_C@_0CL@FJKMMGPK@SGXRegisterHWRenderContext?3?5Inva@ 10001674     bridged_sgx_glue.obj
+ 0001:000006a0       ??_C@_0BL@HFKPENAF@SGXRegisterHWRenderContext?$AA@ 100016a0     bridged_sgx_glue.obj
+ 0001:000006bc       ??_C@_0DA@GOHJDBPK@SGXUnregisterHWRenderContext?3?5Br@ 100016bc     bridged_sgx_glue.obj
+ 0001:000006ec       ??_C@_0CN@MKKNMNJ@SGXUnregisterHWRenderContext?3?5In@ 100016ec     bridged_sgx_glue.obj
+ 0001:0000071c       ??_C@_0BN@OLLMKGAN@SGXUnregisterHWRenderContext?$AA@ 1000171c     bridged_sgx_glue.obj
+ 0001:0000073c       ??_C@_0CL@KEMMAEEO@SGXRegisterHWTransferContext?3?5KM@ 1000173c     bridged_sgx_glue.obj
+ 0001:00000768       ??_C@_0CN@BCLHDMMC@SGXRegisterHWTransferContext?3?5In@ 10001768     bridged_sgx_glue.obj
+ 0001:00000798       ??_C@_0BN@CGGMKJND@SGXRegisterHWTransferContext?$AA@ 10001798     bridged_sgx_glue.obj
+ 0001:000007b8       ??_C@_0DC@DJPGNFMM@SGXUnregisterHWTransferContext?3?5@ 100017b8     bridged_sgx_glue.obj
+ 0001:000007ec       ??_C@_0CP@FBHMOHNP@SGXUnregisterHWTransferContext?3?5@ 100017ec     bridged_sgx_glue.obj
+ 0001:0000081c       ??_C@_0BP@NJGNIGDI@SGXUnregisterHWTransferContext?$AA@ 1000181c     bridged_sgx_glue.obj
+ 0001:0000083c       ??_C@_0CK@CLMDEKAI@SGXFlushHWRenderTarget?3?5BridgeCa@ 1000183c     bridged_sgx_glue.obj
+ 0001:00000868       ??_C@_0BH@CIDACPNO@SGXFlushHWRenderTarget?$AA@ 10001868     bridged_sgx_glue.obj
+ 0001:00000880       ??_C@_0CH@IAJIAMNC@SGXFlushHWRenderTarget?3?5Invalid?5@ 10001880     bridged_sgx_glue.obj
+ 0001:000008a8       ??_C@_0BN@KKLOHPJ@SGXDoKick?3?5BridgeCall?5failed?$AA@ 100018a8     bridged_sgx_glue.obj
+ 0001:000008c8       ??_C@_0BK@KMPNNNAO@SGXDoKick?3?5Invalid?5params?$AA@ 100018c8     bridged_sgx_glue.obj
+ 0001:000008e4       ??_C@_09JOBFNGFO@SGXDoKick?$AA@ 100018e4     bridged_sgx_glue.obj
+ 0001:000008f0       ??_C@_0CM@FNPNEEKI@SGXScheduleProcessQueues?3?5Bridge@ 100018f0     bridged_sgx_glue.obj
+ 0001:0000091c       ??_C@_0CJ@KIJLJIEG@SGXScheduleProcessQueues?3?5Invali@ 1000191c     bridged_sgx_glue.obj
+ 0001:00000948       ??_C@_0BJ@MOLCDPNO@SGXScheduleProcessQueues?$AA@ 10001948     bridged_sgx_glue.obj
+ 0001:00000964       ??_C@_0CI@KCFOFIAD@SGXGetInfoForSrvInit?3?5BridgeCall@ 10001964     bridged_sgx_glue.obj
+ 0001:0000098c       ??_C@_0CF@DAMADJLH@SGXGetInfoForSrvInit?3?5Invalid?5pa@ 1000198c     bridged_sgx_glue.obj
+ 0001:000009b4       ??_C@_0BF@BODJBPFN@SGXGetInfoForSrvInit?$AA@ 100019b4     bridged_sgx_glue.obj
+ 0001:000009cc       ??_C@_0CD@CADCGLDH@SGXDevInitPart2?3?5BridgeCall?5fail@ 100019cc     bridged_sgx_glue.obj
+ 0001:000009f0       ??_C@_0CH@JKFCFBMI@SGXDevInitPart2?3?5BridgeIn?5alloc?5@ 100019f0     bridged_sgx_glue.obj
+ 0001:00000a18       ??_C@_0CA@NBKPGAJM@SGXDevInitPart2?3?5Invalid?5params?$AA@ 10001a18     bridged_sgx_glue.obj
+ 0001:00000a38       ??_C@_0BA@JKMAICHB@SGXDevInitPart2?$AA@ 10001a38     bridged_sgx_glue.obj
+ 0001:00000a48       ??_C@_0BP@MIIBNEPL@SGXGetClientInfo?3?5KM?5failed?5?$CFd?$AA@ 10001a48     bridged_sgx_glue.obj
+ 0001:00000a68       ??_C@_0CE@MALOGIF@SGXGetClientInfo?3?5BridgeCall?5fai@ 10001a68     bridged_sgx_glue.obj
+ 0001:00000a8c       ??_C@_0CB@NNGNIKG@SGXGetClientInfo?3?5Invalid?5params@ 10001a8c     bridged_sgx_glue.obj
+ 0001:00000ab0       ??_C@_0BB@CKELABCP@SGXGetClientInfo?$AA@ 10001ab0     bridged_sgx_glue.obj
+ 0001:00000ac4       ??_C@_0CI@DIKDBAGB@SGXReleaseClientInfo?3?5BridgeCall@ 10001ac4     bridged_sgx_glue.obj
+ 0001:00000aec       ??_C@_0CF@BFGKFNFB@SGXReleaseClientInfo?3?5Invalid?5pa@ 10001aec     bridged_sgx_glue.obj
+ 0001:00000b14       ??_C@_0BF@CBGEBHFG@SGXReleaseClientInfo?$AA@ 10001b14     bridged_sgx_glue.obj
+ 0001:00000b2c       ??_C@_0CE@GPBBOOPA@SGXGetInternalDevInfo?3?5KM?5failed@ 10001b2c     bridged_sgx_glue.obj
+ 0001:00000b50       ??_C@_0CJ@PIBIFNIP@SGXGetInternalDevInfo?3?5BridgeCal@ 10001b50     bridged_sgx_glue.obj
+ 0001:00000b7c       ??_C@_0CG@CICOHPEP@SGXGetInternalDevInfo?3?5Invalid?5p@ 10001b7c     bridged_sgx_glue.obj
+ 0001:00000ba4       ??_C@_0BG@LALOMPOI@SGXGetInternalDevInfo?$AA@ 10001ba4     bridged_sgx_glue.obj
+ 0001:00000bc0       ??_C@_0FG@HCEEGGFP@SGXConnectionCheck?3?5Incompatible@ 10001bc0     bridged_sgx_glue.obj
+ 0001:00000c18       ??_C@_0GK@MFOLKBEO@SGXConnectionCheck?3?5Build?5option@ 10001c18     bridged_sgx_glue.obj
+ 0001:00000c88       ??_C@_0GK@BIECIHOI@SGXConnectionCheck?3?5Build?5option@ 10001c88     bridged_sgx_glue.obj
+ 0001:00000cf4       ??_C@_0DD@EGOIGMFK@SGXConnectionCheck?3?5Call?5to?5SGXG@ 10001cf4     bridged_sgx_glue.obj
+ 0001:00000d28       ??_C@_0CC@CNFLJPHJ@SGXGetMiscInfo?3?5BridgeCall?5faile@ 10001d28     bridged_sgx_glue.obj
+ 0001:00000d4c       ??_C@_0CD@ODEHAIKC@SGXGetMiscInfo?3?5Invalid?5psMiscIn@ 10001d4c     bridged_sgx_glue.obj
+ 0001:00000d70       ??_C@_0P@MJFDBIOJ@SGXGetMiscInfo?$AA@ 10001d70     bridged_sgx_glue.obj
+ 0001:00000d80       ??_C@_0CE@FGOPKBDD@SGXReadHWPerfCounters?3?5KM?5failed@ 10001d80     bridged_sgx_glue.obj
+ 0001:00000da4       ??_C@_0CJ@CEAEFEIP@SGXReadHWPerfCounters?3?5BridgeCal@ 10001da4     bridged_sgx_glue.obj
+ 0001:00000dd0       ??_C@_0BG@FNMHBHFF@SGXReadHWPerfCounters?$AA@ 10001dd0     bridged_sgx_glue.obj
+ 0001:00000de8       ??_C@_0BO@MFJACAGA@SGXReadHWPerfCB?3?5KM?5failed?5?$CFd?$AA@ 10001de8     bridged_sgx_glue.obj
+ 0001:00000e08       ??_C@_0CD@LJDMGHO@SGXReadHWPerfCB?3?5BridgeCall?5fail@ 10001e08     bridged_sgx_glue.obj
+ 0001:00000e2c       ??_C@_0BA@ELIFDENA@SGXReadHWPerfCB?$AA@ 10001e2c     bridged_sgx_glue.obj
+ 0001:00000e3c       ??_C@_0CL@PKGANFAD@SGX2DQueryBlitsComplete?3?5BridgeC@ 10001e3c     bridged_sgx_glue.obj
+ 0001:00000e68       ??_C@_0CM@FDEAKLMK@SGX2DQueryBlitsComplete?3?5Invalid@ 10001e68     bridged_sgx_glue.obj
+ 0001:00000e94       ??_C@_0BI@HKEFJOCH@SGX2DQueryBlitsComplete?$AA@ 10001e94     bridged_sgx_glue.obj
+ 0001:00000eac       ??_C@_0CO@JGIDDEOG@PVRSRVEnumerateDeviceClass?3?5Erro@ 10001eac     bridged_pvr_glue.obj
+ 0001:00000edc       ??_C@_0CO@LFOIIJHK@PVRSRVEnumerateDeviceClass?3?5Brid@ 10001edc     bridged_pvr_glue.obj
+ 0001:00000f0c       ??_C@_0CN@OKODPDEH@PVRSRVEnumerateDeviceClass?3?5Inva@ 10001f0c     bridged_pvr_glue.obj
+ 0001:00000f40       ??_C@_0EM@NEJDAHAB@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10001f40     bridged_pvr_glue.obj
+ 0001:00000f8c       ??_C@_0CP@BHELHJGJ@PVRSRVEnumerateDeviceClass?3?5Inva@ 10001f8c     bridged_pvr_glue.obj
+ 0001:00000fbc       ??_C@_0CJ@ICLJDKGF@PVRSRVConnectServices?3?5Invalid?5p@ 10001fbc     bridged_pvr_glue.obj
+ 0001:00000fe8       ??_C@_0EG@FHJJOAOA@PVRSRVConnect?3?5Device?5connect?5ca@ 10001fe8     bridged_pvr_glue.obj
+ 0001:00001030       ??_C@_0EE@PHELKFEM@PVRSRVConnect?3?5Unable?5to?5acquire@ 10002030     bridged_pvr_glue.obj
+ 0001:00001074       ??_C@_0CM@GCGDFPJA@PVRSRVConnect?3?5Unable?5to?5enumera@ 10002074     bridged_pvr_glue.obj
+ 0001:000010a0       ??_C@_0CK@CLLHJPNI@PVRSRVConnect?3?5Unable?5to?5open?5co@ 100020a0     bridged_pvr_glue.obj
+ 0001:000010cc       ??_C@_0CK@PINANMIN@PVRSRVEnumerateDevices?3?5Error?5?$CFd@ 100020cc     bridged_pvr_glue.obj
+ 0001:000010f8       ??_C@_0CK@NLLLGBBB@PVRSRVEnumerateDevices?3?5BridgeCa@ 100020f8     bridged_pvr_glue.obj
+ 0001:00001124       ??_C@_0CH@DNPPBLOB@PVRSRVEnumerateDevices?3?5Invalid?5@ 10002124     bridged_pvr_glue.obj
+ 0001:0000114c       ??_C@_0CL@CEANKFDN@PVRSRVAcquireDeviceData?3?5Error?5?$CF@ 1000214c     bridged_pvr_glue.obj
+ 0001:00001178       ??_C@_0CL@HGGBIKB@PVRSRVAcquireDeviceData?3?5BridgeC@ 10002178     bridged_pvr_glue.obj
+ 0001:000011a4       ??_C@_0DA@INBFIMJB@PVRSRVCreateDeviceMemContext?3?5Er@ 100021a4     bridged_pvr_glue.obj
+ 0001:000011d4       ??_C@_0DA@KOHODBAN@PVRSRVCreateDeviceMemContext?3?5Br@ 100021d4     bridged_pvr_glue.obj
+ 0001:00001204       ??_C@_0CN@BPKONNHN@PVRSRVCreateDeviceMemContext?3?5In@ 10002204     bridged_pvr_glue.obj
+ 0001:00001238       ??_C@_0FE@GMCLDFNB@Likely?5Cause?3?5client?5drivers?5not@ 10002238     bridged_pvr_glue.obj
+ 0001:00001290       ??_C@_0FN@JMFJODGP@PVRSRVDestroyDeviceMemContext?3?5a@ 10002290     bridged_pvr_glue.obj
+ 0001:000012f0       ??_C@_0DB@KADAHJIC@PVRSRVDestroyDeviceMemContext?3?5B@ 100022f0     bridged_pvr_glue.obj
+ 0001:00001324       ??_C@_0CO@ICCJKODB@PVRSRVDestroyDeviceMemContext?3?5I@ 10002324     bridged_pvr_glue.obj
+ 0001:00001354       ??_C@_0CO@JEMBDFGF@PVRSRVGetDeviceMemHeapInfo?3?5Erro@ 10002354     bridged_pvr_glue.obj
+ 0001:00001384       ??_C@_0CO@LHKKIIPJ@PVRSRVGetDeviceMemHeapInfo?3?5Brid@ 10002384     bridged_pvr_glue.obj
+ 0001:000013b4       ??_C@_0CL@OHFLAJFB@PVRSRVGetDeviceMemHeapInfo?3?5Inva@ 100023b4     bridged_pvr_glue.obj
+ 0001:000013e0       ??_C@_0CJ@JIODLNAD@PVRSRVExportDeviceMem?3?5BridgeCal@ 100023e0     bridged_pvr_glue.obj
+ 0001:0000140c       ??_C@_0CG@BFNGKIFO@PVRSRVExportDeviceMem?3?5Invalid?5p@ 1000240c     bridged_pvr_glue.obj
+ 0001:00001434       ??_C@_0DH@IFJKHGDD@PVRSRVWrapExtMemory?5?3?5PVRPMapKMe@ 10002434     bridged_pvr_glue.obj
+ 0001:0000146c       ??_C@_0CH@ONEALJJH@PVRSRVWrapExtMemory?3?5Error?5?$CFd?5re@ 1000246c     bridged_pvr_glue.obj
+ 0001:00001494       ??_C@_0CH@MOCLAEAL@PVRSRVWrapExtMemory?3?5BridgeCall?5@ 10002494     bridged_pvr_glue.obj
+ 0001:000014bc       ??_C@_0CE@BJDKPHOK@PVRSRVWrapExtMemory?3?5Invalid?5par@ 100024bc     bridged_pvr_glue.obj
+ 0001:000014e0       ??_C@_0CJ@BCONJNFP@PVRSRVUnwrapExtMemory?3?5BridgeCal@ 100024e0     bridged_pvr_glue.obj
+ 0001:0000150c       ??_C@_0CG@PMMNDJAI@PVRSRVUnwrapExtMemory?3?5Invalid?5p@ 1000250c     bridged_pvr_glue.obj
+ 0001:00001534       ??_C@_0DO@CEIAMDN@PVRSRVMapDeviceClassMemory?5?3?5PVR@ 10002534     bridged_pvr_glue.obj
+ 0001:00001574       ??_C@_0DM@OBFJIGJM@PVRSRVMapDeviceClassMemory?5?3?5PVR@ 10002574     bridged_pvr_glue.obj
+ 0001:000015b0       ??_C@_0CO@CMNGEJIM@PVRSRVMapDeviceClassMemory?3?5Brid@ 100025b0     bridged_pvr_glue.obj
+ 0001:000015e0       ??_C@_0CL@GOFCOJKN@PVRSRVMapDeviceClassMemory?3?5Inva@ 100025e0     bridged_pvr_glue.obj
+ 0001:0000160c       ??_C@_0DA@MLPCNIPJ@PVRSRVUnmapDeviceClassMemory?3?5Br@ 1000260c     bridged_pvr_glue.obj
+ 0001:0000163c       ??_C@_0CN@MKDKBMBA@PVRSRVUnmapDeviceClassMemory?3?5In@ 1000263c     bridged_pvr_glue.obj
+ 0001:0000166c       ??_C@_0DF@JOCDAGEG@PVRSRVGetMiscInfo?3?5Failed?5PVRSRV@ 1000266c     bridged_pvr_glue.obj
+ 0001:000016a4       ??_C@_0CF@DAMNIAOA@PVRSRVGetMiscInfo?3?5Error?5?$CFd?5retu@ 100026a4     bridged_pvr_glue.obj
+ 0001:000016cc       ??_C@_0CF@BDKGDNHM@PVRSRVGetMiscInfo?3?5BridgeCall?5fa@ 100026cc     bridged_pvr_glue.obj
+ 0001:000016f4       ??_C@_0CC@KPBLNBJP@PVRSRVGetMiscInfo?3?5Invalid?5param@ 100026f4     bridged_pvr_glue.obj
+ 0001:00001718       ??_C@_0CE@EDKOKMKG@PVRSRVGetFBStats?3?5BridgeCall?5fai@ 10002718     bridged_pvr_glue.obj
+ 0001:0000173c       ??_C@_0CM@FDIEFOPA@PVRSRVMapPhysToUserSpace?3?5Bridge@ 1000273c     bridged_pvr_glue.obj
+ 0001:00001768       ??_C@_0CO@OGPAPJDE@PVRSRVUnmapPhysToUserSpace?3?5Brid@ 10002768     bridged_pvr_glue.obj
+ 0001:00001798       ??_C@_0DB@LCIALFDD@PVRSRVGetMMUContextPDDevPAddr?3?5B@ 10002798     bridged_pvr_glue.obj
+ 0001:000017cc       ??_C@_0CL@JHJKKFIO@PVRSRVUnmapDeviceMemory?3?5BridgeC@ 100027cc     bridged_pvr_glue.obj
+ 0001:000017f8       ??_C@_0CI@MMKOHGDL@PVRSRVUnmapDeviceMemory?3?5Invalid@ 100027f8     bridged_pvr_glue.obj
+ 0001:00001820       ??_C@_0CO@HAOIHHGM@PVRSRVModifyPendingSyncOps?3?5Erro@ 10002820     bridged_pvr_glue.obj
+ 0001:00001850       ??_C@_0CO@FDIDMKPA@PVRSRVModifyPendingSyncOps?3?5Brid@ 10002850     bridged_pvr_glue.obj
+ 0001:00001880       ??_C@_0CP@BKMAHIBE@PVRSRVModifyPendingSyncOps?3?5Inva@ 10002880     bridged_pvr_glue.obj
+ 0001:000018b0       ??_C@_0CP@JKIKABAA@PVRSRVModifyCompleteSyncOps?3?5Err@ 100028b0     bridged_pvr_glue.obj
+ 0001:000018e0       ??_C@_0CP@LJOBLMJM@PVRSRVModifyCompleteSyncOps?3?5Bri@ 100028e0     bridged_pvr_glue.obj
+ 0001:00001910       ??_C@_0DA@FOCODHBB@PVRSRVModifyCompleteSyncOps?3?5Inv@ 10002910     bridged_pvr_glue.obj
+ 0001:00001940       ??_C@_0CL@LCLMLBEL@PVRSRVGetBCBufferInfo?3?5Error?5?9?5?$CF@ 10002940     bridged_pvr_bc_glue.obj
+ 0001:0000196c       ??_C@_0CG@JPANNMNB@PVRSRVOpenBCDevice?3?5BridgeCall?5f@ 1000296c     bridged_pvr_bc_glue.obj
+ 0001:00001994       ??_C@_0CO@HJKFFCDG@PVRSRVOpenBCDevice?3?5DevClassInfo@ 10002994     bridged_pvr_bc_glue.obj
+ 0001:000019c8       ??_C@_0EP@DMPHMIAC@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 100029c8     bridged_pvr_bc_glue.obj
+ 0001:00001a18       ??_C@_0CE@KOIPABGB@PVRSRVOpenBCDevice?3?5Invalid?5DevD@ 10002a18     bridged_pvr_bc_glue.obj
+ 0001:00001a3c       ??_C@_0CH@MDNMPNEL@PVRSRVCloseBCDevice?3?5BridgeCall?5@ 10002a3c     bridged_pvr_bc_glue.obj
+ 0001:00001a64       ??_C@_0CE@NJIPNFE@PVRSRVCloseBCDevice?3?5Invalid?5par@ 10002a64     bridged_pvr_bc_glue.obj
+ 0001:00001a88       ??_C@_0CJ@MMGKPICL@PVRSRVGetBCBufferInfo?3?5BridgeCal@ 10002a88     bridged_pvr_bc_glue.obj
+ 0001:00001ab4       ??_C@_0CG@MLFPHENF@PVRSRVGetBCBufferInfo?3?5Invalid?5p@ 10002ab4     bridged_pvr_bc_glue.obj
+ 0001:00001adc       ??_C@_0CH@LNJJGENF@PVRSRVGetBCBuffer?3?5Error?5?9?5?$CFd?5re@ 10002adc     bridged_pvr_bc_glue.obj
+ 0001:00001b04       ??_C@_0CF@IPBCBBJJ@PVRSRVGetBCBuffer?3?5BridgeCall?5fa@ 10002b04     bridged_pvr_bc_glue.obj
+ 0001:00001b2c       ??_C@_0CC@MDBKKJJE@PVRSRVGetBCBuffer?3?5Invalid?5param@ 10002b2c     bridged_pvr_bc_glue.obj
+ 0001:00001b50       ??_C@_0CI@OJKOEFPK@PVRSRVOpenDCDevice?3?5Error?5?9?5?$CFd?5r@ 10002b50     bridged_pvr_dc_glue.obj
+ 0001:00001b78       ??_C@_0CG@JKLBNCJP@PVRSRVOpenDCDevice?3?5BridgeCall?5f@ 10002b78     bridged_pvr_dc_glue.obj
+ 0001:00001ba0       ??_C@_0CB@EELDKJDA@PVRSRVOpenDCDevice?3?5Alloc?5failed@ 10002ba0     bridged_pvr_dc_glue.obj
+ 0001:00001bc8       ??_C@_0EP@DBOJLIEF@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10002bc8     bridged_pvr_dc_glue.obj
+ 0001:00001c18       ??_C@_0CD@OMIPEDLI@PVRSRVOpenDCDevice?3?5Invalid?5para@ 10002c18     bridged_pvr_dc_glue.obj
+ 0001:00001c3c       ??_C@_0CJ@COGJGLOF@PVRSRVCloseDCDevice?3?5Error?5?9?5?$CFd?5@ 10002c3c     bridged_pvr_dc_glue.obj
+ 0001:00001c68       ??_C@_0CH@MGGAPDAF@PVRSRVCloseDCDevice?3?5BridgeCall?5@ 10002c68     bridged_pvr_dc_glue.obj
+ 0001:00001c90       ??_C@_0CE@GGEDJBPC@PVRSRVCloseDCDevice?3?5Invalid?5par@ 10002c90     bridged_pvr_dc_glue.obj
+ 0001:00001cb4       ??_C@_0CJ@HKNAKOMD@PVRSRVEnumDCFormats?3?5Error?5?9?5?$CFd?5@ 10002cb4     bridged_pvr_dc_glue.obj
+ 0001:00001ce0       ??_C@_0CH@IJCFMJJO@PVRSRVEnumDCFormats?3?5BridgeCall?5@ 10002ce0     bridged_pvr_dc_glue.obj
+ 0001:00001d08       ??_C@_0CE@BLGGIGPD@PVRSRVEnumDCFormats?3?5Invalid?5par@ 10002d08     bridged_pvr_dc_glue.obj
+ 0001:00001d2c       ??_C@_0CG@JDBGJFMG@PVRSRVEnumDCDims?3?5Error?5?9?5?$CFd?5ret@ 10002d2c     bridged_pvr_dc_glue.obj
+ 0001:00001d54       ??_C@_0CE@BNKAKELJ@PVRSRVEnumDCDims?3?5BridgeCall?5fai@ 10002d54     bridged_pvr_dc_glue.obj
+ 0001:00001d78       ??_C@_0CB@EILLNMMO@PVRSRVEnumDCDims?3?5Invalid?5params@ 10002d78     bridged_pvr_dc_glue.obj
+ 0001:00001d9c       ??_C@_0CN@PHGKJND@PVRSRVGetDCSystemBuffer?3?5Error?5?9@ 10002d9c     bridged_pvr_dc_glue.obj
+ 0001:00001dcc       ??_C@_0CL@CBNOJOCK@PVRSRVGetDCSystemBuffer?3?5BridgeC@ 10002dcc     bridged_pvr_dc_glue.obj
+ 0001:00001df8       ??_C@_0CI@ECHEIPCH@PVRSRVGetDCSystemBuffer?3?5Invalid@ 10002df8     bridged_pvr_dc_glue.obj
+ 0001:00001e20       ??_C@_0CF@NBAJAPLD@PVRSRVGetDCInfo?3?5Error?5?9?5?$CFd?5retu@ 10002e20     bridged_pvr_dc_glue.obj
+ 0001:00001e48       ??_C@_0CD@HIDBMLND@PVRSRVGetDCInfo?3?5BridgeCall?5fail@ 10002e48     bridged_pvr_dc_glue.obj
+ 0001:00001e6c       ??_C@_0CA@HNMFOCAN@PVRSRVGetDCInfo?3?5Invalid?5params?$AA@ 10002e6c     bridged_pvr_dc_glue.obj
+ 0001:00001e8c       ??_C@_0CN@NKIMDNKL@PVRSRVCreateDCSwapChain?3?5Error?5?9@ 10002e8c     bridged_pvr_dc_glue.obj
+ 0001:00001ebc       ??_C@_0CL@ELPBAKKL@PVRSRVCreateDCSwapChain?3?5BridgeC@ 10002ebc     bridged_pvr_dc_glue.obj
+ 0001:00001ee8       ??_C@_0CI@OBPOIOI@PVRSRVCreateDCSwapChain?3?5Invalid@ 10002ee8     bridged_pvr_dc_glue.obj
+ 0001:00001f10       ??_C@_0CM@EKDEKABM@PVRSRVDestroyDCSwapChain?3?5Bridge@ 10002f10     bridged_pvr_dc_glue.obj
+ 0001:00001f3c       ??_C@_0CJ@CNIOKKID@PVRSRVDestroyDCSwapChain?3?5Invali@ 10002f3c     bridged_pvr_dc_glue.obj
+ 0001:00001f68       ??_C@_0CG@KJMAGBJO@PVRSRVSetDCDstRect?3?5BridgeCall?5f@ 10002f68     bridged_pvr_dc_glue.obj
+ 0001:00001f90       ??_C@_0CD@NDMJNGFE@PVRSRVSetDCDstRect?3?5Invalid?5para@ 10002f90     bridged_pvr_dc_glue.obj
+ 0001:00001fb4       ??_C@_0CG@FEDLPBBM@PVRSRVSetDCSrcRect?3?5BridgeCall?5f@ 10002fb4     bridged_pvr_dc_glue.obj
+ 0001:00001fdc       ??_C@_0CD@MKOHAAML@PVRSRVSetDCSrcRect?3?5Invalid?5para@ 10002fdc     bridged_pvr_dc_glue.obj
+ 0001:00002000       ??_C@_0CL@FDCOIEGM@PVRSRVSetDCDstColourKey?3?5BridgeC@ 10003000     bridged_pvr_dc_glue.obj
+ 0001:0000202c       ??_C@_0CI@MGMHFPE@PVRSRVSetDCDstColourKey?3?5Invalid@ 1000302c     bridged_pvr_dc_glue.obj
+ 0001:00002054       ??_C@_0CL@DNMLIFPL@PVRSRVSetDCSrcColourKey?3?5BridgeC@ 10003054     bridged_pvr_dc_glue.obj
+ 0001:00002080       ??_C@_0CI@PFNGOBIC@PVRSRVSetDCSrcColourKey?3?5Invalid@ 10003080     bridged_pvr_dc_glue.obj
+ 0001:000020a8       ??_C@_0CI@IFDHEECE@PVRSRVGetDCBuffers?3?5Error?5?9?5?$CFd?5r@ 100030a8     bridged_pvr_dc_glue.obj
+ 0001:000020d0       ??_C@_0CG@LBGGCDNJ@PVRSRVGetDCBuffers?3?5BridgeCall?5f@ 100030d0     bridged_pvr_dc_glue.obj
+ 0001:000020f8       ??_C@_0CD@DDGEBINC@PVRSRVGetDCBuffers?3?5Invalid?5para@ 100030f8     bridged_pvr_dc_glue.obj
+ 0001:0000211c       ??_C@_0CI@IIKMHAIC@PVRSRVSwapToDCBuffer?3?5BridgeCall@ 1000311c     bridged_pvr_dc_glue.obj
+ 0001:00002144       ??_C@_0CO@DBIMGELO@PVRSRVSwapToDCBuffer?3?5Invalid?5re@ 10003144     bridged_pvr_dc_glue.obj
+ 0001:00002174       ??_C@_0CF@OJPDENBD@PVRSRVSwapToDCBuffer?3?5Invalid?5pa@ 10003174     bridged_pvr_dc_glue.obj
+ 0001:0000219c       ??_C@_0CI@GOAIBIAD@PVRSRVSwapToDCSystem?3?5BridgeCall@ 1000319c     bridged_pvr_dc_glue.obj
+ 0001:000021c4       ??_C@_0CF@KCADCEJL@PVRSRVSwapToDCSystem?3?5Invalid?5pa@ 100031c4     bridged_pvr_dc_glue.obj
+ 0001:000021f0       ??_C@_0EO@MCCILCHI@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 100031f0     srvclient_wince.obj
+ 0001:00002240       ??_C@_0CM@KBHALGNO@PVRSRVEventObjectCreate?3?5CreateE@ 10003240     srvclient_wince.obj
+ 0001:0000226c       ??_C@_15MAOEGKJF@?$AA?$CF?$AAS?$AA?$AA@ 1000326c     srvclient_wince.obj
+ 0001:00002274       ??_C@_0DG@HIEGBANB@PVRSRVEventObjectWait?3?5hOSEvent?5@ 10003274     srvclient_wince.obj
+ 0001:000022b0       ??_C@_0ED@PGKPANGI@PVRSRVEventObjectWait?3?5call?5to?5P@ 100032b0     srvclient_wince.obj
+ 0001:000022f4       ??_C@_0CN@LEDKDDPK@PVRSRVLockResource?3?5failed?5to?5lo@ 100032f4     srvclient_wince.obj
+ 0001:00002324       ??_C@_0CN@ONKAFNGD@PVRSRVUnlockResource?3?5Resource?5i@ 10003324     srvclient_wince.obj
+ 0001:00002354       ??_C@_0BM@PFMJOINA@Should?5be?5?$CFx?5is?5actually?5?$CFx?$AA@ 10003354     srvclient_wince.obj
+ 0001:00002370       ??_C@_0EB@NGCCBOBH@PVRSRVUnlockResource?3?5Resource?5i@ 10003370     srvclient_wince.obj
+ 0001:000023b4       ??_C@_0CK@GCLLIBAF@Assertion?5?$CI?$CFs?$CJ?5failed?$CB?5File?5?$CFs?0?5@ 100033b4     srvclient_wince.obj
+ 0001:000023e0       ??_C@_0CC@EMIONGIP@FindAppHintInFile?5?3?5Bad?5eDataTyp@ 100033e0     pvr_apphint.obj
+ 0001:00002404       ??_C@_0BH@CKPLJBND@Hint?3?5Setting?5?$CFs?5to?5?$CFd?$AA@ 10003404     pvr_apphint.obj
+ 0001:0000241c       ??_C@_0BH@HJCCLCMD@Hint?3?5Setting?5?$CFs?5to?5?$CFu?$AA@ 1000341c     pvr_apphint.obj
+ 0001:00002434       ??_C@_0BH@BIMNPDFB@Hint?3?5Setting?5?$CFs?5to?5?$CFf?$AA@ 10003434     pvr_apphint.obj
+ 0001:0000244c       ??_C@_0BH@CPHIBFEF@Hint?3?5Setting?5?$CFs?5to?5?$CFs?$AA@ 1000344c     pvr_apphint.obj
+ 0001:00002464       ??_C@_09PDOEPFPA@?$FLdefault?$FN?$AA@ 10003464     pvr_apphint.obj
+ 0001:00002470       ??_C@_0EK@CDNGDMBA@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10003470     pvr_apphint.obj
+ 0001:000024bc       ??_C@_0CL@HDEKKBCI@FindAppHintInFile?5?3?5Error?5in?5?$CFs?5@ 100034bc     pvr_apphint.obj
+ 0001:000024e8       ??_C@_04LIFAFMCE@?$FL?$CFs?$FN?$AA@ 100034e8     pvr_apphint.obj
+ 0001:000024f0       ??_C@_01KDCPPGHE@r?$AA@    100034f0     pvr_apphint.obj
+ 0001:000024f4       ??_C@_0CD@DBLCDICO@FindAppHint?3?5Unsupported?5eModule@ 100034f4     pvr_apphint.obj
+ 0001:00002518       ??_C@_0M@IIKDEAIO@powervr?4ini?$AA@ 10003518     pvr_apphint.obj
+ 0001:00002524       ??_C@_0BF@HAPGGGPH@?2windows?2powervr?4ini?$AA@ 10003524     pvr_apphint.obj
+ 0001:0000253c       ??_C@_0BN@FNMGIHHM@OSCreateAppHintState?3?5Failed?$AA@ 1000353c     pvr_apphint.obj
+ 0001:0000255c       ??_C@_09KIHBNIPC@?5?$CI?$CFu?0?$CFs?$CJ?6?$AA@ 1000355c     srvclientenvumcmn:pvr_debug.obj
+ 0001:00002568       ??_C@_05CIJMOPAN@PVR?3?5?$AA@ 10003568     srvclientenvumcmn:pvr_debug.obj
+ 0001:00002570       ??_C@_0BI@NLGOAFIB@Debug?5assertion?5failed?$CB?$AA@ 10003570     srvclientenvumcmn:pvr_debug.obj
+ 0001:00002588       ??_C@_01EEMJAFIK@?6?$AA@   10003588     srvclientenvumcmn:pvr_debug.obj
+ 0001:00002590       ??_C@_0FK@NNPGALJE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10003590     srvclientenvumcmn:osfunc_umclient.obj
+ 0001:000025ec       ??_C@_0DO@DAJLBDJL@OSIsProcessPrivileged?3?5not?5imple@ 100035ec     srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00002630       ??_C@_0FH@IANJEKLB@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10003630     srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:00002688       ??_C@_0BM@JPJIOIJG@Cannot?5open?5device?5driver?4?6?$AA@ 10003688     srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:000026a4       ??_C@_1M@DMCDIEDK@?$AAP?$AAK?$AAM?$AA1?$AA?3?$AA?$AA@ 100036a4     srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:000026b0       ??_C@_0BJ@PAGMBHBD@DeviceIoControl?5failed?4?6?$AA@ 100036b0     srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:000026cc       ??_C@_0CB@MMJGBLOO@PVRSRVBridgeCall?3?5malloc?5failed?6@ 100036cc     srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:000026f0       ??_C@_0CJ@KAKAACLI@PVRSRVReleaseMiscInfo?3?5Error?5?$CFd?5@ 100036f0     srvclientenvumcmn:pvr_glue.obj
+ 0001:00002720       ??_C@_0FD@JNOBHNGJ@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10003720     srvclientenvumcmn:pvr_glue.obj
+ 0001:00002774       ??_C@_0CJ@IDMLLPCE@PVRSRVReleaseMiscInfo?3?5BridgeCal@ 10003774     srvclientenvumcmn:pvr_glue.obj
+ 0001:000027a0       ??_C@_0CJ@ECDBINAH@PVRSRVFreeDeviceMem?3?5Ops?5Pending@ 100037a0     srvclientenvumcmn:pvr_glue.obj
+ 0001:000027cc       ??_C@_0CO@LHNEMMAP@PVRSRVMapDeviceMemory?5?3?5Couldn?8t@ 100037cc     srvclientenvumcmn:pvr_glue.obj
+ 0001:000027fc       ??_C@_0CJ@MAJOMKPI@PVRSRVMapDeviceMemory?3?5BridgeCal@ 100037fc     srvclientenvumcmn:pvr_glue.obj
+ 0001:00002828       ??_C@_0CG@NMDKONBF@PVRSRVMapDeviceMemory?3?5Invalid?5p@ 10003828     srvclientenvumcmn:pvr_glue.obj
+ 0001:00002850       ??_C@_0EE@GDJFDPDJ@PVRSRVAllocSharedSysMem?3?5invalid@ 10003850     srvclientenvumcmn:pvr_glue.obj
+ 0001:00002894       ??_C@_0CN@KFNGCPNO@PVRSRVAllocDeviceMem?5?3?5Couldn?8t?5@ 10003894     srvclientenvumcmn:pvr_glue.obj
+ 0001:000028c8       ??_C@_0EI@OPIHJCFC@PVRSRVMapSharedMemToClient?3?5Fail@ 100038c8     srvclientenvumcmn:pvr_glue.obj
+ 0001:00002910       ??_C@_0CB@BJFALJKA@?$CF?93u?5?9?5?$CF5d?5bytes?5at?50x?$CFX?5?9?5?$CFs?3?$CFd@ 10003910     srvclientenvumcmn:memchk.obj
+ 0001:00002934       ??_C@_0CL@HJOMGMME@?$CFu?5bytes?5still?5allocated?5in?5?$CFu?5a@ 10003934     srvclientenvumcmn:memchk.obj
+ 0001:00002960       ??_C@_0BL@LLAEMJMM@High?5Water?5Mark?5?$DN?5?$CFd?5bytes?$AA@ 10003960     srvclientenvumcmn:memchk.obj
+ 0001:0000297c       ??_C@_0N@KMPENJN@?9?9?9?9?9?9?9?9?9?9?9?9?$AA@ 1000397c     srvclientenvumcmn:memchk.obj
+ 0001:0000298c       ??_C@_0N@PBLIMJIP@Memory?5Stats?$AA@ 1000398c     srvclientenvumcmn:memchk.obj
+ 0001:00002999       ??_C@_00CNPNBAHC@?$AA@     10003999     srvclientenvumcmn:memchk.obj
+ 0001:0000299c       ??_C@_0DB@CCCAOBJK@GuardPageAlloc?5?3?5VirtualFree?$CI?$CJ?5f@ 1000399c     srvclientenvumcmn:memchk.obj
+ 0001:000029d0       ??_C@_0CG@JAOFCPGA@GuardPageAlloc?3?5Couldn?8t?5commit?5@ 100039d0     srvclientenvumcmn:memchk.obj
+ 0001:000029f8       ??_C@_0FB@LBKMBMGB@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 100039f8     srvclientenvumcmn:memchk.obj
+ 0001:00002a4c       ??_C@_0DJ@DKHCOJML@GuardPageAlloc?3?5Failed?5to?5reserv@ 10003a4c     srvclientenvumcmn:memchk.obj
+ 0001:00002a88       ??_C@_0CK@KCHBEGFF@Guard?5page?5code?5enabled?5?9?5checki@ 10003a88     srvclientenvumcmn:memchk.obj
+ 0001:00002ab4       ??_C@_09DGBCBCDL@UNDERruns?$AA@ 10003ab4     srvclientenvumcmn:memchk.obj
+ 0001:00002ac0       ??_C@_08EFEJABPK@OVERruns?$AA@ 10003ac0     srvclientenvumcmn:memchk.obj
+ 0001:00002acc       ??_C@_0BB@FIHGKIIF@CheckForOverRuns?$AA@ 10003acc     srvclientenvumcmn:memchk.obj
+ 0001:00002ae0       ??_C@_0N@EKGDPPKD@UseGuardPage?$AA@ 10003ae0     srvclientenvumcmn:memchk.obj
+ 0001:00002af0       ??_C@_0DO@JEEKNDPF@AddToAllocList?3?5Failed?5to?5alloca@ 10003af0     srvclientenvumcmn:memchk.obj
+ 0001:00002b30       ??_C@_0DA@DOFOLINL@GuardPageFree?5?3?5VirtualFree?$CI?$CJ?5fa@ 10003b30     srvclientenvumcmn:memchk.obj
+ 0001:00002b60       ??_C@_0DB@KOEJLFKL@GuardPageFree?5?3?5VirtualFree?$CI?$CJ?5fa@ 10003b60     srvclientenvumcmn:memchk.obj
+ 0001:00002b94       ??_C@_0BG@DELLHMIK@GuardPageFree?3?5Failed?$AA@ 10003b94     srvclientenvumcmn:memchk.obj
+ 0001:00002bac       ??_C@_0CM@ICLOFFKN@RemoveFromAllocList?3?5Item?5not?5fo@ 10003bac     srvclientenvumcmn:memchk.obj
+ 0001:00002bd8       ??_C@_0CM@JGKLFPAF@FindItemInAllocList?3?5Item?5not?5fo@ 10003bd8     srvclientenvumcmn:memchk.obj
+ 0001:00002c04       ??_C@_0CO@EECELHLK@GuardPageReAlloc?3?5Failed?5to?5crea@ 10003c04     srvclientenvumcmn:memchk.obj
+ 0001:00002c38       ??_C@_0FG@MIBMMHAD@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10003c38     srvclientenvumcmn:pvr_metrics.obj
+ 0001:00002c90       ??_C@_0DE@FNBNKGOE@PVRSRVMetricsTimeNow?3?5using?5Quer@ 10003c90     srvclientenvumcmn:pvr_metrics.obj
+ 0001:00002cc4       ??_C@_0BE@BKBIHKNM@release?2profile?4txt?$AA@ 10003cc4     srvclientenvumcmn:pvr_metrics.obj
+ 0001:00002cd8       ??_C@_01NOFIACDB@w?$AA@    10003cd8     srvclientenvumcmn:pvr_metrics.obj
+ 0001:00002cdc       ??_C@_08MOENFMLJ@release?2?$AA@ 10003cdc     srvclientenvumcmn:pvr_metrics.obj
+ 0001:00002ce8       ??_C@_0N@DHGLGHA@_profile?4txt?$AA@ 10003ce8     srvclientenvumcmn:pvr_metrics.obj
+ 0001:00002cf8       ??_C@_03OFAPEBGM@?$CFs?6?$AA@ 10003cf8     srvclientenvumcmn:pvr_metrics.obj
+ 0001:00002cfc       ??_C@_0CH@JNMPHJDJ@Failed?5to?5flush?5HW?5render?5contex@ 10003cfc     srvclientsgx:sgxrender_targets.obj
+ 0001:00002d24       ??_C@_0DI@PJOJEMI@RTDataset?5SPM?5Details?3?5OUTOFMEM?3@ 10003d24     srvclientsgx:sgxrender_targets.obj
+ 0001:00002d60       ??_C@_0FD@FLENFIIP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10003d60     srvclientsgx:sgxrender_targets.obj
+ 0001:00002db4       ??_C@_0CN@KIELNGHK@PB?5Watermark?5Info?5?9?5Alloc?3?50x?$CFx?5@ 10003db4     srvclientsgx:sgxrender_targets.obj
+ 0001:00002de4       ??_C@_0DH@LFAGNFOD@FreeRTDataSet?3?5Failed?5to?5destroy@ 10003de4     srvclientsgx:sgxrender_targets.obj
+ 0001:00002e1c       ??_C@_0DO@EJPFONLI@SGXAddRenderTarget?3?5Failed?5to?5cr@ 10003e1c     srvclientsgx:sgxrender_targets.obj
+ 0001:00002e5c       ??_C@_0DM@BLLJPNOO@SGXAddRenderTarget?3?5invalid?5forc@ 10003e5c     srvclientsgx:sgxrender_targets.obj
+ 0001:00002e98       ??_C@_0DK@IEEBCFMI@SGXAddRenderTarget?3?5this?5code?5pa@ 10003e98     srvclientsgx:sgxrender_targets.obj
+ 0001:00002ed4       ??_C@_0BF@JAPCMFOG@MTModePixelThreshold?$AA@ 10003ed4     srvclientsgx:sgxrender_targets.obj
+ 0001:00002eec       ??_C@_0DD@BNHFAFBH@ERROR?5?9?5Failed?5to?5alloc?5host?5mem@ 10003eec     srvclientsgx:sgxrender_targets.obj
+ 0001:00002f20       ??_C@_0EG@PECKJDIB@SGXAddRenderTarget?3?5ui16MSAASamp@ 10003f20     srvclientsgx:sgxrender_targets.obj
+ 0001:00002f68       ??_C@_0DA@MHIGJENK@SGXAddRenderTarget?5?9?5Max?5TA?5Rend@ 10003f68     srvclientsgx:sgxrender_targets.obj
+ 0001:00002f98       ??_C@_0CN@PKFPHCLH@SGXAddRenderTarget?5?9?5Min?5NumRTsi@ 10003f98     srvclientsgx:sgxrender_targets.obj
+ 0001:00002fc8       ??_C@_0DO@HNIFCDKD@SGXAddRenderTarget?5?9?5Max?5support@ 10003fc8     srvclientsgx:sgxrender_targets.obj
+ 0001:00003008       ??_C@_0DL@FPJFOGCA@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 10004008     srvclientsgx:sgxrender_targets.obj
+ 0001:00003044       ??_C@_0CO@OANIJGJO@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 10004044     srvclientsgx:sgxrender_targets.obj
+ 0001:00003074       ??_C@_0CP@JFJEFNBA@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 10004074     srvclientsgx:sgxrender_targets.obj
+ 0001:000030a4       ??_C@_0DA@IDLIIMJ@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 100040a4     srvclientsgx:sgxrender_targets.obj
+ 0001:000030d4       ??_C@_0CN@BOKIMCHN@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 100040d4     srvclientsgx:sgxrender_targets.obj
+ 0001:00003104       ??_C@_0DA@FJJHPNGH@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 10004104     srvclientsgx:sgxrender_targets.obj
+ 0001:00003134       ??_C@_0CO@OHIHHLEK@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 10004134     srvclientsgx:sgxrender_targets.obj
+ 0001:00003164       ??_C@_0CN@KLOKBEGM@SetupRTDataSet?3?5Failed?5to?5alloc?5@ 10004164     srvclientsgx:sgxrender_targets.obj
+ 0001:00003194       ??_C@_0DG@NKCPLEFK@SetupRTDataSet?3?5Failed?5to?5initia@ 10004194     srvclientsgx:sgxrender_targets.obj
+ 0001:000031cc       ??_C@_0CN@GAMFCKFK@SetupRTDataSet?3?5Failed?5to?5initia@ 100041cc     srvclientsgx:sgxrender_targets.obj
+ 0001:00003200       ??_C@_0EG@INKADDBP@SetupRTDataSet?3?5Failed?5to?5retrie@ 10004200     srvclientsgx:sgxrender_targets.obj
+ 0001:00003248       ??_C@_0DF@HCGGOPMB@ERROR?5?9?5Failed?5to?5alloc?5access?5r@ 10004248     srvclientsgx:sgxrender_targets.obj
+ 0001:00003280       ??_C@_0CP@FAPEMGEE@ERROR?5?9?5Failed?5to?5alloc?5mem?5for?5@ 10004280     srvclientsgx:sgxrender_targets.obj
+ 0001:000032b0       ??_C@_0DC@IPLIHNPF@ERROR?5?9?5Failed?5to?5alloc?5host?5mem@ 100042b0     srvclientsgx:sgxrender_targets.obj
+ 0001:000032e8       ??_C@_0ED@OLGDODFE@ERROR?5?9?5Failed?5to?5alloc?5FB?5mem?5f@ 100042e8     srvclientsgx:sgxrender_targets.obj
+ 0001:0000332c       ??_C@_0DN@JHLIFKJM@ERROR?5?9?5Failed?5to?5alloc?5FB?5mem?5f@ 1000432c     srvclientsgx:sgxrender_targets.obj
+ 0001:0000336c       ??_C@_0DG@NGBGLAJA@ERROR?5?9?5Failed?5to?5alloc?5host?5mem@ 1000436c     srvclientsgx:sgxrender_targets.obj
+ 0001:000033a4       ??_C@_0DO@MOMFGAN@SGXDestroyRenderContext?3?5call?5to@ 100043a4     srvclientsgx:sgxrender_context.obj
+ 0001:000033e4       ??_C@_0BP@MECOEHFN@Active?5Power?5stats?3?5Total?3?5?$CFlu?$AA@ 100043e4     srvclientsgx:sgxrender_context.obj
+ 0001:00003404       ??_C@_0DG@GCMAGOAN@HW?5Recovery?5stats?3?5Total?3?5?$CFd?5?7?5H@ 10004404     srvclientsgx:sgxrender_context.obj
+ 0001:0000343c       ??_C@_0DP@PMMOJLJC@SGXDestroyRenderContext?3?5Failed?5@ 1000443c     srvclientsgx:sgxrender_context.obj
+ 0001:0000347c       ??_C@_0CM@LPNAGHLC@Failed?5to?5unregister?5HW?5render?5c@ 1000447c     srvclientsgx:sgxrender_context.obj
+ 0001:000034a8       ??_C@_0EB@EFOLOKLM@SGXDestroyRenderContext?3?5Failed?5@ 100044a8     srvclientsgx:sgxrender_context.obj
+ 0001:000034f0       ??_C@_0FD@HDPIGOAD@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 100044f0     srvclientsgx:sgxrender_context.obj
+ 0001:00003544       ??_C@_0CF@EDNEELFN@SGXDestroyRenderContext?3?5NULL?5ha@ 10004544     srvclientsgx:sgxrender_context.obj
+ 0001:0000356c       ??_C@_0L@LJBNFKHO@RenderSync?$AA@ 1000456c     srvclientsgx:sgxrender_context.obj
+ 0001:00003578       ??_C@_06BEBALAKP@TASync?$AA@ 10004578     srvclientsgx:sgxrender_context.obj
+ 0001:00003580       ??_C@_0BE@MDMDMIME@NumVertexPartitions?$AA@ 10004580     srvclientsgx:sgxrender_context.obj
+ 0001:00003594       ??_C@_0BD@CEJJAMAG@NumPixelPartitions?$AA@ 10004594     srvclientsgx:sgxrender_context.obj
+ 0001:000035a8       ??_C@_0ED@MDGCNFD@SGXCreateRenderContext?3?5Failed?5t@ 100045a8     srvclientsgx:sgxrender_context.obj
+ 0001:000035ec       ??_C@_0DF@DJMNFMPI@SGXCreateRenderContext?3?5Failed?5S@ 100045ec     srvclientsgx:sgxrender_context.obj
+ 0001:00003624       ??_C@_0DD@DLAKBOKI@Failed?5to?5get?5PD?5physical?5addres@ 10004624     srvclientsgx:sgxrender_context.obj
+ 0001:00003658       ??_C@_0CK@PIOFALCD@Failed?5to?5allocate?5vistest?5resul@ 10004658     srvclientsgx:sgxrender_context.obj
+ 0001:00003684       ??_C@_0DB@OLEGGDPI@Failed?5to?5allocate?5TA?13D?5depende@ 10004684     srvclientsgx:sgxrender_context.obj
+ 0001:000036b8       ??_C@_0EA@JPKDHBML@SGXCreateRenderContext?3?5Failed?5t@ 100046b8     srvclientsgx:sgxrender_context.obj
+ 0001:000036f8       ??_C@_0BM@CMNMKCPB@CreatePerContextPB?3?5Failed?6?$AA@ 100046f8     srvclientsgx:sgxrender_context.obj
+ 0001:00003714       ??_C@_0DF@GNNMCOBF@ERROR?5?9?5Failed?5to?5alloc?5host?5mem@ 10004714     srvclientsgx:sgxrender_context.obj
+ 0001:0000374c       ??_C@_0CK@MIGLLLFD@Failed?5to?5allocate?5HW?5render?5lis@ 1000474c     srvclientsgx:sgxrender_context.obj
+ 0001:00003778       ??_C@_0EH@IJPJEOJD@SGXCreateRenderContext?3?5Failed?5t@ 10004778     srvclientsgx:sgxrender_context.obj
+ 0001:000037c0       ??_C@_06HLKHBNKH@PBSize?$AA@ 100047c0     srvclientsgx:sgxrender_context.obj
+ 0001:000037c8       ??_C@_0CJ@DIBDHIB@ERROR?5?9?5failed?5to?5find?5the?53d?5pa@ 100047c8     srvclientsgx:sgxrender_context.obj
+ 0001:000037f4       ??_C@_0DG@CIKPEEIH@ERROR?5?9?5Failed?5to?5alloc?5host?5mem@ 100047f4     srvclientsgx:sgxrender_context.obj
+ 0001:00003830       ??_C@_0EO@KFHFLNAO@SGXCreateRenderContext?3?5Failed?5t@ 10004830     srvclientsgx:sgxrender_context.obj
+ 0001:00003f20       ??_C@_0EF@JDOLGGG@SGXCreateTransferContext?3?5Failed@ 10004f20     srvclientsgx:sgxtransfer_context.obj
+ 0001:00003f68       ??_C@_0EC@NGPGEEAG@SGXCreateTransferContext?3?5failed@ 10004f68     srvclientsgx:sgxtransfer_context.obj
+ 0001:00003fb0       ??_C@_0EK@IEKCCFNA@SGXCreateTransferContext?3?5Couldn@ 10004fb0     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004000       ??_C@_0EF@NHBOEDFE@SGXCreateTransferContext?3?5Couldn@ 10005000     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004048       ??_C@_0EM@MBKJEGL@SGXCreateTransferContext?3?5Failed@ 10005048     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004098       ??_C@_0FD@FNHOGHDO@SGXCreateTransferContext?3?5Failed@ 10005098     srvclientsgx:sgxtransfer_context.obj
+ 0001:000040f0       ??_C@_0EA@JMNKNODB@SGXCreateTransferContext?3?5Couldn@ 100050f0     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004130       ??_C@_0DP@JCBMGNDJ@SGXCreateTransferContext?3?5Couldn@ 10005130     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004170       ??_C@_0EP@IPBHACND@SGXCreateTransferContext?3?5Failed@ 10005170     srvclientsgx:sgxtransfer_context.obj
+ 0001:000041c0       ??_C@_0DB@FLGDFANC@ERROR?5?9?5Failed?5to?5alloc?5memory?5f@ 100051c0     srvclientsgx:sgxtransfer_context.obj
+ 0001:000041f4       ??_C@_0DB@KPFMMGCI@ERROR?5?9?5Failed?5to?5alloc?5memory?5f@ 100051f4     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004228       ??_C@_0DO@JIDMLMML@ERROR?5?9?5Failed?5to?5alloc?5memory?5f@ 10005228     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004268       ??_C@_0DA@IDCFIMBJ@ERROR?5?9?5Failed?5to?5alloc?5memory?5f@ 10005268     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004298       ??_C@_0BK@PLKJAHML@Staging?5Buffer?5Size?3?50x?$CFx?$AA@ 10005298     srvclientsgx:sgxtransfer_context.obj
+ 0001:000042b8       ??_C@_0EL@LIJKPPIE@SGXGetClientDevInfo?3?5Failed?5to?5r@ 100052b8     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004308       ??_C@_0EA@DDONMKBH@SGXCreateTransferContext?3?5Couldn@ 10005308     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004348       ??_C@_0FF@PFIFNHHN@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10005348     srvclientsgx:sgxtransfer_context.obj
+ 0001:000043a0       ??_C@_0BL@BFEJPFPN@Creating?5transfer?5context?4?$AA@ 100053a0     srvclientsgx:sgxtransfer_context.obj
+ 0001:000043bc       ??_C@_0BO@MGLEANPE@Unknown?5TQ?5USE?5fragment?5type?4?$AA@ 100053bc     srvclientsgx:sgxtransfer_context.obj
+ 0001:000043dc       ??_C@_0BK@LGOMADPK@Unknown?5TQ?5PDS?5secondary?4?$AA@ 100053dc     srvclientsgx:sgxtransfer_context.obj
+ 0001:000043f8       ??_C@_0CO@PIHOEEID@Failed?5to?5unregister?5HW?5transfer@ 100053f8     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004428       ??_C@_0DP@HJMFGKGM@SGXDestroyTransferContext?3?5Calle@ 10005428     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004468       ??_C@_0BM@FCLGBHP@Destroying?5transfer?5context?$AA@ 10005468     srvclientsgx:sgxtransfer_context.obj
+ 0001:00004488       ??_C@_0FC@ICPLOFIO@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10005488     srvclientsgx:sgxhwperf_client.obj
+ 0001:000044dc       ??_C@_0BF@JLMHLLDN@SGXGetHWPerfCounters?$AA@ 100054dc     srvclientsgx:sgxhwperf_client.obj
+ 0001:000044f8       ??_C@_0EC@OJNLAOJC@SGXKickTA?3?5potential?5TQ?13D?5sync?5@ 100054f8     srvclientsgx:sgxkick_client.obj
+ 0001:0000453c       ??_C@_0DB@DCCDOOEH@SGXKickTA?3?5hTQContext?5was?5missin@ 1000553c     srvclientsgx:sgxkick_client.obj
+ 0001:00004570       ??_C@_0FA@DIANPKIO@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10005570     srvclientsgx:sgxkick_client.obj
+ 0001:000045c0       ??_C@_0DH@KGOPJDAC@SGXKickTA?3?5TA?13D?5dependency?5dead@ 100055c0     srvclientsgx:sgxkick_client.obj
+ 0001:000045f8       ??_C@_0CF@FICGMDII@RTDataSet?3?50x?$CFx?5was?5context?5swit@ 100055f8     srvclientsgx:sgxkick_client.obj
+ 0001:00004620       ??_C@_0BK@MCKCGMJL@TA?5Timeout?$CB?5LastFrame?3?5?$CFd?$AA@ 10005620     srvclientsgx:sgxkick_client.obj
+ 0001:0000463c       ??_C@_0BO@NKAIHPCN@Render?5Timeout?$CB?5LastFrame?3?5?$CFd?$AA@ 1000563c     srvclientsgx:sgxkick_client.obj
+ 0001:0000465c       ??_C@_0DG@DEMCFEKJ@SGXGetFreeRenderDetails?3?5PVRSRVE@ 1000565c     srvclientsgx:sgxkick_client.obj
+ 0001:00004694       ??_C@_0DH@ECJOKGOH@SGXGetFreeDeviceSyncList?3?5PVRSRV@ 10005694     srvclientsgx:sgxkick_client.obj
+ 0001:000046cc       ??_C@_0CI@KODMANHC@SGXKickSubmit?3?5failed?5call?5to?5SG@ 100056cc     srvclientsgx:sgxkick_client.obj
+ 0001:00004718       ??_C@_0FK@PMHDKACB@SGXSubmitTransfer?3?5attempted?5to?5@ 10005718     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004774       ??_C@_0CH@DCCJKOLE@SGXQueueTransfer?3?5Unknown?5blit?5t@ 10005774     srvclientsgx:sgxtransfer_queue.obj
+ 0001:0000479c       ??_C@_0DM@EJHLICPO@There?5is?5no?5space?5in?5the?5submit?5@ 1000579c     srvclientsgx:sgxtransfer_queue.obj
+ 0001:000047d8       ??_C@_0CF@GGOENHMN@SGXQueueTransfer?3?5invalid?5parame@ 100057d8     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004800       ??_C@_0FD@GNBAEMIG@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10005800     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004854       ??_C@_0DA@EPHBLFMC@PrepareNormalBlit?3?5Unexpected?5PD@ 10005854     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004884       ??_C@_0CK@FAFHDFPD@PrepareNormalBlit?3?5Unkown?5PDS?5pr@ 10005884     srvclientsgx:sgxtransfer_queue.obj
+ 0001:000048b0       ??_C@_0EI@EIFFGPKD@PrepareNormalBlit?3?5Don?8t?5know?5wh@ 100058b0     srvclientsgx:sgxtransfer_queue.obj
+ 0001:000048f8       ??_C@_0EH@BAKIEAGE@Can?8t?5do?5the?5backwards?5blit?5?9?5th@ 100058f8     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004940       ??_C@_0DB@OHDKFEGM@PrepareNormalBlit?3?5Non?5stride?5al@ 10005940     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004974       ??_C@_0DD@PANOPMFB@PrepareNormalBlit?3?5Non?5stride?5al@ 10005974     srvclientsgx:sgxtransfer_queue.obj
+ 0001:000049a8       ??_C@_0EG@JJAEPLOM@Can?8t?5do?5the?5backwards?5blit?0?5the@ 100059a8     srvclientsgx:sgxtransfer_queue.obj
+ 0001:000049f0       ??_C@_0DC@HKAEFGOO@PrepareNormalBlit?3?5No?5staging?5bu@ 100059f0     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004a24       ??_C@_0CC@OKMLOOCI@PrepareNormalBlit?3?5backward?5blit@ 10005a24     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004a48       ??_C@_0CH@KOAOPIMA@?7?9?$DO?5Generic?5blit?5from?50x?$CF08x?5to?5@ 10005a48     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004a70       ??_C@_0FN@MHCCJBGJ@PrepareTextureUpload?3?5attempted?5@ 10005a70     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004ad0       ??_C@_0GI@PGBMBPIK@Can?8t?5do?5the?5texture?5upload?0?5eit@ 10005ad0     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004b38       ??_C@_0DA@HIEECCLD@PrepareTextureUpload?3?5Sub?5tile?5t@ 10005b38     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004b68       ??_C@_0EP@OEGMPBBA@PrepareTextureUpload?3?5Can?8t?5do?5s@ 10005b68     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004bb8       ??_C@_0FE@MJOAMEIB@PrepareTextureUpload?3?5Can?8t?5do?5s@ 10005bb8     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004c10       ??_C@_0EH@LFDHOBBC@PrepareTextureUpload?3?5Destinatio@ 10005c10     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004c58       ??_C@_0EC@CKHIAKPL@PrepareTextureUpload?3?5Source?5tex@ 10005c58     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004c9c       ??_C@_0DG@HKJLMKEE@PrepareTextureUpload?3?5Pixel?5form@ 10005c9c     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004cd4       ??_C@_0CO@JKBOKJBI@?7?9?$DO?5Mipmap?5generation?5of?50x?$CF08x?5@ 10005cd4     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004d04       ??_C@_0CI@LGKAGJME@PrepareFillBlit?3?5Unkown?5PDS?5prim@ 10005d04     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004d2c       ??_C@_0DC@NDGDFHON@FillOperation?3?5Unknown?5and?5unsup@ 10005d2c     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004d60       ??_C@_0DE@FJJEIODD@FillOperation?3?5Unknown?5and?5unsup@ 10005d60     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004d94       ??_C@_0CA@JJALECHC@?7?9?$DO?5Color?5fill?5on?5surface0x?$CF08x?$AA@ 10005d94     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004db4       ??_C@_0CO@JFNEKPNH@?7?9?$DO?5Custom?5blit?5?$CIspecifying?5PDS?5@ 10005db4     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004de4       ??_C@_0CJ@PHDBHFJB@?7?9?$DO?5Custom?5blit?5?$CIspecifying?5vert@ 10005de4     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004e10       ??_C@_0DE@NKIKCGGI@PrepareClipBlit?3?5Input?5pixel?5fmt@ 10005e10     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004e44       ??_C@_0CF@MHINBLLO@Doing?5clip?5blit?5?$CB?5Don?8t?5use?5it?5y@ 10005e44     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004e6c       ??_C@_0DB@EMGELGDK@PrepareColourLUTBlit?3?5Unexpected@ 10005e6c     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004ea0       ??_C@_0DG@CGBBODMO@SGXSubmitTransfer?3?5fatal?5?9?5bridg@ 10005ea0     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004ed8       ??_C@_0EB@DCEFIIOA@SGXSubmitTransfer?3?5Can?8t?5insert?5@ 10005ed8     srvclientsgx:sgxtransfer_queue.obj
+ 0001:00004f1c       ??_C@_0DE@NONFJDMH@ERROR?5?9?5Failed?5to?5alloc?5mem?5for?5@ 10005f1c     srvclientsgx:sgxutils_client.obj
+ 0001:00004f50       ??_C@_0CF@OCNOHBC@ERROR?5?9?5Failed?5to?5alloc?5mem?5for?5@ 10005f50     srvclientsgx:sgxutils_client.obj
+ 0001:00004f78       ??_C@_0FB@EAKDIFMP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10005f78     srvclientsgx:sgxutils_client.obj
+ 0001:00004fcc       ??_C@_0CN@JJFIGPFP@ERROR?5?9?5Failed?5to?5alloc?5host?5mem@ 10005fcc     srvclientsgx:sgxutils_client.obj
+ 0001:00004ffc       ??_C@_0CM@MGMHLDDG@SGXAcquireCCB?3?5PVRSRVEventObject@ 10005ffc     srvclientsgx:sgxutils_client.obj
+ 0001:00005028       ??_C@_0DO@JMHEFENG@SGXSetContextPriority?3?5Invalid?5p@ 10006028     srvclientsgx:sgxutils_client.obj
+ 0001:00005068       ??_C@_0CE@PNFDGLDO@?7?7?7?7?7?7Defaulting?5to?5medium?5prior@ 10006068     srvclientsgx:sgxutils_client.obj
+ 0001:00005090       ??_C@_0FH@FHGJCKJF@SGXSetContextPriority?3?5Priority?5@ 10006090     srvclientsgx:sgxutils_client.obj
+ 0001:000050e8       ??_C@_0EC@BAJNNJKJ@SGXSetContextPriority?3?5both?5rend@ 100060e8     srvclientsgx:sgxutils_client.obj
+ 0001:0000512c       ??_C@_0CK@PFGHLLMH@SGXSetContextPriority?3?5pePriorit@ 1000612c     srvclientsgx:sgxutils_client.obj
+ 0001:00005158       ??_C@_0CJ@OCINMHAK@SGXSetContextPriority?3?5psDevData@ 10006158     srvclientsgx:sgxutils_client.obj
+ 0001:00005184       ??_C@_0DH@CINMIKMI@CreatePerContextPB?3?5Actual?5Param@ 10006184     srvclientsgx:sgxpb.obj
+ 0001:000051c0       ??_C@_0EP@GFKMMBEM@CreatePerContextPB?3?5Failed?5to?5al@ 100061c0     srvclientsgx:sgxpb.obj
+ 0001:00005210       ??_C@_0DA@KPPHILGM@CreatePerContextPB?3?5Failed?5to?5al@ 10006210     srvclientsgx:sgxpb.obj
+ 0001:00005240       ??_C@_0DK@PELMOICB@CreatePerContextPB?3?5Requested?5Pa@ 10006240     srvclientsgx:sgxpb.obj
+ 0001:0000527c       ??_C@_0DO@HMDJBHBK@CreatePerContextPB?3?5Failed?5to?5al@ 1000627c     srvclientsgx:sgxpb.obj
+ 0001:000052c0       ??_C@_0EH@OJGNGOJH@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 100062c0     srvclientsgx:sgxpb.obj
+ 0001:00005308       ??_C@_0CP@HCCLEIGC@CreatePerContextPB?3?5Failed?5to?5al@ 10006308     srvclientsgx:sgxpb.obj
+ 0001:00005338       ??_C@_0N@EMGKHBNG@PDSThreshold?$AA@ 10006338     srvclientsgx:sgxpb.obj
+ 0001:00005348       ??_C@_0BA@PNIFOOAA@GlobalThreshold?$AA@ 10006348     srvclientsgx:sgxpb.obj
+ 0001:00005358       ??_C@_0N@HADJGBAO@ZLSThreshold?$AA@ 10006358     srvclientsgx:sgxpb.obj
+ 0001:00005368       ??_C@_0M@MLMDFGLM@TAThreshold?$AA@ 10006368     srvclientsgx:sgxpb.obj
+ 0001:00005374       ??_C@_0DJ@HBABDPOK@CreatePBBlock?3?5Failed?5to?5allocat@ 10006374     srvclientsgx:sgxpb.obj
+ 0001:000053b0       ??_C@_0BB@PPHBJPP@EDMProtectTATest?$AA@ 100063b0     srvclientsgx:sgxpb.obj
+ 0001:000053c4       ??_C@_0DB@GHACBNMB@CreatePBBlock?3?5Failed?5to?5alloc?5m@ 100063c4     srvclientsgx:sgxpb.obj
+ 0001:000053f8       ??_C@_0DG@NCKKNBDO@CreatePBBlock?3?5Failed?5to?5alloc?5h@ 100063f8     srvclientsgx:sgxpb.obj
+ 0001:00005ad0       ??_C@_0FD@CAGNHEAD@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10006ad0     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005b24       ??_C@_0CP@IJODEINN@SGXTQ_FilterFromEnum?3?5Unrecognis@ 10006b24     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005b54       ??_C@_0DD@OHJDKPDJ@SGXTQ_RotationFromEnum?3?5Unrecogn@ 10006b54     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005b88       ??_C@_0FB@HJEOFLPL@SGXTQ_MemLayoutFromEnum?3?5Can?8t?5t@ 10006b88     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005be0       ??_C@_0FA@DGOGNANE@SGXTQ_MemLayoutFromEnum?3?5Can?8t?5t@ 10006be0     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005c30       ??_C@_0EA@FDOMBGKK@SGXTQ_MemLayoutFromEnum?3?53D?5text@ 10006c30     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005c70       ??_C@_0DA@BOOCPOE@twiddled?5texture?5with?5non?5power?5@ 10006c70     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005ca0       ??_C@_0CN@GEBGEMJL@SGXTQ_SetTAGState?3?5Unsupported?5t@ 10006ca0     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005cd0       ??_C@_0DB@LFFLJMDE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2hwd@ 10006cd0     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005d04       ??_C@_0CL@FJOACLPA@Doing?5strided?5blit?5with?5aligned?5@ 10006d04     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005d30       ??_C@_0CO@KKKJAHAG@SGXTQ_AcquireCB?3?5PVRSRVEventObje@ 10006d30     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005d60       ??_C@_0DO@IAEJMHIO@SGXTQ_StagingBufferAcquireSpace?3@ 10006d60     srvclientsgx:sgxtransfer_utils.obj
+ 0001:00005da0       ??_C@_0EG@DBDFEBLC@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2ser@ 10006da0     srvclientcmn:resources.obj
+ 0001:00005de8       ??_C@_0DB@DEPKBOP@PVRSRVPollForValue?3?5PVRSRVEventO@ 10006de8     srvclientcmn:resources.obj
+ 0001:00005e1c       ??_C@_0DL@DPJOPGDJ@HWOpTimeout?3?5Debug?5trace?5info?5wr@ 10006e1c     srvclientcmn:resources.obj
+ 0001:00005e58       ??_C@_0DF@ONGHIEFJ@HWOpTimeout?3?5Failure?5to?5write?5de@ 10006e58     srvclientcmn:resources.obj
+ 0001:00005e90       ??_C@_0BP@FLMOOPIA@HW?5operation?5timeout?5occurred?4?$AA@ 10006e90     srvclientcmn:resources.obj
+ 0001:00005ed4       PDSGeneratePixelEventProgram 10006ed4 f   pds.obj
+ 0001:000060a8       PDSGeneratePixelShaderSAProgram 100070a8 f   pds.obj
+ 0001:00006850       PDSGenerateStaticPixelShaderSAProgram 10007850 f   pds.obj
+ 0001:00006e04       PDSGeneratePixelShaderProgram 10007e04 f   pds.obj
+ 0001:000075d8       PDSGenerateStateCopyProgram 100085d8 f   pds.obj
+ 0001:00007b34       PDSGenerateVertexShaderSAProgram 10008b34 f   pds.obj
+ 0001:000080a8       PDSGenerateStaticVertexShaderProgram 100090a8 f   pds.obj
+ 0001:00008cc8       PDSGenerateVertexShaderProgram 10009cc8 f   pds.obj
+ 0001:0000a0cc       PDSPatchVertexShaderProgram 1000b0cc f   pds.obj
+ 0001:0000a28c       PDSGenerateConstUploadProgram 1000b28c f   pds.obj
+ 0001:0000a880       PDSGenerateTerminateStateProgram 1000b880 f   pds.obj
+ 0001:0000ad74       PDSPatchTerminateStateProgram 1000bd74 f   pds.obj
+ 0001:0000b380       PDSPixelEventSetPTOFF0     1000c380 f i pds.obj
+ 0001:0000b3a0       PDSPixelEventSetPTOFF1     1000c3a0 f i pds.obj
+ 0001:0000b3c4       PDSPixelEventSetPTOFF2     1000c3c4 f i pds.obj
+ 0001:0000b3e8       PDSPixelEventSetEOT0       1000c3e8 f i pds.obj
+ 0001:0000b40c       PDSPixelEventSetEOT1       1000c40c f i pds.obj
+ 0001:0000b430       PDSPixelEventSetEOT2       1000c430 f i pds.obj
+ 0001:0000b454       PDSPixelEventSetEOR0       1000c454 f i pds.obj
+ 0001:0000b478       PDSPixelEventSetEOR1       1000c478 f i pds.obj
+ 0001:0000b49c       PDSPixelEventSetEOR2       1000c49c f i pds.obj
+ 0001:0000b4c0       PDSEncodeMOVS              1000c4c0 f i pds.obj
+ 0001:0000b54c       PDSEncodeHALT              1000c54c f i pds.obj
+ 0001:0000b578       PDSEncodeADD               1000c578 f i pds.obj
+ 0001:0000b5e4       PDSEncodeMUL               1000c5e4 f i pds.obj
+ 0001:0000b650       PDSEncodeSHL               1000c650 f i pds.obj
+ 0001:0000b6b4       PDSEncodeSHR               1000c6b4 f i pds.obj
+ 0001:0000b718       PDSEncodeMOVSA             1000c718 f i pds.obj
+ 0001:0000b7a8       WritePTOffUSSECode         1000c7a8 f   pixevent.obj
+ 0001:0000b80c       WriteEndOfRenderUSSECode   1000c80c f   pixevent.obj
+ 0001:0000b8ec       WriteEndOfTileUSSECode     1000c8ec f   pixevent.obj
+ 0001:0000baf8       SRVUM_GetTLSID             1000caf8 f   wince6_tls.obj
+ 0001:0000bb20       SRVUM_GetTLSValue          1000cb20 f   wince6_tls.obj
+ 0001:0000bb78       SRVUM_SetTLSValue          1000cb78 f   wince6_tls.obj
+ 0001:0000bbf4       GetCurrentThreadId         1000cbf4 f i wince6_tls.obj
+ 0001:0000bc20       TlsAlloc                   1000cc20 f i wince6_tls.obj
+ 0001:0000bc50       SGXFindSharedPBDesc        1000cc50 f   bridged_sgx_glue.obj
+ 0001:0000be8c       SGXUnrefSharedPBDesc       1000ce8c f   bridged_sgx_glue.obj
+ 0001:0000bf74       SGXAddSharedPBDesc         1000cf74 f   bridged_sgx_glue.obj
+ 0001:0000c0d8       SGXSubmitTransferBridge    1000d0d8 f   bridged_sgx_glue.obj
+ 0001:0000c1e8       SGXRegisterHWRenderContext 1000d1e8 f   bridged_sgx_glue.obj
+ 0001:0000c340       SGXUnregisterHWRenderContext 1000d340 f   bridged_sgx_glue.obj
+ 0001:0000c440       SGXRegisterHWTransferContext 1000d440 f   bridged_sgx_glue.obj
+ 0001:0000c58c       SGXUnregisterHWTransferContext 1000d58c f   bridged_sgx_glue.obj
+ 0001:0000c690       SGXFlushHWRenderTarget     1000d690 f   bridged_sgx_glue.obj
+ 0001:0000c7ac       SGXDoKick                  1000d7ac f   bridged_sgx_glue.obj
+ 0001:0000c8c4       SGXScheduleProcessQueues   1000d8c4 f   bridged_sgx_glue.obj
+ 0001:0000c9ac       SGXGetInfoForSrvInit       1000d9ac f   bridged_sgx_glue.obj
+ 0001:0000cab8       SGXDevInitPart2            1000dab8 f   bridged_sgx_glue.obj
+ 0001:0000d1ac       SGXGetClientInfo           1000e1ac f   bridged_sgx_glue.obj
+ 0001:0000d3b0       SGXReleaseClientInfo       1000e3b0 f   bridged_sgx_glue.obj
+ 0001:0000d500       SGXGetInternalDevInfo      1000e500 f   bridged_sgx_glue.obj
+ 0001:0000d674       SGXConnectionCheck         1000e674 f   bridged_sgx_glue.obj
+ 0001:0000d814       SGXDumpMKTrace             1000e814 f   bridged_sgx_glue.obj
+ 0001:0000d864       SGXGetMiscInfo             1000e864 f   bridged_sgx_glue.obj
+ 0001:0000d95c       SGXReadHWPerfCounters      1000e95c f   bridged_sgx_glue.obj
+ 0001:0000daac       SGXReadHWPerfCB            1000eaac f   bridged_sgx_glue.obj
+ 0001:0000dbd4       SGX2DQueryBlitsComplete    1000ebd4 f   bridged_sgx_glue.obj
+ 0001:0000dce8       PVRSRVEnumerateDeviceClass 1000ece8 f   bridged_pvr_glue.obj
+ 0001:0000debc       PVRSRVConnectServices      1000eebc f   bridged_pvr_glue.obj
+ 0001:0000df5c       PVRSRVConnect              1000ef5c f   bridged_pvr_glue.obj
+ 0001:0000e284       PVRSRVDisconnect           1000f284 f   bridged_pvr_glue.obj
+ 0001:0000e2bc       PVRSRVEnumerateDevices     1000f2bc f   bridged_pvr_glue.obj
+ 0001:0000e42c       PVRSRVAcquireDeviceData    1000f42c f   bridged_pvr_glue.obj
+ 0001:0000e524       PVRSRVCreateDeviceMemContext 1000f524 f   bridged_pvr_glue.obj
+ 0001:0000e6d4       PVRSRVDestroyDeviceMemContext 1000f6d4 f   bridged_pvr_glue.obj
+ 0001:0000e7fc       PVRSRVGetDeviceMemHeapInfo 1000f7fc f   bridged_pvr_glue.obj
+ 0001:0000e9ac       PVRSRVExportDeviceMem      1000f9ac f   bridged_pvr_glue.obj
+ 0001:0000eabc       PVRSRVWrapExtMemory        1000fabc f   bridged_pvr_glue.obj
+ 0001:0000eee4       PVRSRVUnwrapExtMemory      1000fee4 f   bridged_pvr_glue.obj
+ 0001:0000f094       PVRSRVMapDeviceClassMemory 10010094 f   bridged_pvr_glue.obj
+ 0001:0000f3d4       PVRSRVUnmapDeviceClassMemory 100103d4 f   bridged_pvr_glue.obj
+ 0001:0000f580       PVRSRVGetMiscInfo          10010580 f   bridged_pvr_glue.obj
+ 0001:0000f790       PVRSRVGetFBStats           10010790 f   bridged_pvr_glue.obj
+ 0001:0000f838       PVRSRVMapPhysToUserSpace   10010838 f   bridged_pvr_glue.obj
+ 0001:0000f914       PVRSRVUnmapPhysToUserSpace 10010914 f   bridged_pvr_glue.obj
+ 0001:0000f9c0       PVRSRVGetMMUContextPDDevPAddr 100109c0 f   bridged_pvr_glue.obj
+ 0001:0000fa68       PVRSRVUnmapDeviceMemory    10010a68 f   bridged_pvr_glue.obj
+ 0001:0000fbf4       PVRSRVModifyPendingSyncOps 10010bf4 f   bridged_pvr_glue.obj
+ 0001:0000fd5c       PVRSRVModifyCompleteSyncOps 10010d5c f   bridged_pvr_glue.obj
+ 0001:0000fe78       PVRSRVOpenBCDevice         10010e78 f   bridged_pvr_bc_glue.obj
+ 0001:0000ffec       PVRSRVCloseBCDevice        10010fec f   bridged_pvr_bc_glue.obj
+ 0001:000100d8       PVRSRVGetBCBufferInfo      100110d8 f   bridged_pvr_bc_glue.obj
+ 0001:00010220       PVRSRVGetBCBuffer          10011220 f   bridged_pvr_bc_glue.obj
+ 0001:00010358       PVRSRVOpenDCDevice         10011358 f   bridged_pvr_dc_glue.obj
+ 0001:000104cc       PVRSRVCloseDCDevice        100114cc f   bridged_pvr_dc_glue.obj
+ 0001:000105e8       PVRSRVEnumDCFormats        100115e8 f   bridged_pvr_dc_glue.obj
+ 0001:00010788       PVRSRVEnumDCDims           10011788 f   bridged_pvr_dc_glue.obj
+ 0001:00010944       PVRSRVGetDCSystemBuffer    10011944 f   bridged_pvr_dc_glue.obj
+ 0001:00010a78       PVRSRVGetDCInfo            10011a78 f   bridged_pvr_dc_glue.obj
+ 0001:00010bd8       PVRSRVCreateDCSwapChain    10011bd8 f   bridged_pvr_dc_glue.obj
+ 0001:00010d74       PVRSRVDestroyDCSwapChain   10011d74 f   bridged_pvr_dc_glue.obj
+ 0001:00010e60       PVRSRVSetDCDstRect         10011e60 f   bridged_pvr_dc_glue.obj
+ 0001:00010f68       PVRSRVSetDCSrcRect         10011f68 f   bridged_pvr_dc_glue.obj
+ 0001:00011074       PVRSRVSetDCDstColourKey    10012074 f   bridged_pvr_dc_glue.obj
+ 0001:00011168       PVRSRVSetDCSrcColourKey    10012168 f   bridged_pvr_dc_glue.obj
+ 0001:00011260       PVRSRVGetDCBuffers         10012260 f   bridged_pvr_dc_glue.obj
+ 0001:0001140c       PVRSRVSwapToDCBuffer       1001240c f   bridged_pvr_dc_glue.obj
+ 0001:000115d4       PVRSRVSwapToDCSystem       100125d4 f   bridged_pvr_dc_glue.obj
+ 0001:000116bc       PVRPMapKMem                100126bc f   srvclient_wince.obj
+ 0001:0001170c       PVRUnMapKMem               1001270c f   srvclient_wince.obj
+ 0001:00011754       PVRSRVEventObjectOpen      10012754 f   srvclient_wince.obj
+ 0001:00011814       PVRSRVEventObjectClose     10012814 f   srvclient_wince.obj
+ 0001:00011854       PVRSRVEventObjectWait      10012854 f   srvclient_wince.obj
+ 0001:00011920       PVRSRVLockResource         10012920 f   srvclient_wince.obj
+ 0001:00011a24       PVRSRVUnlockResource       10012a24 f   srvclient_wince.obj
+ 0001:00011b24       PVRSRVCallocUserModeMem    10012b24 f   srvclient_wince.obj
+ 0001:00011b5c       PVRSRVReallocUserModeMem   10012b5c f   srvclient_wince.obj
+ 0001:00011b94       PVRSRVClockus              10012b94 f   srvclient_wince.obj
+ 0001:00011bc4       PVRSRVWaitus               10012bc4 f   srvclient_wince.obj
+ 0001:00011c34       PVRSRVMemCopy              10012c34 f   srvclient_wince.obj
+ 0001:00011c58       PVRSRVMemSet               10012c58 f   srvclient_wince.obj
+ 0001:00011c80       PVRSRVCreateMutex          10012c80 f   srvclient_wince.obj
+ 0001:00011ce0       PVRSRVDestroyMutex         10012ce0 f   srvclient_wince.obj
+ 0001:00011d10       PVRSRVLockMutex            10012d10 f   srvclient_wince.obj
+ 0001:00011d50       PVRSRVUnlockMutex          10012d50 f   srvclient_wince.obj
+ 0001:00011d8c       dassert                    10012d8c f   srvclient_wince.obj
+ 0001:00011df0       dprintf                    10012df0 f   srvclient_wince.obj
+ 0001:00011e30       OSReadRegistryString       10012e30 f   registry.obj
+ 0001:00012338       OSReadRegistryBinary       10013338 f   registry.obj
+ 0001:000125e4       OSReadRegistryInt          100135e4 f   registry.obj
+ 0001:000129b0       OSWriteRegistryString      100139b0 f   registry.obj
+ 0001:00012eb0       OSWriteRegistryBinary      10013eb0 f   registry.obj
+ 0001:00013178       FindAppHintInFile          10014178 f   pvr_apphint.obj
+ 0001:00013708       FindAppHint                10014708 f   pvr_apphint.obj
+ 0001:00013830       PVRSRVCreateAppHintState   10014830 f   pvr_apphint.obj
+ 0001:000138b8       PVRSRVFreeAppHintState     100148b8 f   pvr_apphint.obj
+ 0001:000138f8       PVRSRVGetAppHint           100148f8 f   pvr_apphint.obj
+ 0001:00013a0c       PVRSRVDebugPrintf          10014a0c f   srvclientenvumcmn:pvr_debug.obj
+ 0001:00013c18       PVRSRVDebugAssertFail      10014c18 f   srvclientenvumcmn:pvr_debug.obj
+ 0001:00013c50       PVRSRVTrace                10014c50 f   srvclientenvumcmn:pvr_debug.obj
+ 0001:00013d88       PVRSRVAllocUserModeMem     10014d88 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00013dbc       PVRSRVFreeUserModeMem      10014dbc f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00013dd8       PVRSRVReleaseThreadQuanta  10014dd8 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00013dec       PVRSRVGetCurrentProcessID  10014dec f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00013e14       PVRSRVSetLocale            10014e14 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00013e44       PVRSRVLoadLibrary          10014e44 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00013f38       PVRSRVUnloadLibrary        10014f38 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00013f8c       PVRSRVGetLibFuncAddr       10014f8c f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:000140b4       OSReadHWReg                100150b4 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:000140e8       OSWriteHWReg               100150e8 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00014110       OSGetCurrentThreadID       10015110 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00014138       OSIsProcessPrivileged      10015138 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:00014178       OSTermClient               10015178 f   srvclientenvumcmn:osfunc_umclient.obj
+ 0001:0001419c       GetCurrentProcessId        1001519c f i srvclientenvumcmn:osfunc_umclient.obj
+ 0001:000141c8       OpenServices               100151c8 f   srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:00014298       CloseServices              10015298 f   srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:0001432c       PVRSRVBridgeCall           1001532c f   srvclientenvumcmn:pvr_bridge_u.obj
+ 0001:0001448c       PVRSRVReleaseMiscInfo      1001548c f   srvclientenvumcmn:pvr_glue.obj
+ 0001:000145e0       PVRSRVAllocDeviceMem       100155e0 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:000147b4       PVRSRVFreeDeviceMem        100157b4 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00014980       PVRSRVUnrefDeviceMem       10015980 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00014a68       PVRSRVMapDeviceMemory      10015a68 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00014d3c       PVRSRVCreateCommandQueue   10015d3c f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00014e34       PVRSRVDestroyCommandQueue  10015e34 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00014ebc       PVRSRVFreeSharedSysMem     10015ebc f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00014f78       PVRSRVUnrefSharedSysMem    10015f78 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00014fb0       PVRSRVAllocSharedSysMem    10015fb0 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00015144       PVRSRVMapMemInfoMem        10016144 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:00015338       OutputMemoryStats          10016338 f   srvclientenvumcmn:memchk.obj
+ 0001:00015464       PVRSRVAllocUserModeMemTracking 10016464 f   srvclientenvumcmn:memchk.obj
+ 0001:0001592c       PVRSRVCallocUserModeMemTracking 1001692c f   srvclientenvumcmn:memchk.obj
+ 0001:0001596c       PVRSRVFreeUserModeMemTracking 1001696c f   srvclientenvumcmn:memchk.obj
+ 0001:00015cb0       PVRSRVReallocUserModeMemTracking 10016cb0 f   srvclientenvumcmn:memchk.obj
+ 0001:00015e0c       PVRSRVMetricsSleep         10016e0c f   srvclientenvumcmn:pvr_metrics.obj
+ 0001:00015e28       PVRSRVMetricsTimeNow       10016e28 f   srvclientenvumcmn:pvr_metrics.obj
+ 0001:00015ea0       PVRSRVMetricsGetCPUFreq    10016ea0 f   srvclientenvumcmn:pvr_metrics.obj
+ 0001:00015fe8       PVRSRVInitProfileOutput    10016fe8 f   srvclientenvumcmn:pvr_metrics.obj
+ 0001:00016158       PVRSRVDeInitProfileOutput  10017158 f   srvclientenvumcmn:pvr_metrics.obj
+ 0001:0001619c       PVRSRVProfileOutput        1001719c f   srvclientenvumcmn:pvr_metrics.obj
+ 0001:00016230       SGXRemoveRenderTarget      10017230 f   srvclientsgx:sgxrender_targets.obj
+ 0001:0001687c       SGXAddRenderTarget         1001787c f   srvclientsgx:sgxrender_targets.obj
+ 0001:00019424       SGXDestroyRenderContext    1001a424 f   srvclientsgx:sgxrender_context.obj
+ 0001:000196c0       SGXCreateRenderContext     1001a6c0 f   srvclientsgx:sgxrender_context.obj
+ 0001:0001a1e4       SGXCreateTransferContext   1001b1e4 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001c808       SGXDestroyTransferContext  1001d808 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001ccac       SGXGetHWPerfCounters       1001dcac f   srvclientsgx:sgxhwperf_client.obj
+ 0001:0001cfe0       SGXKickTA                  1001dfe0 f   srvclientsgx:sgxkick_client.obj
+ 0001:0001f8b0       SGXQueueTransfer           100208b0 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0002aaa4       CreateCCB                  1002baa4 f   srvclientsgx:sgxutils_client.obj
+ 0001:0002add4       DestroyCCB                 1002bdd4 f   srvclientsgx:sgxutils_client.obj
+ 0001:0002ae20       SGXAcquireCCB              1002be20 f   srvclientsgx:sgxutils_client.obj
+ 0001:0002afcc       SGXSetContextPriority      1002bfcc f   srvclientsgx:sgxutils_client.obj
+ 0001:0002b34c       DestroyPerContextPB        1002c34c f   srvclientsgx:sgxpb.obj
+ 0001:0002b5b8       CreatePerContextPB         1002c5b8 f   srvclientsgx:sgxpb.obj
+ 0001:0002c0e8       SGXTQ_FixedIntDiv          1002d0e8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002c174       SGXTQ_FloatIntDiv          1002d174 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002c208       SGXTQ_FixedToFloat         1002d208 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002c414       SGXTQ_FixedToF16           1002d414 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002c528       SGXTQ_GetTAGFormat         1002d528 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002cb48       SGXTQ_GetPBEFormat         1002db48 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002cf6c       SGXTQ_FilterFromEnum       1002df6c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002d00c       SGXTQ_RotationFromEnum     1002e00c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002d0c4       SGXTQ_MemLayoutFromEnum    1002e0c4 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002d370       SGXTQ_ShaderFromAlpha      1002e370 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002d43c       SGXTQ_ShaderFromRop        1002e43c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002d67c       SGXTQ_GetStrideGran        1002e67c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002d708       SGXTQ_GetSurfaceStride     1002e708 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002d980       SGXTQ_GetSurfaceWidth      1002e980 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002daf4       SGXTQ_SetTAGState          1002eaf4 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002dfac       SGXTQ_SetUSSEKick          1002efac f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002e054       SGXTQ_SetDMAState          1002f054 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002e1b4       SGXTQ_SetupStridedBlit     1002f1b4 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002e5a8       SGXTQ_SetPBEState          1002f5a8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002e988       SGXTQ_CreateUSEEOTHandler  1002f988 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002ef78       SGXTQ_CreatePDSPixeventHandler 1002ff78 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002f438       SGXTQ_CreateCB             10030438 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002f580       SGXTQ_DestroyCB            10030580 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002f5b0       SGXTQ_AcquireCB            100305b0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002f9e4       SGXTQ_BeginCB              100309e4 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002fa2c       SGXTQ_FlushCB              10030a2c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002fa84       SGXTQ_SetupTransferRegs    10030a84 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002feec       SGXTQ_CreatePDSPrimResource 10030eec f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:000302fc       SGXTQ_CreatePDSSecResource 100312fc f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:000308dc       SGXTQ_CreateUSEResource    100318dc f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00030abc       SGXTQ_SetupTransferRenderBox 10031abc f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00030b30       SGXTQ_SetupTransferClipRenderBox 10031b30 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00030bc8       SGXTQ_CreateISPResource    10031bc8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00031570       SGXTQ_CreateISPF2DResource 10032570 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00031afc       SGXTQ_StagingBufferAcquireSpace 10032afc f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00031d88       SGXTQ_GetStagingBufferDevVAddr 10032d88 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00031dc8       SGXTQ_UpdateStagingBuffer  10032dc8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:00031e1c       SGXTQ_ClampInputRects      10032e1c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003218c       SGXTQ_CopyToStagingBuffer  1003318c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:000322e4       SetUSEExecutionAddress     100332e4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000324c0       PDSTQ_TILEXY_PIXEVENTSetPTOFF0 100334c0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000324e0       PDSTQ_TILEXY_PIXEVENTSetPTOFF1 100334e0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032504       PDSTQ_TILEXY_PIXEVENTSetPTOFF2 10033504 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032528       PDSTQ_TILEXY_PIXEVENTSetEOT0 10033528 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003254c       PDSTQ_TILEXY_PIXEVENTSetEOT1 1003354c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032570       PDSTQ_TILEXY_PIXEVENTSetEOT2 10033570 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032594       PDSTQ_TILEXY_PIXEVENTSetEOR0 10033594 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000325b8       PDSTQ_TILEXY_PIXEVENTSetEOR1 100335b8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000325dc       PDSTQ_TILEXY_PIXEVENTSetEOR2 100335dc f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032600       PDSTQ_TILEXY_PIXEVENTSetEOT_DOUTA1 10033600 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032624       PDSTQ_KICKONLYSetDOUTU0    10033624 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032644       PDSTQ_KICKONLYSetDOUTU1    10033644 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032668       PDSTQ_KICKONLYSetDOUTU2    10033668 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003268c       PDSTQ_1SRCSetDOUTU0        1003368c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000326ac       PDSTQ_1SRCSetDOUTU1        100336ac f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000326d0       PDSTQ_1SRCSetDOUTU2        100336d0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000326f4       PDSTQ_1SRCSetDOUTI0_SRC0   100336f4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032718       PDSTQ_1SRCSetDOUTT0_SRC0   10033718 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003273c       PDSTQ_1SRCSetDOUTT1_SRC0   1003373c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032760       PDSTQ_1SRCSetDOUTT2_SRC0   10033760 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032784       PDSTQ_2SRCSetDOUTU0        10033784 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000327a4       PDSTQ_2SRCSetDOUTU1        100337a4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000327c8       PDSTQ_2SRCSetDOUTU2        100337c8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000327ec       PDSTQ_2SRCSetDOUTI0_SRC0   100337ec f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032810       PDSTQ_2SRCSetDOUTT0_SRC0   10033810 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032834       PDSTQ_2SRCSetDOUTT1_SRC0   10033834 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032858       PDSTQ_2SRCSetDOUTT2_SRC0   10033858 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003287c       PDSTQ_2SRCSetDOUTI0_SRC1   1003387c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000328a0       PDSTQ_2SRCSetDOUTT0_SRC1   100338a0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000328c4       PDSTQ_2SRCSetDOUTT1_SRC1   100338c4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000328e8       PDSTQ_2SRCSetDOUTT2_SRC1   100338e8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003290c       PDSTQ_3SRCSetDOUTU0        1003390c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003292c       PDSTQ_3SRCSetDOUTU1        1003392c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032950       PDSTQ_3SRCSetDOUTU2        10033950 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032974       PDSTQ_3SRCSetDOUTI0_SRC0   10033974 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032998       PDSTQ_3SRCSetDOUTT0_SRC0   10033998 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000329bc       PDSTQ_3SRCSetDOUTT1_SRC0   100339bc f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000329e0       PDSTQ_3SRCSetDOUTT2_SRC0   100339e0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032a04       PDSTQ_3SRCSetDOUTI0_SRC1   10033a04 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032a28       PDSTQ_3SRCSetDOUTT0_SRC1   10033a28 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032a4c       PDSTQ_3SRCSetDOUTT1_SRC1   10033a4c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032a70       PDSTQ_3SRCSetDOUTT2_SRC1   10033a70 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032a94       PDSTQ_3SRCSetDOUTI0_SRC2   10033a94 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032ab8       PDSTQ_3SRCSetDOUTT0_SRC2   10033ab8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032adc       PDSTQ_3SRCSetDOUTT1_SRC2   10033adc f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032b00       PDSTQ_3SRCSetDOUTT2_SRC2   10033b00 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032b24       PDSTQ_ITERSetDOUTU0        10033b24 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032b44       PDSTQ_ITERSetDOUTU1        10033b44 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032b68       PDSTQ_ITERSetDOUTU2        10033b68 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032b8c       PDSTQ_ITERSetDOUTI0_SRC0   10033b8c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032bb0       PDSTQ_DMA_ONLYSetDOUTU0    10033bb0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032bd4       PDSTQ_DMA_ONLYSetDOUTU1    10033bd4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032bf8       PDSTQ_DMA_ONLYSetDOUTU2    10033bf8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032c1c       PDSTQ_DMA_ONLYSetDOUTD0    10033c1c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032c3c       PDSTQ_DMA_ONLYSetDOUTD1    10033c3c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032c60       PDSTQ_1ATTRSetDOUTU0       10033c60 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032c84       PDSTQ_1ATTRSetDOUTU1       10033c84 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032ca8       PDSTQ_1ATTRSetDOUTU2       10033ca8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032ccc       PDSTQ_1ATTRSetDOUTA0       10033ccc f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032cec       PDSTQ_3ATTRSetDOUTU0       10033cec f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032d10       PDSTQ_3ATTRSetDOUTU1       10033d10 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032d34       PDSTQ_3ATTRSetDOUTU2       10033d34 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032d58       PDSTQ_3ATTRSetDOUTA0       10033d58 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032d78       PDSTQ_3ATTRSetDOUTA1       10033d78 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032d9c       PDSTQ_3ATTRSetDOUTA2       10033d9c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032dc0       PDSTQ_4ATTRSetDOUTU0       10033dc0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032de4       PDSTQ_4ATTRSetDOUTU1       10033de4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032e08       PDSTQ_4ATTRSetDOUTU2       10033e08 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032e2c       PDSTQ_4ATTRSetDOUTA0       10033e2c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032e4c       PDSTQ_4ATTRSetDOUTA1       10033e4c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032e70       PDSTQ_4ATTRSetDOUTA2       10033e70 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032e94       PDSTQ_4ATTRSetDOUTA3       10033e94 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032eb8       PDSTQ_4ATTR_DMASetDOUTU0   10033eb8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032edc       PDSTQ_4ATTR_DMASetDOUTU1   10033edc f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032f00       PDSTQ_4ATTR_DMASetDOUTU2   10033f00 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032f24       PDSTQ_4ATTR_DMASetDOUTA0   10033f24 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032f44       PDSTQ_4ATTR_DMASetDOUTA1   10033f44 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032f68       PDSTQ_4ATTR_DMASetDOUTA2   10033f68 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032f8c       PDSTQ_4ATTR_DMASetDOUTA3   10033f8c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032fb0       PDSTQ_4ATTR_DMASetDOUTD0   10033fb0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032fd4       PDSTQ_4ATTR_DMASetDOUTD1   10033fd4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00032ff8       PDSTQ_5ATTR_DMASetDOUTU0   10033ff8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003301c       PDSTQ_5ATTR_DMASetDOUTU1   1003401c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033040       PDSTQ_5ATTR_DMASetDOUTU2   10034040 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033064       PDSTQ_5ATTR_DMASetDOUTA0   10034064 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033084       PDSTQ_5ATTR_DMASetDOUTA1   10034084 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000330a8       PDSTQ_5ATTR_DMASetDOUTA2   100340a8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000330cc       PDSTQ_5ATTR_DMASetDOUTA3   100340cc f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000330f0       PDSTQ_5ATTR_DMASetDOUTA4   100340f0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033114       PDSTQ_5ATTR_DMASetDOUTD0   10034114 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033138       PDSTQ_5ATTR_DMASetDOUTD1   10034138 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003315c       PDSTQ_6ATTRSetDOUTU0       1003415c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033180       PDSTQ_6ATTRSetDOUTU1       10034180 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000331a4       PDSTQ_6ATTRSetDOUTU2       100341a4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000331c8       PDSTQ_6ATTRSetDOUTA0       100341c8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000331e8       PDSTQ_6ATTRSetDOUTA1       100341e8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003320c       PDSTQ_6ATTRSetDOUTA2       1003420c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033230       PDSTQ_6ATTRSetDOUTA3       10034230 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033254       PDSTQ_6ATTRSetDOUTA4       10034254 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033278       PDSTQ_6ATTRSetDOUTA5       10034278 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003329c       PDSTQ_7ATTRSetDOUTU0       1003429c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000332c0       PDSTQ_7ATTRSetDOUTU1       100342c0 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000332e4       PDSTQ_7ATTRSetDOUTU2       100342e4 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033308       PDSTQ_7ATTRSetDOUTA0       10034308 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033328       PDSTQ_7ATTRSetDOUTA1       10034328 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:0003334c       PDSTQ_7ATTRSetDOUTA2       1003434c f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033370       PDSTQ_7ATTRSetDOUTA3       10034370 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033394       PDSTQ_7ATTRSetDOUTA4       10034394 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000333b8       PDSTQ_7ATTRSetDOUTA5       100343b8 f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:000333dc       PDSTQ_7ATTRSetDOUTA6       100343dc f i srvclientsgx:sgxtransfer_utils.obj
+ 0001:00033400       PVRSRVPollForValue         10034400 f   srvclientcmn:resources.obj
+ 0001:00033550       PVRSRVClientEvent          10034550 f   srvclientcmn:resources.obj
+ 0001:000336cc       __GetUserKData             100346cc f   coredll:COREDLL.dll
+ 0001:000336dc       TlsGetValue                100346dc f   coredll:COREDLL.dll
+ 0001:000336ec       TlsCall                    100346ec f   coredll:COREDLL.dll
+ 0001:000336fc       TlsSetValue                100346fc f   coredll:COREDLL.dll
+ 0001:0003370c       CreateEventW               1003470c f   coredll:COREDLL.dll
+ 0001:0003371c       WaitForSingleObject        1003471c f   coredll:COREDLL.dll
+ 0001:0003372c       InterlockedCompareExchange 1003472c f   coredll:COREDLL.dll
+ 0001:0003373c       GetTickCount               1003473c f   coredll:COREDLL.dll
+ 0001:0003374c       RegCloseKey                1003474c f   coredll:COREDLL.dll
+ 0001:0003375c       RegQueryValueExW           1003475c f   coredll:COREDLL.dll
+ 0001:0003376c       RegOpenKeyExW              1003476c f   coredll:COREDLL.dll
+ 0001:0003377c       SetLastError               1003477c f   coredll:COREDLL.dll
+ 0001:0003378c       RegSetValueExW             1003478c f   coredll:COREDLL.dll
+ 0001:0003379c       WideCharToMultiByte        1003479c f   coredll:COREDLL.dll
+ 0001:000337ac       GetModuleFileNameW         100347ac f   coredll:COREDLL.dll
+ 0001:000337bc       OutputDebugStringW         100347bc f   coredll:COREDLL.dll
+ 0001:000337cc       Sleep                      100347cc f   coredll:COREDLL.dll
+ 0001:000337dc       LoadLibraryW               100347dc f   coredll:COREDLL.dll
+ 0001:000337ec       FreeLibrary                100347ec f   coredll:COREDLL.dll
+ 0001:000337fc       GetProcAddressW            100347fc f   coredll:COREDLL.dll
+ 0001:0003380c       CreateFileW                1003480c f   coredll:COREDLL.dll
+ 0001:0003381c       CloseHandle                1003481c f   coredll:COREDLL.dll
+ 0001:0003382c       DeviceIoControl            1003482c f   coredll:COREDLL.dll
+ 0001:0003383c       VirtualFree                1003483c f   coredll:COREDLL.dll
+ 0001:0003384c       VirtualAlloc               1003484c f   coredll:COREDLL.dll
+ 0001:0003385c       QueryPerformanceCounter    1003485c f   coredll:COREDLL.dll
+ 0001:0003386c       QueryPerformanceFrequency  1003486c f   coredll:COREDLL.dll
+ 0001:0003387c       MultiByteToWideChar        1003487c f   coredll:COREDLL.dll
+ 0001:0003388c       DllMain                    1003488c f   corelib0:dllmain.obj
+ 0001:000338c8       _DllMainCRTStartup         100348c8 f   corelib0:pegdmain.obj
+ 0001:00033a70       __security_init_cookie     10034a70 f   corelib0:seccinit.obj
+ 0001:00033b38       __GSHandlerCheck           10034b38 f   corelib0:gshandler.obj
+ 0001:00033b80       __GSHandlerCheckCommon     10034b80 f   corelib0:gshandler.obj
+ 0001:00033c28       __security_check_cookie    10034c28 f   corelib0:armsecgs.obj
+ 0001:00033c3c       __gsfailure                10034c3c f   corelib0:armsecgs.obj
+ 0001:00033c80       exit                       10034c80 f   corelib0:cexit.obj
+ 0001:00033dc4       _exit                      10034dc4 f   corelib0:cexit.obj
+ 0001:00033de8       _cexit                     10034de8 f   corelib0:cexit.obj
+ 0001:00033e04       _c_exit                    10034e04 f   corelib0:cexit.obj
+ 0001:00033e20       GetCurrentProcess          10034e20 f i corelib0:cexit.obj
+ 0001:00033e38       _initterm                  10034e38 f   corelib0:crt0dat.obj
+ 0001:00033e8c       _cinit                     10034e8c f   corelib0:crt0dat.obj
+ 0001:00033ec0       _onexit                    10034ec0 f   corelib0:onexit.obj
+ 0001:000340a0       atexit                     100350a0 f   corelib0:onexit.obj
+ 0001:000340f4       memcpy                     100350f4 f   corelib1:COREDLL.dll
+ 0001:00034104       __rt_sdiv                  10035104 f   corelib1:COREDLL.dll
+ 0001:00034114       __rt_udiv                  10035114 f   corelib1:COREDLL.dll
+ 0001:00034124       swprintf                   10035124 f   corelib1:COREDLL.dll
+ 0001:00034134       calloc                     10035134 f   corelib1:COREDLL.dll
+ 0001:00034144       realloc                    10035144 f   corelib1:COREDLL.dll
+ 0001:00034154       memset                     10035154 f   corelib1:COREDLL.dll
+ 0001:00034164       printf                     10035164 f   corelib1:COREDLL.dll
+ 0001:00034174       strrchr                    10035174 f   corelib1:COREDLL.dll
+ 0001:00034184       wcslen                     10035184 f   corelib1:COREDLL.dll
+ 0001:00034194       strlen                     10035194 f   corelib1:COREDLL.dll
+ 0001:000341a4       _wtol                      100351a4 f   corelib1:COREDLL.dll
+ 0001:000341b4       atoi                       100351b4 f   corelib1:COREDLL.dll
+ 0001:000341c4       atof                       100351c4 f   corelib1:COREDLL.dll
+ 0001:000341d4       strcpy                     100351d4 f   corelib1:COREDLL.dll
+ 0001:000341e4       strstr                     100351e4 f   corelib1:COREDLL.dll
+ 0001:000341f4       _stricmp                   100351f4 f   corelib1:COREDLL.dll
+ 0001:00034204       fgets                      10035204 f   corelib1:COREDLL.dll
+ 0001:00034214       fclose                     10035214 f   corelib1:COREDLL.dll
+ 0001:00034224       sprintf                    10035224 f   corelib1:COREDLL.dll
+ 0001:00034234       fopen                      10035234 f   corelib1:COREDLL.dll
+ 0001:00034244       __dtos                     10035244 f   corelib1:COREDLL.dll
+ 0001:00034254       __stod                     10035254 f   corelib1:COREDLL.dll
+ 0001:00034264       malloc                     10035264 f   corelib1:COREDLL.dll
+ 0001:00034274       free                       10035274 f   corelib1:COREDLL.dll
+ 0001:00034284       vsprintf                   10035284 f   corelib1:COREDLL.dll
+ 0001:00034294       strncpy                    10035294 f   corelib1:COREDLL.dll
+ 0001:000342a4       strcat                     100352a4 f   corelib1:COREDLL.dll
+ 0001:000342b4       _vsnprintf                 100352b4 f   corelib1:COREDLL.dll
+ 0001:000342c4       __utos                     100352c4 f   corelib1:COREDLL.dll
+ 0001:000342d4       __divs                     100352d4 f   corelib1:COREDLL.dll
+ 0001:000342e4       fprintf                    100352e4 f   corelib1:COREDLL.dll
+ 0001:000342f4       _XcptFilter                100352f4 f   corelib1:COREDLL.dll
+ 0001:00034304       __C_specific_handler       10035304 f   corelib1:COREDLL.dll
+ 0001:00034314       __security_gen_cookie2     10035314 f   corelib1:COREDLL.dll
+ 0001:00034324       __report_gsfailure         10035324 f   corelib1:COREDLL.dll
+ 0001:00034334       _msize                     10035334 f   corelib1:COREDLL.dll
+ 0001:00034344       DisableThreadLibraryCalls  10035344 f   coredll:COREDLL.dll
+ 0001:00034354       TerminateProcess           10035354 f   coredll:COREDLL.dll
+ 0001:000343c8       __IMPORT_DESCRIPTOR_COREDLL 100353c8     coredll:COREDLL.dll
+ 0001:000343dc       __NULL_IMPORT_DESCRIPTOR   100353dc     coredll:COREDLL.dll
+ 0002:00000000       __imp___GetUserKData       10037000     coredll:COREDLL.dll
+ 0002:00000004       __imp_TlsGetValue          10037004     coredll:COREDLL.dll
+ 0002:00000008       __imp_TlsCall              10037008     coredll:COREDLL.dll
+ 0002:0000000c       __imp_TlsSetValue          1003700c     coredll:COREDLL.dll
+ 0002:00000010       __imp_CreateEventW         10037010     coredll:COREDLL.dll
+ 0002:00000014       __imp_WaitForSingleObject  10037014     coredll:COREDLL.dll
+ 0002:00000018       __imp_InterlockedCompareExchange 10037018     coredll:COREDLL.dll
+ 0002:0000001c       __imp_GetTickCount         1003701c     coredll:COREDLL.dll
+ 0002:00000020       __imp_RegCloseKey          10037020     coredll:COREDLL.dll
+ 0002:00000024       __imp_RegQueryValueExW     10037024     coredll:COREDLL.dll
+ 0002:00000028       __imp_RegOpenKeyExW        10037028     coredll:COREDLL.dll
+ 0002:0000002c       __imp_SetLastError         1003702c     coredll:COREDLL.dll
+ 0002:00000030       __imp_RegSetValueExW       10037030     coredll:COREDLL.dll
+ 0002:00000034       __imp_WideCharToMultiByte  10037034     coredll:COREDLL.dll
+ 0002:00000038       __imp_GetModuleFileNameW   10037038     coredll:COREDLL.dll
+ 0002:0000003c       __imp_OutputDebugStringW   1003703c     coredll:COREDLL.dll
+ 0002:00000040       __imp_Sleep                10037040     coredll:COREDLL.dll
+ 0002:00000044       __imp_LoadLibraryW         10037044     coredll:COREDLL.dll
+ 0002:00000048       __imp_FreeLibrary          10037048     coredll:COREDLL.dll
+ 0002:0000004c       __imp_GetProcAddressW      1003704c     coredll:COREDLL.dll
+ 0002:00000050       __imp_CreateFileW          10037050     coredll:COREDLL.dll
+ 0002:00000054       __imp_CloseHandle          10037054     coredll:COREDLL.dll
+ 0002:00000058       __imp_DeviceIoControl      10037058     coredll:COREDLL.dll
+ 0002:0000005c       __imp_VirtualFree          1003705c     coredll:COREDLL.dll
+ 0002:00000060       __imp_VirtualAlloc         10037060     coredll:COREDLL.dll
+ 0002:00000064       __imp_QueryPerformanceCounter 10037064     coredll:COREDLL.dll
+ 0002:00000068       __imp_QueryPerformanceFrequency 10037068     coredll:COREDLL.dll
+ 0002:0000006c       __imp_MultiByteToWideChar  1003706c     coredll:COREDLL.dll
+ 0002:00000070       __imp_memcpy               10037070     corelib1:COREDLL.dll
+ 0002:00000074       __imp___rt_sdiv            10037074     corelib1:COREDLL.dll
+ 0002:00000078       __imp___rt_udiv            10037078     corelib1:COREDLL.dll
+ 0002:0000007c       __imp_swprintf             1003707c     corelib1:COREDLL.dll
+ 0002:00000080       __imp_calloc               10037080     corelib1:COREDLL.dll
+ 0002:00000084       __imp_realloc              10037084     corelib1:COREDLL.dll
+ 0002:00000088       __imp_memset               10037088     corelib1:COREDLL.dll
+ 0002:0000008c       __imp_printf               1003708c     corelib1:COREDLL.dll
+ 0002:00000090       __imp_strrchr              10037090     corelib1:COREDLL.dll
+ 0002:00000094       __imp_wcslen               10037094     corelib1:COREDLL.dll
+ 0002:00000098       __imp_strlen               10037098     corelib1:COREDLL.dll
+ 0002:0000009c       __imp__wtol                1003709c     corelib1:COREDLL.dll
+ 0002:000000a0       __imp_atoi                 100370a0     corelib1:COREDLL.dll
+ 0002:000000a4       __imp_atof                 100370a4     corelib1:COREDLL.dll
+ 0002:000000a8       __imp_strcpy               100370a8     corelib1:COREDLL.dll
+ 0002:000000ac       __imp_strstr               100370ac     corelib1:COREDLL.dll
+ 0002:000000b0       __imp__stricmp             100370b0     corelib1:COREDLL.dll
+ 0002:000000b4       __imp_fgets                100370b4     corelib1:COREDLL.dll
+ 0002:000000b8       __imp_fclose               100370b8     corelib1:COREDLL.dll
+ 0002:000000bc       __imp_sprintf              100370bc     corelib1:COREDLL.dll
+ 0002:000000c0       __imp_fopen                100370c0     corelib1:COREDLL.dll
+ 0002:000000c4       __imp___dtos               100370c4     corelib1:COREDLL.dll
+ 0002:000000c8       __imp___stod               100370c8     corelib1:COREDLL.dll
+ 0002:000000cc       __imp_malloc               100370cc     corelib1:COREDLL.dll
+ 0002:000000d0       __imp_free                 100370d0     corelib1:COREDLL.dll
+ 0002:000000d4       __imp_vsprintf             100370d4     corelib1:COREDLL.dll
+ 0002:000000d8       __imp_strncpy              100370d8     corelib1:COREDLL.dll
+ 0002:000000dc       __imp_strcat               100370dc     corelib1:COREDLL.dll
+ 0002:000000e0       __imp__vsnprintf           100370e0     corelib1:COREDLL.dll
+ 0002:000000e4       __imp___utos               100370e4     corelib1:COREDLL.dll
+ 0002:000000e8       __imp___divs               100370e8     corelib1:COREDLL.dll
+ 0002:000000ec       __imp_fprintf              100370ec     corelib1:COREDLL.dll
+ 0002:000000f0       __imp__XcptFilter          100370f0     corelib1:COREDLL.dll
+ 0002:000000f4       __imp___C_specific_handler 100370f4     corelib1:COREDLL.dll
+ 0002:000000f8       __imp___security_gen_cookie2 100370f8     corelib1:COREDLL.dll
+ 0002:000000fc       __imp___report_gsfailure   100370fc     corelib1:COREDLL.dll
+ 0002:00000100       __imp__msize               10037100     corelib1:COREDLL.dll
+ 0002:00000104       __imp_DisableThreadLibraryCalls 10037104     coredll:COREDLL.dll
+ 0002:00000108       __imp_TerminateProcess     10037108     coredll:COREDLL.dll
+ 0002:0000010c       \177COREDLL_NULL_THUNK_DATA 1003710c     coredll:COREDLL.dll
+ 0002:00000114       gPVRDebugLevel             10037114     srvclientenvumcmn:pvr_debug.obj
+ 0002:00000120       pbtransferqueue_use        10037120     srvclientsgx:sgxtransfer_context.obj
+ 0002:000007b8       pbsubtwiddled_eot          100377b8     srvclientsgx:sgxtransfer_context.obj
+ 0002:000017e0       __security_cookie          100387e0     corelib0:seccinit.obj
+ 0002:000017e4       __security_cookie_complement 100387e4     corelib0:seccinit.obj
+ 0002:00001c48       _exitflag                  10038c48     corelib0:cexit.obj
+ 0002:00001c4c       __onexitend                10038c4c     <common>
+ 0002:00001c50       __onexitbegin              10038c50     <common>
+ 0002:00001c54       _pRawDllMain               10038c54     <common>
+
+ entry point at        0001:000338c8
+
+ Static symbols
+
+ 0001:00007404       PDSEncodeSimpleMOVS        10008404 f   pds.obj
+ 0001:0000ae1c       PDSGetNextConstant         1000be1c f   pds.obj
+ 0001:0000af7c       PDSGetTemps                1000bf7c f   pds.obj
+ 0001:0000b014       PDSGetConstants            1000c014 f   pds.obj
+ 0001:0000b0ac       PDSGetDS0ConstantOffset    1000c0ac f   pds.obj
+ 0001:0000b128       PDSGetDS1ConstantOffset    1000c128 f   pds.obj
+ 0001:0000b1a8       PDSSetDS0Constant          1000c1a8 f   pds.obj
+ 0001:0000b1f4       PDSSetDS1Constant          1000c1f4 f   pds.obj
+ 0001:0000b240       PDSGetNumConstants         1000c240 f   pds.obj
+ 0001:0000ee94       PVRPMapKMem                1000fe94 f   bridged_pvr_glue.obj
+ 0001:0000f054       PVRUnMapKMem               10010054 f   bridged_pvr_glue.obj
+ 0001:00013608       GetApplicationName         10014608 f   pvr_apphint.obj
+ 0001:000149b8       UnmapMemInfoMem            100159b8 f   srvclientenvumcmn:pvr_glue.obj
+ 0001:000154a4       GuardPageAlloc             100164a4 f   srvclientenvumcmn:memchk.obj
+ 0001:000156d4       GetMemTrackingApphints     100166d4 f   srvclientenvumcmn:memchk.obj
+ 0001:000157cc       AddToAllocList             100167cc f   srvclientenvumcmn:memchk.obj
+ 0001:00015988       GuardPageFree              10016988 f   srvclientenvumcmn:memchk.obj
+ 0001:00015aa8       RemoveFromAllocList        10016aa8 f   srvclientenvumcmn:memchk.obj
+ 0001:00015c04       FindItemInAllocList        10016c04 f   srvclientenvumcmn:memchk.obj
+ 0001:00015cf0       GuardPageReAlloc           10016cf0 f   srvclientenvumcmn:memchk.obj
+ 0001:000164fc       FreeRTDataSet              100174fc f   srvclientsgx:sgxrender_targets.obj
+ 0001:00017278       SetMT4Mode                 10018278 f   srvclientsgx:sgxrender_targets.obj
+ 0001:000173b8       SetMT16Mode                100183b8 f   srvclientsgx:sgxrender_targets.obj
+ 0001:00017518       DestroyDeviceSyncList      10018518 f   srvclientsgx:sgxrender_targets.obj
+ 0001:000175e8       DestroyRenderDetails       100185e8 f   srvclientsgx:sgxrender_targets.obj
+ 0001:000176b8       SetupRTDataSet             100186b8 f   srvclientsgx:sgxrender_targets.obj
+ 0001:000186c4       FindPowerOfTwo             100196c4 f   srvclientsgx:sgxrender_targets.obj
+ 0001:0001875c       FillLastRgnLUT             1001975c f   srvclientsgx:sgxrender_targets.obj
+ 0001:00018944       TilePositionToOffset       10019944 f   srvclientsgx:sgxrender_targets.obj
+ 0001:00018a68       CreateDeviceSyncList       10019a68 f   srvclientsgx:sgxrender_targets.obj
+ 0001:00018cac       CreateRenderDetails        10019cac f   srvclientsgx:sgxrender_targets.obj
+ 0001:00018ee4       SetupBackgroundObj         10019ee4 f   srvclientsgx:sgxrender_targets.obj
+ 0001:0001ae20       SGXTQ_CreateUSEResources   1001be20 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001b9c4       SGXTQ_CreatePDSPrimResources 1001c9c4 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001bd20       SGXTQ_CreatePDSSecResources 1001cd20 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001c180       SGXTQ_CreateISPResources   1001d180 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001c254       SGXTQ_CreateFast2DISPControlStream 1001d254 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001c2f0       SGXTQ_CreateUSEEORHandler  1001d2f0 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001c420       SGXTQ_CreateUSEEOTHandlers 1001d420 f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001c67c       SGXTQ_CreatePDSPixeventHandlers 1001d67c f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001cb6c       SGXTQ_FreeResourceArray    1001db6c f   srvclientsgx:sgxtransfer_context.obj
+ 0001:0001dedc       SGXCalcContextCCBParamSize 1001eedc f   srvclientsgx:sgxkick_client.obj
+ 0001:0001df20       Setup3DRegs                1001ef20 f   srvclientsgx:sgxkick_client.obj
+ 0001:0001e560       SetupTARegs                1001f560 f   srvclientsgx:sgxkick_client.obj
+ 0001:0001e93c       Update3DRegs               1001f93c f   srvclientsgx:sgxkick_client.obj
+ 0001:0001f000       GetNextRTData              10020000 f   srvclientsgx:sgxkick_client.obj
+ 0001:0001f180       SGXGetFreeRenderDetails    10020180 f   srvclientsgx:sgxkick_client.obj
+ 0001:0001f27c       SGXGetFreeDeviceSyncList   1002027c f   srvclientsgx:sgxkick_client.obj
+ 0001:0001f378       SGXKickSubmit              10020378 f   srvclientsgx:sgxkick_client.obj
+ 0001:000201a0       PrepareNormalBlit          100211a0 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00022588       PrepareTextureUpload       10023588 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00023850       PrepareMipGen              10024850 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:000245ac       PrepareFillOp              100255ac f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:000253e4       PrepareBufferBlt           100263e4 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00025ccc       PrepareCustomOp            10026ccc f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0002656c       PrepareFullCustomOp        1002756c f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00026b20       PrepareCustomShaderBlit    10027b20 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:00027a20       PrepareClipBlit            10028a20 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:000283dc       PrepareColourLUTBlit       100293dc f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:000291e4       PrepareVideoBlit           1002a1e4 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0002a4e0       SGXSubmitTransfer          1002b4e0 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0002aa60       SGXCalcContextCCBParamSize 1002ba60 f   srvclientsgx:sgxtransfer_queue.obj
+ 0001:0002b45c       DestroyPBBlock             1002c45c f   srvclientsgx:sgxpb.obj
+ 0001:0002b8fc       SetupPBDesc                1002c8fc f   srvclientsgx:sgxpb.obj
+ 0001:0002bc08       SetupHWPBDesc              1002cc08 f   srvclientsgx:sgxpb.obj
+ 0001:0002bd10       CreatePBBlock              1002cd10 f   srvclientsgx:sgxpb.obj
+ 0001:0002c31c       CountLeadingZeroes         1002d31c f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002dec8       SGXTQ_FindNearestLog2      1002eec8 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002ece4       SGXTQ_WriteUSEMovToReg     1002fce4 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:0002ed88       SGXTQ_CreateResource       1002fd88 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:000311f0       SGXTQ_WritePDSStatesAndDMS 100321f0 f   srvclientsgx:sgxtransfer_utils.obj
+ 0001:000335a4       HWOpTimeout                100345a4 f   srvclientcmn:resources.obj
+ 0001:0003391c       _DllMainCRTStartupHelper   1003491c f   corelib0:pegdmain.obj
+ 0001:00033ca4       doexit                     10034ca4 f   corelib0:cexit.obj

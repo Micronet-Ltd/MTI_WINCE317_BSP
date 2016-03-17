@@ -1,0 +1,11 @@
+
+Demo title: 		Skinning
+
+Demonstrates: 		How to implement Skinning using POD files and the Vertex Shader
+Short Description:	How to implement Skinning using POD files and the Vertex Shader
+
+Full Description:	
+How to implement Skinning using POD files and the Vertex Shader
+
+polygon count:		2360
+Vertex Count: 		1301

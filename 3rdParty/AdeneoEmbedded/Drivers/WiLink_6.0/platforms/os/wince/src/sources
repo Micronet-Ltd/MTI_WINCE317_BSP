@@ -1,0 +1,227 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+!IF "$(BSP_NOWILINK4)"=="1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=tiwlnapi
+#TARGETTYPE=LIBRARY
+TARGETTYPE=DYNLINK
+RELEASETYPE=$(TI_RELEASE)
+TARGETDEFNAME=tiwlnapi
+DEFFILE=tiwlnapi.def
+DLLENTRY=DllEntry
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+!IF "$(TI_ZOOM2_PLATFORM)"=="1"
+
+CDEFINES= $(CDEFINES) \
+	-DWM_ZOOM2 \
+	
+!IF "$(BSP_TI_WIFI_USE_SDIO)"=="1"
+TARGETLIBS= $(TARGETLIBS) \
+	$(_PUBLICROOT)\TI_WLAN\OAK\lib\$(_CPUINDPATH)\ti_wlan_sdio.lib
+!ENDIF
+
+TARGETLIBS=	$(TARGETLIBS)\
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\oscommon.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\AirLink_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Application.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Connection_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl_Interface.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_link.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Sta_Management.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_Service.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\FW_Transfer.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\MacServices.lib \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TwIf.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Txn.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TWDriver.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\test.lib	 \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\utils.lib	 \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\host_platform_zoom2.lib \
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\ceddk.lib \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\coredll.lib \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\ndis.lib    \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\ws2.lib \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\aygshell.lib \
+!IF "$(GEM_SUPPORTED)"=="1"
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\wapi.lib	 \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\wapi-netman.lib	 \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\wapi-openssl.lib	 \
+!ENDIF
+
+INCLUDES= \
+	$(_TARGETPLATROOT)\SRC\CSP\INC; \
+	$(_PLATFORMROOT)\COMMON\SRC\INC; \
+	$(_TARGETPLATROOT)\SRC\CSP\OMAP3430\INC; \
+	$(_TARGETPLATROOT)\SRC\CSP\OMAP\INC; \
+	$(_PUBLICROOT)\COMMON\SDK\INC; \
+	$(_PUBLICROOT)\COMMON\DDK\INC; \
+	$(_PUBLICROOT)\COMMON\OAK\INC; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\utils; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\os\winmobile\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\Txn; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\TWDriver; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\FirmwareApi; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\FW_Transfer\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\TwIf; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\os\common\inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Application; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Connection_Managment; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Ctrl_Interface; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\hw\host_platform_zoom2\winmobile; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Data_link; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\external_drivers\GEM\WMNDIS5\wapi_supp; \
+
+!ELSE
+
+!IF "$(_TGTPLAT)" == "TI_EVM_3530"
+
+INCLUDES= \
+	$(INCLUDES) \
+    $(STAD_INCLUDES) \
+    $(TWD_INCLUDES) \
+    $(PLATFORM_INCLUDES) \
+		
+TARGETLIBS=\
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\oscommon.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\AirLink_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Application.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Connection_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl_Interface.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_link.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Sta_Management.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_Service.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\FW_Transfer.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\MacServices.lib \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TwIf.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Txn.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TWDriver.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\test.lib	 \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\utils.lib	 \
+	$(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\coredll.lib \
+	$(_SYSGENOAKROOT)\LIB\$(_CPUINDPATH)\ceddk.lib \
+	$(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\ndis.lib    \
+	$(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\ws2.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\host_platform_$(DRV_BSP_NAME).lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\sdi_$(DRV_BSP_NAME).lib \
+
+
+!ELSE IF "$(_TGTPLAT)" == "PTI_OMAP3530"
+
+INCLUDES= \
+	$(INCLUDES) \
+    $(STAD_INCLUDES) \
+    $(TWD_INCLUDES) \
+    $(PLATFORM_INCLUDES) \
+		
+TARGETLIBS=\
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\oscommon.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\AirLink_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Application.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Connection_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl_Interface.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_link.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Sta_Management.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_Service.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\FW_Transfer.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\MacServices.lib \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TwIf.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Txn.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TWDriver.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\test.lib	 \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\utils.lib	 \
+	$(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\coredll.lib \
+	$(_SYSGENOAKROOT)\LIB\$(_CPUINDPATH)\ceddk.lib \
+	$(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\ndis.lib    \
+	$(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\ws2.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\host_platform_$(DRV_BSP_NAME).lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\sdi_$(DRV_BSP_NAME).lib \
+
+
+!ELSE
+
+
+
+
+TARGETLIBS=	\
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\oscommon.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\AirLink_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Application.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Connection_Managment.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl_Interface.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_link.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Sta_Management.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Ctrl.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Data_Service.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\FW_Transfer.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\MacServices.lib \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TwIf.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Txn.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\TWDriver.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\test.lib	 \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\utils.lib	 \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\host_platform_$(DRV_BSP_NAME).lib \
+    $(_WINCEROOT)\PLATFORM\$(_TGTPLAT)\lib\$(_CPUINDPATH)\ceddk.lib \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\coredll.lib \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\ndis.lib    \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\ws2.lib \
+	$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\aygshell.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\sdi_$(DRV_BSP_NAME).lib \
+
+!ENDIF
+   
+!IF "$(BSP_TI_WIFI_USE_SDIO)"=="1"
+ TARGETLIBS= $(TARGETLIBS) \
+ $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\$(DRV_BSP_CE_NAME).lib
+!ENDIF
+	
+
+
+!IF "$(BSP_TI_WIFIDBGMODULE)"=="1"
+TARGETLIBS=$(TARGETLIBS) \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\Test.lib
+!ENDIF
+
+#TARGETLIBS= $(TARGETLIBS) \$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\bmtraceDll.lib 
+
+!IF "$(BSP_TI_WIFI_CCX_ENABLED)"=="1"
+TARGETLIBS= $(TARGETLIBS) \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\CCX.lib \
+!ENDIF
+
+
+
+!IF "$(TI_WIFI_BMTRACE)"=="1"
+TARGETLIBS= $(TARGETLIBS) \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\bmtrace.lib
+!ENDIF
+!ENDIF
+
+!IF "$(BSP_TI_WIFI_USE_WSPI)"=="1"
+TARGETLIBS= $(TARGETLIBS) \
+  	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\tiwlanspi.lib
+!ENDIF
+
+
+# Ensure there are no trailing spaces
+SOURCES= \
+ipc_k.c \
+osApi.c \
+osmemapi.c \
+osEntry.c \
+osNdis.c \
+osOid.c \
+osRecv.c \
+cmdinterpretoid.c \
+wlandrvif.c \
+RxBuf.c

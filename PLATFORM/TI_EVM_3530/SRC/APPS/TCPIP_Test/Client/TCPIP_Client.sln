@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TCPIP_Client", "TCPIP_Client.vcxproj", "{83B074CA-9539-4886-A045-0787F3E0AACA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|CE500_CORE (ARMV4I) = Debug|CE500_CORE (ARMV4I)
+		Release|CE500_CORE (ARMV4I) = Release|CE500_CORE (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83B074CA-9539-4886-A045-0787F3E0AACA}.Debug|CE500_CORE (ARMV4I).ActiveCfg = Debug|CE500_CORE (ARMV4I)
+		{83B074CA-9539-4886-A045-0787F3E0AACA}.Debug|CE500_CORE (ARMV4I).Build.0 = Debug|CE500_CORE (ARMV4I)
+		{83B074CA-9539-4886-A045-0787F3E0AACA}.Debug|CE500_CORE (ARMV4I).Deploy.0 = Debug|CE500_CORE (ARMV4I)
+		{83B074CA-9539-4886-A045-0787F3E0AACA}.Release|CE500_CORE (ARMV4I).ActiveCfg = Release|CE500_CORE (ARMV4I)
+		{83B074CA-9539-4886-A045-0787F3E0AACA}.Release|CE500_CORE (ARMV4I).Build.0 = Release|CE500_CORE (ARMV4I)
+		{83B074CA-9539-4886-A045-0787F3E0AACA}.Release|CE500_CORE (ARMV4I).Deploy.0 = Release|CE500_CORE (ARMV4I)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

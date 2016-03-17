@@ -1,0 +1,86 @@
+;
+; Copyright (c) Micronet.  All rights reserved.
+;
+; GRPS driver-virtual COM driver
+;
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\GPRS]
+	"Dll"="ftdi_ser_virtual.Dll"
+	"Prefix"="COM"
+	"Index"=dword:0
+    "Order"=dword:80          ; should be after GPS driver
+    "PowerMask"=dword:1F             ;support d0, d1, d2, d3, d4
+ ;   "PowerMask"=dword:02             ;support d1 only
+    "ModemWakeup"=dword:1
+    "Priority256"=dword:96
+    "EnableExternalModem"=dword:1		; enable by default
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}"
+    
+IF 0
+[HKEY_LOCAL_MACHINE\ExtModems\TLS]
+	"Port"="COM0:"
+	"DeviceType"=dword:2
+	"FriendlyName"="Cellular modem"
+	
+[HKEY_LOCAL_MACHINE\ExtModems\TLS\Unimodem]
+   "Tsp"="Unimodem.dll"
+	
+[HKEY_LOCAL_MACHINE\Drivers\USB\FTDI_DEVICE\Unimodem]
+"DevConfig"=hex:\
+      10,00,00,00,05,00,00,00,10,01,00,00,00,4b,00,00,00,00,08,00,00,00,00,00,00
+"FriendlyName"="Cellular modem"
+"DeviceType"=dword:00000000
+"Tsp"="Unimodem.dll"
+
+ENDIF
+
+; --- Telit --------------------------------------------------
+
+[HKEY_LOCAL_MACHINE\ExtModems\Telit]
+	"Port"="COM0:"
+	"FriendlyName"="Telit Modem"
+	"DeviceType"=dword:00000001
+	"DevConfig"=hex: 10,00, 00,00, 78,00,00,00, 10,01,00,00, 00,4B,00,00, 00,00, 08, 00, 00, 00,00,00,00
+;	"ModemFlowHard"="AT&K3<cr>"
+	
+[HKEY_LOCAL_MACHINE\ExtModems\Telit\Init]
+    "1"="AT<cr>"
+    "2"="AT+CGMR<cr>"
+	"3"="ATE0V1&C1&D0&S0<cr>"
+	"4"="AT&D2<cr>"
+	"5"="AT+CFUN=5<cr>"
+	"6"="AT+CGDCONT=1,\"IP\",\"INTERNET\"<cr>"
+;	"3"="AT#SELINT=2<cr>"
+
+[HKEY_LOCAL_MACHINE\ExtModems\Telit\Settings]
+	"Prefix"="AT"
+	"Terminator"="<cr>"
+	"DialPrefix"="D"
+	"DialSuffix"=";"
+	"Pulse"="P"
+	"Tone"="T"
+	"Blind_Off"="X4"
+	"Blind_On"="X3"
+	"CallSetupFailTimeout"="ATS7=<#><cr>"
+	"Reset"="AT&F<cr>"
+	"EscapeDelay"=dword:5DC
+	"EscapeWait"=dword:5DC
+	"FlowHard"="AT&K3<cr>"
+	"FlowOff"="AT&K0<cr>"
+	"FlowSoft"="AT&K4<cr>"
+IF WINCESHIP
+	"MdmLogFile"=dword:0
+ELSE	
+	"MdmLogFile"=dword:1
+ENDIF
+
+[HKEY_LOCAL_MACHINE\ExtModems\Telit\Unimodem]
+	"Tsp"="unimodem.dll"
+	
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\AudioGateway]
+"TapiLineName"="GSM Voice Modem"	
+;-------------------------------------------------------------
+;[HKEY_LOCAL_MACHINE\DebugZones]
+;"UNIMODEM"=dword:7FFFFFFF	
+    

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CatalogFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequiredVersion="6.00" xsi:schemaLocation="urn:Microsoft.PlatformBuilder/Catalog PbcXml600.xsd" xmlns="urn:Microsoft.PlatformBuilder/Catalog">
+  <FileInformation Id="FileInformation:wl1271">
+    <Title>WiLink WLAN Support</Title>
+    <Description>WiLink software and drivers for WL1271 chipset</Description>
+    <Comment>Adeneo Embedded</Comment>
+    <Vendor>Adeneo Embedded</Vendor>
+    <OSVersion>6.00</OSVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </FileInformation>
+
+
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_Interface:EVM_OMAP3530">
+    <Title>WL1271 WiFi SDIO Support::Mistral EVM2 OMAP3530 and OMAP3730</Title>
+    <Description>Enable support for the WL1271 WiFi chip using the SDIO interface on the Mistral EVM OMAP3530 and OMAP3730 platform</Description>
+    <Comment>wl1271 wifi driver</Comment>
+    <Variable>WL1271_WLAN</Variable>
+    <Variable>HOST_PLAT_EVM_OMAP3530</Variable>
+    <Variable>WL1271_SDIO_OPTIMIZED</Variable>
+    <Variable>SYSGEN_ETH_80211</Variable>
+    <Module>sdi_EVM_OMAP3530.dll</Module>
+    <Module>tiwlnapi.dll</Module>
+    <Module>brf6300.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Project>$(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\WiLink.PBPXML</Project>
+    <Location ConditionLocation="">\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Drivers\WLAN</Location>
+    <Notification>
+      <Title>You will need to perform a SYSGEN when selecting this item for the first time</Title>
+      <Html />
+    </Notification>
+    <SourceCode>
+      <Title>wl1271 sources</Title>
+      <Path>$(_WINCEROOT)\3RDPARTY\AdeneoEmbedded\Drivers\WiLink_6.0</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_Interface:TI_EVM_3530">
+    <Title>WL1271 WiFi SDIO Support::Mistral EVM2 OMAP3530</Title>
+    <Description>Enable support for the WL1271 WiFi chip using the SDIO interface on the Mistral EVM OMAP3530 platform</Description>
+    <Comment>wl1271 wifi driver</Comment>
+    <Variable>WL1271_WLAN</Variable>
+    <Variable>HOST_PLAT_TI_EVM_3530</Variable>
+    <Variable>WL1271_SDIO_OPTIMIZED</Variable>
+    <Variable>SYSGEN_ETH_80211</Variable>
+    <Module>sdi_TI_EVM_3530.dll</Module>
+    <Module>tiwlnapi.dll</Module>
+    <Module>brf6300.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Project>$(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\WiLink.PBPXML</Project>
+    <Location ConditionLocation="">\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Drivers\WLAN</Location>
+    <Notification>
+      <Title>You will need to perform a SYSGEN when selecting this item for the first time</Title>
+      <Html />
+    </Notification>
+    <SourceCode>
+      <Title>wl1271 sources</Title>
+      <Path>$(_WINCEROOT)\3RDPARTY\AdeneoEmbedded\Drivers\WiLink_6.0</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_Interface:PTI_OMAP3530">
+    <Title>WL1271 WiFi SDIO Support::PTI OMAP3530</Title>
+    <Description>Enable support for the WL1271 WiFi chip using the SDIO interface on the PTI OMAP3530 platform</Description>
+    <Comment>wl1271 wifi driver</Comment>
+    <Variable>WL1271_WLAN</Variable>
+    <Variable>HOST_PLAT_PTI_OMAP3530</Variable>
+    <Variable>WL1271_SDIO_OPTIMIZED</Variable>
+    <Variable>SYSGEN_ETH_80211</Variable>
+    <Module>sdi_PTI_OMAP3530.dll</Module>
+    <Module>tiwlnapi.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Project>$(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\WiLink.PBPXML</Project>
+    <Location ConditionLocation="">\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Drivers\WLAN</Location>
+    <Notification>
+      <Title>You will need to perform a SYSGEN when selecting this item for the first time</Title>
+      <Html />
+    </Notification>
+    <SourceCode>
+      <Title>wl1271 sources</Title>
+      <Path>$(_WINCEROOT)\3RDPARTY\AdeneoEmbedded\Drivers\WiLink_6.0</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_Interface:SMDK2450">
+    <Title>WL1271 WiFi SDIO::Samsung SMDK2450</Title>
+    <Description>Enable support for the WL1271 WiFi chip using the SDIO interface on the Samsung SMDK 2450 platform</Description>
+    <Comment>wl1271 wifi driver</Comment>
+    <Variable>WL1271_WLAN</Variable>
+    <Variable>HOST_PLAT_SMDK2450</Variable>
+    <Variable>WL1271_SDIO_OPTIMIZED</Variable>
+    <Variable>SYSGEN_ETH_80211</Variable>
+    <Variable>BSP_NOHSMMC_CH0</Variable>
+    <Module>sdi.dll</Module>
+    <Module>tiwlnapi.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Project>$(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\WiLink.PBPXML</Project>
+    <Location ConditionLocation="">\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Drivers\WLAN</Location>
+    <Notification>
+      <Title>You will need to perform a SYSGEN when selecting this item for the first time</Title>
+      <Html />
+    </Notification>
+    <SourceCode>
+      <Title>wl1271 sources</Title>
+      <Path>$(_WINCEROOT)\3RDPARTYAdeneoEmbedded\Drivers\WiLink_6.0</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_Open">
+    <Title>Open Networks</Title>
+    <Description>Open Encription networks</Description>
+    <Comment>Open Encription networks</Comment>
+    <Location>\Adeneo Embedded\WLAN\Security Support</Location>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_WEP">
+    <Title>WEP Encription</Title>
+    <Description>WEP Encription Network</Description>
+    <Comment>WEP Encription Network</Comment>
+    <Location>\Adeneo Embedded\WLAN\Security Support</Location>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_WPA">
+    <Title>WPA Encription</Title>
+    <Description>WPA Encription Network</Description>
+    <Comment>WPA Encription Network</Comment>
+    <Variable>SYSGEN_AUTH</Variable>
+    <Variable>SYSGEN_AUTH_SCHANNEL</Variable>
+    <Variable>SYSGEN_CREDMAN</Variable>
+    <Variable>SYSGEN_CRYPTO</Variable>
+    <Variable>SYSGEN_CERTS</Variable>
+    <Variable>SYSGEN_EAP</Variable>
+    <Variable>SYSGEN_CRYPTO_DSSDH</Variable>
+    <Location>\Adeneo Embedded\WLAN\Security Support</Location>
+    <Notification>
+      <Title>You will need to perform a SYSGEN when selecting this item for the first time</Title>
+      <Html />
+    </Notification>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_WLAN_WPA2">
+    <Title>WPA2 Encription</Title>
+    <Description>WPA2 Encription Network</Description>
+    <Comment>WPA2 Encription Network</Comment>
+    <Variable>SYSGEN_AUTH</Variable>
+    <Variable>SYSGEN_AUTH_SCHANNEL</Variable>
+    <Variable>SYSGEN_CREDMAN</Variable>
+    <Variable>SYSGEN_CRYPTO</Variable>
+    <Variable>SYSGEN_CERTS</Variable>
+    <Variable>SYSGEN_EAP</Variable>
+    <Variable>SYSGEN_CRYPTO_DSSDH</Variable>
+    <Location>\Adeneo Embedded\WLAN\Security Support</Location>
+    <Notification>
+      <Title>You will need to perform a SYSGEN when selecting this item for the first time</Title>
+      <Html />
+    </Notification>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_Mgr_Applet">
+    <Title>WL1271 Manager Applet</Title>
+    <Description>Control Panel applet providing access to the status of the WL1271 interfaces</Description>
+    <Comment>Control Panel applet</Comment>
+    <Variable>BSP_WL1271_APPLET</Variable>
+    <Variable>BSP_WL1271_APP</Variable>
+    <Module>WL1271Manager.cpl</Module>
+    <Location>\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Tools</Location>
+    <SourceCode>
+      <Title>Applet sources</Title>
+      <Path>$(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\EXTERNAL_APPS\WINCE\WL1271_MANAGER_APPLET</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_Mgr_Application">
+    <Title>WL1271 Manager Standalone</Title>
+    <Variable>BSP_WL1271_APP</Variable>
+    <Module>WL1271_Manager_App.exe</Module>
+    <Module>WL1271_Manager_App.lnk</Module>
+    <Location>\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Tools</Location>
+    <SourceCode>
+      <Title>Application sources</Title>
+      <Path>$(_WINCEROOT)\3RDPARTY\AdeneoEmbedded\TI-WiLink\EXTERNAL_APPS\WINCE\WL1271_MANAGER_APP</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_Logger">
+    <Title>WL1271 Logger</Title>
+    <Description>Firmware logger tool</Description>
+    <Comment>Texas Instrument logger tool</Comment>
+    <Variable>BSP_WL1271_LOGGER</Variable>
+    <Module>logger.exe</Module>
+    <Location>\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Tools</Location>
+    <SourceCode>
+      <Title>Logger sources</Title>
+      <Path>$(_WINCEROOT)\3RDPARTY\AdeneoEmbedded\TI-WiLink\CUDK\LOGGER\WINCE\SRC</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:AdeneoEmbedded:WL1271_Serial_Test">
+    <Title>Serial Test Application</Title>
+    <Variable>BSP_WL1271_SERIAL_TEST</Variable>
+    <Module>SerialTest_App.exe</Module>
+    <Module>SerialTest_App.lnk</Module>
+    <Location>\Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Tools</Location>
+    <SourceCode>
+      <Title>Application sources</Title>
+      <Path>$(_WINCEROOT)\3RDPARTY\AdeneoEmbedded\TI-WiLink\EXTERNAL_APPS\WINCE\SerialTest_APP</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="WL1271 BlueTooth UART Support::PTI OMAP3530">
+    <Title>WL1271 BlueTooth UART Support::PTI OMAP3530</Title>
+    <Description>Add support for the Bluetooth Module on the PTI OMAP3530 platform</Description>
+    <Variable>SYSGEN_BTH</Variable>
+    <Variable>WL1271_BTH</Variable>
+    <Variable>HOST_PLAT_PTI_OMAP3530</Variable>
+    <Variable>BSP_COM</Variable>
+    <Variable>BSP_COM1</Variable>
+    <Module>brf6300.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Location>Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Drivers\BlueTooth</Location>
+  </Item>
+  <Item Id="WL1271 BlueTooth UART Support::Mistral EVM2 OMAP3530">
+    <Title>WL1271 BlueTooth UART Support::Mistral EVM2 OMAP3530</Title>
+    <Description>Add support for the Bluetooth Module on the Mistral EVM2 OMAP3530 platform</Description>
+    <Variable>SYSGEN_BTH</Variable>
+    <Variable>WL1271_BTH</Variable>
+    <Variable>HOST_PLAT_TI_EVM_3530</Variable>
+    <Variable>BSP_COM2</Variable>
+    <Module>brf6300.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Location>Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Drivers\BlueTooth</Location>
+ <Notification>
+      <Title>Make sure that the BSP_NOCOM2 IS NOT SET in your platform.bat (usually TI_EVN_3530.bat) file!!!! If it is set to 1 remove it and perform a SYSGEN</Title>
+      <Html />
+    </Notification>
+  </Item>
+  <Item Id="WL1271 BlueTooth UART Support::Mistral EVM2 OMAP3530 and OMAP3730">
+    <Title>WL1271 BlueTooth UART Support::Mistral EVM2 OMAP3530 and OMAP3730</Title>
+    <Description>Add support for the Bluetooth Module on the Mistral EVM2 OMAP3530 and OMAP3730 platform</Description>
+    <Variable>SYSGEN_BTH</Variable>
+    <Variable>WL1271_BTH</Variable>
+    <Variable>HOST_PLAT_EVM_OMAP3530</Variable>
+    <Variable>BSP_COM2</Variable>
+    <Module>brf6300.dll</Module>
+    <ChooseOneGroup>true</ChooseOneGroup>
+    <Location>Adeneo Embedded\Drivers\WiLink 6.0\WL1271\Drivers\BlueTooth</Location>
+    <Notification>
+      <Title>Make sure that the UART2 IS SET in your catalog!!!! If it is not set, add it and perform a SYSGEN</Title>
+      <Html />
+    </Notification>
+  </Item>
+  
+</CatalogFile>

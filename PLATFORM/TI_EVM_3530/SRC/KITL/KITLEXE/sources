@@ -1,0 +1,52 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+
+TARGETNAME=kitl
+TARGETTYPE=DYNLINK
+DLLENTRY=KitlDllMain
+RELEASETYPE=PLATFORM
+SYNCHRONIZE_DRAIN=1
+DEFFILE=
+
+NOLIBC=1
+
+CDEFINES=$(CDEFINES) -DKITL_SERIAL -DKITL_ETHER
+
+LDEFINES=-subsystem:native /DEBUG /DEBUGTYPE:CV /FIXED:NO
+
+SOURCES=\
+    kitl.c  \
+    oemkitl.c  
+    
+ARM_SOURCES=\
+    stall.s
+
+TARGETLIBS= \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_args.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_kitl_reg.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_kitl.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\kitl_log.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_memory_arm.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\ddk_io.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\vbridge.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\rne_mdd.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_kitl_ethdrv_omap35xx_musbfn.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_ethdrv_omap35xx_rndis.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_kitl_i2c.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_twl.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\fulllibc.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUDEPPATH)\kitlcore.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUDEPPATH)\nkstub.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUDEPPATH)\oemstub.lib
+

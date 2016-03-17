@@ -1,0 +1,155 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+
+#include <windows.h>
+#include <aygshell.h>
+#include "resource.h"
+
+IDD_OPEN_DIALOG DIALOG DISCARDABLE  0, 0, 130, 91
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Open"
+BEGIN
+    LTEXT           "Type a &URL to open",
+                    IDC_STATIC,8,7,84,10
+    EDITTEXT        IDC_URL_EDIT,8,20,110,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Go!",IDOK,8,36,50,14
+    PUSHBUTTON      "Browse...",IDC_BROWSE,66,36,50,14
+    CONTROL         "Open in a new window",
+                    IDC_NEWWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    8,74,100,10
+END
+
+DLG_RUN DIALOG DISCARDABLE	0, 0, 133, 107
+STYLE DS_MODALFRAME | DS_CENTER | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Run"
+BEGIN
+	ICON			IDI_RUNDLG,IDD_ICON,6,3,21,20
+	LTEXT			"Type the name of a program, folder, or document, and Windows will open it for you.",
+					IDD_PROMPT,6,25,121,26
+	LTEXT			"&Open:",IDD_RUNDLGOPENPROMPT,6,55,20,10
+	COMBOBOX		IDD_COMMAND,5,67,118,62,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+					CBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+	DEFPUSHBUTTON	"OK",IDOK,67,84,42,14
+	PUSHBUTTON		"&Browse...",IDD_BROWSE,13,84,42,14
+END
+
+
+IDD_TASK_MANAGER DIALOG DISCARDABLE  0, 0, 133, 132
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Task Manager"
+BEGIN
+    PUSHBUTTON      "&Switch To",IDOK,13,114,50,14
+    PUSHBUTTON      "&End Task",IDC_ENDTASK,70,114,50,14
+    LISTBOX         IDC_LISTBOX,6,17,120,92,LBS_NOINTEGRALHEIGHT | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LTEXT           "&Active Tasks:",IDC_STATIC,7,6,62,8
+END
+
+IDD_SHUTDOWN DIALOG DISCARDABLE  0, 0, 124, 137
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION ""
+BEGIN
+    DEFPUSHBUTTON   "&End Task",IDOK,7,117,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,64,117,50,14
+    ICON            "IDI_EXCLAME",IDC_STATIC,7,7,20,20
+    LTEXT           "This program is not responding. It may be busy, waiting for a response from you, or it may have stopped running.",
+                    IDC_STATIC,37,7,80,50
+    LTEXT           "Tap Cancel to ignore and return to Windows.\n\nTo close the program immediately, tap End Task. You will lose any unsaved information in this program.",
+                    IDC_STATIC,7,63,108,50
+END
+
+IDD_BACKUP_LOW DIALOG DISCARDABLE  0, 0, 128, 105
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_ABOVESTARTUP
+CAPTION "Backup Battery Low"
+BEGIN
+	ICON			IDI_LOWBKUP,IDC_STATIC,8,3,21,20
+	LTEXT			"Your backup battery is running on low power. Please change or recharge the battery at your earliest convenience.\n\nConsult the manufacturer's instructions for directions on replacing or charging the backup battery.",
+					IDC_STATIC,8,23,116,78
+END
+
+IDD_BACKUP_VLOW DIALOG DISCARDABLE	0, 0, 128, 108
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_ABOVESTARTUP
+CAPTION "Backup Battery Very Low"
+BEGIN
+	ICON			IDI_VLOWBKUP,IDC_STATIC,8,7,21,20
+	LTEXT			"Your backup battery is very low or missing. Data loss may result from failure to replace the battery very soon.\n\nConsult the manufacturer's instructions for directions on replacing or charging the backup battery.",
+					IDC_STATIC,8,28,111,78
+END
+
+IDD_MAIN_VLOW DIALOG DISCARDABLE  0, 0, 130, 135
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW | WS_EX_ABOVESTARTUP
+CAPTION "Main Batteries Very Low"
+BEGIN
+    ICON            313,IDC_STATIC,8,7,20,20
+    LTEXT           "Your main batteries are running very low on power. Please change the batteries at your next opportunity.\n\nConsult the manufacturer's instructions for directions on replacing or charging the main batteries.",
+                    IDC_STATIC,8,32,115,67
+    LTEXT           "Warning: To avoid data loss, be sure to turn off your device before removing the batteries.",
+                    IDC_STATIC,8,103,117,28
+END
+
+IDD_TASKBAR_OPTIONS DIALOG DISCARDABLE	0, 0, 130, 77
+STYLE WS_POPUP | WS_VISIBLE
+BEGIN
+	CONTROL 		"Always on &top",IDC_TASKBAR_ONTOP,"Button",
+					BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,
+                    10,5,60,10
+	CONTROL 		"A&uto hide",IDC_TASKBAR_AUTOHIDE,"Button",
+					BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,
+                    10,20,60,10
+	CONTROL 		"Show &Clock",IDC_TASKBAR_SHOWCLOCK,"Button",
+					BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,
+                    10,35,60,10
+END
+
+IDD_TASKBAR_DOCUMENTS DIALOG DISCARDABLE  0, 0, 130, 95
+STYLE WS_POPUP | WS_VISIBLE
+BEGIN
+	ICON			IDI_RECYCLERFULL,IDC_STATIC,7,5,14,15
+	LTEXT			"Tap the Clear button to remove the contents of the Documents Menu.",
+					IDC_STATIC,3,25,105,25
+	DEFPUSHBUTTON	"&Clear",IDOK,3,54,42,14
+	CONTROL 		"&Expand Control Panel",IDC_EXPAND,"Button",
+					BS_AUTOCHECKBOX | WS_TABSTOP,3,72,82,10
+END
+
+
+IDD_PAGEPROPERTIES DIALOG DISCARDABLE  0,0,135,124
+STYLE DS_MODALFRAME | WS_POPUP |  DS_CENTER | WS_CAPTION | WS_VISIBLE| WS_SYSMENU
+CAPTION "Page Properties"
+BEGIN
+    LTEXT           "",IDC_PROP_HEADER1,1,83,37,12,NOT WS_VISIBLE
+    ICON            IDI_HTML,IDC_STATIC,5,5,21,20
+    LTEXT           "",IDC_PROP_TITLE,34,6,95,24,SS_NOPREFIX
+    LTEXT           "Protocol:",IDC_PROP_PROTOCOL_LABEL,5,35,38,12
+    LTEXT           "",IDC_PROP_PROTOCOL,44,35,86,16
+    LTEXT           "Type:",IDC_PROP_TYPE_LABEL,5,53,38,10
+    LTEXT           "",IDC_PROP_TYPE,44,53,86,9
+    LTEXT           "Size:",IDC_PROP_ITEMSIZE_LABEL,5,64,38,10
+    LTEXT           "",IDC_PROP_ITEMSIZE,44,64,86,9
+    LTEXT           "Security:",IDC_PROP_SECURITY_LABEL,5,75,38,12
+    LTEXT           "",IDC_PROP_SECURITY,44,75,86,16
+    LTEXT           "Address (URL):",IDC_PROP_ADDRESS_LABEL,3,94,56,12
+    EDITTEXT        IDC_PROP_ADDRESS,4,106,127,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+	IDS_TASKBAR_PROPERTIES	"Taskbar and Start Menu"
+END

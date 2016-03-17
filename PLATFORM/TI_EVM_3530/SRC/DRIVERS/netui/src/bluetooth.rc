@@ -1,0 +1,164 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+//
+//	This code implements user part of activation of Bluetooth peers.
+//
+//	It creates registry key upon which the boot time activation implemented
+//	in public\common\oak\drivers\bluetooth\samples\btsvc is heavily dependent.
+//
+//	Please maintain synchronization between the two files.
+//
+
+#include "windows.h"
+#include "Bluetooth.h"
+#include "resource.h"
+#include "commctrl.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Strings
+//
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_BT_TITLE		"Scan Device"
+    IDS_BT_PROP			"Bluetooth Manager"
+    IDS_BT_ERROR        "Bluetooth Error"
+    IDS_BT_AUTH_FAILED  "Authentication failed."
+    IDS_BT_UNNAMED      "Unnamed"
+    IDS_BT_STOP         "&Stop"
+    IDS_BT_SCAN         "&Scan Device"
+    IDS_BT_IN_INQUIRY   "Inquiry Running..."
+    IDS_BT_HW_ERROR     "Bluetooth hardware error"
+    IDS_BT_FAIL_COMM    "Failed to activate the device, Error ="
+    IDS_BT_CAPTION      "Bluetooth Manager"
+    IDS_BT_NO_HW        "(controller not present)"
+    IDS_BT_CANCELLED    "(operation cancelled)"
+    IDS_BT_OP_INVALID   "(invalid operation)"
+    IDS_BT_OOM          "(low memory)"
+    IDS_BT_CANT_CONNECT "(connection failure)"
+    IDS_BT_AUTH_NO_DRV  "The authentication driver is not present."
+    IDS_BT_AUTH_CNCT    "Could not establish a connection."
+    IDS_BT_REQ_AUTH		"Do you need to authenticate the device?"
+END
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ACTIVE_FILE_TRANSFER ICON    DISCARDABLE     "active_file_trans.ico"
+IDI_PRINT               ICON    DISCARDABLE     "print.ico"
+IDI_LAN               	ICON    DISCARDABLE     "lan_access.ico"
+IDI_MODEM               ICON    DISCARDABLE     "modem.ico"
+IDI_FILE_TRANSFER       ICON    DISCARDABLE     "file_trans.ico"
+IDI_OBJ_TRANSFER        ICON    DISCARDABLE     "obj_trans.ico"
+IDI_ACTIVESYNC          ICON    DISCARDABLE     "as.ico"
+IDI_TRUSTED             ICON    DISCARDABLE     "legal.ico"
+IDI_UNTRUSTED           ICON    DISCARDABLE     "illegal.ico"
+IDI_ACTIVE_LAN          ICON    DISCARDABLE     "active_lan_access.ico"
+IDI_ACTIVE_MODEM        ICON    DISCARDABLE     "active_modem.ico"
+IDI_ACTIVE_OBJ_TRANSFER ICON    DISCARDABLE     "active_obj_trans.ico"
+IDI_ACTIVE_PRINT        ICON    DISCARDABLE     "active_print.ico"
+IDI_ACTIVE_ACTIVESYNC   ICON    DISCARDABLE     "active_as.ico"
+IDI_QUESTIONMARK        ICON    DISCARDABLE     "question.ico"
+IDI_BLUETOOTH           ICON    DISCARDABLE     "bluetooth.ico"
+IDI_HEADSET             ICON    DISCARDABLE     "headset.ico"
+IDI_ACTIVE_HEADSET      ICON    DISCARDABLE     "active_headset.ico"
+IDI_KEYBOARD            ICON    DISCARDABLE     "kb.ico"
+IDI_ACTIVE_KEYBOARD     ICON    DISCARDABLE     "active_kb.ico"
+IDI_MOUSE               ICON    DISCARDABLE     "mouse.ico"
+IDI_ACTIVE_MOUSE        ICON    DISCARDABLE     "active_mouse.ico"
+IDI_PAN                 ICON    DISCARDABLE     "pan.ico"
+IDI_ACTIVE_PAN          ICON    DISCARDABLE     "active_pan.ico"
+IDI_HANDSFREE			ICON	DISCARDABLE		"hf.ico"
+IDI_ACTIVE_HANDSFREE	ICON	DISCARDABLE		"active_hf.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_ACTIVEMENU MENU DISCARDABLE
+BEGIN
+    POPUP ""
+    BEGIN
+	MENUITEM "&Active",                     IDM_ACTIVE
+	MENUITEM "A&uthenticate",               IDM_AUTH
+	MENUITEM "&Encrypt",                    IDM_ENCRYPT
+	MENUITEM SEPARATOR
+       	MENUITEM "&Delete",                     IDM_DELETE
+    END
+END
+
+IDM_ACTIVEMENU_P MENU DISCARDABLE
+BEGIN
+    POPUP ""
+    BEGIN
+        MENUITEM "&Trusted",                    IDM_TRUSTED
+	MENUITEM SEPARATOR
+        MENUITEM "&Active",                     IDM_ACTIVE
+	MENUITEM "A&uthenticate",               IDM_AUTH
+	MENUITEM "&Encrypt",                    IDM_ENCRYPT
+	MENUITEM SEPARATOR
+       	MENUITEM "&Delete",                     IDM_DELETE
+    END
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialogs
+//
+
+DLG_SCAN_DC DIALOG DISCARDABLE  0, 0, 254, 87
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER
+CAPTION "Scan Device"
+BEGIN
+    CONTROL         "List1",IDC_UNTRUSTED,"SysListView32",LVS_REPORT |
+                    LVS_SHAREIMAGELISTS | LVS_AUTOARRANGE |
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,6,13,92,65
+    CONTROL         "List2",IDC_TRUSTED,"SysListView32",LVS_REPORT |
+                    LVS_SHAREIMAGELISTS | LVS_AUTOARRANGE |
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,157,13,92,65
+    PUSHBUTTON      "-->",IDC_MOVE_TO_TRUSTED,108,21,40,14
+    PUSHBUTTON      "<--",IDC_MOVE_TO_UNTRUSTED,108,40,40,14
+    PUSHBUTTON      "&Scan Device",IDC_SCAN_DEVICE,103,60,50,14
+    GROUPBOX        "Trusted",IDC_TRUSTED_TEXT,154,4,99,78
+    GROUPBOX        "Untrusted",IDC_UNTRUSTED_TEXT,3,4,98,78
+END
+
+IDD_SCAN_DC_P DIALOG DISCARDABLE  0, 0, 130, 120
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER
+CAPTION "Scan Device"
+BEGIN
+    CONTROL         "List3",IDC_TRUSTED,"SysListView32",LVS_REPORT |
+                    LVS_SHAREIMAGELISTS | LVS_AUTOARRANGE |
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,2,3,124,95
+    PUSHBUTTON      "Scan Device",IDC_SCAN_DEVICE,40,102,50,14
+END
+
+IDD_ENTERPIN DIALOG DISCARDABLE  0, 0, 76, 57
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | DS_CENTER
+CAPTION "Bluetooth"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDC_OK,7,36,27,14
+    PUSHBUTTON      "Cancel",IDC_CANCEL,39,36,29,14
+    LTEXT           "Enter PIN:",IDC_STATIC,7,7,34,8
+    EDITTEXT        IDC_PIN,7,17,62,14,ES_AUTOHSCROLL
+END
+
+IDD_AUTHENTICATE DIALOG DISCARDABLE  0, 0, 130, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | DS_CENTER
+CAPTION "Bluetooth"
+BEGIN
+    DEFPUSHBUTTON   "Yes",IDC_OK,40,30,27,14
+    PUSHBUTTON      "No",IDC_CANCEL,72,30,29,14
+    LTEXT           "Do you want to authenticate\r\nthis device?",IDC_STATIC,7,7,140,20
+END

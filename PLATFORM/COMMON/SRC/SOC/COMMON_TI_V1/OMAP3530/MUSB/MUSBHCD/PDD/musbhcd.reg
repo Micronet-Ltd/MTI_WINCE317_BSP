@@ -1,0 +1,29 @@
+; All rights reserved ADENEO EMBEDDED 2010
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this source code is subject to the terms of the Microsoft end-user
+; license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+; If you did not accept the terms of the EULA, you are not authorized to use
+; this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+; install media.
+;
+
+; This file is to be included in platform.reg if required.
+;
+; $(PCI_BUS_ROOT) is a variable that needs to be set in the including 
+; platform.reg. It's value will be something like 
+; HKEY_LOCAL_MACHINE\Drivers\BuiltIn\PCI
+
+; USB - EHCI driver
+[$(PCI_BUS_ROOT)\Template\musbhcd]
+   "Prefix"="HCD"
+   "Dll"="musbhcd.dll"
+   "Order"=dword:45
+   "Class"=dword:0c
+   "SubClass"=dword:03
+   "ProgIF"=dword:20
+   "IsrDll"="giisr.dll"
+   "IsrHandler"="ISRHandler"
+   "HcdCapability"=dword:4      ;HCD_SUSPEND_ON_REQUEST

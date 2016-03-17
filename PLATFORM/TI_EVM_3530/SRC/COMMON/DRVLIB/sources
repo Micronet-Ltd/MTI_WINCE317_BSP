@@ -1,0 +1,18 @@
+!if 0
+Copyright (c) Micronet Corporation.  All rights reserved.
+!endif
+
+TARGETNAME=bsp_drvlib
+RELEASETYPE=PLATFORM
+TARGETTYPE=LIBRARY
+
+INCLUDES=$(INCLUDES); \
+	$(_TARGETPLATROOT)\SRC\SDK\INC; \
+	$(_TARGETPLATROOT)\SRC\DRIVERS\pwrkey;
+	
+SOURCES= \
+    gsm.cpp \
+    wireless.cpp \
+    platformdep.cpp \
+    TempSensorDrvLib.cpp \
+

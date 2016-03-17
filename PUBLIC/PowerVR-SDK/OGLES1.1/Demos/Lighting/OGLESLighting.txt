@@ -1,0 +1,15 @@
+
+Demo title: 		Lighting
+
+Demonstrates: 		8 Point Lights
+
+Short Description:	Demonstrates a model being lit with 8 point lights at high performance
+
+Full Description:	
+This demo shows a sphere lit by 8 differently coloured spotlights using ambient, diffuse and specular components. 
+
+VGP: 			Not Required
+Polygon Count: 		2416
+Vertex Count: 		1356
+
+

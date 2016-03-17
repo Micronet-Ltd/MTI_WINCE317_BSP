@@ -1,0 +1,12 @@
+Backup domain registers using
+
+TWL_BACKUP_REG_A	RTC alarm	seconds	
+TWL_BACKUP_REG_B				minutes
+TWL_BACKUP_REG_C				hours
+TWL_BACKUP_REG_D				days
+TWL_BACKUP_REG_E				months
+TWL_BACKUP_REG_F				years
+
+TWL_BACKUP_REG_G	bit 0 - overheat flag for the boot reason
+
+TWL_BACKUP_REG_H

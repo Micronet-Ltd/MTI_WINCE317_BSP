@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+              Texas Instruments OMAP(TM) Platform Software
+  (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+-->
+<!--
+  Use of this software is controlled by the terms and conditions found
+  in the license agreement under which this software has been supplied.
+-->
+<MEMORYCFG xmlns="http://schemas.microsoft.com/embedded/2004/10/ImageUpdate">
+    <HARDWARE>
+        <RAM START="0x84001000" LENGTH="0x06FFF000"></RAM>
+IF IMGONENAND
+        <NAND ID="FLASH" SECTORSIZE="0x800" BLOCKSIZE="0x20000" LENGTH="0x07F80000">
+ELSE
+        <NAND ID="FLASH" SECTORSIZE="0x800" BLOCKSIZE="0x20000" LENGTH="0x04000000">
+ENDIF IMGONENAND
+            <NAND_RESERVE LENGTH="0x00020000" ID="XLDR" />
+            <NAND_RESERVE LENGTH="0x00080000" ID="EBOOT" />
+            <NAND_RESERVE LENGTH="0x00040000" ID="IPL" />
+            <NAND_RESERVE LENGTH="0x00020000" ID="EBT-CFG" />
+	        <NAND_RESERVE LENGTH="0x00040000" ID="LOGO" />
+        </NAND>
+    </HARDWARE>
+    <PARTITIONS>
+        <BINARY DATAFILE="uldr.nb0" ID="ULDR" STORAGE_ID="FLASH" COMPRESS="1" />
+IF _TGTPROJ=wpc
+        <RAMIMAGE ID="NK" STORAGE_ID="FLASH" COMPRESS="0" FIXUP_ADDRESS="0x84001000" ROMFLAGS="2" FSRAMPERCENT="0x04" FREE_SPACE_BUFFER="0x40000" />
+ENDIF
+IF _TGTPROJ=smartfon
+        <RAMIMAGE ID="NK" STORAGE_ID="FLASH" COMPRESS="1" FIXUP_ADDRESS="0x84001000" ROMFLAGS="2" FSRAMPERCENT="0x04" FREE_SPACE_BUFFER="0x40000" />
+ENDIF
+        <IMGFS ID="OS" STORAGE_ID="FLASH" FREE_SPACE_BUFFER="0x2000000"></IMGFS>
+    </PARTITIONS>
+</MEMORYCFG>
+
+
+<!--
+        <NAND ID="FLASH" SECTORSIZE="0x800" BLOCKSIZE="0x20000" LENGTH="0x07F80000">
+            <NAND_RESERVE LENGTH="0x00040000" ID="LOGO"></NAND_RESERVE>
+        <USERSTORE STORAGE_ID="FLASH" ID="Storage" PART_TYPE="0x04" />
+-->
+

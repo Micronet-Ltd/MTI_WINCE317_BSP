@@ -1,0 +1,77 @@
+TARGETNAME=MicUserSdk
+RELEASETYPE=SDK
+TARGETTYPE=DYNLINK
+
+DEFFILE  = $(TARGETNAME).def
+
+!IF "$(BSP_GSM710MUX)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_GSM710MUX
+!ENDIF 
+
+!IF "$(SYSGEN_BTH_MODEM)" == "1"
+CDEFINES=$(CDEFINES) -DSYSGEN_BTH_MODEM
+!ENDIF 
+
+!IF "$(BSP_TEMPSENSOR)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_TEMPSENSOR
+!ENDIF
+
+CDEFINES=$(CDEFINES) -DWINCE
+
+!IF "$(HOST_PLAT_EVM_OMAP3530)" == "1"
+CDEFINES= $(CDEFINES) -DHOST_PLAT_EVM_OMAP3530
+!ENDIF
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+INCLUDES=\
+	$(INCLUDES); $(_TARGETPLATROOT)\SRC\DRIVERS\AIO;			\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\OWR;			\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\Bluetooth\btmodem;	\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\GPRS;			\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\AG\DLL;			\
+	$(_TARGETPLATROOT)\SRC\sdk\inc;			\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\GPS; \
+	$(_TARGETPLATROOT)\SRC\DRIVERS\pwrkey; \
+	$(_TARGETPLATROOT)\SRC\DRIVERS\ftdi;
+	
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\wzcsapi.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_drvlib.lib \
+    $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\Btdrt.lib
+    
+SOURCES= \
+    MicUserSdk.cpp \
+    aio_api.cpp \
+    ain_api.cpp \
+    swupdate_api.cpp \
+    owr_api.cpp \
+    gsm_api.cpp \
+    comm.cpp \
+    gps_api.cpp \
+    ag_hs_api.cpp \
+    keypad_user.cpp \
+    btmodem_api.cpp \
+    wireless_api.cpp \
+    tempsensor_api.cpp \
+    usbser_api.cpp \
+
+FILE_VIEW_INCLUDES_FOLDER= \
+    ..\..\inc\swupdate_api.h \
+    ..\..\inc\ain_api.h \
+    ..\..\inc\aio_api.h \
+    ..\..\inc\MicUserSdk.h \
+    ..\..\inc\owr_api.h \
+    ..\..\inc\gsm710_api.h \
+    ..\..\inc\gsm_api.h \
+    ..\..\inc\comm.h \
+    ..\..\inc\gps_api.h \
+    ..\..\inc\ag_hs_api.h \
+    ..\..\inc\keypad_user.h \
+    ..\..\inc\btmodem_api.h \
+    ..\..\inc\wireless_api.h \
+    ..\..\inc\tempsensor_api.h \
+    ..\..\inc\usbser_api.h \
+
+

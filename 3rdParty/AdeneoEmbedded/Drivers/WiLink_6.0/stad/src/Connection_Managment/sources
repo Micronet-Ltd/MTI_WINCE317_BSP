@@ -1,0 +1,44 @@
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=Connection_Managment
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+apConn.c \
+admCtrl.c \
+admCtrlNone.c \
+admCtrlWpa.c \
+admCtrlWpa2.c \
+broadcastKeySM.c \
+unicastKey802_1x.c \
+broadcastKey802_1x.c \
+keyParserWep.c \
+unicastKeyNone.c \
+unicastKeySM.c \
+broadcastKeyNone.c \
+keyParser.c \
+keyParserExternal.c \
+mainKeysSm.c \
+keyDerive.c \
+keyDeriveAes.c \
+keyDeriveCkip.c \
+keyDeriveTkip.c \
+keyDeriveWep.c \
+mainSecSm.c \
+mainSecKeysOnly.c \
+mainSecNull.c \
+admCtrlWep.c \
+rsn.c \
+conn.c \
+connIbss.c \
+connInfra.c \
+smeSm.c \
+sme.c \
+smeSelect.c \
+externalSec.c

@@ -1,0 +1,45 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES2
+PROJECTNAME=Skinning
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Body.obj \
+	$(OBJDIR)\Legs.obj \
+	$(OBJDIR)\Belt.obj \
+	$(OBJDIR)\FragShader.obj \
+	$(OBJDIR)\VertShader.obj \
+	$(OBJDIR)\man.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Body.cpp \
+	$(APPROOT)\Content\Legs.cpp \
+	$(APPROOT)\Content\Belt.cpp \
+	$(APPROOT)\Content\FragShader.cpp \
+	$(APPROOT)\Content\VertShader.cpp \
+	$(APPROOT)\Content\man.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

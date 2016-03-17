@@ -1,0 +1,158 @@
+***************************************
+Memory Map
+***************************************
+sdrc_ncs0       Mobile DDR
+    Physical Address    0x80000000
+    Size                128MB  [K5W1G1GACM-DL60 -> Samsung POP build]
+    Size                128MB  [MT29C2G24MAKLAJG-6 -> Micron POP build, 32 bit DDR]
+
+gpmc_ncs0       OneNAND/NAND Flash
+    Memory Type         128MB OneNAND   [K5W1G1GACM-DL60 -> Samsung POP build]
+    Memory Type         256MB NAND      [MT29C2G24MAKLAJG-6 -> Micron POP build]
+    Physical Address    0x0C000000      (relevant only for OneNAND)
+    Size                16MB            (relevant only for OneNAND)
+        Note - chip select address and size not used for NAND, but must be defined
+
+gpmc_ncs1       Expansion connector
+    Physical Address    Not defined
+    Size                Not defined
+
+gpmc_ncs2,3     Unused
+
+gpmc_ncs4       Expansion connector
+    Physical Address    Not defined
+    Size                Not defined
+
+gpmc_ncs5       LAN9115
+    Physical Address    0x15000000
+    Size                16MB
+
+gpmc_ncs6       Unused
+
+gpmc_ncs7       Expansion connector
+    Physical Address    Not defined
+    Size                Not defined
+
+***************************************
+Serial Ports
+***************************************
+UART1
+    Drives UART1/2 xcvr on MainBoard
+    Mutually exclusive with UART2
+        Controlled by J8 header on MainBoard
+    Also exposed on expansion connector
+
+UART2
+    Drives UART1/2 xcvr on MainBoard
+    Mutually exclusive with UART1
+        Controlled by J8 header on MainBoard
+    Also exposed on expansion connector
+
+UART3
+    Multiplexed between UART3 Debug xcvr on MainBoard and Expansion connector
+        Controlled by SW2-3 on processor module
+
+***************************************
+SD/MMC Controller
+***************************************
+SD/MMC 1
+    Dedicated slot
+    Also exposed on expansion connector
+
+SD/MMC 2
+    Exposed on expansion connector only
+    
+***************************************
+HSUSB Host
+***************************************
+Port 1,2,3
+    Unused
+
+***************************************
+HSUSB Controller
+***************************************
+Resistor strapping option selects ISP1504 [default] or TPS659XX transceiver
+Exposed on OTG connector on mainboard
+
+***************************************
+I2C Controller
+***************************************
+Channel 1
+    Dedicated to TPS659XX control
+
+Channel 2,3
+    Expansion connector
+
+Channel 4
+    Dedicated to SmartReflex interface with TPS659XX
+
+***************************************
+SPI Controller
+***************************************
+Channel 1
+    Touch controller
+
+Channel 2
+    Expansion connector
+
+Channel 3,4
+    Not used
+
+***************************************
+McBSP Controller
+***************************************
+Channel 1
+    Expansion connector
+
+Channel 2
+    Multiplexed between Audio codec (TPS659XX I2S interface) and CCP pins on expansion interface
+    Selection determined by SW2-4 on processor board
+
+Channel 3
+    Multiplexed between Audio codec (TPS659XX PCM interface) and expansion interface
+    Selection determined by SW2-5 on processor board
+
+Channel 4
+    Used as GPIO (LCD interface)
+
+***************************************
+GPIO Pins 
+***************************************
+The following GPIO pins are implemented based on the pad configuration.  The 
+pins that are outputs must have their initial configuration programmed.
+GPIO    Direction   Initial State   Description
+BANK1 (0-31)
+0       INPUT                       TPS659XX IRQ (Choose to use GPIO interrupt instead of SYS_NIRQ)
+2       OUTPUT      HIGH            LCD LR (Set to scan left to right)
+3       OUTPUT      HIGH            LCD UD (Set to scan top to bottom)
+8       OUTPUT      LOW             LED (active low)
+
+BANK2 (32-63)
+54      OUTPUT      LOW             GPIO Expansion bus
+57      OUTPUT      LOW             GPIO Expansion bus
+63      INPUT                       MMC1 Write Protect
+
+BANK3 (64-95)
+64      OUTPUT      LOW             Ethernet Reset
+65      OUTPUT      LOW             GPIO Expansion bus
+
+BANK4 (96-127)
+
+BANK5 (128-159)
+152     OUTPUT      LOW             LCD_INI
+153     OUTPUT      HIGH            LCD_ENVDD
+154     OUTPUT      LOW             LCD_QVGA/nVGA
+155     OUTPUT      LOW             LCD_RESB
+
+
+BANK6 (160-191)
+175     INPUT                       Touch panel IRQ
+176     INPUT                       Ethernet IRQ
+177     OUTPUT      LOW             GPIO Expansion bus
+182     OUTPUT      LOW             GPIO Expansion bus
+186     OUTPUT      LOW             GPIO Expansion bus
+
+
+
+
+

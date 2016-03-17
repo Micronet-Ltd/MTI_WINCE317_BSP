@@ -1,0 +1,171 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+
+#include <windows.h>
+#include <commctrl.h>
+#include "resource.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialogs
+//
+
+IDD_FILEOP_PROGRESS DIALOG DISCARDABLE  0, 0, 187, 47
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP | WS_SYSMENU
+CAPTION "File Progress"
+BEGIN
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,149,25,33,14
+    CONTROL         "",IDC_FILEOP_PROGRESS,PROGRESS_CLASS,PBS_SMOOTH,
+                    5,25,140,8,WS_EX_CLIENTEDGE
+    LTEXT           "",IDC_TIME,5,36,110,8
+    LTEXT           "",IDC_TITLE,5,2,177,8
+    LTEXT           "",IDC_INFO,5,13,177,8
+END
+
+IDD_CONFIRM_YESNOALLCANCEL DIALOG DISCARDABLE 0, 0, 280, 105
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP | WS_SYSMENU
+BEGIN
+    ICON            "",IDC_CONFIRM_ICON,8,6,20,20
+    DEFPUSHBUTTON   "&Yes",IDYES,46,88,53,14
+    PUSHBUTTON      "Yes to &All",IDYESTOALL,103,88,53,14
+    PUSHBUTTON      "&No",IDNO,161,88,53,14
+    PUSHBUTTON      "Cancel",IDCANCEL,219,88,53,14
+    LTEXT           "",IDC_CONFIRM_MESSAGE,41,7,231,74,SS_NOPREFIX
+END
+
+IDD_CONFIRM_YESNO DIALOG DISCARDABLE  0, 0, 280, 105
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP | WS_SYSMENU
+BEGIN
+    ICON            "",IDC_CONFIRM_ICON,8,6,20,20
+    DEFPUSHBUTTON   "&Yes",IDYES,161,88,53,14
+    PUSHBUTTON      "&No",IDNO,219,88,53,14
+    LTEXT           "",IDC_CONFIRM_MESSAGE,41,7,231,74,SS_NOPREFIX
+END
+
+IDD_CONFIRM_REPLACE DIALOG DISCARDABLE 0, 0, 280, 105
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP | WS_SYSMENU
+BEGIN
+    ICON            "",IDC_CONFIRM_ICON,8,6,20,20
+    DEFPUSHBUTTON   "&Yes",IDYES,46,88,53,14
+    PUSHBUTTON      "Yes to &All",IDYESTOALL,103,88,53,14
+    PUSHBUTTON      "&No",IDNO,161,88,53,14
+    PUSHBUTTON      "Cancel",IDCANCEL,219,88,53,14
+    LTEXT           "Would you like to replace the existing file",IDC_STATIC,
+                    41,22,180,10,SS_NOPREFIX
+    LTEXT           "",IDC_FILEINFO_OLD,79,34,194,18,SS_NOPREFIX
+    ICON            "",IDC_FILEICON_OLD,51,32,20,20
+    LTEXT           "with this one?",IDC_STATIC,41,54,180,10,SS_NOPREFIX
+    LTEXT           "",IDC_FILEINFO_NEW,79,68,194,18,SS_NOPREFIX
+    ICON            "",IDC_FILEICON_NEW,51,66,20,20
+    LTEXT           "",IDC_CONFIRM_MESSAGE,41,7,231,16,SS_NOPREFIX
+END
+
+IDD_PROPERTY DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE WS_VISIBLE
+BEGIN
+    ICON            "",IDC_PICON,6,3,20,20
+    LTEXT           "Filename",IDC_FILENAME,35,8,202,9,SS_NOPREFIX
+    LTEXT           "Type:",IDC_STATIC,6,30,24,8
+    LTEXT           "Location:",IDC_LOCATIONLABEL,6,41,34,8
+    LTEXT           "Size:",IDC_SIZELABEL,6,52,24,8
+    LTEXT           "Static",IDC_TYPE,42,30,129,8,SS_NOPREFIX
+    LTEXT           "Modified:",IDC_MODIFIEDLABEL,6,63,29,8
+    CONTROL         "&Read-only",IDC_READONLY,"Button",BS_AUTO3STATE | 
+                    WS_GROUP | WS_TABSTOP,191,30,48,11
+    CONTROL         "Ar&chive",IDC_ARCHIVE,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,191,41,48,11
+    CONTROL         "Hi&dden",IDC_HIDDEN,"Button",BS_AUTO3STATE | WS_TABSTOP,
+                    191,52,48,11
+    CONTROL         "System",IDC_SYSTEM,"Button",BS_AUTO3STATE | WS_DISABLED | 
+                    WS_TABSTOP,191,63,46,11
+    LTEXT           "Static",IDC_LOCATION,42,41,129,8,SS_NOPREFIX
+    LTEXT           "Static",IDC_PSIZE,42,52,129,8,SS_NOPREFIX
+    LTEXT           "Static",IDC_MODIFIED,42,63,129,8,SS_NOPREFIX
+    GROUPBOX        "Attributes:",IDC_GROUPBOX,181,20,79,57
+END
+
+IDD_SHORTCUT DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE WS_VISIBLE
+BEGIN
+    ICON            "",IDC_PICON,6,3,20,20
+    LTEXT           "Filename",IDC_FILENAME,37,10,186,9,SS_NOPREFIX
+    LTEXT           "Target Type:",IDC_STATIC,6,28,57,8,SS_NOPREFIX
+    LTEXT           "Static",IDC_TARGETTYPE,66,28,155,8,SS_NOPREFIX
+    LTEXT           "&Target:",IDC_STATIC,6,41,45,8
+    EDITTEXT        IDC_TARGET,66,39,155,12,ES_AUTOHSCROLL
+    LTEXT           "Target Size:",IDC_SIZELABEL,6,54,50,8
+    LTEXT           "Target Modified:",IDC_MODIFIEDLABEL,6,67,55,8
+    LTEXT           "Static",IDC_PSIZE,66,54,155,8
+    LTEXT           "Static",IDC_MODIFIED,66,67,155,8
+END
+
+IDD_RECYCLEBIN DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE WS_VISIBLE
+BEGIN
+    RTEXT           "Total storage memory:",IDC_STATIC,1,6,88,9
+    RTEXT           "Maximum recycle bin size:",IDC_STATIC,1,16,88,9
+    CONTROL         "Do &not move files to the Recycle Bin, remove immediately on delete.",
+                    IDC_USERECYCLEBIN,"Button",BS_AUTOCHECKBOX | BS_TOP | 
+                    BS_MULTILINE | WS_TABSTOP,128,6,127,20
+    CTEXT           "10%",IDC_PERCENTAGE,39,58,153,8
+    CTEXT           "Ma&ximum size of Recycle Bin (Percent of storage)",
+                    IDC_MAXLABEL,39,66,183,10                             //???
+    CONTROL         "Slider1",IDC_PERCENTAGESLIDER,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,11,36,240,21
+    LTEXT           "4.19MB",IDC_TOTALSTORAGE,90,6,45,10
+    LTEXT           "419KB",IDC_MAXRECYCLE,90,16,45,10
+    GROUPBOX        "",IDC_GROUPBOX,8,26,246,51
+END
+
+IDD_RECYCLEBINFULL DIALOG DISCARDABLE  0, 0, 172, 121
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP
+CAPTION "Recycle Bin Maximum Size Reached"
+BEGIN    
+    ICON            IDI_BITBUCKET_FULL,IDC_STATIC,11,6,20,20
+    LTEXT           "",IDC_CONFIRM_MESSAGE,11,29,150,34,SS_NOPREFIX    
+    LTEXT           "Tap Empty Now, to permanently delete all recycled files or tap Cancel to cancel the operation.",
+                    IDC_STATIC,11,70,150,25    
+    DEFPUSHBUTTON   "&Empty Now",IDC_EMPTY,19,102,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,98,102,50,14
+
+END
+/*
+IDD_RECYCLEBINFULL DIALOG DISCARDABLE  0, 0, 130, 96
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP
+CAPTION "Maximum Size Reached"
+BEGIN    
+    ICON            IDI_BITBUCKET_FULL,IDC_STATIC,7,10,20,20
+    LTEXT           "",IDC_CONFIRM_MESSAGE,6,28,117,36
+    LTEXT           "Tap Empty Now, to permanently delete all recycled files or tap Cancel to cancel the operation.",
+                    IDC_STATIC,6,38,117,24
+    DEFPUSHBUTTON   "&Empty Now",IDC_EMPTY,12,74,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,68,74,50,14
+END
+*/
+IDD_FOLDER_OPTIONS DIALOG DISCARDABLE 0, 0, 207, 61
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Folder Options"
+BEGIN
+    CONTROL         "Do not &show hidden files and folders",
+                    IDC_HIDEHIDDENFILES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,15,185,10
+    CONTROL         "Hi&de protected operating system files (Recommended)",
+                    IDC_HIDESYSTEMFILES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,27,185,10
+    CONTROL         "Hide file &extensions",IDC_HIDEFILEEXTENSIONS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,39,185,10
+    GROUPBOX        "Advanced settings",IDC_STATIC,4,3,200,54
+END
+

@@ -1,0 +1,35 @@
+# Note, SOURCES and SOURCES.CMN files cannot contain conditional logic,
+# regardless what many of the Microsoft supplied files would indicate.
+# See the online help.
+
+WINCEOEM=1
+WINCEREL=1
+
+CDEFINES=-DD_DEBUG=$(FX_DEBUG) $(CDEFINES)
+
+B_CESDKDIR=$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)
+B_CEOAKDIR=$(_PROJECTROOT)\cesysgen\oak\lib\$(_CPUINDPATH)
+
+# The BUILD utility is not very smart!  There must be one, and exactly
+# one semicolon for each directory specified, no more and no less.  If
+# B_INCLUDES is defined, it must internally terminate with a semicolon.
+# Furthermore, INCLUDES cannot include itself, as would typically be
+# done to prepend or append something to the list (observations based
+# on CE 4.2).
+
+INCLUDES=\
+$(FX_ROOT)\projects\$(FX_PROJNAME);\
+$(FX_ROOT)\include;\
+$(FX_ROOT)\dcl\include;\
+$(FX_ROOT)\dcl\include\hardware;\
+$(FX_ROOT)\dcl\common\loader\include;\
+$(FX_ROOT)\alloc\vbf\include;\
+$(FX_ROOT)\dcl\cpu\arm\include;\
+$(FX_ROOT)\dcl\cpu\x86\include;\
+$(FX_ROOT)\fmsl\include;\
+$(FX_ROOT)\os\win\include;\
+$(_TARGETPLATROOT)\src\inc;\
+$(_PLATFORMROOT)\common\src\inc;\
+$(_WINCEROOT)\public\common\oak\inc;\
+$(_WINCEROOT)\public\common\sdk\inc;\
+$(_WINCEROOT)\public\common\ddk\inc;\

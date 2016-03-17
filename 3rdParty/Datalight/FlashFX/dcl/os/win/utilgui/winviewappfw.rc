@@ -1,0 +1,32 @@
+#include <winviewappfw.rh>
+
+/* WINVIEWAPPFWICON        ICON winviewappfw.ico */
+
+WINVIEWAPPFWMENU MENU
+{
+	POPUP "&Run"
+	{
+		MENUITEM "&Save Log As...", 		IDM_RUN_SAVEAS
+		MENUITEM "E&xit", 					IDM_RUN_EXIT
+	}
+
+	POPUP "&View"
+	{
+		MENUITEM "&Keep on Top", 			IDM_VIEW_KEEPONTOP
+		MENUITEM SEPARATOR
+		MENUITEM "&Fixed Pitch Font", 		IDM_VIEW_FONTFIXED
+		MENUITEM "&Variable Pitch Font",	IDM_VIEW_FONTVARIABLE
+		MENUITEM "&Choose Font...", 		IDM_VIEW_FONTCHOOSE
+		MENUITEM SEPARATOR
+		MENUITEM "&Options...",         	IDM_VIEW_SETTINGS
+		MENUITEM "&Save Settings",      	IDM_VIEW_SAVESETTINGS
+		MENUITEM "&Delete Custom Settings", IDM_VIEW_DELETESETTINGS
+	}
+
+	MENUITEM "&Pause!", 				 	IDM_PAUSE_GO
+
+	POPUP "&Help"
+	{
+		MENUITEM "&About...",				IDM_HELPABOUT
+	}
+}

@@ -1,0 +1,20 @@
+;
+; Copyright (c) Micronet.  All rights reserved.
+;
+; OWR driver
+;
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\OWR]
+"Dll"="OWRdrvr.Dll"
+"Prefix"="OWR"
+"Index"=dword:1
+"Order"=dword:1f
+"deviceType"=dword:0
+"priority256"=dword:71
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\OWR\iButton]
+"mode"=dword:1
+"prefix"="$$"
+"suffix"="###"
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\OWR\temprSens]
+"name"="DS18S20"

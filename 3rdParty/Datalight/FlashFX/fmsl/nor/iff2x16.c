@@ -1,0 +1,966 @@
+/*---------------------------------------------------------------------------
+               ----> DO NOT REMOVE THE FOLLOWING NOTICE <----
+
+                  Copyright (c) 1993 - 2009 Datalight, Inc.
+                       All Rights Reserved Worldwide.
+
+  Datalight, Incorporated is a Washington State corporation located at:
+
+        21520 30th Dr SE, Suite 110,      Tel:  425-951-8086
+        Bothell, WA  98021                Fax:  425-951-8094
+        USA                               Web:  http://www.datalight.com
+
+  This software, including without limitation all source code and documen-
+  tation, is the confidential, trade secret property of Datalight, Inc.
+  and is protected under the copyright laws of the United States and other
+  jurisdictions.  The software may be subject to one or more of these US
+  patents: US#5860082, US#6260156.  Patents may be pending.
+
+  In addition to civil penalties for infringement of copyright under appli-
+  cable U.S. law, 17 U.S.C. 1204 provides criminal penalties for violation
+  of (a) the restrictions on circumvention of copyright protection systems
+  found in 17 U.S.C. 1201 and (b) the protections for the integrity of
+  copyright management information found in 17 U.S.C. 1202.
+
+  U.S. Government Restricted Rights:  Use, duplication, reproduction, or
+  transfer of this commercial product and accompanying documentation is
+  restricted in accordance with FAR 12.212 and DFARS 227.7202 and by a
+  License Agreement.
+
+  IN ADDITION TO COPYRIGHT AND PATENT LAW, THIS SOFTWARE IS PROTECTED UNDER
+  A SOURCE CODE AGREEMENT, NON-DISCLOSURE AGREEMENT, AND/OR SIMILAR BINDING
+  CONTRACT BETWEEN DATALIGHT, INC. AND THE LICENSEE ("BINDING AGREEMENTS").
+  IF YOU ARE A LICENSEE, YOUR RIGHT, IF ANY, TO COPY, PUBLISH, MODIFY, OR
+  OTHERWISE USE THE SOFTWARE, IS SUBJECT TO THE TERMS AND CONDITIONS OF THE
+  BINDING AGREEMENTS.  BY USING THE SOFTWARE IN ANY MANNER, IN WHOLE OR IN
+  PART, YOU AGREE TO BE BOUND BY THE TERMS OF THE BINDING AGREEMENTS.
+
+  IF YOU ARE NOT A DATALIGHT LICENSEE, ANY USE MAY RESULT IN CIVIL AND
+  CRIMINAL ACTION AGAINST YOU.  CONTACT DATALIGHT, INC. AT THE ADDRESS
+  SET FORTH ABOVE IF YOU OBTAINED THIS SOFTWARE IN ERROR.
+---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+                                Description
+
+    This module contains the FIM code for Intel "FlashFile" flash which
+    is organized in a 2x16 interleaved fashion.
+---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+                                Revision History
+    $Log: iff2x16.c $
+    Revision 1.8  2009/04/03 05:40:39Z  keithg
+    Fixed bug 2521: removed obsolete READ_BACK_VERIFY.
+    Revision 1.7  2008/07/31 16:32:25Z  keithg
+    Clarified comments with professional customer facing terms.
+    Revision 1.6  2007/11/02 02:09:22Z  Garyp
+    Eliminated the inclusion of limits.h.
+    Revision 1.5  2006/08/29 17:08:38Z  pauli
+    Updated to use the new FfxFimNorWindowCreate/FfxFimNorWindowMap
+    functions.
+    Revision 1.4  2006/05/20 20:58:01Z  Garyp
+    Minor fixes to deal with renamed or obsolete structure fields.
+    Revision 1.3  2006/02/11 00:13:00Z  Garyp
+    Renamed the FIMDEVICE structure instantiation for clarity.
+    Revision 1.2  2006/02/08 18:36:08Z  Garyp
+    Modified to use new FfxHookWindowMap/Size() functions.  Updated debugging
+    code.
+    Revision 1.1  2005/10/14 02:08:00Z  Pauli
+    Initial revision
+    Revision 1.4  2005/05/16 18:13:56Z  Rickc
+    Removed unused ver ulBaseLatch to remove compile warning.
+    Revision 1.3  2005/05/13 02:36:04  garyp
+    Added the DEV_NOT_MLC flag and eliminated the boot block support to match
+    the rest of the "iff" FIMs.
+    Revision 1.2  2005/05/09 19:05:31Z  garyp
+    Updated to use ID_ENDOFLIST.
+    Revision 1.1  2005/05/08 17:07:22Z  garyp
+    Initial revision
+---------------------------------------------------------------------------*/
+
+#include <flashfx.h>
+#include <fimdev.h>
+#include "nor.h"
+
+/*  Configure for a 2x16 layout
+*/
+#define FLASH_INTERLEAVE    2       /* Number of flash chips interleaved    */
+#define FLASH_BUS_WIDTH     32      /* Overall data bus width in bits       */
+
+#include "flashcmd.h"
+#include "intelcmd.h"
+
+/*  ulEraseResult value; used internally to clarify intent.
+*/
+#define ERASE_IN_PROGRESS       (0)
+
+/*  The minimum amount of time (in microseconds) to let a suspended
+    erase progress to ensure that some forward progress is made.
+*/
+#define MINIMUM_ERASE_INCREMENT (1000)
+
+/*  MXIC datasheet specifies 15 seconds, double it here.
+*/
+#define ERASE_TIMEOUT           (30 * 1000L)
+
+/*  Erase suspend timeout: Intel J3A spec sheet says 40 microseconds.
+*/
+#define ERASE_SUSPEND_TIMEOUT   (1)
+
+/*  Chip spec is 654 microseconds.
+*/
+#define WRITE_TIMEOUT           (1)
+
+/*  Write State Machine microsecond delay for valid status
+*/
+#define WSM_DELAY               (1)
+
+/*  prototypes for local functions
+*/
+static D_BOOL   IsStateMachineReady(PFLASHDATA pMedia);
+static void     ResetFlash(         PFLASHDATA pMedia);
+static D_BOOL   WriteBytes(         PFLASHDATA pMedia, D_UINT32 * pulData, D_UINT32 ulLength, PEXTMEDIAINFO pEMI);
+
+/*  All parts supported in this FIM have 64KB erase zones --
+    multiply appropriately for the interleave value.
+*/
+#define ZONE_SIZE               (0x00010000UL * FLASH_INTERLEAVE) /* 128KB */
+
+typedef struct tagFIMEXTRA
+{
+    int             iSuspend;
+    DCLTIMER        tErase;
+    D_UINT32       ulEraseStart;
+    D_UINT32       ulEraseResult;
+    D_UINT32       ulTimeoutRemaining;
+    PFLASHDATA      pMedia;
+} FIMEXTRA;
+
+static INTELCHIPPARAMS ChipTable[] =
+{
+    {ID_28F160S3},
+    {ID_28F320S3},
+    {ID_ENDOFLIST}
+};
+
+
+/*-------------------------------------------------------------------
+    Mount()
+
+    Description
+        Determines if the media is indeed supported.  If so the
+        ExtndMediaInfo structure is updated to reflect it.
+
+    Parameters
+        pEMI - A pointer to the ExtndMediaInfo structure to use.
+
+    Return Value
+        Returns TRUE if successful, else FALSE
+-------------------------------------------------------------------*/
+static D_BOOL Mount(
+    PEXTMEDIAINFO   pEMI)
+{
+    D_UINT32        ulAddress = 0L;
+    unsigned        i;
+    PFLASHDATA      pMedia;
+    FLASHIDCODES    ID;
+    FFXFIMBOUNDS    bounds;
+
+    DclAssert(pEMI);
+
+    pEMI->uDeviceType       = DEV_NOR | DEV_NOT_MLC;
+    pEMI->ulEraseZoneSize   = ZONE_SIZE;
+
+    /*  Get the array bounds and map the window.
+    */
+    FfxDevGetArrayBounds(pEMI->hDev, &bounds);
+    if(!FfxFimNorWindowCreate(pEMI->hDev, ulAddress, &bounds, (volatile void **)&pMedia))
+        return FALSE;
+
+    /*  ID first chip
+    */
+    ResetFlash(pMedia);
+    *pMedia = INTLCMD_IDENTIFY;
+    GETFLASHIDCODES(&ID, pMedia);
+    if(!ISVALIDFLASHIDCODE(&ID))
+    {
+        FFXPRINTF(1, ("FIM iff2x16:  Invalid flash ID: Data0/1=%08lx/%08lx\n",
+            ID.data0, ID.data1));
+
+        ResetFlash(pMedia);
+
+        return FALSE;
+    }
+
+    /*  search the device codes list for the detected ID code
+    */
+    for(i = 0; ChipTable[i].ulChipSize != D_UINT32_MAX; i++)
+    {
+        if((ID.idMfg == ChipTable[i].idMfg) &&
+           (ID.idDev == ChipTable[i].idDev))
+        {
+            pEMI->ulDeviceSize = ChipTable[i].ulChipSize * FLASH_INTERLEAVE;
+
+            FFXPRINTF(1, ("FIM iff2x16:  Mfg/Dev=%04x/%04x supported\n", ID.idMfg, ID.idDev));
+
+            /*  This FIM does not support boot blocks, so ensure that
+                we're not finding a part that uses them.
+            */
+            DclAssert(!ChipTable[i].uLowBootBlocks);
+            DclAssert(!ChipTable[i].uHighBootBlocks);
+
+            break;
+        }
+    }
+
+    if(ChipTable[i].ulChipSize == D_UINT32_MAX)
+    {
+        FFXPRINTF(1, ("FIM iff2x16:  Mfg/Dev=%04x/%04x unsupported\n", ID.idMfg, ID.idDev));
+
+        /*  Otherwise, device not found, so restore the original state
+            and return device not found.
+        */
+        ResetFlash(pMedia);
+
+        return FALSE;
+    }
+
+    /*  Search for additional devices in a linear array.  Leave the first
+        chips in Identify mode to detect wrap around (aliasing).  Since we've
+        already identified the first devices, start at the next offset.
+    */
+    for(ulAddress = pEMI->ulDeviceSize;
+        ulAddress < MAX_ARRAY;
+        ulAddress += pEMI->ulDeviceSize)
+    {
+        FLASHIDCODES    ID2;
+
+        if(!FfxFimNorWindowCreate(pEMI->hDev, ulAddress, &bounds, (volatile void **)&pMedia))
+            break;
+
+        /*  Check for wrap around
+        */
+        GETFLASHIDCODES(&ID2, pMedia);
+        if((ID2.data0 == ID.data0) && (ID2.data1 == ID.data1))
+            break;
+
+        /*  ID each chip
+        */
+        ResetFlash(pMedia);
+        *pMedia = INTLCMD_IDENTIFY;
+        GETFLASHIDCODES(&ID2, pMedia);
+        if((ID2.data0 != ID.data0) || (ID2.data1 != ID.data1))
+            break;
+
+        /*  Reset the flash to read mode.  The first device in the array is
+            not included in this loop, so we don't need any special cases.
+        */
+        ResetFlash(pMedia);
+    }
+
+    /*  Restore the first chip to read mode
+    */
+    if(!FfxFimNorWindowCreate(pEMI->hDev, 0L, &bounds, (volatile void **)&pMedia))
+        return FALSE;
+
+    ResetFlash(pMedia);
+
+    pEMI->ulTotalSize = ulAddress;
+
+    pEMI->pFimExtra = DclMemAlloc(sizeof *pEMI->pFimExtra);
+    if(!pEMI->pFimExtra)
+        return FALSE;
+
+    DclMemSet(pEMI->pFimExtra, 0, sizeof *pEMI->pFimExtra);
+
+    return TRUE;
+}
+
+
+/*-------------------------------------------------------------------
+    Unmount()
+
+    Description
+        This function dismounts the FIM and releases any allocated
+        resources.
+
+    Parameters
+        pEMI - A pointer to the ExtndMediaInfo structure to use.
+
+    Return Value
+        None
+-------------------------------------------------------------------*/
+static void Unmount(
+    PEXTMEDIAINFO pEMI)
+{
+    DclAssert(pEMI);
+    DclAssert(pEMI->pFimExtra);
+
+    DclMemFree(pEMI->pFimExtra);
+    pEMI->pFimExtra = NULL;
+}
+
+
+/*-------------------------------------------------------------------
+    Read()
+
+    Description
+        Read a given number of bytes of data from the media.
+
+    Parameters
+        pEMI    - A pointer to the ExtndMediaInfo structure to use
+        ulStart - Starting offset in bytes to begin the access
+        uLength - Number of bytes to transfer
+        pBuffer - Pointer to client supplied transfer area
+
+    Return Value
+        Returns TRUE if successful, else FALSE.
+-------------------------------------------------------------------*/
+static D_BOOL Read(
+    PEXTMEDIAINFO   pEMI,
+    D_UINT32        ulStart,
+    D_UINT16        uLength,
+    void           *pBuffer)
+{
+    DclAssert(pEMI);
+
+    return FfxFimNorRead(pEMI, ulStart, uLength, pBuffer);
+}
+
+
+/*-------------------------------------------------------------------
+    Write()
+
+    Description
+        Writes a given number of bytes of data out to the media.
+        It does not return until the data is programmed.
+
+    Parameters
+        pEMI    - A pointer to the ExtndMediaInfo structure to use.
+        ulStart - Starting offset in bytes to begin the access
+        uLength - Number of bytes to transfer
+        pBuffer - Pointer to client supplied transfer area
+
+    Return Value
+        Returns TRUE if successful, else FALSE.
+-------------------------------------------------------------------*/
+static D_BOOL Write(
+    PEXTMEDIAINFO   pEMI,
+    D_UINT32        ulStart,
+    D_UINT16        uLength,
+    void           *pBuffer)
+{
+    PFLASHDATA      pMedia;
+    D_UINT32       *pulDataPtr = (D_UINT32 *)pBuffer;
+    D_BOOL          fSuccess = TRUE;
+
+    DclAssert(pEMI);
+    DclAssert(ulStart % sizeof(D_UINT32) == 0L);
+    DclAssert(uLength);
+    DclAssert(pBuffer);
+
+    /*  Verify user address and length parameters within the media
+        boundaries.
+    */
+    DclAssert(ulStart < pEMI->ulTotalSize);
+    DclAssert(pEMI->ulTotalSize - ulStart >= uLength);
+
+    while(uLength)
+    {
+        D_UINT32    ulWindowSize;
+
+        /*  Get the media pointer and the max size we can access with it
+        */
+        ulWindowSize = FfxFimNorWindowMap(pEMI->hDev, ulStart, (volatile void **)&pMedia);
+        if(!ulWindowSize)
+        {
+            fSuccess = FALSE;
+            break;
+        }
+
+        /*  Move each window worth of data into the flash memory.
+        */
+        while(ulWindowSize && uLength)
+        {
+            D_UINT32    ulThisLength = DCLMIN(uLength, ulWindowSize);
+
+            fSuccess = WriteBytes(pMedia, pulDataPtr, ulThisLength, pEMI);
+            if(!fSuccess)
+            {
+                /*  Clear the error status, reset to read mode and return
+                */
+                DclError();
+                break;
+            }
+
+            /*  If we have written everything, get outta here.
+            */
+            uLength -= (D_UINT16)ulThisLength;
+            if(uLength == 0)
+                break;
+
+            /*  Go to the next offset
+            */
+            ulWindowSize    -= ulThisLength;
+            ulStart         += ulThisLength;
+            pulDataPtr      += ulThisLength / FLASH_BUS_BYTES;
+
+            DclAssert(ulStart);
+            DclAssert(pulDataPtr);
+        }
+
+        if(!fSuccess)
+            break;
+    }
+
+    /*  Be sure we leave the flash in the read mode
+    */
+    ResetFlash(pMedia);
+
+    return fSuccess;
+}
+
+
+/*-------------------------------------------------------------------
+    EraseStart()
+
+    Description
+        Attempts to initiate an erase operation.  If it is started
+        successfully, the only FIM functions that can then be called
+        are EraseSuspend() and ErasePoll().  The operation must s
+        subsequently be monitored by calls to ErasePoll().
+
+        If it is not started successfully, those functions may not
+        be called.  The flash is restored to a readable state if
+        possible, but this cannot always be guaranteed.
+
+    Parameters
+        pEMI    - A pointer to the ExtndMediaInfo structure to use.
+        ulStart - Starting offset in bytes to begin the erase.  This
+                  must be on a physical erase zone boundary.
+        uLength - Number of bytes to erase.  This must be the exact
+                  total length of one or more physical erase zones
+                  starting at ulStart.
+
+    Return Value
+        Returns TRUE if successful, else FALSE.
+-------------------------------------------------------------------*/
+static D_BOOL EraseStart(
+    PEXTMEDIAINFO   pEMI,
+    D_UINT32        ulStart,
+    D_UINT32        ulLength)
+{
+    PFLASHDATA      pMedia;
+    PFIMEXTRA       pFimExtra;
+
+    DclAssert(pEMI);
+    pFimExtra = pEMI->pFimExtra;
+    DclAssert(pFimExtra);
+
+    DclAssert(ulLength >= ZONE_SIZE);
+    DclAssert(ulLength % ZONE_SIZE == 0);
+    DclAssert(ulStart % ZONE_SIZE == 0);
+    if(ulLength < ZONE_SIZE || ulLength % ZONE_SIZE != 0 || ulStart % ZONE_SIZE != 0)
+        return FALSE;
+
+    /*  Verify user address and length parameters within the media
+        boundaries.
+    */
+    DclAssert(ulStart < pEMI->ulTotalSize);
+    DclAssert(pEMI->ulTotalSize - ulStart >= ulLength);
+
+    /*  BOGUS! How much checking is appropriate?
+    */
+    if(ulStart >= pEMI->ulTotalSize || ulLength > pEMI->ulTotalSize - ulStart)
+    {
+        return FALSE;
+    }
+
+    if(!FfxFimNorWindowMap(pEMI->hDev, ulStart, (volatile void **)&pMedia))
+        return FALSE;
+
+    /*  Clear any status from previous operations, then check the status.
+    */
+    *pMedia = INTLCMD_CLEAR_STATUS;
+    *pMedia = INTLCMD_READ_STATUS;
+
+    if((*pMedia & INTLSTAT_STATUS_MASK) == INTLSTAT_DONE)
+    {
+        /*  The flash appears to be ready, so start the erase.
+        */
+        *pMedia = INTLCMD_ERASE_START;
+        *pMedia = INTLCMD_ERASE_RESUME;
+
+        /*  Set the timeout for the operation now that it's started.
+        */
+        DclTimerSet(&pEMI->pFimExtra->tErase, ERASE_TIMEOUT);
+
+        /*  Record the erase address for ErasePoll(), EraseSuspend, and
+            EraseResume() to use.
+        */
+        pEMI->pFimExtra->ulEraseStart = ulStart;
+
+        /*  Clear the erase result to signify erase in progress.
+        */
+        pEMI->pFimExtra->ulEraseResult = ERASE_IN_PROGRESS;
+
+        /*  Remember the media address, save repeated calls to
+            FfxHookWindowMap() from ErasePoll().
+        */
+        pEMI->pFimExtra->pMedia = pMedia;
+
+        return TRUE;
+    }
+    else
+    {
+        /*  There's probably something horrid going on like an erase that
+            timed out and got suspended.  Try to return the flash to Read
+            Array mode and return a failure indication.
+        */
+        *pMedia = INTLCMD_READ_MODE;
+        pFimExtra->ulEraseResult = FIMMT_ERASE_FAILED;
+        return FALSE;
+    }
+}
+
+
+/*-------------------------------------------------------------------
+    EraseSuspend()
+
+    Description
+        Suspend an erase operation currently in progress, and return
+        the flash to normal read mode.  When this function returns,
+        the flash may be read.
+
+        If the flash does not support suspending erases, this
+        function is not implemented, and the EraseSuspend entry in
+        the FIMDEVICE structure must be NULL.
+
+    Parameters
+        pEMI     - A pointer to the ExtndMediaInfo structure to use
+
+    Return Value
+        Returns TRUE if successful, else FALSE.
+-------------------------------------------------------------------*/
+static D_BOOL EraseSuspend(
+    PEXTMEDIAINFO   pEMI)
+{
+    D_BOOL          fResult = TRUE;
+    PFIMEXTRA       pFimExtra = pEMI->pFimExtra;
+    PFLASHDATA      pMedia;
+
+    DclAssert(pFimExtra);
+    pMedia = pFimExtra->pMedia;
+
+    /*  Save the remaining timeout period.
+    */
+    pFimExtra->ulTimeoutRemaining = DclTimerRemaining(&pFimExtra->tErase);
+
+    /*  The flash is expected to be in Read Status mode.
+    */
+    *pMedia = INTLCMD_ERASE_SUSPEND;
+
+    /*  Wait a while for the flash to go into erase suspend.
+    */
+    DclTimerSet(&pFimExtra->tErase, ERASE_SUSPEND_TIMEOUT);
+    while(!DclTimerExpired(&pFimExtra->tErase))
+    {
+        if((*pMedia & INTLSTAT_DONE) == INTLSTAT_DONE)
+            break;
+    }
+
+    /*  Check the status after a possible timeout.  A higher priority
+        thread could have preempted between setting the timer or
+        checking the status in the loop and checking for expiration.
+    */
+    if((*pMedia & INTLSTAT_DONE) != INTLSTAT_DONE)
+    {
+        /*  It really timed out.  This is a Bad Thing.  Record the failure.
+        */
+        pFimExtra->ulEraseResult = FIMMT_ERASE_FAILED;
+        fResult = FALSE;
+    }
+
+    /*  Return the flash to Read Array mode whether or not the suspend
+        command appeared to have worked (it can't hurt).
+    */
+    *pMedia = INTLCMD_READ_MODE;
+
+    return fResult;
+}
+
+
+/*-------------------------------------------------------------------
+    EraseResume()
+
+    Description
+        Resumes an erase that was successfully suspended by
+        EraseSuspend().  Once it is resumed, the only FIM functions
+        that can be called are EraseSuspend() and ErasePoll().
+
+        If the flash does not support suspending erases, this
+        function is not implemented, and the EraseSuspend entry
+        in the FIMDEVICE structure must be NULL.
+
+    Parameters
+        pEMI     - A pointer to the ExtndMediaInfo structure to use
+
+    Return Value
+        None
+-------------------------------------------------------------------*/
+static void EraseResume(
+    PEXTMEDIAINFO   pEMI)
+{
+    PFIMEXTRA       pFimExtra = pEMI->pFimExtra;
+    PFLASHDATA      pMedia;
+    FLASHDATA       stat;
+
+    DclAssert(pFimExtra);
+
+    /*  If an error occurred in EraseSuspend() the final result of the
+        erase was already recorded.  Only operate on the flash if this
+        hasn't happened yet.
+    */
+    if(pFimExtra->ulEraseResult == ERASE_IN_PROGRESS)
+    {
+        /*  Erases are suspended to perform other operations, so it's
+            necessary to remap the window now.
+        */
+        if(!FfxFimNorWindowMap(pEMI->hDev, pFimExtra->ulEraseStart, (volatile void **)&pMedia))
+            return;
+
+        pFimExtra->pMedia = pMedia;
+
+        /*  Clear status from another operation, and put the flash in Read
+            Status mode.
+        */
+        *pMedia = INTLCMD_CLEAR_STATUS;
+        *pMedia = INTLCMD_READ_STATUS;
+
+        /*  It's possible that one or both of the chips finished its
+            erase before EraseSuspend() was called.  Don't try to resume
+            a chip that is not suspended: experiment shows that it will
+            (sometimes?) return to Read Array mode.
+
+            If one of the chips is showing error status, there's no point
+            in trying to resume.
+        */
+        stat = *pMedia & INTLSTAT_STATUS_MASK;
+
+        if(stat != INTLSTAT_DONE)
+        {
+            /*  Change any OK status codes to READSTATUS commands, and
+                any ERASESUSPENDED status codes to ERASERESUME commands.
+            */
+            TRANSFORMSTATUS(&stat, ISTAT_OK, ICMD_READSTAT);
+            TRANSFORMSTATUS(&stat, ISTAT_ERASESUSPENDED, ICMD_ERASERESUME);
+
+            if(ISCOMPLETETRANSFORMATION(stat, ICMD_READSTAT, ICMD_ERASERESUME))
+            {
+                /*  If everything was changed to one code or the other,
+                    we're good, so issue the command.
+                */
+                *pMedia = stat;
+            }
+            else
+            {
+                /*  Presumably errored out in some fashion.  ErasePoll() will
+                    report that the erase failed.
+                */
+                DclError();
+            }
+        }
+
+        /*  Need to find a cleaner way to do this.
+            Guarantee a minimum erase increment.
+        */
+        _sysdelay(MINIMUM_ERASE_INCREMENT);
+
+        /*  Restart the timer.  Note that this will be done in the (unlikely)
+            case that both chips had already finished when they were suspended.
+            This is harmless, as ErasePoll() checks their status before checking
+            for timeout.
+        */
+        DclTimerSet(&pFimExtra->tErase, pFimExtra->ulTimeoutRemaining);
+    }
+}
+
+
+/*-------------------------------------------------------------------
+    ErasePoll()
+
+    Description
+        Monitor the status of an erase begun with EraseStart().
+
+        If the erase fails, attempts to return the flash to its
+        normal read mode.  Depending on the type of flash, this
+        may or may not be possible.  If it is possible, it may be
+        achieved by suspending the erase operation rather than by
+        terminating it.  In this case, it may be possible to read
+        the flash, but not to erase it further.
+
+        This function may be called with the flash either in read
+        array mode or in read status mode.
+
+    Parameters
+        pEMI     - A pointer to the ExtndMediaInfo structure to use
+
+    Return Value
+        If the erase is still in progress, returns 0.  The only FIM
+        functions that can then be called are EraseSuspend() and
+        ErasePoll().
+
+        If the erase completed successfully, returns the length of
+        the erase zone actually erased.  This may be less than the
+        ulLength value supplied to EraseStart().  The flash is in
+        normal read mode.
+
+        If the erase failed, returns FIMMT_ERASE_FAILED, which is a
+        value that could never be a valid erase length.  The flash
+        is returned to normal read mode if possible, but this may not
+        be possible in all cases (for example, if the flash does not
+        support suspending an erase, and the operation times out).
+-------------------------------------------------------------------*/
+static D_UINT32 ErasePoll(
+    PEXTMEDIAINFO   pEMI)
+{
+    PFIMEXTRA       pFimExtra = pEMI->pFimExtra;
+    PFLASHDATA      pMedia;
+
+    DclAssert(pFimExtra);
+
+    /*  ErasePoll() may be called multiple times even after the
+        operation has completed.  Only check the flash if it
+        has not already been seen to have finished its operation.
+    */
+    if(pFimExtra->ulEraseResult == ERASE_IN_PROGRESS)
+    {
+        /*  The erase was still in progress the last time it was checked.
+            It is expected to have been left in Read Status mode by the
+            last call to ErasePoll() or EraseResume().  Don't issue a
+            Read Status command here (think about what happens if the
+            flash was unexpectedly reset).
+
+            The erase is not done until both chips' status registers have
+            the DONE bit set.
+        */
+        pMedia = pFimExtra->pMedia;
+        if((*pMedia & INTLSTAT_DONE) == INTLSTAT_DONE)
+        {
+            /*  On normal completion, the status register has the DONE
+                bit set, and all other meaningful bits clear.
+            */
+            if((*pMedia & INTLSTAT_STATUS_MASK) == INTLSTAT_DONE)
+            {
+                /*  The erase has completed successfully.  One erase zone
+                    has been erased.
+                */
+                pFimExtra->ulEraseResult = ZONE_SIZE;
+
+            }
+            else
+            {
+                /*  The status register indicates something other than
+                    normal completion.
+                */
+                pFimExtra->ulEraseResult = FIMMT_ERASE_FAILED;
+            }
+
+            /*  Whether or not there was an error, return the flash to
+                Read Array mode.
+            */
+            *pMedia = INTLCMD_READ_MODE;
+        }
+        else if(DclTimerExpired(&pFimExtra->tErase) &&
+                (*pMedia & INTLSTAT_DONE) != INTLSTAT_DONE)
+        {
+            /*  The erase hasn't finished, and the timeout has elapsed.
+                Try to return the flash to Read Array mode by suspending
+                the erase, and return a failure indication.
+
+                The extra check of status after the timeout check may
+                look a little odd -- wasn't it just checked above?  This
+                is to handle perverse platforms on which power management
+                can suspend the CPU any old time, but the flash keeps
+                erasing.  Yes, this really happens.
+            */
+            EraseSuspend(pEMI);
+            pFimExtra->ulEraseResult = FIMMT_ERASE_FAILED;
+        }
+    }
+    return pFimExtra->ulEraseResult;
+}
+
+
+/*-------------------------------------------------------------------
+    IsStateMachineReady()
+
+    Description
+        Polls until the ready bit is set, or the timeout has elapsed.
+
+    Parameters
+        pMedia - The current location in the media
+
+    Return Value
+        Returns TRUE if ready, or FALSE if timed out.
+-------------------------------------------------------------------*/
+static D_BOOL IsStateMachineReady(
+    PFLASHDATA      pMedia)
+{
+    DCLTIMER        timer;
+
+    DclTimerSet(&timer, WRITE_TIMEOUT);
+
+    while(!DclTimerExpired(&timer))
+    {
+        if((*pMedia & INTLSTAT_DONE) == INTLSTAT_DONE)
+            return TRUE;
+    }
+
+    /*  Timed out.  Check status one last time, as it could have gotten
+        done between checks.
+    */
+    if((*pMedia & INTLSTAT_DONE) == INTLSTAT_DONE)
+        return TRUE;
+
+    FFXPRINTF(2, ("flash timeout with status = %08lx\n", *pMedia));
+    DclError();
+
+    return FALSE;
+}
+
+
+/*-------------------------------------------------------------------
+    ResetFlash()
+
+    Description
+        Resets the flash memory by clearing the error status and
+        returning to the read mode.
+
+    Parameters
+        pMediaPtr - pointer to flash media
+
+    Return Value
+        None
+-------------------------------------------------------------------*/
+static void ResetFlash(
+    PFLASHDATA      pMedia)
+{
+    /*  Initialize flash memory for word 2x16 mode
+    */
+    *pMedia = INTLCMD_READ_MODE;
+    *pMedia = INTLCMD_CLEAR_STATUS;
+    *pMedia = INTLCMD_READ_MODE;
+
+    return;
+}
+
+
+/*------------------------------------------------------------------------
+    WriteBytes()
+
+    Description
+        Write the specified bytes to flash.
+
+    Parameters
+        pMedia   - The current location in the media
+        pulData  - The current location in the data
+        ulLength - The length to write
+        PEMI     - A pointer to the ExtndMediaInfo structure
+
+    Return Value
+        Returns TRUE if successful, else FALSE.
+------------------------------------------------------------------------*/
+static D_BOOL WriteBytes(
+    PFLASHDATA      pMedia,
+    D_UINT32       *pulData,
+    D_UINT32        ulLength,
+    PEXTMEDIAINFO   pEMI)
+{
+    D_UINT16        u;
+    DCLTIMER        timer;
+
+    (void)pEMI;
+
+    /* Program ulLength bytes into flash directly
+    */
+    for(u = 0; u < ulLength/FLASH_BUS_BYTES; u++)
+    {
+        pMedia[u] = INTLCMD_PROGRAM;
+
+        /* Buffer should always be ready, die if not
+        */
+        if((pMedia[u] & INTLSTAT_DONE) != INTLSTAT_DONE)
+        {
+            DclError();
+            return FALSE;
+        }
+
+        pMedia[u] = pulData[u];
+        DclTimerSet(&timer, WRITE_TIMEOUT);
+
+        /*  According to Intel's data sheet (290667-011, April 2002), the STS
+            pin (and thus SR7) is not valid until 500ns after the command is
+            latched
+        */
+        _sysdelay(WSM_DELAY);
+
+        /*  Wait till the byte is done programming
+        */
+        while(!(pMedia[u] & INTLSTAT_DONE))
+        {
+            if(DclTimerExpired(&timer))
+            {
+                /*  one final check to make sure read write didn't just complete
+                */
+                if(!(pMedia[u] & INTLSTAT_DONE))
+                {
+                    /*  Clear the error status, reset to read mode and return
+                    */
+                    ResetFlash(pMedia);
+                    return FALSE;
+                }
+            }
+        }
+
+        /*  Check for error
+        */
+        if(pMedia[u] & INTLSTAT_WRITE_FAIL)
+        {
+            /*  Clear the error status, reset to read mode and return
+            */
+            ResetFlash(pMedia);
+            return FALSE;
+        }
+
+        if(!IsStateMachineReady(&pMedia[u]))
+        {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}
+
+
+/*-------------------------------------------------------------------
+    FIMDEVICE Declaration
+
+    This structure declaration is used to define the entry points
+    into the FIM.  This is declared at the end of the module to
+    eliminate the need for what would be duplicated function
+    prototypes in all the FIMs.
+-------------------------------------------------------------------*/
+FIMDEVICE FFXFIM_iff2x16 =
+{
+    Mount,
+    Unmount,
+    Read,
+    Write,
+    EraseStart,
+    ErasePoll,
+    EraseSuspend,
+    EraseResume
+};
+

@@ -1,0 +1,67 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES2
+PROJECTNAME=Shaders
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Basetex.obj \
+	$(OBJDIR)\Reflection.obj \
+	$(OBJDIR)\Cubemap.obj \
+	$(OBJDIR)\AnisoMap.obj \
+	$(OBJDIR)\anisotropic_lighting.obj \
+	$(OBJDIR)\directional_lighting.obj \
+	$(OBJDIR)\envmap.obj \
+	$(OBJDIR)\fasttnl.obj \
+	$(OBJDIR)\lattice.obj \
+	$(OBJDIR)\phong_lighting.obj \
+	$(OBJDIR)\point_lighting.obj \
+	$(OBJDIR)\reflections.obj \
+	$(OBJDIR)\simple.obj \
+	$(OBJDIR)\spot_lighting.obj \
+	$(OBJDIR)\toon.obj \
+	$(OBJDIR)\vertex_sine.obj \
+	$(OBJDIR)\wood.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Basetex.cpp \
+	$(APPROOT)\Content\Reflection.cpp \
+	$(APPROOT)\Content\Cubemap.cpp \
+	$(APPROOT)\Content\AnisoMap.cpp \
+	$(APPROOT)\Content\anisotropic_lighting.cpp \
+	$(APPROOT)\Content\directional_lighting.cpp \
+	$(APPROOT)\Content\envmap.cpp \
+	$(APPROOT)\Content\fasttnl.cpp \
+	$(APPROOT)\Content\lattice.cpp \
+	$(APPROOT)\Content\phong_lighting.cpp \
+	$(APPROOT)\Content\point_lighting.cpp \
+	$(APPROOT)\Content\reflections.cpp \
+	$(APPROOT)\Content\simple.cpp \
+	$(APPROOT)\Content\spot_lighting.cpp \
+	$(APPROOT)\Content\toon.cpp \
+	$(APPROOT)\Content\vertex_sine.cpp \
+	$(APPROOT)\Content\wood.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

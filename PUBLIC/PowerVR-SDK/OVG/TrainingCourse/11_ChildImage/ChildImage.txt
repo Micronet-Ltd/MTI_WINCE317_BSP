@@ -1,0 +1,13 @@
+
+Demo title: 		ChildImage
+
+Demonstrates: 		How to use OpenVG child images
+
+Short Description:	How to use OpenVG child images
+
+Full Description:	
+This training course shows you how to use OpenVG child images. It starts off with the creation of a single image that is then used to spawn a child image. This child then spawns its own child. The first child is then modified and this modification can be seen in all its relatives.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

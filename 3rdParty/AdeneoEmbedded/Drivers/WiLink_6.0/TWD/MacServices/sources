@@ -1,0 +1,20 @@
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=MacServices
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+ScanSrv.c \
+ScanSrvSM.c \
+PowerSrv.c \
+PowerSrvSM.c \
+MeasurementSrv.c \
+measurementSrvDbgPrint.c \
+MeasurementSrvSM.c \
+MacServices.c

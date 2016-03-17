@@ -1,0 +1,37 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+TARGETNAME=connmc
+
+TARGETTYPE=PROGRAM
+RELEASETYPE=PLATFORM
+SYNCHRONIZE_DRAIN=1
+
+# EXEENTRY=WinMainCRTStartup
+
+
+INCLUDES= $(INCLUDES)
+
+TARGETLIBS=\
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+#    $(_PUBLICROOT)\common\oak\lib\$(_CPUINDPATH)\connmc.lib \
+#    $(_PUBLICROOT)\common\oak\lib\$(_CPUINDPATH)\connmc.res \
+    $(_RELEASELIBDIR)\$(TARGETNAME).lib \
+	..\src\$(_OBJDIR)\connmc.res \
+#    ..\src\obj\$(_CPUINDPATH)\connmc.res \
+#    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\commctrl.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\ws2.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\iphlpapi.lib \
+    $(_PUBLICROOT)\common\oak\lib\$(_CPUINDPATH)\cclib.lib \
+	$(_COMMONSDKLIB)\$(_CPUINDPATH)\commctrl.lib \
+
+SOURCES=
+

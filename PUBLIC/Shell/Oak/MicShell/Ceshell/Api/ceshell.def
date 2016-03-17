@@ -1,0 +1,43 @@
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this sample source code is subject to the terms of the Microsoft
+; license agreement under which you licensed this sample source code. If
+; you did not accept the terms of the license agreement, you are not
+; authorized to use this sample source code. For the terms of the license,
+; please see the license agreement between you and Microsoft or, if applicable,
+; see the LICENSE.RTF on your install media or the root of your tools installation.
+; THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+;
+LIBRARY	ceshell
+
+EXPORTS
+
+; @CESYSGEN IF CESHELL_CESHAPI
+	DoDragDrop                                 @6
+	RegisterDragDrop                           @7
+	RevokeDragDrop                             @8
+	SHAddToRecentDocs                          @19
+	SHBindToParent                             @82
+	SHBrowseForFolder                          @83 
+	SHCreateShortcut                           @17
+	SHCreateShortcutEx                         @85
+	SHFileOperationW                           @14
+	SHGetDocumentsFolder                       @75
+	SHGetFileInfo                              @13
+	SHGetMalloc                                @12
+	SHGetPathFromIDList                        @11
+	SHGetShortcutTarget                        @18
+	SHGetSpecialFolderLocation                 @10
+	SHLoadDIBitmap=COREDLL.SHLoadDIBitmap      @16
+	SHShowOutOfMemory                          @86
+	StrRetToBufW                               @84
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF CESHELL_CESHUI
+	DllCanUnloadNow                            PRIVATE
+	DllGetClassObject                          PRIVATE
+	SHGetDesktopFolder                         @9
+	SHGetOpenFileName                          PRIVATE
+; @CESYSGEN ENDIF

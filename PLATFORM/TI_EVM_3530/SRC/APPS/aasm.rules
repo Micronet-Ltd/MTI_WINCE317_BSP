@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="ARM assembler"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="AASM"
+			DisplayName="Arm assembler"
+			CommandLine="armasm -ARCH 4T -32 -Errors $(InputName).err -list $(InputName).lst -o $(InputName).obj $(InputName).s"
+			Outputs="[$ObjectFileName]"
+			FileExtensions="*.s"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

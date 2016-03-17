@@ -1,0 +1,15 @@
+
+Demo title: 		Skybox
+
+Demonstrates: 		Skybox compressed using PVRTC
+
+Short Description:	Shows a balloon in the air inside a skybox.
+
+Full Description:	
+Shows a balloon in the air inside a skybox.
+
+The skybox is compressed using PVRTC4 using our PVRTextureTool skybox compression feature.
+ 
+VGP: 			Not Required
+Polygon Count: 		1947
+Vertex Count: 		1228

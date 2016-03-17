@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OW_Test", "OW_Test\OW_Test.vcproj", "{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|CE500_CORE (ARMV4I) = Debug|CE500_CORE (ARMV4I)
+		Debug|Pocket PC 2003 (ARMV4) = Debug|Pocket PC 2003 (ARMV4)
+		Release|CE500_CORE (ARMV4I) = Release|CE500_CORE (ARMV4I)
+		Release|Pocket PC 2003 (ARMV4) = Release|Pocket PC 2003 (ARMV4)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Debug|CE500_CORE (ARMV4I).ActiveCfg = Debug|CE500_CORE (ARMV4I)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Debug|CE500_CORE (ARMV4I).Build.0 = Debug|CE500_CORE (ARMV4I)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Debug|CE500_CORE (ARMV4I).Deploy.0 = Debug|CE500_CORE (ARMV4I)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Debug|Pocket PC 2003 (ARMV4).ActiveCfg = Debug|Pocket PC 2003 (ARMV4)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Debug|Pocket PC 2003 (ARMV4).Build.0 = Debug|Pocket PC 2003 (ARMV4)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Debug|Pocket PC 2003 (ARMV4).Deploy.0 = Debug|Pocket PC 2003 (ARMV4)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Release|CE500_CORE (ARMV4I).ActiveCfg = Release|CE500_CORE (ARMV4I)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Release|CE500_CORE (ARMV4I).Build.0 = Release|CE500_CORE (ARMV4I)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Release|CE500_CORE (ARMV4I).Deploy.0 = Release|CE500_CORE (ARMV4I)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Release|Pocket PC 2003 (ARMV4).ActiveCfg = Release|Pocket PC 2003 (ARMV4)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Release|Pocket PC 2003 (ARMV4).Build.0 = Release|Pocket PC 2003 (ARMV4)
+		{11DE6EDA-0E71-4FD7-A6A1-A1F5C8160656}.Release|Pocket PC 2003 (ARMV4).Deploy.0 = Release|Pocket PC 2003 (ARMV4)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

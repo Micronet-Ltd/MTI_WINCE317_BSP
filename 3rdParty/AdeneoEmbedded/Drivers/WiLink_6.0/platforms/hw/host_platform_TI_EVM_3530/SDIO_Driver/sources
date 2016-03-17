@@ -1,0 +1,64 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+!IF "$(_TGTPLAT)" != "TI_EVM_3530"
+SKIPBUILD=1
+!ENDIF
+
+
+!IF "$(HOST_PLAT_EVM_OMAP3530)" != "1"
+SKIPBUILD=1
+!ENDIF
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+TARGETTYPE=DYNLINK
+TARGETNAME=sdi_TI_EVM_3530
+DEFFILE=sdi.def
+
+DLLENTRY=DllEntry
+SYNCHRONIZE_DRAIN=1
+RELEASETYPE=PLATFORM
+
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+INCLUDES= \
+	$(INCLUDES) \
+	$(_PLATFORMROOT)\common\src\inc \
+	$(EXTDRV_INCLUDE)
+
+
+TARGETLIBS= \
+	$(_SYSGENOAKROOT)\LIB\$(_CPUINDPATH)\ceddk.lib \
+    $(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\coredll.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib
+
+CDEFINES= $(CDEFINES) \
+        -DBUS_TEST
+!if 0
+        -DSDIO_1_BIT
+!endif
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+!IF "$(WINCEDEBUG)"=="debug"
+CDEFINES= $(CDEFINES) \
+        -DSSD_DEBUG 
+!ENDIF
+
+!IF "$(TNETW1273)" == "1"
+CDEFINES= $(CDEFINES) \
+	-DTNETW1273
+
+!IF "$(FPGA1273_STAGE_)" == "1"
+CDEFINES= $(CDEFINES) \
+	-DFPGA1273_STAGE_
+!ENDIF
+!ENDIF
+
+
+SOURCES= \
+	SdioDrv.c
+	
+

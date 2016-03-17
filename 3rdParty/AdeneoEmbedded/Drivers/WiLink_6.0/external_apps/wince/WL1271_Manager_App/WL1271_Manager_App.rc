@@ -1,0 +1,359 @@
+/***************************************************************************
+**+----------------------------------------------------------------------+**
+**|                                ****                                  |**
+**|                                ****                                  |**
+**|                                ******o***                            |**
+**|                          ********_///_****                           |**
+**|                           ***** /_//_/ ****                          |**
+**|                            ** ** (__/ ****                           |**
+**|                                *********                             |**
+**|                                 ****                                 |**
+**|                                  ***                                 |**
+**|                                                                      |**
+**|     Copyright (c) 1998-2010 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+**|                                                                      |**          
+**| Permission is hereby granted to licensees of Texas Instruments       |**
+**| Incorporated (TI) products to use this computer program for the sole |**
+**| purpose of implementing a licensee product based on TI products.     |**
+**| No other rights to reproduce, use, or disseminate this computer      |**
+**| program, whether in part or in whole, are granted.                   |**
+**|                                                                      |**
+**| TI makes no representation or warranties with respect to the         |**
+**| performance of this computer program, and specifically disclaims     |**
+**| any responsibility for any damages, special or consequential,        |**
+**| connected with the use of this program.                              |**
+**|                                                                      |**     
+**+----------------------------------------------------------------------+**
+***************************************************************************/
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_WLAPP           ICON    DISCARDABLE     "WL1271_Manager_App.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINDIALOG DIALOG DISCARDABLE  0, 0, 150, 210
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_DLGFRAME | WS_SYSMENU | WS_CAPTION
+EXSTYLE 0x80000000L
+CAPTION "WL1271 Manager"
+FONT 8, "System"
+BEGIN
+    CONTROL         108,IDC_BT_OFF,"Static",SS_BITMAP,5,5,73,68
+    CONTROL         109,IDC_BT_ON,"Static",SS_BITMAP,5,5,73,68
+    PUSHBUTTON      "Activate",ID_ACTIVATE_BT,80,15,50,14
+    PUSHBUTTON      "Configure",ID_CONF_BT,80,32,50,14,WS_DISABLED
+	CONTROL         110,IDC_WL_OFF,"Static",SS_BITMAP,5,70,73,68
+	CONTROL         111,IDC_WL_ON,"Static",SS_BITMAP,5,70,73,68
+    PUSHBUTTON      "Activate",ID_ACTIVATE_WL,80,80,50,14
+    PUSHBUTTON      "Configure",ID_CONF_WL,80,98,50,14
+	CONTROL         112,IDC_FM_OFF,"Static",SS_BITMAP,5,135,73,68
+	CONTROL         113,IDC_FM_ON,"Static",SS_BITMAP,5,135,73,68
+	PUSHBUTTON		"Activate",ID_ACTIVATE_FM,80,145,50,14,WS_DISABLED
+    PUSHBUTTON      "Configure",ID_CONF_FM,80,163,50,14,WS_DISABLED
+END
+
+IDD_SCANDIALOG DIALOG DISCARDABLE  0, 0, 220, 220
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "Scan Modes Configuration"
+FONT 8, "System"
+BEGIN
+	LTEXT			"Max Dwell Time : ",IDC_STATIC_MAXDWT,65,135,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MAXDWT,65,150,50,14,ES_AUTOHSCROLL
+	LTEXT			"Min Dwell Time : ",IDC_STATIC_MINDWT,65,170,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MINDWT,65,185,50,14,ES_AUTOHSCROLL
+	RADIOBUTTON		"Immediate",ID_WL_CONF_IMMSCAN,20,15,50,14,WS_TABSTOP | WS_GROUP
+	RADIOBUTTON		"Discovery",ID_WL_CONF_DISC,85,15,50,14,WS_TABSTOP | WS_GROUP
+	RADIOBUTTON		"Tracking",ID_WL_CONF_TRACK,155,15,50,14,WS_TABSTOP | WS_GROUP
+	GROUPBOX		"Select Mode",IDC_STATIC_MODESEL,5,5,210,30
+	RADIOBUTTON		"0",ID_WL_BANDINDEX0,15,50,20,14,WS_TABSTOP | WS_GROUP
+	RADIOBUTTON		"1",ID_WL_BANDINDEX1,40,50,20,14,WS_TABSTOP | WS_GROUP
+	GROUPBOX		"Band Index",IDC_STATIC_BANDINDEX,5,40,70,30
+	LTEXT			"Scan Type : ",IDC_STATIC_SCANT,100,40,50,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_SCANT,100,55,50,50,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"ET Event : ",IDC_STATIC_ETEVENT,15,90,50,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_ETEVT,10,110,60,50,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"Number of frames",IDC_STATIC_ETNBFRAMES,75,85,55,20,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_NBFRAMES,75,110,50,14,ES_AUTOHSCROLL
+	GROUPBOX		"ET",IDC_STATIC_ETCONF,5,75,130,55
+	LTEXT			"Triggering AC : ",IDC_STATIC_TRIGAC,145,85,50,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_TRIGAC,145,100,50,14,ES_AUTOHSCROLL
+	LTEXT			"Scan Duration : ",IDC_STATIC_SCANDUR,5,135,50,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_SCANDUR,5,150,50,14,ES_AUTOHSCROLL
+	LTEXT			"TX Power LVL : ",IDC_STATIC_TXPWLVL,5,170,52,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_TXPWLVL,5,185,50,14,ES_AUTOHSCROLL
+	LTEXT			"Probe Req. Rate : ",IDC_STATIC_PRR,145,135,65,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_PRR,145,150,55,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"Probe Req. Number :",IDC_STATIC_PRN,143,170,69,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_PRN,145,190,55,14,ES_AUTOHSCROLL
+	GROUPBOX		"Probe Request",IDC_STATIC_PR,140,125,75,85
+END
+
+IDD_WIFIDIALOG DIALOG DISCARDABLE  0, 0, 230, 125
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE 0x80000000L
+CAPTION "WLAN Configurations"
+FONT 8, "System"
+BEGIN
+    PUSHBUTTON      "Change MAC",ID_WL_CONF_MAC,28,15,50,14,WS_GROUP
+	GROUPBOX        "MAC",IDC_STATIC_MAC,7,5,92,30
+    PUSHBUTTON      "Calibrate",ID_WL_CONF_BIP,28,48,50,14,WS_GROUP
+	GROUPBOX        "Calibration",IDC_STATIC_CAL,7,38,92,30
+	CONTROL         "Enable Roaming",ID_WL_CONF_ROAMING,"Button",BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,25,81,60,14
+	PUSHBUTTON		"Configure Roaming",ID_WL_ROAMING,15,95,76,14
+	GROUPBOX        "Roaming",IDC_STATIC_BIP,7,71,92,45
+	PUSHBUTTON		"Global Parameters",ID_WL_GLOBAL,130,15,70,14,WS_GROUP
+	PUSHBUTTON		"Misc. Parameters",ID_WL_MISC,130,35,70,14,WS_GROUP
+	PUSHBUTTON		"Application Scan",ID_WL_ASG,130,55,70,14,WS_GROUP
+	PUSHBUTTON		"Other Scan Modes",ID_WL_CONF_SCAN,130,75,70,14,WS_GROUP
+	PUSHBUTTON		"Start Scan",ID_WL_START_SCAN,115,95,50,14,WS_GROUP
+	PUSHBUTTON		"Stop Scan",ID_WL_STOP_SCAN,170,95,50,14,WS_GROUP
+	GROUPBOX        "Scan Configuration",IDC_STATIC_SCAN,105,5,120,115
+END
+
+
+
+
+IDD_MACDIALOG DIALOG DISCARDABLE  0, 0, 200, 100
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE 0x80000000L
+CAPTION "WL1271 MAC Address"
+FONT 8, "System"
+BEGIN
+    LTEXT           "Enter new MAC Address for WLAN : ",IDC_STATIC_1,12,10,176,8,SS_NOPREFIX
+    EDITTEXT        IDC_EDIT_MAC,12,22,176,14,ES_AUTOHSCROLL
+    LTEXT           "MAC Address must follow the following schema : \r\nxx:xx:xx:xx:xx:xx",IDC_STATIC_2,12,40,176,20
+    PUSHBUTTON      "OK",IDOK,30,80,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,110,80,50,14
+END
+
+IDD_GLOBALCONFDIALOG DIALOG DISCARDABLE  0, 0, 145, 150
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "Global Configuration"
+FONT 8, "System"
+BEGIN
+	LTEXT			"Normal Scan Interval : ",IDC_STATIC_NSINTERVAL,15,15,55,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_NSINTERVAL,15,37,50,14,ES_AUTOHSCROLL
+	LTEXT			"Deteriorating Scan Interval : ",IDC_STATIC_DSINTERVAL,75,15,55,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_DSINTERVAL,75,37,50,14,ES_AUTOHSCROLL
+	GROUPBOX		"ET",IDC_STATIC_SCANINTERVAL,5,5,130,55
+	
+	LTEXT			"Max Track Failures : ",IDC_STATIC_MAXTFAILURES,15,65,55,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MAXTFAILURES,15,85,50,14,ES_AUTOHSCROLL
+	LTEXT			"BSS List Size : ",IDC_STATIC_BSSLISTSIZE,80,65,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_BSSLISTSIZE,80,85,50,14,ES_AUTOHSCROLL
+	LTEXT			"BSS Number to start Discovery : ",IDC_STATIC_BSSNBSTARTDISC,15,105,55,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_BSSNBSTARTDISC,15,125,50,14,ES_AUTOHSCROLL
+	LTEXT			"Number of Bands :",IDC_STATIC_NBBANDS,80,105,57,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_NBBANDS,80,127,50,14,ES_AUTOHSCROLL
+END
+
+IDD_MISCANDCHANDIALOG DIALOG DISCARDABLE  0, 0, 145, 200
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "Misc & Channel Configuration"
+FONT 8, "System"
+BEGIN
+
+	LTEXT			"Channel Index: ",IDC_STATIC_MCCHANINDEX,15,20,55,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_MCCHANINDEX,15,35,50,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"Channel Number: ",IDC_STATIC_MCCHANNB,75,20,57,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MCCHANNB,75,35,50,14,ES_AUTOHSCROLL
+	GROUPBOX		"ET",IDC_STATIC_MCCHANCONF,5,5,135,55
+
+	LTEXT			"Band Index :",IDC_STATIC_MCBANDINDEX,15,70,55,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_MCBANDINDEX,15,85,50,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"Band :",IDC_STATIC_MCBAND,80,70,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MCBAND,80,85,50,14,ES_AUTOHSCROLL
+	LTEXT			"BSS Threshold :",IDC_STATIC_MCBSSTHRESHOLD,15,105,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MCBSSTHRESHOLD,15,125,50,14,ES_AUTOHSCROLL
+	LTEXT			"Chan Number for Discovery Cycle :",IDC_STATIC_MCCHANNBDISCCYCLE,80,105,60,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MCCHANNBDISCCYCLE,80,125,50,14,ES_AUTOHSCROLL
+	LTEXT			"Number of Channels :",IDC_STATIC_MCNBCHANS,15,150,55,20,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_MCNBCHANS,15,175,50,14,ES_AUTOHSCROLL
+
+
+END
+
+IDD_ASGLOBALDIALOG DIALOG DISCARDABLE  0, 0, 145, 190
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "Application Scan - Global Configuration"
+FONT 8, "System"
+BEGIN
+
+	LTEXT			"Probe Request Number :",IDC_STATIC_ASGPRN,15,15,55,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASGPRN,15,37,50,14,ES_AUTOHSCROLL
+	LTEXT			"Probe Request Rate :",IDC_STATIC_ASGPRR,75,15,55,18,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_ASGPRR,75,37,50,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	GROUPBOX		"Probe Request Configuration",IDC_STATIC_ASGPREQ,5,5,130,55
+
+	LTEXT			"SSID : ",IDC_STATIC_ASGSSID,15,68,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASGSSID,15,85,50,14,ES_AUTOHSCROLL
+	LTEXT			"Scan Type : ",IDC_STATIC_ASGSCANTYPE,80,68,55,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_ASGSCANTYPE,80,85,50,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"Band : ",IDC_STATIC_ASGBANDNB,15,108,55,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_ASGBANDNB,15,125,50,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"Number of channels :",IDC_STATIC_ASGNBCHAN,80,105,55,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASGNBCHAN,80,125,50,14,ES_AUTOHSCROLL
+	LTEXT			"Tid: ",IDC_STATIC_ASGTID,15,150,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASGTID,15,168,50,14,ES_AUTOHSCROLL
+
+END
+
+IDD_ASCHANDIALOG DIALOG DISCARDABLE  0, 0, 145, 200
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "Application Scan - Channels Configuration"
+FONT 8, "System"
+BEGIN
+
+	LTEXT			"Early Termination Condition :",IDC_STATIC_ASCETCOND,15,15,55,18,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_ASCETCOND,15,35,55,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"ET Frame Number :",IDC_STATIC_ASCETFRAMENB,75,15,55,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASCETFRAMENB,75,35,50,14,ES_AUTOHSCROLL
+	GROUPBOX		"Early Termination Events",IDC_STATIC_ASCETEVENT,5,5,135,55
+
+	LTEXT			"Channel Index : ",IDC_STATIC_ASCCHANINDEX,15,65,55,14,SS_NOPREFIX
+	COMBOBOX		ID_CBBOX_ASCCHANINDEX,15,82,50,65,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+
+	LTEXT			"BSSID: ",IDC_STATIC_ASCBSSID,80,65,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASCBSSID,75,82,60,14,ES_AUTOHSCROLL
+
+	LTEXT			"Max Dwell Time: ",IDC_STATIC_ASCMAXDWELL,15,105,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASCMAXDWELL,15,122,50,14,ES_AUTOHSCROLL
+
+	LTEXT			"Min Dwell Time: ",IDC_STATIC_ASCMINDWELL,80,105,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASCMINDWELL,80,122,50,14,ES_AUTOHSCROLL
+
+	LTEXT			"Tx Power Level :",IDC_STATIC_ASCTXPOWERLVL,15,140,55,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASCTXPOWERLVL,15,160,50,14,ES_AUTOHSCROLL
+	
+	LTEXT			"Channel Number :",IDC_STATIC_ASCCHANNB,80,140,60,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ASCCHANNB,80,160,50,14,ES_AUTOHSCROLL
+	
+END
+
+IDD_ROAMINGDIALOG DIALOG DISCARDABLE  0, 0, 145, 245
+STYLE DS_MODALFRAME | DS_SETFOREGROUND | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "Roaming Configuration"
+FONT 8, "System"
+BEGIN
+
+	LTEXT			"Low-pass Filter :",IDC_STATIC_ROAMINGLPF,15,15,53,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGLPF,15,35,50,14,ES_AUTOHSCROLL
+	LTEXT			"Quality Threshold :",IDC_STATIC_ROAMINGQT,75,15,50,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGQT,75,35,50,14,ES_AUTOHSCROLL
+	GROUPBOX		"General Roaming Parameters",IDC_STATIC_ROAMINGGRC,5,5,135,48
+
+	LTEXT			"Data Retry :",IDC_STATIC_ROAMINGDRT,15,73,50,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGDRT,15,90,50,14,ES_AUTOHSCROLL
+	LTEXT			"Expected Tbtt for BSS loss :",IDC_STATIC_ROAMINGBSSLOSS,75,70,50,18,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGBSSLOSS,75,90,50,14,ES_AUTOHSCROLL
+	LTEXT			"Tx Rate :",IDC_STATIC_ROAMINGTXRATE,15,110,50,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGTXRATE,15,127,50,14,ES_AUTOHSCROLL
+	LTEXT			"Low RSSI :",IDC_STATIC_ROAMINGLOWRSSI,75,110,50,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGLOWRSSI,75,127,50,14,ES_AUTOHSCROLL
+	LTEXT			"Low SNR :",IDC_STATIC_ROAMINGLOWSNR,15,145,50,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGLOWSNR,15,163,50,14,ES_AUTOHSCROLL
+	
+	LTEXT			"Low Quality :",IDC_STATIC_ROAMINGLQSCAN,15,193,50,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGLQSCAN,15,210,50,14,ES_AUTOHSCROLL
+	LTEXT			"Normal Quality :",IDC_STATIC_ROAMINGNQSCAN,75,193,53,14,SS_NOPREFIX
+	EDITTEXT		IDC_EDIT_ROAMINGNQSCAN,75,210,50,14,ES_AUTOHSCROLL
+	GROUPBOX		"Background Scan Condition",IDC_STATIC_ROAMINGQUALITY,8,183,128,45
+
+	GROUPBOX		"Thresholds configuration",IDC_STATIC_ROAMINGTHRESHOLDCONF,5,60,135,175
+	
+END
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BT_OFF              BITMAP                  "files\\BT_OFF.bmp"
+IDB_BT_ON               BITMAP                  "files\\BT_ON.bmp"
+IDB_FM_OFF              BITMAP                  "files\\FM_OFF.bmp"
+IDB_FM_ON               BITMAP                  "files\\FM_ON.bmp"
+IDB_WL_OFF              BITMAP                  "files\\Wifi_OFF.bmp"
+IDB_WL_ON               BITMAP                  "files\\Wifi_ON.bmp"
+
+
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

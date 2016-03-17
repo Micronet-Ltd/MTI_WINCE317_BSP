@@ -1,0 +1,21 @@
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=utils
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+context.c \
+fsm.c \
+queue.c \
+rate.c \
+report.c \
+timer.c \
+freq.c \
+GenSM.c
+

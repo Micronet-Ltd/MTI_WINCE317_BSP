@@ -1,0 +1,13 @@
+
+Demo title: 		FiveSpheres
+
+Demonstrates: 		Primitives Test
+
+Short Description:	Illustrates different primitive types 
+
+Full Description:	
+This demo illustrates five different primitive types: GL_POINTS, GL_TRIANGLES, GL_LINE_STRIP, GL_TRIANGLE_FAN and GL_TRIANGLE_STRIP.
+
+VGP: 			Not Required
+Polygon Count: 		2750 (higher due to the usage of points and lines)
+Vertex Count: 		3650 (higher due to the usage of points and lines) 

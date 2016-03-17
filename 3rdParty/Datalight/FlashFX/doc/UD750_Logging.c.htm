@@ -1,0 +1,977 @@
+<html>
+<head>
+<title>
+DCL Public API: Logging
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Public API: Logging
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Public API: Logging">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+    This module contains general functions for manipulating log files and
+    log data.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogClose">DclLogClose</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Close a log file which was opened with                       DclLogOpen    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogFlush">DclLogFlush</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Flush a log which was opened with                       DclLogOpen    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogMode">DclLogMode</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get/set the logging mode.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogOpen">DclLogOpen</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Open a log for capturing output.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogPrintf">DclLogPrintf</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Print formatted data with a variable argument list to a
+    log instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogVPrintf">DclLogVPrintf</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Print formatted data with a pointer to an argument list to
+    the specified log instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogWrite">DclLogWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write data bytes to a log.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLogWriteString">DclLogWriteString</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write a null-terminated string to the log.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclLogClose"></a>
+<a NAME="DclLogClose"></a>
+DclLogClose
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclLogClose</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>       hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a>            hLog)
+</div>
+<div class=SectionText>
+
+    Close a log file which was opened with <a HREF="#DclLogOpen">DclLogOpen</a>.
+
+<p>    Note that nested calls to <a HREF="#DclLogOpen">DclLogOpen</a> should be matched
+    with corollary calls to DclLogClose in reverse order.
+
+<p>    Note that if the specified log handle is NULL, the "current"
+    log instance will be used, however this only applies to
+    non-private log instances which are hooked into the standard
+    output stream.  Closing a private log requires that the
+    log handle be specified.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use
+                    the default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hLog
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A log handle returned by <a HREF="#DclLogOpen">DclLogOpen</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLogFlush"></a>
+<a NAME="DclLogFlush"></a>
+DclLogFlush
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclLogFlush</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>       hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a>            hLog)
+</div>
+<div class=SectionText>
+
+    Flush a log which was opened with <a HREF="#DclLogOpen">DclLogOpen</a>.
+
+<p>    Note that if the specified log handle is NULL, the "current"
+    log instance will be used, however this only applies to
+    non-private log instances which are hooked into the standard
+    output stream.  Flushing a private log requires that the
+    log handle be specified.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use
+                    the default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hLog
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A log handle returned by <a HREF="#DclLogOpen">DclLogOpen</a>.  If
+                    this value is NULL, then the most recently
+                    opened NON-private log file will be flushed.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLogMode"></a>
+<a NAME="DclLogMode"></a>
+DclLogMode
+</h3>
+<div class=Api>
+DCLLOGMODE <font class=ApiName>DclLogMode</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>       hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a>            hLog,<br>&nbsp;&nbsp;&nbsp;
+    DCLLOGMODE              nMode)
+</div>
+<div class=SectionText>
+
+    Get/set the logging mode.
+
+<p>    Note that if the specified log handle is NULL, the "current" log
+    instance will be used, however this only applies to non-private
+    log instances which are hooked into the standard output stream.
+    Manipulating the mode flags for private logs requires that the
+    log handle be specified.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use
+                    the default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hLog
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A log handle returned by <a HREF="#DclLogOpen">DclLogOpen</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nMode
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+One or more of the DCLLOGMODE_* values.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLogOpen"></a>
+<a NAME="DclLogOpen"></a>
+DclLogOpen
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a> <font class=ApiName>DclLogOpen</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>       hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    const char             *pszFile,<br>&nbsp;&nbsp;&nbsp;
+    unsigned                nBufferKB,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                ulFlags)
+</div>
+<div class=SectionText>
+
+    Open a log for capturing output.
+
+<p>    This function's primary purpose is to queue output in a memory
+    buffer, and flush it to disk when it becomes full.  If the memory
+    buffer is large enough, the output will only be written to disk
+    when the log is closed, or when an explicit call to <a HREF="#DclLogFlush">DclLogFlush</a>
+    is made.
+
+<p>    <b>Special Case</b>
+
+<p>    If pszFile is NULL and nBufferKB is non-zero, the output will be
+    queued in the buffer, and when <a HREF="#DclLogClose">DclLogClose</a> is called, it will 
+    be dumped to the original output device.  DCLLOGFLAGS_SHADOW 
+    would typically always be FALSE in this instance.
+
+<p>    If both pszFile and nBufferKB are NULL and 0 respectively,
+    logging will be disabled.  In this case, a handle will still
+    be returned, which must be subsequently released with a call
+    to <a HREF="#DclLogClose">DclLogClose</a> at the time in which logging is to be
+    restored to its original state.
+
+<p>    <b>Public and Private Log Instances</b>
+
+<p>    Normally the LOG Service hooks into the standard output stream
+    so that all output generated by whatever source is handled by 
+    the logging system.  This requires that nested nested calls 
+    to DclLogOpen should be matched with corollary calls to 
+    <a HREF="#DclLogClose">DclLogClose</a> in reverse order.
+
+<p>    However, using the DCLLOGFLAGS_PRIVATE flag causes the log
+    to be private and isolated from the standard output stream.
+    In this mode, the only way to write to the log is to use
+    <a HREF="#DclLogWrite">DclLogWrite</a>, <a HREF="#DclLogWriteString">DclLogWriteString</a>, <a HREF="#DclLogPrintf">DclLogPrintf</a>, or 
+    <a HREF="#DclLogVPrintf">DclLogVPrintf</a>.
+
+<p>    <b>Note</b>
+
+<p>    The log system uses the standard file I/O abstraction in DCL.
+    If the output file is on the <same> device for which data is
+    being logged, measures must be taken to prevent deadlocks. 
+    While the log system itself has protections against being 
+    re-entered, if the target FS to which the data is being logged
+    is single-threaded and blocks, a deadlock will result when the
+    log system writes its data out.
+
+<p>    <b>Some ways to avoid this</b>
+      
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Log to a different device.
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Use a multithreaded FS.
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Log using a release version of the FS/device driver which
+         will not generate debug output while the FS mutex is held.
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Use a memory buffer large enough to contain all the "unsafe"
+         intermediate output which will be generated, until such time
+         as it can be safely written to disk.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use the
+                    default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null terminated filename.  If this
+                    value is NULL, output will be queued in the buffer
+                    (so long as nBufferKB is non-zero).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferKB
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer size in KB.  This value may be zero only
+                    in the event that pszFile is NULL, in which case, 
+                    logging is disabled.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulFlags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The open flags to use.  May be a combination of the
+                    following values:
+</td>
+</tr>
+
+<p>          
+<tr class=Def>
+<td class=Def>
+DCLLOGFLAGS_APPEND
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that an existing file should
+                    be appended to, rather than deleted.
+</td>
+</tr>
+
+<p>          
+<tr class=Def>
+<td class=Def>
+DCLLOGFLAGS_SHADOW
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that output should be shadowed  
+                    to the original output device.  If this flag is used 
+                    with a private log, the output will be shadowed using 
+                    the high level output functions.
+</td>
+</tr>
+
+<p>          
+<tr class=Def>
+<td class=Def>
+DCLLOGFLAGS_PRIVATE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that this log instance should
+                    be private in that it is NOT hooked into the standard
+                    output chain managed by the DclOutputFunction logic.
+                    If this option is used, the only way to write to the 
+                    log is with <a HREF="#DclLogPrintf">DclLogPrintf</a>.
+</td>
+</tr>
+
+<p>          
+<tr class=Def>
+<td class=Def>
+DCLLOGFLAGS_BINARY
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that the log output is binary and
+                    should be written exactly as received.  Binary logs
+                    should be DCLLOGFLAGS_PRIVATE as well, and should not
+                    be used with DCLLOGFLAGS_SHADOW.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a> if successful, otherwise NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLogPrintf"></a>
+<a NAME="DclLogPrintf"></a>
+DclLogPrintf
+</h3>
+<div class=Api>
+int <font class=ApiName>DclLogPrintf</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>   hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a>        hLog,<br>&nbsp;&nbsp;&nbsp;
+    const char         *pszFmt,<br>&nbsp;&nbsp;&nbsp;
+    ...)
+</div>
+<div class=SectionText>
+
+    Print formatted data with a variable argument list to a
+    log instance.
+
+<p>    This function provides a subset of the ANSI C printf
+    functionality with several extensions to support fixed
+    size data types.
+
+<p>    See <a HREF=UD750_CLibrary.c.htm#DclVSNPrintf>DclVSNPrintf()</a> for the list of supported types.
+
+<p>    <b>Note</b> -- This function is typically only used when a private
+              log is in use, since non-private logs are hooked into
+              the standard output hierarchy, and therefore the
+              regular <a HREF=UD750_CLibrary.c.htm#DclPrintf>DclPrintf()</a> function can be used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use
+                   the default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hLog
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A log handle returned by <a HREF="#DclLogOpen">DclLogOpen</a>.  If
+                   this value is NULL, then the most recently
+                   opened NON-private log file will be used.  If
+                   there are no open log files, then the output
+                   will go to the default output device.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszFmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated format string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+...
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The variable length argument list
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the length processed.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLogVPrintf"></a>
+<a NAME="DclLogVPrintf"></a>
+DclLogVPrintf
+</h3>
+<div class=Api>
+int <font class=ApiName>DclLogVPrintf</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>   hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a>        hLog,<br>&nbsp;&nbsp;&nbsp;
+    const char         *pszFmt,<br>&nbsp;&nbsp;&nbsp;
+    va_list             arglist)
+</div>
+<div class=SectionText>
+
+    Print formatted data with a pointer to an argument list to
+    the specified log instance.
+
+<p>    This function provides a subset of the ANSI C vprintf
+    functionality with several extensions to support fixed
+    size data types.
+
+<p>    See <a HREF=UD750_CLibrary.c.htm#DclVSNPrintf>DclVSNPrintf()</a> for the list of supported types.
+
+<p>    This function accommodates a maximum output length of
+    <a HREF=UD140_ProjectSettings.c.htm#DCLOUTPUT_BUFFERLEN>DCLOUTPUT_BUFFERLEN</a>.  If this function must truncate the
+    output, and the original string was \n terminated, the
+    truncated output will be \n terminated as well.
+
+<p>    <b>Note</b> -- This function is typically only used when a private
+              log is in use, since non-private logs are hooked into
+              the standard output hierarchy, and therefore the
+              regular <a HREF=UD750_CLibrary.c.htm#DclVPrintf>DclVPrintf()</a> function can be used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use
+                   the default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hLog
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A log handle returned by <a HREF="#DclLogOpen">DclLogOpen</a>.  If
+                   this value is NULL, then the most recently
+                   opened NON-private log file will be used.  If
+                   there are no open log files, then the output
+                   will go to the default output device.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszFmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated format string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+arglist
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The variable length argument list
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the length output.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLogWrite"></a>
+<a NAME="DclLogWrite"></a>
+DclLogWrite
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclLogWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>       hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a>            hLog,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>         *pData,<br>&nbsp;&nbsp;&nbsp;
+    size_t                  nDataLen)
+</div>
+<div class=SectionText>
+
+    Write data bytes to a log.  This function may be used to write
+    binary data if so desired, however if this is done, it should
+    only be used for non-shadowed, private logs.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use
+                   the default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hLog
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A log handle returned by <a HREF="#DclLogOpen">DclLogOpen</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nDataLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data length.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLogWriteString"></a>
+<a NAME="DclLogWriteString"></a>
+DclLogWriteString
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclLogWriteString</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>       hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOGHANDLE>DCLLOGHANDLE</a>            hLog,<br>&nbsp;&nbsp;&nbsp;
+    const char             *pszString)
+</div>
+<div class=SectionText>
+
+    Write a null-terminated string to the log.
+
+<p>    This function is faster than calling <a HREF="#DclLogPrintf">DclLogPrintf</a> and does not
+    (typically) have the maximum line length limitation imposed by
+    <a HREF=UD140_ProjectSettings.c.htm#DCLOUTPUT_BUFFERLEN>DCLOUTPUT_BUFFERLEN</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.  May be NULL to use
+                   the default DCL instance.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hLog
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A log handle returned by <a HREF="#DclLogOpen">DclLogOpen</a>.  If
+                   this value is NULL, then the most recently
+                   opened NON-private log file will be used.  If
+                   there are no open log files, then the output
+                   will go to the default output device.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated format string
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the results.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES2
+PROJECTNAME=Skybox2
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Balloon.obj \
+	$(OBJDIR)\Balloon_pvr.obj \
+	$(OBJDIR)\Noise.obj \
+	$(OBJDIR)\Skybox.obj \
+	$(OBJDIR)\SkyboxMidnight.obj \
+	$(OBJDIR)\effects.obj \
+	$(OBJDIR)\Scene.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Balloon.cpp \
+	$(APPROOT)\Content\Balloon_pvr.cpp \
+	$(APPROOT)\Content\Noise.cpp \
+	$(APPROOT)\Content\Skybox.cpp \
+	$(APPROOT)\Content\SkyboxMidnight.cpp \
+	$(APPROOT)\Content\effects.cpp \
+	$(APPROOT)\Content\Scene.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

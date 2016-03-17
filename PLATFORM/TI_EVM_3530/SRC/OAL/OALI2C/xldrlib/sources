@@ -1,0 +1,23 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+TARGETNAME=xldr_i2c
+RELEASETYPE=PLATFORM
+TARGETTYPE=LIBRARY
+
+SOURCES=\
+    ..\i2c_init.c \
+
+SOURCELIBS=\
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\xldr_i2c_omap35xx_tps659xx_ti_v1.lib \
+

@@ -1,0 +1,45 @@
+!!IMGvp1.0
+
+# Matrices
+
+PARAM mvp[4]	= { state.matrix.mvp };
+
+# Inputs
+
+ATTRIB iVertex	= vertex.position;
+ATTRIB iNormal	= vertex.normal;
+ATTRIB iTex	= vertex.texcoord[0];
+
+#Outputs
+
+OUTPUT oPos	= result.position;
+OUTPUT oTex0	= result.texcoord[0];
+OUTPUT oTex1	= result.texcoord[1];
+
+# Constants
+
+PARAM  InvCamera  = program.local[0];
+PARAM  InvLight   = program.local[1];
+
+# Transform Vertex
+
+DP4   oPos.x, 	iVertex, mvp[0];
+DP4   oPos.y, 	iVertex, mvp[1];
+DP4   oPos.z, 	iVertex, mvp[2];
+DP4   oPos.w, 	iVertex, mvp[3];
+
+# Pass Through Color and first UV
+
+MOV	oTex0,	iTex;
+
+####################################
+#Cartoon effect
+####################################
+
+# Dot3 product to calculate the angle between the normal and the view direction
+# This generates the TexCoord for the Black Edges
+
+DP3 oTex1.x, iNormal, InvCamera ;
+DP3 oTex1.y, iNormal, InvLight;
+
+END

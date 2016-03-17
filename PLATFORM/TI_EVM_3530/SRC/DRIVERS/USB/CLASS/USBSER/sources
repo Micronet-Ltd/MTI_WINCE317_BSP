@@ -1,0 +1,69 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+!endif
+!IF 0
+Note on DOSYSGEN: the sysgen process runs "build" on this sources file to
+produce a LIB file, even though the end target will be a DLL or an EXE.  This
+is because COREDLL, which is linked implicitly to all such targets, can be
+componentized and we want to avoid invoking COREDLL APIs that may not be
+available after sysgen.  If you want to build and link this target AFTER the sysgen
+is complete, comment out the following line -- otherwise you will get a LIB
+file.
+!ENDIF
+
+!IF "$(BSP_GPS)" == ""
+SKIPBUILD=1
+!ENDIF
+
+SYNCHRONIZE_DRAIN=1
+TARGETNAME=USBSER
+TARGETTYPE=DYNLINK
+
+TARGETDEFNAME=USBSER
+
+DLLENTRY=_DllMainCRTStartup
+DEFFILE=$(TARGETDEFNAME).def
+
+#WINCETARGETFILE0=$(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\$(TARGETDEFNAME).def
+
+
+
+SOURCELIBS=\
+		$(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+#		$(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\usbclib.lib \
+		$(_TARGETPLATLIB)\$(_CPUINDPATH)\usbclib.lib \
+       $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\usbd.lib \
+#		$(_TARGETPLATLIB)\$(_CPUINDPATH)\usbd_lib.lib \
+		$(_TARGETPLATLIB)\$(_CPUINDPATH)\usbser_mdd2.lib \
+#		$(_PLATCOMMONLIB)\$(_CPUINDPATH)\com_mdd2_omap35xx_tps659xx_ti_v1.lib \
+#        $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\com_mdd2.lib \
+	    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\serpddcm.lib \
+	    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib
+	    
+
+INCLUDES = $(INCLUDES);..\CLIENTCMN;$(_COMMONDDKROOT)\inc;$(_COMMONOAKROOT)\inc;
+
+SOURCES = \
+	USBSER.cpp \
+        USERDEV.cpp
+
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+MSC_WARNING_LEVEL = $(MSC_WARNING_LEVEL) /W3 /WX
+ 
+!IF "$(BUILD_BROWSE)"=="1"
+CDEFINES = $(CDEFINES) -FR
+!ENDIF
+
+#xref VIGUID {a43d90c5-c1cd-4516-bac0-bdb8f1d44e8a}
+#xref VSGUID {bd8488e3-a124-405f-8031-c45ae314bfc5}

@@ -1,0 +1,25 @@
+
+LIBRARY	SDI
+
+EXPORTS	
+        SDI_Init
+        SDI_Deinit
+        SDI_Open
+        SDI_Close
+        SDI_Write
+        SDI_Read
+        sdioDrv_HwCheck
+        sdiodrv_clkset
+        sdiodrv_clkstop
+	sdioDrv_ConnectBus
+	sdioDrv_DisconnectBus
+	sdioDrv_ExecuteCmd
+	sdioDrv_ReadSync
+	sdioDrv_ReadAsync
+	sdioDrv_WriteSync
+	sdioDrv_WriteAsync
+	sdioDrv_ReadSyncBytes
+	sdioDrv_WriteSyncBytes	
+
+
+

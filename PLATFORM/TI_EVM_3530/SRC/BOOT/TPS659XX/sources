@@ -1,0 +1,26 @@
+!if 0
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+!endif
+
+TARGETNAME=bsp_tps659xx
+TARGETTYPE=LIBRARY
+
+!IF "$(MMCHS1_LOW_VOLTAGE)" == "1"
+CDEFINES=$(CDEFINES) -DMMCHS1_LOW_VOLTAGE
+!ENDIF
+
+!IF "$(MMCHS2_LOW_VOLTAGE)" == "1"
+CDEFINES=$(CDEFINES) -DMMCHS2_LOW_VOLTAGE
+!ENDIF
+
+SOURCES= \
+    bsp_tps659xx.c \
+
+    

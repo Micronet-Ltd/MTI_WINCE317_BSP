@@ -1,0 +1,39 @@
+LIBRARY 	DLFILESPY
+
+EXPORTS
+    HookVolume=DLFILESPY_HookVolume
+    UnhookVolume=DLFILESPY_UnhookVolume
+    CloseFile=DLFILESPY_CloseFile
+    CreateDirectoryW=DLFILESPY_CreateDirectory
+    CreateFileW=DLFILESPY_CreateFile
+    DeleteAndRenameFileW=DLFILESPY_DeleteAndRenameFile
+    DeleteFileW=DLFILESPY_DeleteFile
+    FindClose=DLFILESPY_FindClose
+    FindFirstFileW=DLFILESPY_FindFirstFile
+    FindNextFileW=DLFILESPY_FindNextFile
+    FlushFileBuffers=DLFILESPY_FlushFileBuffers
+    DeviceIoControl=DLFILESPY_DeviceIoControl
+    FsIoControl=DLFILESPY_FsIoControl
+    GetDiskFreeSpaceW=DLFILESPY_GetDiskFreeSpace
+    GetFileAttributesW=DLFILESPY_GetFileAttributes
+    GetFileInformationByHandle=DLFILESPY_GetFileInfoByHandle
+    GetFileSize=DLFILESPY_GetFileSize
+    GetFileTime=DLFILESPY_GetFileTime
+    GetVolumeInfo=DLFILESPY_GetVolumeInfo
+    MoveFileW=DLFILESPY_MoveFile
+    Notify=DLFILESPY_Notify
+    ReadFile=DLFILESPY_ReadFile
+    ReadFileScatter=DLFILESPY_ReadFileScatter
+    ReadFileWithSeek=DLFILESPY_ReadFileWithSeek
+    RemoveDirectoryW=DLFILESPY_RemoveDirectory
+    RegisterFileSystemFunction=DLFILESPY_RegisterFileSysFunc
+    SetEndOfFile=DLFILESPY_SetEndOfFile
+    SetFileAttributesW=DLFILESPY_SetFileAttributes
+    SetFilePointer=DLFILESPY_SetFilePointer
+    SetFileTime=DLFILESPY_SetFileTime
+    WriteFile=DLFILESPY_WriteFile
+    WriteFileGather=DLFILESPY_WriteFileGather
+    WriteFileWithSeek=DLFILESPY_WriteFileWithSeek
+    LockFileEx=DLFILESPY_LockFileEx
+    UnlockFileEx=DLFILESPY_UnlockFileEx
+    

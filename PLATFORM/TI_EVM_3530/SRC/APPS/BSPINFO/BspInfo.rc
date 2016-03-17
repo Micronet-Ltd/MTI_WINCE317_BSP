@@ -1,0 +1,44 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+#include "windows.h"
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BSPINFO_ICON             ICON    DISCARDABLE     "BspInfo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BSPINFO DIALOG DISCARDABLE 6, 15, 146, 92
+STYLE WS_OVERLAPPED | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "About Platform"
+BEGIN
+    LTEXT    "",IDC_TXT,4,4,142,84
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+	IDS_BSPINFO_TITLE			"About Platform"
+    IDS_BSPINFO_DESCRIPTION		"Displays Platform Information"
+END	
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+
+

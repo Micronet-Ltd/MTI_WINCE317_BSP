@@ -1,0 +1,30 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+!IF "$(HOST_PLAT_EVM_OMAP3530)" != "1"
+SKIPBUILD=1
+!ENDIF
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+TARGETNAME=host_platform_EVM_OMAP3530
+TARGETTYPE=LIBRARY
+
+RELEASETYPE=PLATFORM
+
+!IF "$(_TGTPLAT)" == "TI_EVM_3530"
+SKIPBUILD=1
+!ENDIF
+INCLUDES= \
+	$(INCLUDES) \
+	$(_PLATFORMROOT)\common\src\inc \
+	$(_PLATFORMROOT)\COMMON\SRC\SOC\COMMON_TI_V1\OMAP3530\INC \
+	$(_PLATFORMROOT)\COMMON\SRC\SOC\COMMON_TI_V1\COMMON_TI\INC \
+	$(EXTDRV_INCLUDE)
+
+
+SOURCES= \
+	host_platform.c \
+	SdioAdapter.c

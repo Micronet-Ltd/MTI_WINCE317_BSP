@@ -1,0 +1,2161 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this source code is subject to the terms of the Microsoft end-user
+// license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+// If you did not accept the terms of the EULA, you are not authorized to use
+// this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+// install media.
+//
+/**
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Abstract: Resource file for CPL dll
+**/
+
+#include <windows.h>
+#include <commctrl.h>
+#include <windef.h>
+#include <winuser.h>
+#include "cplglobl.h"
+#include "cplres.h"
+
+#define IDC_STATIC (-1)
+
+//----------------------------------------------------------------------------
+//
+// This RC file MUST contain ONLY localizable resources (strings, dialogs, menus
+// menus, accelerators, message tables). Any other resources placed here will
+// cause the build errors during SYSGEN
+//
+//----------------------------------------------------------------------------
+
+//@CESYSGEN IF CPLMAIN_COMM
+//
+// COMM Strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_COMM_NAME               "PC Connection"
+    IDS_COMM_DESC               "Change desktop connectivity settings."
+    IDS_COMM_TITLE              "PC Connection Properties"
+    IDS_COMM_CONNECTION         "These settings control the connection between %s and desktop computer.  Warning: Adjusting these settings may result in an inability to connect with your desktop computer."
+    IDS_COMM_CONNECTTAB         "PC Connection"
+    IDS_COMM_CHG_TOOLTIP        "Select Change Connection to change the profile."
+    IDS_LOC_DESKTOPCONNECT      "`Desktop @ 19200`"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DIALING
+//
+// Dialing Strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_DIALING_NAME            "Dialing"
+    IDS_DIALING_DESC            "Change telephony settings."
+    IDS_DIALING_TITLE           "Dialing Properties"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_KEYBOARD
+//
+// KEYBD strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_KEYBD_NAME              "Keyboard"
+    IDS_KEYBD_DESC              "Change keyboard repeat rate and delay."
+    IDS_KEYBD_TITLE             "Keyboard Properties"
+    IDS_KEYBD_TAB               "Repeat"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_PASSWORD
+//
+// Password strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_PASSWD_NAME             "Password"
+    IDS_PASSWD_DESC             "Change owner's password and set security options."
+    IDS_PASSWD_TITLE            "Password Properties"
+    IDS_PASSWD_TAB              "Password Settings"
+    IDS_PASSWDERR_TITLE         "Passwords Do Not Match"
+    IDS_PASSWDERR_NOTMATCH      "Passwords do not match. Please retype identical passwords in both boxes."
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_OWNER
+//
+// Owner strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_PROFILE_NAME            "Owner"
+    IDS_PROFILE_DESC            "Change owner's personal profile."
+    IDS_PROFILE_TITLE           "Owner Properties"
+    IDS_PROFILE_IDTAB           "Identification"
+    IDS_PROFILE_NOTESTAB        "Notes"
+    IDS_PROFILE_NETIDENT        "Network ID"
+
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POWER
+//
+// Power strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_POWER_NAME              "Power"
+    IDS_POWER_DESC              "Change power management options."
+    IDS_POWER_TITLE             "Power Properties"
+    IDS_POWER_BATTERYTAB        "Battery"
+    IDS_POWER_SLEEPTAB          "Power Off"
+    IDS_POWER_MINUTE            "minute"
+    IDS_POWER_MINUTES           "minutes"
+    IDS_POWER_VERYLOW           "Very Low"
+    IDS_POWER_NOTAVAIL          "Not supported"
+    IDS_POWER_HOUR              "Hour"
+    IDS_POWER_HOURS             "Hours"
+
+    IDS_POWER_DEVICETAB         "Device Status"
+    IDS_POWER_DEVICE            "Device Name"
+    IDS_POWER_STATUS            "Power Level"
+
+    IDS_POWER_TIMEOUTSTAB       "Schemes"
+    IDS_POWER_NEVER             "Never"
+    IDS_POWER_AFTER             "After "
+    IDS_POWER_BATTERY           "Battery Power"
+    IDS_POWER_AC                "AC Power"
+    IDS_POWER_HIGH_D0           "High   (D0)"
+    IDS_POWER_MEDIUM_D1         "Medium (D1)"
+    IDS_POWER_LOW_D2            "Low    (D2)"
+    IDS_POWER_OFF_D3            "Off    (D3)"
+    IDS_POWER_OFF_D4            "Off    (D4)"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SYSTEM
+//
+// System strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SYSTEM_NAME             "System"
+    IDS_SYSTEM_IDTAB            "Device Name"
+    IDS_SYSTEM_IDENTIFY         "These settings are used to identify %s to other computers.\rPlease type a name (without any spaces) and a short description."
+    IDS_SYSTEM_ID_NONET         "These settings are used to identify %s to other computers.\rThis device does not have network components."
+    
+    IDS_SYSTEM_DESC             "View system information and change memory settings."
+    IDS_SYSTEM_TITLE            "System Properties"
+    IDS_SYSTEM_SYSTAB           "General"
+    IDS_SYSTEM_MEMTAB           "Memory"
+    IDS_SYSTEM_COPYRTAB         "Copyrights"
+
+    IDS_SYSTEM_RAMSIZE            "%d KB  RAM"
+    IDS_SYSTEM_MEMKBYTE           "%dKB"
+    IDS_SYSTEM_MEMFAIL            "The boundary has been moved as far as possible. Resetting the device may allow the boundary to be moved further."
+    IDS_SYSTEM_MEMERRTITLE        "System Memory"
+    IDS_SYSTEM_VER_WITH_BUILD     "Version %d.%02d (Build %d)"
+    IDS_SYSTEM_VER_WITHOUT_BUILD  "Version %d.%02d"
+
+    IDS_CPU_INTEL_386           "i386"
+    IDS_CPU_INTEL_486           "i486"
+    IDS_CPU_INTEL_PENTIUM       "Pentium"
+    IDS_CPU_INTEL_PENTIUMII     "Pentium II"
+    IDS_CPU_MIPS_R4000          "MIPS R4000"
+    IDS_CPU_HITACHI_SH3         "Hitachi SH3"
+    IDS_CPU_HITACHI_SH3DSP      "Hitachi SH3-DSP"    
+    IDS_CPU_HITACHI_SH4         "Hitachi SH4"
+    IDS_CPU_ALPHA_21064         "DEC Alpha 21064"
+    IDS_CPU_PPC_403             "PowerPC 403"
+    IDS_CPU_PPC_601             "PowerPC 601"
+    IDS_CPU_PPC_603             "PowerPC 603"        
+    IDS_CPU_PPC_604             "PowerPC 604"
+    IDS_CPU_PPC_620             "PowerPC 620"
+    IDS_CPU_PPC_821             "PowerPC 821"
+    IDS_CPU_STRONGARM           "Strong ARM"
+    IDS_CPU_ARM720              "ARM 720"
+    IDS_CPU_ARM820              "ARM 820"
+    IDS_CPU_ARM920              "ARM 920"
+    IDS_CPU_UNKNOWN             "Unknown %d(0x%X)"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DISPLAY
+//
+// Screen strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SCREEN_NAME             "Display"
+    IDS_SCREEN_DESC             "Change desktop background."
+    IDS_SCREEN_TITLE            "Display Properties"
+    IDS_SCREEN_BACKGNDTAB       "Background"
+    IDS_SCREEN_BACKLIGHTTAB     "Backlight"
+    IDS_SCREEN_HPCNAME          "My Windows CE device"
+    IDS_SCREEN_FILTER           "Bitmaps\1*.bmp\1Bitmaps (4 Color)\1*.2bp\1\1" // \1 changed to \0 in code
+    IDS_SCREEN_ERRTITLE         "Image Error"
+    IDS_SCREEN_IMAGE_ERROR      "Windows cannot display the image currently selected. The image is either invalid or missing or there is not enough memory to display. Please select a smaller image or close some open applications."
+    IDS_SCREEN_MEMORY_ERROR     "Not enough memory to load the image currently selected. Please select a smaller image or close some open applications."
+    IDS_15SECS                  "15 seconds"
+    IDS_30SECS                  "30 seconds"
+    IDS_1MIN                    "1 minute"
+    IDS_2MIN                    "2 minutes"
+    IDS_5MIN                    "5 minutes"
+    IDS_10MIN                   "10 minutes"
+    IDS_15MIN                   "15 minutes"
+    IDS_30MIN                   "30 minutes"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_COLORSCHEME
+//
+// Screen:Scheme strings
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SCREEN_COLSCHEMETAB "Appearance"
+    IDS_NORMAL              "Normal"
+    IDS_DISABLED            "Disabled"
+    IDS_SELECTED            "Selected"
+    IDS_BUTTON              "Button"
+    IDS_INACTIVEWINDOW      "Inactive Window"
+    IDS_ACTIVEWINDOW        "Active Window"
+    IDS_WINDOWTEXT          "Window Text"
+    IDS_MESSAGETEXT         "Dialog Box Text"
+    IDS_BLANKNAME           "Type a name for the scheme you want to save."
+    IDS_NOSCHEME2DEL        "Select the scheme you want to delete."
+    IDS_BLESSEDSCHEME       "Windows Standard"
+    IDS_READONLYSCHEME      "This scheme is read-only. Please select a different name."
+    IDS_WINDOWSDEFAULT      "This is the default scheme. It can not be deleted."
+
+    // Color scheme names
+    IDS_LOC_SCHEME_STANDARD "Windows Standard"
+    IDS_LOC_SCHEME_WHEAT    "Wheat"
+    IDS_LOC_SCHEME_MARINE   "Marine"
+    IDS_LOC_SCHEME_ROSE     "Rose"
+    IDS_LOC_SCHEME_BRICK    "Brick"
+    IDS_LOC_SCHEME_DESERT   "Desert"
+    IDS_LOC_SCHEME_EGGPLANT "Eggplant"
+    IDS_LOC_SCHEME_HCBLACK  "High Contrast Black"
+    IDS_LOC_SCHEME_HCWHITE  "High Contrast White"
+    IDS_LOC_SCHEME_LILAC    "Lilac"
+    IDS_LOC_SCHEME_MAPLE    "Maple"
+    IDS_LOC_SCHEME_SPRUCE   "Spruce"
+    IDS_LOC_SCHEME_STORM    "Storm"
+
+    // Color Selections in parens will not be displayed by default
+    IDS_CLR_SCROLLBAR                 "(Scrollbar Fill)"
+    IDS_CLR_BACKGROUND                "Desktop"
+    IDS_CLR_ACTIVECAPTION             "Active Title Bar"
+    IDS_CLR_INACTIVECAPTION           "Inactive Title Bar"
+    IDS_CLR_MENU                      "Menu Background"
+    IDS_CLR_WINDOW                    "Window Background"
+    IDS_CLR_WINDOWFRAME               "(Window Frame)"
+    IDS_CLR_MENUTEXT                  "Menu Text"
+    IDS_CLR_WINDOWTEXT                "Window Text"
+    IDS_CLR_CAPTIONTEXT               "Active Title Text"
+    IDS_CLR_ACTIVEBORDER              "(Active Window Border)"
+    IDS_CLR_INACTIVEBORDER            "(Inactive Window Border)"
+    IDS_CLR_APPWORKSPACE              "(MDI Background)"
+    IDS_CLR_HIGHLIGHT                 "Selected Items"
+    IDS_CLR_HIGHLIGHTTEXT             "Selected Items Text"
+    IDS_CLR_BTNFACE                   "3D Objects"
+    IDS_CLR_BTNSHADOW                 "(3D Shadow)"
+    IDS_CLR_GRAYTEXT                  "Disabled Text"
+    IDS_CLR_BTNTEXT                   "Button Text"
+    IDS_CLR_INACTIVECAPTIONTEXT       "Inactive Title Text"
+    IDS_CLR_BTNHIGHLIGHT              "(3D Highlight)"
+    IDS_CLR_3DDKSHADOW                "(3D Dark Shadow)"
+    IDS_CLR_3DLIGHT                   "(3D Light Shadow)"
+    IDS_CLR_INFOTEXT                  "(ToolTip Background)"
+    IDS_CLR_INFOBK                    "(ToolTip Text)"
+    IDS_CLR_STATIC                    "Dialog Background"
+    IDS_CLR_STATICTEXT                "Dialog Box Text"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_STYLUS
+//
+// Stylus strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_STYLUS_NAME             "Stylus"
+    IDS_STYLUS_DESC             "Calibrate the touch screen and adjust double-tap time."
+    IDS_STYLUS_TITLE            "Stylus Properties"
+    IDS_STYLUS_CALIBTAB         "Calibration"
+    IDS_STYLUS_DBLTAPTAB        "Double-Tap"
+    IDS_DBLTAP_SET              "Double-tap this grid to set the double-tap sensitivity for both the speed and physical distance between taps."
+    IDS_DBLTAP_TEST       "Double-tap this icon to test your double-tap settings. If this icon doesn't change, adjust your settings using the grid above."
+    IDS_CALIBRATE_TEXT    "If %s is not responding properly to your taps, you may need to recalibrate your screen."
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_MOUSE
+//
+// Mouse strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_MOUSE_NAME              "Mouse"
+    IDS_MOUSE_DESC              "Adjust mouse double-click time."
+    IDS_MOUSE_TITLE             "Mouse Properties"
+    IDS_MOUSE_DBLCLICKTAB       "Double-Click"
+    IDS_DBLCLICK_SET      "Double-click this grid to set the double-click sensitivity for both the speed and physical distance between clicks."
+    IDS_DBLCLICK_TEST     "Double-click this icon to test your double-click settings. If this icon doesn't change, adjust your settings using the grid above."
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SOUNDS
+//
+// Sounds strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SOUND_NAME          "Volume & Sounds"
+    IDS_SOUND_DESC          "Set event sounds and volume options."
+    IDS_SOUND_TITLE         "Volume & Sounds Properties"
+// Sound:Volume strings
+    IDS_VOLUMETAB           "Volume"
+    IDS_HARDWAREBUTTONS     "&Hardware buttons:"
+END
+
+// Sound registry lookups
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_LOC_DEFAULTSOUNDS   "Windows CE Default"
+    IDS_LOC_ALLSOUNDS       "All Sounds"
+    IDS_LOC_NOSOUNDS        "No Sounds"
+END
+
+// Sound:Scheme strings
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SNDSCHEMETAB        "Sounds"
+    IDS_SAVESCHEME          "Save Scheme"
+    IDS_SCHEMENOTSAVED      "Do you want to save the previous scheme?"
+    IDS_NOOVERWRITEDEFAULT  "You cannot use the name '%s' for a scheme. Type a different name."
+    IDS_OVERWRITESCHEME     "A scheme named '%s' already exists.\rDo you want to replace it?"
+    IDS_CONFIRMREMOVE       "Are you sure you want to remove the selected sound scheme?"
+    IDS_NOSNDFILE           "The '%s' sound file can not be found.\rDo you want to use it anyway?"
+    IDS_ERRORPLAY1          "The '%s' sound file is invalid. It may be damaged, missing or the wrong format.\rReplace the file and try again."
+    IDS_ERRORPLAY2          "The sound file could not be played. Your device may not support audio output."
+    IDS_SOUND_ERROR         "Sound Error"
+    IDS_WAVFILES            "Sounds (*.wav)\1*.wav\1\1"
+    IDS_REMOVESCHEME        "Scheme"
+    IDS_CHANGESCHEME        "Change Scheme"
+    IDS_SND_ASTERISK        "Asterisk"
+    IDS_SND_CLOSEAPPS       "Close Program"
+    IDS_SND_CRITICAL        "Critical Stop"
+    IDS_SND_DEFAULTSND      "Default Sound"
+    IDS_SND_EMPTYRECYC      "Empty Recycle Bin"
+    IDS_SND_EXCLAMATION     "Exclamation"
+    IDS_SND_IRDABEGIN       "Infrared Begin"
+    IDS_SND_IRDAEND         "Infrared End"
+    IDS_SND_IRDAINTERRUPT   "Infrared Interrupt"
+    IDS_SND_MENUPOPUP       "Menu Popup"
+    IDS_SND_MENUSELECT      "Menu Selection"
+    IDS_SND_OPENAPPS        "Open Program"
+    IDS_SND_QUESTION        "Question"
+    IDS_SND_REMNETSTART     "Network Begin"
+    IDS_SND_REMNETEND       "Network End"
+    IDS_SND_REMNETINT       "Network Interrupt"
+    IDS_SND_STARTUP         "Start Up"
+    IDS_SND_MAXWIN          "Window Maximize"
+    IDS_SND_MINWIN          "Window Minimize"
+    IDS_SND_RECSTART        "Start Recording"
+    IDS_SND_RECEND          "Stop Recording"
+    IDS_CURRENTSETTINGS     "Current Settings"
+    IDS_WINDOWSCE           "Windows CE"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SIP
+//
+// SIP strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SIP_NAME            "Input Panel"
+    IDS_SIP_DESC            "Change current SIP and options"
+    IDS_SIP_TITLE           "Input Panel Properties"
+    IDS_SIP_TABTITLE        "Input Panel"
+    IDS_CANT_LOAD_IM        "The selected input method could not be loaded."
+    IDS_NO_IM_OPTIONS       "There are no options for the selected input method."
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_REMOVE
+//
+// Remove-Programs strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_REMOVE_NAME         "Remove Programs"
+    IDS_REMOVE_DESC         "Removes programs from your device."
+    //IDS_REMOVE_TITLE      "Remove Programs"
+
+    IDS_REMOVECONFIRM       "The selected program will be permanently removed. Are you sure you want to remove it?"
+    IDS_REMOVETITLEERR      "Remove Program Error"
+    IDS_REMOVEERR_REG       "The information required to remove this application cannot be found in the registry.\r"
+    IDS_REMOVEERR_SCRIPT    "The unload script provided by the application cannot be found or has an invalid format.\r"
+    IDS_REMOVEERRDEFAULT    "Remove Programs failed. "
+    IDS_REMOVEERRCOMMON     "You must manually remove this application and all its components. See the application's documentation for more information."
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DATETIME
+//
+// Date/Time strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_DATETIME_NAME   "Date/Time"
+    IDS_DATETIME_DESC   "Change date, time, and time zone information."
+    IDS_DATETIME_TITLE  "Date/Time Properties"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_CERTS
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_CERTCPL_NAME            "Certificates"
+    IDS_CERTCPL_DESC            "View and modify system digital certificates for this device."
+    IDS_CERTCPL_TITLE           "Certificates"
+    IDS_CERTSTORES_TAB          "Stores"
+    IDS_CERTCPL_ROOTSTORE       "Trusted Authorities"
+    IDS_CERTCPL_MYSTORE         "My Certificates"
+    IDS_CERTCPL_CASTORE         "Other Authorities"
+    IDS_CERTCPL_ROOT_DESCRIPTION "Lists the certificates trusted by you"
+    IDS_CERTCPL_MY_DESCRIPTION  "Lists your personal digital certificates"
+    IDS_CERTCPL_CA_DESCRIPTION  "Lists intermediate certificate authorities"
+    IDS_CERTCPL_CERTIFICATE     "Certificate"
+    IDS_CERT_SELECT             "Select a Certificate File"
+    IDS_CERTCPL_FILTER          "Certificates\1*.cer\1Private Keys\1*.pvk\1\1"
+    IDS_CARD_ABSENT             "Absent"
+    IDS_CARD_UNKNOWN            "Unknown"
+END
+
+// strings for the Root Store warning message
+// (not part of the control panel, just piggybacking)
+STRINGTABLE DISCARDABLE
+BEGIN
+    // Root store warning dialog and protected root dialog
+    IDS_ROOT_MSG_BOX_TITLE  "Root Certificate Store"
+    IDS_ROOT_MSG_BOX_SUBJECT
+                            "Subject : %1!s!\n"
+    IDS_ROOT_MSG_BOX_ISSUER
+                            "Issuer : %1!s!\n"
+    IDS_ROOT_MSG_BOX_SELF_ISSUED
+                            "Issuer : Self Issued\n"
+    IDS_ROOT_MSG_BOX_SERIAL_NUMBER
+                            "Serial Number : %1!s!\n"
+    IDS_ROOT_MSG_BOX_TIME_VALIDITY
+                            "Time Validity : %1!s! through %2!s!\n"
+    IDS_ROOT_MSG_BOX_ADD_ACTION
+                            "Do you want to ADD the following certificate to the Root Store?\n\n"
+    IDS_ROOT_MSG_BOX_DELETE_ACTION
+                            "Do you want to DELETE the following certificate from the Root Store?\n\n"
+END
+//@CESYSGEN ENDIF
+
+
+//@CESYSGEN IF CPLMAIN_ACCESSIB
+//
+// Accessibility strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_ACC_KEYTAB              "Keyboard"
+    IDS_ACC_SOUNDTAB            "Sound"
+    IDS_ACC_DISPTAB             "Display"
+    IDS_ACC_MOUSETAB            "Mouse"
+    IDS_ACC_GENTAB              "General"
+END
+// 
+//    Strings for "Setting for SoundSentry" and "Setting for High Contrast" dialogs
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_ACCESS_NAME             "Accessibility"
+    IDS_ACCESS_DESC             "Customizes accessibility features for your computer"
+    IDS_ACCWRN_NONE             "[None]"                        
+    IDS_ACCWRN_CAPBAR           "Flash active caption bar"        
+    IDS_ACCWRN_ACTWIND          "Flash active window"            
+    IDS_ACCWRN_DESKTOP          "Flash desktop"
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_CPLMAIN
+//
+// Common Strings
+//
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_DEFAULT_LONGNAME        "your Windows CE device"
+    IDS_CPLERR_DEVICENAME       "The device name may include up to 15 characters from the following ranges: a-z, A-Z, 0-9, or the '-' or '_' characters.  It must start with 'a-z' or 'A-Z', and cannot end with '-' or '_'."
+    IDS_CPLERR_DEVICETITLE      "Invalid Device Name"
+    IDS_CPLERR_MEMORY_ERROR     "Not enough storage memory to save the device name. Use the System control panel to increase storage memory."
+    IDS_CPLERR_LOWMEM_TITLE     "Out of Memory"
+    IDS_PWDCHK_TITLE            "Enter Password"
+    IDS_PWDCHKERR_INCORRECT     "The password you typed is incorrect. Please retype your password."
+    IDS_BROWSE                  "Browse"
+    IDS_FILENOTFOUND            "File Not Found"
+    IDS_NONE                    "(None)"
+END
+//@CESYSGEN ENDIF
+
+
+/**
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Abstract: Defines the landscape form factor dialog templates
+**/
+
+//----------------------------------------------------------------------------
+//
+// This RC file MUST contain ONLY localizable resources (strings, dialogs, menus
+// menus, accelerators, message tables). Any other resources placed here will
+// cause the build errors during SYSGEN
+//
+//----------------------------------------------------------------------------
+
+//@CESYSGEN IF CPLMAIN_LANDSCAPE
+
+//@CESYSGEN IF CPLMAIN_CPLMAIN
+//
+// Common dialogs (*not* a property page)
+IDD_CHECK_PASSWD DIALOG DISCARDABLE  0, 0, 168, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG
+BEGIN
+    ICON            IDI_PASSWD,IDC_STATIC,5,4,20,20
+    LTEXT           "You must enter your password to change these settings.", IDC_PWDMSG,34,4,124,20
+    RTEXT           "&Password:",IDC_STATIC,33,31,39,8
+    EDITTEXT        IDC_EDIT_OLD_PASS,75,30,50,12,ES_PASSWORD |
+                    ES_AUTOHSCROLL
+END
+//@CESYSGEN ENDIF
+
+
+//@CESYSGEN IF CPLMAIN_COMM
+//
+// COMM Dialogs
+//
+IDD_RAS DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON            IDI_RAS,IDC_STATIC,13,11,18,18
+    CONTROL         "&Allow connection with desktop computer when device is attached",
+                    IDC_AUTO,"Button",BS_AUTOCHECKBOX | WS_GROUP |
+                    WS_TABSTOP,13,39,245,12
+    LTEXT           "Connect using: ",IDC_STATIC1,8,61,54,9
+    LTEXT           "<empty>",IDC_STATIC_DIRECT,63,61,137,9,WS_DISABLED
+    PUSHBUTTON      "&Change...",IDC_CHANGE,202,57,53,16
+    GROUPBOX        "",IDC_CNCT_BOX,3,49,258,27
+    LTEXT           "",IDC_CONNECTION,46,7,209,32
+END
+
+// This is *not* a property page
+IDD_CHANGE_CONN DIALOG DISCARDABLE  0, 0, 228, 74
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG | WS_EX_CONTEXTHELP
+CAPTION "Change Connection"
+BEGIN
+    RTEXT           "Connect to desktop computer using:",IDC_STATIC,2,15,120,11
+    COMBOBOX        IDC_CB,124,14,102,90,CBS_DROPDOWNLIST | CBS_SORT |
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT            "Changing this setting may result in an inability to connect with your desktop computer."
+                    IDC_STATIC,43,41,170,25
+    RTEXT           "Warning:",IDC_STATIC,8,41,30,8
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_KEYBOARD
+//
+// KEYBD dialogs
+//
+IDD_KEYBD DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    CONTROL         "&Enable character repeat",IDC_CHK_BOX,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,2,138,14
+    ICON            IDI_DELAY,IDC_STATIC4,6,20,20,20
+    LTEXT           "&Long",IDC_STATIC_L,27,31,29,8 // Must be *before* the button & have the same mnemonic
+    CONTROL         "&L",IDC_BTN_LONG,"Button",BS_OWNERDRAW | WS_TABSTOP,27,43,18,15
+    LTEXT           "Repeat &delay:",IDC_STATIC1,27,20,88,8
+    CONTROL         "",IDC_TRACKBAR_DLY,"msctls_trackbar32",
+                    WS_TABSTOP | 0x5,47,42,63,20
+    LTEXT           "Sh&ort",IDC_STATIC_H,112,31,24,8 // Must be *before* the button & have the same mnemonic
+    CONTROL         "&O",IDC_BTN_SHORT,"Button",BS_OWNERDRAW | WS_TABSTOP,112,44,18,15
+    ICON            IDI_RATE,IDC_STATIC5,135,20,20,20
+    LTEXT           "&Slow",IDC_STATIC_S,156,31,28,8  // Must be *before* the button & have the same mnemonic
+    CONTROL         "&S",IDC_BTN_SLOW,"Button",BS_OWNERDRAW | WS_TABSTOP,156,44,18,15
+    LTEXT           "&Repeat rate:",IDC_STATIC2,156,21,80,8
+    CONTROL         "",IDC_TRACKBAR_RPT,"msctls_trackbar32",
+                    WS_TABSTOP | 0x5,176,42,63,20
+    LTEXT           "&Fast",IDC_STATIC_F,241,31,24,8 // Must be *before* the button & have the same mnemonic
+    CONTROL         "&F",IDC_BTN_FAST,"Button",BS_OWNERDRAW | WS_TABSTOP,241,44,18,15
+    RTEXT           "&Tap here and hold down a key to test:",IDC_STATIC3,7,66,128,8
+    EDITTEXT        IDC_EDIT,136,64,123,12,ES_AUTOHSCROLL
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_OWNER
+//
+// Owner dialogs
+//
+IDD_PROFILE DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    RTEXT           "Na&me:",IDC_STATIC,0,8,40,8
+    EDITTEXT        IDC_EDIT_NAME1,41,6,87,12,ES_AUTOHSCROLL
+    RTEXT           "&Company:",IDC_STATIC,0,25,40,8
+    EDITTEXT        IDC_EDIT_COMPANY,41,23,87,12,ES_AUTOHSCROLL
+    RTEXT           "&Address:",IDC_STATIC,0,42,40,8
+    EDITTEXT        IDC_EDIT_ADD,41,40,87,36,ES_MULTILINE | ES_WANTRETURN | ES_AUTOVSCROLL
+    RTEXT           "&Work:",IDC_STATIC,130,45,26,10
+    EDITTEXT        IDC_EDIT_WAC,157,43,33,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Phone:",IDC_STATIC,197,34,29,8
+    EDITTEXT        IDC_EDIT_WPHONE,195,43,65,12,ES_AUTOHSCROLL
+    RTEXT           "H&ome:",IDC_STATIC,130,60,26,10
+    EDITTEXT        IDC_EDIT_HAC,157,58,33,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Area code:",IDC_STATIC,157,34,38,8
+    EDITTEXT        IDC_EDIT_HPHONE,195,58,65,12,ES_AUTOHSCROLL
+    CONTROL         "&Display owner identification",IDC_CHK_ID,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,142,10,106,12
+    GROUPBOX        "At Power On",IDC_STATIC,138,0,122,28
+END
+
+IDD_NOTES DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    RTEXT           "N&otes:",IDC_STATIC,0,11,26,10
+    EDITTEXT        IDC_EDIT_NOTES,28,9,141,52,ES_MULTILINE | ES_WANTRETURN | ES_AUTOVSCROLL
+    LTEXT           "Use the Notes field to add any additional information not included in the Identification tab.",
+                    IDC_STATIC,174,11,83,48
+    CONTROL         "&Display owner notes at power on",IDC_CHK_NOTES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,30,65,134,12
+END
+
+IDD_NETIDENT DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    LTEXT        "Windows CE uses this information to gain access to network resources. Enter the user name, password, and domain provided by your network administrator.",
+                IDC_STATIC, 5, 10, 100, 75
+    LTEXT        "&User name:",IDC_STATIC,110, 10, 40,8
+    EDITTEXT    IDC_NETCPL1_USERNAME, 160, 8,70,12,ES_AUTOHSCROLL
+    LTEXT        "&Password:",IDC_STATIC,110,26,40,8
+    EDITTEXT    IDC_NETCPL1_PASSWORD,160,24,70,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT        "D&omain:",IDC_STATIC,110,42,40,8
+    EDITTEXT    IDC_NETCPL1_DOMAIN,160,40,70,12,ES_AUTOHSCROLL
+
+END
+
+
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_PASSWORD
+//
+// Password dialogs
+//
+IDD_PASSWD DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    RTEXT           "&Password:",IDC_STATIC,80,8,62,12
+    EDITTEXT        IDC_EDIT_NEW_PASS,146,7,50,12,ES_PASSWORD | ES_AUTOHSCROLL
+    RTEXT           "&Confirm password:",IDC_STATIC,73,22,70,12
+    EDITTEXT        IDC_EDIT_CONF_PASS,146,21,50,12,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "&At Power On",IDC_CHK_PASSWRD,"Button",BS_AUTOCHECKBOX | 
+                    WS_DISABLED | WS_TABSTOP,62,53,142,10
+    CONTROL         "&Screen Saver",IDC_CHK_PASSWRDSCREENSAVER,"Button",
+                    BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,62,65,142,10
+    GROUPBOX        "Password",IDC_BOX1,57,0,157,37
+    GROUPBOX        "Enable Password Protection",IDC_BOX2,57,42,158,37
+    ICON            IDI_PASSWD,IDC_STATIC,16,6,20,20
+END
+
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POWER
+//
+// Power dialogs
+//
+IDD_SLEEP DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON            IDI_SLEEP,IDC_STATIC,10,2,20,20
+    LTEXT           "Save battery power and prevent unauthorized use (in conjunction with a password) by having your device turn off when not in use."
+                    IDC_STATIC,38,3,221,17
+    LTEXT           "On &battery power suspend after",IDC_STATIC1,9,31,104,9
+    COMBOBOX        IDC_COMBO1,114,30,62,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "of continuous idle time.",IDC_STATIC2,178,31,80,8
+    CONTROL         "Enable suspend while on &external power",IDC_CHECK2,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,50,150,11
+    LTEXT           "Suspend a&fter",IDC_STATIC3,32,62,46,9,NOT WS_VISIBLE
+    COMBOBOX        IDC_COMBO2,81,61,67,57,CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "of continuous idle time.",IDC_STATIC4,150,62,83,8,NOT WS_VISIBLE
+    GROUPBOX        "",IDC_STATIC,3,22,257,56
+END
+
+IDD_BATTERY DIALOG DISCARDABLE  0, 15, 264, 96
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    RTEXT           "Percentage of power left in main batteries:",IDC_BAT3_STATIC,5,53,158,9
+    RTEXT           "Main batteries were installed on:",IDC_BAT1_STATIC,5,62,158,9
+    RTEXT           "Total amount of time on main batteries:",IDC_BAT2_STATIC,5,71,158,9
+    LTEXT           "",IDC_BAT3,170,53,69,8
+    LTEXT           "",IDC_BAT1,170,62,69,8, SS_NOPREFIX
+    LTEXT           "",IDC_BAT2,170,71,69,8, SS_NOPREFIX
+    LTEXT           "Main Batteries",IDC_STATIC_MAIN,81,9,65,8,NOT WS_VISIBLE
+    LTEXT           "Charging",IDC_STATIC_CHARGE,81,9,65,8,NOT WS_VISIBLE
+    LTEXT           "External",IDC_STATIC_EXTERNAL,81,9,65,8
+    LTEXT           "Backup Batteries",IDC_STATIC_BACK,150,8,80,8
+    ICON            IDI_MAIN_BAT,IDI_MAIN_BAT,38,22,20,20
+    LTEXT           "Good",IDC_STATIC_GOOD,81,19,35,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT           "Low",IDC_STATIC_LOW,81,29,39,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT           "Very Low",IDC_STATIC_VLOW,81,39,39,8,WS_DISABLED | NOT WS_VISIBLE
+    ICON            IDI_BACK_BAT,IDI_BACK_BAT,154,22,20,20
+    LTEXT           "Good",IDC_STATIC_GOOD1,187,19,31,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT           "Low",IDC_STATIC_LOW1,187,29,39,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT           "Very Low",IDC_STATIC_VLOW1,187,39,39,8,WS_DISABLED | NOT WS_VISIBLE
+    GROUPBOX        "Status:",IDC_STATIC,3,0,257,51
+END
+
+IDD_POWER_DEVICE DIALOG DISCARDABLE  0, 15, 264, 96
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL         "",IDC_LIST_POWER_DEVICE,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SORTASCENDING |
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,250,67
+END
+
+IDD_POWER_TIMEOUTS DIALOG DISCARDABLE  0, 15, 264, 96
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON            IDI_POWER_BAT,IDC_STATIC1,242,5,21,20
+    LTEXT           "&Power Scheme:",IDC_STATIC,6,11,125,8
+    COMBOBOX        IDC_COMBO_POWER_SOURCE,134,8,105,57,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Switch state to &User Idle:",IDC_STATIC,6,31,125,8
+    COMBOBOX        IDC_COMBO_TO_USER_IDLE,134,28,105,57,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Switch state to S&ystem Idle:",IDC_STATIC,6,48,125,8
+    COMBOBOX        IDC_COMBO_TO_SYSTEM_IDLE,134,45,105,57,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Switch state to &Suspend:",IDC_STATIC,6,65,125,8
+    COMBOBOX        IDC_COMBO_TO_SUSPEND,134,62,105,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_STATIC,6,23,232,2
+    GROUPBOX        "",IDC_STATIC,1,0,241,79
+    CONTROL         "&Enable automatic shutdown",IDC_TURNOFF,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,236,8
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SYSTEM
+//
+// System dialogs
+//
+IDD_MEMORY DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Move slider to the left for more memory to run programs. Move slider to the right for more storage room. Only unused RAM can be adjusted.",
+                    IDC_STATIC,11,3,240,19
+    CTEXT           "Storage Memory",IDC_STATIC_STORAGE,10,29,33,18
+    CTEXT           "Program Memory",IDC_STATIC_PROGRAM,219,29,33,18
+    CONTROL         "",IDC_TRACKBAR,"msctls_trackbar32",TBS_AUTOTICKS |
+                    TBS_TOP | TBS_ENABLESELRANGE | WS_TABSTOP,43,28,172,28    
+    LTEXT           "1,000KB",IDC_STATIC_LEFT,57,56,43,8
+    LTEXT           "1,000KB",IDC_STATIC_RIGHT,219,56,43,8
+    RTEXT           "Allocated",IDC_STATIC_ALLOC_LEFT,15,56,40,8
+    RTEXT           "Allocated",IDC_STATIC_ALLOC_RIGHT,175,56,40,8
+    RTEXT           "In Use",IDC_STATIC_IN_USE_LEFT,18,66,33,8
+    RTEXT           "In Use",IDC_STATIC_IN_USE_RIGHT,178,66,33,8
+    LTEXT           "640KB",IDC_IN_USE_LEFT,57,66,43,8
+    LTEXT           "640KB",IDC_IN_USE_RIGHT,219,66,43,8
+END
+
+IDD_SYSTEM DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Microsoft® Windows® CE",IDC_STATIC_OS,4,13,120,10
+    LTEXT           "",IDC_STATIC_VER_SYS,4,23,120,10
+    LTEXT           "© 2006 Microsoft Corp. All rights reserved. This computer program is protected by U.S. and international copyright laws.",
+                    IDC_STATIC,4,43,119,33
+    LTEXT           "Processor Type:",IDC_STATIC,134,13,52,10
+    LTEXT           "Expansion Slots:",IDC_STATIC,134,27,52,10
+    LTEXT           "Memory:",IDC_STATIC,134,41,46,10
+    LTEXT           "Registered to:",IDC_STATIC,134,55,49,10
+    EDITTEXT        IDC_STATIC_PROCESSOR,187,11,72,13,ES_READONLY | ES_AUTOHSCROLL 
+    COMBOBOX        IDC_EXPANSION_CMB,187,24,72,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "",IDC_STATIC_RAM,187,42,72,8,SS_NOPREFIX
+    LTEXT           "",IDC_STATIC_USER,183,55,75,8,SS_NOPREFIX
+    LTEXT           "",IDC_STATIC_USER_COMPANY,183,65,75,8,SS_NOPREFIX
+    GROUPBOX        "System:",IDC_STATIC,1,2,125,77
+    GROUPBOX        "Computer:",IDC_STATIC,129,2,133,77
+END
+
+IDD_COMPUTER DIALOG DISCARDABLE  0, 15, 258, 80
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON            IDI_COMM,IDC_STATIC,10,10,18,18
+    LTEXT           "", IDC_IDENTIFY,42,7,212,30
+    RTEXT           "Device &name:",IDC_STATIC,9,43,74,9
+    EDITTEXT        IDC_EDIT_NAME,85,41,81,12,ES_AUTOHSCROLL
+    RTEXT           "Device &description:",IDC_STATIC,9,61,74,9
+    EDITTEXT        IDC_EDIT_DESCR,85,58,154,12,ES_AUTOHSCROLL
+END
+
+IDD_COPYRIGHTS DIALOG DISCARDABLE  0, 15, 258, 80
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    
+    EDITTEXT        IDC_COPYR,7,9,242,63, ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY | WS_VSCROLL | NOT WS_TABSTOP
+END
+
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DISPLAY
+//
+// Screen dialogs
+//
+IDD_BACKGROUND DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL         "",IDC_BOX,"Static",SS_BITMAP | WS_BORDER,4,3,255,57
+    LTEXT           "&Image:",IDC_STATIC,3,67,22,9
+    COMBOBOX        IDC_WALLLIST,27,65,85,70,CBS_DROPDOWNLIST | CBS_SORT |
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Browse...",IDC_BROWSEWALL,116,64,45,14
+    CONTROL         "&Tile image on background",IDC_TILEIMAGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,167,66,97,10
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_COLORSCHEME
+//
+// Screen:Color scheme dialogs
+//
+IDD_COLSCHEME DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "&Scheme:",IDC_STATIC,169,2,50,12
+    COMBOBOX        IDC_SCHEME,169,14,93,64,CBS_SORT | CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Sa&ve",IDC_SAVEAS,169,30,29,14
+    PUSHBUTTON      "&Delete",IDC_DELETE,200,30,30,14
+    PUSHBUTTON      "&Apply",IDC_APPLY,232,30,30,14
+    LTEXT           "&Item:",IDC_STATIC,169,48,50,12
+    COMBOBOX        IDC_ITEM,169,60,78,90,CBS_SORT | CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Color",IDC_COLOR,"Button", BS_OWNERDRAW | WS_TABSTOP,249,60,13,13
+    LTEXT            "", IDC_PREVIEWDUMMY, 2,2,164,77,NOT WS_VISIBLE
+    //CONTROL         "",IDC_PREVIEW,"MSPreview",WS_BORDER,2,2,200,79
+END
+
+// This is *not* a property page
+IDD_COLSCHEMESAVE DIALOG DISCARDABLE  0, 0, 196, 40
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG
+CAPTION "Save Scheme As"
+BEGIN
+    LTEXT           "Save this color scheme as:",IDC_STATIC,6,8,88,8
+    EDITTEXT        IDC_SAVESCHEME,6,22,184,12,ES_AUTOHSCROLL
+END
+
+IDB_OK          BITMAP  DISCARDABLE     "RES\\ok.2bp"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_BACKLIGHT
+//
+// Screen: Backlight dialog
+//
+IDD_BACKLIGHT DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON            IDI_BACKLIGHT,IDC_STATIC,7,2,20,20
+    LTEXT           "To save battery life, you can adjust when the backlight automatically shuts off.",IDC_STATIC,42,5,215,17
+
+    CONTROL         "Automatically turn off backlight while on &battery power",
+                    IDC_BBATTERY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,28,188,12
+    LTEXT           "Turn &off after",IDC_STATIC,22,39,44,8,NOT WS_VISIBLE
+    COMBOBOX        IDC_BBATTERY_TIME,69,38,60,60,CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "of continuous idle time.",IDC_STATIC,134,39,76,8,NOT WS_VISIBLE
+
+    CONTROL         "Automatically turn off backlight while on &external power",
+                    IDC_BEXTERNAL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,54,189,12
+    LTEXT           "Turn off &after",IDC_STATIC,22,65,44,8,NOT WS_VISIBLE
+    COMBOBOX        IDC_BEXTERNAL_TIME,69,64,60,60,CBS_DROPDOWNLIST | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "of continuous idle time.",IDC_STATIC,134,65,75,8,NOT WS_VISIBLE
+
+    PUSHBUTTON      "A&dvanced...",IDC_BADVANCED,209,57,49,18
+    GROUPBOX        "",IDC_STATIC,4,21,255,59
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_STYLUS
+//
+// Stylus dialogs
+//
+IDD_CALIBRATE DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "", IDC_CALIB_TEXT,28,4,235,18
+    LTEXT           "Recalibration involves tapping the center of a target. If you miss the center, keep the stylus on the screen, slide it over the target's center, and then lift the stylus. To start, tap Recalibrate.",
+                    IDC_STATIC,28,22,235,27
+    PUSHBUTTON      "&Recalibrate",IDC_BUTTON_CALIB,89,51,85,20
+    ICON            IDI_STYLUS,IDC_STATIC,5,7,20,20
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POINTERCMN
+//
+// Mouse/stylus dialogs
+//
+IDD_DBLTAP DIALOG DISCARDABLE  0, 15, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "", IDC_DBLTAP_SET,13,7,204,32
+    CONTROL         IDB_CLAPGRID1,IDC_GETDBLCLK1,"Static",SS_BITMAP,226,7,25,25
+    CONTROL         IDB_CLAPGRID2,IDC_GETDBLCLK2,"Static",SS_BITMAP,226,7,25,25
+    CONTROL         "",IDC_STATIC,"Static",WS_BORDER, 13,40,237,1
+    LTEXT           "", IDC_DBLTAP_TEST,13,50,204,28
+    ICON            IDI_CLAPDOWN,IDC_CLAPPER2,228,49,18,20,NOT WS_VISIBLE
+    ICON            IDI_CLAPPER,IDC_CLAPPER1,228,49,18,20
+    GROUPBOX        "",IDC_TESTDBLCLK,226,42,22,27
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SOUNDS
+//
+// Sounds:Volume dialog
+//
+IDD_VOLUME DIALOG DISCARDABLE  6, 15, 264, 82
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    PUSHBUTTON      "&L",IDC_HIGH,3,3,18,15, WS_TABSTOP | BS_OWNERDRAW
+    LTEXT           "&Loud",IDC_STATIC_L,23,5,22,8 // must be *after* the button & have the same mnemonic
+    CONTROL         "Generic1",IDC_TRACKBAR,"msctls_trackbar32",WS_GROUP | WS_TABSTOP | 0x3,3,19,25,42
+    PUSHBUTTON      "&S",IDC_LOW,3,62,18,15, WS_TABSTOP | BS_OWNERDRAW
+    LTEXT           "&Soft",IDC_STATIC_Q,23,64,22,8 // must be *after* the button & have the same mnemonic
+    LTEXT           "Enable sounds for:",IDC_STATIC1,50,2,104,8
+    CONTROL         "&Events (warnings, beeps and system events)",
+                    IDC_CHK_EVTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,12, 188,10
+    CONTROL         "&Applications (program specific and all other sounds)",
+                    IDC_CHK_APPS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,23, 202,10
+    CONTROL         "&Notifications (alarms, appointments and reminders)",
+                    IDC_CHK_NOT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,65,34, 189,10
+    LTEXT           "Enable clicks and taps for:",IDC_ENABLECLICKTAP,50,48,104,8,SS_NOPREFIX
+
+    CONTROL         "&Key clicks:",IDC_CHK_KEY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,58,70,10
+    CONTROL         "L&oud",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP | WS_GROUP,125,58,36,10
+    CONTROL         "So&ft",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,163,58,36,10
+
+    CONTROL         "&Screen taps:",IDC_CHK_TAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,55,69,70,10
+    CONTROL         "Loud",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP | WS_GROUP,125,69,36,10
+    CONTROL         "Soft",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,163,69,36,10
+END
+
+//
+// Sounds:Scheme dialogs
+//
+IDD_SNDSCHEME DIALOG DISCARDABLE  6, 15, 264, 82
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    LTEXT           "&Event",IDC_STATIC_EVENTNAME,3,1,48,8
+    CONTROL         "Generic1",IDC_EVENT_TREE,"SysTreeView32",WS_BORDER | WS_GROUP | WS_TABSTOP | 0x30,2,11,96,68
+    //LTEXT           "&Sound:",IDC_STATIC_EVENTSOUND,102,2,24,8
+    COMBOBOX        IDC_COMBO_SOUND,112,12,55,60,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "&Browse...",IDC_BROWSE,170,11,43,15,WS_GROUP
+    CONTROL         "",IDC_TEST,"Button",BS_OWNERDRAW | WS_GROUP | WS_TABSTOP,219,11,16,15
+    CONTROL         "",IDC_STOP,"Button",BS_OWNERDRAW | WS_GROUP | WS_TABSTOP,237,11,16,15
+    GROUPBOX        "Sound",IDC_STATIC,107,2,153,29
+    //GROUPBOX       "",IDC_STATIC,100,0,152, 30
+    COMBOBOX        IDC_COMBO_SCHEME,112,43,142,55,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "&Save As...",IDC_SAVE, 168,59,43,15,WS_GROUP
+    PUSHBUTTON      "&Delete",IDC_DELETE,214,59,40,15,WS_GROUP
+    GROUPBOX        "Scheme",IDC_STATIC,107,31,153,48
+END
+
+// This is *not* a property page
+IDD_SNDSCHEMESAVE DIALOG DISCARDABLE  0, 0, 196, 40
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG | WS_EX_CONTEXTHELP
+CAPTION "Save Scheme As"
+BEGIN
+    LTEXT           "Save this sound scheme as:",IDC_STATIC,6,8,110,8
+    EDITTEXT        IDC_SCHEMENAME,6,22,184,12,ES_AUTOHSCROLL
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SIP
+//
+// SIP CPL dialog
+//
+IDD_INPUTMETHOD DIALOG DISCARDABLE    0, 0, 264, 81
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    LTEXT        "To quickly switch input methods, tap the Input Panel arrow and then tap the desired method from the menu that appears.",
+                IDC_STATIC,138,13,117,46
+    GROUPBOX    "",IDC_STATIC,133,2,127,63
+    LTEXT        "Current input &method:",IDC_STATIC,3,2,86,9
+    COMBOBOX    IDC_COMBOIM,3,13,97,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP | CBS_SORT
+    CONTROL     "&Options...",IDC_BUTTONOPTIONS,"Button",
+                BS_PUSHBUTTON | WS_TABSTOP,56,29,44,14
+    CONTROL     "&Allow applications to change the input panel state",IDC_CHECKALLOWCHANGE,"Button",
+                BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,3,54,127,19
+    ICON        IDI_SIP,IDC_ICONIM,108,16,18,20
+    GROUPBOX    "",IDC_STATIC,104,9,26,34
+    GROUPBOX    "",IDC_STATIC,3,46,127,3
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_REMOVE
+//
+// Remove-programs dialog
+//
+IDD_REMOVE DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON            IDI_TRASH,IDC_STATIC_PICT,13,6,20,25
+    LTEXT           "The listed software can be automatically removed. To remove a program, select it from the list and then select Remove.",
+                    IDC_STATIC,39,6,88,51
+    PUSHBUTTON      "&Remove",IDC_REMOVE,51,62,62,14
+    LTEXT           "&Programs:",IDC_STATIC,130,6,50,8
+    LISTBOX         IDC_LISTBOX,129,16,131,60,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+END
+
+// This is *not* a property page
+IDD_UNLOADERRORDLG DIALOG DISCARDABLE  0, 0, 227, 106
+STYLE DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG
+CAPTION "Remove Programs Error"
+BEGIN
+    LTEXT           "The program has not been removed because the following files are currently in use or are read-only. Please close all programs and run Remove Programs again.",
+                    IDC_ABORTTEXT,29,3,192,33
+    LTEXT           "Uninstall is complete with errors. The following files could not be removed because they are in use or are read-only.  Please make a note of them and remove them manually.",
+                    IDC_FAILTEXT,29,3,192,33,NOT WS_VISIBLE
+    LISTBOX         IDC_PROG_LIST,5,38,217,60,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    ICON            IDI_ALERT,IDC_STATIC,5,8,16,16
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DATETIME
+//
+// Date/Time Dialog
+//
+IDD_DATETIME DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "&C",0,0,0,0,NOT WS_VISIBLE
+    CONTROL         "Monthcal",IDC_TIME_DATE,"SysMonthCal32",WS_BORDER | WS_TABSTOP | MCS_NOTODAY,
+                    2,2,95,78
+    LTEXT           "Current &Time",IDC_STATIC,104,2,72,10
+    CONTROL         "DatePick",IDC_TIME_TIME,"SysDateTimePick32",WS_TABSTOP | DTS_TIMEFORMAT | DTS_UPDOWN ,
+                    104,11,72,13
+    LTEXT           "Time &Zone", IDC_STATIC, 104,28,40,10
+    COMBOBOX        IDC_TIME_ZONE,104,38,157,64,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL |
+                    CBS_SORT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    CONTROL         "Automatically adjust clock for &daylight saving",
+                    IDC_TIME_DLST,"Button",BS_AUTOCHECKBOX
+                    | WS_TABSTOP,105,53,155,10
+    PUSHBUTTON      "&Apply",IDC_TIME_APPLY, 225,65,32,14
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_CERTS
+//
+// Certificate Store property page
+//
+IDD_CERTROOTS_TAB DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE WS_CHILD | WS_CLIPSIBLINGS
+BEGIN
+    COMBOBOX        IDC_CERTSTORE_SELECT,7,7,79,50,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "",IDC_CERTCPL_STATIC_STORE,7,42,
+                    79,31
+    LISTBOX         IDC_CERTROOTS_LIST,88,7,163,52,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "&Import..",IDC_CERTROOTS_IMPORT,88,64,50,14
+    PUSHBUTTON      "&View..",IDC_CERTROOTS_VIEW,144,64,50,14
+    PUSHBUTTON      "&Remove",IDC_CERTROOTS_REMOVE,200,64,50,14
+END
+
+#if 0
+IDD_CERTPROP_GENERAL DIALOG DISCARDABLE  0, 0, 255, 191
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Certificate Summary Information"
+BEGIN
+    LTEXT             "",IDC_SUBJECT_EDIT,76,98,162,22
+    LTEXT             "",IDC_ISSUER_EDIT,76,124,162,22
+    LISTBOX         IDC_GOODFOR_EDIT,28,24,206,50, WS_VSCROLL
+    LTEXT             "",IDC_CERT_ISSUER_WARNING_EDIT,16,75,200,11
+    LTEXT           "Issued To:",IDC_STATIC,27,96,50,16
+    LTEXT           "Issued By:",IDC_STATIC,27,123,50,16
+    LTEXT           "This certificate may be used for:",IDC_STATIC,17,7,148,
+                    13
+    LTEXT           "Valid From:",IDC_STATIC,28,150,41,16
+    LTEXT           "Valid Until:",IDC_STATIC,138,150,41,16
+    LTEXT           "",IDC_VALID_FROM,76,150,51,16
+    LTEXT           "",IDC_VALID_UNTIL,187,150,51,16
+END
+#endif
+
+IDD_IMPORTCERT DIALOG DISCARDABLE  0, 0, 132, 107
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | DS_CENTER
+#ifndef APSTUDIO_INVOKED
+EXSTYLE WS_EX_CAPTIONOKBTN 
+#endif
+CAPTION "Import Certificate or Key"
+BEGIN
+    CONTROL         "From a &File",IDC_RADIO_FILECERT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,10,69,10
+    CONTROL         "From a &Smart Card",IDC_RADIO_CARDCERT,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED | WS_TABSTOP,7,30,76,10
+    LTEXT           "&Reader",IDC_STATIC_READER,18,47,33,12,WS_DISABLED
+    COMBOBOX        IDC_COMBO_SMARTCARD,56,47,72,60,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Card",IDC_STATIC_CARD,18,65,34,11,WS_DISABLED
+    LTEXT           "Absent",IDC_STATIC_CARDNAME,56,65,69,12,WS_DISABLED
+    LTEXT           "",IDC_STATIC_IMPORTCERT,7,86,72,12
+    //EDITTEXT        IDC_EDIT_FRIENDLYNAME,61,86,67,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERKEYPASSWORD DIALOG DISCARDABLE  0, 0, 142, 36
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Private Key Password"
+BEGIN
+    EDITTEXT        IDC_PASSWORD0,21,7,99,16,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+// This is *not* a property page
+IDD_CERTIFICATE_PROMPT DIALOG DISCARDABLE  0, 0, 245, 124
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | DS_CENTER
+CAPTION "Root Certificate Store"
+BEGIN
+    LTEXT           "",IDC_CertificateMessage,7,7,233,8
+    LTEXT            "",IDC_CertificateText,7,27,233,72
+
+    PUSHBUTTON      "&Yes",IDYES,62,105,50,14
+    DEFPUSHBUTTON   "&No",IDNO,132,105,50,14
+END
+
+
+
+//@CESYSGEN ENDIF
+
+
+
+//@CESYSGEN IF CPLMAIN_ACCESSIB
+//
+// Accessibility property page
+//
+// Keyboard tab
+IDD_ACC_KEYBD DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use StickyKeys if you want to use Shift, Ctrl, or Alt key by pressing one key at a time.",
+                    IDC_STATIC,50,8,143,17
+    CONTROL         "Use StickyKeys",IDC_ACC_USESTICKY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,50,26,77,9
+    PUSHBUTTON      "Settings...",IDC_ACC_STICKYSETTINGS,210,16,45,14
+    ICON            IDI_ACC_STICKY,IDC_STATIC,11,11,21,20
+    GROUPBOX        "StickyKeys",IDC_STATIC,2,2,258,38
+    LTEXT           "Use ToggleKeys if you want to hear tones when pressing CapsLock, NumLock, and ScrollLock.",
+                    IDC_STATIC,50,47,154,16
+    CONTROL         "Use ToggleKeys",IDC_ACC_USETOGGLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,50,65,77,9
+    PUSHBUTTON      "Settings...",IDC_ACC_TOGGLESETTINGS,210,52,45,14
+    ICON            IDI_ACC_TOGGLE,IDC_STATIC,11,50,21,20
+    GROUPBOX        "ToggleKeys",IDC_STATIC,2,40,258,38
+END
+
+// This is *not* a property page
+IDD_ACCD_STICKYSETTINGS DIALOG 0, 0, 268, 96
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for StickyKeys"
+BEGIN
+    LTEXT           "The shortcut for StickyKeys is: \nPress the <Shift> key five times.",
+                    IDC_STATIC,72,9,179,17
+    ICON            IDI_ACC_SHORTCUT,IDC_STATIC,19,15,21,20
+    CONTROL         "Use shortcut",IDC_ACCD_STICKYSHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,72,31,70,10
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,2,2,258,43
+    CONTROL         "Press modifier key twice to lock",IDC_ACCD_STKLOCK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,62,191,9
+    CONTROL         "Make sounds when modifier key is pressed",
+                    IDC_ACCD_STKSOUNDMOD,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,13,77,191,9
+    GROUPBOX        "Options and Notification",IDC_STATIC,2,50,258,41
+END
+
+// This is *not* a property page
+IDD_ACCD_TOGGLESETTINGS DIALOG 0, 0, 264, 81
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for ToggleKeys"
+BEGIN
+    LTEXT           "The shortcut for ToggleKeys is:  \nHold down <Num Lock> for eight seconds.",
+                    IDC_STATIC,81,25,149,18
+    ICON            IDI_ACC_SHORTCUT,IDC_STATIC,27,31,21,20
+    CONTROL         "Use shortcut",IDC_ACCD_TOGGLESHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,81,54,91,10
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,7,7,242,68
+END
+
+// Sound tab
+IDD_ACC_SOUND DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use SoundSentry if you want Windows to generate visual warnings when your system makes a sound.",
+                    IDC_STATIC,73,21,167,18
+    CONTROL         "Use SoundSentry",IDC_ACC_USESNDSENTRY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,81,51,91,10
+    ICON            IDI_ACC_SNDSENTRY,IDC_STATIC,24,31,20,20
+    PUSHBUTTON      "Settings...",IDC_ACC_SNDSETTINGS,181,50,50,14
+    GROUPBOX        "SoundSentry",IDC_STATIC,7,7,242,68
+END
+
+// This is *not* a property page
+IDD_ACCD_SOUNDSETTINGS DIALOG 0, 0, 264, 81
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for SoundSentry"
+BEGIN
+    LTEXT           "Choose the visual warning for sounds made by the following types of programs:",
+                    IDC_STATIC,17,8,224,18
+    LTEXT           "Warning for windowed programs",IDC_STATIC,17,33,154,10
+    COMBOBOX        IDC_ACCD_SNDSETWARNING,17,47,177,100,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+//Display Tab
+IDD_ACC_DISP DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use this option if you want Windows to use colors and fonts designed for easy reading.",
+                    IDC_STATIC,69,22,167,18
+    CONTROL         "Use High Contrast",IDC_ACC_USEHIGHCONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,69,53,91,10
+    ICON            IDI_ACC_DISP,IDC_STATIC,21,31,21,20
+    PUSHBUTTON      "Settings...",IDC_ACC_DISPSETTINGS,186,52,50,14
+    GROUPBOX        "High Contrast",IDC_STATIC,7,7,242,68
+END
+
+// This is *not* a property page
+IDD_ACCD_DISPSETTINGS DIALOG 0, 0, 267, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for High Contrast"
+BEGIN
+    LTEXT           "The shortcut for High Contrast is:  \nPress <Left Alt+Left Shift+Print Screen>.",
+                    IDC_STATIC,74,11,153,17
+    ICON            IDI_ACC_SHORTCUT,IDC_STATIC,21,15,20,20
+    CONTROL         "Use shortcut",IDC_ACCD_HIGHSHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,74,32,70,10
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,2,3,258,43
+    LTEXT           "Select an appearance scheme for High Contrast use:",
+                    IDC_STATIC,13,59,191,8
+    CONTROL         "White on black",IDC_ACCD_HCWHITEBLACK,"Button",
+                    BS_AUTORADIOBUTTON,54,73,62,10
+    CONTROL         "Black on white",IDC_ACCD_HCBLACKWHITE,"Button",
+                    BS_AUTORADIOBUTTON,150,74,62,10
+    GROUPBOX        "High Contrast color scheme",IDC_STATIC,2,51,259,41
+END
+
+// Mouse Tab
+IDD_ACC_MOUSE DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use MouseKeys if you want to control the pointer with the numeric keypad on your keyboard.",
+                    IDC_STATIC,79,20,167,18
+    CONTROL         "Use MouseKeys",IDC_ACC_USEMOUSEKEYS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,79,51,91,10
+    ICON            IDI_ACC_MKEYS,IDC_STATIC,23,26,20,20
+    PUSHBUTTON      "Settings...",IDC_ACC_MSETTINGS,175,49,50,14
+    GROUPBOX        "MouseKeys",IDC_STATIC,7,7,242,68
+END
+
+// This is *not* a property page
+IDD_ACCD_MOUSESETTINGS DIALOG 0, 0, 285, 140
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for MouseKeys"
+BEGIN
+    LTEXT           "The shortcut for MouseKeys is:\nPress <Left Alt+Left Shift+Num Lock>",
+                    IDC_STATIC,71,13,124,21
+    ICON            IDI_ACC_SHORTCUT,IDC_STATIC,20,14,21,20
+    CONTROL         "Use shortcut",IDC_ACCD_MOUSESHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,207,20,58,9
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,2,3,275,38
+    LTEXT           "Top speed:",IDC_STATIC,14,58,42,9
+    LTEXT           "Low",IDC_STATIC,67,57,17,9
+    CONTROL         "",IDC_ACCD_MTOPSPEED,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_TABSTOP,101,51,117,21
+    LTEXT           "High",IDC_STATIC,236,59,18,9
+    LTEXT           "Acceleration:",IDC_STATIC,14,81,43,9
+    LTEXT           "Slow",IDC_STATIC,67,81,17,9
+    CONTROL         "",IDC_ACCD_MACCEL,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_TABSTOP,101,78,117,22
+    LTEXT           "Fast",IDC_STATIC,236,82,18,9
+    CONTROL         "To increase mouse speed, press and hold CTRL.",
+                    IDC_ACCD_MHOLDKEYS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    7,105,185,10
+    LTEXT           "Use MouseKeys when NumLock is:",IDC_STATIC,8,127,117,10
+    CONTROL         "On",IDC_ACCD_NUMON,"Button",BS_AUTORADIOBUTTON,169,127,
+                    25,10
+    CONTROL         "Off",IDC_ACCD_NUMOFF,"Button",BS_AUTORADIOBUTTON,233,127,
+                    28,10
+    GROUPBOX        "Pointer speed",IDC_STATIC,2,44,275,79
+END
+
+// General tab
+IDD_ACC_GEN DIALOG DISCARDABLE  0, 0, 264, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL         "Turn off accessibility features after idle for:",
+                    IDC_ACC_IDLECHK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,
+                    17,146,11
+    LTEXT           "minutes",IDC_STATIC,221,17,27,8
+    COMBOBOX        IDC_ACC_GENCOMBO,170,15,48,30,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Automatic reset",IDC_STATIC,3,5,255,33
+    CONTROL         "Make a sound when turning a feature on or off",
+                    IDC_ACC_SOUNDONOFFCHK,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,54,191,9
+    GROUPBOX        "Notification",IDC_STATIC,3,40,255,33
+END
+
+//@CESYSGEN ENDIF
+
+
+//@CESYSGEN ENDIF CPLMAIN_LANDSCAPE
+
+
+/**
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Abstract: Defines the portrait form factor dialog templates
+**/
+
+//----------------------------------------------------------------------------
+//
+// This RC file MUST contain ONLY localizable resources (strings, dialogs, menus
+// menus, accelerators, message tables). Any other resources placed here will
+// cause the build errors during SYSGEN
+//
+//----------------------------------------------------------------------------
+
+//@CESYSGEN IF CPLMAIN_PORTRAIT
+
+//@CESYSGEN IF CPLMAIN_CPLMAIN
+//
+// Common dialogs
+//
+// This is *not* a property page
+IDD_CHECK_PASSWD DIALOG DISCARDABLE  0, 0, 132, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG
+CAPTION "Enter Password"
+BEGIN
+    ICON        IDI_PASSWD,IDC_STATIC,5,4,18,20
+    LTEXT        "You must enter your password to change Password Settings.",IDC_PWDMSG,34,4,98,27
+    LTEXT        "Password:", IDC_STATIC,28,35,39,8
+    EDITTEXT    IDC_EDIT_OLD_PASS,70,34,58,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_COMM
+//
+// COMM Dialogs
+//
+IDD_RAS DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL    "Enable direct connections to the desktop computer",
+            IDC_AUTO,"Button", BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
+            WS_GROUP | WS_TABSTOP,5,4,125,18
+    CONTROL "Change Connection...",IDC_CHANGE, "Button",BS_PUSHBUTTON | WS_TABSTOP,20,57,90,12
+    LTEXT    "When enabled, connect to the desktop computer using:", IDC_STATIC,15,26,100,18
+    LTEXT    "<empty>",IDC_STATIC_DIRECT,25,46,105,9,WS_DISABLED
+    LTEXT    "Warning: Changing the connection may disable communications with your desktop computer.",
+            IDC_STATIC,15,80,110,35
+END
+
+// This is *not* a property page
+IDD_CHANGE_CONN DIALOG DISCARDABLE  0, 0, 132, 71
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG | WS_EX_CONTEXTHELP
+CAPTION "Change Connection"
+BEGIN
+    LTEXT        "Connect to desktop computer using:",IDC_STATIC,5,4,120,11
+    COMBOBOX    IDC_CB,5,16,120,90,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT        "Warning: Changing the connection may disable communications with your desktop computer.",
+                IDC_STATIC,5,35,120,34
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_KEYBOARD
+//
+// KEYBD dialogs
+//
+IDD_KEYBD DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    CONTROL         "&Enable character repeat",IDC_CHK_BOX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,3,100,10
+    LTEXT           "Repeat &delay:",IDC_STATIC1,5,19,88,8
+    LTEXT           "&Long",IDC_STATIC_L,5,28,18,8 // must be *before* the button & have the same mnemonic
+    CONTROL         "&L",IDC_BTN_LONG,"Button",BS_OWNERDRAW | WS_TABSTOP,5,39,16,15
+    CONTROL         "",IDC_TRACKBAR_DLY,"msctls_trackbar32",0x5|WS_TABSTOP,23,34,84,20
+    LTEXT           "Sh&ort",IDC_STATIC_H,110,28,20,8 // must be *before* the button & have the same mnemonic
+    CONTROL         "&O",IDC_BTN_SHORT,"Button",BS_OWNERDRAW | WS_TABSTOP,110,39,16,15
+
+    LTEXT           "&Repeat rate:",IDC_STATIC2,5,62,80,8
+    LTEXT           "&Slow",IDC_STATIC_S,5,72,18,8 // must be *before* the button & have the same mnemonic
+    CONTROL         "&S",IDC_BTN_SLOW,"Button",BS_OWNERDRAW | WS_TABSTOP,5,83,16,15
+    CONTROL         "",IDC_TRACKBAR_RPT,"msctls_trackbar32",0x5|WS_TABSTOP,23,78,84,20
+    LTEXT           "&Fast",IDC_STATIC_F,110,72,20,8 // must be *before* the button & have the same mnemonic
+    CONTROL         "&F",IDC_BTN_FAST,"Button",BS_OWNERDRAW | WS_TABSTOP,110,83,16,15
+    LTEXT           "&Tap here and hold down a key to test:",IDC_STATIC3,2,105,129,8
+    EDITTEXT        IDC_EDIT,5,116,120,12,ES_AUTOHSCROLL
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_OWNER
+//
+// Owner dialogs
+//
+IDD_PROFILE DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "Name:",IDC_STATIC,4,0,34,8
+    EDITTEXT    IDC_EDIT_NAME1, 4,9,122,12,WS_BORDER | ES_AUTOHSCROLL | WS_TABSTOP
+    LTEXT        "Company:",IDC_STATIC,4,23,34,8
+    EDITTEXT    IDC_EDIT_COMPANY, 4,32,122,12,WS_BORDER | ES_AUTOHSCROLL | WS_TABSTOP
+    LTEXT        "Address:",IDC_STATIC,4,46,34,8
+    EDITTEXT    IDC_EDIT_ADD, 4,55,122,24,WS_BORDER | ES_MULTILINE | ES_WANTRETURN | ES_AUTOVSCROLL | WS_TABSTOP 
+    LTEXT        "Work phone:",IDC_STATIC,4,84,45,10
+    EDITTEXT    IDC_EDIT_WPHONE,49,82,77,12,ES_AUTOHSCROLL
+    LTEXT        "Home phone:",IDC_STATIC,4,99,45,10
+    EDITTEXT    IDC_EDIT_HPHONE,49,97,77,12,ES_AUTOHSCROLL
+    CONTROL        "Display owner identification",IDC_CHK_ID,"Button",
+                BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,4,122,106,12
+    GROUPBOX    "",IDC_STATIC,49,112,77,6
+    LTEXT        "At power-on",IDC_STATIC,4,113,45,8
+END
+
+IDD_NOTES DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "Notes:",IDC_STATIC,4,4,26,10
+    EDITTEXT    IDC_EDIT_NOTES,4,14,122,39,ES_MULTILINE | ES_WANTRETURN | ES_AUTOVSCROLL
+    CONTROL        "Display owner notes",IDC_CHK_NOTES,"Button",
+                BS_AUTOCHECKBOX | WS_TABSTOP,4,69,93,12
+    LTEXT        "At power-on", IDC_STATIC, 4,59,45,10
+    GROUPBOX    "",IDC_STATIC,49,59,77,6
+END
+
+IDD_NETIDENT DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+
+    LTEXT        "Windows CE uses this information to gain access to network resources. Enter the user name, password, and domain provided by your network administrator.",
+                IDC_STATIC,5,5,120,43
+    LTEXT        "User Name:",IDC_STATIC,5,52,40,8
+    EDITTEXT    IDC_NETCPL1_USERNAME,50,50,70,12,ES_AUTOHSCROLL
+    LTEXT        "Password:",IDC_STATIC,5,68,40,8
+    EDITTEXT    IDC_NETCPL1_PASSWORD,50,66,70,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT        "Domain:",IDC_STATIC,5,84,40,8
+    EDITTEXT    IDC_NETCPL1_DOMAIN,50,82,70,12,ES_AUTOHSCROLL
+END
+
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_PASSWORD
+//
+// Password dialogs
+//
+IDD_PASSWD DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "Password:",-1,6,12,62,12
+    EDITTEXT    IDC_EDIT_NEW_PASS,71,11,53,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT        "Confirm password:", IDC_STATIC,6,32,62,12
+    EDITTEXT    IDC_EDIT_CONF_PASS,71,31,53,12,ES_PASSWORD |ES_AUTOHSCROLL
+    CONTROL        "Enable password protection at power-on",
+                IDC_CHK_PASSWRD,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | BS_TOP |
+                WS_DISABLED | WS_TABSTOP,6,68,118,20
+    CONTROL         "Enable password protection for screen saver",
+                    IDC_CHK_PASSWRDSCREENSAVER,"Button",BS_AUTOCHECKBOX | BS_TOP | 
+                    BS_MULTILINE | WS_DISABLED | WS_TABSTOP,6,92,118,19
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POWER
+//
+// Power dialogs
+//
+IDD_SLEEP DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON        IDI_SLEEP,IDC_STATIC,5,5,18,20
+    LTEXT        "Save battery power and prevent unauthorized use (in conjunction with a password) by having your device turn off when not in use.",
+                IDC_STATIC,29,0,96,48
+    LTEXT        "On battery power, turn off device if idle for", IDC_STATIC1,15,52,110,16
+    COMBOBOX    IDC_COMBO1,15,69,67,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL        "On external power, turn off device if idle for",
+                IDC_CHECK2,"Button", BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
+                WS_TABSTOP,5,86,120,18
+    COMBOBOX    IDC_COMBO2,15,104,67,57,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX    "",IDC_STATIC,5,44,120,6
+END
+
+
+IDD_BATTERY DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "Installed on:",IDC_BAT1_STATIC,5,64,68,9,NOT WS_VISIBLE
+    LTEXT        "Total time used:",IDC_BAT2_STATIC,5,72,66,9
+    LTEXT        "Remaining power:",IDC_BAT3_STATIC,5,80,64,9,NOT WS_VISIBLE
+    LTEXT        "",IDC_BAT1,77,64,53,8,NOT WS_VISIBLE
+    LTEXT        "",IDC_BAT2,77,72,53,8
+    LTEXT        "",IDC_BAT3,77,80,53,8,NOT WS_VISIBLE
+    LTEXT        "Main battery",IDC_STATIC_MAIN,6,11,54,8,NOT WS_VISIBLE
+    LTEXT        "Charging",IDC_STATIC_CHARGE,6,11,54,8,NOT WS_VISIBLE
+    LTEXT        "External",IDC_STATIC_EXTERNAL,6,11,54,8
+    LTEXT        "Backup battery",IDC_STATIC_BACK,70,11,59,8
+    ICON        IDI_MAIN_BAT,IDI_MAIN_BAT,8,24,20,20
+    LTEXT        "Good",IDC_STATIC_GOOD,36,21,32,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT        "Low",IDC_STATIC_LOW,36,31,32,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT        "Very Low",IDC_STATIC_VLOW,36,41,32,8,WS_DISABLED | NOT WS_VISIBLE
+    ICON        IDI_BACK_BAT,IDI_BACK_BAT,72,24,20,20
+    LTEXT        "Good",IDC_STATIC_GOOD1,99,21,32,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT        "Low",IDC_STATIC_LOW1,99,31,32,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT        "Very Low",IDC_STATIC_VLOW1,99,41,32,8,WS_DISABLED | NOT WS_VISIBLE
+    LTEXT        "Power",IDC_STATIC_PWR,1,1,24,10
+    GROUPBOX    "",IDC_STATIC,25,1,105,6
+    LTEXT        "Main batteries",IDC_STATIC_MBS,1,53,53,10
+    GROUPBOX    "",IDC_STATIC,53,53,74,6
+END
+
+IDD_POWER_DEVICE DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL         "",IDC_LIST_POWER_DEVICE,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SORTASCENDING |
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,3,3,126,134
+END
+
+IDD_POWER_TIMEOUTS DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON            IDI_POWER_BAT,IDC_STATIC1,110,7,20,20
+    LTEXT           "&Power Scheme:",IDC_STATIC,3,4,100,8
+    COMBOBOX        IDC_COMBO_POWER_SOURCE,3,14,100,60,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Switch state to &User Idle:",IDC_STATIC,3,52,126,8
+    COMBOBOX        IDC_COMBO_TO_USER_IDLE,3,62,126,60,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Switch state to S&ystem Idle:",IDC_STATIC,3,81,126,8
+    COMBOBOX        IDC_COMBO_TO_SYSTEM_IDLE,3,91,126,60,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Switch state to &Suspend:",IDC_STATIC,3,110,126,8
+    COMBOBOX        IDC_COMBO_TO_SUSPEND,3,120,126,60,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_STATIC,6,40,120,2
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SYSTEM
+//
+// System dialogs
+//
+IDD_MEMORY DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "Move slider to the left for more memory to run programs. Move it to the right for more storage space.", IDC_STATIC,5,2,120,26
+    LTEXT        "Only unused RAM (black portion of the slider bar) can be adjusted.",IDC_STATIC,5,30,120,16
+    CONTROL        "",IDC_TRACKBAR,"msctls_trackbar32",TBS_AUTOTICKS |
+                TBS_TOP | TBS_ENABLESELRANGE | WS_TABSTOP,3,47,124,22
+    LTEXT        "Storage",IDC_STATIC_STORAGE,12,70,64,8
+    LTEXT        "memory",IDC_STATIC_MEMORY1,12,78,64,8
+    LTEXT        "Program",IDC_STATIC_PROGRAM,81,70,64,8
+    LTEXT        "memory",IDC_STATIC_MEMORY2,81,78,64,8
+    LTEXT        "1,000KB",IDC_STATIC_LEFT,5,89,29,8
+    LTEXT        "1,000KB",IDC_STATIC_RIGHT,72,89,29,8
+    LTEXT        "total",IDC_STATIC_ALLOC_LEFT,34,89,27,8
+    LTEXT        "total",IDC_STATIC_ALLOC_RIGHT,101,89,27,8
+    LTEXT        "in use",IDC_STATIC_IN_USE_LEFT,34,98,33,8
+    LTEXT        "in use",IDC_STATIC_IN_USE_RIGHT,101,98,33,8
+    LTEXT        "640KB",IDC_IN_USE_LEFT,5,98,27,8
+    LTEXT        "640KB",IDC_IN_USE_RIGHT,72,98,29,8
+END
+
+IDD_SYSTEM DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Microsoft® Windows® CE",IDC_STATIC_OS,8,10,119,9
+    LTEXT           "",IDC_STATIC_VER_SYS,8,20,118,9
+    LTEXT           "Copyright © 2006 Microsoft Corp. All rights reserved.\rThis computer program is protected by U.S. and international copyright law.",
+                    IDC_STATIC,6,32,124,35
+    LTEXT           "Processor:",IDC_STATIC,8,80,58,8
+    LTEXT           "Memory:",IDC_STATIC,8,91,53,8
+    LTEXT           "Expansion cards:",IDC_STATIC,8,103,58,8
+    LTEXT           "Registered to:",IDC_STATIC,8,115,52,8
+    LTEXT           "",IDC_STATIC_USER,8,127,118,8,SS_NOPREFIX
+    EDITTEXT        IDC_STATIC_PROCESSOR,66,78,63,12,ES_READONLY | ES_AUTOHSCROLL 
+    LTEXT           "",IDC_STATIC_RAM,66,91,63,8
+    COMBOBOX        IDC_EXPANSION_CMB,66,100,63,57,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Computer",IDC_STATIC_COMPUTER,3,69,37,10
+    GROUPBOX        "",IDC_STATIC,40,69,88,6
+    LTEXT           "System",IDC_STATIC_SYSTEM,3,0,28,10
+    GROUPBOX        "",IDC_STATIC,31,0,97,6
+END
+
+IDD_COMPUTER DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "Your device uses this information to identify itself to other computers.",
+                IDC_STATIC,5,4,120,17,WS_VISIBLE
+    LTEXT        "Device name (without spaces):",IDC_STATIC,5,30,120,9,WS_VISIBLE
+    EDITTEXT    IDC_EDIT_NAME,5,39,120,12,ES_AUTOHSCROLL
+    LTEXT        "Device description:",IDC_STATIC,5,56,120,9,WS_VISIBLE
+    EDITTEXT    IDC_EDIT_DESCR,5,65,120,12,ES_AUTOHSCROLL
+END
+
+IDD_COPYRIGHTS DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    
+    EDITTEXT        IDC_COPYR,5,12,120,115,  ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY | WS_VSCROLL | NOT WS_TABSTOP
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DISPLAY
+//
+// Screen dialogs
+//
+IDD_BACKGROUND DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "&Image:",IDC_STATIC,4,5,22,9
+    COMBOBOX        IDC_WALLLIST,28,3,59,70,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Browse",IDC_BROWSEWALL,90,3,37,13
+
+    // LTEXT        "Image:",IDC_STATIC,4,5,61,8
+    // COMBOBOX    IDC_WALLLIST,65,4,64,69,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    CONTROL        "Tile image on background",IDC_TILEIMAGE,"Button",
+                BS_AUTOCHECKBOX | WS_TABSTOP | BS_TOP | BS_MULTILINE, 28,19,126,10
+    CONTROL        "",IDC_BOX,"Static",SS_BITMAP | WS_BORDER,4,32,123,105
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_COLORSCHEME
+//
+// Screen:Color scheme dialogs
+//
+IDD_COLSCHEME DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    RTEXT           "&Scheme:",IDC_STATIC,4,5,31,10
+    COMBOBOX        IDC_SCHEME,37,3,87,60,CBS_SORT | CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Sa&ve...",IDC_SAVEAS,5,18,37,14
+    PUSHBUTTON      "&Delete",IDC_DELETE,46,18,37,14
+    PUSHBUTTON      "&Apply",IDC_APPLY,87,18,37,14
+    LTEXT            "", IDC_PREVIEWDUMMY, 2,35,126,84,NOT WS_VISIBLE
+    RTEXT           "&Item:",IDC_STATIC,4,126,19,10
+    COMBOBOX        IDC_ITEM,25,124,84,90,CBS_SORT | CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Color",IDC_COLOR,"Button", BS_OWNERDRAW | WS_TABSTOP,112,124,13,13
+END
+
+// This is *not* a property page
+IDD_COLSCHEMESAVE DIALOG DISCARDABLE  0, 0, 132, 50
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG
+CAPTION "Save Scheme As"
+BEGIN
+    LTEXT           "Save this color scheme as:",IDC_STATIC,6,8,88,8
+    EDITTEXT        IDC_SAVESCHEME,6,22,118,12,ES_AUTOHSCROLL
+END
+
+IDB_OK          BITMAP  DISCARDABLE     "RES\\ok.2bp"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_BACKLIGHT
+//
+// Screen: Backlight dialog
+//
+IDD_BACKLIGHT DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    ICON        IDI_BACKLIGHT,IDC_STATIC,11,6,18,20
+    LTEXT        "Save battery life by automatically turning off the backlight when not needed.",IDC_STATIC,38,4,95,29,SS_LEFT
+    LTEXT        "Turn off backlight when using:",IDC_STATIC,11,39,122,8,SS_LEFT
+
+    CONTROL        "Battery power, and device is idle",IDC_BBATTERY,
+                "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,50,120,10
+    LTEXT        "for more than",IDC_STATIC,22,59,45,8,SS_LEFT
+    COMBOBOX    IDC_BBATTERY_TIME,68,60,57,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+
+    CONTROL        "External power, and device is idle",IDC_BEXTERNAL,
+                "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,80,121,10
+    LTEXT        "for more than",IDC_STATIC,22,89,45,8,SS_LEFT
+    COMBOBOX    IDC_BEXTERNAL_TIME,68,90,57,60,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+
+    CONTROL        "Advanced...", IDC_BADVANCED,"Button",BS_PUSHBUTTON | WS_TABSTOP,42,107,49,18
+    GROUPBOX    "",IDC_STATIC,5,29,120,6
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_STYLUS
+//
+// Stylus dialogs
+//
+IDD_CALIBRATE DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL        "Recalibrate",IDC_BUTTON_CALIB,
+                "Button",BS_PUSHBUTTON | WS_TABSTOP,30,67,70,20
+    ICON        IDI_STYLUS,IDC_STATIC,11,7,18,20
+    LTEXT        "If your device isn't responding properly to your taps, you may need to recalibrate your screen.",
+                IDC_STATIC,38,4,92,35
+    LTEXT        "To start the recalibration process, tap Recalibrate.",IDC_STATIC,5,40,125,22
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POINTERCMN
+//
+// Mouse/stylus dialogs
+//
+IDD_DBLTAP DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "",IDC_DBLTAP_SET,10,4,77,41
+    CONTROL     IDB_CLAPGRID1,IDC_GETDBLCLK1,"Static",SS_BITMAP,102,7,25,25
+    CONTROL     IDB_CLAPGRID2,IDC_GETDBLCLK2,"Static",SS_BITMAP,102,7,25,25
+    CONTROL     "",IDC_STATIC,"Static",WS_BORDER, 10,50,115,1
+    LTEXT        "",IDC_DBLTAP_TEST,10,59,77,57
+    ICON        IDI_CLAPDOWN,IDC_CLAPPER2,104,66,18,20,NOT WS_VISIBLE
+    ICON        IDI_CLAPPER,IDC_CLAPPER1,104,66,18,20
+    GROUPBOX    "",IDC_TESTDBLCLK,102,59,22,27
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SOUNDS
+//
+// Sounds: Volume dialog
+//
+IDD_VOLUME DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    CONTROL        "&S",IDC_LOW,"Button",BS_OWNERDRAW | WS_TABSTOP,7,5,16,15
+    LTEXT        "&Soft",IDC_STATIC_Q,8,21,18,8 // must be *after* the button & have the same mnemonic
+    CONTROL        "Generic1",IDC_TRACKBAR,"msctls_trackbar32",
+                TBS_AUTOTICKS | WS_GROUP | WS_TABSTOP | TBS_HORZ,26,4,82,21
+    CONTROL        "&L",IDC_HIGH,"Button",BS_OWNERDRAW | WS_TABSTOP,110,5,16,15
+    LTEXT        "&Loud",IDC_STATIC_L,110,21,18,8 // must be *after* the button & have the same mnemonic
+    LTEXT        "Enable sounds for:",IDC_STATIC1,7,32,104,8
+    CONTROL        "&Events (warnings, system events)",IDC_CHK_EVTS,"Button",
+                BS_AUTOCHECKBOX | WS_TABSTOP,7,43,123,10
+    CONTROL        "&Applications",IDC_CHK_APPS,"Button",
+                BS_AUTOCHECKBOX | WS_TABSTOP,7,53,123,10
+    CONTROL        "&Notifications (alarms, reminders)",IDC_CHK_NOT,"Button",
+                BS_AUTOCHECKBOX | WS_TABSTOP,7,63,114,10
+
+    CONTROL        "&Key clicks:",IDC_CHK_KEY, "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,73,123,10
+    CONTROL        "Soft",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,26,83,36,10
+    CONTROL        "Loud",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,66,83,36,10
+
+    CONTROL        "&Screen taps:",IDC_CHK_TAP,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,93,123,10
+    CONTROL        "Soft",IDC_RADIO4,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,26,103,36,10
+    CONTROL        "Loud",IDC_RADIO3,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,66,103,36,10
+END
+
+//
+// Sounds:Scheme dialogs
+//
+IDD_SNDSCHEME DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    LTEXT        "Event:",IDC_STATIC,3,3,48,8
+    CONTROL        "Generic1",IDC_EVENT_TREE,"SysTreeView32",WS_BORDER | WS_GROUP | WS_TABSTOP | 0x30,3,12,125,69
+    LTEXT        "Sound:",IDC_STATIC, 3,83,24,8
+    COMBOBOX    IDC_COMBO_SOUND,3,93,84,60,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP 
+    CONTROL        "Browse...",IDC_BROWSE,"Button",BS_PUSHBUTTON, 6,16,43,15
+    LTEXT        "Preview:",IDC_STATIC,91,83,35,8
+    CONTROL        "",IDC_TEST,"Button",BS_OWNERDRAW | WS_GROUP | WS_TABSTOP,91,93,16,15
+    CONTROL        "",IDC_STOP,"Button",BS_OWNERDRAW | WS_GROUP | WS_TABSTOP,112,93,16,15
+    LTEXT        "Scheme:",IDC_STATIC, 3,107,31,8
+    COMBOBOX    IDC_COMBO_SCHEME,3,116,84,60,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL        "Save As",IDC_SAVE, "Button",BS_PUSHBUTTON | WS_TABSTOP | WS_GROUP,91,111,37,13
+    CONTROL        "Delete",IDC_DELETE,"Button",BS_PUSHBUTTON | WS_TABSTOP | WS_GROUP,91,126,37,13
+END
+
+// This is *not* a property page
+IDD_SNDSCHEMESAVE DIALOG DISCARDABLE  0,0, 132, 50
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG | WS_EX_CONTEXTHELP
+CAPTION "Save Scheme As"
+BEGIN
+    LTEXT        "Scheme name:",IDC_STATIC,6,8,110,8
+    EDITTEXT    IDC_SCHEMENAME,6,22,118,12,ES_AUTOHSCROLL
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SIP
+//
+// SIP CPL dialog
+//
+IDD_INPUTMETHOD DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    LTEXT        "To quickly switch input methods, tap the Input Panel arrow and then tap the desired method from the menu that appears.",
+                IDC_STATIC,8,83,112,43
+    GROUPBOX    "",IDC_STATIC,3,72,125,59
+    COMBOBOX    IDC_COMBOIM,3,13,95,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP | CBS_SORT
+    LTEXT        "Current input &method:", IDC_STATIC,3,2,86,9
+    CONTROL     "&Options...",IDC_BUTTONOPTIONS,"Button",
+                BS_PUSHBUTTON | WS_TABSTOP,54,29,44,14
+    CONTROL     "&Allow applications to change the input panel state",IDC_CHECKALLOWCHANGE,"Button",
+                BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,3,54,125,19
+    ICON        IDI_SIP,IDC_ICONIM,106,16,18,20
+    GROUPBOX    "",IDC_STATIC,102,9,26,34
+    GROUPBOX    "",IDC_STATIC,3,46,125,3
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_REMOVE
+//
+// Remove-programs dialog
+//
+IDD_REMOVE DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT        "To remove a program, select it and then press Remove.",IDC_STATIC,4,2,126,22
+    LISTBOX        IDC_LISTBOX,4,24,125,43,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON    "Remove.",IDC_REMOVE,41,71,52,18,WS_TABSTOP
+END
+
+// This is *not* a property page
+IDD_UNLOADERRORDLG DIALOG DISCARDABLE  0, 0, 132, 152
+STYLE DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG
+CAPTION "Remove Programs Error"
+BEGIN
+    LTEXT           "The program has not been removed because the following files are currently in use or are read-only. Please close all programs (using the Task Manager tab in System Settings, if necessary) and run Remove Programs again.",
+                    IDC_ABORTTEXT,2,4,127,57
+    LTEXT           "Uninstall is complete but the following files could not be removed because they are in use or are read-only. Please make a note of them and remove them manually.",
+                    IDC_FAILTEXT,2,4,127,56,NOT WS_VISIBLE
+    LISTBOX         IDC_PROG_LIST,5,63,124,67,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    ICON            IDI_ALERT,IDC_STATIC,58,132,18,18
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DATETIME
+//
+// Date/Time Dialog
+//
+IDD_DATETIME DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL         "Monthcal",IDC_TIME_DATE,"SysMonthCal32",WS_BORDER | WS_TABSTOP |
+                    MCS_NOTODAY,17,2,95,78
+    LTEXT           "&T",IDC_STATIC,0,0,0,0,NOT WS_VISIBLE
+    CONTROL         "DatePick",IDC_TIME_TIME,"SysDateTimePick32",DTS_TIMEFORMAT | DTS_UPDOWN | WS_TABSTOP,30,82,
+                    72,13
+    CONTROL         "Automatically adjust clock for &daylight saving",
+                    IDC_TIME_DLST,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP
+                     ,3,123,88,19
+    LTEXT           "Time &Zone",IDC_STATIC,2,100,37,8
+    COMBOBOX        IDC_TIME_ZONE,2,110,126,64,CBS_DROPDOWNLIST | CBS_SORT |
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Apply",IDC_TIME_APPLY,91,126,32,14
+
+END
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_CERTS
+// TODO: Identical to Landscape. Needs to be modified for Portrait
+//
+// Certificate Store property page
+//
+IDD_CERTROOTS_TAB DIALOG DISCARDABLE  0, 0, 132, 132
+STYLE WS_CHILD | WS_CLIPSIBLINGS
+BEGIN
+    COMBOBOX        IDC_CERTSTORE_SELECT,7,7,92,50,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "",IDC_CERTCPL_STATIC_STORE,7,27,
+                    72,31
+    LISTBOX         IDC_CERTROOTS_LIST,2,68,70,52,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "&Import..",IDC_CERTROOTS_IMPORT,77,65,50,14
+    PUSHBUTTON      "&View..",IDC_CERTROOTS_VIEW,77,86,50,14
+    PUSHBUTTON      "&Remove",IDC_CERTROOTS_REMOVE,77,107,50,14
+END
+
+#if 0
+IDD_CERTPROP_GENERAL DIALOG DISCARDABLE  0, 0, 132, 130
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Certificate Summary Information"
+BEGIN
+    LTEXT             "",IDC_SUBJECT_EDIT,65,66,60,10
+    LTEXT             "",IDC_ISSUER_EDIT,65,82,60,10
+    LTEXT             "",IDC_GOODFOR_EDIT,5,18,121,18
+    LTEXT             "",IDC_CERT_ISSUER_WARNING_EDIT,6,47,121,11
+    LTEXT           "Issued To:",IDC_STATIC,5,66,41,10
+    LTEXT           "Issued By:",IDC_STATIC,5,81,41,11
+    LTEXT           "This certificate may be used for:",IDC_STATIC,12,2,104,
+                    13
+    LTEXT           "Valid From:",IDC_STATIC,5,97,41,11
+    LTEXT           "Valid Until:",IDC_STATIC,5,113,41,11
+    LTEXT           "",IDC_VALID_FROM,65,99,60,10
+    LTEXT           "",IDC_VALID_UNTIL,65,113,60,10
+END
+#endif
+
+IDD_IMPORTCERT DIALOG DISCARDABLE  0, 0, 132, 107
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | DS_CENTER
+#ifndef APSTUDIO_INVOKED
+EXSTYLE WS_EX_CAPTIONOKBTN 
+#endif
+CAPTION "Import Certificate or Key"
+BEGIN
+    CONTROL         "From a &File",IDC_RADIO_FILECERT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,7,10,69,10
+    CONTROL         "From a &Smart Card",IDC_RADIO_CARDCERT,"Button",
+                    BS_AUTORADIOBUTTON | WS_DISABLED | WS_TABSTOP,7,30,76,10
+    LTEXT           "&Reader",IDC_STATIC_READER,18,47,33,12,WS_DISABLED
+    COMBOBOX        IDC_COMBO_SMARTCARD,56,47,72,60,CBS_DROPDOWNLIST | 
+                    WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Card",IDC_STATIC_CARD,18,65,34,11,WS_DISABLED
+    LTEXT           "Absent",IDC_STATIC_CARDNAME,56,65,69,12,WS_DISABLED
+    LTEXT           "Friendly &name",IDC_STATIC,7,86,48,12
+    EDITTEXT        IDC_EDIT_FRIENDLYNAME,61,86,67,12,ES_AUTOHSCROLL
+END
+
+IDD_ENTERKEYPASSWORD DIALOG DISCARDABLE  0, 0, 132, 36
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Private Key Password"
+BEGIN
+    EDITTEXT        IDC_PASSWORD0,16,7,99,16,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+// This is *not* a property page
+IDD_CERTIFICATE_PROMPT DIALOG DISCARDABLE  0, 0, 134, 150
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU | DS_CENTER
+CAPTION "Root Certificate Store"
+BEGIN
+    LTEXT           "", IDC_CertificateMessage,5,2,120,16
+    LTEXT            "", IDC_CertificateText,5,30,125,100
+
+    PUSHBUTTON      "&Yes",IDYES,30,135,30,14
+    DEFPUSHBUTTON   "&No",IDNO,75,135,30,14
+END
+
+
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_ACCESSIB
+//
+// Accessibility property page
+//
+// Keyboard tab
+IDD_ACC_KEYBD DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use StickyKeys if you want to use Shift, Ctrl, or Alt key by pressing one key at a time.",
+                    IDC_STATIC,41,10,80,35
+    CONTROL         "Use StickyKeys",IDC_ACC_USESTICKY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,49,63,9
+    PUSHBUTTON      "Settings...",IDC_ACC_STICKYSETTINGS,75,46,47,14
+    ICON            IDI_ACC_STICKY,IDC_STATIC,7,15,20,20
+    GROUPBOX        "StickyKeys",IDC_STATIC,2,2,126,62
+    LTEXT           "Use ToggleKeys if you want to hear tones when pressing CapsLock, NumLock, and ScrollLock.",
+                    IDC_STATIC,35,78,86,35
+    CONTROL         "Use ToggleKeys",IDC_ACC_USETOGGLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,116,67,9
+    PUSHBUTTON      "Settings...",IDC_ACC_TOGGLESETTINGS,77,116,45,14
+    ICON            IDI_ACC_TOGGLE,IDC_STATIC,7,84,20,20
+    GROUPBOX        "ToggleKeys",IDC_STATIC,2,65,126,70
+END
+
+// This is *not* a property page
+IDD_ACCD_STICKYSETTINGS DIALOG 0, 0, 132, 118
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for StickyKeys"
+BEGIN
+    LTEXT           "The shortcut for StickyKeys is: Press the <Shift> key five times.",
+                    IDC_STATIC,47,10,76,28
+    ICON            IDI_ACC_SHORTCUT,IDC_STATIC,13,22,21,20
+    CONTROL         "Use shortcut",IDC_ACCD_STICKYSHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,47,45,52,9
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,1,2,130,59
+    CONTROL         "Press modifier key twice to lock",IDC_ACCD_STKLOCK,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,10,74,114,14
+    CONTROL         "Make sounds when modifier key is pressed",
+                    IDC_ACCD_STKSOUNDMOD,"Button",BS_AUTOCHECKBOX | 
+                    BS_MULTILINE | WS_TABSTOP,10,94,114,16
+    GROUPBOX        "Options and Notification",IDC_STATIC,1,62,130,55
+END
+
+// This is *not* a property page
+IDD_ACCD_TOGGLESETTINGS DIALOG 0, 0, 132, 71
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for ToggleKeys"
+BEGIN
+    LTEXT           "The shortcut for ToggleKeys is:  \nHold down <Num Lock> for eight seconds.",
+                    IDC_STATIC,46,18,79,34
+    ICON            IDI_ACC_SHORTCUT,IDC_STATIC,13,22,20,20
+    CONTROL         "Use shortcut",IDC_ACCD_TOGGLESHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,46,54,60,10
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,5,7,122,61
+END
+
+// Sound tab
+IDD_ACC_SOUND DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use SoundSentry if you want Windows to generate visual warnings when your system makes a sound.",
+                    IDC_STATIC,38,21,83,48
+    CONTROL         "Use SoundSentry",IDC_ACC_USESNDSENTRY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,20,86,91,10
+    ICON            IDI_ACC_SNDSENTRY,IDC_STATIC,6,30,21,20
+    PUSHBUTTON      "Settings...",IDC_ACC_SNDSETTINGS,40,109,50,14
+    GROUPBOX        "SoundSentry",IDC_STATIC,1,6,128,124
+END
+
+// This is *not* a property page
+IDD_ACCD_SOUNDSETTINGS DIALOG 0, 0, 132, 71
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for SoundSentry"
+BEGIN
+    LTEXT           "Choose the visual warning for sounds made by the following types of programs:",
+                    IDC_STATIC,4,5,123,25
+    LTEXT           "Warning for windowed programs",IDC_STATIC,13,35,104,10
+    COMBOBOX        IDC_ACCD_SNDSETWARNING,13,52,104,100,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+//Display Tab
+IDD_ACC_DISP DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use this option if you want Windows to use colors and fonts designed for easy reading.",
+                    IDC_STATIC,41,26,69,45
+    CONTROL         "Use High Contrast",IDC_ACC_USEHIGHCONT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,24,84,83,10
+    ICON            IDI_ACC_DISP,IDC_STATIC,11,29,21,20
+    PUSHBUTTON      "Settings...",IDC_ACC_DISPSETTINGS,40,106,50,14
+    GROUPBOX        "High Contrast",IDC_STATIC,1,6,128,124
+END
+
+// This is *not* a property page
+IDD_ACCD_DISPSETTINGS DIALOG 0, 0, 132, 106
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for High Contrast"
+BEGIN
+    LTEXT           "The shortcut for High Contrast is: Press <Left Alt+Left Shift+Print Screen>.",
+                    IDC_STATIC,53,15,76,35
+    ICON            IDI_ACC_SHORTCUT,IDC_STATIC,13,22,20,20
+    CONTROL         "Use shortcut",IDC_ACCD_HIGHSHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,53,52,70,10
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,2,3,130,66
+    CONTROL         "White on black",IDC_ACCD_HCWHITEBLACK,"Button",
+                    BS_AUTORADIOBUTTON,5,84,60,10
+    CONTROL         "Black on white",IDC_ACCD_HCBLACKWHITE,"Button",
+                    BS_AUTORADIOBUTTON,70,84,59,10
+    GROUPBOX        "High Contrast color scheme",IDC_STATIC,2,71,130,33
+END
+
+// Mouse Tab
+IDD_ACC_MOUSE DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    LTEXT           "Use MouseKeys if you want to control the pointer with the numeric keypad on your keyboard.",
+                    IDC_STATIC,47,27,74,44
+    CONTROL         "Use MouseKeys",IDC_ACC_USEMOUSEKEYS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,23,82,91,10
+    ICON            IDI_ACC_MKEYS,IDC_STATIC,14,29,21,20
+    PUSHBUTTON      "Settings...",IDC_ACC_MSETTINGS,41,104,50,14
+    GROUPBOX        "MouseKeys",IDC_STATIC,1,6,128,124
+END
+
+// This is *not* a property page
+IDD_ACCD_MOUSESETTINGS DIALOG 0, 0, 132, 123
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Settings for MouseKeys"
+BEGIN
+    LTEXT           "The shortcut for MouseKeys is:Press <Left Alt+Left Shift+Num Lock>",
+                    IDC_STATIC,4,11,121,18
+    CONTROL         "Use shortcut",IDC_ACCD_MOUSESHORT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,33,30,52,9
+    GROUPBOX        "Keyboard shortcut",IDC_STATIC,2,3,128,38
+    LTEXT           "Top speed:",IDC_STATIC,3,53,40,8
+    LTEXT           "Acceleration:",IDC_STATIC,3,68,42,8
+    CONTROL         "",IDC_ACCD_MTOPSPEED,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_TABSTOP,52,54,72,10
+    CONTROL         "",IDC_ACCD_MACCEL,"msctls_trackbar32",TBS_AUTOTICKS | 
+                    WS_TABSTOP,52,68,72,10
+    CONTROL         "To increase mouse speed, press and hold CTRL.",
+                    IDC_ACCD_MHOLDKEYS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,
+                    5,82,122,16
+    LTEXT           "Use MouseKeys when NumLock is:",IDC_STATIC,3,103,83,17
+    CONTROL         "On",IDC_ACCD_NUMON,"Button",BS_AUTORADIOBUTTON,95,103,
+                    25,9
+    CONTROL         "Off",IDC_ACCD_NUMOFF,"Button",BS_AUTORADIOBUTTON,95,113,
+                    25,9
+    GROUPBOX        "Pointer speed",IDC_STATIC,2,41,128,60
+
+END
+
+// General tab
+IDD_ACC_GEN DIALOG DISCARDABLE  0, 0, 132, 140
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL         "Turn off accessibility features",IDC_ACC_IDLECHK,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,13,24,106,14
+    LTEXT           " after idle for:",IDC_STATIC,23,41,61,8
+    COMBOBOX        IDC_ACC_GENCOMBO,20,58,48,30,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "minutes",IDC_STATIC,71,60,27,8
+    GROUPBOX        "Automatic reset",IDC_STATIC,4,9,123,78
+    CONTROL         "Make a sound when turning",IDC_ACC_SOUNDONOFFCHK,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,12,107,102,13
+    LTEXT           "a feature on or off",IDC_STATIC,23,121,87,8
+    GROUPBOX        "Notification",IDC_STATIC,4,94,123,40
+
+END
+
+//@CESYSGEN ENDIF
+
+
+//@CESYSGEN ENDIF CPLMAIN_PORTRAIT

@@ -1,0 +1,2890 @@
+<html>
+<head>
+<title>
+DCL Public API: C Library
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Public API: C Library
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Public API: C Library">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        The DCL C Library functions internally by Datalight products.
+        Typically these functions are used rather than the similarly named,
+        general Standard C library functions.  Typically this is done for
+        compatibility, portability, and code size reasons.
+
+<p>        These functions are NOT intended to be complete, 100% ANSI C
+        compatible implementations, but rather are designed address
+        specific needs.
+
+<p>        See the specific function headers for more information about
+        departures from the ANSI standard, and missing or extended
+        functionality.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclAtoI">DclAtoI</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert an ASCII string to an integer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclAtoL">DclAtoL</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Converts an ASCII number into an unsigned long integer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclHtoUL">DclHtoUL</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert a hexadecimal ASCII number into a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLtoA">DclLtoA</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Format a signed 32-bit integer as a base 10 ASCII string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMemCmp">DclMemCmp</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Compare the contents of two buffers.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMemCpy">DclMemCpy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Copy a non-overlapping memory buffer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMemCpyAligned">DclMemCpyAligned</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Copy an aligned memory buffer from one location to another.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMemMove">DclMemMove</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Move buffer contents from one address to another.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMemSet">DclMemSet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initialize a memory buffer with the specified character.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMemSetAligned">DclMemSetAligned</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initialize an aligned memory buffer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMultiByteToWideChar">DclMultiByteToWideChar</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert a multibyte (UTF8) string to a wide character (UNICODE)
+    string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNtoUL">DclNtoUL</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert the ASCII number pointed to by pachNum to a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> 
+    value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclPrintf">DclPrintf</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Print formatted data with a variable length argument list.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclRand">DclRand</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	Generate a 32-bit pseudo-random number.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclRand64">DclRand64</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Generate a 64-bit pseudo-random number.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclSNPrintf">DclSNPrintf</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Format arguments into a string using a subset of the ANSI C
+    vsprintf functionality, with several extensions to support
+    Datalight specific requirements.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrCat">DclStrCat</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function concatenates one null-terminated string onto
+    the end of another.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrChr">DclStrChr</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Find a character within a null-terminated string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrCmp">DclStrCmp</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a case sensitive string compare.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrCpy">DclStrCpy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Copy a null-terminated string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrICmp">DclStrICmp</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a case-insensitive string compare.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrLen">DclStrLen</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get the length of a null-terminated string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrNCat">DclStrNCat</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function concatenates the first N characters from one
+    null-terminated string onto the end of another.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrNChr">DclStrNChr</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Find a character within a null-terminated string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrNCmp">DclStrNCmp</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Limited length case sensitive compare.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrNCpy">DclStrNCpy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function copies up to N characters of a null-terminated
+    string to a destination buffer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrNICmp">DclStrNICmp</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a case-insensitive comparison of the first N characters
+    in a string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStrRChr">DclStrRChr</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Find the last occurance of a character within a null-terminated
+    string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclULLtoA">DclULLtoA</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Format an unsigned 64-bit integer as an ASCII string in the
+    given base.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclULtoA">DclULtoA</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Format an unsigned 32-bit integer as an ASCII string in the
+    given base.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclVPrintf">DclVPrintf</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Print formatted data using a pointer to a variable length
+    argument list.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclVSNPrintf">DclVSNPrintf</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Format arguments into a string using a subset of the ANSI C
+    vsprintf functionality, with several extensions to support
+    Datalight specific requirements.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclWideCharToMultiByte">DclWideCharToMultiByte</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert a wide character (UNICODE) string to a multibyte (UTF8)
+    string.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclAtoI"></a>
+<a NAME="DclAtoI"></a>
+DclAtoI
+</h3>
+<div class=Api>
+int <font class=ApiName>DclAtoI</font>(
+    const char *pach)
+</div>
+<div class=SectionText>
+
+    Convert an ASCII string to an integer.  Converts an ASCII number
+    into an unsigned integer.  Converts all decimal digit numbers up
+    to the end of the string or to the first non-numerical character.
+
+<p>    Note that this function does NOT ignore leading white space.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pach
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to a constant array of characters.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an integer represented in the string.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclAtoL"></a>
+<a NAME="DclAtoL"></a>
+DclAtoL
+</h3>
+<div class=Api>
+long <font class=ApiName>DclAtoL</font>(
+    const char     *pach)
+</div>
+<div class=SectionText>
+
+    Converts an ASCII number into an unsigned long integer.
+    Converts all decimal digit numbers up to the end of the
+    string or to the first non-numerical character.
+
+<p>    Note that this function does NOT ignore leading white
+    space.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pach
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to a constant array of characters.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a long integer represented in the string.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclHtoUL"></a>
+<a NAME="DclHtoUL"></a>
+DclHtoUL
+</h3>
+<div class=Api>
+const char * <font class=ApiName>DclHtoUL</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char *pachNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>   *pulNum)
+</div>
+<div class=SectionText>
+
+    Convert a hexadecimal ASCII number into a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> value.  The
+    function processes all hex digits up to a NUL-terminator, or
+    to the first non-hex character.  Only hexadecimal digits are
+    processed, so leading white space, or a leading "0x" prefix are
+    not allowed.
+
+<p>    If pachNum points to an empty string (points to a NUL), this
+    function will return NULL, and the value at *pulNum will not
+    be modified.
+
+<p>    <b>Warning</b> -- This function does not check for overflow.  If there
+                 are more significant digits than can be represented
+                 in a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> variable, the output is unspecified.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pachNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a constant array of hex characters.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the location in which to store the
+                  <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> result.  Upon return, this value will be
+                  modified ONLY if the function succeeds and the
+                  returned pointer is valid (not NULL).
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the byte following the converted number,
+        or NULL to indicate failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLtoA"></a>
+<a NAME="DclLtoA"></a>
+DclLtoA
+</h3>
+<div class=Api>
+size_t <font class=ApiName>DclLtoA</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char               *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t             *pnBufferLen,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_INT32>D_INT32</a>             lNum,<br>&nbsp;&nbsp;&nbsp;
+    size_t              nFillLen,<br>&nbsp;&nbsp;&nbsp;
+    char                cFill)
+</div>
+<div class=SectionText>
+
+    Format a signed 32-bit integer as a base 10 ASCII string.
+
+<p>    <b>Note</b> -- If the output buffer length is exhausted, the
+    result will <b>NOT</b> be null-terminated.
+
+<p>    <b>Note</b> -- If the nFillLen value is greater than or equal to the
+    buffer length, the result will not be null-terminated, even if
+    the formatted portion of the data is shorter than the buffer
+    length.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The output buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pnBufferLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the output buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+lNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 32-bit signed number to convert
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nFillLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The fill length, if any
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+cFill
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The fill character to use
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a size_t type containing the length of the string.
+        On exit, the value pointed to by pnBufferLen will be adjusted
+        to reflect the buffer space remaining.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMemCmp"></a>
+<a NAME="DclMemCmp"></a>
+DclMemCmp
+</h3>
+<div class=Api>
+int <font class=ApiName>DclMemCmp</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const void *            pBuff1,<br>&nbsp;&nbsp;&nbsp;
+    const void *            pBuff2,<br>&nbsp;&nbsp;&nbsp;
+    size_t                  nLen)
+</div>
+<div class=SectionText>
+
+    Compare the contents of two buffers.  This function is similar
+    to the standard C memcmp function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuff1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to first buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuff2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to second buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length to compare
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+> 0
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer 1 is greater than Buffer 2
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+= 0
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer 1 is equal to Buffer 2
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+< 0
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer 1 is less than Buffer 2
+</td>
+</tr>
+</table>
+
+<p>
+
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMemCpy"></a>
+<a NAME="DclMemCpy"></a>
+DclMemCpy
+</h3>
+<div class=Api>
+void * <font class=ApiName>DclMemCpy</font>(<br>&nbsp;&nbsp;&nbsp; 
+    void *          pDst,<br>&nbsp;&nbsp;&nbsp;
+    const void *    pSrc,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    Copy a non-overlapping memory buffer.  Copy a memory buffer from
+    one location to another.  This is similar to the standard C
+    memcpy function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the source buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length to copy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the original destination pointer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMemCpyAligned"></a>
+<a NAME="DclMemCpyAligned"></a>
+DclMemCpyAligned
+</h3>
+<div class=Api>
+void * <font class=ApiName>DclMemCpyAligned</font>(<br>&nbsp;&nbsp;&nbsp; 
+    void                   *pDst,<br>&nbsp;&nbsp;&nbsp;
+    const void             *pSrc,<br>&nbsp;&nbsp;&nbsp;
+    size_t                  nLen)
+</div>
+<div class=SectionText>
+
+    Copy an aligned memory buffer from one location to another.
+    This is similar to the standard C memcpy function.
+
+<p>    Note that not only must the source and destination buffers
+    be aligned on <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> boundaries, but the nLen
+    parameter as well must be evenly divisible by <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the source buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length to copy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the original destination pointer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMemMove"></a>
+<a NAME="DclMemMove"></a>
+DclMemMove
+</h3>
+<div class=Api>
+void * <font class=ApiName>DclMemMove</font>(<br>&nbsp;&nbsp;&nbsp; 
+    void *          pDst,<br>&nbsp;&nbsp;&nbsp;
+    const void *    pSrc,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    Move buffer contents from one address to another.  This is
+    similar to the standard C memmove function in that it will
+    handle overlapping memory regions.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the source buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length to copy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the original destination pointer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMemSet"></a>
+<a NAME="DclMemSet"></a>
+DclMemSet
+</h3>
+<div class=Api>
+void * <font class=ApiName>DclMemSet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    void *          pDst,<br>&nbsp;&nbsp;&nbsp;
+    int             chr,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    Initialize a memory buffer with the specified character.
+    This is similar to the standard C memset function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+chr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The fill character
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length to fill
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the original destination pointer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMemSetAligned"></a>
+<a NAME="DclMemSetAligned"></a>
+DclMemSetAligned
+</h3>
+<div class=Api>
+void * <font class=ApiName>DclMemSetAligned</font>(<br>&nbsp;&nbsp;&nbsp; 
+    void           *pDst,<br>&nbsp;&nbsp;&nbsp;
+    int             chr,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    Initialize an aligned memory buffer.
+    This is similar to the standard C memset function.
+
+<p>    Note that not only must the destination buffer be aligned on
+    <a HREF=UD660_DataTypes.c.htm#DCL_ALIGNTYPE>DCL_ALIGNTYPE</a> boundaries, but the nLen parameter as well must
+    be evenly divisible by <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_ALIGNSIZE>DCL_ALIGNSIZE</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the source buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length to copy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the original destination pointer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMultiByteToWideChar"></a>
+<a NAME="DclMultiByteToWideChar"></a>
+DclMultiByteToWideChar
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclMultiByteToWideChar</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char *pMultiByteStr,<br>&nbsp;&nbsp;&nbsp;
+    int         iMultiByteStrLen,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>   *pWideCharBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t      nWideCharBufLimit,<br>&nbsp;&nbsp;&nbsp;
+    size_t     *pnNumConverted)
+</div>
+<div class=SectionText>
+
+    Convert a multibyte (UTF8) string to a wide character (UNICODE)
+    string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pMultiByteStr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to the multibyte source string to
+                            convert.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+iMultiByteStrLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Size, in bytes, of the string indicated
+                            by pMultiByteStr.  If this parameter is
+                            set to -1, the function assumes the string
+                            is null terminated and calculates the
+                            length automatically, including the null
+                            terminator.  If this parameter is 0, the 
+                            function returns failure.  If this parameter
+                            is greater than 0, then this function
+                            converts the specified number of multibyte
+                            characters into wide chararacters, regardless
+                            of embedded null characters.  The resulting
+                            wide char character string may not be null
+                            terminated.  Null characters in the source 
+                            string will be processed and converted to
+                            wide characters.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pWideCharBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to a buffer that recieves the
+                            converted wide character string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nWideCharBufLimit
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Maximum size, in <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> values, of the
+                            buffer indicated by pWideCharBuffer.  If
+                            this parameter is set to 0, the function
+                            returns the required buffer size for
+                            pWideCharBuffer and makes no use of the
+                            output parameter itself.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pnNumConverted
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If conversion is successful, this contains
+                            the number of <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> values written to
+                            the buffer indicated by pWideCharBuffer
+                            including the null terminating character.
+                            If successful and nWideCharBufLimit is 0,
+                            the return value is the required size, in
+                            <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> values, for the buffer indicated
+                            by pWideCharBuffer.  If this parameter is
+                            not provided, the function returns failure.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNtoUL"></a>
+<a NAME="DclNtoUL"></a>
+DclNtoUL
+</h3>
+<div class=Api>
+const char * <font class=ApiName>DclNtoUL</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char *pachNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>   *pulNum)
+</div>
+<div class=SectionText>
+
+    Convert the ASCII number pointed to by pachNum to a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> 
+    value.  The number may be hex or decimal.  Hex numbers must be
+    prefixed by '0x', and they may be upper or lower case.  The 
+    conversion process will stop with the first non hex or decimal
+    digit.
+
+<p>    If the number is negative (the first character is a '-' sign),
+    the value will be range checked and returned as the equivalent
+    unsigned value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pachNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ASCII number to convert
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> location to store the
+                  result.  This value will be modified on return only
+                  if the function succeeds and the returned pointer
+                  is valid (not NULL).
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the byte following the converted number,
+        or NULL to indicate failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclPrintf"></a>
+<a NAME="DclPrintf"></a>
+DclPrintf
+</h3>
+<div class=Api>
+int <font class=ApiName>DclPrintf</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *pszFmt,<br>&nbsp;&nbsp;&nbsp;
+    ...)
+</div>
+<div class=SectionText>
+
+    Print formatted data with a variable length argument list.
+
+<p>    This function provides a subset of the ANSI C printf
+    functionality with several extensions to support fixed
+    size data types.
+
+<p>    See <a HREF="#DclVSNPrintf">DclVSNPrintf</a> for the list of supported types.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszFmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated format string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+...
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The variable length argument list
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an int containing the length processed.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclRand"></a>
+<a NAME="DclRand"></a>
+DclRand
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>DclRand</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>   *pulSeed)
+</div>
+<div class=SectionText>
+
+	Generate a 32-bit pseudo-random number. 
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pulSeed
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the seed to use.  Set this value to
+                  NULL to use the internal global seed value.  This
+                  may result in non-deterministic results in a 
+                  multithreaded environment.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        A pseudo-random number in the range [0, <a HREF=UD690_PreprocSymbols.c.htm#D_UINT32_MAX>D_UINT32_MAX</a>].
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclRand64"></a>
+<a NAME="DclRand64"></a>
+DclRand64
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a> <font class=ApiName>DclRand64</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a>       *pullSeed)
+</div>
+<div class=SectionText>
+
+    Generate a 64-bit pseudo-random number.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pullSeed
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the seed to use.  Set this value to
+                   NULL to use the internal global seed value.  This
+                   may result in non-deterministic results in a 
+                   multithreaded environment.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        A pseudo-random number in the range [0, <a HREF=UD690_PreprocSymbols.c.htm#D_UINT64_MAX>D_UINT64_MAX</a>].
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclSNPrintf"></a>
+<a NAME="DclSNPrintf"></a>
+DclSNPrintf
+</h3>
+<div class=Api>
+int <font class=ApiName>DclSNPrintf</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    int             nBufferLen,<br>&nbsp;&nbsp;&nbsp;
+    const char     *pszFmt,<br>&nbsp;&nbsp;&nbsp;
+    ...)
+</div>
+<div class=SectionText>
+
+    Format arguments into a string using a subset of the ANSI C
+    vsprintf functionality, with several extensions to support
+    Datalight specific requirements.
+
+<p>    This function is modeled after the Microsoft _snprint
+    extension to the ANSI C sprintf function, and allows
+    a buffer length to be specified so that overflow is avoided.
+
+<p>    See <a HREF="#DclVSNPrintf">DclVSNPrintf</a> for the list of supported types.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the output buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The output buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszFmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null terminated format string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+...
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Variable argument list
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the length output, or -1 if the buffer filled up.
+        If -1 is returned, the output buffer may not be null-
+        terminated.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrCat"></a>
+<a NAME="DclStrCat"></a>
+DclStrCat
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclStrCat</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char       *pszDst,<br>&nbsp;&nbsp;&nbsp;
+    const char *pszSrc)
+</div>
+<div class=SectionText>
+
+    This function concatenates one null-terminated string onto
+    the end of another.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszSrt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the source string.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pszDst
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrChr"></a>
+<a NAME="DclStrChr"></a>
+DclStrChr
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclStrChr</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char *pszStr,<br>&nbsp;&nbsp;&nbsp;
+    int         c)
+</div>
+<div class=SectionText>
+
+    Find a character within a null-terminated string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+szStr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null terminated string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+cChar
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The character to find.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the character in the string, if found,
+        or NULL otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrCmp"></a>
+<a NAME="DclStrCmp"></a>
+DclStrCmp
+</h3>
+<div class=Api>
+int <font class=ApiName>DclStrCmp</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *psz1,<br>&nbsp;&nbsp;&nbsp;
+    const char     *psz2)
+</div>
+<div class=SectionText>
+
+    Perform a case sensitive string compare.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszStr1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to null-terminated string 1
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszStr2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to null-terminated string 2
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns 0 if the strings are equal.  Returns 1 if string 1 is
+        greater than string 2.  Return -1 if string 2 is greater than
+        string 1.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrCpy"></a>
+<a NAME="DclStrCpy"></a>
+DclStrCpy
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclStrCpy</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char           *pszDst,<br>&nbsp;&nbsp;&nbsp;
+    const char     *pszSrc)
+</div>
+<div class=SectionText>
+
+    Copy a null-terminated string.  This function copies a
+    null-terminated string to a destination buffer.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated string to copy.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pszDst.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrICmp"></a>
+<a NAME="DclStrICmp"></a>
+DclStrICmp
+</h3>
+<div class=Api>
+int <font class=ApiName>DclStrICmp</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *psz1,<br>&nbsp;&nbsp;&nbsp;
+    const char     *psz2)
+</div>
+<div class=SectionText>
+
+    Perform a case-insensitive string compare.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszStr1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to null-terminated string 1
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszStr2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to null-terminated string 2
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns 0 if the strings are equal.  Returns 1 if string 1 is
+        greater than string 2.  Return -1 if string 2 is greater than
+        string 1.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrLen"></a>
+<a NAME="DclStrLen"></a>
+DclStrLen
+</h3>
+<div class=Api>
+size_t <font class=ApiName>DclStrLen</font>(
+    const char *pszStr)
+</div>
+<div class=SectionText>
+
+    Get the length of a null-terminated string.  Determines the
+    length of a string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszStr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null terminated string
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4> 
+        Returns the length of the string
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrNCat"></a>
+<a NAME="DclStrNCat"></a>
+DclStrNCat
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclStrNCat</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char       *pszDst,<br>&nbsp;&nbsp;&nbsp;
+    const char *pszSrc,<br>&nbsp;&nbsp;&nbsp;
+    size_t      nCount)
+</div>
+<div class=SectionText>
+
+    This function concatenates the first N characters from one
+    null-terminated string onto the end of another.  The final
+    resulting string will always be null-terminated.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the source string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of characters to append.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pszDst.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrNChr"></a>
+<a NAME="DclStrNChr"></a>
+DclStrNChr
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclStrNChr</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char * pszStr,<br>&nbsp;&nbsp;&nbsp;
+    int iLen,<br>&nbsp;&nbsp;&nbsp;
+    int c)
+</div>
+<div class=SectionText>
+
+    Find a character within a null-terminated string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszStr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null terminated string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+iLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of characters to search in the string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+c
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The character to find.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the character in the string, if found,
+        or NULL otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrNCmp"></a>
+<a NAME="DclStrNCmp"></a>
+DclStrNCmp
+</h3>
+<div class=Api>
+int <font class=ApiName>DclStrNCmp</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *psz1,<br>&nbsp;&nbsp;&nbsp;
+    const char     *psz2,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    Limited length case sensitive compare.  Perform a case insensitive
+    string compare with a limit on the number of characters.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+psz1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a string fragment or null terminated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+psz2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a string fragment or null terminated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Length to compare.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns 0       No difference
+        Returns +/-1    Different
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrNCpy"></a>
+<a NAME="DclStrNCpy"></a>
+DclStrNCpy
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclStrNCpy</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char           *pszDst,<br>&nbsp;&nbsp;&nbsp;
+    const char     *pszSrc,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    This function copies up to N characters of a null-terminated
+    string to a destination buffer.  The result will not be
+    null-terminated if the source string is longer than N-1
+    characters.
+
+<p>    If the source string is shorter than N-1 characters, the
+    remainder of the destination buffer will be filled with
+    NULLs.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszDst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated string to copy
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The maximum number of characters to copy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the original pszDst value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrNICmp"></a>
+<a NAME="DclStrNICmp"></a>
+DclStrNICmp
+</h3>
+<div class=Api>
+int <font class=ApiName>DclStrNICmp</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *psz1,<br>&nbsp;&nbsp;&nbsp;
+    const char     *psz2,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    Perform a case-insensitive comparison of the first N characters
+    in a string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszStr1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to null-terminated string 1
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszStr2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to null-terminated string 2
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The maximum length to compare
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns 0 if the strings are equal.  Returns 1 if string 1 is
+        greater than string 2.  Return -1 if string 2 is greater than
+        string 1.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStrRChr"></a>
+<a NAME="DclStrRChr"></a>
+DclStrRChr
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclStrRChr</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char * pszStr,<br>&nbsp;&nbsp;&nbsp;
+    int c)
+</div>
+<div class=SectionText>
+
+    Find the last occurance of a character within a null-terminated
+    string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+szStr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null terminated string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+cChar
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The character to find.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the character in the string, if found,
+        or NULL otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclULLtoA"></a>
+<a NAME="DclULLtoA"></a>
+DclULLtoA
+</h3>
+<div class=Api>
+size_t <font class=ApiName>DclULLtoA</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char               *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t             *pnBufferLen,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a>           *pullNum,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nRadix,<br>&nbsp;&nbsp;&nbsp;
+    size_t              nFillLen,<br>&nbsp;&nbsp;&nbsp;
+    char                cFill)
+</div>
+<div class=SectionText>
+
+    Format an unsigned 64-bit integer as an ASCII string in the
+    given base.  16 and 10 are common, but any base from 2 to 16
+    will work.  A radix of 2 or 16 will be padded to length with
+    the value in cFill.
+
+<p>    Note that if the output buffer length is exhausted, the
+    result will <b>NOT</b> be null-terminated.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The output buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pnBufferLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the output buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pullNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the unsigned 64-bit number to
+                       convert
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nRadix
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The radix to use (2 through 16)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nFillLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The fill length, if any
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+cFill
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The fill character to use
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a size_t type containing the length of the string.
+        On exit, the value pointed to by pnBufferLen will be adjusted
+        to reflect the buffer space remaining.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclULtoA"></a>
+<a NAME="DclULtoA"></a>
+DclULtoA
+</h3>
+<div class=Api>
+size_t <font class=ApiName>DclULtoA</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char               *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t             *pnBufferLen,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulNum,<br>&nbsp;&nbsp;&nbsp;              Fixed width 32-bit    
+    unsigned            nRadix,<br>&nbsp;&nbsp;&nbsp;
+    size_t              nFillLen,<br>&nbsp;&nbsp;&nbsp;
+    char                cFill)
+</div>
+<div class=SectionText>
+
+    Format an unsigned 32-bit integer as an ASCII string in the
+    given base.  16 and 10 are common, but any base from 2 to 16
+    will work.  A radix of 2 or 16 will be padded to length with
+    the value in cFill.
+
+<p>    Note that if the output buffer length is exhausted, the
+    result will <b>NOT</b> be null-terminated.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The output buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pnBufferLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the output buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 32-bit unsigned number to convert
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nRadix
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The radix to use (2 through 16)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nFillLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The fill length, if any
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+cFill
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The fill character to use
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a size_t type containing the length of the string.
+        On exit, the value pointed to by pnBufferLen will be adjusted
+        to reflect the buffer space remaining.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclVPrintf"></a>
+<a NAME="DclVPrintf"></a>
+DclVPrintf
+</h3>
+<div class=Api>
+int <font class=ApiName>DclVPrintf</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *pszFmt,<br>&nbsp;&nbsp;&nbsp;
+    va_list         arglist)
+</div>
+<div class=SectionText>
+
+    Print formatted data using a pointer to a variable length
+    argument list.
+
+<p>    This function provides a subset of the ANSI C vprintf
+    functionality with several extensions to support fixed
+    size data types.
+
+<p>    See <a HREF="#DclVSNPrintf">DclVSNPrintf</a> for the list of supported types.
+
+<p>    This function accommodates a maximum output length of
+    <a HREF=UD140_ProjectSettings.c.htm#DCLOUTPUT_BUFFERLEN>DCLOUTPUT_BUFFERLEN</a>.  If this function must truncate the
+    output, and the original string was \n terminated, the
+    truncated output will be \n terminated as well.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszFmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated format string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+arglist
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The variable length argument list
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an int containing the length processed, or zero if
+        an error occurred.  Running out of buffer space is not
+        considered an error -- the output is simply truncated and
+        the length which was processed is returned.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclVSNPrintf"></a>
+<a NAME="DclVSNPrintf"></a>
+DclVSNPrintf
+</h3>
+<div class=Api>
+int <font class=ApiName>DclVSNPrintf</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    int             nBufferLen,<br>&nbsp;&nbsp;&nbsp;
+    const char     *pszFmt,<br>&nbsp;&nbsp;&nbsp;
+    va_list         arglist)
+</div>
+<div class=SectionText>
+
+    Format arguments into a string using a subset of the ANSI C
+    vsprintf functionality, with several extensions to support
+    Datalight specific requirements.
+
+<p>    This function is modeled after the Microsoft _vsnprint
+    extension to the ANSI C vsprintf function, and requires
+    a buffer length to be specified so that overflow is avoided.
+
+<p>    The following ANSI standard formatting codes are supported.
+      
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+%c
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a character
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%s
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a null-terminated ANSI string
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%hd  %hu
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a signed/unsigned short
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%d   %u
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a signed/unsigned integer
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%ld  %lu
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a signed/unsigned long
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%hx
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a short in hex
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%x
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format an integer in hex
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%lx
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a long in hex
+</td>
+</tr>
+</table>
+
+<p>
+    The following Datalight specific formatting codes are supported.
+      
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+%W
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a Unicode string
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%P
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a pointer (32-bit hex value)
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%D   %U
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a fixed 16-bit signed/unsigned integer
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%lD  %lU
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a fixed 32-bit signed/unsigned integer
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%llD %llU
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a fixed 64-bit signed/unsigned integer
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%X
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a fixed 16-bit integer in hex
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%lX
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a fixed 32-bit integer in hex
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%llX
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a fixed 64-bit integer in hex
+</td>
+</tr>
+
+<p>      
+<tr class=Def>
+<td class=Def>
+%T
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Format a <a HREF=UD660_DataTypes.c.htm#D_TIME>D_TIME</a> value (passed by address)
+</td>
+</tr>
+</table>
+
+<p>
+    Fill characters and field widths are supported per the ANSI
+    standard, as is left justification with the '-' character.
+
+<p>    The only supported fill characters are '0' and ' '.
+
+<p>    '*' is supported to specify variable length field widths.
+
+<p>    <h4>Unicode String Support</h4>
+      In environments where Unicode is supported, the format
+      strings must still be ANSI.  Any Unicode string parameters
+      are converted to ANSI in the output buffer.
+
+<p>      If %W is used in an environment where <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_OSFEATURE_UNICODE>DCL_OSFEATURE_UNICODE</a>
+      is FALSE, the string will be treated as a standard ANSI
+      string.  This allows common code which may be compiled for
+      both ANSI and Unicode environments to properly display
+      strings where the type is not known.
+
+<p>    <h4>Special behavior for hex numbers</h4>
+    <ul>
+<li>If a fill length is not specified, the output number will
+      always be prefixed with a "0x", and number will consume the
+      full potential width (4, 8, or 16 characters for 16, 32, or
+      64-bit numbers), and the number will be padded with leading
+      zeros as needed.
+</ul>
+    <ul>
+<li>Note that hexadecimal displays are always uppercase with the
+      exception of the leading "0x".
+</ul>
+    <h4>Formatting the time with %T</h4>
+      The %T format specifier allows a <a HREF=UD660_DataTypes.c.htm#D_TIME>D_TIME</a> value to be output
+      in the form: "Jul 05 13:08:27 2003".  The <a HREF=UD660_DataTypes.c.htm#D_TIME>D_TIME</a> value must
+      be passed by address.  If a NULL pointer is passed instead
+      the current time will be queried with DclOsDateTimeGet.
+
+<p>    <h4>Unsupported behaviors</h4>
+      <ul>
+<li>Precision is not supported.
+      <li>Floating point is not supported.
+</ul>
+    <h4>Errata</h4>
+    <ul>
+<li>Systems where pointers are something other than 32-bits
+      will get undefined behavior when using %P.
+</ul>
+    <ul>
+<li>Displaying 64-bit signed numbers with a leading fill
+      character will result in the sign being displayed to the
+      left of the fill characters (need a DclLLtoA function).
+</ul>
+    <ul>
+<li>ANSI string parameters which have a null pointer will
+      display the text "null", however Unicode string parameters
+      which have a null pointer will display nothing.
+</ul>
+    <ul>
+<li>There is a subtle difference in the return value for this
+      function versus the Microsoft implementation.  In the
+      Microsoft version, if the buffer exactly fills up, but
+      there is no room for a null-terminator, the return value
+      will be the length of the buffer.  In this code, -1 will
+      be returned when this happens.
+</ul>
+    <ul>
+<li>When using left justified strings, the only supported fill
+      character is a space, regardless of what may be specified.
+      It is not clear if this is ANSI standard or just the way
+      the Microsoft function works, but we emulate the Microsoft
+      behavior.
+</ul>
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the output buffer
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The output buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszFmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null terminated ANSI format
+                     string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+arglist
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Variable argument list
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the length output, or -1 if the buffer filled up.
+        If -1 is returned, the output buffer may not be null-
+        terminated.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclWideCharToMultiByte"></a>
+<a NAME="DclWideCharToMultiByte"></a>
+DclWideCharToMultiByte
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclWideCharToMultiByte</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> *pWideCharStr,<br>&nbsp;&nbsp;&nbsp;
+    int             iWideCharStrLen,<br>&nbsp;&nbsp;&nbsp;
+    char           *pMultiByteBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nMultiByteBufLimit,<br>&nbsp;&nbsp;&nbsp;
+    size_t         *pnNumConverted)
+</div>
+<div class=SectionText>
+
+    Convert a wide character (UNICODE) string to a multibyte (UTF8)
+    string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pWideCharStr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to the wide character source
+                             string to convert.
+        iWideCharStrLen      Size, in <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> values, of the string
+                             indicated by pWideCharStr.  If this
+                             parameter is set -1, the function assumes
+                             the string to be null terminated and
+                             calculates the length automatically,
+                             including the null terminator.  If this
+                             parameter is 0, the function returns
+                             failure.  If this parameter is greater
+                             than 0, then this function converts the
+                             specified number of wide characters into
+                             multibyte chararacters regardless of
+                             embedded null characters.  The resulting
+                             multibyte character string may not be
+                             null terminated.  Null characters in the
+                             source string will be processed and
+                             converted to multibyte characters.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pMultiByteBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to a buffer that recieves the
+                             converted multibyte character string.
+        nMultiByteBufLimit   Maximum size, in bytes, of the buffer
+                             indicated by pMultiByteBuffer.  If this
+                             parameter is set to 0, the function
+                             returns the required buffer size for
+                             pMultiByteBuffer and makes no use of the
+                             output parameter itself.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pnNumConverted
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If conversion is successful, this contains
+                             the number of bytes written to the buffer
+                             indicated by pMultiByteBuffer including
+                             the null terminating character.  If the
+                             function succeeds and nMultiByteBufLimit
+                             is 0, the return value is the required
+                             size, in bytes, for the buffer indicated
+                             by pMultiByteBuffer.  If this parameter
+                             is passed as NULL, the function returns
+                             failure.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the operation result.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

@@ -1,0 +1,81 @@
+#----------------------------------------------------------------------------
+#				Description
+#
+#	This make file controls	the generation of the FXPROJ library.  It is
+#	designed for use with GNU Make or compatibles.
+#
+#	The functionality of the various OS Services and Hooks modules can
+#	be overridden by copying the files into this directory and modifying
+#	the functionality as needed.  The standard build process will auto-
+#	matically prevent the default files from building.
+#
+#	The default FlashFX OS Services modules are located in the directory
+#	P_ROOT\os\P_OS\services.
+#
+#	The default FlashFX OS Hooks modules are located in the directory
+#	P_ROOT\os\P_OS\hooks.
+#----------------------------------------------------------------------------
+
+#----------------------------------------------------------------------------
+#				Revision History
+#	$Log: ffxproj.mak $
+#	Revision 1.5  2009/07/18 17:05:32Z  garyp
+#	Merged from the v4.0 branch.  Moved to the new mechanism of building
+#	FlashFX project code, where DCL specific modules are now handled in
+#	dclproj.mak, and exclusion handling is automatic.
+#	Revision 1.4  2006/08/07 15:39:19Z  timothyj
+#	Added dependencies.
+#	Revision 1.3  2006/03/17 01:50:43Z  timothyj
+#	Added fhdevice.c, containing OneNAND-specific implementation of
+#	FfxHookDeviceCreate().
+#	Revision 1.2  2006/03/09 23:48:59Z  timothyj
+#	Added fhoption.c, which is necessary for retrieving the OneNAND base
+#	address.
+#	Revision 1.1  2005/10/01 09:35:24Z  Pauli
+#	Initial revision
+#----------------------------------------------------------------------------
+
+
+#--------------------------------------------------------------------
+#	Settings
+#--------------------------------------------------------------------
+
+# Define extra general include paths
+B_LOCALINC =
+
+
+#--------------------------------------------------------------------
+#	Source Modules
+#--------------------------------------------------------------------
+
+# List headers and includes unique to the Project Directory
+#
+PROJHEADERS  =
+PROJINCLUDES =
+
+# Use ffx*.c and fh*.c wildcards to list all the FlashFX source files
+# to build, with FFXPROJEXCLUDE defining any FlashFX source files in
+# this directory which should be skipped.
+#
+FFXPROJSOURCE   	:= $(wildcard ffx*.c fh*.c oe*.c)
+FFXPROJEXCLUDE =
+
+
+#--------------------------------------------------------------------
+#	Boilerplate Project Build Logic
+#--------------------------------------------------------------------
+
+include	$(P_ROOT)\product\projdef.mak
+
+
+#--------------------------------------------------------------------
+#	Dependencies
+#--------------------------------------------------------------------
+
+ffxmain.$(B_OBJEXT)  : $(PROJHEADERS) ffxmain.c
+fhoption.$(B_OBJEXT) : $(PROJHEADERS) fhoption.c
+fhdevice.$(B_OBJEXT) : $(PROJHEADERS) fhdevice.c
+fh1nand.$(B_OBJEXT)  : $(PROJHEADERS) fh1nand.c
+
+
+

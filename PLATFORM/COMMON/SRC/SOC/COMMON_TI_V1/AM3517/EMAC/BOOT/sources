@@ -1,0 +1,9 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!INCLUDE "..\..\sources.inc"
+
+TARGETNAME=$(AM3517)_boot_emac
+TARGETTYPE=LIBRARY
+
+CDEFINES=$(CDEFINES) -DBOOT_MODE
+
+SOURCES = ..\emac.c

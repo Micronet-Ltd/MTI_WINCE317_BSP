@@ -1,0 +1,16 @@
+;
+; Datalight FlashFX Pro Flash Media Manager
+;
+; The following lines must be added to the PROJECT.BIB to include the
+; drivers, utilities, and tests in the build image.
+;
+; NOTE:  The "Q" flag indicates to CE 6 that the code can run in user or
+;        kernel mode.  The flag is ignored for CE 5.  If you are using an
+;        earlier version of CE, or WinMobile, the "Q" flag may need to be
+;        removed.
+;
+
+; MODULES
+;   Name            Path                                           Memory Type
+;   --------------  ---------------------------------------------  -----------
+    flashfx.dll     $(_FLATRELEASEDIR)\flashfx.dll                 NK  SHQ

@@ -1,0 +1,41 @@
+
+TARGETNAME=oscommon
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+!IF "$(TI_ZOOM2_PLATFORM)"=="1"
+INCLUDES= \
+	$(_TARGETPLATROOT)\SRC\CSP\INC; \
+	$(_PLATFORMROOT)\COMMON\SRC\INC; \
+	$(_TARGETPLATROOT)\SRC\CSP\OMAP3430\INC; \
+	$(_TARGETPLATROOT)\SRC\CSP\OMAP\INC; \
+	$(_PUBLICROOT)\COMMON\SDK\INC; \
+	$(_PUBLICROOT)\COMMON\DDK\INC; \
+	$(_PUBLICROOT)\COMMON\OAK\INC; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\utils; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\os\winmobile\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\Txn; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\TWDriver; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\FirmwareApi; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\FW_Transfer\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\TwIf; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\os\common\inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Application; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Connection_Managment; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Ctrl_Interface; \
+
+!ENDIF
+INCLUDES= \
+        $(INCLUDES); \
+        $(OS_ROOT)\src; \
+
+SOURCES= \
+osRgstry.c \
+tracebuf.c
+
+
+

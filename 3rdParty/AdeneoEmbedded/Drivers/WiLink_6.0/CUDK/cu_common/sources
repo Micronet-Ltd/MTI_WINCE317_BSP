@@ -1,0 +1,29 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+
+!IF "$(BSP_NOWILINK4)"=="1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=cu_common
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+
+!INCLUDE $(DK_ROOT)\sources_cudk.cmn
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+TARGETLIBS= \
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\aygshell.lib \
+    $(_PROJECTROOT)\cesysgen\oak\lib\$(_CPUINDPATH)\coredll.lib
+    
+CDEFINES= $(CDEFINES) \
+	-D_USER_MODE
+
+# Ensure there are no trailing spaces
+SOURCES= \
+    cu_cmd.c \
+    cu_common.c

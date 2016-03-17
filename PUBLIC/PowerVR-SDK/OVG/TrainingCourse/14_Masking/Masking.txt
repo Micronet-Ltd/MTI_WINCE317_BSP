@@ -1,0 +1,14 @@
+
+Demo title: 		Masking
+
+Demonstrates: 		How to use the alpha mask in OpenVG
+
+Short Description:	How to use the alpha mask in OpenVG
+
+Full Description:	
+
+This training course shows how to use an OpenVG image to set up the alpha mask.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

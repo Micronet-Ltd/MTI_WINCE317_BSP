@@ -1,0 +1,40 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+
+!IF "$(BSP_NOWILINK4)"=="1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=logger
+TARGETTYPE=PROGRAM
+RELEASETYPE=PLATFORM
+
+!INCLUDE $(DK_ROOT)\sources_cudk.cmn
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+!IF "$(TI_ZOOM2_PLATFORM)"=="1"
+SDKLIBS=$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)
+!ELSE
+SDKLIBS=$(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)
+!ENDIF
+TARGETLIBS= $(SDKLIBS)\coredll.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\osapi_um.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\cu_common.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\ws2.lib
+	
+	
+
+EXEENTRY=mainACRTStartup
+
+CDEFINES= $(CDEFINES) \
+	-D_USER_MODE \
+	-DEXTENDED_API
+
+# Ensure there are no trailing spaces
+SOURCES= \
+    os_trans.c \
+    log_conn.c \
+    logger.c

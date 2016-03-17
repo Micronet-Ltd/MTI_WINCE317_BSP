@@ -1,0 +1,2119 @@
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this sample source code is subject to the terms of the Microsoft
+; license agreement under which you licensed this sample source code. If
+; you did not accept the terms of the license agreement, you are not
+; authorized to use this sample source code. For the terms of the license,
+; please see the license agreement between you and Microsoft or, if applicable,
+; see the LICENSE.RTF on your install media or the root of your tools installation.
+; THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+;
+; Copyright (c) 2007, 2013 2008 Micronet Ltd. All rights reserved.
+; by Vladimir Zatulovsky
+;
+;
+;               Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+;
+;   Use of this software is controlled by the terms and conditions found
+;   in the license agreement under which this software has been supplied.
+;
+;===============================================================================
+
+
+;===============================================================================
+
+;-------------------------------------------------------------------------------
+; HIVE BOOT SECTION
+; @CESYSGEN IF CE_MODULES_SHELL
+; Register OMAP specific shell extension
+[HKEY_LOCAL_MACHINE\Software\Microsoft\TxtShell\Extensions]
+    "OMAP Extension"="omap_shell.dll"
+; @CESYSGEN ENDIF CE_MODULES_SHELL
+; END HIVE BOOT SECTION
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+; HIVE BOOT SECTION
+IF IMGCELOGENABLE
+[HKEY_LOCAL_MACHINE\System\CeLog]
+    "ZoneCE"=dword:00010000
+    "Transport"="CESH"
+    "FlushTimeout"=dword:7D0            ; 2000 ms per flush
+    "SavedFlushes"=dword:1             ; 16 x 2000 ms = 32 seconds
+    "FileName"="\\release\\celog.clg"
+
+ENDIF
+; END HIVE BOOT SECTION
+;-------------------------------------------------------------------------------
+
+;===============================================================================
+
+;===============================================================================
+; @CESYSGEN IF CE_MODULES_DEVICE
+
+; Registry entry "Flags" tells device manager how to load device driver,
+; we are using following flags:
+;
+; Each device which have to be started in boot has to have set
+; DEVFLAGS_BOOTPHASE_1 (0x00001000)
+;     Device should be started in boot phase 1.
+; DEVFLAGS_TRUSTEDCALLER_ONLY (0x00010000)
+;     Device can be accessed from trusted applications only.
+;
+
+;-- CEDDK Configuration---------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_CEDDK
+;
+; StallCounter is # of instructions for 1 microsec (0x85 @ 266MHz, 0xA5 @ 330MHz) 
+[HKEY_LOCAL_MACHINE\System\Ceddk]
+    "StallCounter"=dword:A5
+
+; @CESYSGEN ENDIF CE_MODULES_CEDDK
+;-------------------------------------------------------------------------------
+
+[HKEY_LOCAL_MACHINE\Init]
+	"Launch77"="afdp.exe"
+	"Depend77"=hex:14,00,1E,00,32,00
+	"Launch78"="\\Storage Card\\Startup\\micdcm.exe"
+	"Depend78"=hex:14,00,1E,00,32,00
+	"Launch79"="psc.exe"
+	"Depend79"=hex:14,00,1E,00,32,00
+	
+;-------------------------------------------------------------------------------
+; @CESYSGEN IF FILESYS_FSREGHIVE
+; HIVE BOOT SECTION
+;
+; We want start both storage and device manager. Flags value is combination of
+;   0x0001  Start storage manager in boot phases 0 and 1 to load the boot
+;           file system.
+;   0x0002  Start device manager in boot phase 1 to load the boot file system.
+;
+[HKEY_LOCAL_MACHINE\Init\BootVars]
+ 	"SystemHive"="Documents and Settings\\RHF\\System.hv"
+	"UserHive"="Documents and Settings\\RHF\\User.hv"
+	"PROFILEDIR"="Documents and Settings\\RHF"
+	"DefaultUser"="Admin"
+	"Start DevMgr"=dword:1
+	"Flags"=dword:3
+	"RegistryFlags"=dword:2
+; END HIVE BOOT SECTION
+; @CESYSGEN ELSE
+
+; @CESYSGEN ENDIF FILESYS_FSREGHIVE
+;-------------------------------------------------------------------------------
+
+;-- Storage Manager Configuration ----------------------------------------------
+; @CESYSGEN IF CE_MODULES_FSDMGR
+;
+; HIVE BOOT SECTION
+
+; When a bootable persistent storage device is mounted, redirect ObjectStore
+; database operations to a volume file on the device. This will be the same
+; storage device where the registry hives are stored on FSREGHIVE builds.
+[HKEY_LOCAL_MACHINE\System\ObjectStore]
+    "DefaultDBVol"="RAM Disk\\default.vol"
+
+[HKEY_LOCAL_MACHINE\System\StorageManager] 
+	"Flags"=dword:1000 
+IF BSP_FLASHFX	
+#include "$(_WINCEROOT)\3rdParty\Datalight\flashfx\projects\beagleboard\flashfx.reg"
+ENDIF
+IF BSP_FLASHFX !	
+[HKEY_LOCAL_MACHINE\System\StorageManager\AutoLoad\NFD]
+    "DriverPath"="Drivers\\BuiltIn\\MSFlash"
+    "MountAsBootable"=dword:1
+    "BootPhase"=dword:1
+    "LoadFlags"=dword:1
+	
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\NFD]
+    "DriverPath"="Drivers\\BuiltIn\\MSFlash"
+    "CheckForFormat"=dword:1
+    "MountAsBootable"=dword:1
+	"AutoMount"=dword:1
+	"AutoPart"=dword:1
+	"AutoFormat"=dword:1
+    "LoadFlags"=dword:1
+    "BootPhase"=dword:1
+	"FormatTFAT"=dword:1
+    "Order"=dword:0
+	"DefaultFileSystem"="EXFAT" 
+	"Name"="NAND Flash Storage"
+	"Folder"="Flash Disk"						; NAND File Storage
+	"PartitionDriver"="mspart.dll" 
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\NFD\FATFS]
+    "MountAsRoot"=dword:1
+	"MountPermanent"=dword:1 
+    "MountAsBootable"=dword:1
+	"AutoMount"=dword:1
+	"AutoPart"=dword:1
+	"AutoFormat"=dword:1
+    "Flags"=dword:00000014
+    "FormatExfat"=dword:1
+    "FormatTFAT"=dword:1
+    "EnableWriteBack"=dword:1
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\AutoLoad\ObjectStore]
+   "Folder"="RAM Disk"
+   "MountPermanent"=dword:0
+   "MountAsBootable"=dword:0
+   "MountAsRoot"=dword:0
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\EXFAT]
+    "DisableAutoFormat"=dword:0
+;    "DisableAutoScan"=dword:0
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\FATFS]
+    "DisableAutoFormat"=dword:0
+;    "DisableAutoScan"=dword:0
+ENDIF
+; END HIVE BOOT SECTION
+; @CESYSGEN ENDIF CE_MODULES_FSDMGR
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+; HIVE BOOT SECTION
+IF BSP_NOBUS !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn]
+    "Prefix"="BUS"
+    "Dll"="bus.dll"
+    "MemBase"=multi_sz:"48005200","48004800","48004D00","48004C00","48005000","48004A00","48004900","48004E00","48004B00","48004F00","48005300","48005100"
+    "MemLen"=multi_sz:"00000100","00000100","00000100","00000100","00000100","00000100","00000100","00000100","00000100","00000100","00000100","00000100"
+    "BusName"="BuiltIn"
+    "Flags"=dword:00010000
+    "BusIoctl"=dword:2a0048
+    "InterfaceType"=dword:0
+    ; CE_DRIVER_BUILTIN_BUS_GUID, CE_DRIVER_BUS_GUID
+    "IClass"=multi_sz:"{B3CC6EBA-5507-4196-8E41-2BF42E4A47C9}=%b",
+                      "{6F40791D-300E-44E4-BC38-E0E63CA8375C}=%b"
+                      
+ENDIF BSP_NOBUS !
+; END HIVE BOOT SECTION
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+;-------------------------------------------------------------------------------
+
+;-- Power Management Extension -------------------------------------------------
+; @CESYSGEN IF CE_MODULES_PM
+; @CESYSGEN IF GWES_MGBASE
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+; HIVE BOOT SECTION
+IF BSP_NOPMEXT !
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\Extension\Omap]
+    "Dll"="pmext.dll"
+    "ConstraintRoot"="\\OMAPPMX\\Constraints"
+    "PowerPolicyRoot"="\\OMAPPMX\\Policies"
+
+IF BSP_NODVFS !
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\DVFS]
+    "Order"=dword:100
+    "Name"="DVFS"
+    "OpmInit"=dword:4                           ;kOpm4
+    "OpmFloor"=dword:0                          ;kOpm0
+    "OpmCeiling"=dword:4                        ;kOpm4
+    ;MPU1Map lists the MPU/IVA OPP associated with each OPM (0..4)
+    ;MPU (VDD1) kOpp values for each kOpm value (kOpm0, kOpm1, ..., kOpm4) see inc\bsp_opp_map.h
+	;Each MPU kOpp value represents a VDD1 voltage, MPU DPLL1 frequency and IVA2 (DSP) DPLL2 frequency triple used fo each kOpm
+    "MPU1Map"=multi_sz:"0","0","1","2","3"
+	;CORE1Map lists the CORE OPP associated with each OPM (0..4) 
+    ;CORE (VDD2) kOpp values for each kOpm value (kOpm0, kOpm1, ..., kOpm6) see inc\bsp_opp_map.h
+	;Each CORE kOpp value represents a VDD2 voltage and CORE DPLL3 frequency pair used for each kOpm
+    "CORE1Map"=multi_sz:"0","1","1","1","1"
+    "Dll"="ti_constraintadapters.dll"
+    "ConstraintClass"="00000001"                ;DVFS Constraint class
+ENDIF BSP_NODVFS !
+
+IF BSP_NOINTRLAT !
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\INTRLAT]
+    "Order"=dword:100
+    "Name"="INTRLAT"
+    "min"=dword:0                               ;min interrupt latency in ticks
+    "max"=dword:7FFFFFFF                        ;max interrupt latency in ticks
+    "Dll"="ti_constraintadapters.dll"
+ENDIF BSP_NOINTRLAT !
+
+IF BSP_NOPWRDOM !
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN]
+    "Order"=dword:99
+    "Name"="PWRDOM"
+    "Dll"="ti_constraintadapters.dll"
+
+    ; set the Floor and Ceiling D states (D0 thru D4) for each OMAP35xx power domain.
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\MPU]
+    "Floor"=dword:2                             ;0=D0, 4=D4
+    "Ceiling"=dword:0
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\IVA]
+    "Floor"=dword:4                             ;0=D0, 4=D4
+    "Ceiling"=dword:0
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\CORE]
+    "Floor"=dword:3                             ;0=D0, 4=D4
+    "Ceiling"=dword:0
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\PERIPHERAL]
+    "Floor"=dword:4                             ;0=D0, 4=D4
+    "Ceiling"=dword:0    
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\SGX]
+    "Floor"=dword:4                             ;0=D0, 4=D4
+    "Ceiling"=dword:0
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\DSS]
+    "Floor"=dword:4                             ;0=D0, 4=D4
+    "Ceiling"=dword:0
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\CAMERA]
+    "Floor"=dword:4                             ;0=D0, 4=D4
+    "Ceiling"=dword:0
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\USBHOST]
+    "Floor"=dword:4                             ;0=D0, 4=D4
+    "Ceiling"=dword:0  
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Constraints\POWERDOMAIN\NEON]
+    "Floor"=dword:4                             ;0=D0, 4=D4
+    "Ceiling"=dword:0  
+ENDIF BSP_NOPWRDOM !
+
+[HKEY_LOCAL_MACHINE\OMAPPMX\Policies\DEVMON]
+    "Order"=dword:100
+    "Name"="DEVMON"
+    "Dll"="ti_policies.dll"
+    ;LATENCY_STATE_CHIP_OFF      0, CORE+MPU+OTHER = OFF",
+    ;LATENCY_STATE_CHIP_OSWR     1, CORE+OTHER = OSWR, MPU = CSWR",
+    ;LATENCY_STATE_CHIP_CSWR     2, CORE+OTHER = CSWR, MPU = CSWR",
+    ;LATENCY_STATE_CORE_CSWR     3, OTHER=OFF/OSWR/CSWR/INACTIVE, CORE = CSWR, MPU=CSWR",
+    ;LATENCY_STATE_CORE_INACTIVE 4, OTHER=OFF/OSWR/CSWR/INACTIVE, CORE = INACTIVE, MPU=CSWR",
+    ;LATENCY_STATE_MPU_INACTIVE  5, OTHER=OFF/OSWR/CSWR/INACTIVE, CORE+MPU = INACTIVE"
+	; CSWR = Clock Stopped With Retention
+	; OSWR = Off State With Retention
+    "SuspendState"=dword:0
+
+IF BSP_NOCPUPOLICY !
+[HKEY_LOCAL_MACHINE\OMAPPMX\Policies\CPULOAD]
+    "Order"=dword:999
+    "Name"="CPULD"
+    "Dll"="ti_cpuloadpolicy.dll"
+    "MonitorPeriod"=dword:1f4
+    "MonitorWindow"=dword:7d0                   ;2 second monitor window
+    "CeilingOpm"=dword:4
+    "FloorOpm"=dword:0
+    ;"NominalOpm"=dword:3
+    "BootOpm"=dword:4                           
+    "InterruptThreshold"=dword:41               ;cpu-load for sw interrupt- 65%
+    "BootEventName"="Shell_Ready"
+    "BootTimeout"=dword:ea60                    ;60 sec max wait for bootup
+    "priority256"=dword:63
+    "irq"=dword:65                              ;cpu load interrupt
+
+    ; OpmFrequency has one entry per operating mode (kOpm0..kOpm9), uppercase hex values
+    "OpmFrequency"=multi_sz:"12C","12C","258","320","3E8","0","0","0","0","0"
+    ;"OpmFrequency"=multi_sz:"300","300","600","800","1000","0","0","0","0","0" ;in decimal for reference
+
+    ; OpmThreshold has one entry per operating mode (kOpm0..kOpm9), uppercase hex values
+    "OpmThreshold"=multi_sz:"64","FA","1F4","2BC","3E8","0","0","0","0","0"
+    ;"OpmThreshold"=multi_sz:"100","250","500","700","1000","0","0","0","0","0"  ;in decimal for reference
+ENDIF BSP_NOCPUPOLICY !
+
+IF BSP_NOSMARTREFLEXPOLICY !
+[HKEY_LOCAL_MACHINE\OMAPPMX\Policies\SMARTREFLEX]
+    "Order"=dword:999
+    "Name"="SMARTREFLEX"
+    "Dll"="ti_policies.dll"
+    "SensingPeriod"=dword:3e8
+    "SensingDelay"=dword:3e8
+    "LprOffOpm"=dword:2                           ;opm2
+ENDIF BSP_NOSMARTREFLEXPOLICY !
+
+IF BSP_NOSYSSTATEPOLICY !
+[HKEY_LOCAL_MACHINE\OMAPPMX\Policies\SYSTEMSTATE]
+    "Order"=dword:999
+    "Name"="SYSTEMSTATE"
+    "Dll"="ti_systemstatepolicy.dll"
+    "UserOpm"=dword:2                        ; opm = 2 for user active state
+    "priority256"=dword:61
+ENDIF BSP_NOSYSSTATEPOLICY !
+
+ENDIF BSP_NOPMEXT !
+; END HIVE BOOT SECTION
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+; @CESYSGEN ENDIF GWES_MGBASE
+; @CESYSGEN ENDIF CE_MODULES_PM
+;-------------------------------------------------------------------------------
+
+;-- DMA Driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NODMA !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\DMA]
+    "Prefix"="DMA"
+    "Dll"="dma.dll"
+    "Index"=dword:1
+    "Order"=dword:2
+    "PowerFlags"=dword:00000103              ; no notifications
+    "MemBase"=multi_sz:"48056000"
+    "MemLen"=multi_sz:"00001000"
+    "IrqSystem"=dword:0C
+    "IrqSysDedicated0"=dword:0D
+    "IrqSysDedicated1"=dword:0E
+    "IrqSysDedicated2"=dword:0F
+    "priority256"=dword:61
+ENDIF BSP_NODMA !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- VRFB Driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOVRFB !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\VRFB]
+    "Prefix"="VRF"
+    "Dll"="vrfb.dll"
+    "Index"=dword:1
+    "Order"=dword:3
+    "PowerFlags"=dword:00000100              ; context restore notifications only
+    "MemBase"=multi_sz:"6C000164"
+    "MemLen"=multi_sz:"00000400"
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOVRFB !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- NAND Flash Drivers ---------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_FSDMGR
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+IF BSP_NONAND !
+; HIVE BOOT SECTION
+IF BSP_FLASHFX !	
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MSFlash]
+    "Dll"="nand.dll"
+    "Prefix"="DSK"
+    "Index"=dword:0
+    "Order"=dword:0
+	"BootPhase"=dword:0
+    "Flags"=dword:1000
+	"FSD"="exfat.dll"
+    "MemBase"=multi_sz:"6E000000","08000000"
+    "MemLen"=multi_sz:"00001000","00001000"
+    ;"DmaCh"=dword:3
+    ; CE_DRIVER_BLOCK_GUID
+    "IClass"=multi_sz:"{A4E7EDDA-E575-4252-9D6B-4195D48BB865}",
+					  "{8DD679CE-8AB4-43c8-A14A-EA4963FAA715}"
+    "Profile"="NFD"
+    "Flags"=dword:1000
+ENDIF
+; END HIVE BOOT SECTION
+ENDIF BSP_NONAND !
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+; @CESYSGEN ENDIF CE_MODULES_FSDMGR
+;-------------------------------------------------------------------------------
+
+;-- GPIO Driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOGPIO !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\GPIO]
+    "Prefix"="GIO"
+    "Dll"="gpio.dll"
+    "Index"=dword:1
+    "Order"=dword:7
+    "PowerFlags"=dword:00000000              ; no notifications 
+    "OmapGpio"=multi_sz:"48310000","49050000","49052000","49054000","49056000","49058000"
+    "OmapGpioLen"=multi_sz:"00001000","00001000","00001000","00001000","00001000","00001000"
+ENDIF BSP_NOGPIO !
+
+;-- AIO Driver ----------------------------------------------------------------
+IF BSP_AIODRIVER
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\AIO\files\aio.reg"
+ENDIF BSP_AIODRIVER
+
+
+;-- GPS Driver ----------------------------------------------------------------
+IF BSP_GPS
+;#include "$(_TARGETPLATROOT)\SRC\DRIVERS\GPRS\files\gprs.reg"
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\GPS\files\gps.reg"
+;#include "$(_TARGETPLATROOT)\SRC\DRIVERS\GPS\files\CP210xVCP.reg"
+ENDIF BSP_GPS
+
+
+;-- GPRS Driver ----------------------------------------------------------------
+IF BSP_GPRS
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\GPRS\files\gprs.reg"
+;#include "$(_TARGETPLATROOT)\SRC\DRIVERS\GPS\files\CP210xVCP.reg"
+ENDIF BSP_GPRS
+
+;-- OWR Driver ----------------------------------------------------------------
+IF BSP_OWRDRIVER
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\OWR\files\owr.reg"
+ENDIF BSP_OWRDRIVER
+
+;-- CAN Driver ----------------------------------------------------------------
+IF BSP_CAN
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\CAN\files\CANBD.reg"
+ENDIF BSP_CAN
+
+;-- CDS Driver ----------------------------------------------------------------
+;IF BSP_CDS
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\CDS\files\cds.reg"
+;ENDIF BSP_CDS
+
+;-- USBAUDIOCLASS Driver ----------------------------------------------------------------
+IF BSP_NOUSBAUDIOCLASS !
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\USBAUDIOCLASS\usbaudio.reg"
+ENDIF BSP_NOUSBAUDIOCLASS
+
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\vsp\vsp.reg"
+
+;-- TELIT EVDO Driver ----------------------------------------------------------
+IF BSP_NO_TELIT_USB_DE910 !
+;#include "$(_TARGETPLATROOT)\SRC\DRIVERS\CC864_DE910\ril.reg"
+IF BSP_TELITUSB_DE910
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\Telit_DE910\USB\CDCDriver_DE910.reg"
+ENDIF BSP_TELITUSB_DE910
+ENDIF BSP_NO_TELIT_USB_DE910 !
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- SPI Driver -----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOSPI !
+IF BSP_NOSPI1 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SPI1]
+    "Prefix"="SPI"
+    "Dll"="spi.dll"
+    "Index"=dword:1
+    "Order"=dword:8
+    "MemBase"=multi_sz:"48098000"
+    "MemLen"=multi_sz:"00000100"
+    "Timeout"=dword:300
+    "Irq"=dword:41          ;IRQ_SPI1
+    "PowerFlags"=dword:00000103              ; send pre/post device state changes
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOSPI1 !
+
+IF BSP_NOSPI2 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SPI2]
+    "Prefix"="SPI"
+    "Dll"="spi.dll"
+    "Index"=dword:2
+    "Order"=dword:8
+    "MemBase"=multi_sz:"4809A000"
+    "MemLen"=multi_sz:"00000100"
+    "Timeout"=dword:300
+    "Irq"=dword:42          ;IRQ_SPI2
+    "PowerFlags"=dword:00000103              ; send pre/post device state changes
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOSPI2 !
+
+IF BSP_NOSPI3 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SPI3]
+    "Prefix"="SPI"
+    "Dll"="spi.dll"
+    "Index"=dword:3
+    "Order"=dword:8
+    "MemBase"=multi_sz:"480B8000"
+    "MemLen"=multi_sz:"00000100"
+    "Timeout"=dword:300
+    "Irq"=dword:43          ;IRQ_SPI3
+    "PowerFlags"=dword:00000103              ; send pre/post device state changes
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOSPI3 !
+
+IF BSP_NOSPI4 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SPI4]
+    "Prefix"="SPI"
+    "Dll"="spi.dll"
+    "Index"=dword:4
+    "Order"=dword:8
+    "MemBase"=multi_sz:"480BA000"
+    "MemLen"=multi_sz:"00000100"
+    "Timeout"=dword:300
+    "Irq"=dword:30          ;IRQ_SPI4
+    "PowerFlags"=dword:00000103              ; send pre/post device state changes
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOSPI4 !
+
+ENDIF BSP_NOSPI !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- Triton Driver --------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOTWL !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\TWL]
+    "Prefix"="TWL"
+    "Dll"="twl.dll"
+    "Index"=dword:1
+    "Order"=dword:9
+    "I2CBus"=multi_sz:"48070000"
+    "Gpio"=dword:0              ;interrupt is CPU GPIO 0
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+  ;  "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}"
+    "IClass"=multi_sz:"{A32942B8-920C-486b-B0E6-92A702A9AB89}"
+ENDIF BSP_NOTWL !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- Touch Screen driver --------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_POINTER
+; @CESYSGEN IF GWES_TCHUI
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOTOUCH !
+[HKEY_LOCAL_MACHINE\HARDWARE\DEVICEMAP\TOUCH]
+    "DriverName"="touch.dll"
+IF IMGNOCALIBRATION
+    "CalibrationData"="2016,1888 1056,864 992,2912 3040,2976 3072,896"
+ENDIF IMGNOCALIBRATION
+    "MaxCalError"="6"
+	"SPIAddr"=dword:0           		; McSPI1 channel 0
+    "PenGPIO"=dword:67           		; gpio_103
+    "PenUpDebounceMS"=dword:28          ; PenUp debounce time in MS, 0 to disable debounce process
+    "InitialSamplesDropped"=dword:2     ; Number of samples to be dropped after pen down detection
+                                        ; Default is 1
+    ;"SampleRate"=dword:c8              ; samples per second, default is 200
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Touch]
+    ; touch driver thread priority for normal operation
+    ;"Priority256"=dword:6d     ; default is 109
+    ; touch driver thread priority for OOM operation
+    "HighPriority256"=dword:1   ; default is 109
+
+[HKEY_LOCAL_MACHINE\ControlPanel]
+    "InputConfig"=dword:3    ; 3 => keybd and touch screen
+ELSE
+[HKEY_LOCAL_MACHINE\ControlPanel]
+    "InputConfig"=dword:1    ; 1 => keybd
+ENDIF BSP_NOTOUCH !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF GWES_TCHUI
+; @CESYSGEN ENDIF CE_MODULES_POINTER
+;-------------------------------------------------------------------------------
+
+;-- MADC Driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOMADC !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MADC]
+    "Prefix"="ADC"
+    "Dll"="madc.dll"
+    "Index"=dword:1
+    "Order"=dword:10                   ; Should be loaded after Triton driver
+;    "VBAT-Reference"=dword:08A2    ; battery reference for batt. charging
+;    "GPChannelAveraging"=dword:00  ; mask for channel averaging
+;    "USB-BCI Averaging"=dword:00   ; mask for usb-bci averaging
+    ; unknown GUID
+    "OverChargeTimeout"=dword:FFFFFFFF     ; don't handle overcharge states
+    "OverVoltageTimeout"=dword:FFFFFFFF    ; don't handle overvoltage states
+    "OOBTemperatureTimeout"=dword:FFFFFFFF ; don't handle overtemperature states
+    "IClass"="{4B0A21DF-F052-410c-B0CA-6D58BB7E5275}"
+ENDIF BSP_NOMADC !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- LIGHT SENSE Driver ----------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_GWES
+IF BSP_LIGHTSENSE
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\LTSR]
+    "Prefix"="LTS"
+    "Dll"="ltsr.dll"
+    "Index"=dword:1
+    "Order"=dword:12					; Should be loaded after MADC driver
+    "HighLight"=dword:1F4				; 500 mV
+    "LowLight"=dword:3C					; 60 mV
+    "PollTimeout"=dword:7D0				; 2000 ms
+ENDIF BSP_LIGHTSENSE
+; @CESYSGEN ENDIF CE_MODULES_GWES
+
+
+
+; @CESYSGEN IF CE_MODULES_CXPORT
+
+; These registry settings tells the networking protocol stack to periodically
+; signal the Power Manager when any sockets are in the connected state.  They
+; also tell the stack NOT to automatically reset the GWES idle timer (this
+; enables the screen saver).
+[HKEY_LOCAL_MACHINE\Comm\CXPort]
+; @CESYSGEN IF PM_PM_DEFAULT_PDD
+   "NoIdleTimerEvent"=""
+; @CESYSGEN ENDIF ; PM_PM_DEFAULT_PDD
+    "NoIdleTimerReset"=dword:1
+IF PRJ_CXPORT_PHYSHEAP
+    "PhysHeap"=dword:1
+ENDIF
+
+; @CESYSGEN ENDIF CE_MODULES_CXPORT
+
+
+;-- TLED Driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOTLED !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\TWLLED]
+    "Prefix"="TLD"
+    "Dll"="tled.dll"
+    "Index"=dword:1
+    "Order"=dword:11                ; Should be loaded after Triton driver
+ENDIF BSP_NOTLED !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- RTC Driver -----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NORTC !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\RTC]
+    "Prefix"="RTC"
+    "Dll"="rtc.dll"
+    "Index"=dword:1
+    "Order"=dword:12
+    
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "PowerFlags"=dword:00000103              ; send pre/post device state changes
+;    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}"
+     "IClass"=multi_sz:"{A32942B8-920C-486b-B0E6-92A702A9AB89}"
+    "SecureOffset"=dword:0
+ENDIF BSP_NORTC !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- USB OTG, Host & Device Drivers ---------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOUSB !
+
+; @CESYSGEN IF CE_MODULES_USBOTG
+IF BSP_USBOTG
+
+IF BSP_NOUSBHSOTG !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MUSBOTG]
+    "Dll"="musbotg.dll"
+    "Prefix"="OTG"
+    "Order"=dword:63
+    "Index"=dword:1
+    "MemBase"=dword:480AB000
+    "MemLen"=dword:00001000
+    "Irq"=dword:5C
+    "DMAIrq"=dword:5D
+    "InitialRoleMaster"=dword:1
+    "BusIoctl"=dword:2a0048
+    "InterfaceType"=dword:0
+    "USBChargerHighCurrent"=dword:1F4        ; 500mA
+    "USBChargerLowCurrent"=dword:64          ; 100mA
+    "USBChargerNotify"="vbus.power.event"
+    "PowerFlags"=dword:00000103              ; send pre/post device state changes
+    "startupTimeout"=dword:1388              ; at startup wait about 5 seconds before timeout
+    "vbusDischargeTime"=dword:50             ; after suspend interrupt, number of msec to wait before checking VBUS level
+    "DisableHighSpeed"=dword:0               ; some hubs will not enumerate with high speed support enabled
+    ; WM7 only USBBUS_GUID, PMCLASS_PMEXT_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{6F40791D-300E-44E4-BC38-E0E63CA8375C}=%b",
+                      "{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}",
+                      "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+ENDIF BSP_NOUSBHSOTG !
+
+
+; @CESYSGEN IF CE_MODULES_USBFN
+IF BSP_NOUSBHSFN !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MUSBOTG\USBFN]
+    "Prefix"="UFN"
+    "Dll"="musbfn.dll"
+    "Index"=dword:1
+    "Order"=dword:64
+    ; DMA currently not working
+    "EnableDMA"=dword:0
+    ; WM7 only USBBUS_GUID, CE_DRIVER_BUS_GUID, PMCLASS_PMEXT_GUID  
+    "IClass"= multi_sz:"{E2BDC372-598F-4619-BC50-54B3F7848D35}=%b",
+                       "{6F40791D-300E-44E4-BC38-E0E63CA8375C}=%b",
+                       "{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"        
+    "BusIoctl"=dword:2a0048
+    "USBChargerNotify"="vbus.power.event"
+    "BTYPE"=dword:0                      ;"B" plug connected -> 1
+ENDIF BSP_NOUSBHSFN !
+; @CESYSGEN ENDIF CE_MODULES_USBFN
+
+; @CESYSGEN IF CE_MODULES_USBHOST
+IF BSP_NOUSBHSHCD !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MUSBOTG\HCD]
+    "Prefix"="HCD"
+    "Dll"="musbhcd.dll"
+    "Index"=dword:1
+    "Order"=dword:65
+    "Dma"=dword:1
+    ; CE_DRIVER_BUS_GUID, PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{6F40791D-300E-44E4-BC38-E0E63CA8375C}=%b",
+                      "{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+    "BusIoctl"=dword:002a0048
+    ; EVM1 OTG port can supply 100 mA
+    "MaxCurrent"=dword:64
+ENDIF BSP_NOUSBHSHCD !
+; @CESYSGEN ENDIF CE_MODULES_USBHOST
+
+ENDIF BSP_USBOTG
+; @CESYSGEN ENDIF CE_MODULES_USBOTG
+
+; @CESYSGEN IF CE_MODULES_USBHOST
+
+IF BSP_NOUSBEHCI !
+; Note: HS USB ports 1 & 2 (MM1 & MM2) are configured by the EHCI driver for high speed (12 pin) interface
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\USBEHCI]
+    "Dll"="ehcihcd.dll"
+    "Prefix"="EHC"
+    "Order"=dword:46
+    "Index"=dword:1
+    ; The EVM2 ECHI port uses a transceiver that has problems with the EHCI 
+	; controller PHY interface, it will fail after USB bus suspend/resume.
+    ; Designs that use a compatible transceiver can enable this feature.
+    "BusSuspendResume"=dword:0     ; 0 = bus suspend/resume disabled, 1 = enabled
+
+    ; Set the mode for any hsusb ports (mm1, mm2 and mm3) that are use a 12 pin high speed interface
+    ;  0 (not used or uses low/full speed serial interface), 1 (ULPI PHY), 2 (ULPI TLL)
+    "Port1Mode"=dword:1
+
+    "Port2Mode"=dword:0
+    ; port 3 is not supported by the BSP
+    "Port3Mode"=dword:0
+    
+    "MemBase"=dword:00077001            ; psuedo addresses for USB host port 1
+    "MemLen"=dword:00001000
+    "Irq"=dword:4D
+    "BusIoctl"=dword:2a0048
+    "InterfaceType"=dword:0
+    ; CE_DRIVER_BUS_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID   
+    "IClass"=multi_sz:"{6F40791D-300E-44E4-BC38-E0E63CA8375C}=%b",
+                      "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+ENDIF BSP_NOUSBEHCI !
+; @CESYSGEN ENDIF CE_MODULES_USBHOST
+
+
+; @CESYSGEN IF CE_MODULES_SERIALUSBFN
+
+; USB serial driver 
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\FunctionDrivers\Serial_Class]
+    "FriendlyName"="USB Cable:"
+   "DeviceArrayIndex"=dword:0
+   "DeviceType"=dword:0
+    ; CE_DRIVER_SERIAL_PORT_GUID
+   "IClass"="{CC5195AC-BA49-48a0-BE17-DF6D1B0173DD}"
+
+; idVendor must be changed. 045E belongs to Microsoft and is only to be used for
+; prototype devices in your labs. Visit http://www.usb.org to obtain a vendor id.
+   "idVendor"=dword:045E
+;   "idVendor"=dword:045F	; Vladimir: vendor ID must be obtained and registere,
+							; wceusbsh.sys redistribution must be offered
+   "Manufacturer"="Micronet Ltd."
+   "idProduct"=dword:00ce
+   "Product"="CE317 Mobile Data Terminal"
+   "bcdDevice"=dword:0
+
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\FunctionDrivers\Serial_Class\Config]
+    "EnableFlowHard"=dword:0
+    "EnableFlowSoft"=dword:0
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\FunctionDrivers\Serial_Class\Unimodem]
+   "FriendlyName"="USB Cable:"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\FunctionDrivers\Serial_Class\Unimodem\Config]
+    "EnableFlowHard"=dword:0
+    "EnableFlowSoft"=dword:0
+
+[HKEY_LOCAL_MACHINE\Comm\DefaultConnections]
+     "`USB"=multi_sz:"USB Cable:","115200"
+
+;Default Connectoid
+[HKEY_CURRENT_USER\ControlPanel\Comm]
+        "Cnct"="`USB"
+        "AutoCnct"=dword:00000001
+
+[HKEY_CURRENT_USER\Comm\RasBook\`USB]
+"DevCfg"=hex:\
+      30,00,00,00,05,00,00,00,00,01,00,00,00,4b,00,00,00,00,08,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00
+
+"Entry"=hex:\
+      08,02,40,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,70,\
+      e9,29,d9,00,00,00,00,00,00,00,00,00,00,00,00,20,61,1b,88,70,e9,29,d9,08,63,\
+      99,85,b0,47,05,84,00,00,00,00,00,00,00,00,00,00,00,00,00,60,1b,88,20,61,1b,\
+      88,70,e9,29,d9,04,87,99,85,00,00,00,00,84,aa,1e,c0,00,60,1b,88,20,61,1b,88,\
+      18,48,05,84,70,e9,29,d9,08,3a,05,00,00,00,00,00,0a,00,00,00,c0,84,03,84,70,\
+      e9,29,d9,80,92,02,70,00,00,00,00,b4,84,03,84,00,00,00,00,00,00,00,00,00,00,\
+      00,00,60,00,00,00,ad,01,00,00,00,00,00,00,00,00,00,00,00,00,00,00,22,00,00,\
+      00,0a,00,00,00,00,ea,29,d9,20,61,1b,88,00,ea,29,d9,00,60,1b,88,b0,47,05,84,\
+      00,60,1b,88,00,00,00,00,00,00,00,00,08,63,99,85,20,61,1b,88,00,ea,29,d9,04,\
+      87,99,85,2e,00,7f,05,84,aa,1e,c0,00,00,00,00,c0,ea,29,d9,08,48,05,84,00,ea,\
+      29,d9,00,00,00,00,64,f3,04,00,80,92,02,70,c0,84,03,84,00,00,00,00,00,00,00,\
+      00,fc,69,00,d9,d4,96,a0,c0,00,00,00,00,f5,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,01,00,00,00,64,00,69,00,72,\
+      00,65,00,63,00,74,00,00,00,29,d9,00,00,00,00,08,63,99,85,00,60,1b,88,00,00,\
+      00,00,18,5b,55,00,53,00,42,00,20,00,43,00,61,00,62,00,6c,00,65,00,3a,00,00,\
+      00,0a,00,00,00,40,5f,1d,c0,00,d0,f9,d8,80,c0,f9,d8,00,00,00,00,89,01,00,00,\
+      08,bb,1d,c0,80,c0,f9,d8,90,ea,29,d9,00,00,00,00,18,61,16,c0,00,00,00,00,00,\
+      00,00,00,00,00,00,00,a8,d3,15,c0,0a,00,00,00,00,00,00,00,20,6b,01,00,80,92,\
+      02,70,0a,00,00,00,44,70,16,c0,00,00,00,00,00,00,00,00,ce,ea,29,d9,00,00,00,\
+      d9,00,00,00,00,00,00,00,00,20,6b,01,00,bc,40,05,84,00,00,00,00,00,00,00,00,\
+      a0,ee,15,c0,a8,d3,15,c0,89,01,00,00,0a,00,00,00,04,b5,1d,c0,40,98,02,70,89,\
+      01,00,00,44,70,16,c0,00,00,00,00,80,c0,f9,d8,20,61,1b,88,00,00,00,d9,80,c0,\
+      f9,d8,00,00,00,00,04,b5,1d,c0,0a,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,40,98,02,70,00,00,00,00,80,c0,f9,d8,89,01,00,00,00,00,00,00,20,72,02,70,\
+      00,00,00,00,a8,d3,15,c0,01,00,00,00,00,00,02,70,00,00,00,00,0a,00,00,00,40,\
+      98,02,70,98,20,16,c0,80,c0,f9,d8,80,c0,f9,d8,00,00,00,00,00,00,ff,ff,00,00,\
+      00,00,80,c0,f9,d8,00,00,00,00,89,01,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,f4,eb,29,d9,20,61,1b,88,f4,eb,29,d9,00,60,1b,88,b0,47,05,84,\
+      00,60,1b,88,40,98,02,70,80,c0,f9,d8,00,00,00,00,89,01,00,00,00,00,00,00,00,\
+      00,00,00,10,af,14,c0,0a,00,00,00,2c,23,16,c0,00,00,00,00,00,00,00,00,80,c0,\
+      f9,d8,81,00,00,00,20,4f,2e,d9,00,00,00,00,00,00,00,00,40,3f,1d,c0,20,4f,2e,\
+      d9,ff,ff,ff,ff,0d,00,00,00,81,00,00,00,80,c0,f9,d8,40,97,02,70,cc,4c,1d,c0,\
+      00,00,00,00,00,00,04,d0,28,f7,03,c0,08,00,00,00,00,00,d5,d8,ff,ff,ff,ff,00,\
+      00,04,d0,00,00,00,00,08,00,00,00,00,00,d5,d8,04,06,00,00,28,0a,04,c0,14,ed,\
+      29,d9,90,ed,29,d9,01,00,00,00,14,ed,29,d9,00,00,00,00,f1,ac,ff,ff,04,87,99,\
+      85,a8,ec,29,d9,7c,ec,29,d9,1c,3d,05,84,90,ed,29,d9,30,ed,29,d9,06,00,00,00,\
+      55,04,04,00,00,00,00,00,01,00,00,00,14,ed,29,d9,00,00,00,00,00,00,00,00,90,\
+      ed,29,d9,00,00,00,00,90,ed,29,d9,0c,ed,29,d9,b4,ec,29,d9,90,ed,29,d9,00,00,\
+      00,00,90,ed,29,d9,a8,3e,05,84,08,63,99,85,80,c0,f9,d8,00,00,00,00,dc,4b,1d,\
+      c0,0a,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,40,97,02,70,00,00,00,00,\
+      ba,33,05,00,0d,00,00,00,81,00,00,00,20,61,1b,88,00,00,00,00,20,61,1b,88,00,\
+      00,00,00,90,ed,29,d9,34,f2,04,00,00,00,00,00,0c,ed,29,d9,bc,40,05,84,ba,33,\
+      05,00,00,00,00,00,40,10,00,00,0f,00,00,00,e0,0c,05,d0,06,00,00,00,55,04,04,\
+      00,00,00,00,00,90,ed,29,d9,00,00,00,00,1c,00,00,00,90,0d,00,00,00,00,00,00,\
+      ac,02,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,\
+      00,00,00,00,00,00,00,00,00,00,00
+
+; @CESYSGEN ENDIF CE_MODULES_SERIALUSBFN
+
+;[HKEY_LOCAL_MACHINE\Drivers\USB\FunctionDrivers]
+    ; erase previous default if no default class driver is desired
+    ;"DefaultClientDriver"=-
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\FunctionDrivers]
+    ; Selects USBFN serial class driver (activesync)
+    "DefaultClientDriver"="Serial_Class"
+    ; Selects USBFN disc emulation, USBFN to mounts local disk as USB drive for use by host
+    ;"DefaultClientDriver"="Mass_Storage_Class"
+    ; Selects USBFN RNDIS network driver, allows USBFN to emulate a network connection
+    ;"DefaultClientDriver"="RNDIS"
+	
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\Mass_Storage_Class\6]
+	"UnitAttnRepeat"=dword:1
+
+ENDIF BSP_NOUSB !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- McBSP Driver ---------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOMCBSP !
+IF BSP_NOMCBSP2 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MCP2]
+    "Prefix"="MCP"
+    "Dll"="mcbsp.dll"
+    "Index"=dword:2
+    "Order"=dword:13
+    "PowerFlags"=dword:00000103                         ; send pre/post device state changes
+    "McBSPProfile"=dword:0                  ; 0->I2S Mode, 1-> TDM mode      
+;  ### Physical address: MCBSPLP2, SDMA, MCBSP2-SIDETONE
+    "MemBase"=multi_sz:"49022000", "48056000", "49028000"
+    "MemLen"=multi_sz:"00001000", "00001000", "00001000"
+    "DmaTxSyncMap"=dword:21             ; SDMA_REQ_MCBSP2_TX
+    "DmaRxSyncMap"=dword:22             ; SDMA_REQ_MCBSP2_RX
+    "TxPriority"=dword:82                               ; Tx Thread priority 130
+    "RxPriority"=dword:82                               ; Rx Thread priority 130
+    "TxBufferSize"=dword:2000                           ; Tx DMA Buffer size 0x2000
+    "RxBufferSize"=dword:2000                           ; Rx DMA Buffer size 0x2000
+    "UseRegistryForMcbsp"=dword:1                       ; Either 0 (use default setup) or 1 (use registry)
+; ### MCBSP configuration ###
+    "LoopbackMode"=dword:0                              ; Either 0 (no loopback) or 1 (loopback)
+    "WordsPerFrame"=dword:1                             ; Range 1-128 words
+    "WordLength"=dword:20               ; Range 8, 12, 16, 20, 24, or 32 bits
+    "WordLength2"=dword:20              ; Range 8, 12, 16, 20, 24, or 32 bits
+    "WordsPerFrame"=dword:1             ; Range 1-128 words
+    "TDMWordsPerFrame"=dword:4          ; (takes 3-1 words =>2 words) Range 1-128 words  
+    "PartitionMode"=dword:0             ; 0-> 2-partition mode, 1-> 8-partition mode
+    "NumOfTxChannels"=dword:4         ; Number of channels to be enabled
+    ;in XCERA bit 0->L2 bit 1->L1 bit 2->R2 and bit 3->R1      
+    "EnableMcBSPTxChannels"=multi_sz:"0","2","0","2"
+    "NumOfRxChannels"=dword:4         ; Number of channels to be enabled 
+    ;in RCERA bit 0->L1 bit 1->L2 bit 2->R1 and bit 3->R2       
+    "EnableMcBSPRxChannels"=multi_sz:"0","1","0","1"
+    "DualPhase"=dword:1                 ; Either 0 (false) or 1 (true)
+    "DataDelay"=dword:1                 ; Range 0, 1, or 2 bits
+    "FrameSyncSourceTx"=dword:0         ; Range 0 (ext), 2 (int xmit), or 3 (int SRG)
+    "PhaseTx"=dword:0                                   ; Either 0 (single) or 1 (dual)
+    "ClockPolarityTx"=dword:0                           ; Either 0 (data driven on rising edge) or 1 (falling)
+    "FrameSyncPolarityTx"=dword:0                       ; Either 0 (active high) or 1 (active low)
+    "FifoThresholdTx"=dword:3FF                         ; Range 0-1023 words for McBsp2
+    "ReverseModeRx"=dword:0                             ; Either 0 (MSB first) or 1 (LSB first)
+    "DataDelayRx"=dword:1                               ; Range 0, 1, or 2 bits
+    "ClockModeRx"=dword:0                               ; Either 0 (external) or 1 (internal)
+    "FrameSyncSourceRx"=dword:0         ; Either 0 (external) or 1 (internal)
+    "PhaseRx"=dword:0                                   ; Either 0 (single) or 1 (dual)
+    "ClockPolarityRx"=dword:1                           ; Either 0 (data sampled on falling edge) or 1 (rising)
+    "FrameSyncPolarityRx"=dword:0       ; Either 0 (active high) or 1 (active low)
+    "ClockPolarityTx"=dword:1           ; Either 0 (data driven on rising edge) or 1 (falling)
+    "ClockPolarityRx"=dword:1           ; Either 0 (data sampled on falling edge) or 1 (rising)
+    "ClockSourceSrg"=dword:4            ; Range 0 (rising CLKS), 1, (falling CLKS) 2 (CPU), 3 (CLKRI), or 4 (CLKXI)
+    "FrameWidthSrg"=dword:10            ; Range 1-256
+    "ClockDividerSrg"=dword:0           ; Range 0-255
+    "ClockResyncSrg"=dword:0            ; Either 0 (no resync) or 1 (resync)
+    "JustificationMode"=dword:0         ; Range 0 (right, zero fill), 1 (right, sign fill), or 2 (left)
+; ### TDM Mode configuration ###
+    "TDMWordsPerFrame"=dword:4                          ; Range 1-128 words
+    "PartitionMode"=dword:0                             ; 0-> 2-partition mode, 1-> 8-partition mode
+    "NumOfTxChannels"=dword:4                           ; Number of TX channels to be enabled
+    "EnableMcBSPTxChannels"=multi_sz:"0","2","0","2"
+    "NumOfRxChannels"=dword:4                           ; Number of RX channels to be enabled
+    "EnableMcBSPRxChannels"=multi_sz:"0","1","0","1"
+; ### SIDETONE configuration ###
+    "SideToneFIRCoeff"=hex:\
+        1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+    "SideToneGain"=dword:1                              ; side tone gain ranging from 0 to FFFF
+; ### IClass GUID ###
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOMCBSP2 !
+
+IF BSP_NOMCBSP1 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MCP1]
+    "Prefix"="MCP"
+    "Dll"="mcbsp.dll"
+    "Index"=dword:1
+    "Order"=dword:13
+    "PowerFlags"=dword:00000103                         ; send pre/post device state changes
+    "McBSPProfile"=dword:0                  ; 0->I2S Mode, 1-> TDM mode      
+;  ### Physical address: MCBSPLP1, SDMA, MCBSP1-SIDETONE (Note: McBSP1 does not have SIDETONE)
+    "MemBase"=multi_sz:"48074000", "48056000", "00000000"
+    "MemLen"=multi_sz:"00001000", "00001000", "00000000"
+    "DmaTxSyncMap"=dword:1F             ; SDMA_REQ_MCBSP1_TX
+    "DmaRxSyncMap"=dword:20             ; SDMA_REQ_MCBSP1_RX
+    "TxPriority"=dword:82                               ; Tx Thread priority 130
+    "RxPriority"=dword:82                               ; Rx Thread priority 130
+    "TxBufferSize"=dword:2000                           ; Tx DMA Buffer size 0x2000
+    "RxBufferSize"=dword:2000                           ; Rx DMA Buffer size 0x2000
+    "UseRegistryForMcbsp"=dword:1                       ; Either 0 (use default setup) or 1 (use registry)
+; ### MCBSP configuration ###
+    "LoopbackMode"=dword:1                              ; Either 0 (no loopback) or 1 (loopback)
+    "WordsPerFrame"=dword:4                             ; Range 1-128 words
+    "WordLength"=dword:8                ; Range 8, 12, 16, 20, 24, or 32 bits
+    "WordLength2"=dword:8               ; Range 8, 12, 16, 20, 24, or 32 bits
+    "ReverseModeTx"=dword:1                             ; Either 0 (MSB first) or 1 (LSB first)
+    "DataDelayTx"=dword:1                               ; Range 0, 1, or 2 bits
+    "ClockModeTx"=dword:1                               ; Either 0 (external) or 1 (internal)
+    "FrameSyncSourceTx"=dword:3         ; Range 0 (ext), 2 (int xmit), or 3 (int SRG)
+    "PhaseTx"=dword:0                                   ; Either 0 (single) or 1 (dual)
+    "ClockPolarityTx"=dword:1                           ; Either 0 (data driven on rising edge) or 1 (falling)
+    "FrameSyncPolarityTx"=dword:1                       ; Either 0 (active high) or 1 (active low)
+    "FifoThresholdTx"=dword:7F                          ; Range 0-127 words for McBsp1,3,4,5
+    "ReverseModeRx"=dword:1                             ; Either 0 (MSB first) or 1 (LSB first)
+    "DataDelayRx"=dword:1                               ; Range 0, 1, or 2 bits
+    "ClockModeRx"=dword:1                               ; Either 0 (external) or 1 (internal)
+    "FrameSyncSourceRx"=dword:1         ; Either 0 (external) or 1 (internal)
+    "PhaseRx"=dword:0                                   ; Either 0 (single) or 1 (dual)
+    "ClockPolarityRx"=dword:0                           ; Either 0 (data sampled on falling edge) or 1 (rising)
+    "FrameSyncPolarityRx"=dword:0       ; Either 0 (active high) or 1 (active low)
+    "FifoThresholdRx"=dword:F                           ; Range 0-127 words for McBsp1,3,4,5
+    "ClockSourceSrg"=dword:2            ; Range 0 (rising CLKS), 1, (falling CLKS) 2 (CPU), 3 (CLKRI), or 4 (CLKXI)
+    "FrameWidthSrg"=dword:2             ; Range 1-256
+    "ClockDividerSrg"=dword:80          ; Range 0-255
+    "ClockResyncSrg"=dword:0            ; Either 0 (no resync) or 1 (resync)
+    "JustificationMode"=dword:0         ; Range 0 (right, zero fill), 1 (right, sign fill), or 2 (left)
+; ### TDM Mode configuration ###
+    "TDMWordsPerFrame"=dword:1                          ; Range 1-128 words
+    "PartitionMode"=dword:0                             ; 0-> 2-partition mode, 1-> 8-partition mode
+    "NumOfTxChannels"=dword:2                           ; Number of TX channels to be enabled
+    "EnableMcBSPTxChannels"=multi_sz:"0","1","90","90"
+    "NumOfRxChannels"=dword:2                           ; Number of RX channels to be enabled
+    "EnableMcBSPRxChannels"=multi_sz:"0","1","90","90"
+; ### SIDETONE configuration  - There is no SIDETONE support in McBSP1###
+    "SideToneFIRCoeff"=hex:\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    "SideToneGain"=dword:0                              ; side tone gain ranging from 0 to FFFF
+; ### IClass GUID ###
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOMCBSP1 !
+
+IF BSP_NOMCBSP3 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\MCP3]
+    "Prefix"="MCP"
+    "Dll"="mcbsp.dll"
+    "Index"=dword:3
+    "Order"=dword:13
+    "PowerFlags"=dword:00000103                         ; send pre/post device state changes
+    "McBSPProfile"=dword:0                  ; 0->I2S Mode, 1-> TDM mode      
+;  ### Physical address: MCBSPLP3, SDMA, MCBSP3-SIDETONE
+    "MemBase"=multi_sz:"49024000", "48056000", "4902A000"
+    "MemLen"=multi_sz:"00001000", "00001000", "00001000"
+    "DmaTxSyncMap"=dword:11             ; SDMA_REQ_MCBSP3_TX
+    "DmaRxSyncMap"=dword:12             ; SDMA_REQ_MCBSP3_RX
+    "TxPriority"=dword:82                               ; Tx Thread priority 130
+    "RxPriority"=dword:82                               ; Rx Thread priority 130
+    "TxBufferSize"=dword:2000                           ; Tx DMA Buffer size 0x2000
+    "RxBufferSize"=dword:2000                           ; Rx DMA Buffer size 0x2000
+    "UseRegistryForMcbsp"=dword:1                       ; Either 0 (use default setup) or 1 (use registry)
+; ### MCBSP configuration ###
+    "LoopbackMode"=dword:1                              ; Either 0 (no loopback) or 1 (loopback)
+    "WordsPerFrame"=dword:2                             ; Range 1-128 words
+    "WordLength"=dword:20               ; Range 8, 12, 16, 20, 24, or 32 bits
+    "WordLength2"=dword:20              ; Range 8, 12, 16, 20, 24, or 32 bits
+    "ReverseModeTx"=dword:1                             ; Either 0 (MSB first) or 1 (LSB first)
+    "DataDelayTx"=dword:1                               ; Range 0, 1, or 2 bits
+    "ClockModeTx"=dword:1                               ; Either 0 (external) or 1 (internal)
+    "FrameSyncSourceTx"=dword:3         ; Range 0 (ext), 2 (int xmit), or 3 (int SRG)
+    "PhaseTx"=dword:0                                   ; Either 0 (single) or 1 (dual)
+    "ClockPolarityTx"=dword:0                           ; Either 0 (data driven on rising edge) or 1 (falling)
+    "FrameSyncPolarityTx"=dword:0                       ; Either 0 (active high) or 1 (active low)
+    "FifoThresholdTx"=dword:7F                          ; Range 0-127 words for McBsp1,3,4,5
+    "ReverseModeRx"=dword:1                             ; Either 0 (MSB first) or 1 (LSB first)
+    "DataDelayRx"=dword:1                               ; Range 0, 1, or 2 bits
+    "ClockModeRx"=dword:1                               ; Either 0 (external) or 1 (internal)
+    "FrameSyncSourceRx"=dword:1         ; Either 0 (external) or 1 (internal)
+    "PhaseRx"=dword:0                                   ; Either 0 (single) or 1 (dual)
+    "ClockPolarityRx"=dword:0                           ; Either 0 (data sampled on falling edge) or 1 (rising)
+    "FrameSyncPolarityRx"=dword:0       ; Either 0 (active high) or 1 (active low)
+    "FifoThresholdRx"=dword:F                           ; Range 0-127 words for McBsp1,3,4,5
+    "ClockSourceSrg"=dword:2            ; Range 0 (rising CLKS), 1, (falling CLKS) 2 (CPU), 3 (CLKRI), or 4 (CLKXI)
+    "FrameWidthSrg"=dword:2             ; Range 1-256
+    "ClockDividerSrg"=dword:80          ; Range 0-255
+    "ClockResyncSrg"=dword:0            ; Either 0 (no resync) or 1 (resync)
+    "JustificationMode"=dword:0         ; Range 0 (right, zero fill), 1 (right, sign fill), or 2 (left)
+; ### TDM Mode configuration ###
+    "TDMWordsPerFrame"=dword:1                          ; Range 1-128 words
+    "PartitionMode"=dword:0                             ; 0-> 2-partition mode, 1-> 8-partition mode
+    "NumOfTxChannels"=dword:2                           ; Number of TX channels to be enabled
+    "EnableMcBSPTxChannels"=multi_sz:"0","1","90","90"
+    "NumOfRxChannels"=dword:2                           ; Number of RX channels to be enabled
+    "EnableMcBSPRxChannels"=multi_sz:"0","1","90","90"
+; ### SIDETONE configuration ###
+    "SideToneFIRCoeff"=hex:\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,\
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+    "SideToneGain"=dword:1                              ; side tone gain ranging from 0 to FFFF
+; ### IClass GUID ###
+    ; PMCLASS_PMEXT_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOMCBSP3 !
+ENDIF BSP_NOMCBSP !
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- HDS Driver -----------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_WAVEAPI
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOHEADSET !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\HDS]
+    "Prefix"="HDS"
+    "Dll"="Headset.dll"
+    "Index"=dword:1
+    "Order"=dword:15
+
+
+[HKEY_LOCAL_MACHINE\Drivers\Headset]
+    "Name"="HDS1:"
+ENDIF BSP_NOHEADSET !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_WAVEAPI
+;-------------------------------------------------------------------------------
+
+;-- Backlight driver -----------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_DISPLAY
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOBACKLIGHT !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Backlight]
+    "Prefix"="BKL"
+    "Dll"="backlight.dll"
+    "MemBase"=dword:00000000
+    "MemLen"=dword:00000000
+    "Index"=dword:1
+    "Order"=dword:25
+    ;"Gpio"=dword:                  ; GPIO backlight control not implemented on this platform
+    "TLedChannel"=dword:0
+    "PowerMask"=dword:1F             ;support d0, d1, d2, d3, d4
+    ; The hardware design is completely backwards from a standard PWM implementation.  
+    ; Full brightness can only be achieved by disabling the PWM.  The backlight can 
+    ; only be full disabled by setting PWM duty cycle to 100%
+    "DutyCycles"=multi_sz:"19", "2D", "2F", "64", "64", "22", "30"
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}"
+	"MaxDutyCyclesDef"=dword:60
+	"MaxDutyCycles7i"=dword:2F
+	
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Backlight\LcdDefault]
+    "DutyCyclesBatt"=multi_sz:"19", "3C", "46", "64", "64", "22", "30"
+    "DutyCyclesAC"=multi_sz:"19", "3C", "46", "64", "64", "22", "30"
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Backlight\Lcd7Inch]
+    "DutyCyclesBatt"=multi_sz:"19", "2E", "2F", "64", "64", "22", "2D"
+    "DutyCyclesAC"=multi_sz:"19", "2D", "2F", "64", "64", "22", "2D"
+
+IF SYSGEN_PM_PDA
+
+; Backlight in D1 during UserIdle
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\UserIdle]
+    "bkl1:"=dword:1             ; backlight in D1 during UserIdle
+
+; Backlight in D2 during SystemIdle
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\SystemIdle]
+    "bkl1:"=dword:2             ; backlight in D2 during SystemIdle
+
+ENDIF SYSGEN_PM_PDA
+	
+; Backlight tab of Display control panel (timeouts in seconds)
+[HKEY_CURRENT_USER\ControlPanel\Backlight]
+    "BatteryTimeout"=dword:0A
+    "BacklightOnTap"=dword:1
+    "ACTimeout"=dword:1E
+    "ACBacklightOnTap"=dword:1
+    "AdvancedCPL" = "AdvBacklight"
+    "DependOnLight"=dword:0
+
+IF IMGNOBACKLIGHTTIMEOUT
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\Timeouts]
+    "ACUserIdle"=dword:9999        ; in seconds
+    "ACSystemIdle"=dword:9999      ; in seconds
+    "ACSuspend"=dword:9999         ; in seconds
+    "BattUserIdle"=dword:9999      ; in seconds
+    "BattSystemIdle"=dword:9999    ; in seconds
+    "BattSuspend"=dword:9999       ; in seconds
+
+[HKEY_CURRENT_USER\ControlPanel\Backlight]
+      "ACTimeout"=dword:9999
+      "BatteryTimeout"=dword:9999
+
+[HKEY_CURRENT_USER\ControlPanel\power]
+      "Display"=dword:9999
+ENDIF IMGNOBACKLIGHTTIMEOUT
+ENDIF BSP_NOBACKLIGHT !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_DISPLAY
+;-------------------------------------------------------------------------------
+
+;-- Proxy driver -----------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOPROXYDRIVER !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\ProxyDriver]
+    "Prefix"="PXY"
+    "Dll"="proxydriver.dll"
+    "Index"=dword:1
+    "Order"=dword:100
+ENDIF BSP_NOPROXYDRIVER !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- Power Management Extension Proxy driver ------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOPMXPROXY !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\PmxProxy]
+    "Prefix"="PMX"
+    "Dll"="pmxproxy.dll"
+    "Index"=dword:1
+    "Order"=dword:50
+ENDIF BSP_NOPMXPROXY !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- I2C Proxy Driver -----------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOI2CPROXY!
+IF BSP_NOI2CPROXY1 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\I2CPROXY1]
+    "Prefix"="I2C"
+    "Dll"="i2cproxy.dll"
+    "Index"=dword:1
+    "Order"=dword:100
+    "I2CBus"=multi_sz:"48070000"    
+ENDIF BSP_NOI2CPROXY1 !
+
+IF BSP_NOI2CPROXY2 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\I2CPROXY2]
+    "Prefix"="I2C"
+    "Dll"="i2cproxy.dll"
+    "Index"=dword:2
+    "Order"=dword:100
+    "I2CBus"=multi_sz:"48072000"
+ENDIF BSP_NOI2CPROXY2 !
+
+IF BSP_NOI2CPROXY3 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\I2CPROXY3]
+    "Prefix"="I2C"
+    "Dll"="i2cproxy.dll"
+    "Index"=dword:3
+    "Order"=dword:100
+    "I2CBus"=multi_sz:"48060000"
+ENDIF BSP_NOI2CPROXY3 !
+
+ENDIF BSP_NOI2CPROXY !
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- HDQ bus driver ------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOHDQ !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\HDQ]
+    "Prefix"="HDQ"
+    "Dll"="hdq.dll"
+    "Index"=dword:1
+    "Order"=dword:9
+    "Flags"=dword:00010000
+    "MemBase"=dword:480B2000
+    "MemLen"=dword:00001000
+    "Irq"=dword:3A
+    "priority256"=dword:87
+    "PowerFlags"=dword:00000103         ; send pre/post device state changes
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOHDQ !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- Battery driver -------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_BATTDRVR
+; @CESYSGEN IF PM_PMSTUBS !
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOBATTERY !
+
+; HIVE BOOT SECTION
+[HKEY_LOCAL_MACHINE\System\Events]
+    "SYSTEM/BatteryAPIsReady"="Battery Interface APIs"
+; END HIVE BOOT SECTION
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Battery]
+    "Prefix"="BAT"
+    "Dll"="battdrvr.dll"
+    "Flags"=dword:00010008
+    "Index"=dword:1
+    "Order"=dword:13          
+    "CriticalPollInterval"=dword:7D0         ; 2 sec       
+IF BSP_BATTERY_BQ27000
+    "PollInterval"=dword:1388                ; 5 sec
+   ; "PollInterval"=dword:4E20               ; 20 sec; Battery poll interval is used for AC sensing (ms) 
+   ; "PollInterval"=dword:EA60               ; Battery poll interval is used for AC sensing (ms) 
+   ; "PollInterval"=dword:5208               ; Battery poll interval is used for AC sensing (ms) 
+    "AR"=dword:0
+ ;   "USBChargerNotify"="vbus.power.event"
+   ; "PowerSourceChange"="power.source.event"
+    "PreScale"=dword:2                      ; scale by 2 gives a range of [0,1704] mA
+    "USBChargeCurrent"=dword:1F4            ; def. usb charge current is 500mA
+    "ACChargeCurrent"=dword:2EE             ; def. ac charge current is 750mA
+ENDIF
+	"PowerSourceChange"="power.source.event"
+    "IClass"="{DD176277-CD34-4980-91EE-67DBEF3D8913}"    ; WM7 only BATTERY_DRIVER_CLASS
+    "HotDieTempSel"=dword:0                 ;Hot die temperature level select. This range is from 0 to 2
+ENDIF BSP_NOBATTERY !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF PM_PMSTUBS !
+; @CESYSGEN ENDIF CE_MODULES_BATTDRVR
+;-------------------------------------------------------------------------------
+
+;-- Keyboard Driver ------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_KEYBD
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOKEYBD !
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Keypad]
+    "Prefix"="KPD"
+    "Dll"="keypad.dll"
+    "Index"=dword:1
+    "Order"=dword:23				
+    "PowerMask"=dword:1F             ;support d0, d1, d2, d3, d4
+    "Flags"=dword:00010000
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}"
+
+    "EnableOffKey"=dword:1           ;pass VK_OFF to OS
+    "DisablePwronKey"=dword:1        ;disable TPS659XX pwron key handler (will use drivers\pwrkey)
+
+    "KeypadLedNum"=dword:1
+    "KeypadLightIntensityHigh"=dword:62
+    "KeypadLightIntensityNormal"=dword:60
+    "KeypadLightIntensityLow"=dword:32
+    "KeypadLightEnabled"=dword:1
+    "KeypadLightDepend"=dword:0
+    "PowerKeysNotify"=dword:00800000 ;POWER_STATE_RESET
+    "EnableWake"=dword:0             ;enable/disable wake from keypad
+    "EnableSuspendKey"=dword:1
+	
+ENDIF BSP_NOKEYBD !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+
+
+[HKEY_LOCAL_MACHINE\HARDWARE\DEVICEMAP\KEYBD]
+    "DriverName"="kbdmouse.dll"
+    "CalVKey"=dword:0
+    "ContLessVKey"=-    ; use the keyboard driver's default (comma)
+    "ContMoreVKey"=-    ; use the keyboard driver's default (period)
+    "TaskManVKey"=dword:2E
+
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Layouts\00000409]
+    "Layout File"="kbdmouse.dll"
+    "Layout Text"="US"
+    "PS2_AT"="kbdmouse.dll"
+
+[HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Layouts\e0010409]
+    "Keyboard Layout"="00000409"
+
+; @CESYSGEN ENDIF CE_MODULES_KEYBD
+;-------------------------------------------------------------------------------
+
+;-- Serial driver --------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_SERIAL
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOCOM !
+
+IF BSP_NOCOM1 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Uart1]
+    "Prefix"="COM"
+    "Dll"="uart.dll"
+    "Index"=dword:1
+    "Order"=dword:9
+    "PowerFlags"=dword:00000103         ; send pre/post device state changes
+    "DeviceArrayIndex"=dword:0
+    "MemBase"=multi_sz:"4806A000", "48056080"
+    "MemLen"=multi_sz:"00000400", "00001000"
+    "Irq"=dword:48          ; IRQ 72
+    "RxBuffer" = dword:2000
+    ;"TxDmaRequest"=dword:31                       ; S_DMA_48 TX DMA Request Line, use ffffffff to disable TX DMA
+    "TxDmaRequest"=dword:ffffffff                 ; TxDma has issues after RX of break, disabled with ffffffff
+    "TxDmaBufferSize"=dword:2000                  ; Size of DMA transmit buffer
+    "RxDmaRequest"=dword:32                       ; S_DMA_49 RX DMA Request Line, use ffffffff to disable RX DMA
+    "RxDmaBufferSize"=dword:2000                  ; Size of DMA receive buffer
+    "RtsCtsEnable"=dword:1                        ; 1=enable RTS/CTS handshake support, 0=disable
+    "HWMode"=dword:1                              ; Use hardware auto RTS/CTS
+    "XcvrEnableGpio"=dword:A2                     ; pinID = 162  GPIO pin that enables/disables external transceiver
+    "XcvrEnabledLevel"= dword:1			        	; Level of GPIO pin that corresponds to xcvr enabled
+	"DeviceType"=dword:0
+	"FriendlyName"="Serial cable on COM1:"
+    ; PMCLASS_PMEXT_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}",
+                        "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Uart1\Unimodem]
+	"Tsp"="unimodem.dll"
+	"DeviceType"=dword:0
+	"FriendlyName"="Serial cable on COM1:"
+	"DevConfig"=hex: 10,00,00,00,05,00,00,00,00,01,00,00,00,4B,00,00,00,00,08,00,00,00,00,00,00
+ENDIF BSP_NOCOM1 !
+
+IF BSP_NOCOM3 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Uart2]
+    "Prefix"="COM"
+    "Dll"="uart.dll"
+    "Index"=dword:3
+    "Order"=dword:9
+    "PowerFlags"=dword:00000103         ; send pre/post device state changes
+    "DeviceArrayIndex"=dword:0
+    "MemBase"=multi_sz:"4806C000", "48056080"
+    "MemLen"=multi_sz:"00000400", "00001000"
+    "Irq"=dword:49          ; IRQ 73
+    "RxBuffer" = dword:2000
+    ;"TxDmaRequest"=dword:33                       ; S_DMA_50 TX DMA Request Line, use ffffffff to disable TX DMA
+    "TxDmaRequest"=dword:ffffffff                 ; TxDma has issues after RX of break, disabled with ffffffff
+    "TxDmaBufferSize"=dword:2000                  ; Size of DMA transmit buffer
+    "RxDmaRequest"=dword:34                       ; S_DMA_51 RX DMA Request Line, use ffffffff to disable RX DMA
+    "RxDmaBufferSize"=dword:2000                  ; Size of DMA receive buffer
+    "RtsCtsEnable"=dword:1                        ; 1=enable RTS/CTS handshake support, 0=disable
+    "HWMode"=dword:1                              ; Use hardware auto RTS/CTS
+    "XcvrEnableGpio"=dword:A2                     ; pinID = 162  GPIO pin that enables/disables external transceiver
+;    "XcvrEnableGpio"=dword:db                       ; GPIO pin that controls external transceiver (comment out if unused)
+    "XcvrEnabledLevel"=dword:1                      ; Level of gpio pin that enables the transceiver (comment out if unused)
+	"DeviceType"=dword:0
+	"FriendlyName"="Serial cable on COM3:"
+    ; PMCLASS_PMEXT_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}",
+                        "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Uart2\Unimodem]
+	"Tsp"="unimodem.dll"
+	"DeviceType"=dword:0
+	"FriendlyName"="Serial cable on COM3:"
+	"DevConfig"=hex: 10,00,00,00,05,00,00,00,00,01,00,00,00,4B,00,00,00,00,08,00,00,00,00,00,00
+ENDIF BSP_NOCOM3 !
+
+IF BSP_NOCOM2 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Uart3]
+    "Prefix"="COM"
+    "Dll"="uart.dll"
+    "Index"=dword:2
+    "Order"=dword:9
+    "PowerFlags"=dword:00000103         ; send pre/post device state changes
+    "DeviceArrayIndex"=dword:0
+    "MemBase"=multi_sz:"49020000", "48056080"
+    "MemLen"=multi_sz:"00000400", "00001000"
+    "Irq"=dword:4A          ; IRQ 74
+    "RxBuffer" = dword:2000
+    ;"TxDmaRequest"=dword:35                       ; S_DMA_52 TX DMA Request Line, use ffffffff to disable TX DMA
+    "TxDmaRequest"=dword:ffffffff                 ; TxDma has issues after RX of break, disabled with ffffffff
+    "TxDmaBufferSize"=dword:2000                  ; Size of DMA transmit buffer
+    "RxDmaRequest"=dword:36                       ; S_DMA_53 RX DMA Request Line, use ffffffff to disable RX DMA
+    "RxDmaBufferSize"=dword:2000                  ; Size of DMA receive buffer
+    "RtsCtsEnable"=dword:0                        ; 1=enable RTS/CTS handshake support, 0=disable
+    "HWMode"=dword:1                              ; Use hardware auto RTS/CTS
+    "XcvrEnableGpio"=dword:A2                     ; pinID = 162  GPIO pin that enables/disables external transceiver
+;    "XcvrEnableGpio"=dword:db						; GPIO pin that controls external transceiver (comment out if unused)
+    "XcvrEnabledLevel"=dword:1                      ; Level of gpio pin that enables the transceiver (comment out if unused)
+	"DeviceType"=dword:0
+	"FriendlyName"="Serial cable on COM2:"
+    ; PMCLASS_PMEXT_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}",
+                        "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Uart3\Unimodem]
+	"Tsp"="unimodem.dll"
+	"DeviceType"=dword:0
+	"FriendlyName"="Serial cable on COM2:"
+	"DevConfig"=hex: 10,00,00,00,05,00,00,00,00,01,00,00,00,4B,00,00,00,00,08,00,00,00,00,00,00
+ENDIF BSP_NOCOM2 !
+
+IF BSP_NOCOM4 !
+; The 37xx has 4 UARTs, but the EVM does not have connections for UART4
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Uart4]
+    "Prefix"="COM"
+    "Dll"="uart.dll"
+    "Index"=dword:4
+    "Order"=dword:9
+    "PowerFlags"=dword:00000103         ; send pre/post device state changes
+    "DeviceArrayIndex"=dword:0
+    "MemBase"=multi_sz:"49022000", "48056080"
+    "MemLen"=multi_sz:"00000400", "00001000"
+    "Irq"=dword:50          ; IRQ 80
+    "RxBuffer" = dword:2000
+    ;"TxDmaRequest"=dword:50                       ; S_DMA_80 TX DMA Request Line, use ffffffff to disable TX DMA
+    "TxDmaRequest"=dword:ffffffff                  ; TxDma has issues after RX of break, disabled with ffffffff
+    "TxDmaBufferSize"=dword:2000                   ; Size of DMA transmit buffer
+    "RxDmaRequest"=dword:51                        ; S_DMA_81 RX DMA Request Line, use ffffffff to disable RX DMA
+    "RxDmaBufferSize"=dword:2000                   ; Size of DMA receive buffer
+    "RtsCtsEnable"=dword:0                         ; 1=enable RTS/CTS handshake support, 0=disable
+    "HWMode"=dword:1                               ; Use hardware auto RTS/CTS
+    ;"XcvrEnableGpio"=dword:d6                      ; GPIO pin that controls external transceiver (comment out if unused)
+    ;"XcvrEnabledLevel"=dword:1                     ; Level of gpio pin that enables the transceiver (comment out if unused)
+    ; PMCLASS_PMEXT_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}",
+                        "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+ENDIF BSP_NOCOM4 !
+IF BSP_GSM710MUX
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\MODEM\FILES\mux07_10.reg"
+ENDIF	; BSP_GSM710MUX
+
+IF BSP_NOBLUETOOTH !
+
+; @CESYSGEN IF CE_MODULES_BTD
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\sys]
+    "COD"=dword:D20110
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF BTD_CSR
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\HCI]
+    "flags"=dword:1
+    "name"="COM3:"
+    "baud"=dword:1c200
+    "first_boot"=dword:1
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF CE_MODULES_BTMODEM
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\BLUETOOTH\BTMODEM\FILES\btmodem.reg"
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF SERVERS_MODULES_OBEXFILE
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Obex\Services\{f9ec7bc4-953c-11d2-984e-525400dc9e09}]
+	"CanWrite"=dword:1
+	"TransportAuthenticate"=dword:0
+	"Authenticate"=dword:0
+; @CESYSGEN ENDIF SERVERS_MODULES_OBEXFILE
+
+; @CESYSGEN IF BTD_BTPAN
+[HKEY_LOCAL_MACHINE\Comm\BTPAN1]
+	"PublishSdpOnBoot"=dword:1
+; @CESYSGEN ENDIF BTD_BTPAN
+
+ENDIF BSP_NOBLUETOOTH !
+    
+ENDIF BSP_NOCOM !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_SERIAL
+;-------------------------------------------------------------------------------
+
+;-- Audio Driver ---------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_WAVEAPI
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOAUDIO !
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\WaveDev]
+    "Prefix"="WAV"
+    "Dll"="wave.dll"
+    "Flags"=dword:00010000
+    "Index"=dword:1
+    "Order"=dword:14
+    "ExternalPortDriver"="MCP2:"
+    ; CE_DRIVER_WAVEDEV_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{37168569-61C4-45fd-BD54-9442C7DBA46F}",
+                      "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+    "StreamAttenMax"=dword:2c     ; -44 dB, for Smartphone
+; ### Audio profile settings ###
+    "AudioProfile"=dword:0                              ; I2S Slave->0, I2S Master->1, TDM Profile->2
+    "NumOfPlayChannels"=dword:4                         ; Number of channels to be enabled    
+    "EnableAudioPlayChannels"=multi_sz:"0","2","0","2"
+    "NumOfRecChannels"=dword:4                          ; Number of channels to be enabled    
+    "EnableAudioRecChannels"=multi_sz:"0","1","0","1"      
+    "DASFHwCodecAdpaterPath"="hwcodecadapter.dll"       ; HW codec adpater DLL path
+
+; ### Default Audio Routing
+	; 1 = Handset, 2 = Headset, 3 = Carkit (N/A), 4 = Speaker, 5 = BTHeadset (N/A), 6 = AuxHeadset
+    "AudioRoute"=dword:6
+
+; ### TPS659XX Input and Output path gains, study wave driver code and read TPS659XX TRM to understand settings ###
+    ; 
+    ; All TPS659XX register values are a single byte, example values are in hex
+    ;
+    ; ATXL1PGA, ATXR1PGA: L and R mic input digital gain
+    ;   gain in dB (0 = 0dB, 1f = 31 dB)
+    ;
+    ; ANAMIC_GAIN: R/L mic input analog gain
+    ;   upper nibble is right gain, lower is left gain
+    ;   0 = 0dB, 1 = 6 dB, 2 = 12 dB, 3 = 18dB, 4 = 24dB, 5 = 30dB
+    ;
+    ; ARXL2PGA, ARXR2PGA: L and R output digital gain
+    ;   Upper 2 bits = coarse gain, 0 = 0dB, 1 = 6dB, 2 = 12dB, 3=12dB (possible documentation error, may be 3=18dB)
+    ;   Lower 6 bits = fine gain, 0 = mute, 1 = -62dB, 2 = -61dB, 3e = -1dB, 3f = 0dB
+    ;
+    ; ARXL2_APGA_CTL, ARXR2_APGA_CTL: L and R output analog gain
+    ;   Note that bits are shifted by driver into ARXL2_GAIN_SET/ARXR2_GAIN_SET field in register.
+    ;   0 = 12dB, 1 = 10dB, 2 = 8dB, 3 = 6dB, 4 = 4dB, 5 = 2dB, 6 = 0dB, 7 = -2dB, 8 = -4dB, 9 = -6dB, 
+    ;   a = -8dB, b = -10dB, c = -12dB, d = -14dB, e = -16dB, f = -18db, 10 = -20dB, 11 = -22dB, 12 = -24dB
+    
+    ; Main Mic input gains (mono in), used for handsfree speaker mode
+    "HwCodecInMainMicDigitalGain"=dword:F               ; 15dB, controls TPS659XX ATXL1PGA register
+    "HwCodecInMainMicAnalogGain"=dword:5                ;  0dB
+
+    ; Sub Mic gains (mono in), currently not used
+    "HwCodecInSubMicDigitalGain"=dword:F                ; 15dB, controls TPS659XX ATXR1PGA register
+    "HwCodecInSubMicAnalogGain"=dword:4                 ; 24dB, controls TPS659XX ANAMIC_GAIN  register (L only)
+
+    ; Mic input gains (mono in), used for Headset/Mic mode
+    "HwCodecInHeadsetMicDigitalGain"=dword:F            ; 15dB, controls TPS659XX ATXL1PGA register
+    "HwCodecInHeadsetMicAnalogGain"=dword:2             ; 12dB, controls TPS659XX ANAMIC_GAIN  register (L only)
+
+    ; Aux input gains (stereo in), used for Headset/Aux mode (default mode for EVM/EVM2)
+    "HwCodecInHeadsetAuxDigitalGain"=dword:F            ; 15dB, controls TPS659XX ATXL1PGA, TPS659XX ATXR1PGA registers
+    "HwCodecInHeadsetAuxAnalogGain"=dword:0             ; 0dB, controls TPS659XX ANAMIC_GAIN  registers (L and R)
+
+    ; Stereo Speaker output gains (stereo out), used for Stereo Speaker mode (hands free speaker)
+    "HwCodecOutStereoSpeakerDigitalGain"=dword:BE       ; 12dB coarse gain and -1dB fine gain
+    "HwCodecOutStereoSpeakerAnalogGain"=dword:6         ; 0dB, controls TPS659XX ARXL1_APGA_CTL and ARXR2_APGA_CTL registers
+    
+    ; Stereo Headset output gains (stereo out), used for Headset/Aux mode (default mode for EVM/EVM2)
+    "HwCodecOutStereoHeadsetDigitalGain"=dword:bf       ; 12dB coarse gain and 0dB fine gain, controls TPS659XX ARXL1PGA and ARXR1PGA registers
+    "HwCodecOutStereoHeadsetAnalogGain"=dword:0         ; 12dB, controls TPS659XX ARXL2_APGA_CTL and ARXR2_APGA_CTL registers
+
+    ; Headset output gains (stereo out), used for Headset/Mic mode
+    "HwCodecOutHeadsetMicDigitalGain"=dword:AA          ; 12dB coarse gain and -21dB fine gain, controls TPS659XX ARXL2PGA and TPS659XX ARXR2PGA registers
+    "HwCodecOutHeadsetMicAnalogGain"=dword:0            ; 12dB, controls TPS659XX ARXL2_APGA_CTL and ARXR2_APGA_CTL registers
+
+    ; External Audio settings ----------------------------
+    ; TPS659xx Audio Codec    
+    "HwCodecOutHeadsetDigitalGain"=dword:A7				; ARXL1PGA, 0xB3 - 12db 
+    ; Headset Analog Gain
+    "HwCodecOutHeadsetAnalogGain"=dword:C               ; ARXL1_APGA_CTL Register, ARXL1_GAIN_SET = -12db
+IF SYSGEN_BTH_AG
+	"HwCodecInBthAudioDigitalGain"=dword:56				; Bluetooth audio recording gain
+    "HwCodecOutBthAudioDigitalGain"=dword:7				; Bluetooth audio playback gain
+    "HwCodec_ARXL1PGA"=dword:7F							; TPS65930 RX affects BT audio playback
+    "HwCodec_ATXR1PGA"=dword:0A							; TPS65930 TX affects BT audio recording
+ENDIF SYSGEN_BTH_AG
+
+    ; ----------------------------------------------------
+    
+[HKEY_LOCAL_MACHINE\Drivers\Speaker]
+    "Name"="WAV1:"
+
+ENDIF BSP_NOAUDIO !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_WAVEAPI
+;-------------------------------------------------------------------------------
+
+;-- SDIO host controller driver ------------------------------------------------
+; @CESYSGEN IF CE_MODULES_SDBUS
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOSDHC !
+
+IF BSP_NOSDHC1 !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SDHC1]
+    "Prefix"="SHC"
+    "Dll"="sdhc.dll"
+    "Index"=dword:1
+    "Order"=dword:22
+    "PowerFlags"=dword:00000103        ; send pre/post device state changes
+    "MemBase"=multi_sz:"4809C000"
+    "MemLen"=multi_sz:"00000200"
+
+    "SDIOPriority"=dword:d3
+    "CDPriority"=dword:d4
+
+IF BSP_SDHIGHSPEEDSUPPORT_SDHC1
+    "BaseClockFrequency"=dword:2DC6C00 ; override the max clock rate (48 MHz)
+ELSE
+    "BaseClockFrequency"=dword:16e3600 ; override the max clock rate (24 MHz default)
+ENDIF
+    "ReadWriteTimeout"=dword:1000      ; (0x1000 clock ticks default)
+    "DTOTimeout"=dword:200             ; Data timeout in milliseconds - 512 ms default
+ 
+    "WakeupSources"=dword:0            ; 0 - no wakeup, 1 - wakeup on SDIO, 
+                                       ; 2 - wakeup on card detect, 
+                                       ; 3 - wakeup on both
+
+    "CardDetectGPIO"=dword:c0          ; card detect is GPIO_0 on PMIC (PMIC GPIO starts at GPIO #192)
+    "CardInsertedState"=dword:0        ; GPIO pin low means a card is inserted
+
+	"CardWPGPIO"=dword:6D				; card R/W protection detection is done via GPIO 109
+    "CardWriteProtectedState"=dword:1	; GPIO pin high 1 means the card is write protected
+
+IF MMCHS1_LOW_VOLTAGE
+    "LowVoltageSlot"=dword:1           ; 1 if MMC/SD/SDIO slot 1 is a low voltage (1.8V slot)
+ENDIF
+    
+    "Sdio4BitDisable"=dword:0          ; 1 if SDIO cards must use 1 bit data path, 0 for 4 bit data path
+    "SdMem4BitDisable"=dword:0         ; 1 if SD Memory cards must use 1 bit data path, 0 for 4 bit data path
+IF BSP_SDHIGHSPEEDSUPPORT_SDHC1
+    "SDHighSpeedSupport"=dword:1       ; 1 to enable high speed SD support
+ELSE
+    "SDHighSpeedSupport"=dword:0       ; 1 to enable high speed SD support
+ENDIF
+	
+    "SDClockMode"=dword:1              ; 1 to use special SDIO clock management, 0 for original
+	
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID, PMCLASS_PMEXT_GUID   
+    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}",
+                      "{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOSDHC1 !
+
+IF BSP_NOSDHC2 !
+; Note: The EVM BSP does not support slot 2
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SDHC2]
+    "Prefix"="SHC"
+    "Dll"="sdhc.dll"
+    "Index"=dword:2
+    "Order"=dword:21
+    "PowerFlags"=dword:00000103        ; send pre/post device state changes
+    "MemBase"=multi_sz:"480B4000"
+    "MemLen"=multi_sz:"00000200"
+
+    "SDIOPriority"=dword:d5
+    "CDPriority"=dword:d6
+
+IF BSP_SDHIGHSPEEDSUPPORT_SDHC2
+    "BaseClockFrequency"=dword:2DC6C00 ; override the max clock rate (48 MHz)
+ELSE
+    "BaseClockFrequency"=dword:16e3600 ; override the max clock rate (24 MHz default)
+ENDIF
+
+    "ReadWriteTimeout"=dword:1000      ; (0x1000 clock ticks default)
+    "DTOTimeout"=dword:200             ; Data timeout in 1000's cycles - (512K default)
+ 
+    "WakeupSources"=dword:0         ; 0 - no wakeup, 1 - wakeup on SDIO, 
+                                       ; 2 - wakeup on card detect, 
+                                       ; 3 - wakeup on both
+
+    "CardDetectGPIO"=dword:1           ; card insertion detection is GPIO_1 on Triton2
+    "CardInsertedState"=dword:0        ; logical 0 means a card is inserted
+
+    "CardWPGPIO"=dword:FFFFFFFF        ; card R/W protection detection is done via GPIO 152
+    "CardWriteProtectedState"=dword:1  ; logical 1 means the card is write protected
+
+IF MMCHS2_LOW_VOLTAGE
+    "LowVoltageSlot"=dword:1        ; 1 if MMC/SD/SDIO slot 2 is a low voltage (1.8V slot)
+ENDIF
+    
+    "Sdio4BitDisable"=dword:0          ; 1 if SDIO cards must use 1 bit data path, 0 for 4 bit data path
+    "SdMem4BitDisable"=dword:0         ; 1 if SD Memory cards must use 1 bit data path, 0 for 4 bit data path
+IF BSP_SDHIGHSPEEDSUPPORT_SDHC2
+    "SDHighSpeedSupport"=dword:1       ; 1 to enable high speed SD support
+ELSE
+    "SDHighSpeedSupport"=dword:0       ; 1 to enable high speed SD support
+ENDIF
+
+    "SDClockMode"=dword:1              ; 1 to use special SDIO clock management, 0 for original
+
+    "EnableWirelessModule"=dword:1     ; 1 to enable wireless module, 0 to disable
+
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID, PMCLASS_PMEXT_GUID   
+    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}",
+                      "{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+ENDIF BSP_NOSDHC2 !
+
+[HKEY_LOCAL_MACHINE\Drivers\SDCARD\ClientDrivers\Class\SDMemory_Class]
+   "IdlePowerState"=dword:3        ; 0 == D0, 1 == D1, etc.
+
+[HKEY_LOCAL_MACHINE\Drivers\SDCARD\ClientDrivers\Class\MMC_Class]
+   "IdlePowerState"=dword:3        ; 0 == D0, 1 == D1, etc.
+
+; @CESYSGEN IF CE_MODULES_SDMEMORY
+; SDHC Memory Storage class driver
+[HKEY_LOCAL_MACHINE\Drivers\SDCARD\ClientDrivers\Class\MMC_Class\High_Capacity]
+   "Dll"="SDMemory.dll"
+   "Prefix"="DSK"
+   "Index"=dword:1
+   "BlockTransferSize"=dword:40  ; send no more than 64 blocks of data per bus transfer
+   ;"SingleBlockWrites"=dword:1  ; alternatively force the driver to use single block access
+   ;"IdleTimeout"=dword:7D0      ; 2000 milliseconds
+   ;"IdlePowerState"=dword:2     ; 0 == D0, 1 == D1, etc.
+   ;"DisablePowerManagement"=""  ; if value present, then disable (remove value to enable)
+ 
+   "Profile"="MMC"
+    ; CE_DRIVER_BLOCK_GUID, CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID
+   "IClass"=multi_sz:"{A4E7EDDA-E575-4252-9D6B-4195D48BB865}",
+                     "{8DD679CE-8AB4-43c8-A14A-EA4963FAA715}"
+ 
+; @CESYSGEN ENDIF CE_MODULES_SDMEMORY
+   
+ENDIF BSP_NOSDHC !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_SDBUS
+;-------------------------------------------------------------------------------
+
+;-- Fix registry ---------------------------------------------------------------
+
+[-HKEY_LOCAL_MACHINE\Drivers\PCCARD]
+[-HKEY_LOCAL_MACHINE\Drivers\PCMCIA]
+
+;-------------------------------------------------------------------------------
+
+;-- IrDA -----------------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_IRDASTK
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOIRDA !
+
+[-HKEY_LOCAL_MACHINE\Comm\Irsir]
+[-HKEY_LOCAL_MACHINE\Comm\Irsir1]
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\IRDA]
+    "Prefix"="IRD"
+    "Dll"="irda.dll"
+    "Index"=dword:1
+    "Order"=dword:10
+    "PowerFlags"=dword:00000103         ; send pre/post device state changes
+    "MemBase"=multi_sz:"4806E000"
+    "MemLen"=multi_sz:"00000400"
+    "Irq"=dword:4A          ; IRQ 74
+    "MinimumTurnaroundTime"=dword:1F4   ; 500 microseconds
+    "PriorityIST"=dword:6E              ; 110 should be set to very high prio
+    "PriorityRx"=dword:81
+    "PriorityReqs"=dword:85
+    "DmaTxSyncMap"=dword:35  ;53
+    "DmaRxSyncMap"=dword:36  ;54
+    ; PMCLASS_PMEXT_GUID, CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+    "IClass"=multi_sz:"{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}",
+                      "{A32942B7-920C-486b-B0E6-92A702A99B35}"
+
+[HKEY_LOCAL_MACHINE\Comm\IrDA\Linkage]
+    "Bind"=multi_sz:"IrDA1"
+    "Route"=multi_sz:"IrDA1"
+ 
+[HKEY_LOCAL_MACHINE\Comm\IrDA]
+    "Group"="NDIS"
+    "ImagePath"="irda.dll"
+  
+[HKEY_LOCAL_MACHINE\Comm\IrDA1\Parms]
+    "BusNumber"=dword:0
+    "BusType"=dword:0
+   
+ENDIF BSP_NOIRDA !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_IRDASTK
+;-------------------------------------------------------------------------------
+
+;-- Notification LED -----------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_NLEDDRVR
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NONLED !
+; HIVE BOOT SECTION
+
+[HKEY_LOCAL_MACHINE\System\Events]
+    "SYSTEM/NLedAPIsReady"="Notification LED APIs"
+
+; END HIVE BOOT SECTION
+
+; These registry entries load the NLed driver.  The IClass value must match
+; the NLED_DRIVER_CLASS definition in nled.h -- this is how the system
+; knows which device is the nled driver.  Note that we are using 
+; DEVFLAGS_NAKEDENTRIES with this driver.  This tells the device manager
+; to instantiate the device with the prefix named in the registry but to look
+; for DLL entry points without the prefix.  For example, it will look for Init
+; instead of NLD_Init.  This allows the prefix to be changed in the registry (if
+; desired) without editing the driver code.
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\NLed]
+   "Prefix"="NLD"
+   "Dll"="nleddrvr.dll"
+   "Flags"=dword:8                      ; DEVFLAGS_NAKEDENTRIES
+   ; must be after GPIO driver, before keyboard driver
+   "Order"=dword:11
+   "IClass"="{CBB4F234-F35F-485b-A490-ADC7804A4EF3}"    ; NLED_DRIVER_CLASS
+
+ENDIF BSP_NONLED !
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_NLEDDRVR
+;-------------------------------------------------------------------------------
+
+; @CESYSGEN ENDIF CE_MODULES_DEVICE
+;===============================================================================
+
+
+;===============================================================================
+; @CESYSGEN IF CE_MODULES_DISPLAY
+IF BSP_NODISPLAY !
+IF BSP_NODSS !
+;-- DDI driver -----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+
+[HKEY_LOCAL_MACHINE\SYSTEM\GWE]
+    ; "PORepaint"=dword:0 - the display driver handles everything
+    ; "PORepaint"=dword:1 - gwe should save and restore the bits
+    ; "PORepaint"=dword:2 - gwe should invalidate and repaint
+    ; "PORepaint"=dword:3 - gwe and driver need to save video memory
+    ;
+    "PORepaint"=dword:0
+
+[HKEY_LOCAL_MACHINE\System\GDI\Drivers]
+IF SYSGEN_POWERVR
+    "Display"="omap_dss.dll"
+ELSE
+    "Display"="ddi.dll"
+ENDIF
+    ; 0 for flat surface manager, 1 for VRFB surface manager
+    ; Note: Some Windows CE video CODECs will fail with VRFB surface manager enabled, the DSP CODEC should be OK.
+    ; Note: VRFB surface manager provides fast hardware based screen rotation. 
+    ; Note: Screen rotation using the Flat surface manager does not work at this time.
+IF BSP_NOVRFB
+    "SurfaceMgr" = dword:0
+ELSE
+    "SurfaceMgr" = dword:1
+ENDIF
+IF BSP_TVOUT_ENABLE
+    "TVOut" = dword:1
+ELSE
+    "TVOut" = dword:0
+ENDIF
+    ; sets initial screen rotation
+    ; use 0 for 0 degree, 1 for 90 degree, 2 for 180 degree and 4 for 270 degree
+    ; Note: Rotation should not be used with the flat frame buffer, memory/bus bandwidth may
+    ; be exceeded by display scanning requirements causing display to flicker and/or lock up.
+    "Angle" = dword:0
+    "PowerFlags"=dword:00000103         ; send pre/post device state changes
+    "membase"=multi_sz:"48050000","48306B00"
+    "memlen"=multi_sz:"00000100","00000100"
+    ; controls software based mouse cursor emulation, 0 = disable, 1 = enable
+    ; Note that OS configuration must include mouse cursor support (sysgen_cursor).
+    ; Note that display performance will be reduced when cursor support is enabled.
+    ; Note that cursor support has not been tested with direct draw, overlays or rotation.
+	"Cursor"=dword:0
+; @CESYSGEN IF GWES_MCURSOR
+    "Cursor"=dword:1
+; @CESYSGEN ENDIF GWES_MCURSOR
+    ; Set to 1 to enable wait for vertical blank support
+    "EnableWaitForVerticalBlank"=dword:1
+    "EnableNeonBlts"=dword:1
+	
+; Revert logic in common.reg that turns display off during SystemIdle.
+; PMCLASS_DISPLAY_GUID
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\SystemIdle\{EB91C7C9-8BF6-4a2d-9AB8-69724EED97D1}]
+    "Default"=dword:2           ; display driver in D2 during SystemIdle
+
+IF SYSGEN_PM_PDA
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\State\UserIdle\{EB91C7C9-8BF6-4a2d-9AB8-69724EED97D1}]
+    "Default"=dword:1           ; display driver in D1 during UserIdle
+ENDIF SYSGEN_PM_PDA
+	
+; Not supported
+;[HKEY_LOCAL_MACHINE\System\GDI\ROTATION]
+;   ; rotates screen - use 0 for 0 degree 5a for 90 degree, b4 for 180 degree and 10e for 270 degree
+;   "Angle"=dword:0
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\MediaPlayer\Preferences]
+    "RenderMethod"=dword:2
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\DirectX\DirectShow\VMR]
+    "RenderingPrefs"=dword:8
+
+; Bits per pixel setting for compositor backbuffers
+[HKEY_LOCAL_MACHINE\SYSTEM\GWE\Compositor]
+    "OpaqueBufferBPP" = dword:10
+
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+ENDIF BSP_NODSS!
+ENDIF BSP_NODISPLAY !
+; @CESYSGEN ENDIF CE_MODULES_DISPLAY
+;===============================================================================
+
+; @CESYSGEN IF CPLMAIN_DISPLAY
+;
+; initial value for background bitmap, if any
+[HKEY_CURRENT_USER\ControlPanel\Desktop]
+;; @CESYSGEN IF IMAGING_IMG_JPEGDECODER
+;	"wallpaper"="\\Windows\\OmapHand.jpg"
+;; @CESYSGEN ELSE
+;; @CESYSGEN ENDIF IMAGING_IMG_JPEGDECODER
+; have no wallpaper
+	"wallpaper"=""
+;
+; @CESYSGEN ENDIF CPLMAIN_DISPLAY
+
+;-- PWRON key driver -----------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_PM
+; @CESYSGEN IF GWES_MGBASE
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+IF BSP_NOPWRKEY !
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\pwrkey]
+    "Prefix"="PKD"
+    "Dll"="pwrkey.dll"
+    "InitDoneEventName"="TempSensorInitDone"
+    "Order"=dword:11                ; Should be loaded after Triton driver
+    "UrgentShutdowndelay"=dword:0	;3E8 - 1 sec
+    "IgnoreDelay"=dword:FA			;250 ms
+    "Priority256"=dword:32
+    ;"EnableWake"=dword:1
+    ;"DebounceTimeMs"=dword:19
+IF BSP_TEMPSENSOR
+	"OverheatShutdown"=dword:0		; Do not perform shutdown, in case of overheating
+ENDIF
+ENDIF BSP_NOPWRKEY !
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+; @CESYSGEN ENDIF GWES_MGBASE
+; @CESYSGEN ENDIF CE_MODULES_PM
+;-------------------------------------------------------------------------------
+
+;-- SDMA Proxy Driver ----------------------------------------------------------------
+;------------------------------------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_SDMAPROXY
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SdmaProxy]
+    "Dll"="SdmaProxy.dll"
+    "Order"=dword:4
+    "Prefix"="DMP"
+ENDIF BSP_SDMAPROXY
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\PM\files\pm.reg"
+
+; Override default MaxBackBuffers setting
+[HKEY_LOCAL_MACHINE\Software\Microsoft\DirectX\DirectShow\Video Renderer]
+   "MaxBackBuffers"=dword:2
+
+;-------------------------------------------------------------------------------
+; Custom setting for OOM (Out Of Memory) subsystem
+
+[HKEY_LOCAL_MACHINE\System\OOM]
+    ; The following registry values specify the threshold at which the amount of memory 
+	; available is considered to be low. The number of bytes of memory available at 
+	; the threshold is the maximum of (cbLow + cpLow * PageSize).
+    "cbLow"=dword:0
+    "cpLow"=dword:40
+
+    ; The following registry values specify the threshold at which the amount of memory 
+	; available is considered to be critical. The number of bytes of memory available
+	; at the threshold is the maximum of (cbCritical + cpCritical * PageSize).
+    "cbCritical"=dword:0
+    "cpCritical"=dword:20
+
+    ; The following registry value specifies the size of the largest block that can be 
+	; virtually allocated with the VirtualAlloc function when allocating this memory 
+	; leaves the system with fewer pages than the value of cpLow.
+    "cbLowBlkSz"=dword:0
+    "cpLowBlkSz"=dword:10
+
+    ; The following registry values specify the size of the largest block that can be 
+	; virtually allocated with the VirtualAlloc function when allocating this memory 
+	; leaves the system with fewer pages than the value of cpCritical.
+    "cbCritBlkSz"=dword:0
+    "cpCritBlkSz"=dword:8
+
+    ; The following registry value specifies the number of milliseconds for an application to shut down.
+    "cmsWait"=dword:1f40   ; default is 8 seconds
+
+    ; Undocumented
+    ;"AutoOOM"=dword:1
+
+;-------------------------------------------------------------------------------
+	 
+; @CESYSGEN IF SHELL_MODULES_CESHELL
+[HKEY_LOCAL_MACHINE\Explorer]
+	"RecycleBinEnableDBFile"=dword:1
+	"RecycleBinFlush"=dword:1
+; @CESYSGEN ENDIF SHELL_MODULES_CESHELL
+
+; Example registry entries to control which wake sources reset which activity timers
+;
+; Note: Default behavior is to reset UserActivity timer for all wake sources
+
+; associate wake sources with system activity timer
+;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\ActivityTimers\SystemActivity]
+    ; list of wake source numbers associated with system activity timer (decimal strings)
+    ;"WakeSources"=multi_sz:"13"         ; RTC alarm
+
+; associate wake sources with user activity timer
+;[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power\ActivityTimers\UserActivity]
+    ; list of wake source numbers associated with user activity timer as decimal strings
+    ; RTC alarm, PWR_ON button
+    ;"WakeSources"=multi_sz:"13","21"
+
+; @CESYSGEN IF CE_MODULES_ETHMAN
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Ethman\Popup]
+	"Popup"=dword:0
+	"Timeout"=dword:e10
+; @CESYSGEN ENDIF CE_MODULES_ETHMAN
+
+#include "$(_TARGETPLATROOT)\SRC\DRIVERS\AX88772\files\ax88772.reg"
+
+; @CESYSGEN IF CE_MODULES_NETUI    
+[HKEY_LOCAL_MACHINE\Comm\Tcpip\Parms]
+   "MicronetDisableCachedLeaseMsg"=dword:0	
+; @CESYSGEN ENDIF CE_MODULES_NETUI    

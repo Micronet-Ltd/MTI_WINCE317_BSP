@@ -1,0 +1,13 @@
+LIBRARY 	GPSDrvr
+EXPORTS COM_Init 
+	COM_Deinit
+	COM_PreDeinit
+	COM_Open
+	COM_Close
+	COM_PreClose
+	COM_Read
+	COM_Write
+	COM_Seek
+	COM_PowerDown
+	COM_PowerUp
+	COM_IOControl

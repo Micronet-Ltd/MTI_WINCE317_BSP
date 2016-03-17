@@ -1,0 +1,133 @@
+; Copyright (C) 2010 Texas Instruments Incorporated - http://www.ti.com/ 
+; ALL RIGHTS RESERVED 
+;
+;***************************************************************************
+; Name        : powervr.reg
+; Title       : SGX WinCE registry setttings
+; Author(s)   : Imagination Technologies
+; Created	  : 9th March 2005
+;
+; Copyright   : 2005-2006 by Imagination Technologies. All rights reserved.
+;             : No part of this software, either material or conceptual 
+;             : may be copied or distributed, transmitted, transcribed,
+;             : stored in a retrieval system or translated into any 
+;             : human or computer language in any form by any means,
+;             : electronic, mechanical, manual or other-wise, or 
+;             : disclosed to third parties without the express written
+;             : permission of Imagination Technologies Limited, Unit 8,
+;             : HomePark Industrial Estate, King's Langley, Hertfordshire,
+;             : WD4 8LZ, U.K.
+;
+; Description : SGX WinCE driver registry file.
+;
+; Platform    : WinCE
+;****************************************************************************/
+
+; PowerVR entries begin --------------------------------
+
+; @CESYSGEN IF POWERVR_MODULES_PVRPDP
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_DC_VESA
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_DC_NOHW
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_GPE
+; @CESYSGEN ENDIF
+
+[HKEY_LOCAL_MACHINE\PowerVR\PVRKernel121]
+   "Prefix"="PKM"
+   "Dll"="srvkm_Rev121.dll"
+   "Keep"=dword:1
+   ; Indicate KSrv is a generic power manageable interface
+   "IClass"="{A32942B7-920C-486b-B0E6-92A702A99B35}"
+   
+[HKEY_LOCAL_MACHINE\PowerVR\PVRKernel125]
+   "Prefix"="PKM"
+   "Dll"="srvkm_Rev125.dll"
+   "Keep"=dword:1
+   ; Indicate KSrv is a generic power manageable interface
+   "IClass"="{A32942B7-920C-486b-B0E6-92A702A99B35}"
+
+[HKEY_LOCAL_MACHINE\PowerVR\PowerVREurasia\HWSettings\PVRSRVKM]
+; @CESYSGEN IF POWERVR_MODULES_PVRPDP
+; @CESYSGEN ENDIF
+;	"UseSharedParamHeap"=dword:1
+;	"MaxEDMTasks"=dword:2
+;	"USETmpRegGran"=dword:4
+;	"USETmpRegCount"=dword:180
+;	"DisablePDSDOUTTimeout"=dword:0
+;	"CacheCtrl"=dword:100ffff
+;	"RegBoundReturnZero"=dword:400
+;	"RunEDMInitProgram"=dword:80000000
+;	"EDMTACodeProfile"=dword:0
+;	"PDSTimerEnable"=dword:1
+;	"ForcePTOff"=dword:c081bb20
+;	"TAFlags"=dword:0
+;	"EDMHWSync"=dword:2
+;	"EDMRenderSync"=dword:f
+;	"TAThreshold"=dword:200
+;	"ZLSThreshold"=dword:200
+;	"GlobalThreshold"=dword:200
+;	"PDSThreshold"=dword:180
+	
+[HKEY_LOCAL_MACHINE\PowerVR\PVRDebug]
+   "Prefix"="DBD"
+   "Dll"="dbgdrv.dll"
+   "Keep"=dword:1
+
+[HKEY_LOCAL_MACHINE\PowerVR\Wince6Proxy]
+	"Prefix"="W5P"
+	"Dll"="wince6_proxy.dll"
+	"Keep"=dword:1   
+
+[HKEY_LOCAL_MACHINE\PowerVR\Environment]
+	"WINDIR"="\\windows"
+
+[HKEY_LOCAL_MACHINE\PowerVR\IniFile\default]
+	"UseDebugVxd"=dword:1
+
+[HKEY_LOCAL_MACHINE\PowerVR\IniFile\DEBUG]
+	"GlobalLevel"=dword:4
+
+[HKEY_LOCAL_MACHINE\PowerVR\IniFile\ModuleDebugLevels]
+;	"MODID_DEFAULT"=dword:4
+;	"MODID_APPHINTS"=dword:4
+;	"MODID_BACKGRND"=dword:4
+;	"MODID_BUFFERS"=dword:4
+;	"MODID_CONTEXT"=dword:4
+;	"MODID_DEBUG"=dword:4
+;	"MODID_DRAWMASK"=dword:4
+;	"MODID_DSLS"=dword:4
+;	"MODID_DVDEVICE"=dword:4
+;	"MODID_ERRATA"=dword:4
+;	"MODID_ERROR"=dword:4
+;	"MODID_FRAME"=dword:4
+;	"MODID_HEAP"=dword:4
+;	"MODID_KICKTA"=dword:4
+;	"MODID_METRICS"=dword:4
+;	"MODID_NM"=dword:4
+;	"MODID_OCCQUERY"=dword:4
+;	"MODID_PDUMP"=dword:4
+;	"MODID_PRIMS"=dword:4
+;	"MODID_PROGRAM"=dword:4
+;	"MODID_PHYSDEV"=dword:4
+;	"MODID_RENDTARG"=dword:4
+;	"MODID_SGLTHIN"=dword:4
+;	"MODID_SGLMEM"=dword:4
+;	"MODID_SGLTOPDS"=dword:4
+;	"MODID_SIMUL"=dword:4
+;	"MODID_SSBUFF"=dword:4
+;	"MODID_STATE"=dword:4
+;	"MODID_SUBTEX"=dword:4
+;	"MODID_TEXMEM"=dword:4
+;	"MODID_TEXMGMT"=dword:4
+;	"MODID_TEXTURE"=dword:4
+;	"MODID_TEXUTILS"=dword:4
+;	"MODID_TILEACC"=dword:4
+;	"MODID_VBUFF"=dword:4
+;	"MODID_W32DLL"=dword:4
+
+; PowerVR entries end ----------------------------------

@@ -1,0 +1,2 @@
+call %B_TRAVERSE% %P_PROJDIR% .
+

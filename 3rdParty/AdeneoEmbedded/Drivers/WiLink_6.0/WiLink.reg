@@ -1,0 +1,629 @@
+;
+;
+;
+IF WL1271_WLAN
+; WLAN Interface
+
+[-HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SDHC2]
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SDHC2]
+    "Prefix"="SDI"
+    "Dll"="sdi.dll"
+    "Index"=dword:2
+    "Order"=dword:17
+    "MemBase"=multi_sz:"480B4000"
+    "MemLen"=multi_sz:"00000200"
+    "PowerFlags"=dword:00000003              ; send pre/post device state changes
+
+    "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}",
+             "{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\NDIS]
+    "Order"=dword:D2
+			 
+			 
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\NDISUIO]
+    "Order"=dword:DC
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\ZeroConfig]
+    ; NDISUIO must be started before WZCSVC
+    "Order"=dword:E6
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\AFD]
+    "Order"=dword:DC	
+	
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\PPP]
+; Must load after NDIS
+"Order"=dword:E6
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\Ethman]
+    "Order"=dword:FA
+	
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\IrCOMM]
+    "Order"=dword:E6
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\WWN]
+   "Order"=dword:F0
+
+   [HKEY_LOCAL_MACHINE\Drivers\Builtin\BtA2dpSnd]
+   "Order"=dword:118
+   
+	; [HKEY_LOCAL_MACHINE\Drivers\BuiltIn\SDHC2]
+    ; "Prefix"="SDI"
+    ; "Dll"="sdi.dll"
+    ; "Index"=dword:2
+    ; "Order"=dword:17				; Load sdi.dll defore NDIS    
+    ; "MemBase"=multi_sz:"480B4000"
+    ; "MemLen"=multi_sz:"00000200"
+    ; "SDIOPriority"=dword:d3
+    ; "CDPriority"=dword:d4
+    ; "BaseClockFrequency"=dword:18CBA80 ; override the max clock rate (26 MHz default)
+    ; "ReadWriteTimeout"=dword:1000   ; (0x1000 clock ticks default)
+    ; "DTOTimeout"=dword:200          ; Data timeout in 1000's cycles - (512K default)
+    ; "CTOTimeout"=dword:5            ; Command timeout in 1000's cycles - (5K default)
+    ; "WakeupSources"=dword:3         ; 0 - no wakeup, 1 - wakeup on SDIO, ; 2 - wakeup on card detect, ; 3 - wakeup on both
+    ; "CardDetectGPIO"=dword:1       ; card insertion detection is GPIO_1 on Triton2
+    ; "CardInsertedState"=dword:0     ; logical 0 means a card is inserted
+    ; "CardWPGPIO"=dword:98      ; card R/W protection detection is done via GPIO 152
+    ; "CardWriteProtectedState"=dword:1 ; logical 1 means the card is write protected
+    ; "IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}","{0AE2066F-89A2-4D70-8FC2-29AEFA68413C}"
+
+[HKEY_LOCAL_MACHINE\Comm\tiwlnapi]
+   "DisplayName"="tiwlnapi"
+   "Group"="NDIS"
+   "ImagePath"="tiwlnapi.dll"
+
+[HKEY_LOCAL_MACHINE\Comm\tiwlnapi\Linkage]
+   "Route"=multi_sz:"tiwlnapi1"
+
+[HKEY_LOCAL_MACHINE\Comm\Tcpip\Linkage]
+   ; This should be MULTI_SZ
+   ; This is the list of llip drivers to load
+    "Bind"=multi_sz:"ppp","tiwlnapi1"
+
+[HKEY_LOCAL_MACHINE\Comm\tiwlnapi1]
+   "DisplayName"="tiwlnapi1"
+   "Group"="NDIS"
+   "ImagePath"="tiwlnapi.dll"
+
+[HKEY_LOCAL_MACHINE\Comm\tiwlnapi1\Parms]
+   "EnableOnStartup"=dword:1
+   "Characteristics"=dword:00000084
+   "InstanceNumber"=dword:00000000
+   "BusNumber"=dword:0
+   "BusType"=dword:0
+; WME support
+; 0 - disable WME support
+; 1 - enable WME support
+   "WME_Enable"="1"
+
+; SME Working Mode
+; 0 - auto
+; 1 - manual
+   "SmeConnectMode"="0"
+
+; 802.11n support
+; 1 - Enable
+; 0 - diable
+   "HT_Enable"="1"
+
+;Default Network Type - specifies network subtype value for the physical layer
+;1 - "11b"
+;2 - "11a"
+;3 - "11g" default for b/g card
+;4 - "11a&g" default for a/g card
+  "dot11NetworkType"="3"
+
+;sh connection periodic scan without A band
+  "SmeScanAChannelList"=" "
+
+; Recovery control
+; 0 - disable recovery
+; 1 - enable recovery
+   "RecoveryEnable"="1"
+IF BSP_EVM_DM_AM_37X !
+  "IrqLine"="139"
+  "Wlan_PwrLine"="136"
+ENDIF
+IF BSP_EVM_DM_AM_37X
+IF HOST_PLAT_EVM_OMAP3530
+; WLAN_EN and IRQ Lines
+; 149 - IRQ for OMAP3530 and OMAP3730
+  "IrqLine"="149"
+  "Wlan_PwrLine"="150"
+ ENDIF
+IF HOST_PLAT_TI_EVM_3530
+; WLAN_EN and IRQ Lines
+; 149 - IRQ for OMAp3530
+  "IrqLine"="149"
+  "Wlan_PwrLine"="150"
+ ENDIF
+IF HOST_PLAT_PTI_OMAP3530
+; WLAN_EN and IRQ Lines for PTI OMAP3530
+  "IrqLine"="138"
+  "Wlan_PwrLine"="139"
+ENDIF
+ENDIF
+; SG Enable Disable
+; 0 - SG disable
+; 1 - SG protective
+   "BThWlanCoexistEnable"="1"
+
+; TriggerFcs
+; 0 - Disabled
+; 1 - Enabled
+   "TriggerFcs"="0"
+
+;MSDU Fragmentation threshold
+;256  4096
+  "dot11FragmentationThreshold"="4096"
+
+
+;RTS threshold
+;0  4096
+  "dot11RTSThreshold"="4096"
+
+; WPA mixed mode support
+; 0 - disable WPA mixed mode
+; 1 - enable WPA mixed mode
+    "WPAMixedMode"="1"
+
+; RSN preauthentication control
+; 0 - disable RSN preauthentication
+; 1 - enable RSN preauthentication
+   "RSNPreAuthentication"="1"
+
+
+;undocumented, see Linux tiwlan.ini
+    "CalibrationChannel24"="1"
+    "CalibrationChannel5"="36"
+
+;Replaces Regulatory Domain tables. use 'FF' for allowed channel , else use '00'. 
+;Upper case only!
+    "AllowedChannelsTable24"="FFFFFFFFFFFFFFFFFFFFFFFFFFFF"
+    "AllowedChannelsTable5"="FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000000000000000000000000000000000000000000000000000000000000000000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF000000FF0000000000000000FF000000FF000000FF000000FF000000FF000000000000000000000000000000"
+
+;Enable/Disable Spectrum Management
+;1 Enable 802.11h
+;0 Disable 802.11h
+   "SpectrumManagement"="0"
+
+;set Default Tx Power Level in DBM
+   "TxPower"="205"
+
+; Receive broadcast in power save mode control
+; 0 - disable receive broadcast
+; 1 - enable receive broadcast
+   "RxBroadcastInPs"="1"
+
+; IP address for ARP filet
+   "ArpIp_Addr"="0a 00 00 0a"
+
+; Enable ARP request filter by IP address
+; 0 - disable
+; 1 - enable
+   "ArpIp_Filter_ena"="0"
+
+; Enable MAC filter
+; 0 - disable
+; 1 - enable
+   "Mac_Filter_Enabled"="0"
+
+; Number of MAC filter groups
+   "numGroupAddrs"="4"
+
+; MAC address grous
+   "Group_addr0"="10 01 02 03 04 05"
+   "Group_addr1"="11 11 12 13 14 15"
+   "Group_addr2"="12 21 22 23 24 25"
+   "Group_addr3"="13 31 32 33 34 35"
+   "Group_addr4"="14 41 42 43 44 45"
+   "Group_addr5"="15 51 52 53 54 55"
+   "Group_addr6"="16 61 62 63 64 65"
+   "Group_addr7"="17 71 72 73 74 75"
+
+; Beacon filter configuration
+   "Beacon_Filter_Desired_State"="1"
+   "Beacon_Filter_Stored"="1"
+
+;beacon IE table
+;the size is the len of the string - spaces = number of bytes
+   "Beacon_IE_Num_Of_Elem"="16"
+   "Beacon_IE_Table_Size"="37"
+   "Beacon_IE_Table"="00 01 01 01 32 01 2a 01 03 01 06 01 07 01 20 01 25 01 23 01 30 01 28 01 2e 01 3d 01 85 01 dd 00 52 f2 02 00 01"
+
+;Rate adaptation
+   "RateContThreshold"="10"
+   "RateStepUpThreshold"="2"
+   "FBShortInterval"="40"
+   "FBLongInterval"="200"
+   "RateAdaptationTimeout"="300"
+
+; rate policy - short / long retries
+   "RatePolicyUserShortRetryLimit"="10"
+   "RatePolicyUserLongRetryLimit"="10"
+
+;
+; Power Manager
+;
+; Number of N-Beacon to wake on in Short Doze
+	"BeaconListenInterval"="1" 
+; Number of N-Dtims to wake on in Long Doze
+	"DtimListenInterval"="1"
+
+
+
+;0 - POWER_MODE_AUTO
+;1 - POWER_MODE_ACTIVE
+;2 - POWER_MODE_SHORT_DOZE
+;3 - POWER_MODE_LONG_DOZE
+  "dot11PowerMode"="1"
+
+; Power management hang over period
+; in mSec units
+   "PowerMgmtHangOverPeriod"="10"
+
+;AutoPowerModeDozeMode
+;2 - Short Doze
+;3 - Long Doze
+    "AutoPowerModeDozeMode"="2"
+
+;AutoPowerModeActive Threshold
+;packets per second
+    "AutoPowerModeActiveTh"="2"
+
+;AutoPowerModeDoze Threshold
+;packets per seconds - threshold for entering ELP in Auto mode
+    "AutoPowerModeDozeTh"="8"
+
+; Default power level
+; 0 - ELP
+; 1 - PD
+; 2 - AWAKE
+   "defaultPowerLevel"="0"
+
+; Power level in power save mode
+; 0 - ELP
+; 1 - PD
+; 2 - AWAKE
+   "PowerSavePowerLevel"="0"
+
+
+
+; Configures OsDbgState values: governs content/verbosity level in by
+;  PRINT() calls in driver. Value in hex
+;
+; DBG_SEV_INFO                  0x0001
+; DBG_SEV_LOUD                  0x0002
+; DBG_SEV_VERY_LOUD             0x0004
+; DBG_SEV_WARNING               0x0008
+; DBG_SEV_ERROR                 0x0010
+; DBG_SEV_FATAL_ERROR           0x0020
+;
+; DBG_INIT                      0x0001 << 16
+; DBG_REGISTRY                  0x0002 << 16
+; DBG_NDIS_CALLS                0x0004 << 16
+; DBG_NDIS_OIDS                 0x0008 << 16
+; DBG_PCI_RES                   0x0010 << 16
+; DBG_INTERRUPT                 0x0020 << 16
+; DBG_IOCTL                     0x0040 << 16
+; DBG_RECV                      0x0080 << 16
+; DBG_SEND                      0x0100 << 16
+
+	"OsDbgState"=dword:130864
+
+
+;       Configure the severity table (0 = Disable/ 1 = Enable)
+;
+;   Digit #0  -- IGNORED, MUST BE THERE --
+;       Digit #1: Init
+;       Digit #2: Information
+;       Digit #3: Warning
+;       Digit #4: Error
+;       Digit #5: Fatal Error
+;       Digit #6: SM
+;       Digit #7: Console
+;
+
+    "ReportSeverityTable"="00001101"
+        
+
+	"BeaconReceiveTime"="50"
+
+; QOS UPSD
+;
+; Global Power save delivery protocol (1 - UPSD, 0 - Legacy)
+   "desiredPsMode"="1"
+; Power save delivery protocol for BE AC (1 - UPSD, 0 - Legacy)
+   "QOS_wmePsModeBE"="0"
+; Power save delivery protocol for BK AC (1 - UPSD, 0 - Legacy)
+   "QOS_wmePsModeBK"="0"
+; Power save delivery protocol for VI AC (1 - UPSD, 0 - Legacy)
+   "QOS_wmePsModeVI"="0"
+; Power save delivery protocol for VO AC (1 - UPSD, 0 - Legacy)
+   "QOS_wmePsModeVO"="1"
+
+; Enable/Disable burst mode (0-Disabled 1-enabled)
+  "BurstModeEnable"="0"     
+;
+; QOS Classifier
+;
+; 1 - DSCP, 2 - Port, 3 - IP+port
+   "Clsfr_Type"="1"
+; number of classifier entries
+   "NumOfDstIPPortClassifiers"="3"
+; IP address 10.3.137.2
+   "IPPortClassifier00_IPAddress"="0a 03 89 02"
+; Port 5001
+   "IPPortClassifier00_Port"="5001"
+; User priority 1
+   "IPPortClassifier00_DTag"="1"
+
+; IP address 10.3.137.2
+   "IPPortClassifier01_IPAddress"="0a 03 89 02"
+; Port 5002
+   "IPPortClassifier01_Port"="5002"
+; User priority 4
+   "IPPortClassifier01_DTag"="4"
+
+; IP address 10.3.137.2
+   "IPPortClassifier02_IPAddress"="0a 03 89 02"
+; Port 5003
+   "IPPortClassifier02_Port"="5003"
+; User priority 6
+   "IPPortClassifier02_DTag"="6"
+
+   "NumOfDstPortClassifiers"="4"
+; Best Effort, port 6000
+   "PortClassifier00_Port"="6000"
+   "PortClassifier00_DTag"="0"
+
+; Background, port 6001
+   "PortClassifier01_Port"="6001"
+   "PortClassifier01_DTag"="1"
+
+; Video, port 6002
+   "PortClassifier02_Port"="6002"
+   "PortClassifier02_DTag"="4"
+
+; Voice, port 6003
+   "PortClassifier03_Port"="6003"
+   "PortClassifier03_DTag"="6"
+
+   "NumOfCodePoints"="4"
+; Best Effort
+   "DSCPClassifier00_CodePoint"="0"
+   "DSCPClassifier00_DTag"="0"
+
+; Background
+   "DSCPClassifier01_CodePoint"="8"
+   "DSCPClassifier01_DTag"="1"
+
+; Video
+   "DSCPClassifier02_CodePoint"="40"
+   "DSCPClassifier02_DTag"="5"
+
+; Voice
+   "DSCPClassifier03_CodePoint"="56"
+   "DSCPClassifier03_DTag"="6"
+
+; max elapsed time after the rx of the first frag that the STA will wait to rx all frags in MSDU. in TU (default 512000) 
+	"dot11MaxReceiveLifetime"="512000"
+
+	"FracOfLifeTimeToDrop"="50"
+
+;this switch if set to 1, start adhoc in b only mode, if set to zero starts it in b/g
+	"WiFiAdhoc"="1"
+
+	"WiFiWmmPS"="0"
+
+; EarlyWakeUp 0 - Disable , 1 - Enable
+	"EarlyWakeUp"="1"
+
+; Tx Energy Detection Use 1 for enabling
+	"TxEnergyDetection"="0"
+
+; Maximum time in Us between 2 channels on triggered scan
+	"TriggeredScanTimeOut"="50000"
+
+; PsPoll delivery failure solution. Time in Ms to stay ACTIVE ('0' to disable feature)
+	"PsPollDeliveryFailureRecoveryPeriod"="20"
+
+; Number of failed PsPoll's to start ACTIVE time out
+	"ConsecutivePsPollDeliveryFailureThreshold"="20"
+
+
+; Weights in percent for RSSI/SNR Average calculations
+	"RssiBeaconAverageWeight"="20"
+	"RssiPacketAverageWeight"="10"
+	"SnrBeaconAverageWeight"="20"
+	"SnrPacketAverageWeight"="10"
+
+	"FmCoexuSwallowPeriod" = "5"
+	"FmCoexuNDividerFrefSet2" = "12"
+	"FmCoexuMDividerFrefSet2" = "148"
+
+
+; Radio parameters data 
+; (for Single bend 2.4G parameters FEM1 (TQS 2.5) HDK20)
+	"RxTraceInsertionLoss_2_4G" = "0"
+	;"RxTraceInsertionLoss_2_4G" = "12"		;0x0C Unit: 1/8dB, Format: Unsigned, Source: LSR
+	"TXTraceLoss_2_4G"  = "0"
+	;"TXTraceLoss_2_4G"  = "12"				;0x0C Unit: 1/8dB, Format: Unsigned, Source: LSR
+	"RxRssiAndProcessCompensation_2_4G" = "ec,f6,00,0c,18,f8,fc,00,08,10,f0,f8,00,0a,14"	;Unit: 1/8dB, Format: Signed, Source: TI
+	"TXBiPReferencePDvoltage_2_4G" = "375"  ; 0x177	Unit: 1mV, Format: Unsigned, Source: TI
+	"TxBiPReferencePower_2_4G" = "128"      ; 0x80	Unit: 1/8dB, Format: Signed, Source: TI
+	"TxBiPOffsetdB_2_4G" = "0"
+	;"TxBiPOffsetdB_2_4G" = "12"				;0x0C Unit: 1/8dB, Format: Signed, Source: LSR
+	"TxPerRatePowerLimits_2_4G_Normal" = "1D,1f,22,26,27,29" 
+	;"TxPerRatePowerLimits_2_4G_Normal" = "15,1B,1F,21,25,26"	;Unit: 1/2dB, Format: Signed, Source: LSR
+	"TxPerRatePowerLimits_2_4G_Degraded" ="1A,1f,22,25,25,27"
+	;"TxPerRatePowerLimits_2_4G_Degraded" ="12,1B,1F,20,24,25"	;Unit: 1/2dB, Format: Signed, Source: LSR
+	"TxPerRatePowerLimits_2_4G_Extreme" = "16,1D,1E,20,24,25"
+	;"TxPerRatePowerLimits_2_4G_Extreme" = "12,18,1B,1C,20,21"	;Unit: 1/2dB, Format: Signed, Source: LSR
+	"DegradedLowToNormalThr_2_4G" = "0x1e"
+	;"DegradedLowToNormalThr_2_4G" = "0x20"		;Unit: 1/10 volts, Format: Unsigned, Source: LSR
+	"NormalToDegradedHighThr_2_4G" = "0x2d"
+	"TxPerChannelPowerLimits_2_4G_11b" = "50,50,50,50,50,50,50,50,50,50,50,50,50,50"
+	;"TxPerChannelPowerLimits_2_4G_11b" = "26,26,26,26,26,26,26,26,26,26,26,26,15,27"	;Unit: 1/2dB, Format: Signed,
+	"TxPerChannelPowerLimits_2_4G_OFDM" = "50,50,50,50,50,50,50,50,50,50,50,50,50,50"  
+	;"TxPerChannelPowerLimits_2_4G_OFDM" = "27,27,27,27,27,27,27,27,27,27,27,27,15,2A"	;Unit: 1/2dB, Format: Signed
+	"TxPDVsRateOffsets_2_4G" = "01,02,02,02,02,00"	;Unit: 1/8dB, Format: Signed, Source: TI
+	"TxIbiasTable_2_4G" = "11,11,15,11,15,0f"		;Unit: Codeword, Format: Unsigned, Source: TI/TQS
+	"RxFemInsertionLoss_2_4G" = "14"				;0x0E Unit: 1/8dB, Format: Unsigned, Source: LSR
+
+; (for Single bend 2.4G parameters FEM0 (RFMD 3.0) HDK20)
+
+	;"RxTraceInsertionLoss_2_4G" ="00" 
+	;"TXTraceLoss_2_4G" ="0" 
+	;"RxRssiAndProcessCompensation_2_4G" = "ec,f6,00,0c,18,f8,fc,00,08,10,f0,f8,00,0a,14" 
+	;"TXBiPReferencePDvoltage_2_4G" ="0x0164" 
+	;"TxBiPReferencePower_2_4G" = "0x80" 
+	;"TxBiPOffsetdB_2_4G" = "00" 
+	;"TxPerRatePowerLimits_2_4G_Normal" = "1c,1f,22,24,28,29"
+	;"TxPerRatePowerLimits_2_4G_Degraded" = "19,1f,22,23,27,28" 
+	;"TxPerRatePowerLimits_2_4G_Extreme" = "50,50,50,50,50,50"
+	;"DegradedLowToNormalThr_2_4G" = "0x1e"
+	;"NormalToDegradedHighThr_2_4G" = "0x2d"
+	;"TxPerChannelPowerLimits_2_4G_11b" = "50,50,50,50,50,50,50,50,50,50,50,50,50,50"
+	;"TxPerChannelPowerLimits_2_4G_OFDM" = "50,50,50,50,50,50,50,50,50,50,50,50,50,50"
+	;"TxPDVsRateOffsets_2_4G" = "01,02,02,02,02,00"
+	;"TxIbiasTable_2_4G"  = "1a,1a,1a,1a,1a,21"
+	;"RxFemInsertionLoss_2_4G"  = "0x10"
+
+; Fref Clock:  0 = 19.2MHz,  1 = 26MHz,  2 = 38.4MHz,  3 = 52MHz
+	"STRFRefClock" = "2"
+	"STRFRefClockSettingTime" = "5"
+	"TXBiPFEMAutoDetect" = "0"       ; Unit: Options (0: Manual Mode; 1: Automatic mode), Format: Unsigned, Source: Customer
+	"TXBiPFEMManufacturer" = "1"     ; Unit: Options (0: RFMD; 1: Triquint), Format: Unsigned, Source: Customer 
+	"ClockValidOnWakeup" = "0"
+	"DC2DCMode" = "0"                ; Unit: Options (0: btSPI is not used; 1: mux DC2DC mode to BT_FUNC2), Format: Unsigned, Source: Customer 
+	"Single_Dual_Band_Solution" = "0" ; Unit: Options (0: Single band. 2.4GHz only; 1: Dual band = 2.4GHz and 5GHz solution), Format: Unsigned, Source: Customer
+	"Settings"  = "1"                 ; Unit: Options (Bit0: NBI (0: Off; 1: On), Bit1: Telec channel 14 (0: Off; 1: On), Format: Unsigned, Source: Customer
+
+; Smart reflex params
+	"SRState" = "0x01"                    ; Unit: Options ( 1 - Enabled ,0- Disabled) Format: Decimal, Source: TI
+	"SRF1" = "07,03,18,10,05,fb,f0,e8"    ; Unit: SRF1 values, Format: Signed, Source: TI
+	"SRF2" = "07,03,18,10,05,f6,f0,e8"    ; Unit: SRF2 values, Format: Signed, Source: TI
+	"SRF3" = "07,03,18,10,05,fb,f0,e8"    ; Unit: SRF3 values, Format: Signed, Source: TI
+	
+	;"SRF1" = "09,04,18,10,08,00,F7,EF,E7,DF,00,00,00,00,0F,3F"    ; Unit: SRF1 values, Format: Signed, Source: TI
+	;"SRF2" = "09,04,18,10,08,00,F7,EF,E7,DF,00,00,00,00,00,00"    ; Unit: SRF2 values, Format: Signed, Source: TI
+	;"SRF3" = "09,04,18,10,08,00,F7,EF,E7,DF,00,00,00,00,00,00"    ; Unit: SRF3 values, Format: Signed, Source: TI
+
+
+; Ibss protection Type: 0 = CTS protaction disable ; 1 = Standard CTS protaction
+	"IbssProtectionType"="1"
+
+
+	"RoamScanEnable" = "0"          ;1- roaming and immidate scan enable by deafult 0- allowing roaming & scannig due to CLI confguration
+ 
+
+[HKEY_LOCAL_MACHINE\Comm\tiwlnapi1\Parms\TcpIp]
+   "TcpWindowSize"=dword:00004000
+   "EnableDHCP"=dword:1
+   "UseZeroBroadcast"=dword:0
+;   "IpAddress"=multi_sz:"192.168.1.106"
+;   "Subnetmask"=multi_sz:"255.255.255.0"
+;   "DefaultGateway"=multi_sz:"192.168.1.1"
+
+; [HKEY_LOCAL_MACHINE\Comm\TELNETD]
+   ; "USEAUTHENTICATION"=dword:0
+
+[HKEY_LOCAL_MACHINE\Comm\80211i\PMKCache]
+    "Enabled"=dword:1
+    "MaxEntries"=dword:100
+    "CacheTimeoutMs"=dword:28800000
+    "PreAuthenticationEnabled"=dword:1
+    "OpportunisticPMKEnabled"=dword:1
+
+;NVS Registry Info
+[HKEY_LOCAL_MACHINE\Comm\tiwlnapi1\Parms\NVS]
+	"NVSChunk0"=hex:01,6D,54,66,66,32,28,01,71,54,00,08,00,00,00,00
+	"NVSChunk1"=hex:00,00,00,00,00,00,00,00
+	"NVSChunkNB"=dword:2
+ENDIF WL1271_WLAN
+; Bluetooth Interface
+IF WL1271_BTH
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\sys]
+    "COD"=dword:D20110
+; @CESYSGEN IF SERVERS_MODULES_OBEXFILE
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Obex\Services\{f9ec7bc4-953c-11d2-984e-525400dc9e09}]
+	"CanWrite"=dword:1
+	"TransportAuthenticate"=dword:0
+	"Authenticate"=dword:0
+; @CESYSGEN ENDIF SERVERS_MODULES_OBEXFILE
+; @CESYSGEN IF BTD_BTPAN
+[HKEY_LOCAL_MACHINE\Comm\BTPAN1]
+	"PublishSdpOnBoot"=dword:1
+; @CESYSGEN ENDIF BTD_BTPAN
+; @CESYSGEN IF SERVERS_MODULES_FTPD
+[HKEY_LOCAL_MACHINE\COMM\FTPD]
+    "IsEnabled"=dword:1
+    "UseAuthentication"=dword:0
+    "AllowAnonymous"=dword:1
+    "AllowAnonymousUpload"=dword:1
+    "AllowAnonymousVroots"=dword:1
+    "UserList"="*;"
+; @CESYSGEN ENDIF SERVERS_MODULES_FTPD
+IF BSP_EVM_DM_AM_37X !
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Driver]
+    "Order"=dword:10E
+[-HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+    "Name"="COM3:"
+    "Driver"="brf6300.dll"
+    "ResetGpio"=dword:89
+    "WakeUpOnStart"=dword:0
+    "EnableOnStartup"=dword:1
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\btpwr]
+    "Prefix"="PWB"
+    "Dll"="btpwr.dll"
+    "Index"=dword:1
+    "Order"=dword:10F
+    ;"PowerMask"=dword:19             ;support d0, d1, d2, d3, d4
+    ;"Flags"=dword:0001000
+    ;"Priority256"=dword:F0
+    ; CE_DRIVER_POWER_MANAGEABLE_GENERIC_GUID
+	"IClass"=multi_sz:"{A32942B7-920C-486b-B0E6-92A702A99B35}"
+
+ENDIF
+IF BSP_EVM_DM_AM_37X
+IF HOST_PLAT_PTI_OMAP3530
+;platform specific settings
+[-HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+    "Name"="COM1:"
+    "Driver"="brf6300.dll"
+    "ResetGpio"=dword:88
+    "WakeUpOnStart"=dword:0
+ENDIF HOST_PLAT_PTI_OMAP3530
+IF HOST_PLAT_EVM_OMAP3530
+;platform specific settings
+[-HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+    "Name"="COM2:"
+    "Driver"="brf6300.dll"
+    "ResetGpio"=dword:37
+    "WakeUpOnStart"=dword:0
+ENDIF HOST_PLAT_EVM_OMAP3530
+IF HOST_PLAT_TI_EVM_3530
+;platform specific settings
+[-HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Transports\BuiltIn\1]
+    "Name"="COM2:"
+    "Driver"="brf6300.dll"
+    "ResetGpio"=dword:37
+    "WakeUpOnStart"=dword:0
+ENDIF HOST_PLAT_TI_EVM_3530
+ENDIF
+; Enable handsfree/headset profile support
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\HandsfreeProfileOn]
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\hci]
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\Bluetooth\Debug]
+    "mask" = dword:8449
+    "console"=dword:0
+    
+ENDIF WL1271_BTH

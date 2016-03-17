@@ -1,0 +1,67 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+
+!IF "$(BSP_NOWILINK4)"=="1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=osapi_um
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources_cudk.cmn
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+!IF "$(TI_ZOOM2_PLATFORM)"=="1"
+TARGETLIBS= \
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\aygshell.lib
+!ELSE
+TARGETLIBS= \
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\aygshell.lib \
+    $(_PROJECTROOT)\cesysgen\oak\lib\$(_CPUINDPATH)\coredll.lib
+!ENDIF
+
+!IF "$(TI_ZOOM2_PLATFORM)"=="1"
+INCLUDES= \
+	$(_TARGETPLATROOT)\SRC\CSP\INC; \
+	$(_PLATFORMROOT)\COMMON\SRC\INC; \
+	$(_TARGETPLATROOT)\SRC\CSP\OMAP3430\INC; \
+	$(_TARGETPLATROOT)\SRC\CSP\OMAP\INC; \
+	$(_PUBLICROOT)\COMMON\SDK\INC; \
+	$(_PUBLICROOT)\COMMON\DDK\INC; \
+	$(_PUBLICROOT)\COMMON\OAK\INC; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\utils; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\os\winmobile\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\Txn; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\TWDriver; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\FirmwareApi; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\FW_Transfer\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\TWD\TwIf; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\os\common\inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\Export_Inc; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Application; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Connection_Managment; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Ctrl_Interface; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\platforms\hw\host_platform_zoom2\winmobile; \
+	$(_PUBLICROOT)\TI_WLAN\Source\Drivers\TI_WIFI\WiLink\stad\src\Data_link; \
+	$(_PUBLICROOT)\TI_WLAN\source\drivers\ti_wifi\wilink\cudk\os\win\inc; \
+	$(_PUBLICROOT)\TI_WLAN\source\drivers\ti_wifi\wilink\cudk\os\common\inc; \
+	$(_PUBLICROOT)\TI_WLAN\source\drivers\ti_wifi\wilink\cudk\configurationutility\inc;
+
+CDEFINES= $(CDEFINES) \
+	-DWM_ZOOM2
+
+!ENDIF
+CDEFINES= $(CDEFINES) \
+	-D_USER_MODE
+
+# Ensure there are no trailing spaces
+SOURCES= \
+    osapi.c \
+    ipc_event.c \
+    ipc_sta.c \
+    cu_os.c

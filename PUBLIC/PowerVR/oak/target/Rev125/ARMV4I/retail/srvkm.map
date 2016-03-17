@@ -1,0 +1,894 @@
+ srvkm
+
+ Timestamp is 4c9a73c5 (Wed Sep 22 17:23:17 2010)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 0000162bH .rdata                  CODE
+ 0001:0000164c 00000022H .rdata$debug            CODE
+ 0001:00001670 000176a4H .text                   CODE
+ 0001:00018d14 0000003cH .xdata                  CODE
+ 0001:00018d50 00000028H .idata$2                CODE
+ 0001:00018d78 00000014H .idata$3                CODE
+ 0001:00018d8c 000000fcH .idata$4                CODE
+ 0001:00018e88 00000016H .idata$6                CODE
+ 0001:00018ea0 000000edH .edata                  CODE
+ 0002:00000000 000000fcH .idata$5                DATA
+ 0002:00000100 00012b5cH .data                   DATA
+ 0002:00012c60 00000aa8H .bss                    DATA
+ 0003:00000000 00001060H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     10001000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     10001004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     10001008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     1000100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     10001010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     10001014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     10001018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     1000101c     corelib0:crt0init.obj
+ 0001:00000040       ??_C@_1FE@MFCHHLJM@?$AAk?$AAe?$AAr?$AAn?$AAe?$AAl?$AA?5?$AAI?$AAO?$AAC?$AAT?$AAL?$AA_?$AAP?$AAO?$AAW?$AAE?$AAR?$AA_?$AAS?$AAE?$AAT?$AA?5?$AAs?$AAe?$AAt?$AAt?$AAi?$AAn?$AAg?$AA?5?$AAs@ 10001040     pvr_bridge_k.obj
+ 0001:00000094       ??_C@_15MAOEGKJF@?$AA?$CF?$AAS?$AA?$AA@ 10001094     osfunc_srvkm.obj
+ 0001:0000009c       ??_C@_0BG@OLGOIILN@PVRSRV_EVENTOBJECT_?$CFd?$AA@ 1000109c     osfunc_srvkm.obj
+ 0001:000000b8       ??_C@_1JC@BBAGEJGB@?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn?$AAC?$AAE?$AA?2?$AAO?$AAM?$AAA?$AAP?$AA?2?$AAD?$AAD?$AAK?$AA1?$AA?4?$AA5?$AA?2?$AAe?$AAu?$AAr?$AAa?$AAs?$AAi?$AAa?$AA?2?$AAs?$AAe?$AAr@ 100010b8     osfunc_srvkm.obj
+ 0001:0000014c       ??_C@_1CI@OHCJFJPM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?5?$AAl?$AAi?$AAn?$AAe?$AA?5?$AA?$CF?$AAd?$AA?3?$AA?5?$AA?$AA@ 1000114c     osfunc_srvkm.obj
+ 0001:00000174       ??_C@_1CC@HNHLKECD@?$AA?$CI?$AAe?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAc?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$AA@ 10001174     osfunc_srvkm.obj
+ 0001:00000198       ??_C@_09KBHAHJDF@?2PowerVR?2?$AA@ 10001198     registry.obj
+ 0001:000001a4       ??_C@_07IEJGGFOD@PVR_K?3?5?$AA@ 100011a4     pvr_debug.obj
+ 0001:000001ac       ??_C@_01EEMJAFIK@?6?$AA@   100011ac     pvr_debug.obj
+ 0001:000001b0       ??_C@_0CP@BIENFAHM@?6Application?5Context?5?$CIhDevMemCon@ 100011b0     srvkmcmn:pvrsrv.obj
+ 0001:000001e0       ??_C@_0BC@PNPFJMEC@?6Kernel?5Context?3?6?$AA@ 100011e0     srvkmcmn:pvrsrv.obj
+ 0001:000001f4       ??_C@_0BD@FELDEKBN@?6?6Device?5Type?5?$CFd?3?6?$AA@ 100011f4     srvkmcmn:pvrsrv.obj
+ 0001:00000208       ??_C@_01LFCBOECM@?4?$AA@   10001208     srvkmcmn:pvrsrv.obj
+ 0001:0000020c       ??_C@_03JALODAI@?$CFld?$AA@ 1000120c     srvkmcmn:pvrsrv.obj
+ 0001:00000210       ??_C@_02NCJKDDL@?6?$AA?$AA@ 10001210     srvkmcmn:pvrsrv.obj
+ 0001:00000214       ??_C@_0BH@KCGJGLPH@?6Local?5Backing?5Store?3?6?$AA@ 10001214     srvkmcmn:pvrsrv.obj
+ 0001:0000022c       ??_C@_0BK@CJAANPAB@PVRSRV_GLOBAL_EVENTOBJECT?$AA@ 1000122c     srvkmcmn:pvrsrv.obj
+ 0001:00000248       ??_C@_04FOPLNFFP@span?$AA@ 10001248     srvkmcmn:ra.obj
+ 0001:00000250       ??_C@_04LIAPHEDB@free?$AA@ 10001250     srvkmcmn:ra.obj
+ 0001:00000258       ??_C@_04GLMHKBCH@live?$AA@ 10001258     srvkmcmn:ra.obj
+ 0001:00000260       ??_C@_04HCPOGDOG@junk?$AA@ 10001260     srvkmcmn:ra.obj
+ 0001:00000268       ??_C@_0CH@PLGDNCLG@?7base?$DN0x?$CFx?5size?$DN0x?$CFx?5type?$DN?$CFs?5ref@ 10001268     srvkmcmn:ra.obj
+ 0001:00000290       ??_C@_0DF@OLDHKALG@?5?5error?3?5tail?5boundary?5tag?5has?5i@ 10001290     srvkmcmn:ra.obj
+ 0001:000002c8       ??_C@_0DF@LCJMIKHC@?5?5error?3?5head?5boundary?5tag?5has?5i@ 100012c8     srvkmcmn:ra.obj
+ 0001:00000300       ??_C@_0BC@EDPCNOOG@?5?5segment?5Chain?3?6?$AA@ 10001300     srvkmcmn:ra.obj
+ 0001:00000314       ??_C@_0BD@MBBIMKGJ@export?5count?7?7?$CFlu?6?$AA@ 10001314     srvkmcmn:ra.obj
+ 0001:00000328       ??_C@_0BD@OLIIOHPB@import?5count?7?7?$CFlu?6?$AA@ 10001328     srvkmcmn:ra.obj
+ 0001:0000033c       ??_C@_0BC@KNACCNA@total?5frees?7?7?$CFlu?6?$AA@ 1000133c     srvkmcmn:ra.obj
+ 0001:00000350       ??_C@_0BD@EOGCHLKO@total?5allocs?7?7?$CFlu?6?$AA@ 10001350     srvkmcmn:ra.obj
+ 0001:00000364       ??_C@_0CA@CINBBMOA@free?5resource?5count?7?$CFlu?5?$CI0x?$CFx?$CJ?6?$AA@ 10001364     srvkmcmn:ra.obj
+ 0001:00000384       ??_C@_0BI@LEJJMIMP@free?5segment?5count?7?$CFlu?6?$AA@ 10001384     srvkmcmn:ra.obj
+ 0001:0000039c       ??_C@_0BI@FIAOCDCI@live?5segment?5count?7?$CFlu?6?$AA@ 1000139c     srvkmcmn:ra.obj
+ 0001:000003b4       ??_C@_0BB@IDANMOJI@span?5count?7?7?$CFlu?6?$AA@ 100013b4     srvkmcmn:ra.obj
+ 0001:000003c8       ??_C@_0DD@BBMPLEDC@?5?5allocCB?$DN?$CF08X?5freeCB?$DN?$CF08X?5handl@ 100013c8     srvkmcmn:ra.obj
+ 0001:000003fc       ??_C@_0O@FCFOECN@?6Arena?5?8?$CFs?8?3?6?$AA@ 100013fc     srvkmcmn:ra.obj
+ 0001:0000040c       ??_C@_0BG@OGDIKEGG@?7?$CFs?5?$CFlu?3?5?$CINot?5in?5use?$CJ?$AA@ 1000140c     srvkmcmn:queue.obj
+ 0001:00000428       ??_C@_0FI@GFJJCCHJ@?7?$CFs?5?$CFlu?3?5ROC?5DevVAddr?30x?$CFlX?5ROP?3@ 10001428     srvkmcmn:queue.obj
+ 0001:00000480       ??_C@_04IIEJFGNN@DEST?$AA@ 10001480     srvkmcmn:queue.obj
+ 0001:00000488       ??_C@_03LDGPGGLH@SRC?$AA@  10001488     srvkmcmn:queue.obj
+ 0001:0000048c       ??_C@_0DI@MPDCBGNL@There?5is?5no?5Command?5Complete?5Dat@ 1000148c     srvkmcmn:queue.obj
+ 0001:000004c4       ??_C@_0CO@JFHFOJIO@Command?5Complete?5Data?5for?5displa@ 100014c4     srvkmcmn:queue.obj
+ 0001:000004f4       ??_C@_0BI@EHJDGFKA@SGX?5revision?5?$DN?5?$CFu?4?$CFu?4?$CFu?$AA@ 100014f4     system:sysconfig.obj
+ 0001:0000050c       ??_C@_07OBKPICFC@SGX?5ISR?$AA@ 1000150c     system:sysconfig.obj
+ 0001:000005a8       ??_C@_1M@IMFGGFBL@?$AAB?$AAU?$AAS?$AA1?$AA?3?$AA?$AA@ 100015a8     system:sysutils.obj
+ 0001:000005b4       ??_C@_0BD@ODPPLAIN@SGXGetClientInfoBW?$AA@ 100015b4     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000005c8       ??_C@_0CA@EIFFKNMN@PVRSRV_BRIDGE_SGX_GETCLIENTINFO?$AA@ 100015c8     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000005e8       ??_C@_0BH@OJNGMMEM@SGXReleaseClientInfoBW?$AA@ 100015e8     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000600       ??_C@_0CE@HLNOPLNM@PVRSRV_BRIDGE_SGX_RELEASECLIENTI@ 10001600     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000624       ??_C@_0BI@BLJIIEEG@SGXGetInternalDevInfoBW?$AA@ 10001624     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:0000063c       ??_C@_0CF@BIBINDHJ@PVRSRV_BRIDGE_SGX_GETINTERNALDEV@ 1000163c     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000664       ??_C@_0M@MNGMALBD@SGXDoKickBW?$AA@ 10001664     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000670       ??_C@_0BJ@NODNCHPG@PVRSRV_BRIDGE_SGX_DOKICK?$AA@ 10001670     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:0000068c       ??_C@_0CC@KICAJGOF@PVRSRV_BRIDGE_SGX_GETPHYSPAGEADD@ 1000168c     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000006b0       ??_C@_0CE@IIGLPIN@PVRSRV_BRIDGE_SGX_READREGISTRYDW@ 100016b0     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000006d4       ??_C@_0BK@ELJGOEFO@SGX2DQueryBlitsCompleteBW?$AA@ 100016d4     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000006f0       ??_C@_0CG@FICPHDGB@PVRSRV_BRIDGE_SGX_2DQUERYBLTSCOM@ 100016f0     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000718       ??_C@_07MMEBMBFO@DummyBW?$AA@ 10001718     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000720       ??_C@_0BP@MOHANIJB@PVRSRV_BRIDGE_SGX_GETMMUPDADDR?$AA@ 10001720     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000740       ??_C@_0BE@GMHMJHCI@SGXSubmitTransferBW?$AA@ 10001740     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000754       ??_C@_0CB@LGMDDJFH@PVRSRV_BRIDGE_SGX_SUBMITTRANSFER@ 10001754     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000778       ??_C@_0BB@BKDEILJN@SGXGetMiscInfoBW?$AA@ 10001778     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:0000078c       ??_C@_0BO@LGACKMBI@PVRSRV_BRIDGE_SGX_GETMISCINFO?$AA@ 1000178c     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000007ac       ??_C@_0BH@MLEEJLHE@SGXGetInfoForSrvinitBW?$AA@ 100017ac     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000007c4       ??_C@_0CC@MKMFBNIA@PVRSRV_BRIDGE_SGXINFO_FOR_SRVINI@ 100017c4     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000007e8       ??_C@_0BC@LDHGKCEG@SGXDevInitPart2BW?$AA@ 100017e8     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000007fc       ??_C@_0BP@FAAFBBEP@PVRSRV_BRIDGE_SGX_DEVINITPART2?$AA@ 100017fc     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:0000081c       ??_C@_0BG@OKDAEDNB@SGXFindSharedPBDescBW?$AA@ 1000181c     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000834       ??_C@_0CD@JIBIOMKF@PVRSRV_BRIDGE_SGX_FINDSHAREDPBDE@ 10001834     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000858       ??_C@_0BH@MIGJEHIE@SGXUnrefSharedPBDescBW?$AA@ 10001858     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000870       ??_C@_0CE@CCIPBGJL@PVRSRV_BRIDGE_SGX_UNREFSHAREDPBD@ 10001870     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000894       ??_C@_0BF@GDJMNKNG@SGXAddSharedPBDescBW?$AA@ 10001894     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000008ac       ??_C@_0CC@EJOCNPKJ@PVRSRV_BRIDGE_SGX_ADDSHAREDPBDES@ 100018ac     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000008d0       ??_C@_0BN@PDPOCOPK@SGXRegisterHWRenderContextBW?$AA@ 100018d0     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000008f0       ??_C@_0CN@FLINDIJH@PVRSRV_BRIDGE_SGX_REGISTER_HW_RE@ 100018f0     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000920       ??_C@_0BJ@DCIOGPMF@SGXFlushHWRenderTargetBW?$AA@ 10001920     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:0000093c       ??_C@_0CJ@CCNEDCPA@PVRSRV_BRIDGE_SGX_FLUSH_HW_RENDE@ 1000193c     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000968       ??_C@_0BP@MPPABBB@SGXUnregisterHWRenderContextBW?$AA@ 10001968     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000988       ??_C@_0CP@BFBHDDGD@PVRSRV_BRIDGE_SGX_UNREGISTER_HW_@ 10001988     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000009b8       ??_C@_0BP@IDPLDJMB@SGXRegisterHWTransferContextBW?$AA@ 100019b8     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000009d8       ??_C@_0CP@BKGIBLMC@PVRSRV_BRIDGE_SGX_REGISTER_HW_TR@ 100019d8     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000a08       ??_C@_0CB@JFKANBLO@SGXUnregisterHWTransferContextBW@ 10001a08     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000a2c       ??_C@_0DB@PNGKKIGJ@PVRSRV_BRIDGE_SGX_UNREGISTER_HW_@ 10001a2c     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000a60       ??_C@_0BL@CPDJJJCD@SGXScheduleProcessQueuesBW?$AA@ 10001a60     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000a7c       ??_C@_0CK@FGMOPBHJ@PVRSRV_BRIDGE_SGX_SCHEDULE_PROCE@ 10001a7c     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000aa8       ??_C@_0BG@MPAMELPF@SGXReadDiffCountersBW?$AA@ 10001aa8     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000ac0       ??_C@_0CF@OKOPFILA@PVRSRV_BRIDGE_SGX_READ_DIFF_COUN@ 10001ac0     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000ae8       ??_C@_0BC@CGGIOIBC@SGXReadHWPerfCBBW?$AA@ 10001ae8     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000afc       ??_C@_0CB@CJFFECN@PVRSRV_BRIDGE_SGX_READ_HWPERF_CB@ 10001afc     srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00000b20       ??_C@_0BD@JNHKJOPE@SGX?5TA?13D?5control?3?$AA@ 10001b20     srvkmsgx:sgxinit.obj
+ 0001:00000b34       ??_C@_0CD@CPHOJKBM@?70x?$CFX?3?50x?$CF08X?50x?$CF08X?50x?$CF08X?50x?$CF0@ 10001b34     srvkmsgx:sgxinit.obj
+ 0001:00000b58       ??_C@_0BC@CCKOJHF@SGX?5Host?5control?3?$AA@ 10001b58     srvkmsgx:sgxinit.obj
+ 0001:00000b6c       ??_C@_0BM@KELBBLJK@EUR_CR_EVENT_STATUS?3?5?5?5?5?5?$CFx?$AA@ 10001b6c     srvkmsgx:sgxinit.obj
+ 0001:00000b88       ??_C@_0BM@PCBCJEGB@EUR_CR_EVENT_STATUS2?3?5?5?5?5?$CFx?$AA@ 10001b88     srvkmsgx:sgxinit.obj
+ 0001:00000ba4       ??_C@_0BM@GDDEGMMG@EUR_CR_BIF_CTRL?3?5?5?5?5?5?5?5?5?5?$CFx?$AA@ 10001ba4     srvkmsgx:sgxinit.obj
+ 0001:00000bc0       ??_C@_0BM@ICJJDEKA@EUR_CR_BIF_INT_STAT?3?5?5?5?5?5?$CFx?$AA@ 10001bc0     srvkmsgx:sgxinit.obj
+ 0001:00000bdc       ??_C@_0BM@ICNPLPKL@EUR_CR_BIF_FAULT?3?5?5?5?5?5?5?5?5?$CFx?$AA@ 10001bdc     srvkmsgx:sgxinit.obj
+ 0001:00000bf8       ??_C@_0BM@MKJPNIOI@EUR_CR_BIF_MEM_REQ_STAT?3?5?$CFx?$AA@ 10001bf8     srvkmsgx:sgxinit.obj
+ 0001:00000c14       ??_C@_0BM@BBGCICCA@EUR_CR_CLKGATECTL?3?5?5?5?5?5?5?5?$CFx?$AA@ 10001c14     srvkmsgx:sgxinit.obj
+ 0001:00000c30       ??_C@_0BM@CAOLFHKM@EUR_CR_PDS_PC_BASE?3?5?5?5?5?5?5?$CFx?$AA@ 10001c30     srvkmsgx:sgxinit.obj
+ 0001:00000c4c       ??_C@_0BE@NLBGBNIG@DPM?5out?5of?5memory?$CB?$CB?$AA@ 10001c4c     srvkmsgx:sgxinit.obj
+ 0001:00000c60       ??_C@_0DE@BCEIIPOM@HWRecoveryResetSGX?3?5SGX?5Hardware@ 10001c60     srvkmsgx:sgxinit.obj
+ 0001:00000c94       ??_C@_09MAIEAOCE@SGX?5panic?$AA@ 10001c94     srvkmsgx:sgxinit.obj
+ 0001:00000ca0       ??_C@_0BJ@LJMIMCAE@User?5requested?5SGX?5panic?$AA@ 10001ca0     srvkmsgx:sgxinit.obj
+ 0001:00000cbc       ??_C@_0BO@ELJMOGNE@User?5requested?5SGX?5debug?5info?$AA@ 10001cbc     srvkmsgx:sgxinit.obj
+ 0001:00000ce0       ??_C@_0FC@DLNFMPMA@?$CIFAIL?$CJ?5SGXInit?3?5Incompatible?5dri@ 10001ce0     srvkmsgx:sgxinit.obj
+ 0001:00000d38       ??_C@_0IM@KMFFLFHF@?$CIFAIL?$CJ?5SGXInit?3?5Mismatch?5in?5driv@ 10001d38     srvkmsgx:sgxinit.obj
+ 0001:00000dc8       ??_C@_0IH@JHPDLMGC@?$CIFAIL?$CJ?5SGXInit?3?5Mismatch?5in?5driv@ 10001dc8     srvkmsgx:sgxinit.obj
+ 0001:00000e50       ??_C@_0DF@PGPAHGHN@?$CIFAIL?$CJ?5SGXInit?3?5Mismatch?5in?5SGXM@ 10001e50     srvkmsgx:sgxinit.obj
+ 0001:00000e88       ??_C@_0EG@DJIKPHAD@?$CIFAIL?$CJ?5SGXInit?3?5Incompatible?5HW?5@ 10001e88     srvkmsgx:sgxinit.obj
+ 0001:00000ed0       ??_C@_0DN@IOFHACCN@SGXInit?3?5HW?5core?5rev?5?$CI?$CFlx?$CJ?0?5SW?5c@ 10001ed0     srvkmsgx:sgxinit.obj
+ 0001:00000f10       ??_C@_0CK@NFMHJJPH@SGXInit?3?5HW?5core?5rev?5?$CI?$CFlx?$CJ?5check@ 10001f10     srvkmsgx:sgxinit.obj
+ 0001:00000f3c       ??_C@_0DG@IAPIGDPG@?$CIFAIL?$CJ?5SGXInit?3?5Unable?5to?5valida@ 10001f3c     srvkmsgx:sgxinit.obj
+ 0001:00000f78       ??_C@_0IG@KKEHGMDN@?$CIFAIL?$CJ?5SGXInit?3?5Mismatch?5in?5clie@ 10001f78     srvkmsgx:sgxinit.obj
+ 0001:00001000       ??_C@_0JG@LALIONGE@?$CIFAIL?$CJ?5SGXInit?3?5Mismatch?5in?5clie@ 10002000     srvkmsgx:sgxinit.obj
+ 0001:00001098       ??_C@_0CH@CAALGEPL@?$CIFAIL?$CJ?5SGXInit?3?5Device?5not?5of?5ty@ 10002098     srvkmsgx:sgxinit.obj
+ 0001:000010c0       ??_C@_07ECEMPDJM@General?$AA@ 100020c0     srvkmsgx:sgxinit.obj
+ 0001:000010c8       ??_C@_0L@PGEIAGBE@General?5BS?$AA@ 100020c8     srvkmsgx:sgxinit.obj
+ 0001:000010d4       ??_C@_07KPJGFCNE@TA?5Data?$AA@ 100020d4     srvkmsgx:sgxinit.obj
+ 0001:000010dc       ??_C@_0L@FJNLGMOD@TA?5Data?5BS?$AA@ 100020dc     srvkmsgx:sgxinit.obj
+ 0001:000010e8       ??_C@_0M@HKLGKLCN@Kernel?5Code?$AA@ 100020e8     srvkmsgx:sgxinit.obj
+ 0001:000010f4       ??_C@_0P@BNNOFOFF@Kernel?5Code?5BS?$AA@ 100020f4     srvkmsgx:sgxinit.obj
+ 0001:00001104       ??_C@_0L@OKKEBOLA@KernelData?$AA@ 10002104     srvkmsgx:sgxinit.obj
+ 0001:00001110       ??_C@_0O@ICBOFOND@KernelData?5BS?$AA@ 10002110     srvkmsgx:sgxinit.obj
+ 0001:00001120       ??_C@_0BA@GBONALCE@PixelShaderUSSE?$AA@ 10002120     srvkmsgx:sgxinit.obj
+ 0001:00001130       ??_C@_0BD@EALBFBFE@PixelShaderUSSE?5BS?$AA@ 10002130     srvkmsgx:sgxinit.obj
+ 0001:00001144       ??_C@_0BB@JNKGBMKH@VertexShaderUSSE?$AA@ 10002144     srvkmsgx:sgxinit.obj
+ 0001:00001158       ??_C@_0BE@EHEPOIPP@VertexShaderUSSE?5BS?$AA@ 10002158     srvkmsgx:sgxinit.obj
+ 0001:0000116c       ??_C@_0BB@LHDMHLBH@PDSPixelCodeData?$AA@ 1000216c     srvkmsgx:sgxinit.obj
+ 0001:00001180       ??_C@_0BE@LIHHJBPP@PDSPixelCodeData?5BS?$AA@ 10002180     srvkmsgx:sgxinit.obj
+ 0001:00001194       ??_C@_0BC@JGBCPAPO@PDSVertexCodeData?$AA@ 10002194     srvkmsgx:sgxinit.obj
+ 0001:000011a8       ??_C@_0BF@BKOFDGLO@PDSVertexCodeData?5BS?$AA@ 100021a8     srvkmsgx:sgxinit.obj
+ 0001:000011c0       ??_C@_0O@MKKIKOIA@CacheCoherent?$AA@ 100021c0     srvkmsgx:sgxinit.obj
+ 0001:000011d0       ??_C@_0BB@ELAGFJPA@CacheCoherent?5BS?$AA@ 100021d0     srvkmsgx:sgxinit.obj
+ 0001:000011e4       ??_C@_0N@BMEHCJPG@3DParameters?$AA@ 100021e4     srvkmsgx:sgxinit.obj
+ 0001:000011f4       ??_C@_0BA@FPANLMKB@3DParameters?5BS?$AA@ 100021f4     srvkmsgx:sgxinit.obj
+ 0001:000015b0       ??_C@_0BB@JJLPEHAI@EDMTACodeProfile?$AA@ 100025b0     srvinitsgx:sgxinit.obj
+ 0001:000015c4       ??_C@_0CD@IEDMBANE@PowerVREurasia?2HWSettings?2PVRSRV@ 100025c4     srvinitsgx:sgxinit.obj
+ 0001:000015e8       ??_C@_06HIJKBDID@SGX?53D?$AA@ 100025e8     srvinitsgx:sgxinit.obj
+ 0001:000015f0       ??_C@_07BBBHIFGO@SGX?5SPM?$AA@ 100025f0     srvinitsgx:sgxinit.obj
+ 0001:000015f8       ??_C@_06EIHFDKGD@SGX?5TA?$AA@ 100025f8     srvinitsgx:sgxinit.obj
+ 0001:00001600       ??_C@_0M@PCAJPOOC@SGX?5ukernel?$AA@ 10002600     srvinitsgx:sgxinit.obj
+ 0001:0000160c       ??_C@_09PJNHAIDJ@CacheCtrl?$AA@ 1000260c     srvinitsgx:sgxinit.obj
+ 0001:00001618       ??_C@_0BD@INALHODO@RegBoundReturnZero?$AA@ 10002618     srvinitsgx:sgxinit.obj
+ 0001:0000162c       ??_C@_0M@EIHLIIGG@MaxEDMTasks?$AA@ 1000262c     srvinitsgx:sgxinit.obj
+ 0001:00001638       ??_C@_0BD@NECJEAHH@DisableClockGating?$AA@ 10002638     srvinitsgx:sgxinit.obj
+ 0001:00001670       PKM_Deinit                 10002670 f   pvr_kernel.obj
+ 0001:000016a8       PKM_Open                   100026a8 f   pvr_kernel.obj
+ 0001:000016e0       PKM_Close                  100026e0 f   pvr_kernel.obj
+ 0001:00001714       PKM_IOControl              10002714 f   pvr_kernel.obj
+ 0001:00001824       PKM_Init                   10002824 f   pvr_kernel.obj
+ 0001:000018dc       PKM_PowerDown              100028dc f   pvr_kernel.obj
+ 0001:000018e0       PKM_PowerUp                100028e0 f   pvr_kernel.obj
+ 0001:0000196c       PVRSRV_BridgeDispatchKM    1000296c f   pvr_bridge_k.obj
+ 0001:00001d40       PVRSRV_BridgeDispatch      10002d40 f   pvr_bridge_k.obj
+ 0001:00002528       MatchBlockMappingPID_AnyVaCb 10003528 f   osfunc_srvkm.obj
+ 0001:0000253c       OSAllocMem_Impl            1000353c f   osfunc_srvkm.obj
+ 0001:000025b0       OSFreeMem_Impl             100035b0 f   osfunc_srvkm.obj
+ 0001:000025dc       QueryUMA                   100035dc f   osfunc_srvkm.obj
+ 0001:000025fc       UnMapFromUMAddr            100035fc f   osfunc_srvkm.obj
+ 0001:000026a4       UnmapUserFromKernel        100036a4 f   osfunc_srvkm.obj
+ 0001:00002744       DeviceISRWrapper           10003744 f   osfunc_srvkm.obj
+ 0001:000027d8       OSInstallDeviceLISR        100037d8 f   osfunc_srvkm.obj
+ 0001:000028d0       OSUninstallDeviceLISR      100038d0 f   osfunc_srvkm.obj
+ 0001:0000298c       MISRWrapper                1000398c f   osfunc_srvkm.obj
+ 0001:000029bc       OSInstallMISR              100039bc f   osfunc_srvkm.obj
+ 0001:00002a3c       OSUninstallMISR            10003a3c f   osfunc_srvkm.obj
+ 0001:00002a7c       OSScheduleMISR             10003a7c f   osfunc_srvkm.obj
+ 0001:00002aa4       OSPanic                    10003aa4 f   osfunc_srvkm.obj
+ 0001:00002aa8       OSMemCopy                  10003aa8 f   osfunc_srvkm.obj
+ 0001:00002ab8       OSGetPageSize              10003ab8 f   osfunc_srvkm.obj
+ 0001:00002ac8       OSCreateResource           10003ac8 f   osfunc_srvkm.obj
+ 0001:00002adc       OSLockResource             10003adc f   osfunc_srvkm.obj
+ 0001:00002b10       OSUnlockResource           10003b10 f   osfunc_srvkm.obj
+ 0001:00002b44       OSIsResourceLocked         10003b44 f   osfunc_srvkm.obj
+ 0001:00002b60       OSGetCurrentProcessIDKM    10003b60 f   osfunc_srvkm.obj
+ 0001:00002b70       OSMemSet                   10003b70 f   osfunc_srvkm.obj
+ 0001:00002b80       OSMapPhysToLin             10003b80 f   osfunc_srvkm.obj
+ 0001:00002bb4       OSUnMapPhysToLin           10003bb4 f   osfunc_srvkm.obj
+ 0001:00002bc8       OSUnReservePhys            10003bc8 f   osfunc_srvkm.obj
+ 0001:00002be8       OSClockus                  10003be8 f   osfunc_srvkm.obj
+ 0001:00002c04       OSWaitus                   10003c04 f   osfunc_srvkm.obj
+ 0001:00002c44       OSInitEnvData              10003c44 f   osfunc_srvkm.obj
+ 0001:00002c70       OSDeInitEnvData            10003c70 f   osfunc_srvkm.obj
+ 0001:00002c78       OSReadHWReg                10003c78 f   osfunc_srvkm.obj
+ 0001:00002c80       OSWriteHWReg               10003c80 f   osfunc_srvkm.obj
+ 0001:00002c88       OSSNPrintf                 10003c88 f   osfunc_srvkm.obj
+ 0001:00002d08       OSAddTimer                 10003d08 f   osfunc_srvkm.obj
+ 0001:00002d84       OSRemoveTimer              10003d84 f   osfunc_srvkm.obj
+ 0001:00002dd0       OSEnableTimer              10003dd0 f   osfunc_srvkm.obj
+ 0001:00002e20       OSDisableTimer             10003e20 f   osfunc_srvkm.obj
+ 0001:00002e64       OSEventObjectCreate        10003e64 f   osfunc_srvkm.obj
+ 0001:00002f24       OSEventObjectDestroy       10003f24 f   osfunc_srvkm.obj
+ 0001:00002f68       OSEventObjectWait          10003f68 f   osfunc_srvkm.obj
+ 0001:00002f70       OSEventObjectOpen          10003f70 f   osfunc_srvkm.obj
+ 0001:00002f78       OSEventObjectClose         10003f78 f   osfunc_srvkm.obj
+ 0001:00002f80       OSEventObjectSignal        10003f80 f   osfunc_srvkm.obj
+ 0001:00002fac       WinCEFormatError           10003fac f   osfunc_srvkm.obj
+ 0001:00002ff4       OSAccessOK                 10003ff4 f   osfunc_srvkm.obj
+ 0001:00003064       OSProcHasPrivSrvInit       10004064 f   osfunc_srvkm.obj
+ 0001:0000306c       OSCopyToUser               1000406c f   osfunc_srvkm.obj
+ 0001:00003094       OSCopyFromUser             10004094 f   osfunc_srvkm.obj
+ 0001:000030bc       OSRegisterMem              100040bc f   osfunc_srvkm.obj
+ 0001:00003138       OSUnRegisterMem            10004138 f   osfunc_srvkm.obj
+ 0001:00003150       OSRegisterDiscontigMem     10004150 f   osfunc_srvkm.obj
+ 0001:000031b4       OSUnRegisterDiscontigMem   100041b4 f   osfunc_srvkm.obj
+ 0001:000031cc       OSReserveDiscontigPhys     100041cc f   osfunc_srvkm.obj
+ 0001:000032e8       OSUnReserveDiscontigPhys   100042e8 f   osfunc_srvkm.obj
+ 0001:00003324       OSAcquirePhysPageAddr      10004324 f   osfunc_srvkm.obj
+ 0001:000033ec       OSReleasePhysPageAddr      100043ec f   osfunc_srvkm.obj
+ 0001:00003414       OSAllocPages_Impl          10004414 f   osfunc_srvkm.obj
+ 0001:0000369c       OSFreePages                1000469c f   osfunc_srvkm.obj
+ 0001:00003770       MapFromUMAddr              10004770 f   osfunc_srvkm.obj
+ 0001:000038e0       MapUserFromKernel          100048e0 f   osfunc_srvkm.obj
+ 0001:00003a54       OSDestroyResource          10004a54 f   osfunc_srvkm.obj
+ 0001:00003a70       OSMapLinToCPUPhys          10004a70 f   osfunc_srvkm.obj
+ 0001:00003ae4       OSReservePhys              10004ae4 f   osfunc_srvkm.obj
+ 0001:00003ba8       AtoL                       10004ba8 f   registry.obj
+ 0001:00003cb0       OSReadRegistryBinData      10004cb0 f   registry.obj
+ 0001:00003e68       OSReadRegistryDWORDFromString 10004e68 f   registry.obj
+ 0001:00003f30       PVRSRVReleasePrintf        10004f30 f   pvr_debug.obj
+ 0001:00004008       AllocateDeviceID           10005008 f   srvkmcmn:pvrsrv.obj
+ 0001:00004050       FreeDeviceID               10005050 f   srvkmcmn:pvrsrv.obj
+ 0001:0000409c       PVRSRVEnumerateDevicesKM_ForEachVaCb 1000509c f   srvkmcmn:pvrsrv.obj
+ 0001:000040ec       PVRSRVEnumerateDevicesKM   100050ec f   srvkmcmn:pvrsrv.obj
+ 0001:00004168       PVRSRVDeInit               10005168 f   srvkmcmn:pvrsrv.obj
+ 0001:000041b8       PVRSRVRegisterDevice       100051b8 f   srvkmcmn:pvrsrv.obj
+ 0001:00004284       PVRSRVInitialiseDevice     10005284 f   srvkmcmn:pvrsrv.obj
+ 0001:000042fc       PVRSRVFinaliseSystem_SetPowerState_AnyCb 100052fc f   srvkmcmn:pvrsrv.obj
+ 0001:0000431c       PVRSRVAcquireDeviceDataKM_Match_AnyVaCb 1000531c f   srvkmcmn:pvrsrv.obj
+ 0001:00004348       PVRSRVAcquireDeviceDataKM  10005348 f   srvkmcmn:pvrsrv.obj
+ 0001:00004398       PVRSRVDeinitialiseDevice   10005398 f   srvkmcmn:pvrsrv.obj
+ 0001:0000447c       PollForValueKM             1000547c f   srvkmcmn:pvrsrv.obj
+ 0001:00004514       PVRSRVGetMiscInfoKM_RA_GetStats_ForEachVaCb 10005514 f   srvkmcmn:pvrsrv.obj
+ 0001:0000455c       PVRSRVGetMiscInfoKM_BMContext_AnyVaCb 1000555c f   srvkmcmn:pvrsrv.obj
+ 0001:000045f0       PVRSRVGetMiscInfoKM_Device_AnyVaCb 100055f0 f   srvkmcmn:pvrsrv.obj
+ 0001:000046f4       PVRSRVGetMiscInfoKM        100056f4 f   srvkmcmn:pvrsrv.obj
+ 0001:00004950       PVRSRVMISR_ForEachCb       10005950 f   srvkmcmn:pvrsrv.obj
+ 0001:00004970       PVRSRVMISR                 10005970 f   srvkmcmn:pvrsrv.obj
+ 0001:000049c8       PVRSRVProcessConnect       100059c8 f   srvkmcmn:pvrsrv.obj
+ 0001:000049d8       PVRSRVProcessDisconnect    100059d8 f   srvkmcmn:pvrsrv.obj
+ 0001:000049e8       PVRSRVInit                 100059e8 f   srvkmcmn:pvrsrv.obj
+ 0001:00004a80       PVRSRVFinaliseSystem_CompatCheck_AnyCb 10005a80 f   srvkmcmn:pvrsrv.obj
+ 0001:00004aac       PVRSRVFinaliseSystem       10005aac f   srvkmcmn:pvrsrv.obj
+ 0001:00004b94       PVRSRVPerProcessData       10005b94 f   srvkmcmn:perproc.obj
+ 0001:00004bb4       PVRSRVPerProcessDataConnect 10005bb4 f   srvkmcmn:perproc.obj
+ 0001:00004ccc       PVRSRVPerProcessDataDisconnect 10005ccc f   srvkmcmn:perproc.obj
+ 0001:00004d28       PVRSRVPerProcessDataInit   10005d28 f   srvkmcmn:perproc.obj
+ 0001:00004d58       PVRSRVPerProcessDataDeInit 10005d58 f   srvkmcmn:perproc.obj
+ 0001:00004e28       ResManInit                 10005e28 f   srvkmcmn:resman.obj
+ 0001:00004e7c       ResManDeInit               10005e7c f   srvkmcmn:resman.obj
+ 0001:00004eb4       PVRSRVResManConnect        10005eb4 f   srvkmcmn:resman.obj
+ 0001:00004f3c       ResManRegisterRes          10005f3c f   srvkmcmn:resman.obj
+ 0001:00004fe0       ResManFindResourceByPtr_AnyVaCb 10005fe0 f   srvkmcmn:resman.obj
+ 0001:00004ff4       ResManFindResourceByPtr    10005ff4 f   srvkmcmn:resman.obj
+ 0001:000050b4       FreeResourceByCriteria_AnyVaCb 100060b4 f   srvkmcmn:resman.obj
+ 0001:000051a0       PVRSRVResManDisconnect     100061a0 f   srvkmcmn:resman.obj
+ 0001:000053ec       ResManFreeResByPtr         100063ec f   srvkmcmn:resman.obj
+ 0001:00005410       ResManFreeResByCriteria    10006410 f   srvkmcmn:resman.obj
+ 0001:00005438       ResManDissociateRes        10006438 f   srvkmcmn:resman.obj
+ 0001:000054b8       PVRSRVEnumerateDCKM_ForEachVaCb 100064b8 f   srvkmcmn:deviceclass.obj
+ 0001:00005510       PVRSRVEnumerateDCKM        10006510 f   srvkmcmn:deviceclass.obj
+ 0001:0000558c       PVRSRVRegisterDCDeviceKM   1000658c f   srvkmcmn:deviceclass.obj
+ 0001:00005734       PVRSRVRemoveDCDeviceKM     10006734 f   srvkmcmn:deviceclass.obj
+ 0001:000057fc       PVRSRVRegisterBCDeviceKM   100067fc f   srvkmcmn:deviceclass.obj
+ 0001:000059a0       PVRSRVRemoveBCDeviceKM     100069a0 f   srvkmcmn:deviceclass.obj
+ 0001:00005a60       PVRSRVCloseDCDeviceKM      10006a60 f   srvkmcmn:deviceclass.obj
+ 0001:00005ad8       PVRSRVOpenDCDeviceKM       10006ad8 f   srvkmcmn:deviceclass.obj
+ 0001:00005c3c       PVRSRVEnumDCFormatsKM      10006c3c f   srvkmcmn:deviceclass.obj
+ 0001:00005c84       PVRSRVEnumDCDimsKM         10006c84 f   srvkmcmn:deviceclass.obj
+ 0001:00005ccc       PVRSRVGetDCSystemBufferKM  10006ccc f   srvkmcmn:deviceclass.obj
+ 0001:00005d54       PVRSRVGetDCInfoKM          10006d54 f   srvkmcmn:deviceclass.obj
+ 0001:00005db4       PVRSRVDestroyDCSwapChainKM 10006db4 f   srvkmcmn:deviceclass.obj
+ 0001:00005e64       PVRSRVCreateDCSwapChainKM  10006e64 f   srvkmcmn:deviceclass.obj
+ 0001:000060e8       PVRSRVSetDCDstRectKM       100070e8 f   srvkmcmn:deviceclass.obj
+ 0001:0000612c       PVRSRVSetDCSrcRectKM       1000712c f   srvkmcmn:deviceclass.obj
+ 0001:00006170       PVRSRVSetDCDstColourKeyKM  10007170 f   srvkmcmn:deviceclass.obj
+ 0001:000061b4       PVRSRVSetDCSrcColourKeyKM  100071b4 f   srvkmcmn:deviceclass.obj
+ 0001:000061f8       PVRSRVGetDCBuffersKM       100071f8 f   srvkmcmn:deviceclass.obj
+ 0001:00006294       PVRSRVSwapToDCBufferKM     10007294 f   srvkmcmn:deviceclass.obj
+ 0001:00006470       PVRSRVSwapToDCSystemKM     10007470 f   srvkmcmn:deviceclass.obj
+ 0001:000065d0       PVRSRVRegisterSystemISRHandler 100075d0 f   srvkmcmn:deviceclass.obj
+ 0001:00006624       PVRSRVSetDCState_ForEachVaCb 10007624 f   srvkmcmn:deviceclass.obj
+ 0001:00006664       PVRSRVSetDCState           10007664 f   srvkmcmn:deviceclass.obj
+ 0001:00006690       PVRGetDisplayClassJTable   10007690 f   srvkmcmn:deviceclass.obj
+ 0001:00006700       PVRSRVCloseBCDeviceKM      10007700 f   srvkmcmn:deviceclass.obj
+ 0001:000067d0       PVRSRVOpenBCDeviceKM       100077d0 f   srvkmcmn:deviceclass.obj
+ 0001:00006a90       PVRSRVGetBCInfoKM          10007a90 f   srvkmcmn:deviceclass.obj
+ 0001:00006ad0       PVRSRVGetBCBufferKM        10007ad0 f   srvkmcmn:deviceclass.obj
+ 0001:00006b14       PVRGetBufferClassJTable    10007b14 f   srvkmcmn:deviceclass.obj
+ 0001:000070d0       PVRSRVAllocHandle          100080d0 f   srvkmcmn:handle.obj
+ 0001:000071b8       PVRSRVAllocSubHandle       100081b8 f   srvkmcmn:handle.obj
+ 0001:00007360       PVRSRVFindHandle           10008360 f   srvkmcmn:handle.obj
+ 0001:000073a4       PVRSRVLookupHandleAnyType  100083a4 f   srvkmcmn:handle.obj
+ 0001:000073f0       PVRSRVLookupHandle         100083f0 f   srvkmcmn:handle.obj
+ 0001:00007424       PVRSRVLookupSubHandle      10008424 f   srvkmcmn:handle.obj
+ 0001:000074a8       PVRSRVGetParentHandle      100084a8 f   srvkmcmn:handle.obj
+ 0001:000074dc       PVRSRVLookupAndReleaseHandle 100084dc f   srvkmcmn:handle.obj
+ 0001:00007518       PVRSRVReleaseHandle        10008518 f   srvkmcmn:handle.obj
+ 0001:00007550       PVRSRVNewHandleBatch       10008550 f   srvkmcmn:handle.obj
+ 0001:0000766c       PVRSRVCommitHandleBatch    1000866c f   srvkmcmn:handle.obj
+ 0001:00007680       PVRSRVReleaseHandleBatch   10008680 f   srvkmcmn:handle.obj
+ 0001:00007694       PVRSRVPurgeHandles         10008694 f   srvkmcmn:handle.obj
+ 0001:0000784c       PVRSRVFreeHandleBase       1000884c f   srvkmcmn:handle.obj
+ 0001:0000785c       PVRSRVHandleDeInit         1000885c f   srvkmcmn:handle.obj
+ 0001:00007894       PVRSRVAllocHandleBase      10008894 f   srvkmcmn:handle.obj
+ 0001:0000793c       PVRSRVHandleInit           1000893c f   srvkmcmn:handle.obj
+ 0001:000079a0       PVRSRVSetInitServerState   100089a0 f   srvkmcmn:power.obj
+ 0001:000079ec       PVRSRVGetInitServerState   100089ec f   srvkmcmn:power.obj
+ 0001:00007a2c       PVRSRVPowerUnlock          10008a2c f   srvkmcmn:power.obj
+ 0001:00007a50       PVRSRVDevicePrePowerStateKM_AnyVaCb 10008a50 f   srvkmcmn:power.obj
+ 0001:00007ad8       PVRSRVDevicePostPowerStateKM_AnyVaCb 10008ad8 f   srvkmcmn:power.obj
+ 0001:00007b64       PVRSRVSystemPostPowerStateKM 10008b64 f   srvkmcmn:power.obj
+ 0001:00007c38       PVRSRVRemovePowerDevice    10008c38 f   srvkmcmn:power.obj
+ 0001:00007c8c       PVRSRVIsDevicePowered      10008c8c f   srvkmcmn:power.obj
+ 0001:00007d04       PVRSRVPowerLock            10008d04 f   srvkmcmn:power.obj
+ 0001:00007d94       PVRSRVSetDevicePowerStateKM 10008d94 f   srvkmcmn:power.obj
+ 0001:00007e44       PVRSRVSystemPrePowerStateKM 10008e44 f   srvkmcmn:power.obj
+ 0001:00007f08       PVRSRVSetPowerStateKM      10008f08 f   srvkmcmn:power.obj
+ 0001:00007f54       PVRSRVRegisterPowerDevice  10008f54 f   srvkmcmn:power.obj
+ 0001:00008014       List_BM_HEAP_Any_va        10009014 f   srvkmcmn:lists.obj
+ 0001:00008064       List_BM_HEAP_PVRSRV_ERROR_Any 10009064 f   srvkmcmn:lists.obj
+ 0001:000080a8       List_BM_HEAP_PVRSRV_ERROR_Any_va 100090a8 f   srvkmcmn:lists.obj
+ 0001:000080f8       List_BM_HEAP_ForEach_va    100090f8 f   srvkmcmn:lists.obj
+ 0001:0000813c       List_BM_HEAP_Remove        1000913c f   srvkmcmn:lists.obj
+ 0001:0000815c       List_BM_HEAP_Insert        1000915c f   srvkmcmn:lists.obj
+ 0001:00008180       List_BM_CONTEXT_Any_va     10009180 f   srvkmcmn:lists.obj
+ 0001:000081d0       List_BM_CONTEXT_PVRSRV_ERROR_Any_va 100091d0 f   srvkmcmn:lists.obj
+ 0001:00008220       List_BM_CONTEXT_Remove     10009220 f   srvkmcmn:lists.obj
+ 0001:00008240       List_BM_CONTEXT_Insert     10009240 f   srvkmcmn:lists.obj
+ 0001:00008264       List_PVRSRV_DEVICE_NODE_PVRSRV_ERROR_Any 10009264 f   srvkmcmn:lists.obj
+ 0001:000082a8       List_PVRSRV_DEVICE_NODE_Any_va 100092a8 f   srvkmcmn:lists.obj
+ 0001:000082f8       List_PVRSRV_DEVICE_NODE_PVRSRV_ERROR_Any_va 100092f8 f   srvkmcmn:lists.obj
+ 0001:00008348       List_PVRSRV_DEVICE_NODE_ForEach 10009348 f   srvkmcmn:lists.obj
+ 0001:00008378       List_PVRSRV_DEVICE_NODE_ForEach_va 10009378 f   srvkmcmn:lists.obj
+ 0001:000083bc       List_PVRSRV_DEVICE_NODE_Insert 100093bc f   srvkmcmn:lists.obj
+ 0001:000083e0       List_PVRSRV_DEVICE_NODE_Remove 100093e0 f   srvkmcmn:lists.obj
+ 0001:00008400       List_PVRSRV_POWER_DEV_Any_va 10009400 f   srvkmcmn:lists.obj
+ 0001:00008450       List_PVRSRV_POWER_DEV_PVRSRV_ERROR_Any_va 10009450 f   srvkmcmn:lists.obj
+ 0001:000084a0       List_PVRSRV_POWER_DEV_Insert 100094a0 f   srvkmcmn:lists.obj
+ 0001:000084c4       List_PVRSRV_POWER_DEV_Remove 100094c4 f   srvkmcmn:lists.obj
+ 0001:000084e4       MatchDeviceKM_AnyVaCb      100094e4 f   srvkmcmn:lists.obj
+ 0001:00008520       MatchPowerDeviceIndex_AnyVaCb 10009520 f   srvkmcmn:lists.obj
+ 0001:00009010       RA_Create                  1000a010 f   srvkmcmn:ra.obj
+ 0001:000091b0       RA_Delete                  1000a1b0 f   srvkmcmn:ra.obj
+ 0001:00009250       RA_TestDelete              1000a250 f   srvkmcmn:ra.obj
+ 0001:00009280       RA_Alloc                   1000a280 f   srvkmcmn:ra.obj
+ 0001:000093fc       RA_Free                    1000a3fc f   srvkmcmn:ra.obj
+ 0001:0000943c       RA_GetStats                1000a43c f   srvkmcmn:ra.obj
+ 0001:000098dc       BM_DestroyContext_AnyCb    1000a8dc f   srvkmcmn:buffer_manager.obj
+ 0001:0000991c       BM_DestroyContext          1000a91c f   srvkmcmn:buffer_manager.obj
+ 0001:00009990       BM_DestroyContextCallBack_AnyVaCb 1000a990 f   srvkmcmn:buffer_manager.obj
+ 0001:00009a80       BM_CreateContext_IncRefCount_AnyVaCb 1000aa80 f   srvkmcmn:buffer_manager.obj
+ 0001:00009ab4       BM_CreateContext_InsertHeap_ForEachVaCb 1000aab4 f   srvkmcmn:buffer_manager.obj
+ 0001:00009ae8       BM_CreateContext           1000aae8 f   srvkmcmn:buffer_manager.obj
+ 0001:00009c7c       BM_CreateHeap_AnyVaCb      1000ac7c f   srvkmcmn:buffer_manager.obj
+ 0001:00009c94       BM_DestroyHeap             1000ac94 f   srvkmcmn:buffer_manager.obj
+ 0001:00009cf4       BM_HandleToCpuVaddr        1000acf4 f   srvkmcmn:buffer_manager.obj
+ 0001:00009d04       BM_HandleToDevVaddr        1000ad04 f   srvkmcmn:buffer_manager.obj
+ 0001:00009d1c       BM_HandleToOSMemHandle     1000ad1c f   srvkmcmn:buffer_manager.obj
+ 0001:0000a1fc       BM_GetPhysPageAddr         1000b1fc f   srvkmcmn:buffer_manager.obj
+ 0001:0000a258       BM_GetMMUContextFromMemContext 1000b258 f   srvkmcmn:buffer_manager.obj
+ 0001:0000a260       BM_GetDeviceNode           1000b260 f   srvkmcmn:buffer_manager.obj
+ 0001:0000a884       BM_CreateHeap              1000b884 f   srvkmcmn:buffer_manager.obj
+ 0001:0000aa70       BM_Alloc                   1000ba70 f   srvkmcmn:buffer_manager.obj
+ 0001:0000ab60       BM_Wrap                    1000bb60 f   srvkmcmn:buffer_manager.obj
+ 0001:0000ad34       BM_Free                    1000bd34 f   srvkmcmn:buffer_manager.obj
+ 0001:0000af24       QueueDumpDebugInfo         1000bf24 f   srvkmcmn:queue.obj
+ 0001:0000af4c       PVRSRVCreateCommandQueueKM 1000bf4c f   srvkmcmn:queue.obj
+ 0001:0000b0cc       PVRSRVDestroyCommandQueueKM 1000c0cc f   srvkmcmn:queue.obj
+ 0001:0000b254       PVRSRVGetQueueSpaceKM      1000c254 f   srvkmcmn:queue.obj
+ 0001:0000b324       PVRSRVInsertCommandKM      1000c324 f   srvkmcmn:queue.obj
+ 0001:0000b488       PVRSRVSubmitCommandKM      1000c488 f   srvkmcmn:queue.obj
+ 0001:0000b51c       PVRSRVProcessCommand       1000c51c f   srvkmcmn:queue.obj
+ 0001:0000b728       PVRSRVProcessQueues_ForEachCb 1000c728 f   srvkmcmn:queue.obj
+ 0001:0000b74c       PVRSRVProcessQueues        1000c74c f   srvkmcmn:queue.obj
+ 0001:0000b84c       PVRSRVCommandCompleteCallbacks_ForEachCb 1000c84c f   srvkmcmn:queue.obj
+ 0001:0000b868       PVRSRVCommandCompleteCallbacks 1000c868 f   srvkmcmn:queue.obj
+ 0001:0000b890       PVRSRVRegisterCmdProcListKM 1000c890 f   srvkmcmn:queue.obj
+ 0001:0000ba6c       PVRSRVRemoveCmdProcListKM  1000ca6c f   srvkmcmn:queue.obj
+ 0001:0000bb30       PVRSRVCommandCompleteKM    1000cb30 f   srvkmcmn:queue.obj
+ 0001:0000bbf4       HASH_Func_Default          1000cbf4 f   srvkmcmn:hash.obj
+ 0001:0000bc34       HASH_Key_Comp_Default      1000cc34 f   srvkmcmn:hash.obj
+ 0001:0000bdac       HASH_Create_Extended       1000cdac f   srvkmcmn:hash.obj
+ 0001:0000be94       HASH_Create                1000ce94 f   srvkmcmn:hash.obj
+ 0001:0000beb8       HASH_Delete                1000ceb8 f   srvkmcmn:hash.obj
+ 0001:0000bf00       HASH_Insert_Extended       1000cf00 f   srvkmcmn:hash.obj
+ 0001:0000bff0       HASH_Insert                1000cff0 f   srvkmcmn:hash.obj
+ 0001:0000c00c       HASH_Remove_Extended       1000d00c f   srvkmcmn:hash.obj
+ 0001:0000c0fc       HASH_Remove                1000d0fc f   srvkmcmn:hash.obj
+ 0001:0000c118       HASH_Retrieve_Extended     1000d118 f   srvkmcmn:hash.obj
+ 0001:0000c1b0       HASH_Retrieve              1000d1b0 f   srvkmcmn:hash.obj
+ 0001:0000c1cc       PVRSRVGetDeviceMemHeapsKM  1000d1cc f   srvkmcmn:devicemem.obj
+ 0001:0000c27c       PVRSRVCreateDeviceMemContextKM 1000d27c f   srvkmcmn:devicemem.obj
+ 0001:0000c38c       PVRSRVDestroyDeviceMemContextKM 1000d38c f   srvkmcmn:devicemem.obj
+ 0001:0000c3a4       PVRSRVGetDeviceMemHeapInfoKM 1000d3a4 f   srvkmcmn:devicemem.obj
+ 0001:0000c604       PVRSRVAllocSyncInfoKM      1000d604 f   srvkmcmn:devicemem.obj
+ 0001:0000c71c       PVRSRVFreeSyncInfoKM       1000d71c f   srvkmcmn:devicemem.obj
+ 0001:0000c7f0       PVRSRVFreeDeviceMemKM      1000d7f0 f   srvkmcmn:devicemem.obj
+ 0001:0000c830       _PVRSRVAllocDeviceMemKM    1000d830 f   srvkmcmn:devicemem.obj
+ 0001:0000c978       PVRSRVDissociateDeviceMemKM 1000d978 f   srvkmcmn:devicemem.obj
+ 0001:0000c9a0       PVRSRVGetFreeDeviceMemKM   1000d9a0 f   srvkmcmn:devicemem.obj
+ 0001:0000c9a8       PVRSRVUnwrapExtMemoryKM    1000d9a8 f   srvkmcmn:devicemem.obj
+ 0001:0000ca50       PVRSRVWrapExtMemoryKM      1000da50 f   srvkmcmn:devicemem.obj
+ 0001:0000cd80       PVRSRVUnmapDeviceMemoryKM  1000dd80 f   srvkmcmn:devicemem.obj
+ 0001:0000ce5c       PVRSRVMapDeviceMemoryKM    1000de5c f   srvkmcmn:devicemem.obj
+ 0001:0000d16c       PVRSRVUnmapDeviceClassMemoryKM 1000e16c f   srvkmcmn:devicemem.obj
+ 0001:0000d1a0       PVRSRVMapDeviceClassMemoryKM 1000e1a0 f   srvkmcmn:devicemem.obj
+ 0001:0000d3e8       SrvInit                    1000e3e8 f   srvinitcommon:srvinit.obj
+ 0001:0000d49c       PVRSRVCallocUserModeMem    1000e49c f   srvclkm:srvclient_wince.obj
+ 0001:0000d4b4       PVRSRVWaitus               1000e4b4 f   srvclkm:srvclient_wince.obj
+ 0001:0000d4f4       PVRSRVMemCopy              1000e4f4 f   srvclkm:srvclient_wince.obj
+ 0001:0000d504       PVRSRVMemSet               1000e504 f   srvclkm:srvclient_wince.obj
+ 0001:0000d514       PVRSRVBridgeCall           1000e514 f   srvclkm:pvr_bridge_clientkm.obj
+ 0001:0000d618       SetJTable                  1000e618 f   srvclkm:pvr_bridge_clientkm.obj
+ 0001:0000d63c       PVRSRVInitSrvConnect       1000e63c f   srvclkm:pvr_glue.obj
+ 0001:0000d698       PVRSRVInitSrvDisconnect    1000e698 f   srvclkm:pvr_glue.obj
+ 0001:0000d6f4       PVRSRVAllocDeviceMem       1000e6f4 f   srvclkm:pvr_glue.obj
+ 0001:0000d804       PVRSRVFreeDeviceMem        1000e804 f   srvclkm:pvr_glue.obj
+ 0001:0000d8f4       PVRSRVUnrefDeviceMem       1000e8f4 f   srvclkm:pvr_glue.obj
+ 0001:0000d93c       PVRSRVEnumerateDevices     1000e93c f   srvclkm:bridged_pvr_glue.obj
+ 0001:0000d9e4       PVRSRVAcquireDeviceData    1000e9e4 f   srvclkm:bridged_pvr_glue.obj
+ 0001:0000da6c       PVRSRVAllocUserModeMem     1000ea6c f   srvclkm:osfnex_clientkm.obj
+ 0001:0000da84       PVRSRVFreeUserModeMem      1000ea84 f   srvclkm:osfnex_clientkm.obj
+ 0001:0000da94       SGXGetInfoForSrvInit       1000ea94 f   srvclkm:bridged_sgx_glue.obj
+ 0001:0000db08       SGXDevInitPart2            1000eb08 f   srvclkm:bridged_sgx_glue.obj
+ 0001:0000ddf0       SysCreateVersionString     1000edf0 f   system:sysconfig.obj
+ 0001:0000de90       SysDeinitialise            1000ee90 f   system:sysconfig.obj
+ 0001:0000dfd4       SysGetDeviceMemoryMap      1000efd4 f   system:sysconfig.obj
+ 0001:0000dfec       SysCpuPAddrToDevPAddr      1000efec f   system:sysconfig.obj
+ 0001:0000dff4       SysSysPAddrToCpuPAddr      1000eff4 f   system:sysconfig.obj
+ 0001:0000dffc       SysCpuPAddrToSysPAddr      1000effc f   system:sysconfig.obj
+ 0001:0000e004       SysSysPAddrToDevPAddr      1000f004 f   system:sysconfig.obj
+ 0001:0000e00c       SysDevPAddrToSysPAddr      1000f00c f   system:sysconfig.obj
+ 0001:0000e014       SysRegisterExternalDevice  1000f014 f   system:sysconfig.obj
+ 0001:0000e018       SysRemoveExternalDevice    1000f018 f   system:sysconfig.obj
+ 0001:0000e01c       SysSystemPrePowerState     1000f01c f   system:sysconfig.obj
+ 0001:0000e088       SysSystemPostPowerState    1000f088 f   system:sysconfig.obj
+ 0001:0000e10c       SysDevicePrePowerState     1000f10c f   system:sysconfig.obj
+ 0001:0000e138       SysDevicePostPowerState    1000f138 f   system:sysconfig.obj
+ 0001:0000e188       SysOEMFunction             1000f188 f   system:sysconfig.obj
+ 0001:0000e1ac       SysInitialise              1000f1ac f   system:sysconfig.obj
+ 0001:0000e468       SysFinalise                1000f468 f   system:sysconfig.obj
+ 0001:0000e52c       DisableSGXClocks           1000f52c f   system:sysutils.obj
+ 0001:0000e6b8       EnableSGXClocks            1000f6b8 f   system:sysutils.obj
+ 0001:0000e754       EnableSystemClocks         1000f754 f   system:sysutils.obj
+ 0001:0000e75c       DisableSystemClocks        1000f75c f   system:sysutils.obj
+ 0001:00010520       DummyBW                    10011520 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010528       _SetDispatchTableEntry     10011528 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010a04       CommonBridgeInit           10011a04 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010d34       BridgedDispatchKM          10011d34 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00012454       SetSGXDispatchTableEntry   10013454 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00012730       WaitForSingleObject        10013730 f   coredll:COREDLL.dll
+ 0001:00012740       ReleaseMutex               10013740 f   coredll:COREDLL.dll
+ 0001:00012750       CloseHandle                10013750 f   coredll:COREDLL.dll
+ 0001:00012760       CreateMutexW               10013760 f   coredll:COREDLL.dll
+ 0001:00012770       __GetUserKData             10013770 f   coredll:COREDLL.dll
+ 0001:00012780       NKDbgPrintfW               10013780 f   coredll:COREDLL.dll
+ 0001:00012790       GetDirectCallerProcessId   10013790 f   coredll:COREDLL.dll
+ 0001:000127a0       EventModify                100137a0 f   coredll:COREDLL.dll
+ 0001:000127b0       LockPages                  100137b0 f   coredll:COREDLL.dll
+ 0001:000127c0       UnlockPages                100137c0 f   coredll:COREDLL.dll
+ 0001:000127d0       VirtualFreeEx              100137d0 f   coredll:COREDLL.dll
+ 0001:000127e0       InterruptDone              100137e0 f   coredll:COREDLL.dll
+ 0001:000127f0       CeSetThreadPriority        100137f0 f   coredll:COREDLL.dll
+ 0001:00012800       InterruptDisable           10013800 f   coredll:COREDLL.dll
+ 0001:00012810       CreateThread               10013810 f   coredll:COREDLL.dll
+ 0001:00012820       InterruptInitialize        10013820 f   coredll:COREDLL.dll
+ 0001:00012830       CreateEventW               10013830 f   coredll:COREDLL.dll
+ 0001:00012840       KernelIoControl            10013840 f   coredll:COREDLL.dll
+ 0001:00012850       TerminateThread            10013850 f   coredll:COREDLL.dll
+ 0001:00012860       RegCloseKey                10013860 f   coredll:COREDLL.dll
+ 0001:00012870       RegQueryValueExW           10013870 f   coredll:COREDLL.dll
+ 0001:00012880       RegOpenKeyExW              10013880 f   coredll:COREDLL.dll
+ 0001:00012890       InterlockedCompareExchange 10013890 f   coredll:COREDLL.dll
+ 0001:000128a0       GetCallerVMProcessId       100138a0 f   coredll:COREDLL.dll
+ 0001:000128b0       GetTickCount               100138b0 f   coredll:COREDLL.dll
+ 0001:000128c0       IsBadWritePtr              100138c0 f   coredll:COREDLL.dll
+ 0001:000128d0       IsBadReadPtr               100138d0 f   coredll:COREDLL.dll
+ 0001:000128e0       VirtualCopy                100138e0 f   coredll:COREDLL.dll
+ 0001:000128f0       VirtualAlloc               100138f0 f   coredll:COREDLL.dll
+ 0001:00012900       VirtualFree                10013900 f   coredll:COREDLL.dll
+ 0001:00012910       GetLastError               10013910 f   coredll:COREDLL.dll
+ 0001:00012920       VirtualAllocEx             10013920 f   coredll:COREDLL.dll
+ 0001:00012930       VirtualAllocCopyEx         10013930 f   coredll:COREDLL.dll
+ 0001:00012940       VirtualCopyEx              10013940 f   coredll:COREDLL.dll
+ 0001:00012950       WideCharToMultiByte        10013950 f   coredll:COREDLL.dll
+ 0001:00012960       OutputDebugStringW         10013960 f   coredll:COREDLL.dll
+ 0001:00012970       DeviceIoControl            10013970 f   coredll:COREDLL.dll
+ 0001:00012980       CreateFileW                10013980 f   coredll:COREDLL.dll
+ 0001:00012990       LocalAlloc                 10013990 f   coredll:COREDLL.dll
+ 0001:000129a0       LocalFree                  100139a0 f   coredll:COREDLL.dll
+ 0001:000129b0       MmMapIoSpace               100139b0 f   CEDDK:CEDDK.dll
+ 0001:000129c0       MmUnmapIoSpace             100139c0 f   CEDDK:CEDDK.dll
+ 0001:000129d0       DllMain                    100139d0 f   corelib0:dllmain.obj
+ 0001:00012aec       _DllMainCRTStartup         10013aec f   corelib0:pegdmain.obj
+ 0001:00012b1c       __GSHandlerCheckCommon     10013b1c f   corelib0:gshandler.obj
+ 0001:00012b58       __GSHandlerCheck           10013b58 f   corelib0:gshandler.obj
+ 0001:00012b7c       __security_init_cookie     10013b7c f   corelib0:seccinit.obj
+ 0001:00012bd8       __security_check_cookie    10013bd8 f   corelib0:armsecgs.obj
+ 0001:00012bec       __gsfailure                10013bec f   corelib0:armsecgs.obj
+ 0001:00012cf8       _cexit                     10013cf8 f   corelib0:cexit.obj
+ 0001:00012d14       _initterm                  10013d14 f   corelib0:crt0dat.obj
+ 0001:00012d48       _cinit                     10013d48 f   corelib0:crt0dat.obj
+ 0001:00012d7c       memset                     10013d7c f   corelib1:COREDLL.dll
+ 0001:00012d8c       free                       10013d8c f   corelib1:COREDLL.dll
+ 0001:00012d9c       malloc                     10013d9c f   corelib1:COREDLL.dll
+ 0001:00012dac       memcpy                     10013dac f   corelib1:COREDLL.dll
+ 0001:00012dbc       vsprintf                   10013dbc f   corelib1:COREDLL.dll
+ 0001:00012dcc       swprintf                   10013dcc f   corelib1:COREDLL.dll
+ 0001:00012ddc       _snprintf                  10013ddc f   corelib1:COREDLL.dll
+ 0001:00012dec       strncpy                    10013dec f   corelib1:COREDLL.dll
+ 0001:00012dfc       __C_specific_handler       10013dfc f   corelib1:COREDLL.dll
+ 0001:00012e0c       strcat                     10013e0c f   corelib1:COREDLL.dll
+ 0001:00012e1c       strlen                     10013e1c f   corelib1:COREDLL.dll
+ 0001:00012e2c       sprintf                    10013e2c f   corelib1:COREDLL.dll
+ 0001:00012e3c       calloc                     10013e3c f   corelib1:COREDLL.dll
+ 0001:00012e4c       _XcptFilter                10013e4c f   corelib1:COREDLL.dll
+ 0001:00012e5c       __security_gen_cookie2     10013e5c f   corelib1:COREDLL.dll
+ 0001:00012e6c       __report_gsfailure         10013e6c f   corelib1:COREDLL.dll
+ 0001:00013028       SGXInitialise              10014028 f   srvkmsgx:sgxinit.obj
+ 0001:0001315c       SGXDeinitialise            1001415c f   srvkmsgx:sgxinit.obj
+ 0001:000132c4       SGXGetInfoForSrvinitKM     100142c4 f   srvkmsgx:sgxinit.obj
+ 0001:000132f0       DevInitSGXPart2KM          100142f0 f   srvkmsgx:sgxinit.obj
+ 0001:0001355c       SGXDumpDebugInfo           1001455c f   srvkmsgx:sgxinit.obj
+ 0001:0001373c       SGXOSTimer                 1001473c f   srvkmsgx:sgxinit.obj
+ 0001:00013874       SGX_ISRHandler             10014874 f   srvkmsgx:sgxinit.obj
+ 0001:000138e0       SGX_MISRHandler            100148e0 f   srvkmsgx:sgxinit.obj
+ 0001:0001397c       SGXGetClientInfoKM         1001497c f   srvkmsgx:sgxinit.obj
+ 0001:00013aac       SGXGetMiscInfoKM           10014aac f   srvkmsgx:sgxinit.obj
+ 0001:00013d44       SGXReadDiffCountersKM      10014d44 f   srvkmsgx:sgxinit.obj
+ 0001:00013ec4       SGXReadHWPerfCBKM          10014ec4 f   srvkmsgx:sgxinit.obj
+ 0001:00013f98       SGXDevInitCompatCheck      10014f98 f   srvkmsgx:sgxinit.obj
+ 0001:00014224       SGXRegisterDevice          10015224 f   srvkmsgx:sgxinit.obj
+ 0001:0001465c       SGXScheduleCCBCommand      1001565c f   srvkmsgx:sgxutils.obj
+ 0001:000147a8       SGXScheduleProcessQueuesKM 100157a8 f   srvkmsgx:sgxutils.obj
+ 0001:00014814       SGXIsDevicePowered         10015814 f   srvkmsgx:sgxutils.obj
+ 0001:00014828       SGXGetInternalDevInfoKM    10015828 f   srvkmsgx:sgxutils.obj
+ 0001:0001484c       SGXUnregisterHWRenderContextKM 1001584c f   srvkmsgx:sgxutils.obj
+ 0001:00014870       SGXUnregisterHWTransferContextKM 10015870 f   srvkmsgx:sgxutils.obj
+ 0001:00014894       SGX2DQueryBlitsCompleteKM  10015894 f   srvkmsgx:sgxutils.obj
+ 0001:00014968       SGXConvertTimeStamp        10015968 f   srvkmsgx:sgxutils.obj
+ 0001:0001498c       SGXPostActivePowerEvent    1001598c f   srvkmsgx:sgxutils.obj
+ 0001:000149d0       SGXTestActivePowerEvent    100159d0 f   srvkmsgx:sgxutils.obj
+ 0001:00014a40       SGXScheduleCCBCommandKM    10015a40 f   srvkmsgx:sgxutils.obj
+ 0001:00014ae4       SGXCleanupRequest          10015ae4 f   srvkmsgx:sgxutils.obj
+ 0001:00014bf0       SGXRegisterHWRenderContextKM 10015bf0 f   srvkmsgx:sgxutils.obj
+ 0001:00014ca0       SGXRegisterHWTransferContextKM 10015ca0 f   srvkmsgx:sgxutils.obj
+ 0001:00014d50       SGXFlushHWRenderTargetKM   10015d50 f   srvkmsgx:sgxutils.obj
+ 0001:00014d70       SGXDoKickKM                10015d70 f   srvkmsgx:sgxkick.obj
+ 0001:00015114       SGXSubmitTransferKM        10016114 f   srvkmsgx:sgxtransfer.obj
+ 0001:00015470       SGXUnrefSharedPBDescKM     10016470 f   srvkmsgx:pb.obj
+ 0001:00015480       SGXAddSharedPBDescKM       10016480 f   srvkmsgx:pb.obj
+ 0001:00015744       SGXFindSharedPBDescKM      10016744 f   srvkmsgx:pb.obj
+ 0001:0001597c       SGXReset                   1001697c f   srvkmsgx:sgxreset.obj
+ 0001:00016028       MMU_Initialise             10017028 f   srvkmsgx:mmu.obj
+ 0001:000161c4       MMU_Finalise               100171c4 f   srvkmsgx:mmu.obj
+ 0001:000162ac       MMU_InsertHeap             100172ac f   srvkmsgx:mmu.obj
+ 0001:0001632c       MMU_FreePageTables         1001732c f   srvkmsgx:mmu.obj
+ 0001:00016414       MMU_Create                 10017414 f   srvkmsgx:mmu.obj
+ 0001:00016658       MMU_Delete                 10017658 f   srvkmsgx:mmu.obj
+ 0001:000166d4       MMU_Alloc                  100176d4 f   srvkmsgx:mmu.obj
+ 0001:00016764       MMU_Free                   10017764 f   srvkmsgx:mmu.obj
+ 0001:00016844       MMU_MapScatter             10017844 f   srvkmsgx:mmu.obj
+ 0001:000168b0       MMU_MapPages               100178b0 f   srvkmsgx:mmu.obj
+ 0001:00016930       MMU_MapShadow              10017930 f   srvkmsgx:mmu.obj
+ 0001:000169dc       MMU_UnmapPages             100179dc f   srvkmsgx:mmu.obj
+ 0001:00016a68       MMU_GetPhysPageAddr        10017a68 f   srvkmsgx:mmu.obj
+ 0001:00016ac4       MMU_GetPDDevPAddr          10017ac4 f   srvkmsgx:mmu.obj
+ 0001:00016ad4       MMU_BIFResetPDAlloc        10017ad4 f   srvkmsgx:mmu.obj
+ 0001:00016c38       MMU_BIFResetPDFree         10017c38 f   srvkmsgx:mmu.obj
+ 0001:00016e18       SGXPrePowerState           10017e18 f   srvkmsgx:sgxpower.obj
+ 0001:00016f0c       SGXPostPowerState          10017f0c f   srvkmsgx:sgxpower.obj
+ 0001:00016fb8       SGXPreClockSpeedChange     10017fb8 f   srvkmsgx:sgxpower.obj
+ 0001:00016fec       SGXPostClockSpeedChange    10017fec f   srvkmsgx:sgxpower.obj
+ 0001:000188d4       SGXInit                    100198d4 f   srvinitsgx:sgxinit.obj
+ 0001:00018b98       PVRSRVAllocSharedSysMemoryKM 10019b98 f   srvkmcmn:mem.obj
+ 0001:00018c7c       PVRSRVFreeSharedSysMemoryKM 10019c7c f   srvkmcmn:mem.obj
+ 0001:00018cac       PVRSRVDissociateMemFromResmanKM 10019cac f   srvkmcmn:mem.obj
+ 0001:00018cf4       DisableThreadLibraryCalls  10019cf4 f   coredll:COREDLL.dll
+ 0001:00018d04       TerminateProcess           10019d04 f   coredll:COREDLL.dll
+ 0001:00018d50       __IMPORT_DESCRIPTOR_COREDLL 10019d50     coredll:COREDLL.dll
+ 0001:00018d64       __IMPORT_DESCRIPTOR_CEDDK  10019d64     CEDDK:CEDDK.dll
+ 0001:00018d78       __NULL_IMPORT_DESCRIPTOR   10019d78     coredll:COREDLL.dll
+ 0002:00000000       __imp_MmUnmapIoSpace       1001a000     CEDDK:CEDDK.dll
+ 0002:00000004       __imp_MmMapIoSpace         1001a004     CEDDK:CEDDK.dll
+ 0002:00000008       \177CEDDK_NULL_THUNK_DATA  1001a008     CEDDK:CEDDK.dll
+ 0002:0000000c       __imp_NKDbgPrintfW         1001a00c     coredll:COREDLL.dll
+ 0002:00000010       __imp_GetDirectCallerProcessId 1001a010     coredll:COREDLL.dll
+ 0002:00000014       __imp_EventModify          1001a014     coredll:COREDLL.dll
+ 0002:00000018       __imp_LockPages            1001a018     coredll:COREDLL.dll
+ 0002:0000001c       __imp_UnlockPages          1001a01c     coredll:COREDLL.dll
+ 0002:00000020       __imp_VirtualFreeEx        1001a020     coredll:COREDLL.dll
+ 0002:00000024       __imp_InterruptDone        1001a024     coredll:COREDLL.dll
+ 0002:00000028       __imp_CeSetThreadPriority  1001a028     coredll:COREDLL.dll
+ 0002:0000002c       __imp_InterruptDisable     1001a02c     coredll:COREDLL.dll
+ 0002:00000030       __imp_CreateThread         1001a030     coredll:COREDLL.dll
+ 0002:00000034       __imp_InterruptInitialize  1001a034     coredll:COREDLL.dll
+ 0002:00000038       __imp_CreateEventW         1001a038     coredll:COREDLL.dll
+ 0002:0000003c       __imp_KernelIoControl      1001a03c     coredll:COREDLL.dll
+ 0002:00000040       __imp_TerminateThread      1001a040     coredll:COREDLL.dll
+ 0002:00000044       __imp_RegCloseKey          1001a044     coredll:COREDLL.dll
+ 0002:00000048       __imp_RegQueryValueExW     1001a048     coredll:COREDLL.dll
+ 0002:0000004c       __imp_RegOpenKeyExW        1001a04c     coredll:COREDLL.dll
+ 0002:00000050       __imp_InterlockedCompareExchange 1001a050     coredll:COREDLL.dll
+ 0002:00000054       __imp_GetCallerVMProcessId 1001a054     coredll:COREDLL.dll
+ 0002:00000058       __imp___GetUserKData       1001a058     coredll:COREDLL.dll
+ 0002:0000005c       __imp_GetTickCount         1001a05c     coredll:COREDLL.dll
+ 0002:00000060       __imp_IsBadWritePtr        1001a060     coredll:COREDLL.dll
+ 0002:00000064       __imp_IsBadReadPtr         1001a064     coredll:COREDLL.dll
+ 0002:00000068       __imp_VirtualCopy          1001a068     coredll:COREDLL.dll
+ 0002:0000006c       __imp_VirtualAlloc         1001a06c     coredll:COREDLL.dll
+ 0002:00000070       __imp_VirtualFree          1001a070     coredll:COREDLL.dll
+ 0002:00000074       __imp_GetLastError         1001a074     coredll:COREDLL.dll
+ 0002:00000078       __imp_VirtualAllocEx       1001a078     coredll:COREDLL.dll
+ 0002:0000007c       __imp_VirtualAllocCopyEx   1001a07c     coredll:COREDLL.dll
+ 0002:00000080       __imp_VirtualCopyEx        1001a080     coredll:COREDLL.dll
+ 0002:00000084       __imp_WideCharToMultiByte  1001a084     coredll:COREDLL.dll
+ 0002:00000088       __imp_OutputDebugStringW   1001a088     coredll:COREDLL.dll
+ 0002:0000008c       __imp_DeviceIoControl      1001a08c     coredll:COREDLL.dll
+ 0002:00000090       __imp_CreateFileW          1001a090     coredll:COREDLL.dll
+ 0002:00000094       __imp_LocalAlloc           1001a094     coredll:COREDLL.dll
+ 0002:00000098       __imp_LocalFree            1001a098     coredll:COREDLL.dll
+ 0002:0000009c       __imp_CreateMutexW         1001a09c     coredll:COREDLL.dll
+ 0002:000000a0       __imp_CloseHandle          1001a0a0     coredll:COREDLL.dll
+ 0002:000000a4       __imp_ReleaseMutex         1001a0a4     coredll:COREDLL.dll
+ 0002:000000a8       __imp_WaitForSingleObject  1001a0a8     coredll:COREDLL.dll
+ 0002:000000ac       __imp_memset               1001a0ac     corelib1:COREDLL.dll
+ 0002:000000b0       __imp_free                 1001a0b0     corelib1:COREDLL.dll
+ 0002:000000b4       __imp_malloc               1001a0b4     corelib1:COREDLL.dll
+ 0002:000000b8       __imp_memcpy               1001a0b8     corelib1:COREDLL.dll
+ 0002:000000bc       __imp_vsprintf             1001a0bc     corelib1:COREDLL.dll
+ 0002:000000c0       __imp_swprintf             1001a0c0     corelib1:COREDLL.dll
+ 0002:000000c4       __imp__snprintf            1001a0c4     corelib1:COREDLL.dll
+ 0002:000000c8       __imp_strncpy              1001a0c8     corelib1:COREDLL.dll
+ 0002:000000cc       __imp___C_specific_handler 1001a0cc     corelib1:COREDLL.dll
+ 0002:000000d0       __imp___rt_udiv            1001a0d0     corelib1:COREDLL.dll
+ 0002:000000d4       __imp_strcat               1001a0d4     corelib1:COREDLL.dll
+ 0002:000000d8       __imp_strlen               1001a0d8     corelib1:COREDLL.dll
+ 0002:000000dc       __imp_sprintf              1001a0dc     corelib1:COREDLL.dll
+ 0002:000000e0       __imp_calloc               1001a0e0     corelib1:COREDLL.dll
+ 0002:000000e4       __imp__XcptFilter          1001a0e4     corelib1:COREDLL.dll
+ 0002:000000e8       __imp___security_gen_cookie2 1001a0e8     corelib1:COREDLL.dll
+ 0002:000000ec       __imp___report_gsfailure   1001a0ec     corelib1:COREDLL.dll
+ 0002:000000f0       __imp_DisableThreadLibraryCalls 1001a0f0     coredll:COREDLL.dll
+ 0002:000000f4       __imp_TerminateProcess     1001a0f4     coredll:COREDLL.dll
+ 0002:000000f8       \177COREDLL_NULL_THUNK_DATA 1001a0f8     coredll:COREDLL.dll
+ 0002:00000100       gui32ClientInKernelMode    1001a100     pvr_kernel.obj
+ 0002:00000104       gPVRDebugLevel             1001a104     pvr_debug.obj
+ 0002:00000110       __security_cookie          1001a110     corelib0:seccinit.obj
+ 0002:00000114       __security_cookie_complement 1001a114     corelib0:seccinit.obj
+ 0002:00000118       pbuKernelProgram           1001a118     srvinitsgx:sgxinit.obj
+ 0002:00004b48       pbuKernelTAProgram         1001eb48     srvinitsgx:sgxinit.obj
+ 0002:00009778       pbuKernelSPMProgram        10023778     srvinitsgx:sgxinit.obj
+ 0002:0000cc28       pbuKernel3DProgram         10026c28     srvinitsgx:sgxinit.obj
+ 0002:00012be0       ui32uKernelProgramSizes    1002cbe0     srvinitsgx:sgxinit.obj
+ 0002:00012be4       ui32uKernelTAProgramSizes  1002cbe4     srvinitsgx:sgxinit.obj
+ 0002:00012be8       ui32uKernel3DProgramSizes  1002cbe8     srvinitsgx:sgxinit.obj
+ 0002:00012bec       pbuKernelProgramBlocks     1002cbec     srvinitsgx:sgxinit.obj
+ 0002:00012bf0       pbuKernelTAProgramBlocks   1002cbf0     srvinitsgx:sgxinit.obj
+ 0002:00012bf4       pbuKernel3DProgramBlocks   1002cbf4     srvinitsgx:sgxinit.obj
+ 0002:00012bf8       ui32uKernelProgramOffsetINITUKERNELPRIMARY1 1002cbf8     srvinitsgx:sgxinit.obj
+ 0002:00012bfc       ui32uKernelProgramOffsetIUKP1_PDSCONSTSIZESEC 1002cbfc     srvinitsgx:sgxinit.obj
+ 0002:00012c00       ui32uKernelProgramOffsetIUKP1_PDSDEVADDRSEC 1002cc00     srvinitsgx:sgxinit.obj
+ 0002:00012c04       ui32uKernelProgramOffsetIUKP1_TA3DCTL 1002cc04     srvinitsgx:sgxinit.obj
+ 0002:00012c08       ui32uKernelProgramOffsetIUKP1_PDSCONSTSIZEPRIM2 1002cc08     srvinitsgx:sgxinit.obj
+ 0002:00012c0c       ui32uKernelProgramOffsetIUKP1_PDSDEVADDRPRIM2 1002cc0c     srvinitsgx:sgxinit.obj
+ 0002:00012c10       ui32uKernelProgramOffsetINITUKERNELSECONDARY 1002cc10     srvinitsgx:sgxinit.obj
+ 0002:00012c14       ui32uKernelProgramOffsetINITUKERNELPRIMARY2 1002cc14     srvinitsgx:sgxinit.obj
+ 0002:00012c18       ui32uKernelProgramOffsetIUKP2_PDSEXEC 1002cc18     srvinitsgx:sgxinit.obj
+ 0002:00012c1c       ui32uKernelProgramOffsetIUKP2_PDSDATA 1002cc1c     srvinitsgx:sgxinit.obj
+ 0002:00012c20       ui32uKernelProgramOffsetEVENTHANDLER 1002cc20     srvinitsgx:sgxinit.obj
+ 0002:00012c24       ui32uKernelProgramOffsetHOSTKICKPOWER 1002cc24     srvinitsgx:sgxinit.obj
+ 0002:00012c28       ui32uKernelProgramOffsetHOSTKICKTRANSFER 1002cc28     srvinitsgx:sgxinit.obj
+ 0002:00012c2c       ui32uKernelProgramOffsetHOSTKICKTA 1002cc2c     srvinitsgx:sgxinit.obj
+ 0002:00012c30       ui32uKernelProgramOffsetHOSTKICKCLEANUP 1002cc30     srvinitsgx:sgxinit.obj
+ 0002:00012c34       ui32uKernelProgramOffsetHOSTKICKPROCESS_QUEUES 1002cc34     srvinitsgx:sgxinit.obj
+ 0002:00012c38       ui32uKernelProgramOffsetHOSTKICKGETMISCINFO 1002cc38     srvinitsgx:sgxinit.obj
+ 0002:00012c3c       ui32uKernelProgramOffsetELB_PDSCONSTSIZE 1002cc3c     srvinitsgx:sgxinit.obj
+ 0002:00012c40       ui32uKernelProgramOffsetELB_PDSDEVADDR 1002cc40     srvinitsgx:sgxinit.obj
+ 0002:00012c44       ui32uKernelProgramOffsetTA_TAHANDLER 1002cc44     srvinitsgx:sgxinit.obj
+ 0002:00012c48       ui32uKernelProgramOffsetTA_ELB_PDSCONSTSIZE 1002cc48     srvinitsgx:sgxinit.obj
+ 0002:00012c4c       ui32uKernelProgramOffsetTA_ELB_PDSDEVADDR 1002cc4c     srvinitsgx:sgxinit.obj
+ 0002:00012c50       ui32uKernelProgramOffset3D_THREEDHANDLER 1002cc50     srvinitsgx:sgxinit.obj
+ 0002:00012c54       ui32uKernelProgramOffset3D_ELB_PDSCONSTSIZE 1002cc54     srvinitsgx:sgxinit.obj
+ 0002:00012c58       ui32uKernelProgramOffset3D_ELB_PDSDEVADDR 1002cc58     srvinitsgx:sgxinit.obj
+ 0002:000132b0       gpsResList                 1002d2b0     srvkmcmn:resman.obj
+ 0002:000132b4       gpsKernelHandleBase        1002d2b4     srvkmcmn:handle.obj
+ 0002:00013398       gpsSysData                 1002d398     system:sysconfig.obj
+ 0002:00013428       _exitflag                  1002d428     corelib0:cexit.obj
+ 0002:0001342c       gui32EventStatusServicesByISR 1002d42c     srvkmsgx:sgxinit.obj
+ 0002:00013444       ui32uKernelProgramOffsetTA_TAEVENTHANDLER 1002d444     srvinitsgx:sgxinit.obj
+ 0002:00013448       ui32uKernelProgramOffset3D_THREEDEVENTHANDLER 1002d448     srvinitsgx:sgxinit.obj
+ 0002:00013460       sEnvData                   1002d460     <common>
+ 0002:00013498       hBridgeMutex               1002d498     <common>
+ 0002:0001349c       gpsSysSpecificData         1002d49c     <common>
+ 0002:000134a0       gsSysData                  1002d4a0     <common>
+ 0002:00013540       g_BridgeDispatchTable      1002d540     <common>
+ 0002:000136fc       __onexitend                1002d6fc     <common>
+ 0002:00013700       __onexitbegin              1002d700     <common>
+ 0002:00013704       _pRawDllMain               1002d704     <common>
+
+ entry point at        0001:00012aec
+
+ Static symbols
+
+ 0001:000018e4       FreeMappedClientMemInfo    100028e4 f   pvr_bridge_k.obj
+ 0001:000019f8       FreeUserModeMappingCallback 100029f8 f   pvr_bridge_k.obj
+ 0001:00001a68       FreeSingleProcessUserModeMappingCallback 10002a68 f   pvr_bridge_k.obj
+ 0001:00001ad0       RemapClientMemInfoFromUMAddr 10002ad0 f   pvr_bridge_k.obj
+ 0001:00001bf0       RemapClientMemInfo         10002bf0 f   pvr_bridge_k.obj
+ 0001:000024d8       List_ALLOC_BLOCK_MAPPING_Any_va 100034d8 f   osfunc_srvkm.obj
+ 0001:00002cbc       OSTimerCallbackWrapper     10003cbc f   osfunc_srvkm.obj
+ 0001:00004b0c       FreePerProcessData         10005b0c f   srvkmcmn:perproc.obj
+ 0001:00004d88       List_RESMAN_ITEM_Any_va    10005d88 f   srvkmcmn:resman.obj
+ 0001:00004dd8       List_RESMAN_ITEM_IMG_BOOL_Any_va 10005dd8 f   srvkmcmn:resman.obj
+ 0001:0000503c       FreeResourceByPtr          1000603c f   srvkmcmn:resman.obj
+ 0001:00005114       FreeResourceByCriteria     10006114 f   srvkmcmn:resman.obj
+ 0001:00005a74       CloseDCDeviceCallBack      10006a74 f   srvkmcmn:deviceclass.obj
+ 0001:00005dd8       DestroyDCSwapChainCallBack 10006dd8 f   srvkmcmn:deviceclass.obj
+ 0001:00006714       CloseBCDeviceCallBack      10007714 f   srvkmcmn:deviceclass.obj
+ 0001:00006b38       GetHandleStructure         10007b38 f   srvkmcmn:handle.obj
+ 0001:00006b90       FreeHandle                 10007b90 f   srvkmcmn:handle.obj
+ 0001:00006d34       ReallocHandleArray         10007d34 f   srvkmcmn:handle.obj
+ 0001:00006e04       IncreaseHandleArraySize    10007e04 f   srvkmcmn:handle.obj
+ 0001:00006f08       AllocHandle                10007f08 f   srvkmcmn:handle.obj
+ 0001:000075c0       PVRSRVHandleBatchCommitOrRelease 100085c0 f   srvkmcmn:handle.obj
+ 0001:00007760       FreeHandleBase             10008760 f   srvkmcmn:handle.obj
+ 0001:00008534       _RequestAllocFail          10009534 f   srvkmcmn:ra.obj
+ 0001:0000853c       _SegmentListInsert         1000953c f   srvkmcmn:ra.obj
+ 0001:000085dc       _SegmentSplit              100095dc f   srvkmcmn:ra.obj
+ 0001:000086a0       _FreeListInsert            100096a0 f   srvkmcmn:ra.obj
+ 0001:000086e8       _InsertResource            100096e8 f   srvkmcmn:ra.obj
+ 0001:000087b0       _InsertResourceSpan        100097b0 f   srvkmcmn:ra.obj
+ 0001:00008994       _FreeBT                    10009994 f   srvkmcmn:ra.obj
+ 0001:00008d68       _AttemptAllocAligned       10009d68 f   srvkmcmn:ra.obj
+ 0001:000097c8       ZeroBuf                    1000a7c8 f   srvkmcmn:buffer_manager.obj
+ 0001:000099f4       BM_DestroyContextCallBack  1000a9f4 f   srvkmcmn:buffer_manager.obj
+ 0001:00009d2c       DevMemoryAlloc             1000ad2c f   srvkmcmn:buffer_manager.obj
+ 0001:00009e7c       BM_ImportMemory            1000ae7c f   srvkmcmn:buffer_manager.obj
+ 0001:0000a12c       BM_FreeMemory              1000b12c f   srvkmcmn:buffer_manager.obj
+ 0001:0000a268       AllocMemory                1000b268 f   srvkmcmn:buffer_manager.obj
+ 0001:0000a45c       WrapMemory                 1000b45c f   srvkmcmn:buffer_manager.obj
+ 0001:0000a778       FreeBuf                    1000b778 f   srvkmcmn:buffer_manager.obj
+ 0001:0000adac       QueueDumpCmdComplete       1000bdac f   srvkmcmn:queue.obj
+ 0001:0000ae68       QueueDumpDebugInfo_ForEachCb 1000be68 f   srvkmcmn:queue.obj
+ 0001:0000bc80       _Resize                    1000cc80 f   srvkmcmn:hash.obj
+ 0001:0000c48c       AllocDeviceMem             1000d48c f   srvkmcmn:devicemem.obj
+ 0001:0000c5a0       FreeDeviceMem              1000d5a0 f   srvkmcmn:devicemem.obj
+ 0001:0000c750       FreeDeviceMemCallBack      1000d750 f   srvkmcmn:devicemem.obj
+ 0001:0000c9cc       UnwrapExtMemoryCallBack    1000d9cc f   srvkmcmn:devicemem.obj
+ 0001:0000cda4       UnmapDeviceMemoryCallBack  1000dda4 f   srvkmcmn:devicemem.obj
+ 0001:0000d190       UnmapDeviceClassMemoryCallBack 1000e190 f   srvkmcmn:devicemem.obj
+ 0001:0000e594       InitClockDivisor           1000f594 f   system:sysutils.obj
+ 0001:0000e76c       PVRSRVEnumerateDevicesBW   1000f76c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000e790       PVRSRVAcquireDeviceDataBW  1000f790 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000e7f0       PVRSRVCreateDeviceMemContextBW 1000f7f0 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000e980       PVRSRVDestroyDeviceMemContextBW 1000f980 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000ea20       PVRSRVGetDeviceMemHeapInfoBW 1000fa20 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000eb60       PVRSRVAllocDeviceMemBW     1000fb60 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000ed20       PVRSRVFreeDeviceMemBW      1000fd20 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000edd8       PVRSRVExportDeviceMemBW    1000fdd8 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000ee98       PVRSRVMapDeviceMemoryBW    1000fe98 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f058       PVRSRVUnmapDeviceMemoryBW  10010058 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f0cc       PVRSRVMapDeviceClassMemoryBW 100100cc f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f298       PVRSRVUnmapDeviceClassMemoryBW 10010298 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f304       PVRSRVWrapExtMemoryBW      10010304 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f524       PVRSRVUnwrapExtMemoryBW    10010524 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f590       PVRSRVGetFreeDeviceMemBW   10010590 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f5bc       PVRMMapOSMemHandleToMMapDataBW 100105bc f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f5cc       PVRMMapReleaseMMapDataBW   100105cc f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f5dc       PVRSRVGetMiscInfoBW        100105dc f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f720       PVRSRVConnectBW            10010720 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f734       PVRSRVDisconnectBW         10010734 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f744       PVRSRVEnumerateDCBW        10010744 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f76c       PVRSRVOpenDCDeviceBW       1001076c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f820       PVRSRVCloseDCDeviceBW      10010820 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f890       PVRSRVEnumDCFormatsBW      10010890 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f8e0       PVRSRVEnumDCDimsBW         100108e0 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f938       PVRSRVGetDCSystemBufferBW  10010938 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000f9f0       PVRSRVGetDCInfoBW          100109f0 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fa3c       PVRSRVCreateDCSwapChainBW  10010a3c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fb20       PVRSRVDestroyDCSwapChainBW 10010b20 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fb8c       PVRSRVSetDCDstRectBW       10010b8c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fc04       PVRSRVSetDCSrcRectBW       10010c04 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fc7c       PVRSRVSetDCDstColourKeyBW  10010c7c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fcf4       PVRSRVSetDCSrcColourKeyBW  10010cf4 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fd6c       PVRSRVGetDCBuffersBW       10010d6c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000fe7c       PVRSRVSwapToDCBufferBW     10010e7c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000ff10       PVRSRVSwapToDCSystemBW     10010f10 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0000ff8c       PVRSRVOpenBCDeviceBW       10010f8c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010040       PVRSRVCloseBCDeviceBW      10011040 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:000100b0       PVRSRVGetBCInfoBW          100110b0 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:000100fc       PVRSRVGetBCBufferBW        100110fc f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:000101b8       PVRSRVAllocSharedSysMemoryBW 100111b8 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010284       PVRSRVFreeSharedSysMemoryBW 10011284 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:000102f0       PVRSRVMapMemInfoMemBW      100112f0 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:000104a4       MMU_GetPDDevPAddrBW        100114a4 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010544       PVRSRVInitSrvConnectBW     10011544 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0001059c       PVRSRVInitSrvDisconnectBW  1001159c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0001061c       PVRSRVEventObjectWaitBW    1001161c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010664       PVRSRVEventObjectOpenBW    10011664 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010714       PVRSRVEventObjectCloseBW   10011714 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010784       ModifyCompleteSyncOpsCallBack 10011784 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:0001087c       PVRSRVModifyPendingSyncOpsBW 1001187c f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010998       PVRSRVModifyCompleteSyncOpsBW 10011998 f   srvkmbridged:bridged_pvr_bridge.obj
+ 0001:00010e00       SGXGetClientInfoBW         10011e00 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00010e4c       SGXReleaseClientInfoBW     10011e4c f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00010ea0       SGXGetInternalDevInfoBW    10011ea0 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00010f10       SGXDoKickBW                10011f10 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000111f0       SGXScheduleProcessQueuesBW 100121f0 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011238       SGXSubmitTransferBW        10012238 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000113ac       SGXGetMiscInfoBW           100123ac f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011524       SGXReadDiffCountersBW      10012524 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000115ac       SGXReadHWPerfCBBW          100125ac f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011674       SGXDevInitPart2BW          10012674 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011ad4       SGXRegisterHWRenderContextBW 10012ad4 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011b80       SGXUnregisterHWRenderContextBW 10012b80 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011bec       SGXRegisterHWTransferContextBW 10012bec f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011c98       SGXUnregisterHWTransferContextBW 10012c98 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011d04       SGXFlushHWRenderTargetBW   10012d04 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011d4c       SGX2DQueryBlitsCompleteBW  10012d4c f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00011dc8       SGXFindSharedPBDescBW      10012dc8 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:0001200c       SGXUnrefSharedPBDescBW     1001300c f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00012078       SGXAddSharedPBDescBW       10013078 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:00012368       SGXGetInfoForSrvinitBW     10013368 f   srvkmbridged:bridged_sgx_bridge.obj
+ 0001:000129f0       _DllMainCRTStartupHelper   100139f0 f   corelib0:pegdmain.obj
+ 0001:00012c30       doexit                     10013c30 f   corelib0:cexit.obj
+ 0001:00012e7c       SGXCommandComplete         10013e7c f   srvkmsgx:sgxinit.obj
+ 0001:00012e8c       InitDevInfo                10013e8c f   srvkmsgx:sgxinit.obj
+ 0001:000131cc       DevInitSGXPart1            100141cc f   srvkmsgx:sgxinit.obj
+ 0001:00013410       DevDeInitSGX               10014410 f   srvkmsgx:sgxinit.obj
+ 0001:000139bc       SGXGetMiscInfoUkernel      100149bc f   srvkmsgx:sgxinit.obj
+ 0001:00014b80       SGXCleanupHWRenderContextCallback 10015b80 f   srvkmsgx:sgxutils.obj
+ 0001:00014bb8       SGXCleanupHWTransferContextCallback 10015bb8 f   srvkmsgx:sgxutils.obj
+ 0001:00015374       SGXCleanupSharedPBDescCallback 10016374 f   srvkmsgx:pb.obj
+ 0001:00015454       SGXCleanupSharedPBDescCreateLockCallback 10016454 f   srvkmsgx:pb.obj
+ 0001:000158dc       SGXResetInvalDC            100168dc f   srvkmsgx:sgxreset.obj
+ 0001:00015bec       _AllocPageTableMemory      10016bec f   srvkmsgx:mmu.obj
+ 0001:00015d10       _DeferredFreePageTable     10016d10 f   srvkmsgx:mmu.obj
+ 0001:00015ebc       _DeferredAllocPagetables   10016ebc f   srvkmsgx:mmu.obj
+ 0001:000167ac       MMU_MapPage                100177ac f   srvkmsgx:mmu.obj
+ 0001:00016cac       SGXUpdateTimingInfo        10017cac f   srvkmsgx:sgxpower.obj
+ 0001:0001704c       ScriptWriteSGXReg          1001804c f   srvinitsgx:sgxinit.obj
+ 0001:00017098       PatchLIMM                  10018098 f   srvinitsgx:sgxinit.obj
+ 0001:000170f4       LoaduKernelPDSInitPrograms 100180f4 f   srvinitsgx:sgxinit.obj
+ 0001:000173c8       LoaduKernelProgram         100183c8 f   srvinitsgx:sgxinit.obj
+ 0001:0001742c       LoaduKernel                1001842c f   srvinitsgx:sgxinit.obj
+ 0001:00017f2c       SetupuKernel               10018f2c f   srvinitsgx:sgxinit.obj
+ 0001:00018314       SGXInitialisePart2         10019314 f   srvinitsgx:sgxinit.obj
+ 0001:000185a8       SGXDeinitialise            100195a8 f   srvinitsgx:sgxinit.obj
+ 0001:00018688       SGXMiscInit                10019688 f   srvinitsgx:sgxinit.obj
+ 0001:000187d4       AllocateDumyStencilBuffers 100197d4 f   srvinitsgx:sgxinit.obj
+ 0001:00018b5c       FreeSharedSysMemCallBack   10019b5c f   srvkmcmn:mem.obj

@@ -1,0 +1,12 @@
+
+TARGETNAME=FlashFX_FML
+TARGETTYPE=PROGRAM
+
+INCLUDES=$(_PUBLICROOT)\common\sdk\inc; \
+        $(P_ROOT)\include;
+
+TARGETLIBS=$(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\flashfx.lib
+
+SOURCES=FlashFX_FML.c
+

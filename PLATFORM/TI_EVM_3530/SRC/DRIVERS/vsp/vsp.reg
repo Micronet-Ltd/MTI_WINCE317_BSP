@@ -1,0 +1,20 @@
+
+[HKEY_LOCAL_MACHINE\Drivers\VSP]
+	"Dll"="vsp.dll"
+	"Prefix"="COM"
+	"InitialIndex"=dword:1
+	
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\FTDI_DEVICE]
+	"Prefix"="MOM"
+	"Dll"="ftdi_ser.dll"
+	"ConfigData"=hex:\
+		41,00,3f,01,10,27,88,13,c4,09,e2,04,71,02,38,41,9c,80,4e,c0,34,00,1a,00,0d,\
+		00,06,40,03,80,00,00,d0,80  
+	"DeviceArrayIndex"=dword:00000000
+	"LatencyTimer"=dword:00000010
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\1027_24577\Default\Default\FTDI_DEVICE]
+	"DLL"="ftdi_ser.dll"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\Default\Default\255\FTDI_DEVICE]
+	"DLL"="ftdi_ser.dll"

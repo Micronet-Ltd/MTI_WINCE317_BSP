@@ -1,0 +1,18 @@
+
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=application
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+roamingMngr.c \
+roamingMngr_autoSM.c \
+roamingMngr_manualSM.c \
+scanMngr.c

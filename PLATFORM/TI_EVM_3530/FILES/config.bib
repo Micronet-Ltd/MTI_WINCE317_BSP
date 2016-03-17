@@ -1,0 +1,94 @@
+; Copyright (c) 2007, 2013 2008 Micronet Ltd. All rights reserved.
+; by Vladimir Zatulovsky
+;
+;               Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+;
+;   Use of this software is controlled by the terms and conditions found
+;   in the license agreement under which this software has been supplied.
+;
+;-------------------------------------------------------------------------------
+;    
+MEMORY
+;   Name                        VA          Length      Type
+    ARGS                        80000000    00001000    RESERVED ; 4K 
+    NK                          80001000    03FFF000    RAMIMAGE ; 64MB - 4K
+    DISPLAY                     84000000    01000000    RESERVED ; 16MB
+    RAM                         85000000    0B000000    RAM      ; 176MB
+
+nk.exe:dwDRAMEXT				00000000    90000000    FIXUPVAR
+nk.exe:dwEXTLEN					00000000    0E700000    FIXUPVAR
+nk.exe:dwOEMFailPowerPaging     00000000    00000001    FIXUPVAR
+nk.exe:dwOEMDrWatsonSize        00000000    0004B000    FIXUPVAR 
+nk.exe:dwOEMPRCMCLKSSetupTime   00000000    00000140    FIXUPVAR
+nk.exe:dwOEMMaxIdlePeriod       00000000    000003E8    FIXUPVAR
+nk.exe:dwOEMTargetProject       00000000    00000001    FIXUPVAR
+
+IF BSP_OEM_POOL
+kernel.dll:LoaderPoolTarget     00000000    00800000    FIXUPVAR
+kernel.dll:LoaderPoolMaximum    00000000    01000000    FIXUPVAR
+kernel.dll:FilePoolTarget       00000000    00800000    FIXUPVAR
+kernel.dll:FilePoolMaximum      00000000    01000000    FIXUPVAR
+ENDIF
+
+IF _TGTPROJ=smartfon
+nk.exe:dwOEMTargetProject       00000000    00000002    FIXUPVAR
+ENDIF _TGTPROJ=smartfon
+
+IF IMGHIGHSECURITY
+nk.exe:dwOEMHighSecurity        00000000    00000001    FIXUPVAR
+ELSE
+nk.exe:dwOEMHighSecurity        00000000    00000002    FIXUPVAR
+ENDIF
+
+; location for context save/restore from off mode (MUST BE DDR PHYSICAL ADDR VALUE)
+;
+nk.exe:dwOEMMPUContextRestore   00000000    80000800    FIXUPVAR 
+
+;-------------------------------------------------------------------------------
+
+CONFIG
+; @CESYSGEN IF !NK_NKNOCOMP
+   COMPRESSION=ON
+; @CESYSGEN ENDIF !NK_NKNOCOMP
+; @CESYSGEN IF NK_NKNOCOMP
+   COMPRESSION=OFF
+; @CESYSGEN ENDIF NK_NKNOCOMP
+    KERNELFIXUPS=ON
+
+	FSRAMPERCENT=0x10101040
+
+AUTOSIZE=OFF
+
+IF IMGPROFILER   
+    PROFILE=ON
+ELSE
+    PROFILE=OFF
+ENDIF
+
+IF IMGFLASH
+    ROMOFFSET=FC000000
+ENDIF
+
+;
+; ROMFLAGS is a bitmask of options for the kernel
+;   ROMFLAGS    0x0001      Disallow Paging
+;   ROMFLAGS    0x0002      Not all KMode (not supported under CE6)
+;   ROMFLAGS    0x0010      Trust Module only
+;
+IF IMGTRUSTROMONLY
+    IF IMGNOTALLKMODE
+       ROMFLAGS=12
+    ELSE
+       ROMFLAGS=10
+    ENDIF
+ELSE
+    IF IMGNOTALLKMODE
+       ROMFLAGS=02
+    ELSE
+       ROMFLAGS=00
+    ENDIF
+ENDIF
+
+;-------------------------------------------------------------------------------

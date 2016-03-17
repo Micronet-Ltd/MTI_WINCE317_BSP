@@ -1,0 +1,17 @@
+!if 0
+Copyright (c) Texas Instruments.  All rights reserved.
+!endif
+
+TARGETNAME=do
+WINCEOEM=1
+
+
+TARGETTYPE=PROGRAM
+TARGETDEFNAME=$(TARGETNAME)
+
+
+SOURCES=appli.cpp \
+
+TARGETLIBS= \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib
+

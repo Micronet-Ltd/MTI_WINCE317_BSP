@@ -1,0 +1,736 @@
+<html>
+<head>
+<title>
+Porting Guide: Supporting a New Operating System
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Porting Guide: Supporting a New Operating System
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Porting Guide: Supporting a New Operating System">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        This section provides a step-by-step overview of the process of
+        modifying FlashFX to support new operating system.
+
+<p>        The <b>very first</b> step to doing this, is to <b>stop</b> here, and switch over
+        to the DCL documentation which covers creating new ToolSet abstractions
+        (if needed) and new DCL OS abstractions.  Ideally those should be
+        completed, with <b>DCLTEST running successfully</b>, before continuing with
+        the FlashFX specific porting process.
+
+<p>        Once you have done any necessary ToolSet work, have implemented the DCL
+        OS Services Layer, and can run DCLTEST without errors, you are ready
+        to begin the FlashFX OS porting process.
+
+<p>        This involves the following
+        general steps:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Create the OS directory tree structure.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Define the characteristics of a project based on the new OS, in <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> and <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Define the contents of the "newproj" directory.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Implement the default FlashFX OS Services for the new OS.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+5
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Implement a default Hooks layer for the new OS.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+6
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Write a block device driver.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+7
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Optionally implement the external API functionality (if applicable).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+8
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Implement the skeleton main code for the FlashFX unit tests.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+9
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Optionally implement the skeleton main code for the FlashFX tools.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>FlashFX OS Abstraction Components</b>
+
+<p>        The OS abstraction typically consists of the following minimum set of
+        directories:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+driver
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This is where the device driver source code resides.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hooks
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This directory contains the default implementation of the Hooks modules which are used to provide platform specific customization.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+include
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This directory is used for header files that are OS specific, and minimally must contain <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+newproj
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This directory contains the files necessary to support a new project based on this OS.  These files (usually) minimally consist of <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>, ffxmain.c, and ffxproj.mak.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+services
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This directory contains a few OS Services which are required by FlashFX but are not included in DCL.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+tests
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This directory contains the skeleton main code for the FlashFX unit test programs.
+</td>
+</tr>
+</table>
+
+<p>
+        Many (but not all) OS abstraction will contain the
+        following directories:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+extapi
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This is where the external IOCTL interface is implemented for those operating systems where separate standalone utilities can be used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+tools
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This directory contains the skeleton main code for the FlashFX tools.
+</td>
+</tr>
+</table>
+
+<p>
+        An OS abstraction may contain additional subdirectories as required to
+        implement various functionality specific to the environment.
+
+<p>        <b>Defining OS Abstraction and Project Characteristics</b>
+
+<p>        The <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> file must reside in the include directory of the OS tree.
+        This header file defines the FlashFX specific default characteristics
+        of the given OS abstraction.  <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> is automatically included by all
+        code in the FlashFX tree (via <a HREF=QF640_Headers.c.htm#flashfx.h>flashfx.h</a>).
+
+<p>        The <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file is provided as the primary method by which a
+        developer can customize a given FlashFX project.  <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> is
+        automatically included (before <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a>) by all code in the FlashFX tree
+        (via <a HREF=QF640_Headers.c.htm#flashfx.h>flashfx.h</a>).
+
+<p>        Part of the process of creating a new port is determining which things
+        need to be defined in <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> and which are defined in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.
+
+<p>        For example, FlashFX requires that the symbol <a HREF=QF160_ProjectSettings.c.htm#FFXCONF_FATFORMATSUPPORT>FFXCONF_FATFORMATSUPPORT</a>
+        be defined to be either TRUE or FALSE.  It could be defined in <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a>,
+        <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>, or in both, with any value from the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file superseding
+        a default value in <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a>.  How this is handled will vary from OS to OS,
+        and from setting to setting.
+
+<p>        The default <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file resides in the NEWPROJ directory.  When a
+        user creates a new FlashFX project, this file, along with any others
+        residing in the NEWPROJ directory are copied into the Project
+        Directory.
+
+<p>        FlashFX requires that a number of symbols, types, and macros be
+        defined in either the <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> or the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> files (as previously
+        discussed).  Please examine the RTOS kit to see the default working
+        implementations of <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> and <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> for the RTOS kit.  Other OS
+        abstractions may be used as examples or templates as well.
+
+<p>        <b>Populating the newproj Directory</b>
+
+<p>        The "newproj" directory contains the files that are to be copied into
+        the user's Project Directory when a new project is created (along with
+        the contents of the DCL specific newproj directory for the OS). For most
+        OS abstractions this will minimally consist of <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> (discussed
+        previously), ffxmain.c, and ffxproj.mak.  A given OS abstraction may
+        have other files that are necessary to support a project.
+
+<p>        <b>Creating the FlashFX OS Services Layer</b>
+
+<p>        Aside from the general OS Services Layer implemented in DCL. FlashFX
+        has its own, very small set of OS Services, most of which are only
+        required under special circumstances.
+
+<p>        <b>Note</b> -- Refer to the API Reference section of this documentation for
+        more information on these functions.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+oedelay.c
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains the function <a HREF=QF950_OSServices.c.htm#_sysdelay>_sysdelay()</a>.  This is function is used to delay for a period of microseconds. Flash memory operations are extremely timing sensitive.  This function is frequently used when writing and erasing the flash, and should be reasonably accurate.  Delaying for a period of time that is longer than necessary is acceptable, however overall system performance may be degraded.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+oeintr.c
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This module contains the functions <a HREF=QF950_OSServices.c.htm#_sysinterruptdisable>_sysinterruptdisable()</a> and <a HREF=QF950_OSServices.c.htm#_sysinterruptrestore>_sysinterruptrestore()</a>.  These functions are not used by the FlashFX core.  This interface is provided primarily in the event that software-execute-in-place (SXIP) is being implemented.  If SXIP is not being used, these functions can be stubbed out.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Creating the Hooks Layer</b>
+
+<p>        The "hooks" directory contains the Hooks modules which are a set of
+        functions that are called during the course of accessing the flash
+        memory.  These modules provide the necessary abstraction layer to allow
+        FlashFX to be conveniently customized for unique hardware platforms.
+        This code is often operating environment specific, and therefore
+        default implementations are provided for each OS abstraction.
+
+<p>        When a developer needs to customize the functionality of these services
+        for a given project, he must copy the file(s) in question into his
+        Project Directory, and make his changes to the copies.  The FlashFX
+        build process is specifically designed to ensure that the copies of the
+        files in the Project Directory overrides the copies in the hooks
+        directory.
+
+<p>        When porting FlashFX to a new OS environment, it is strongly recommended
+        that the RTOS kit default implementations of the hooks be used as the
+        basis for the new OS abstraction.
+
+<p>        <b>Note</b> -- Refer to the API Reference section of this documentation for
+        more information on these functions.
+
+<p>        <h4>Creating the Block Device Driver</h4>
+
+<p>        FlashFX typically operates as a block device driver that allows flash
+        memory to appear as a standard, small-sector block device.  The
+        operating system file system can then simply treat the flash memory as
+        hard disk.
+
+<p>        This quickest way to get a block device driver for FlashFX Tera up and
+        running on a new operating system is to model it on a RAM disk driver
+        for that OS, if available. The initialization code, termination code,
+        and I/O can then be modified to call FlashFX API functions.
+
+<p>        Several topics will need to be addressed in the device driver,
+        depending on the capabilities of the operating system.
+
+<p>        <b>Device Driver Framework</b>
+
+<p>        FlashFX Tera includes a device driver framework, which is designed to
+        make writing a device driver easier. It consists of a number of
+        functions that encapsulate a large portion of the logic necessary to
+        use FlashFX. These modules can be found in the common\driverfw
+        directory in the FlashFX installation tree. The device driver
+        framework functions are documented in the API Reference portion of this
+        documentation.
+
+<p>        In some cases, you might not want to use the device driver framework,
+        particularly if you need to do unique driver initialization operations.
+        However in the vast majority of cases, the device driver framework will
+        save a significant amount of time. Also note that only those parts of
+        the device driver framework that make sense in the given application
+        need to be used.
+
+<p>        <b>Sample Device Driver</b>
+
+<p>        The FlashFX Tera RTOS Porting Kit contains a simple block device driver
+        that can be used as a model for creating a device driver for your
+        system. This driver can be found in the file os\rtos\driver\ffxdrv.c in
+        the FlashFX installation tree. This sample device driver uses the
+        device driver framework discussed previously.
+
+<p>        The sample device driver consists of a simple set of APIs that the file
+        system uses to perform block operations on the device. This block
+        device driver API is designed to work with the Datalight Reliance RTOS
+        Porting Kit.
+
+<p>        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#70&#70&#88&#83&#84&#65&#84&#85&#83&#32&#70&#108&#97&#115&#104&#70&#88&#68&#101&#118&#105&#99&#101&#79&#112&#101&#110&#40&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#49&#54&#32&#32&#32&#32&#32&#32&#32&#117&#68&#114&#105&#118&#101&#78&#117&#109&#41&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#70&#70&#88&#83&#84&#65&#84&#85&#83&#32&#70&#108&#97&#115&#104&#70&#88&#68&#101&#118&#105&#99&#101&#67&#108&#111&#115&#101&#40&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#49&#54&#32&#32&#32&#32&#32&#32&#32&#117&#68&#114&#105&#118&#101&#78&#117&#109&#41&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#70&#70&#88&#83&#84&#65&#84&#85&#83&#32&#70&#108&#97&#115&#104&#70&#88&#68&#101&#118&#105&#99&#101&#73&#79&#40&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#49&#54&#32&#32&#32&#32&#32&#32&#32&#117&#68&#114&#105&#118&#101&#78&#117&#109&#44&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#32&#32&#32&#117&#108&#83&#101&#99&#116&#111&#114&#78&#117&#109&#44&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#118&#111&#105&#100&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#42&#112&#67&#108&#105&#101&#110&#116&#66&#117&#102&#102&#101&#114&#44&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#49&#54&#32&#32&#32&#32&#32&#32&#32&#117&#83&#101&#99&#116&#111&#114&#67&#111&#117&#110&#116&#44&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#66&#79&#79&#76&#32&#32&#32&#32&#32&#32&#32&#32&#32&#102&#82&#101&#97&#100&#105&#110&#103&#41&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#70&#70&#88&#83&#84&#65&#84&#85&#83&#32&#70&#108&#97&#115&#104&#70&#88&#68&#101&#118&#105&#99&#101&#73&#111&#99&#116&#108&#40&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#49&#54&#32&#32&#32&#32&#32&#32&#32&#117&#68&#114&#105&#118&#101&#78&#117&#109&#44&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#49&#54&#32&#32&#32&#32&#32&#32&#32&#99&#111&#109&#109&#97&#110&#100&#44&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#118&#111&#105&#100&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#42&#98&#117&#102&#102&#101&#114&#41&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        The sample device driver is designed to be a model that is easy to
+        study. It may require major changes to work in your system, it may
+        require only minor changes, or it may be completely impractical in your
+        system if it does not use a device driver model. Even if it is not
+        practical, the device driver framework functions can be called directly
+        from an embedded application wishing to use FlashFX.
+
+<p>        <h4>Building an External API</h4>
+
+<p>        If the new OS abstraction has the ability to run standalone programs from a
+        command-line, you will likely want to allow utilities to interface with
+        FlashFX using an IOCTL interface.  This is typically implemented in
+        an "extapi" directory in the OS tree.
+
+<p>        <b>Building Standalone Unit Tests and Tools</b>
+
+<p>        If the target environment has the ability to run standalone programs
+        from a command-line, you will likely want to allow the FlashFX unit
+        tests and tools to be built.  Before proceeding with this process, you
+        will need to implement the External API discussed previously.
+
+<p>        <b>Note</b> -- If the target environment does not have the ability to run
+        standalone program, you may want to integrate some of this
+        functionality into the FlashFX device driver (particularly a format
+        capability and the ability to run the FMSL and VBF unit tests).
+
+<p>        <b>Building Standalone Unit Tests</b>
+
+<p>        The FlashFX unit tests are compiled as callable functions and added to
+        the library fxtests.lib during the FlashFX build process.  Each of
+        these tests are designed to take a FFXTOOLPARAMS structure, containing
+        arguments for the tests, one of which is an ANSI string consisting of
+        the command-line to use.
+
+<p>        To allow standalone unit tests for a given OS abstraction to be built as a
+        part of the FlashFX build process, follow these steps:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Create a tests directory for the given OS.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+For each test (FMSLTEST and VBFTEST are recommended), create a skeleton main.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add a tests.mak that contains the necessary commands to build the respective tests.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Within each skeleton main, process the native argument list and massage it as necessary to create a single ANSI parameter string, and fill in the FFXTOOLPARAMS structure.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+5
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Call the respective test functions passing the ANSI parameter string as the lone argument.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+6
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+See the various tools implementations in other OS abstraction for an example.
+</td>
+</tr>
+</table>
+
+<p>
+        When FlashFX is built, the test executables will be copied to the
+        project's release directory along with the FlashFX device driver.
+
+<p>        <b>Building Standalone Tools</b>
+
+<p>        The FlashFX tools are compiled as callable functions and added to the
+        library fxtools.lib during the FlashFX build process.  Each of these
+        tools are designed to take a FFXTOOLPARAMS structure, containing
+        arguments for the tool, one of which is an ANSI string consisting of
+        the command-line to use.
+
+<p>        To allow standalone tools for a given OS abstraction to be built as a part of
+        the FlashFX build process, follow these steps:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Create a tools directory for the given OS.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+For each tool, create a skeleton main.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add a tools.mak that contains the necessary commands to build the respective tools.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Within each skeleton main, process the native argument list and massage it as necessary to create a single ANSI parameter string, and fill in the FFXTOOLPARAMS structure.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+5
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Call the respective tool functions passing the ANSI parameter string as the lone argument.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+6
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+See the various tools implementations in other OS abstractions for an example.
+</td>
+</tr>
+</table>
+
+<p>
+        When FlashFX is built, the tools executables will be copied to the
+        project's release directory along with the FlashFX device driver.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

@@ -1,0 +1,285 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)\r\n"
+    "LANGUAGE 13, 1\r\n"
+    "#pragma code_page(1255)\r\n"
+    "#include ""res\\EbootLoader.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\EbootLoader.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About EbootLoader"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "EbootLoader Version 1.0",IDC_STATIC,40,10,119,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2010",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_EBOOTLOADER_DIALOG DIALOGEX 0, 0, 371, 304
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "EbootLoader"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,316,275,50,16
+    PUSHBUTTON      "Open Port",IDC_BUTTON1,316,4,50,16
+    PUSHBUTTON      "Get M",IDC_BUTTON2,253,72,50,16
+    PUSHBUTTON      "Close Port",IDC_BUTTON3,316,22,50,16
+    PUSHBUTTON      "Set M",IDC_BUTTON4,253,92,50,16
+    PUSHBUTTON      "Get MAC",IDC_BUTTON5,6,134,50,16
+    LTEXT           "PCB",IDC_STATIC,42,63,50,8
+    LTEXT           "Device",IDC_STATIC,147,63,50,8
+    EDITTEXT        IDC_CATALOG,37,72,101,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVID,37,90,101,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SER,37,109,101,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CATALOG2,143,72,101,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEVID2,143,90,101,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_SER2,143,109,101,14,ES_AUTOHSCROLL
+    LTEXT           "",IDC_STATIC1,10,285,296,17
+    EDITTEXT        IDC_RMAC,7,156,16,14,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_RMAC2,35,156,16,14,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_RMAC3,63,156,16,14,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_RMAC4,91,156,16,14,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_RMAC5,119,156,16,14,ES_CENTER | ES_AUTOHSCROLL
+    EDITTEXT        IDC_RMAC6,145,156,16,14,ES_CENTER | ES_AUTOHSCROLL
+    CTEXT           ":",IDC_STATIC,137,156,8,14,SS_CENTERIMAGE
+    CTEXT           ":",IDC_STATIC,109,156,8,14,SS_CENTERIMAGE
+    CTEXT           ":",IDC_STATIC,81,156,8,14,SS_CENTERIMAGE
+    CTEXT           ":",IDC_STATIC,53,156,8,14,SS_CENTERIMAGE
+    CTEXT           ":",IDC_STATIC,25,156,8,14,SS_CENTERIMAGE
+    PUSHBUTTON      "Set MAC",IDC_BUTTON6,61,134,50,16
+    PUSHBUTTON      "Clear Reg",IDC_BUTTON7,316,132,50,16
+    PUSHBUTTON      "Launch",IDC_BUTTON8,316,154,50,16
+    PUSHBUTTON      "Flash Format",IDC_BUTTON9,316,198,50,16
+    LTEXT           "Img ver.:",IDC_STATIC,3,3,50,8
+    LTEXT           "eBoot ver.:",IDC_STATIC,3,13,50,8
+    LTEXT           "X-Loader ver.:",IDC_STATIC,3,23,50,8
+    LTEXT           "HW ver.:",IDC_STATIC,3,33,50,8
+    LTEXT           "",IDC_IMG,62,3,163,8
+    LTEXT           "",IDC_EBOOT,62,13,163,8
+    LTEXT           "",IDC_XLDR,62,23,163,8
+    LTEXT           "",IDC_HW,62,33,163,8
+    PUSHBUTTON      "Get Versions",IDC_BUTTON10,316,82,50,16
+    EDITTEXT        IDC_SWR,1,221,365,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Get SW Rights",IDC_BUTTON11,261,239,50,16
+    PUSHBUTTON      "Set SW Rights",IDC_BUTTON12,316,239,50,16
+    PUSHBUTTON      "Try Connect",IDC_BUTTON13,316,41,50,16
+    PUSHBUTTON      "Reset",IDC_BUTTON14,316,176,50,16
+    COMBOBOX        IDC_COMBO1,261,4,50,102,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "RAM test",IDC_BUTTON15,206,198,50,16
+    COMBOBOX        IDC_COMBO2,111,134,50,43,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Data Format",IDC_BUTTON16,261,198,50,16
+    PUSHBUTTON      "File from SD",IDC_BUTTON17,207,156,50,16
+    COMBOBOX        IDC_COMBO3,261,156,50,43,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Old Connect",IDC_BUTTON18,316,59,50,16
+    PUSHBUTTON      "Get Old Vers",IDC_BUTTON19,316,100,50,16
+    PUSHBUTTON      "Flash Erase",IDC_BUTTON20,206,176,50,16
+    COMBOBOX        IDC_COMBO4,260,178,50,43,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Catalog:",IDC_STATIC,2,74,31,14
+    LTEXT           "Dev ID:",IDC_STATIC,2,92,31,14
+    LTEXT           "Ser. N.:",IDC_STATIC,2,111,31,10
+    PUSHBUTTON      "Get Max Freq",IDC_BUTTON22,6,188,50,14
+    PUSHBUTTON      "Set Max Freq",IDC_BUTTON23,61,188,50,14
+    COMBOBOX        IDC_COMBO5,115,189,37,30,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "MHz",IDC_STATIC,155,191,14,8
+    LTEXT           "NAND info:",IDC_STATIC,3,45,50,8
+    LTEXT           "",IDC_NANDINFO,62,45,163,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,9,0
+ PRODUCTVERSION 1,0,9,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.9.0"
+            VALUE "InternalName", "EbootLoader.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "EbootLoader.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.9.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_EBOOTLOADER_DIALOG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 370
+        BOTTOMMARGIN, 302
+        HORZGUIDE, 176
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_EBOOTLOADER_DIALOG DLGINIT
+BEGIN
+    IDC_COMBO5, 0x403, 4, 0
+0x3036, 0x0030, 
+    IDC_COMBO5, 0x403, 4, 0
+0x3038, 0x0030, 
+    IDC_COMBO5, 0x403, 5, 0
+0x3031, 0x3030, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About EbootLoader..."
+END
+
+#endif    // Hebrew resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+LANGUAGE 13, 1
+#pragma code_page(1255)
+#include "res\EbootLoader.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

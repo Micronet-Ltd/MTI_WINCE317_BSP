@@ -1,0 +1,3637 @@
+<html>
+<head>
+<title>
+FlashFX API: Flash Mapping Layer - FML
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+FlashFX API: Flash Mapping Layer - FML
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): FlashFX API: Flash Mapping Layer - FML">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        The FML (Flash Mapping Layer) is the layer of FlashFX which
+        provides a "window" into the flash which may be accessed.  The
+        FML is the lowest level of FlashFX which may be directly accessed
+        by an application via FlashFX API function calls.
+
+<p>        FML Disks are defined in the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file (typically), and are
+        normally specified as a range of kilobytes, however FML Disks
+        must start and stop on erase block boundaries.
+
+<p>        FML Disks cannot overlap each other.  If a given FML Disk includes
+        a range of erase blocks, an attempt to create another FML Disk
+        mapping which includes one or more of those blocks will fail.
+
+<p>        FML Disks may span multiple Devices, so long as the Devices have
+        substantially similar underlying characteristics. See the Advanced
+        Topics section for more details.
+
+<p>        The FML interface consists of a set of functions and macros.  The
+        functions are used for creating, destroying, and otherwise managing
+        FML instances.  The macros are used for FML I/O.
+
+<p>        The public interface to the FML interface is defined in <a HREF=QF640_Headers.c.htm#fxfmlapi.h>fxfmlapi.h</a>.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlCreate">FfxFmlCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create an FML instance, which is a window mapped onto a Device,
+    thereby creating a Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlDestroy">FfxFmlDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy an FML instance which was created with                         FfxFmlCreate    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlDeviceInfo">FfxFmlDeviceInfo</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Returns information about a physical Device (DEVn)
+
+       The Device specified by nDeviceNum must already be created before
+    calling this function.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlDeviceRangeEnumerate">FfxFmlDeviceRangeEnumerate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Enumerate ranges of blocks on a given Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXFMLDEVINFO">FFXFMLDEVINFO</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Contains information about a Device, and is filled in by
+                                FfxFmlDeviceInfo    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlDiskInfo">FfxFmlDiskInfo</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Return information about a Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlHandle">FfxFmlHandle</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Obtain the <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a> for a given Disk number.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXFMLINFO">FFXFMLINFO</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Contains information about a Disk, as returned by                           FfxFmlDiskInfo    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlIORequest">FfxFmlIORequest</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Dispatch an FML level I/O request.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlParameterGet">FfxFmlParameterGet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get a FlashFX system parameter.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlParameterSet">FfxFmlParameterSet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set a FlashFX system parameter.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxFmlPerfLogDispatch">FfxFmlPerfLogDispatch</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function dispatches requests for FML and lower layers
+    to retrieve PerfLog information and record it using an
+    external interface.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLERASE_BLOCKS">FMLERASE_BLOCKS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Erase one or more blocks in an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLERASE_BOOT_BLOCKS">FMLERASE_BOOT_BLOCKS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Erase one or more boot blocks in an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLERASE_RAWBLOCKS">FMLERASE_RAWBLOCKS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Erase one or more raw blocks (not remapped by BBM).
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLEXPEND_PAGE">FMLEXPEND_PAGE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Expend a NAND page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLLOCK_BLOCKS">FMLLOCK_BLOCKS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Lock one or more blocks in an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLLOCK_FREEZE">FMLLOCK_FREEZE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Lock the flash such that it cannot be unlocked short of
+    restarting.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLLOCK_OTP">FMLLOCK_OTP</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Lock OTP pages.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_CONTROLDATA">FMLREAD_CONTROLDATA</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read control bytes from an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_NATIVEPAGES">FMLREAD_NATIVEPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Reads corrected main page and correct spare data from one or
+    more pages of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_OTPPAGES">FMLREAD_OTPPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read main page data from an OTP page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_PAGES">FMLREAD_PAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read one or more pages from an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_RAWPAGES">FMLREAD_RAWPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read uncorrected main page and spare data from one or more pages
+    of a raw FML Disk (not remapped by BBM).
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_SPARES">FMLREAD_SPARES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read spare area data from one or more pages of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_TAGGEDPAGES">FMLREAD_TAGGEDPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read main page and tag data from one or more pages of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_TAGS">FMLREAD_TAGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read tag data from one or more pages of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLREAD_UNCORRECTEDPAGES">FMLREAD_UNCORRECTEDPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read uncorrected main page and spare data from one or more pages
+    of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLUNLOCK_BLOCKS">FMLUNLOCK_BLOCKS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Unlock one or more blocks in an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_CONTROLDATA">FMLWRITE_CONTROLDATA</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write control bytes to an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_NATIVEPAGES">FMLWRITE_NATIVEPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Writes a main page and given spare data to one or more pages of
+    an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_OTPPAGES">FMLWRITE_OTPPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write main page data to an OTP page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_PAGES">FMLWRITE_PAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write one or more pages to an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_RAWPAGES">FMLWRITE_RAWPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write uncorrected main page and spare data to one or more pages
+    of a raw FML Disk (not remapped by BBM).
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_SPARES">FMLWRITE_SPARES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write spare area data from one or more pages of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_TAGGEDPAGES">FMLWRITE_TAGGEDPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write main page and tag data to one or more pages of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_TAGS">FMLWRITE_TAGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write tag data to one or more pages of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FMLWRITE_UNCORRECTEDPAGES">FMLWRITE_UNCORRECTEDPAGES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write uncorrected main page and spare data from one or more pages
+    of an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FML_GET_BLOCK_INFO">FML_GET_BLOCK_INFO</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Queries the FIM and BBM to describe the requested erase block.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FML_GET_BLOCK_STATUS">FML_GET_BLOCK_STATUS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get the block status value for an erase block in an FML Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FML_GET_RAW_BLOCK_INFO">FML_GET_RAW_BLOCK_INFO</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Queries the FIM and BBM to describe the requested erase block.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlCreate"></a>
+<a NAME="FfxFmlCreate"></a>
+FfxFmlCreate
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a> <font class=ApiName>FfxFmlCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDISKHANDLE>FFXDISKHANDLE</a>   hDisk,<br>&nbsp;&nbsp;&nbsp;
+    FFXFIMDEVHANDLE hFimDev,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nDiskNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulStartBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBlockCount,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nFlags)
+</div>
+<div class=SectionText>
+
+    Create an FML instance, which is a window mapped onto a Device,
+    thereby creating a Disk.
+
+<p>    The ulStartBlock and ulBlockCount arguments specify the
+    location and size of the window in terms of physical erase
+    blocks.
+
+<p>    
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<b>Note</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+When the <a HREF=QF680_PreprocSymbols.c.htm#FFX_DISK_SPANDEVICES>FFX_DISK_SPANDEVICES</a> flag is used, the
+             ulStartBlock value must not specify an offset which
+             is beyond the length of the first Device.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The <a HREF=QF660_Structures.c.htm#FFXDISKHANDLE>FFXDISKHANDLE</a> to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hFimDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle to the FIM device, created by the
+                       DevMgr layer.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nDiskNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number for this Disk (DISKn).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting block number, relative to zero.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of blocks in the Disk.  May be
+                       FFX_REMAINING to use all the remaining blocks
+                       in the Device.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nFlags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flags to use, which may be zero or more
+                       of the following:
+                     <ul>
+</td>
+</tr>
+
+<p>
+<tr class=Def>
+<td class=Def>
+<li><a HREF=QF680_PreprocSymbols.c.htm#FFX_DISK_RAW>FFX_DISK_RAW</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Create a raw Disk mapping, which
+                       is allowed to include the BBM area (if NAND).
+                       Only selected APIs may be used on the Disk if
+                       is is mapped in raw mode.
+</td>
+</tr>
+
+<p>                     
+<tr class=Def>
+<td class=Def>
+<li><a HREF=QF680_PreprocSymbols.c.htm#FFX_DISK_SPANDEVICES>FFX_DISK_SPANDEVICES</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If ulBlockCount is
+                       longer than the number of blocks remaining on
+                       the Device, and there is a subsequent Device
+                       with the same characteristics, allow the Disk
+                       to span the Devices.
+</ul>
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a> if successful, otherwise NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlDestroy"></a>
+<a NAME="FfxFmlDestroy"></a>
+FfxFmlDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxFmlDestroy</font>(
+    <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a>    hFML)
+</div>
+<div class=SectionText>
+
+    Destroy an FML instance which was created with <a HREF="#FfxFmlCreate">FfxFmlCreate</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle for the FML instance to destroy.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlDeviceInfo"></a>
+<a NAME="FfxFmlDeviceInfo"></a>
+FfxFmlDeviceInfo
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxFmlDeviceInfo</font>(<br>&nbsp;&nbsp;&nbsp; 
+    unsigned            nDeviceNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF="#FFXFMLDEVINFO">FFXFMLDEVINFO</a>      *pFDI)
+</div>
+<div class=SectionText>
+
+    Returns information about a physical Device (DEVn)
+
+<p>    The Device specified by nDeviceNum must already be created before
+    calling this function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nDeviceNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device number
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pFDI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF="#FFXFMLDEVINFO">FFXFMLDEVINFO</a> structure to
+                     fill
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlDeviceRangeEnumerate"></a>
+<a NAME="FfxFmlDeviceRangeEnumerate"></a>
+FfxFmlDeviceRangeEnumerate
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxFmlDeviceRangeEnumerate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    unsigned            nDevNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlockNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a>       *phFML,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>           *pulBlockCount)
+</div>
+<div class=SectionText>
+
+    Enumerate ranges of blocks on a given Device.
+
+<p>    The enumeration returns the number of contiguous blocks
+    remaining, both inside or outside existing Disk definitions.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nDevNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device number to examine.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block which denotes the start of the
+                        range to examine.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+phFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a> which will be
+                        set on exit if the given ulBlockNum is
+                        within a Disk.  Will be NULL if it is not,
+                        or if an error occurs.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulBlockCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> which will return
+                        the number of contiguous blocks until the
+                        end of the current Disk, the start of the
+                        next Disk, or the end of the Device.  In
+                        the event of an error, this field will be
+                        set to zero.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating the state of the
+        operation.  Additionally the *phFML and *pulBlockCount
+        values will be returned.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXFMLDEVINFO"></a>
+<a NAME="FFXFMLDEVINFO"></a>
+FFXFMLDEVINFO
+</h3>
+<div class=SectionText>
+
+    Contains information about a Device, and is filled in by
+    <a HREF="#FfxFmlDeviceInfo">FfxFmlDeviceInfo</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlDiskInfo"></a>
+<a NAME="FfxFmlDiskInfo"></a>
+FfxFmlDiskInfo
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxFmlDiskInfo</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a>    hFML,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF="#FFXFMLINFO">FFXFMLINFO</a>     *pFI)
+</div>
+<div class=SectionText>
+
+    Return information about a Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pFI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF="#FFXFMLINFO">FFXFMLINFO</a> structure to fill
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlHandle"></a>
+<a NAME="FfxFmlHandle"></a>
+FfxFmlHandle
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a> <font class=ApiName>FfxFmlHandle</font>(
+    unsigned        nDiskNum)
+</div>
+<div class=SectionText>
+
+    Obtain the <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a> for a given Disk number.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nDiskNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Disk number
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a> if successful, otherwise NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXFMLINFO"></a>
+<a NAME="FFXFMLINFO"></a>
+FFXFMLINFO
+</h3>
+<div class=SectionText>
+
+    Contains information about a Disk, as returned by <a HREF="#FfxFmlDiskInfo">FfxFmlDiskInfo</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlIORequest"></a>
+<a NAME="FfxFmlIORequest"></a>
+FfxFmlIORequest
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxFmlIORequest</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a>    hFML,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXIOREQUEST>FFXIOREQUEST</a>   *pIOR)
+</div>
+<div class=SectionText>
+
+    Dispatch an FML level I/O request.  See fxiosys.h for a
+    description of the various I/O request functions.
+    Alternatively use the FML macro interface in <a HREF=QF640_Headers.c.htm#fxfmlapi.h>fxfmlapi.h</a>
+    to dispatch requests.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pIOR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=QF660_Structures.c.htm#FFXIOREQUEST>FFXIOREQUEST</a> structure to use
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the results of
+        the request.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlParameterGet"></a>
+<a NAME="FfxFmlParameterGet"></a>
+FfxFmlParameterGet
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxFmlParameterGet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a>    hFML,<br>&nbsp;&nbsp;&nbsp;
+    FFXPARAM        id,<br>&nbsp;&nbsp;&nbsp;
+    void           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBuffLen)
+</div>
+<div class=SectionText>
+
+    Get a FlashFX system parameter.  If the parameter ID is not
+    recognized for this layer, the request will be passed to the
+    next lower software layer.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+id
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The parameter identifier (FFXPARAM_*).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to store the
+                    value.  May be NULL which causes this function
+                    to return the size of buffer required to store
+                    the parameter.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBuffLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of buffer.  May be zero if pBuffer is
+                    NULL.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating success or failure.
+        If pBuffer is NULL, but the id is valid, the returned
+        <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value will be decodeable using the macro
+        DCLSTAT_GETUINT20, which will return the buffer length
+        required to store the parameter.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlParameterSet"></a>
+<a NAME="FfxFmlParameterSet"></a>
+FfxFmlParameterSet
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxFmlParameterSet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a>    hFML,<br>&nbsp;&nbsp;&nbsp;
+    FFXPARAM        id,<br>&nbsp;&nbsp;&nbsp;
+    const void     *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBuffLen)
+</div>
+<div class=SectionText>
+
+    Set a FlashFX system parameter.  If the parameter ID is not
+    recognized for this layer, the request will be passed to the
+    next lower software layer.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+id
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The parameter identifier (FFXPARAM_*).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the parameter data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBuffLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The parameter data length.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxFmlPerfLogDispatch"></a>
+<a NAME="FfxFmlPerfLogDispatch"></a>
+FfxFmlPerfLogDispatch
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxFmlPerfLogDispatch</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXFMLHANDLE>FFXFMLHANDLE</a>        hFML,<br>&nbsp;&nbsp;&nbsp;
+    DCLREQ_STATS       *pReq)
+</div>
+<div class=SectionText>
+
+    This function dispatches requests for FML and lower layers
+    to retrieve PerfLog information and record it using an
+    external interface.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pReq
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the DCLREQ_STATS structure to use
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLERASE_BLOCKS"></a>
+<a NAME="FMLERASE_BLOCKS"></a>
+FMLERASE_BLOCKS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLERASE_BLOCKS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; ioStat)             \
+</div>
+<div class=SectionText>
+
+    Erase one or more blocks in an FML Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of blocks to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLERASE_BOOT_BLOCKS"></a>
+<a NAME="FMLERASE_BOOT_BLOCKS"></a>
+FMLERASE_BOOT_BLOCKS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLERASE_BOOT_BLOCKS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; ioStat)        \
+</div>
+<div class=SectionText>
+
+    Erase one or more boot blocks in an FML Disk.
+
+<p>    This macro is to be used on NOR or ISWF style flash only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of blocks to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLERASE_RAWBLOCKS"></a>
+<a NAME="FMLERASE_RAWBLOCKS"></a>
+FMLERASE_RAWBLOCKS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLERASE_RAWBLOCKS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; ioStat)          \
+</div>
+<div class=SectionText>
+
+    Erase one or more raw blocks (not remapped by BBM).
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of blocks to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLEXPEND_PAGE"></a>
+<a NAME="FMLEXPEND_PAGE"></a>
+FMLEXPEND_PAGE
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLEXPEND_PAGE</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulPage,<br>&nbsp;&nbsp;&nbsp; ioStat)                        \
+</div>
+<div class=SectionText>
+
+    Expend a NAND page.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLLOCK_BLOCKS"></a>
+<a NAME="FMLLOCK_BLOCKS"></a>
+FMLLOCK_BLOCKS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLLOCK_BLOCKS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; ioStat)              \
+</div>
+<div class=SectionText>
+
+    Lock one or more blocks in an FML Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of blocks to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLLOCK_FREEZE"></a>
+<a NAME="FMLLOCK_FREEZE"></a>
+FMLLOCK_FREEZE
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLLOCK_FREEZE</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; ioStat)              \
+</div>
+<div class=SectionText>
+
+    Lock the flash such that it cannot be unlocked short of
+    restarting.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of blocks to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLLOCK_OTP"></a>
+<a NAME="FMLLOCK_OTP"></a>
+FMLLOCK_OTP
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLLOCK_OTP</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; ioStat)        \
+</div>
+<div class=SectionText>
+
+    Lock OTP pages.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_CONTROLDATA"></a>
+<a NAME="FMLREAD_CONTROLDATA"></a>
+FMLREAD_CONTROLDATA
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_CONTROLDATA</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulByteOffset,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Read control bytes from an FML Disk.
+
+<p>    This macro is to be used on NOR or ISWF style flash only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulByteOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The byte offset.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of bytes to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_NATIVEPAGES"></a>
+<a NAME="FMLREAD_NATIVEPAGES"></a>
+FMLREAD_NATIVEPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_NATIVEPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pPageBuff,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)\
+</div>
+<div class=SectionText>
+
+    Reads corrected main page and correct spare data from one or
+    more pages of an FML Disk.  The given address may be remapped
+    by the BBM if necessary to fulfill the request.  Reads will be
+    aborted early in the event of any error and the ioStatus updated
+    to describe the transfer.
+
+<p>    ioStat.ffxStat may be set to FFXSTAT_FIMUNCORRECTABLEDATA in the
+    event that a reliable read is not possible, or this interface is
+    not fully supported.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of spares to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPageBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to receive the data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to receive the data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_OTPPAGES"></a>
+<a NAME="FMLREAD_OTPPAGES"></a>
+FMLREAD_OTPPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_OTPPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; ioStat)   \
+</div>
+<div class=SectionText>
+
+    Read main page data from an OTP page.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_PAGES"></a>
+<a NAME="FMLREAD_PAGES"></a>
+FMLREAD_PAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_PAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; ioStat)      \
+</div>
+<div class=SectionText>
+
+    Read one or more pages from an FML Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_RAWPAGES"></a>
+<a NAME="FMLREAD_RAWPAGES"></a>
+FMLREAD_RAWPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_RAWPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Read uncorrected main page and spare data from one or more pages
+    of a raw FML Disk (not remapped by BBM).
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the spare buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_SPARES"></a>
+<a NAME="FMLREAD_SPARES"></a>
+FMLREAD_SPARES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_SPARES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)     \
+</div>
+<div class=SectionText>
+
+    Read spare area data from one or more pages of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of spares to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to receive the data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_TAGGEDPAGES"></a>
+<a NAME="FMLREAD_TAGGEDPAGES"></a>
+FMLREAD_TAGGEDPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_TAGGEDPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; pTagBuff,<br>&nbsp;&nbsp;&nbsp; nTagLen,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Read main page and tag data from one or more pages of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTagBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The tag length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_TAGS"></a>
+<a NAME="FMLREAD_TAGS"></a>
+FMLREAD_TAGS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_TAGS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pTagBuff,<br>&nbsp;&nbsp;&nbsp; nTagLen,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Read tag data from one or more pages of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of tags to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTagBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The tag length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLREAD_UNCORRECTEDPAGES"></a>
+<a NAME="FMLREAD_UNCORRECTEDPAGES"></a>
+FMLREAD_UNCORRECTEDPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLREAD_UNCORRECTEDPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Read uncorrected main page and spare data from one or more pages
+    of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the spare buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLUNLOCK_BLOCKS"></a>
+<a NAME="FMLUNLOCK_BLOCKS"></a>
+FMLUNLOCK_BLOCKS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLUNLOCK_BLOCKS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; fInverted,<br>&nbsp;&nbsp;&nbsp; ioStat) \
+</div>
+<div class=SectionText>
+
+    Unlock one or more blocks in an FML Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of blocks to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fInverted
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A flag meaning that the range should be inverted.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_CONTROLDATA"></a>
+<a NAME="FMLWRITE_CONTROLDATA"></a>
+FMLWRITE_CONTROLDATA
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_CONTROLDATA</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulByteOffset,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Write control bytes to an FML Disk.
+
+<p>    This macro is to be used on NOR or ISWF style flash only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulByteOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The byte offset.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of bytes to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_NATIVEPAGES"></a>
+<a NAME="FMLWRITE_NATIVEPAGES"></a>
+FMLWRITE_NATIVEPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_NATIVEPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pPageBuff,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)\
+</div>
+<div class=SectionText>
+
+    Writes a main page and given spare data to one or more pages of
+    an FML Disk.  The given address may be remapped by the BBM if
+    necessary to complete the request.  Write failures may cause a
+    block replacement based on the error policy implementation and
+    the ioStatus updated to describe the transfer.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of spares to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPageBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to receive the data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to receive the data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_OTPPAGES"></a>
+<a NAME="FMLWRITE_OTPPAGES"></a>
+FMLWRITE_OTPPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_OTPPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Write main page data to an OTP page.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_PAGES"></a>
+<a NAME="FMLWRITE_PAGES"></a>
+FMLWRITE_PAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_PAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; ioStat)     \
+</div>
+<div class=SectionText>
+
+    Write one or more pages to an FML Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_RAWPAGES"></a>
+<a NAME="FMLWRITE_RAWPAGES"></a>
+FMLWRITE_RAWPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_RAWPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Write uncorrected main page and spare data to one or more pages
+    of a raw FML Disk (not remapped by BBM).
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the spare buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_SPARES"></a>
+<a NAME="FMLWRITE_SPARES"></a>
+FMLWRITE_SPARES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_SPARES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)    \
+</div>
+<div class=SectionText>
+
+    Write spare area data from one or more pages of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of spares to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to receive the data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_TAGGEDPAGES"></a>
+<a NAME="FMLWRITE_TAGGEDPAGES"></a>
+FMLWRITE_TAGGEDPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_TAGGEDPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; pTagBuff,<br>&nbsp;&nbsp;&nbsp; nTagLen,<br>&nbsp;&nbsp;&nbsp; ioStat) \
+</div>
+<div class=SectionText>
+
+    Write main page and tag data to one or more pages of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTagBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The tag length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_TAGS"></a>
+<a NAME="FMLWRITE_TAGS"></a>
+FMLWRITE_TAGS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_TAGS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pTagBuff,<br>&nbsp;&nbsp;&nbsp; nTagLen,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Write tag data to one or more pages of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of tags to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTagBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The tag length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FMLWRITE_UNCORRECTEDPAGES"></a>
+<a NAME="FMLWRITE_UNCORRECTEDPAGES"></a>
+FMLWRITE_UNCORRECTEDPAGES
+</h3>
+<div class=Api>
+#define <font class=ApiName>FMLWRITE_UNCORRECTEDPAGES</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulStart,<br>&nbsp;&nbsp;&nbsp; ulCount,<br>&nbsp;&nbsp;&nbsp; pBuffer,<br>&nbsp;&nbsp;&nbsp; pSpareBuff,<br>&nbsp;&nbsp;&nbsp; ioStat)  \
+</div>
+<div class=SectionText>
+
+    Write uncorrected main page and spare data from one or more pages
+    of an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStart
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of pages to process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the spare buffer to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FML_GET_BLOCK_INFO"></a>
+<a NAME="FML_GET_BLOCK_INFO"></a>
+FML_GET_BLOCK_INFO
+</h3>
+<div class=Api>
+#define <font class=ApiName>FML_GET_BLOCK_INFO</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulBlockNum,<br>&nbsp;&nbsp;&nbsp; ioStat,<br>&nbsp;&nbsp;&nbsp; info)          \
+</div>
+<div class=SectionText>
+
+    Queries the FIM and BBM to describe the requested erase block.
+    The given block number is subject to mapping by the BBM.  The
+    returned info will include the raw block number within the FIM
+    device.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+info
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An FFXIOR_FML_GET_BLOCK_INFO structure to receive
+                      results of the query.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FML_GET_BLOCK_STATUS"></a>
+<a NAME="FML_GET_BLOCK_STATUS"></a>
+FML_GET_BLOCK_STATUS
+</h3>
+<div class=Api>
+#define <font class=ApiName>FML_GET_BLOCK_STATUS</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulBlockNum,<br>&nbsp;&nbsp;&nbsp; ioStat)              \
+</div>
+<div class=SectionText>
+
+    Get the block status value for an erase block in an FML Disk.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FML_GET_RAW_BLOCK_INFO"></a>
+<a NAME="FML_GET_RAW_BLOCK_INFO"></a>
+FML_GET_RAW_BLOCK_INFO
+</h3>
+<div class=Api>
+#define <font class=ApiName>FML_GET_RAW_BLOCK_INFO</font>(<br>&nbsp;&nbsp;&nbsp; hFML,<br>&nbsp;&nbsp;&nbsp; ulBlockNum,<br>&nbsp;&nbsp;&nbsp; ioStat,<br>&nbsp;&nbsp;&nbsp; info)      \
+</div>
+<div class=SectionText>
+
+    Queries the FIM and BBM to describe the requested erase block.
+    The given block number is a raw block number from within the
+    FIM Device.
+
+<p>    This macro may be used on NAND media only.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFML
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The FML handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The raw block number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ioStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to receive the results.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+info
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An FFXIOR_FML_GET_BLOCK_INFO structure to receive
+                      results of the query.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

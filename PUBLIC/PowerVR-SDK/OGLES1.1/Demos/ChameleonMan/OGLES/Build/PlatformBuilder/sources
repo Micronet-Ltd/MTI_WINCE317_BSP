@@ -1,0 +1,55 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES
+PROJECTNAME=ChameleonMan
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\ChameleonScene.obj \
+	$(OBJDIR)\ChameleonScene_Fixed.obj \
+	$(OBJDIR)\skyline.obj \
+	$(OBJDIR)\Wall_diffuse_baked.obj \
+	$(OBJDIR)\Tang_space_BodyMap.obj \
+	$(OBJDIR)\Tang_space_LegsMap.obj \
+	$(OBJDIR)\Tang_space_BeltMap.obj \
+	$(OBJDIR)\FinalChameleonManLegs.obj \
+	$(OBJDIR)\FinalChameleonManHeadBody.obj \
+	$(OBJDIR)\lamp.obj \
+	$(OBJDIR)\ChameleonBelt.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\ChameleonScene.cpp \
+	$(APPROOT)\Content\ChameleonScene_Fixed.cpp \
+	$(APPROOT)\Content\skyline.cpp \
+	$(APPROOT)\Content\Wall_diffuse_baked.cpp \
+	$(APPROOT)\Content\Tang_space_BodyMap.cpp \
+	$(APPROOT)\Content\Tang_space_LegsMap.cpp \
+	$(APPROOT)\Content\Tang_space_BeltMap.cpp \
+	$(APPROOT)\Content\FinalChameleonManLegs.cpp \
+	$(APPROOT)\Content\FinalChameleonManHeadBody.cpp \
+	$(APPROOT)\Content\lamp.cpp \
+	$(APPROOT)\Content\ChameleonBelt.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

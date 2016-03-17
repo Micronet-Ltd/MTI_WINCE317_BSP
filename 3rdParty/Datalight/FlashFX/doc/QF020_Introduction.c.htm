@@ -1,0 +1,355 @@
+<html>
+<head>
+<title>
+Introduction
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Introduction
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Introduction">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        Several unique features of flash memory make it ideal for embedded
+        applications. These include its non-volatile nature, low power
+        requirements, high density, and rugged nature. Flash memory is also
+        versatile, capable of serving as a read-only memory for both the
+        storage and execution of program code, as well as a disk drive for the
+        storage of code and data files.
+
+<p>        However, flash memory has several characteristics that make it
+        difficult to use in some applications. These characteristics include
+        its inability to overwrite data without a prior erase operation, its
+        requirement for special programming algorithms, and a limited number of
+        write/erase cycles over its lifetime.
+
+<p>        Some flash memory technologies such as NAND, ship from the factory with
+        bad blocks and may develop more of these bad blocks over time. The
+        ability to dynamically correct errors and manage replacement blocks is
+        crucial to the successful use of NAND flash parts.
+
+<p>        Datalight FlashFX Tera makes flash memory appear as a standard
+        high-performance disk drive to the operating system, maximizing the
+        positive features of flash memory, while minimizing those features that
+        make flash memory difficult to use. Applications can use standard disk
+        drive access methods to read and write flash memory, with no
+        modifications. The advanced features managed by FlashFX Tera, such as
+        erase operations, fault tolerance, wear-leveling, and bad block
+        management, are completely transparent to applications using FlashFX.
+
+<p>        <h4>FlashFX Tera features</h4>
+
+<p>        <ul>
+<li>Patented (US Patent # 5860082) Variable Block Format (VBF), which
+          provides efficient access to data in flash memory.
+        <li>Patented (US Patent # 6260156) Bad Block Management (BBM), which
+          provides an efficient mechanism to detect, correct, and manage bad
+          areas found in NAND flash technology. The enhanced format capability of
+          BBM automatically detects bad blocks and reserves a replacement block
+          region on the flash array. BBM extends the effective life of NAND
+          memory, allowing for robust storage in the case of memory region
+          failures.
+        <li>Fault-tolerance, guaranteeing atomic sector writes. Sectors are
+          guaranteed to be either fully written or not touched if a power
+          interruption occurs. This ensures a high level of data protection by
+          means of automated write interruption recovery, which is critical for
+          modern file systems. This protects low-level data structures to avoid
+          losing data in harsh environments where power interruptions are common.
+        <li>Wear-leveling algorithms, which extend the lifetime of the flash
+          array. Flash memory must be erased before data can be changed. Each
+          flash part has an erase zone size, which may vary from a few KB to
+          512KB or more. Wear-leveling algorithms ensure that erase zones are
+          used evenly across the entire flash array. Wear-leveling is especially
+          useful when large portions of the flash array are used for long-term
+          code or data storage.
+        <li>Supports multithreaded operations, allowing read requests to
+          interrupt write and erase operations, which can be time-consuming on
+          many types of flash. This makes FlashFX Tera ideal for streaming media
+          applications such as state-of-the-art cell phones and digital cameras.
+        <li>On multithreaded operating systems, flash compaction may be done in
+          the background, during idle time, greatly improving performance.
+        <li>Source code and documentation necessary to integrate FlashFX Tera into
+          a wide range of environments. The flash array may be paged into system
+          address space, accessed through a small I/O address, or mapped entirely
+          into the CPU's extended or protected address space.
+        <li>The ability to run from ROM.
+        <li>Support for flash arrays of up to 2TB in size.
+        <li>High density NAND support. FlashFX Tera provides optimal support for
+          both today's and tomorrow's NAND parts, including
+          write-once-sequentially memory.
+        <li>Auto-detection of specific flash parts and the size of the flash
+          array in the Flash Memory Services Layer (FMSL).
+</ul>
+        <h4>About This Manual</h4>
+
+<p>        The level of coverage provided in this manual assumes that you are
+        proficient in developing software in C. You must also be aware of the
+        hardware mechanisms used to access the flash array within your target
+        system. Finally, if a Flash Interface Module (FIM) or NAND Technology
+        Module (NTM) is not included in this kit for the particular type,
+        organization, or family of flash device used in your target system,
+        you'll need to be familiar with the requirements for reading, writing,
+        and erasing that flash device so you can create a custom FIM or NTM.
+
+<p>        <b>Supplemental Documentation</b>
+
+<p>        The <a HREF="readme.txt">readme.txt</a> file contains late-breaking information
+        which did not make it into the regular documentation.
+
+<p>        The <a HREF="history.txt">history.txt</a> file contains a detailed history of the product.
+
+<p>        The <a HREF="files.txt">files.txt</a> file lists every file in the product installation.
+
+<p>        The <a HREF="license.txt">license.txt</a> file contains licensing information.
+
+<p>        The <a HREF="FlashFX_Supported_Hardware.pdf">FlashFX Supported Hardware</a>
+        document contains detailed information about reference platforms and
+        flash types which are supported by FlashFX.
+
+<p>        <h4>What's in the FlashFX Tera SDK</h4>
+
+<p>        The FlashFX Tera SDK provides the necessary source code and direction to
+        assist in customizing FlashFX Tera for a given environment. There are
+        various portions of the product that must be configured or tailored to
+        the CPU, flash memory, and environment in general.
+
+<p>        <b>The SDK consists of the following items</b>
+        <ul>
+<li>The ANSI C source code for FlashFX Tera.
+        <li>This SDK Developer's Guide documentation.
+        <li>Sample applications and tools.
+</ul>
+        Some parts of the FlashFX Tera SDK may be supplied in obfuscated form.
+        These parts do not need to be modified in the vast majority of cases.
+        If full, unobfuscated source code is necessary, contact Datalight to
+        obtain the FlashFX Tera Core Source Kit, described below.
+
+<p>        <h4>Other Datalight Products</h4>
+
+<p>        <b>The FlashFX Tera Core Source Kit</b>
+
+<p>        The FlashFX Tera Core Source Kit contains unobfuscated source code for
+        those portions of the FlashFX Tera SDK that are normally obfuscated. The
+        Core Source Kit is designed to be installed over the top of a
+        FlashFX Tera SDK. The Core Source Kit is ideal for those users who need
+        the full source code for FlashFX Tera in order to customize the
+        FlashFX Tera core functionality, or for code escrow purposes.
+
+<p>        <b>The Datalight Reliance Nitro File System</b>
+
+<p>        FlashFX Tera provides a general block device driver interface to flash
+        memory that can be used by virtually any file system. While having a
+        robust block device driver, such as FlashFX Tera, is invaluable in an
+        embedded system, the block device driver only guarantees the integrity
+        of individual disk sectors, and cannot guarantee the integrity of the
+        logical structures used by the file system that resides on top of it.
+
+<p>        Datalight Reliance Nitro is a transactional file system for embedded 
+        devices that can be used with any standard block device driver, of 
+        course, including FlashFX Tera. Unlike typical file systems often found in
+        embedded devices, such as the FAT file system, Reliance Nitro is 
+        specifically designed for use in the embedded marketplace. As such, it 
+        is designed with the following characteristics in mind:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+File system integrity is maintained at all times, regardless of
+           power loss scenarios.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Fast boot-up times are critical in an embedded device, therefore,
+           requiring a chkdsk or scandisk operation at system startup is not
+           acceptable – even if power was lost during the previous session.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Performance is important in an embedded system where users expect
+           low response times.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Low resource usage is often critical in embedded systems that have
+           predetermined hardware and software characteristics.
+</td>
+</tr>
+</table>
+
+<p>
+        Datalight Reliance Nitro is specifically designed to achieve these 
+        goals and is designed to work seamlessly with FlashFX Tera, as well as any
+        standard block device. 
+
+<p>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

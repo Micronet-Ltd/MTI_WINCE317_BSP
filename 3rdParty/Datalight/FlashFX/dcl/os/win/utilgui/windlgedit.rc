@@ -1,0 +1,15 @@
+#include <windows.h>
+#include "winutilgui.rh"
+
+IDD_EDITDLG DIALOG 0, 0, 120, 121
+STYLE DS_MODALFRAME | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Control Caption"
+FONT 8, "System"
+BEGIN
+    CTEXT     	"Edit Control Prompt",IDC_EDIT_PROMPT, 	10,  5,100,  8
+    EDITTEXT    IDC_EDIT_TEXT,						 	10, 15,100, 80, ES_AUTOVSCROLL | ES_MULTILINE
+    PUSHBUTTON  "OK",IDOK,							 	15,100, 40, 15
+    PUSHBUTTON  "Cancel",IDCANCEL,					 	65,100, 40, 15
+END
+
+

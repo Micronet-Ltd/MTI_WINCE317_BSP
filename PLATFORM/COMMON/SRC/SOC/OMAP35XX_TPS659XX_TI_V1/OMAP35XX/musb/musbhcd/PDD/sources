@@ -1,0 +1,55 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+!IF 0
+
+
+Module Name:
+    sources.
+
+Abstract:
+    This file specifies the target component being built and the list of
+    sources files needed to build that component.  Also specifies optional
+    compiler switches and libraries that are unique for the component being
+    built.
+
+!ENDIF
+
+!IF 0
+Note on DOSYSGEN: the sysgen process runs "build" on this sources file to
+produce a LIB file, even though the end target will be a DLL or an EXE.  This
+is because COREDLL, which is linked implicitly to all such targets, can be
+componentized and we want to avoid invoking COREDLL APIs that may not be
+available after sysgen.  If you want to build and link this target AFTER the sysgen
+is complete, comment out the following line -- otherwise you will get a LIB
+file.
+!ENDIF
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+TARGETNAME=musbhcd_omap35xx_tps659xx_ti_v1
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+DEFFILE=omap35xx_musbhcd.def
+_OEMINCPATH=$(_OEMINCPATH);$(_PLATFORMROOT)\COMMON\src\soc\omap35xx_tps659xx_ti_v1\omap35xx\musb\include
+
+SOURCELIBS=$(_PLATCOMMONLIB)\$(_CPUINDPATH)\musbhcd_mdd_omap35xx_tps659xx_ti_v1.lib \
+       $(_PLATCOMMONLIB)\$(_CPUINDPATH)\musbhcd2lib_omap35xx_tps659xx_ti_v1.lib
+
+SOURCES= \
+        system.c \
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib
+
+
+#xref VIGUID {8329841C_D9A8_4008_BF9A_BB21B91309D4}
+#xref VSGUID {F3A8DAC2_6D1C_46F9_8ED1_09058884AAF8}

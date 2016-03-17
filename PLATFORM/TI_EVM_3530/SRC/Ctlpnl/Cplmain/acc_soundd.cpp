@@ -1,0 +1,186 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+/**
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Abstract: Accessibility Options\ Sound tab.
+**/
+#include "cplpch.h"
+#include "accglobl.h"
+
+#define NUM_WINEFFECT 4
+
+SOUNDSENTRY SoundSentryParam;
+BOOL InitSound = FALSE;
+
+extern "C" BOOL CALLBACK SoundSentryDlg(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam);
+
+/************************************************************************************
+Routine Description:
+    The dialog procedure for processing the Sound accessibility tab.
+   
+Arguments:
+    Regular DlgProc
+    
+Return Value:
+    BOOL value based on processed message 
+************************************************************************************/
+extern "C" BOOL CALLBACK AccessSoundDlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+{       
+	SOUNDSENTRY TmpSS;
+	
+    switch (message)     
+    {
+        case WM_INITDIALOG:
+		{
+			InitSoundVals();
+			InitSound = TRUE;
+
+			CheckDlgButton(hDlg, IDC_ACC_USESNDSENTRY, (SoundSentryParam.dwFlags & SSF_SOUNDSENTRYON));
+
+			if(!(SoundSentryParam.dwFlags & SSF_AVAILABLE)) {
+				EnableWindow(GetDlgItem(hDlg, IDC_ACC_SNDSETTINGS),FALSE);
+				EnableWindow(GetDlgItem(hDlg, IDC_ACC_USESNDSENTRY),FALSE);				
+			}
+			
+            AygInitDialog( hDlg, SHIDIF_SIPDOWN );
+
+            return TRUE;
+		}
+		
+		case WM_COMMAND:
+			switch (GET_WM_COMMAND_ID(wParam, lParam)) 
+			{
+				case IDC_ACC_USESNDSENTRY:					
+					SoundSentryParam.dwFlags ^= SSF_SOUNDSENTRYON;
+
+					return TRUE;
+
+				case IDC_ACC_SNDSETTINGS:
+					TmpSS = SoundSentryParam;
+					if (IDCANCEL == DialogBox(g_hInst,MAKEINTRESOURCE(IDD_ACCD_SOUNDSETTINGS), hDlg, SoundSentryDlg))
+					{
+						SoundSentryParam = TmpSS;
+					}
+
+					return TRUE;
+
+				case IDOK:
+					if(InitSound) {
+						SaveSoundVals();
+					}
+					
+					return TRUE;
+
+				default:
+					break;
+			}
+			break;
+	}
+	return FALSE;
+}
+/************************************************************************************
+Routine Description:
+    Initialization for AccessSoundDlgProc.
+   
+Arguments:
+    
+Return Value:   
+************************************************************************************/
+void InitSoundVals()
+{
+	SoundSentryParam.cbSize = sizeof(SoundSentryParam);
+	SystemParametersInfo(SPI_GETSOUNDSENTRY, sizeof(SoundSentryParam), &SoundSentryParam, 0);
+}
+/************************************************************************************
+Routine Description:
+    Saves settings for the Sound tab.
+   
+Arguments:
+    
+Return Value:
+************************************************************************************/
+void SaveSoundVals()
+{
+	SoundSentryParam.cbSize = sizeof(SoundSentryParam);
+	SystemParametersInfo(SPI_SETSOUNDSENTRY, sizeof(SoundSentryParam), &SoundSentryParam, SPIF_SENDCHANGE);	
+}
+/************************************************************************************
+Routine Description:
+    "Setting for SoundSentry" dialog procedure.
+   
+Arguments:
+    Regular DlgProc
+    
+Return Value:
+    BOOL value based on processed message   
+************************************************************************************/
+extern "C" BOOL CALLBACK SoundSentryDlg(HWND hDlg, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	int i;
+	int iCBContent[NUM_WINEFFECT] = {IDS_ACCWRN_NONE, IDS_ACCWRN_CAPBAR, IDS_ACCWRN_ACTWIND, IDS_ACCWRN_DESKTOP}; 
+
+	switch(msg)
+	{
+		case WM_INITDIALOG:
+			
+			for (i = 0; i < NUM_WINEFFECT; i++) {								
+				ComboBox_AddString(GetDlgItem(hDlg,IDC_ACCD_SNDSETWARNING), LoadString(g_hInst, iCBContent[i], NULL, 0));
+			}
+			
+			if( SoundSentryParam.iWindowsEffect < 0 || SoundSentryParam.iWindowsEffect >= NUM_WINEFFECT) {
+				ComboBox_SetCurSel(GetDlgItem(hDlg,IDC_ACCD_SNDSETWARNING), 0);
+			}
+			else {
+				ComboBox_SetCurSel(GetDlgItem(hDlg,IDC_ACCD_SNDSETWARNING), SoundSentryParam.iWindowsEffect);		
+			}
+			break;
+
+		case WM_COMMAND:
+      		switch (GET_WM_COMMAND_ID(wParam, lParam))
+			{
+				case IDC_ACCD_SNDSETWARNING:
+					switch(HIWORD(wParam))
+					{
+						case CBN_CLOSEUP:															
+							//iWindowsEffect specifies the visual signal to display when a sound 
+							//is generated by a Windows-based application 
+							i = ComboBox_GetCurSel(GetDlgItem(hDlg,IDC_ACCD_SNDSETWARNING));
+
+							ASSERT(i >= 0 && i < NUM_WINEFFECT);
+							if( i < 0 || i >= NUM_WINEFFECT) {
+								SoundSentryParam.iWindowsEffect = 0;
+							}
+							else {
+								SoundSentryParam.iWindowsEffect = i;
+							}
+					}					
+					break;
+
+				case IDOK:
+					EndDialog(hDlg, IDOK);
+					break;
+
+				case IDCANCEL:
+					EndDialog(hDlg, IDCANCEL);
+			}
+			break;
+					
+		default:
+			return FALSE;
+	}
+	return TRUE;
+}

@@ -1,0 +1,30 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+!IF "$(BSP_FLASHFX)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=tievm3530_nand_lib
+TARGETTYPE=LIBRARY
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO -DDEVICE_MODE 
+
+
+SOURCES= \
+    ..\fmd.c
+
+SOURCELIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\gpmc_ecc_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\fal.lib
+

@@ -1,0 +1,1589 @@
+<html>
+<head>
+<title>
+FlashFX API: NAND Technology Module - NTM
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+FlashFX API: NAND Technology Module - NTM
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): FlashFX API: NAND Technology Module - NTM">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        The NTM (NAND Technology Module) is an abstraction which is
+        similar to a FIM, however it is specific to NAND, whereas the
+        FIM is an abstraction for flash in general.
+
+<p>        NTMs are managed and loaded by the NAND FIM.
+
+<p>        Similar to a FIM, an NTM is used to abstract access to the
+        physical NAND interface for the NAND FIM.
+        An NTM contains the low level algorithms to read, write, and
+        erase the flash, along with other low level operations.
+
+<p>        A NTM may support a single NAND controller and flash chip, a
+        family of chips, or multiple types of NAND flash, just depending
+        on how similar their characteristics are.
+
+<p>        FlashFX ships with a wide variety of NTMs for different hardware
+        platforms, NAND controllers, and NAND flash variations.
+
+<p>        FlashFX is designed such that multiple NTMs may be built into
+        the driver.  The NAND FIM will probe the flash using each NTM,
+        until it finds one that can talk to the flash.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmBlockErase">FfxNtmBlockErase</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Erase a block (physical erase zone) of a NAND chip.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmCreate">FfxNtmCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create an NTM instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmDestroy">FfxNtmDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy an NTM instance, and release any allocated resources.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmGetBlockStatus">FfxNtmGetBlockStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Retrieve the block status information for the given erase block.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmGetPageStatus">FfxNtmGetPageStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Retrieve the page status information for the given page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmIORequest">FfxNtmIORequest</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Dispatch an I/O request.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPageRead">FfxNtmPageRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read one or more pages of main page data, and optionally read
+    the corresponding tag data from the spare area.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPageWrite">FfxNtmPageWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write one or more logical pages of main array data, along with
+    optional tag data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmParameterGet">FfxNtmParameterGet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get a FlashFX system parameter.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmParameterSet">FfxNtmParameterSet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set a FlashFX system parameter.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmRawPageRead">FfxNtmRawPageRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read an exact image of the data on the media with no processing
+    of ECCs or interpretation of the contents of the spare area.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmRawPageWrite">FfxNtmRawPageWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write data to the entire page (main and spare area) with no
+    ECC processing or other interpretation or formatting.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSetBlockStatus">FfxNtmSetBlockStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set the block status information for the given erase block.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSpareRead">FfxNtmSpareRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read the spare area of one page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSpareWrite">FfxNtmSpareWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write the spare area of one page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmTagRead">FfxNtmTagRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read the tag data from multiple pages.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmTagWrite">FfxNtmTagWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write the tag data for one page.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmBlockErase"></a>
+<a NAME="FfxNtmBlockErase"></a>
+FfxNtmBlockErase
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmBlockErase</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlock)
+</div>
+<div class=SectionText>
+
+    Erase a block (physical erase zone) of a NAND chip.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in blocks, relative to any
+                  reserved space.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of blocks which were completely erased.
+        The status indicates whether the erase was entirely
+        successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmCreate"></a>
+<a NAME="FfxNtmCreate"></a>
+FfxNtmCreate
+</h3>
+<div class=Api>
+static NTMHANDLE <font class=ApiName>FfxNtmCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev,<br>&nbsp;&nbsp;&nbsp;
+    const NTMINFO     **ppNtmInfo)
+</div>
+<div class=SectionText>
+
+    Create an NTM instance.  Additionally, it configures the
+    corresponding hardware by calling the helper functions and
+    project hooks.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An opaque pointer to a device on which this
+                    module is to begin operating.  This module uses
+                    this handle to acquire per-device configuration
+                    and to specify this particular device to some
+                    helper functions provided from other modules.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ppNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Output, on return points to the address of the
+                    structure containing information shared with the
+                    NAND module.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an NTMHANDLE, the contents of which are private to
+        this module, and unique to the device specified by hDev.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmDestroy"></a>
+<a NAME="FfxNtmDestroy"></a>
+FfxNtmDestroy
+</h3>
+<div class=Api>
+static void <font class=ApiName>FfxNtmDestroy</font>(NTMHANDLE hNTM)
+</div>
+<div class=SectionText>
+
+    Destroy an NTM instance, and release any allocated resources.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle for the NTM instance to destroy.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmGetBlockStatus"></a>
+<a NAME="FfxNtmGetBlockStatus"></a>
+FfxNtmGetBlockStatus
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmGetBlockStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlock)
+</div>
+<div class=SectionText>
+
+    Retrieve the block status information for the given erase block.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset, in blocks, relative to any
+                  reserved space.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure with standard status
+        information.  If the status is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus variable will contain the block status
+        information, as defined in fxiosys.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmGetPageStatus"></a>
+<a NAME="FfxNtmGetPageStatus"></a>
+FfxNtmGetPageStatus
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmGetPageStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage)
+</div>
+<div class=SectionText>
+
+    Retrieve the page status information for the given page.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in pages, relative to any
+                 reserved space.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure with standard status
+        information.  If the status is FFXSTAT_SUCCESS, the
+        op.ulPageStatus variable will contain the page status
+        information, as defined in fxiosys.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmIORequest"></a>
+<a NAME="FfxNtmIORequest"></a>
+FfxNtmIORequest
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmIORequest</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXIOREQUEST>FFXIOREQUEST</a>       *pIOR)
+</div>
+<div class=SectionText>
+
+    Dispatch an I/O request.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pIOR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=QF660_Structures.c.htm#FFXIOREQUEST>FFXIOREQUEST</a> structure to process.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure with standard status
+        information.  If the status is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus variable will contain the block status
+        information, as defined in fxiosys.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPageRead"></a>
+<a NAME="FfxNtmPageRead"></a>
+FfxNtmPageRead
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmPageRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pPages,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pTags,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nTagSize,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>              fUseEcc)
+</div>
+<div class=SectionText>
+
+    Read one or more pages of main page data, and optionally read
+    the corresponding tag data from the spare area.
+
+<p>    The fUseEcc flag controls whether ECC-based error detection
+    and correction are performed.  Note that the "raw" page read
+    functionality (if implemented) is the preferred interface for
+    reading without ECC protection.  If fUseEcc is FALSE, this
+    function will not read tag data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in pages, relative to any
+                      reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPages
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the main page data
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the tag data.  Must be NULL
+                      fUseEcc is FALSE.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of pages to read.  The range of pages
+                      must not cross an erase block boundary.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The tag size to use.  Must be 0 if fUseEcc is
+                      FALSE.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fUseEcc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If TRUE, perform error detection and correction.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of pages which were completely read
+        successfully.  Portions of the pPages array beyond those
+        corresponding to the ulCount may have been modified.  The
+        status indicates whether the read was entirely successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPageWrite"></a>
+<a NAME="FfxNtmPageWrite"></a>
+FfxNtmPageWrite
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmPageWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pPages,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pTags,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nTagSize,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>              fUseEcc)
+</div>
+<div class=SectionText>
+
+    Write one or more logical pages of main array data, along with
+    optional tag data.
+
+<p>    If fUseEcc is TRUE, an ECC for the main page data is generated
+    and written in the spare area, along with the optional tag.  If
+    fUseEcc is FALSE, no ECC and no tag is written.  The spare area
+    includes a record of the state of fUseEcc.  Note that the "raw"
+    page write functionality (if implemented) is the preferred
+    interface for writing data without ECC.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page to write, relative to any
+                      reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPages
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the main page data to write.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer containing the optional tag data,
+                      so long as nTagSize is valid, and fUseEcc is
+                      TRUE.  Must be NULL otherwise.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of pages to write.  The range of pages
+                      must not cross an erase block boundary.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The tag size to use.  Must be 0 if pTags is
+                      NULL or fUseEcc is FALSE.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fUseEcc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If TRUE, write the data with ECC.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of pages which were completely written
+        successfully.  The status indicates whether the operation
+        was entirely successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmParameterGet"></a>
+<a NAME="FfxNtmParameterGet"></a>
+FfxNtmParameterGet
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxNtmParameterGet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE       hNTM,<br>&nbsp;&nbsp;&nbsp;
+    FFXPARAM        id,<br>&nbsp;&nbsp;&nbsp;
+    void           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBuffLen)
+</div>
+<div class=SectionText>
+
+    Get a FlashFX system parameter.  If the parameter ID is not
+    recognized for this layer, the request will be passed to the
+    next lower software layer.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+id
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The parameter identifier (FFXPARAM_*).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to store the
+                    value.  May be NULL which causes this function
+                    to return the size of buffer required to store
+                    the parameter.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBuffLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of buffer.  May be zero if pBuffer is
+                    NULL.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating success or failure.
+        If pBuffer is NULL, but the id is valid, the returned
+        <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value will be decodeable using the macro
+        DCLSTAT_GETUINT20, which will return the buffer length
+        required to store the parameter.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmParameterSet"></a>
+<a NAME="FfxNtmParameterSet"></a>
+FfxNtmParameterSet
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxNtmParameterSet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE       hNTM,<br>&nbsp;&nbsp;&nbsp;
+    FFXPARAM        id,<br>&nbsp;&nbsp;&nbsp;
+    const void     *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBuffLen)
+</div>
+<div class=SectionText>
+
+    Set a FlashFX system parameter.  If the parameter ID is not
+    recognized for this layer, the request will be passed to the
+    next lower software layer.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+id
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The parameter identifier (FFXPARAM_*).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the parameter data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBuffLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The parameter data length.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmRawPageRead"></a>
+<a NAME="FfxNtmRawPageRead"></a>
+FfxNtmRawPageRead
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmRawPageRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pPages,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpares,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount)
+</div>
+<div class=SectionText>
+
+    Read an exact image of the data on the media with no processing
+    of ECCs or interpretation of the contents of the spare area.
+
+<p>    Reading the spare area is optional.
+
+<p>    Not all NTMs support this function; not all NAND controllers
+    can support it.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in pages, relative to
+                  any reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPages
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the main page data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpares
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the spare area data.
+                  May be NULL.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of pages to read.  The range of pages
+                  must not cross an erase block boundary.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of pages which were completely read
+        successfully.  Portions of the pPages array beyond those
+        corresponding to the ulCount may have been modified.  The
+        status indicates whether the read was entirely successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmRawPageWrite"></a>
+<a NAME="FfxNtmRawPageWrite"></a>
+FfxNtmRawPageWrite
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmRawPageWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pPages,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pSpares,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount)
+</div>
+<div class=SectionText>
+
+    Write data to the entire page (main and spare area) with no
+    ECC processing or other interpretation or formatting.
+
+<p>    Not all NTMs support this function; not all NAND controllers
+    can support it.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in pages, relative to
+                  any reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPages
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the main page data to write.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpares
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to data to write in the spare area.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of pages to write.  The range of
+                  pages must not cross an erase block boundary.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of pages which were completely written
+        successfully.  The status indicates whether the read was
+        entirely successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSetBlockStatus"></a>
+<a NAME="FfxNtmSetBlockStatus"></a>
+FfxNtmSetBlockStatus
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmSetBlockStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE       hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBlockStatus)
+</div>
+<div class=SectionText>
+
+    Set the block status information for the given erase block.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset, in blocks, relative to
+                        any reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockStatus
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block status information to set.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure with standard I/O status
+        information.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSpareRead"></a>
+<a NAME="FfxNtmSpareRead"></a>
+FfxNtmSpareRead
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmSpareRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare)
+</div>
+<div class=SectionText>
+
+    Read the spare area of one page.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in pages, relative to any
+                 reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to fill.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of spares which were completely read
+        successfully.  The status indicates whether the read was
+        entirely successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSpareWrite"></a>
+<a NAME="FfxNtmSpareWrite"></a>
+FfxNtmSpareWrite
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmSpareWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pSpare)
+</div>
+<div class=SectionText>
+
+    Write the spare area of one page.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in pages, relative to any
+                 reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the spare area data to write.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of spares which were completely written.
+        The status indicates whether the read was entirely
+        successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmTagRead"></a>
+<a NAME="FfxNtmTagRead"></a>
+FfxNtmTagRead
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmTagRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pTags,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nTagSize)
+</div>
+<div class=SectionText>
+
+    Read the tag data from multiple pages.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The flash offset in pages, relative to any
+                      reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of tags to read.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer receive the data data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes in each tag.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of tags which were completely read
+        successfully.  The status indicates whether the read was
+        entirely successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmTagWrite"></a>
+<a NAME="FfxNtmTagWrite"></a>
+FfxNtmTagWrite
+</h3>
+<div class=Api>
+static <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmTagWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pTag,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nTagSize)
+</div>
+<div class=SectionText>
+
+    Write the tag data for one page.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page offset in bytes, relative to any
+                   reserved space.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTag
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer containing the data data to write.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes in each tag.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a standard <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value.  The ulCount field
+        contains the number of tags which were completely written.
+        The status indicates whether the read was entirely
+        successful.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

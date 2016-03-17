@@ -1,0 +1,18 @@
+!IF "$(BSP_NONLED)" != ""
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=nleddrvr
+RELEASETYPE=PLATFORM
+TARGETTYPE=DYNLINK
+
+TARGETLIBS=\
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+
+SOURCELIBS=$(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\nleddrvr_lib.lib
+
+DEFFILE=nleddrvr.def
+
+SOURCES= \
+    nleddrvr.c

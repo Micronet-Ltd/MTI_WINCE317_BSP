@@ -1,0 +1,113 @@
+ PVRScopeServices
+
+ Timestamp is 4c9a61ce (Wed Sep 22 16:06:38 2010)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 00000023H .rdata                  CODE
+ 0001:00000044 0000002dH .rdata$debug            CODE
+ 0001:00000074 000009f0H .text                   CODE
+ 0001:00000a64 00000018H .xdata                  CODE
+ 0001:00000a7c 00000028H .idata$2                CODE
+ 0001:00000aa4 00000014H .idata$3                CODE
+ 0001:00000ab8 00000050H .idata$4                CODE
+ 0001:00000b08 00000054H .idata$6                CODE
+ 0001:00000b60 00000041H .edata                  CODE
+ 0002:00000000 00000050H .idata$5                DATA
+ 0002:00000050 00000008H .data                   DATA
+ 0002:00000058 00000010H .bss                    DATA
+ 0003:00000000 00000098H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0001:00000000       __xc_a                     10001000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     10001004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     10001008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     1000100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     10001010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     10001014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     10001018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     1000101c     corelib0:crt0init.obj
+ 0001:0000003c       ??_C@_06FEAOAINM@SGX530?$AA@ 1000103c     PVRScopeServices.obj
+ 0001:00000518       pvrssGetProcAddress        10001518 f   PVRScopeServices.obj
+ 0001:00000598       SGXGetMiscInfo             10001598 f   srvclum:SRVCLUM.dll
+ 0001:000005a8       PVRSRVGetMiscInfo          100015a8 f   srvclum:SRVCLUM.dll
+ 0001:000005b8       PVRSRVAcquireDeviceData    100015b8 f   srvclum:SRVCLUM.dll
+ 0001:000005c8       PVRSRVEnumerateDevices     100015c8 f   srvclum:SRVCLUM.dll
+ 0001:000005d8       PVRSRVConnect              100015d8 f   srvclum:SRVCLUM.dll
+ 0001:000005e8       PVRSRVDisconnect           100015e8 f   srvclum:SRVCLUM.dll
+ 0001:000005f8       SGXGetHWPerfCounters       100015f8 f   srvclum:SRVCLUM.dll
+ 0001:00000608       SGXReadHWPerfCB            10001608 f   srvclum:SRVCLUM.dll
+ 0001:00000618       DllMain                    10001618 f   corelib0:dllmain.obj
+ 0001:00000734       _DllMainCRTStartup         10001734 f   corelib0:pegdmain.obj
+ 0001:00000764       __GSHandlerCheckCommon     10001764 f   corelib0:gshandler.obj
+ 0001:000007a0       __GSHandlerCheck           100017a0 f   corelib0:gshandler.obj
+ 0001:000007c4       __security_init_cookie     100017c4 f   corelib0:seccinit.obj
+ 0001:00000820       __security_check_cookie    10001820 f   corelib0:armsecgs.obj
+ 0001:00000834       __gsfailure                10001834 f   corelib0:armsecgs.obj
+ 0001:00000940       _cexit                     10001940 f   corelib0:cexit.obj
+ 0001:0000095c       _initterm                  1000195c f   corelib0:crt0dat.obj
+ 0001:00000990       _cinit                     10001990 f   corelib0:crt0dat.obj
+ 0001:000009c4       ??2@YAPAXI@Z               100019c4 f   corelib1:COREDLL.dll
+ 0001:000009d4       ??3@YAXPAX@Z               100019d4 f   corelib1:COREDLL.dll
+ 0001:000009e4       memcpy                     100019e4 f   corelib1:COREDLL.dll
+ 0001:000009f4       _XcptFilter                100019f4 f   corelib1:COREDLL.dll
+ 0001:00000a04       __C_specific_handler       10001a04 f   corelib1:COREDLL.dll
+ 0001:00000a14       __security_gen_cookie2     10001a14 f   corelib1:COREDLL.dll
+ 0001:00000a24       __report_gsfailure         10001a24 f   corelib1:COREDLL.dll
+ 0001:00000a34       free                       10001a34 f   corelib1:COREDLL.dll
+ 0001:00000a44       DisableThreadLibraryCalls  10001a44 f   coredll:COREDLL.dll
+ 0001:00000a54       TerminateProcess           10001a54 f   coredll:COREDLL.dll
+ 0001:00000a7c       __IMPORT_DESCRIPTOR_SRVCLUM 10001a7c     srvclum:SRVCLUM.dll
+ 0001:00000a90       __IMPORT_DESCRIPTOR_COREDLL 10001a90     corelib1:COREDLL.dll
+ 0001:00000aa4       __NULL_IMPORT_DESCRIPTOR   10001aa4     srvclum:SRVCLUM.dll
+ 0002:00000000       __imp_memcpy               10002000     corelib1:COREDLL.dll
+ 0002:00000004       __imp_DisableThreadLibraryCalls 10002004     coredll:COREDLL.dll
+ 0002:00000008       __imp_free                 10002008     corelib1:COREDLL.dll
+ 0002:0000000c       __imp___report_gsfailure   1000200c     corelib1:COREDLL.dll
+ 0002:00000010       __imp___security_gen_cookie2 10002010     corelib1:COREDLL.dll
+ 0002:00000014       __imp_??2@YAPAXI@Z         10002014     corelib1:COREDLL.dll
+ 0002:00000018       __imp_??3@YAXPAX@Z         10002018     corelib1:COREDLL.dll
+ 0002:0000001c       __imp_TerminateProcess     1000201c     coredll:COREDLL.dll
+ 0002:00000020       __imp__XcptFilter          10002020     corelib1:COREDLL.dll
+ 0002:00000024       __imp___C_specific_handler 10002024     corelib1:COREDLL.dll
+ 0002:00000028       \177COREDLL_NULL_THUNK_DATA 10002028     corelib1:COREDLL.dll
+ 0002:0000002c       __imp_SGXReadHWPerfCB      1000202c     srvclum:SRVCLUM.dll
+ 0002:00000030       __imp_SGXGetHWPerfCounters 10002030     srvclum:SRVCLUM.dll
+ 0002:00000034       __imp_PVRSRVDisconnect     10002034     srvclum:SRVCLUM.dll
+ 0002:00000038       __imp_PVRSRVConnect        10002038     srvclum:SRVCLUM.dll
+ 0002:0000003c       __imp_PVRSRVEnumerateDevices 1000203c     srvclum:SRVCLUM.dll
+ 0002:00000040       __imp_PVRSRVAcquireDeviceData 10002040     srvclum:SRVCLUM.dll
+ 0002:00000044       __imp_PVRSRVGetMiscInfo    10002044     srvclum:SRVCLUM.dll
+ 0002:00000048       __imp_SGXGetMiscInfo       10002048     srvclum:SRVCLUM.dll
+ 0002:0000004c       \177SRVCLUM_NULL_THUNK_DATA 1000204c     srvclum:SRVCLUM.dll
+ 0002:00000050       __security_cookie          10002050     corelib0:seccinit.obj
+ 0002:00000054       __security_cookie_complement 10002054     corelib0:seccinit.obj
+ 0002:00000058       _exitflag                  10002058     corelib0:cexit.obj
+ 0002:0000005c       __onexitend                1000205c     <common>
+ 0002:00000060       __onexitbegin              10002060     <common>
+ 0002:00000064       _pRawDllMain               10002064     <common>
+
+ entry point at        0001:00000734
+
+ Static symbols
+
+ 0001:0000007c       ?PVRSSInit@@YAPAUSPVRSSData@@XZ 1000107c f   PVRScopeServices.obj
+ 0001:00000310       ?PVRSSDeInit@@YAXPAPAUSPVRSSData@@@Z 10001310 f   PVRScopeServices.obj
+ 0001:00000350       ?PVRSSReadPerfCountersThenSetGroup2@@YA_NQAUSPVRSSData@@QAUSPVRSSPerfCountersReading@@I@Z 10001350 f   PVRScopeServices.obj
+ 0001:00000390       ?PVRSSTimingEnable@@YA_NQAUSPVRSSData@@_N@Z 10001390 f   PVRScopeServices.obj
+ 0001:000003cc       ?PVRSSTimingRetrieve2@@YA_NQAUSPVRSSData@@QAUSPVRSSTiming2@@QAI22@Z 100013cc f   PVRScopeServices.obj
+ 0001:00000510       ?PVRSSGetInfo2@@YAPBUSPVRSSInfo2@@QAUSPVRSSData@@@Z 10001510 f   PVRScopeServices.obj
+ 0001:00000638       _DllMainCRTStartupHelper   10001638 f   corelib0:pegdmain.obj
+ 0001:00000878       doexit                     10001878 f   corelib0:cexit.obj

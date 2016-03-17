@@ -1,0 +1,384 @@
+<html>
+<head>
+<title>
+Integrating FlashFX into a Bootloader
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Integrating FlashFX into a Bootloader
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Integrating FlashFX into a Bootloader">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        This section describes using FlashFX Tera in a boot loader environment.
+
+<p>        <b>Note -- Do not confuse the FlashFX Loader described in this section, with the Datalight Loader/FlashFX Reader used to load images off a FAT or Reliance formatted disk.  They are distinctly separate.</b>
+
+<p>        <h4>Overview</h4>
+
+<p>        Bootloader environments have traditionally been thought of as very
+        primitive, pre-boot code which does nothing more than get an OS image
+        into memory and jump to it.  While this is still the case in many
+        instances, an increasing number of environments have very sophisticated
+        boot loader environments, in some cases, building complete file system
+        access into the boot loader.
+
+<p>        FlashFX can be configured to support as much or as little functionality
+        as is desired and required.  Because bootloaders are oftentimes restricted
+        in size, it is important to be able to scale features out.  The following
+        list describes the features and components which may be separately scaled
+        out of FlashFX in a bootloader environment:
+        <ul>
+<li>Individual NAND flash type support.  Eliminate support for specific NAND flash types.
+        <li>NAND flash style support.  Eliminate support for specific NAND flash styles (SSFDC, OFFSETZERO, etc).
+        <li>Flash technology support.  Eliminate support for NAND, NOR, or ISWF technologies.
+        <li>Latency reduction features.  Eliminate code used to support latency reduction.
+        <li>Auto-formatting support.  Assumes the flash must be preformatted.
+        <li>Allocator support.  Eliminate the logical-to-physical translation used to simulate a sector oriented hard disk.
+        <li>Output support.  Turn off all output messages.
+</ul>
+        In contrast to scaling features out, it is often useful to include extra
+        features in a bootloader to ease development and debugging tasks:
+        <ul>
+<li>FlashFX tests.  A variety of DCL and FlashFX unit tests can be included which can be used to confirm proper operation of FlashFX in a bootloader environment.
+        <li>FlashFX tools.  Most of the FlashFX tools can be integrated into a bootloader environment, and are useful for development purposes.
+        <li>The FlashFX shell.  The interactive FlashFX command shell provides easy access to a wide range of FlashFX functionality, including the aforementioned tests and tools.
+</ul>
+        <b>Having the extra functionality of these items being available from inside the bootloader often will allow a developer to find problems much earlier than he would if he elects not to, and is faced with the OS crashing halfway into the boot process, when interactive source-level debugging is usually not an option.</b>
+
+<p>        Most of these options are configured in the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> and <a HREF=UD720_ProjectFiles.c.htm#dclconf.h>dclconf.h</a> files.
+
+<p>        <h4>Bootloader OS Abstraction</h4>
+
+<p>        In most cases, the OS Services used in a bootloader environment are
+        distinctly different than those used by the target OS itself.  Therefore,
+        one would typically have a separate FlashFX project for the bootloader
+        configuration, which in all likelihood uses a different OS abstraction.
+        For those environments where a pre-defined bootloader OS abstraction does
+        not already exist, the OEM can develop one based on the RTOS abstraction
+        which is included with all FlashFX SDKs.
+
+<p>        Because a bootloader OS abstraction is (usually) completely separate from
+        the actual target OS abstraction, it is very important that tests such
+        as DCLTEST and FMSLTEST be run in the bootloader environment, using 
+        whatever bootloader OS abstraction -- whatever that may be.
+
+<p>        <h4>Multi-stage Bootloaders</h4>
+
+<p>        It is typical for most environments to use multi-stage bootloaders to
+        facilitate the process of getting the OS into memory and jumping to it.
+
+<p>        <b>Stage 1 Loader (BOOTROM)</b>
+
+<p>        One way or another every bootstrap mechanism has to provide some way to 
+        initially get code into memory and execute it.  Many systems have a 
+        boot ROM of some sort, which typically contains a small amount of code 
+        which is used to load the first page or two, or perhaps the first erase 
+        block, of the NAND flash into memory, and jump to it.  
+
+<p>        Some NAND flash has logic within the chip to load the first page of 
+        NAND into an internal SRAM and execute it, eliminating the need for a 
+        separate boot ROM.
+
+<p>        Typically the Stage 1 Loader is written entirely in assembly language.  
+        Normally this code is provided by the board/BSP vendor in some 
+        fashion.  This code is not provided by Datalight, as FlashFX may be 
+        too large to fit into a BOOTROM which might only be few KB in size.  
+        (However given sufficient ROM space, FlashFX certainly can, and has 
+        been, integrated into the system at that level.)
+
+<p>        In the event that the first erase block of the NAND is not guaranteed 
+        to be good, some mechanism must be used to accommodate the fact that 
+        the first block may be bad.  One mechanism that is commonly used is to 
+        replicate the data in the first erase block across the next three erase 
+        blocks.  If the Stage 1 Loader code determines that one or more of the 
+        first four blocks are bad, hopefully at least one of them will be good, 
+        and the code from a good block will be loaded and executed.
+
+<p>        <b>Stage 2 Loader</b>
+
+<p>        The Stage 2 Loader is the code which is loaded by the Stage 1 Loader, 
+        and it has a variety of names, depending on the board manufacturer. The 
+        Stage 2 Loader is a set code that resides in one or more sequential 
+        erase blocks.  
+
+<p>        If the Stage 2 Loader cannot fit in a single erase block, then one of the following things must happen:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Stage 1 Loader must know how to deal with bad blocks, so that it can load all the Stage 2 Loader into memory.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The code in the first block of the Stage 2 Loader knows how to load the remainder of itself into memory.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of the Stage 2 Loader should be reduced to fit into a single erase block.
+</td>
+</tr>
+</table>
+
+<p>
+        None of these scenarios are particularly desirable.  Fortunately, for 
+        large block NAND, typically the entire Stage 2 Loader, including 
+        FlashFX, can fit in a single erase block.  
+
+<p>        It is the Stage 2 Loader's job to load the next piece of code into 
+        memory and execute it.  This next piece of code may be a Stage 3 
+        Loader, or it could be the OS itself.  Because the Stage 2 Loader is 
+        able to occupy at least a full erase block, typically it is able to 
+        contain an implementation of FlashFX, which knows how to manage bad 
+        blocks.
+        
+<p>        <h4>Datalight Recommendations</h4>
+        
+<p>        The following recommendations are based on experience (painful, mostly)
+        with a wide variety of environments:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If possible, choose a large block NAND flash technology that guarantees the integrity of the first NAND erase block.
+        <ul>
+<li>This greatly simplifies development, since the Stage 1 Loader always knows where to look for the Stage 2 Loader, and will always be able to load the entire Stage 2 Loader into memory.
+        <li>If Recommendation 3 is followed, and if the Stage 2 Loader can fit into a single erase block, you can configure FlashFX to manage the entire flash array, simplifying manufacturing.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If it is not possible to follow the previous recommendation, reserve a fixed amount of space for some number of (4 perhaps) replicated copies of the Stage 2 Loader.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Build FlashFX into the Stage 2 Loader.  Since this can usually fit into a single erase block (on large block NAND), you can configure FlashFX to manage all or almost all the NAND flash.  If Recommendation 1 is followed, FlashFX can manage all the NAND.  If Recommendation 2 is followed instead, FlashFX can manage all the NAND, except that used for the replicated copies of the Stage 2 Loader.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Build FlashFX into the tool used for initial programming.  As discussed earlier, in combination with Recommendation 3, this allows FlashFX to manage the entire NAND array, keeps the manufacturing line logic simple (only one bad block scheme).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+5
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+During development, take advantage of the ability to integrate the FlashFX Shell into the Stage 2 Loader.  The ability to fully exercise FlashFX functionality, as well as the flash itself, early in the boot process, long before loading the OS, will prove to be invaluable.
+</ul>
+</td>
+</tr>
+</table>
+
+<p>
+        <h4>FlashFX Loader</h4>
+
+<p>        The FlashFX Loader is lightly abstracted interface to the FlashFX FML
+        API.  The Loader API includes the following functionality:
+        <ul>
+<li>Create and destroy Loader instances.
+        <li>Create and destroy FlashFX Devices.
+        <li>Create and destroy FlashFX Disks.
+        <li>Get information about the flash.
+        <li>Lock and unlock ranges of flash (if supported).
+        <li>Read and write flash pages, and erase blocks at the FML level.
+        <li>Read and write flash pages at the VBF level (if allocator support is included).
+</ul>
+        These APIs provide the functionality necessary to load the OS image
+        out of flash.
+
+<p>        See the API Reference 
+        section "FlashFX API: Driver Framework: Loader" for more details
+        about this interface.
+
+<p>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

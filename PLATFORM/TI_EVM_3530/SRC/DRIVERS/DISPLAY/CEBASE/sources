@@ -1,0 +1,66 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+!IF "$(BSP_NODISPLAY)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+WINCEOEM=1
+TARGETNAME=ddi_cebase
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+DEFFILE=omap35xx_ddgpe.def
+DLLENTRY=_DllMainCRTStartup
+
+SOURCES=
+
+SOURCELIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ddgpe_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\dssai_omap35xx_tps659xx_ti_v1.lib \
+    $(_TARGETPLATLIB)\$(_CPUINDPATH)\lcd_vga_driver.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\ddgpe.lib \
+    $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\gpe.lib
+
+!IF "$(ASSEMBLER_ARM_ARCH7_SUPPORT)" == ""
+SOURCELIBS=$(SOURCELIBS) \
+    $(_TARGETPLATROOT)\SRC\DRIVERS\DISPLAY\DDGPE_NEON\$(WINCEDEBUG)\omap35xx_ddgpe_neon.lib
+!ELSE
+SOURCELIBS=$(SOURCELIBS) \
+    $(_TARGETPLATLIB)\$(_CPUINDPATH)\omap35xx_ddgpe_neon.lib
+!ENDIF
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib
+    
+!IF "$(PVR_SERVICES4)" == ""
+!IF "$(PVR_OPENGLES1)" == ""
+!IF "$(PVR_OPENGLES2)" == ""
+!IF "$(PVR_OPENVG1)" == ""
+TARGETLIBS=$(TARGETLIBS) \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ddgpe_entry_omap35xx_tps659xx_ti_v1.lib
+!ELSE
+TARGETLIBS=$(TARGETLIBS) \
+    $(_PUBLICROOT)\PowerVR\oak\lib\$(_TGTCPU)\$(WINCEDEBUG)\ddi_powervr.lib
+!ENDIF
+!ELSE
+TARGETLIBS=$(TARGETLIBS) \
+    $(_PUBLICROOT)\PowerVR\oak\lib\$(_TGTCPU)\$(WINCEDEBUG)\ddi_powervr.lib
+!ENDIF
+!ELSE
+TARGETLIBS=$(TARGETLIBS) \
+    $(_PUBLICROOT)\PowerVR\oak\lib\$(_TGTCPU)\$(WINCEDEBUG)\ddi_powervr.lib
+!ENDIF
+!ELSE
+TARGETLIBS=$(TARGETLIBS) \
+    $(_PUBLICROOT)\PowerVR\oak\lib\$(_TGTCPU)\$(WINCEDEBUG)\ddi_powervr.lib
+!ENDIF

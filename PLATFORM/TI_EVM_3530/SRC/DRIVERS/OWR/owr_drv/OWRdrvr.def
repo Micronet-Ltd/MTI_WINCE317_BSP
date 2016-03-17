@@ -1,0 +1,13 @@
+LIBRARY 	OWRDrvr
+
+EXPORTS
+   OWR_Init
+   OWR_Deinit
+   OWR_Open
+   OWR_Close
+   OWR_Read
+   OWR_Write
+   OWR_Seek
+   OWR_PowerUp
+   OWR_PowerDown
+   OWR_IOControl

@@ -1,0 +1,76 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+DIRS= \
+# @CESYSGEN IF CE_MODULES_DEVICE
+    block \
+    bus \
+    gpio \
+    aio \
+    owr \
+    can \
+    sdmaproxy \
+    gps \
+    gprs \
+    bluetooth \
+    ag \
+# @CESYSGEN IF DEVICE_PMIF
+    backlight \
+# @CESYSGEN ENDIF DEVICE_PMIF
+# @CESYSGEN IF CE_MODULES_DISPLAY
+    lcd \
+    display \
+# @CESYSGEN ENDIF CE_MODULES_DISPLAY
+# @CESYSGEN IF GWES_KBDUI
+    keypad \
+# @CESYSGEN ENDIF GWES_KBDUI
+# @CESYSGEN IF CE_MODULES_GWES
+	lightsensor \
+# @CESYSGEN ENDIF CE_MODULES_GWES
+# @CESYSGEN IF GWES_TCHUI
+    touch \
+# @CESYSGEN ENDIF GWES_TCHUI
+# @CESYSGEN IF CE_MODULES_BATTDRVR
+    battery \
+# @CESYSGEN ENDIF CE_MODULES_BATTDRVR
+    usb  \
+    musb \
+# @CESYSGEN IF CE_MODULES_SDBUS
+	sdbus \
+    sdhc \
+    sdmemory \
+# @CESYSGEN ENDIF CE_MODULES_SDBUS
+# @CESYSGEN IF CE_MODULES_WAVEAPI
+    headset \
+# @CESYSGEN ENDIF CE_MODULES_WAVEAPI
+# @CESYSGEN IF CE_MODULES_NLEDDRVR
+    nled \
+# @CESYSGEN ENDIF CE_MODULES_NLEDDRVR
+# @CESYSGEN IF CE_MODULES_PM
+    pm \
+    pwrkey \
+# @CESYSGEN ENDIF CE_MODULES_PM
+	ExtAudio\
+    cesysgen \
+# @CESYSGEN IF CE_MODULES_NETUI    
+	netui \	
+# @CESYSGEN ENDIF CE_MODULES_NETUI    
+	ndis \
+	USBAUDIOCLASS \
+	vsp \
+	Telit_DE910 \
+# @CESYSGEN ENDIF CE_MODULES_DEVICE
+	CDS \
+	ftdi \
+#	USBD
+

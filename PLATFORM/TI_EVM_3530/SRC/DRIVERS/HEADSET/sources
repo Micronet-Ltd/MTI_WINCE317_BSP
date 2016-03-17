@@ -1,0 +1,37 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+!IF "$(BSP_NOHEADSET)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=headset
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+TARGETDEFNAME=headset
+DEFFILE=$(TARGETDEFNAME).def
+DLLENTRY=_DllMainCRTStartup
+
+# OMAP hardware can use direct access to memory
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+INCLUDES=$(INCLUDES);..\inc
+
+SOURCES=\
+    headset.cpp
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\coredll.lib
+    
+
+

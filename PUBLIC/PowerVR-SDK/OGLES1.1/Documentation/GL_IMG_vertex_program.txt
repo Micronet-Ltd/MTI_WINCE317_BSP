@@ -1,0 +1,285 @@
+Name 
+
+    IMG_vertex_program 
+
+Name Strings 
+
+    GL_IMG_vertex_program 
+
+Notice
+
+    Copyright Imagination Technologies Limited, 2005.
+
+Contact 
+
+    Imagination Technologies 
+
+Status 
+
+    DRAFT
+
+Version 
+
+    Draft 0.5, 09 February 2006
+
+Number
+
+    XXX
+
+Dependencies 
+
+    The extension is written against the OpenGLES 1.0 Specification, 
+    which in turn is based OpenGL 1.3. Thus this spec is effectively 
+    written against OpenGL 1.3 but does not address sections explicitly 
+    removed or reduced by OpenGL-ES 1.0.
+
+    This extension bases its language as a modification of the 
+    ARB_vertex_program extension, but does not depend on it implementation
+    for this extension to be present.
+
+Overview 
+
+    This extension is intended to add support for vertex programmability
+    to the OpenGLES pipeline. Additions to the Overview section in the
+    ARB_vertex_program extension specification: Due to the embedded nature
+    of OpenGLES that implies speed and size restriction for all its
+    components programs will not be passed to the driver in their string,
+    non compiled format. Rather an external tool will be used to
+    precompile the vertex programs into a binary format. This format is
+    then loaded by the application into the driver. This model is intended
+    to maximize performance.
+
+IP Status 
+
+    Unknown
+
+Issues 
+
+    The current issues list resides in a separate document. See
+    Discussion Items.
+
+New Procedures and Functions 
+
+    Functions from ARB_vertex_program extension are supported with the
+    exception of:
+
+        void VertexAttrib1*(...);
+        void VertexAttrib2*(...);
+        void VertexAttrib3*(...);
+        void VertexAttrib4{N}{u}[bsid]{v}(...);
+        void GetProgram*(...);
+        void IsProgram*(...);
+        void GetVertexAttrib*(...);
+        void ProgramEnvParameter4d*(...);
+        void ProgramLocalParameter4d*(...);
+
+		Note: For clarity, the function "glVertexAttrib4fARB" is retained 
+
+    The following functions are to be added: 
+
+        void VertexAttrib4xIMG(uint index, fixed x, fixed y, fixed z, fixed w);
+        void ProgramLocalParameter4xIMG(enum target, uint index,
+                                        fixed x, fixed y, fixed z, fixed w);
+        void ProgramLocalParameter4xvIMG(enum target, uint index, 
+                                         const fixed *params);
+        void ProgramEnvParameter4xIMG(enum target, uint index,
+                                      fixed x, fixed y, fixed z, fixed w);
+        void ProgramEnvParameter4xvIMG(enum target, uint index,
+                                       const fixed *params);
+
+New Tokens 
+
+    Tokens that exist in ARB_vertex_program extension but are removed in
+    this extension:
+
+        COLOR_SUM_ARB                                   
+        CURRENT_MATRIX_ARB                              
+        CURRENT_MATRIX_STACK_DEPTH_ARB
+        CURRENT_VERTEX_ATTRIB_ARB                       
+        PROGRAM_BINDING_ARB                             
+        PROGRAM_ERROR_POSITION_ARB                      
+        PROGRAM_FORMAT_ARB                              
+        PROGRAM_FORMAT_ASCII_ARB
+        PROGRAM_LENGTH_ARB                              
+        PROGRAM_INSTRUCTIONS_ARB                        
+        PROGRAM_NATIVE_INSTRUCTIONS_ARB                 
+        PROGRAM_TEMPORARIES_ARB                         
+        PROGRAM_NATIVE_TEMPORARIES_ARB                  
+        PROGRAM_PARAMETERS_ARB                          
+        PROGRAM_NATIVE_PARAMETERS_ARB                   
+        PROGRAM_ATTRIBS_ARB                             
+        PROGRAM_NATIVE_ATTRIBS_ARB                      
+        PROGRAM_ADDRESS_REGISTERS_ARB                   
+        PROGRAM_NATIVE_ADDRESS_REGISTERS_ARB            
+        PROGRAM_UNDER_NATIVE_LIMITS_ARB                 
+        TRANSPOSE_CURRENT_MATRIX_ARB                    
+        VERTEX_ATTRIB_ARRAY_ENABLED_ARB                 
+        VERTEX_ATTRIB_ARRAY_SIZE_ARB                    
+        VERTEX_ATTRIB_ARRAY_STRIDE_ARB                  
+        VERTEX_ATTRIB_ARRAY_TYPE_ARB                    
+        VERTEX_ATTRIB_ARRAY_NORMALIZED_ARB              
+	    VERTEX_PROGRAM_POINT_SIZE_ARB
+        VERTEX_PROGRAM_TWO_SIDE_ARB                     
+
+New tokens in this extension: 
+
+    Accepted by the <format> parameter of ProgramStringARB: 
+
+        PROGRAM_FORMAT_BINARY_IMG    0x8C0B
+
+    Accepted by the <type> parameter of VertexAttribPointerARB: 
+
+        UNSIGNED_BYTE_NORM_IMG       0x8C0C
+
+New program options in this extension:
+
+    Options that exist in ARB_vertex_program extension but are removed in
+    this extension:
+
+        ARB_position_invariant
+
+    Options that are accepted in the program string of IMG_vertex_program:
+
+        IMG_position_invariant
+        IMG_user_clipping
+
+    If a vertex program specifies the "IMG_position_invariant" option, the
+    program is used to generate all transformed vertex attributes except for
+    position.  Instead, clip coordinates are computed as specified in section
+    2.10. Use of position-invariant vertex programs should generally
+    guarantee that the transformed position of a vertex should be the same
+    whether vertex program mode is enabled or disabled, allowing for correct
+    mixed multi-pass rendering semantics. When the position-invariant option 
+    is specified in a vertex program, vertex programs can no longer produced 
+    a transformed position. The <resultBinding> rule is modified to remove 
+    "result.position" from the list of token sequences matching the rule.
+	Including this option will cause the maximum number of instructions allowed 
+	to be decremented by 4 instructions.
+
+    If a vertex program specifies "IMG_user_clipping" option, the program will 
+    include instructions to generate values in the clip registers. This option 
+    is only valid if the IMG_postion_invariant option is also used. Including 
+    this option will cause the maximum number of instruction allowed to be
+    decremented by a further 10 instructions.
+
+Additions to OpenGLES 1.0 Specification 
+
+    ARB_vertex_program extension defines the functional behaviour of the
+    extension in "Section 2.14, Vertex Programs". However this
+    specification changes some of behaviours and the changes are as 
+    follows.
+
+    Program Objects 
+
+    ProgramStringARB(enum target, enum format, sizei len,
+                     const void *string); 
+
+    The format is not PROGRAM_FORMAT_ASCII_ARB but rather
+    PROGRAM_FORMAT_BINARY_IMG. Since the program is precompiled there will
+    be no compilation error reporting. 
+
+    The program object has associated an array of local and environment
+    parameters. However the format of those is changed from
+    ARB_vertex_program such that only float and fixed formats are accepted
+    instead float and double.
+
+    Versioning control is a important requirment. A version number will
+    be incorporated into the program binary, and the number must be accepted 
+    by the GL driver or the program will fail to load. 
+
+Changes to "Section 2.8, Vertex Arrays" 
+
+    The VertexAttribPointerARB function call still accepts a normalised
+    flag, however the error (INVALID_VALUE) will be generated when TRUE
+    is passed in the parameter <normalised>. To pass normalised attrib to
+    OpenGLES, a new data types has been introduced, namely
+    UNSIGNED_BYTE_NORM_IMG.
+
+    Vertex attributes and standard vertex data (such as color, normal and
+    texture coordinate) are not aliased, with the exception of vertex
+    position and vertex attrib 0. Enabling vertex atribute 0 takes
+    precedence over enabling vertex pointer.
+
+Add to  "Section 2.8, Vertex Arrays", for the command "DrawArrays" 
+
+    If DrawArrays is invoked with an invalid vertex program bound, then the 
+    error INVLAID_OPERATION is generated.
+
+Add to  "Section 2.8, Vertex Arrays", for the command "DrawElements"
+
+    If DrawElements is invoked with an invalid vertex program bound, then the 
+    error INVLAID_OPERATION is generated.
+
+Changes to "Section 2.11, Clipping" 
+
+   A new option is been provided that deals with user clipping 
+
+       OPTION IMG_user_clipping
+
+    This option must only be used in conjunction with "OPTION
+    IMG_position_invariant". The behaviour is such that user clipping is
+    only performed when this extra option is specified, otherwise user
+    clipping is considered as disabled.
+
+Changes to "Section 2.14.2,  Vertex Program Grammar and Semantic Restrictions"
+
+    A vertex program is required to begin with the header string
+    "!!IMGvp1.0", without any preceding whitespace.  This string
+    identifies the subsequent program text as a vertex program (version
+    1.0) that should be parsed according to the following grammar and
+    semantic rules.  Program string parsing begins with the character
+    immediately following the header string.
+
+Changes to "Section 2.14.3.2, Vertex Program Parameters" 
+
+    The following states do not exist in OpenGLES, hence they cannot be 
+    bound in a vertex program: 
+
+        vertex.fogcoord
+        vertex.weight
+        vertex.matrixIndex
+        state.clip[n].plane            
+        state.lightmodel.back.scenecolor
+        state.lightprod.back.ambient
+        state.lightprod.back.diffuse
+        state.lightprod.back.specular
+        state.material.back.ambient
+        state.material.back.diffuse
+        state.material.back.specular
+        state.material.back.emission
+        state.material.back.shininess
+        state.matrix.palette[n]
+        state.point.attenuation
+        state.point.size
+        state.texgen.eye
+        state.texgen.object
+
+Changes to "Section 2.14.3.7, Vertex Program Resource Limits" 
+
+    The implementation will not provide a query mechanism for the resource
+    limits. Instead the external tool that compiles the vertex program to
+    a binary format should provide the limits.
+
+Changes to "Section 6.1.12, Program Queries" 
+
+    Program parameters, environment and local, cannot be queried
+    anymore. Program limits cannot be queried anymore. The program itself
+    cannot be queried anymore. The function GetProgramStringARB does not
+    exist. Vertex attributes cannot be queried anymore.
+
+Errors 
+
+    All errors that come from functions which are common between
+    ARB_vertex_program IMG_vertex_program apply here as well.
+
+    INVALID_VALUE will be generated if TRUE is passed to parameter
+    <normalised> in the VertexAttribPointer function call.
+
+Revision History
+
+    0.1,  25/06/2004  gdc:  Based on wiki version 14 (IMGVertexProgramSpec).
+    0.2,  05/07/2004  bcb:  Incorporated feedback and fixed gets.
+    0.3,  15/07/2004  gdc:  Added more detail on errors raised.
+    0.4,  25/01/2005  nt:   Added copyright notice and Number paragraph placeholder.
+    0.5,  09/02/2006  bcb:  Fixed glVertexAttrib4fv/4xv specification
+

@@ -1,0 +1,38 @@
+!if 0
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+; Copyright (c) 2007, 2013 Micronet Ltd. All rights reserved.
+; by Vladimir Zatulovsky
+;
+!endif
+
+TARGETNAME=pwrkey
+TARGETTYPE=DYNLINK
+
+TARGETDEFNAME=pwrkey
+DEFFILE=$(TARGETDEFNAME).def
+WINCETARGETFILE0=$(_TARGETPLATLIB)\$(_CPUINDPATH)\$(TARGETDEFNAME).def
+
+!IF "$(BSP_TEMPSENSOR)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_TEMPSENSOR
+!ENDIF
+
+INCLUDES=$(INCLUDES); \
+	$(_TARGETPLATROOT)\SRC\SDK\INC;
+	
+TARGETLIBS=\
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib
+
+# OMAP hardware can use direct access to memory
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+SOURCES= \
+    pwrkey.c \
+    tempsensor.cpp

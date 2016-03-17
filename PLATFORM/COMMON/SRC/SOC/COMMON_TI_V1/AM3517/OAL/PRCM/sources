@@ -1,0 +1,13 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!INCLUDE "..\..\sources.inc"
+
+TARGETNAME=$(AM3517)_oal_prcm
+TARGETTYPE=LIBRARY
+
+SOURCES= \
+    prcm.c \
+    prcm_clock.c \
+    prcm_device.c \
+    prcm_reset.c \
+    prcm_domain.c \
+    prcm_volt.c \

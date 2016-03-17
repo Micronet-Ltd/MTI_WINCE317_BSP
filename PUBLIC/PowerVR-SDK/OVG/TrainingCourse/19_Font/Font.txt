@@ -1,0 +1,13 @@
+
+Demo title: 		Font
+
+Demonstrates: 		Shows how to use vgFonts.
+
+Short Description:	Shows how to use vgFonts.
+
+Full Description:	
+The training course shows how to load path based and image based glyphs into a vgFont and use them to display text to the screen.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

@@ -1,0 +1,8 @@
+base referer
+rect $classCPVRTSVGNode.html 313,292 441,319
+rect $classCPVRTSVGBase.html 347,84 472,111
+rect $classCPVRTPath.html 405,175 499,202
+rect $classCPVRTStroke.html 655,175 761,202
+rect $structPVRTMat3.html 20,84 108,111
+rect $classPVRTMATRIX3f.html 7,7 121,34
+rect $structSSVGValues.html 532,175 631,202

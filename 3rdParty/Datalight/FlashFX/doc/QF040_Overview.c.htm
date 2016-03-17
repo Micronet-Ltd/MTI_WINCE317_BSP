@@ -1,0 +1,618 @@
+<html>
+<head>
+<title>
+Overview
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Overview
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Overview">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        <h4>What Is Flash Memory?</h4>
+
+<p>        Flash memory offers many advantages over other memory-storage options
+        like RAM, ROM, EEPROM, and magnetic disks.  Unique characteristics of
+        flash memory that contribute to its popularity include:
+
+<p>        <ul>
+<li>Non-volatile
+        <li>Low cost
+        <li>In-system programmable
+        <li>Low power requirements (no refresh or battery requirement)
+        <li>High density
+        <li>Rugged – no mechanical components
+</ul>
+        Write and read operations to a flash array differ from those associated
+        with RAM or standard magnetic disk I/O.  While flash memory can be
+        written to on a bit-by-bit level, it must be erased in large blocks.
+        The erasable blocks, often 64KB or larger, are referred to as "erase
+        zones" (and sometimes "erase units" or "erase sectors") by flash device
+        manufacturers.  All bytes of an erase zone must be erased
+        simultaneously in the same operation.
+
+<p>        When flash memory is erased, all bits in the erase zone are programmed
+        to '1'.  Individual bits can then be programmed to '0' but cannot be
+        restored to '1' without erasing the entire zone.  Consequently, to set
+        the bits of any byte of flash memory to 1 from 0, all bits of all bytes
+        in the erase zone (64KB) must first be programmed to '1' via a
+        zone-wide erase operation.  Erase operations typically take anywhere
+        from 2 milliseconds to 1.5 seconds, depending on the type of flash
+        memory.
+
+<p>        <h4>What Is FlashFX Tera?</h4>
+
+<p>        FlashFX Tera allows an operating system or application to use flash
+        memory as if it were a small-sector read/write disk similar to a PC
+        floppy or hard disk drive.  FlashFX Tera provides a generic block device
+        driver interface that can be used with virtually any file system.
+        FlashFX Tera does not include a file system of its own.  For example, in
+        a DOS environment, the FAT file system is provided by the operating
+        system while FlashFX Tera connects the DOS file system to the flash
+        memory in which the disk drive is emulated.
+
+<p>        Once loaded into the target system, FlashFX Tera is typically referred
+        to as a "flash disk" because it makes the flash array appear as normal
+        disk storage to the operating system and applications.  Because a
+        Resident Flash Array (RFA) is usually soldered into the target system
+        and is non-removable, the flash disk appears to the operating system as
+        a hard disk.
+
+<p>        Although FlashFX Tera makes flash memory appear as a disk drive, there
+        are some differences between a flash disk and a mechanical disk drive.
+        While flash is faster than an uncached conventional drive, flash access
+        times are not symmetrical; write operations are often slower than read
+        operations.  FlashFX Tera does include optimizations to minimize the
+        time required to perform write and erase operations.
+
+<p>        <h4>FlashFX Tera Concepts and Components</h4>
+
+<p>        The high-level block diagram below shows the different components of
+        FlashFX Tera and their relationships.  The operating system and hardware
+        (flash array) are shown in their respective relationships to the
+        FlashFX driver.
+
+<p>        Flash device manufacturers have not established standards for the
+        methods used to program flash devices.  Consequently, programming
+        software must specifically recognize different flash devices and
+        associate the correct programming algorithm with them.  The
+        hardware-specific components of FlashFX Tera, i.e., the FMSL and FIM,
+        handle the particular characteristics of the flash device used in the
+        target system.  FlashFX is compatible with virtually all flash
+        devices on the market today, and as new flash devices are developed,
+        FlashFX will undergo the changes necessary to achieve compatibility.
+
+<p>        <h4>Devices and Disks</h4>
+
+<p>        The concepts of Devices and Disks are used to simplify understanding
+        how FlashFX Tera manages the flash memory in the system.  These concepts
+        are used throughout the documentation and source code, and
+        understanding them is key to quickly and effectively using FlashFX.
+
+<p>        A Device corresponds to a physical flash array, represented by an
+        instance of a Flash Interface Module (FIM), which is described below.
+        If there are a number of flash chips in an array, this will typically
+        be handled by one FIM instance, and will appear as one Device to
+        FlashFX Tera.  Notationally, Devices are referred to as DEV0 to DEVn,
+        where 'n' is <a HREF=QF160_ProjectSettings.c.htm#FFX_MAX_DEVICES>FFX_MAX_DEVICES</a>-1. Devices are created and managed by the
+        Device Manager (DevMgr) layer in FlashFX.
+
+<p>        Throughout the FlashFX Tera source code, the <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a> type is used
+        to refer to a given Device. Devices are typically configured in the
+        <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file.  Each Device has its own FIM list, maintaining the
+        historical ability for a Device to be created from any one of a number
+        of different flash chips that could be plugged into the location.  Each
+        Device has its own configuration parameters, including reserved space
+        and format settings.  Each Device which uses the NAND FIM has its own
+        NTM list, as well as its own BBM configuration settings.
+
+<p>        Devices are initialization order independent, and holes may exist in
+        the Device list such that if a Device cannot be initialized, the
+        following Device numbers will remain consistent.
+
+<p>        A Disk is a mapping into a range of flash on a Device, which will be
+        managed by VBF to present an emulated Disk to the file system, via the
+        operating system's block device driver layer.    Notationally, Disks
+        are referred to as DISK0 to DISKn, where 'n' is <a HREF=QF160_ProjectSettings.c.htm#FFX_MAX_DISKS>FFX_MAX_DISKS</a>-1. Disks
+        are created and managed by the Flash Mapping Layer (FML) in FlashFX.
+
+<p>        Throughout the FlashFX Tera source code, the <a HREF=QF660_Structures.c.htm#FFXDISKHANDLE>FFXDISKHANDLE</a> type is used
+        to refer to a given Disk. Disks are mapped onto a specific Device, and
+        a Disk may not overlap another Disk.  Any given Disk may be mapped
+        onto any Device – order is unimportant. Disks may also span multiple
+        Devices so long as the Devices are in ascending numerical order 
+        according to FlashFX Tera device numbering conventions, and the Devices
+        have substantially similar characteristics. Disks are initialization
+        order independent, and holes may exist in the Disk list such that if
+        a Disk cannot be initialized, the following Disk numbers will remain
+        consistent.
+
+<p>        Each Disk has its own settings, typically configured in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.  These
+        settings include information such as:
+        <ul>
+<li>What Device the Disk resides on
+        <li>The starting offset for the Disk, within the Device (must be on an erase block boundary)
+        <li>The Disk length, which must be on an erase block boundary
+        <li>The format state for the Disk
+</ul>
+        Some operating systems include the ability to specify configuration
+        information via means more exotic than encoding it in a header file
+        such as <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.  For example, in Windows CE, these Disk settings are
+        specified in the registry, while in VxWorks, these settings are
+        configured in the IDE.  For these operating systems, and others where
+        it is desired to have similar functionality, a customized fhdisk.c
+        module is used to provide this information, rather than the default
+        implementation which simply uses the proper Disk information from
+        <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.
+
+<p>        <h4>FlashFX Tera Components and Layout</h4>
+
+<p>        <P>
+<div class=Figure>
+<IMG SRC="FfxDiagram.jpg">
+</div>
+</P>
+
+
+<p>        <b>Operating System</b>
+
+<p>        The operating system is the highest-level interface to a FlashFX flash
+        disk.  At this level, the flash disk appears to the operating system,
+        file system, or application as a sector-based disk drive. Sectors can
+        be written, read, and rewritten in the same manner as a floppy or hard
+        disk drive.
+
+<p>        <b>DCL (Datalight Common Libraries)</b>
+
+<p>        DCL is a collection of common code which is product independent, as
+        well as a repository for the Datalight standard product build
+        abstraction.  DCL is included with most Datalight products, and
+        automatically installs in the \ProductRoot\dcl directory.  DCL consists
+        of the following primary components:
+
+<p>        <ul>
+<li>The OS Services Layer: This is a general abstraction of common
+        operating system functionality which is typically needed by most
+        Datalight products.  This functionality is implemented in the
+        \ProductRoot\dcl\os\wince\services directory.
+</ul>
+        <ul>
+<li>The Generalized Build Process: Datalight uses a standardized build
+        process which works for a wide variety of tool chains and target
+        operating systems.  This build process is implemented in the
+        \ProductRoot\dcl\host\... directory tree.
+</ul>
+        <ul>
+<li>The Datalight C Libraries: This is a collection of ANSI C like
+        functions which are used by Datalight products.  Note that these
+        functions are not designed to be a standard C library replacement in
+        that the set is not complete. Likewise, some of these functions contain
+        reduced or enhanced functionality as necessary for Datalight's needs.
+        These functions are implemented in the \ProductRoot\dcl\common\clib
+        directory.
+</ul>
+        <ul>
+<li>Miscellaneous Utility Functions: This is a collection of general
+        utility functions, which are product independent, but don't fall into
+        the ANSI C like category.  These functions are implemented in the
+        \ProductRoot\dcl\common\util directory tree.
+</ul>
+        <ul>
+<li>The CPU Layer: This is a collection of assembly language functions.
+        Most Datalight products generally do not require any use of assembly
+        language, however in very rare circumstances it is beneficial.  The
+        \ProductRoot\dcl\cpu\... directory tree contains these OS independent
+        routines.
+</ul>
+        <b>OS Device Driver</b>
+
+<p>        The OS Device Driver component of FlashFX Tera is an operating system
+        dependent layer that translates all operating system or application
+        calls to appropriate API calls into the FMSL and VBF layers of
+        FlashFX Tera.  The device driver provides basic I/O functions such as
+        reading and writing sector data.  All physical characteristics of the
+        flash disk are invisible to the operating system and applications at
+        this point, because flash specifics are handled at a lower level within
+        FlashFX.  The OS Device Driver contains the following components:
+
+<p>        <ul>
+<li>A standard block device driver.  The block device driver can be found
+        in the driver subdirectory of the OS tree for the given FlashFX Tera SDK
+        you are using.
+</ul>
+        <ul>
+<li>An OS Services interface that abstracts operating system
+        functionality.  The OS Services interface can be found in the services
+        subdirectory of the OS tree for the given FlashFX Tera SDK you are
+        using.  Note that these OS Services are additional services above and
+        beyond those included in DCL.
+</ul>
+        <ul>
+<li>A Project Hooks interface used by the FMSL to allow platform specific
+        operations. These services interface can be found in the hooks
+        subdirectory of the OS tree for the given FlashFX Tera SDK you are
+        using.
+</ul>
+        <ul>
+<li>Wrapper functions for a variety of FlashFX Tera tools and tests.
+        These wrapper functions implement OS specific functionality, such as
+        normalizing command-line parameters, and then call common (non-OS
+        specific) code in FlashFX Tera which implements the specific tool or
+        test functionality.
+</ul>
+        <b>Driver Framework</b>
+
+<p>        The Driver Framework is a collection of helper function which are used
+        by the OS-specific device driver code to encapsulate common
+        functionality.  Not all operating systems use every piece of
+        functionality within the Driver Framework.  The Driver Framework is
+        implemented in the \common\driverfw directory in the FlashFX Tera
+        installation tree.
+
+<p>        <b>FAT Monitor (not shown)</b>
+
+<p>        On systems using a FAT (File Allocation Table) file system, a free
+        space monitor (FATMON) can be linked into the OS Layer to significantly
+        improve performance and increase the life of the flash.  This monitor
+        keeps constant track of the FAT so that when the OS acts to free
+        (de-allocate) space within the file system; the corresponding space in
+        the flash array is also freed. While this scheme presents a level of
+        indirection between what the OS tracks as free space and the actual
+        free space in the flash disk, the operation is transparent to the
+        application and operating system.
+
+<p>        In many modern file system implementations, a discard interface is used
+        by the file system to notify FlashFX Tera when sectors are no longer
+        being used.  This is a much more efficient mechanism than using a FAT
+        Monitor.
+
+<p>        <b>FXLoader (Boot Loader)</b>
+
+<p>        The FlashFX Tera Loader component (FXLoader) is a streamlined build of
+        FlashFX Tera that is designed to be integrated into a boot loader
+        environment.  This loader provides a simple set of API functions that
+        allow a file to be loaded off a FAT or Reliance formatted disk, and
+        into memory.  This functionality can be used to load OS images off a
+        FlashFX disk, rather than requiring the OS image to be placed into
+        a separate area of raw flash.  This provides a much more flexible set
+        of options for the system designer.
+
+<p>        <b>VBF (Variable Block Format)</b>
+
+<p>        The Variable Block Format (VBF) layer translates client logical sector
+        requests from the operating system to physical sector locations in the
+        flash array.  VBF works with both NOR and NAND flash technologies.  It
+        provides write-interruption protection, wear-leveling, and compaction
+        algorithms (described later in this section).
+
+<p>        VBF requires that the flash array be specially formatted.  Unlike most
+        other methods that break down all requests into small, fixed-size data
+        blocks, VBF creates data blocks of varying sizes depending on the
+        native environment and application.  This results in a substantial
+        increase in performance and a reduction in flash management overhead.
+
+<p>        VBF relies on the concept of an erase unit.  An erase unit consists of
+        one or more erase zones.  While the size of an erase zone is fixed
+        according to the type of flash memory device, the number of zones in a
+        unit is determined by FlashFX Tera at format time, and is a means of
+        reducing overhead.
+
+<p>        <b>FMSL (Flash Memory Services Layer)</b>
+
+<p>        The FMSL consists of a number of sub-components, which collectively
+        manage access to the flash array.  All access to the flash memory is
+        done through FMSL functions.  The following components are found in the
+        FMSL:
+
+<p>        <ul>
+<li>The Flash Mapping Layer (FML)
+        <li>The Device Manager (DevMgr)
+        <li>The Flash Interface Module (FIM) Layer
+        <li>The Bad Block Manager (BBM)
+        <li>The NAND Technology Module (NTM) Layer
+</ul>
+        <b>FML (Flash Mapping Layer)</b>
+
+<p>        The FML is responsible for mapping windows onto a Device.  Each window
+        which is mapped onto a Device is called a Disk.  Many Disks may be
+        mapped onto one Device, however they may not overlap.  Disks may
+        span Devices, so long as the devices have substantially similar
+        underlying characteristics.  The FML API is used by VBF to create a
+        Disk which appears to the file system as a standard read/write sector
+        hard-disk. The FML API is the lowest level interface which is publicly
+        documented for use by client applications.
+
+<p>        <b>DevMgr (Device Manager)</b>
+
+<p>        The DevMgr is responsible for managing Devices.  Each Device is
+        represented by a FIM instance (described below).  In addition to
+        managing the creation and destruction of Devices, the DevMgr handles
+        I/O synchronization issues, implements erase suspend/resume where
+        appropriate, and in combination with the timing characteristics of the
+        hardware and OEM developer configuration settings, breaks up I/O
+        requests into smaller chunks as appropriate.
+
+<p>        <b>FIM (Flash Interface Module)</b>
+
+<p>        A FIM is a common interface to a particular type of flash device and
+        contains the code to manipulate that device.  A FIM implements
+        functions to provide read, write, and erase operations on a specific
+        flash device.  In addition, a FIM records some characteristics of the
+        flash array, such as the flash erase-zone size, the physical size of
+        the flash device, the total number of flash devices, the flash geometry
+        and the programming voltage (Vpp) required to program the device.
+
+<p>        Each FIM is responsible for determining if it can support the flash
+        that is present on a particular system.  Some FIMs support multiple
+        flash devices.  The <a HREF="FlashFX_Supported_Hardware.pdf">FlashFX Supported Hardware</a>
+        document (found in the DOC subdirectory of your FlashFX Tera
+        installation) lists the parts that are supported by each FIM.  If
+        support for a specific flash device is not included in this kit, a
+        new FIM may need to be written.
+
+<p>        <b>BBM (Bad Block Manager)</b>
+
+<p>        The Bad Block Manager (BBM) provides a mechanism/abstraction to treat 
+        NAND flash devices -- sometimes referred to as "Mostly Good Memory" -- 
+        as if they had no errors.  BBM allows the higher layers of FlashFX Tera 
+        to operate with these flash devices even though they may contain bad 
+        areas of memory.
+
+<p>        <b>NTM (NAND Technology Module)</b>
+
+<p>        FlashFX Tera include one NAND FIM which is used for all types of NAND
+        flash memory.  The NTM is an abstraction inside the NAND FIM, which
+        allows different types of NAND flash to operate with FlashFX.
+        FlashFX includes a variety of NTMs for use with different types of
+        NAND flash and different NAND controllers.  If support for a specific
+        type of NAND flash is not included in this kit, a new NTM must be
+        written.
+
+<p>        <b>Hardware and Flash Array</b>
+
+<p>        The FIM and FMSL communicate directly with the hardware and contain the
+        read/write/erase algorithms for the physical device and any code that 
+        may be required to set the programming voltages for the flash device.
+
+<p>        <h4>Multithreaded Operations</h4>
+
+<p>        FlashFX Tera includes support for multithreaded operations.  Read 
+        operations may interrupt both write and erase operations.  This is 
+        particularly important for multimedia applications, such as streaming 
+        video, because writes and erases (in particular) may take a substantial
+        amount of time on most flash parts.  This will adversely affect 
+        streaming video applications that must deliver a minimal frame-rate for
+        acceptable performance.
+
+<p>        FlashFX Tera allows one write/erase operation to be executed at any
+        given time, and any number of read operations.  FlashFX provides
+        two different FIM models – the legacy single-threaded FIM model, and the
+        new multithreaded FIM model.  Both styles of FIM may be used in any
+        given system; however FlashFX Tera uses a mutex to gate all access to
+        any single-threaded FIM.
+
+<p>        FlashFX Tera does not make any assumptions regarding the relative
+        priority of the various threads that may be executing within it.  It is
+        the responsibility of the application and operating system to
+        prioritize the threads as desired, and to provide any relevant
+        protections against priority inversion.
+
+<p>        <h4>Wear-Leveling</h4>
+
+<p>        Each erase zone of flash memory can be written to and erased typically
+        100,000 times; however, some flash components succumb at 10,000 cycles,
+        while others endure up to 1,000,000 cycles before wearing out.  Because
+        some zones within the flash array are usually erased and rewritten much
+        more frequently than others, FlashFX Tera moves new data within the
+        flash to "wear" the zones evenly.  Conversely, some zones usually
+        contain data that never need to be updated.  These "static" blocks are
+        also tracked and moved to other physical locations so that their zones
+        are also worn evenly.  This process, called "wear-leveling," extends
+        the life of the flash array by leveling the number of erases for each
+        erase zone across the entire device.
+
+<p>        <h4>Compaction</h4>
+
+<p>        Flash memory devices are written to on a bit-by-bit basis, but can be
+        erased only on an erase-zone basis.  FlashFX Tera divides the erase
+        zones into data blocks as data is written to the flash array.  The data
+        blocks that make up an erase zone cannot be written and rewritten at
+        the same location as with conventional disk drives.  Instead, when a
+        block is to be rewritten, it is written to a new location within the
+        flash array.  As the block is rewritten, pointers maintained in a table
+        are updated to mark the rewritten block as valid and the old block as
+        discarded.  Before long, erase zones contain an excess of discarded
+        blocks and require a compaction to reclaim these blocks for use by
+        subsequent write operations.
+
+<p>        <b>Compaction Overhead</b>
+
+<p>        During a compaction process, the valid data from one erase zone is
+        copied into a spare erase zone, and then the old zone is erased and
+        used as a new spare erase zone.  Compaction generally takes 0.3 to 1.5
+        seconds and is sometimes performed during normal write operations.
+        FlashFX Tera provides some control over compaction, however the
+        compaction process cannot always be avoided during a write operation.
+        If only discarded space is available when the write occurs, a
+        compaction must take place to make room for the new data.
+
+<p>        <b>Background Compaction</b>
+
+<p>        To help reduce the compaction overhead that occurs in-line with write
+        operations, FlashFX Tera includes the ability to do background
+        compaction during system idle time.  This feature may greatly improve
+        the write performance of FlashFX Tera.
+
+<p>        <b>Flash Hardware Requirements</b>
+
+<p>        FlashFX Tera requires that the flash parts are operated under the
+        conditions and limits in their manufacturers' specifications.  While
+        the hardware is operating within specification FlashFX Tera reliably
+        protects and maintains stored data even if an unexpected interruption
+        of operations occurs.
+
+<p>        <b>Power Loss Requirements</b>
+
+<p>        A key specification that is sometimes overlooked in hardware designs is
+        power during flash operations.  Manufacturers' specifications for flash 
+        parts generally require power supply voltages to remain within the
+        specified limits during a program or erase operation.  Many modern NAND 
+        flash parts recommend against or prohibit removing power during these 
+        operations.  MLC NAND in particular is sensitive to this, as 
+        interrupting programming of a page may unrecoverably corrupt the 
+        contents of another page.
+
+<p>        FlashFX Tera includes features to attempt to mitigate the effects of an
+        interrupted program operation on NOR and SLC NAND flash, but this can
+        never be entirely reliable.  FlashFX Tera does not support recovery from
+        an interrupted program operation on MLC NAND flash.
+
+<p>        Interrupted erase operations are detected and handled correctly by
+        FlashFX Tera.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

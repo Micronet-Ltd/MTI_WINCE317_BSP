@@ -1,0 +1,30 @@
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this source code is subject to the terms of the Microsoft
+; premium shared source license agreement under which you licensed
+; this source code. If you did not accept the terms of the license
+; agreement, you are not authorized to use this source code.
+; For the terms of the license, please see the license agreement
+; signed by you and Microsoft.
+; THE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+;
+IF BSP_NOUSB !
+; @CESYSGEN IF CE_MODULES_USBAUDIO
+
+; ********  Registry values for the USB Audio Class Driver *****
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\Default\Default\1\Audio_Class]
+   "Prefix"="WAV"
+   "Dll"="USBAUDIO.DLL"
+   "IClass"=multi_sz:"{E92BC203-8354-4043-A06F-2A170BF6F227}",
+                     "{37168569-61C4-45fd-BD54-9442C7DBA46F}"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\Audio_Class]
+   "Prefix"="WAV"
+   "Dll"="USBAUDIO.DLL"
+   "IClass"=multi_sz:"{E92BC203-8354-4043-A06F-2A170BF6F227}",
+                     "{37168569-61C4-45fd-BD54-9442C7DBA46F}"
+
+; @CESYSGEN ENDIF CE_MODULES_USBAUDIO
+ENDIF BSP_NOUSB !

@@ -1,0 +1,27 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+DIRS=\
+    cache \
+    i2c \
+    intr \
+    ioctl \
+    misc \
+    power \
+    prcm \
+    cpuver \
+    timer \
+    vfp \
+    sr \
+    stubs
+

@@ -1,0 +1,5 @@
+DIRS=\
+	winmobile\
+	common\
+	wince
+

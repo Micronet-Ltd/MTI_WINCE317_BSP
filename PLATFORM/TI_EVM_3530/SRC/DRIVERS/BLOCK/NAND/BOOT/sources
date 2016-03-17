@@ -1,0 +1,29 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+!IF "$(BSP_FLASHFX)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=bsp_fmdnand
+TARGETTYPE=LIBRARY
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO -DBOOT_MODE
+
+SOURCELIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\gpmc_ecc_lib_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\boot_flashstore_lib_omap35xx_tps659xx_ti_v1.lib
+
+SOURCES= \
+    ..\fmd.c
+

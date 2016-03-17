@@ -1,0 +1,559 @@
+<html>
+<head>
+<title>
+DCL Public API: Loader
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Public API: Loader
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Public API: Loader">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+    This module provides generic functionality to initialize the Datalight
+    loader and load a file off a FAT or Reliance disk into memory.  This
+    typically used in a boot loader environment.
+
+<p>    This interface is designed such that client code calling these functions
+    only needs to include dlloader.h.
+
+<p>    Set the DCLCONF_FATREADERSUPPORT and/or DCLCONF_RELIANCEREADERSUPPORT
+    values to TRUE or FALSE to enable or disable support for the respective
+    file system.  It is possible to set both value to TRUE to build a loader
+    module that can load a file off either kind of disk.
+
+<p>    Note that this interface provides sequential file access only.  Random
+    access and llseek functionality is not supported.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLoaderCreate">DclLoaderCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create an instance of the loader.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLoaderDestroy">DclLoaderDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy an instance of the loader as created by                            DclLoaderCreate    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLoaderFileClose">DclLoaderFileClose</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Close a file that was opened with DlLoaderFileOpen.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLoaderFileOpen">DclLoaderFileOpen</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Open a file for use by the loader.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLoaderFileRead">DclLoaderFileRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read data from a file using a handle returned by                              DclLoaderFileOpen    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclLoaderFileState">DclLoaderFileState</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get the file state information for the specified file handle
+    then clear the state.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclLoaderCreate"></a>
+<a NAME="DclLoaderCreate"></a>
+DclLoaderCreate
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERHANDLE>DCLLOADERHANDLE</a> <font class=ApiName>DclLoaderCreate</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLREADERIO>DCLREADERIO</a>        *psReaderDevice)
+</div>
+<div class=SectionText>
+
+    Create an instance of the loader.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+psReaderDevice
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=UD670_AdvancedDataTypes.c.htm#DCLREADERIO>DCLREADERIO</a> structure created
+                         by a Reader I/O layer.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the loader handle if successful, else NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLoaderDestroy"></a>
+<a NAME="DclLoaderDestroy"></a>
+DclLoaderDestroy
+</h3>
+<div class=Api>
+void <font class=ApiName>DclLoaderDestroy</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERHANDLE>DCLLOADERHANDLE</a> hLoader)
+</div>
+<div class=SectionText>
+
+    Destroy an instance of the loader as created by <a HREF="#DclLoaderCreate">DclLoaderCreate</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLoader
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The loader handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLoaderFileClose"></a>
+<a NAME="DclLoaderFileClose"></a>
+DclLoaderFileClose
+</h3>
+<div class=Api>
+void <font class=ApiName>DclLoaderFileClose</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERHANDLE>DCLLOADERHANDLE</a>      hLoader,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERFILEHANDLE>DCLLOADERFILEHANDLE</a>  hFile)
+</div>
+<div class=SectionText>
+
+    Close a file that was opened with DlLoaderFileOpen.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLoader
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The loader handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The file handle.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLoaderFileOpen"></a>
+<a NAME="DclLoaderFileOpen"></a>
+DclLoaderFileOpen
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERFILEHANDLE>DCLLOADERFILEHANDLE</a> <font class=ApiName>DclLoaderFileOpen</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERHANDLE>DCLLOADERHANDLE</a>     hLoader,<br>&nbsp;&nbsp;&nbsp;
+    const char         *pszName)
+</div>
+<div class=SectionText>
+
+    Open a file for use by the loader.  The specified file name must
+    be in a form appropriate for the file system that is being used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLoader
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The loader handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszName
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The null terminated file name.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a file handle if successful, else NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLoaderFileRead"></a>
+<a NAME="DclLoaderFileRead"></a>
+DclLoaderFileRead
+</h3>
+<div class=Api>
+unsigned int <font class=ApiName>DclLoaderFileRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERHANDLE>DCLLOADERHANDLE</a>     hLoader,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERFILEHANDLE>DCLLOADERFILEHANDLE</a> hFile,<br>&nbsp;&nbsp;&nbsp;
+    unsigned int        uByteCount,<br>&nbsp;&nbsp;&nbsp;
+    unsigned char      *pBuffer)
+</div>
+<div class=SectionText>
+
+    Read data from a file using a handle returned by <a HREF="#DclLoaderFileOpen">DclLoaderFileOpen</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLoader
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The loader handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The file handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uByteCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes to read.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the destination buffer.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the number of bytes read.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclLoaderFileState"></a>
+<a NAME="DclLoaderFileState"></a>
+DclLoaderFileState
+</h3>
+<div class=Api>
+unsigned int <font class=ApiName>DclLoaderFileState</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERHANDLE>DCLLOADERHANDLE</a>     hLoader,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLLOADERFILEHANDLE>DCLLOADERFILEHANDLE</a> hFile)
+</div>
+<div class=SectionText>
+
+    Get the file state information for the specified file handle
+    then clear the state.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLoader
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The loader handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The file handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+DL_LOADER_FILESTATE_SUCCESS
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+No error
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DL_LOADER_FILESTATE_EOF
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+End-of-file has been reached
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DL_LOADER_FILESTATE_IO_ERROR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Error reading from the disk
+</td>
+</tr>
+</table>
+
+<p>
+
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

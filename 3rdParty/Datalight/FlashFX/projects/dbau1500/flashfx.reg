@@ -1,0 +1,63 @@
+;
+; Datalight FlashFX Driver
+;
+
+;
+; The following GUIDs are used to indicate that FlashFX is a block
+; device driver, and that it is power-managed.
+;
+#define CE_DRIVER_BLOCK_GUID                  "{A4E7EDDA-E575-4252-9D6B-4195D48BB865}"
+#define CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID "{8DD679CE-8AB4-43c8-A14A-EA4963FAA715}"
+
+
+; HIVE BOOT SECTION
+
+; Index     - The index for CE device name, where '1' means "DSK1".
+; DeviceNum - The FlashFX DEVn upon which to create DISKn
+; DiskNum   - The DISKn number to assign
+; Start     - The starting offset for DISKn within FlashFX DEVn
+; Length    - The DISKn length, or FFFFFFFF to use the remainder of DEVn
+; Format    - The auto-format state:
+;    0 - Don't auto-format
+;    1 - Format when needed
+;    2 - Format always
+;
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\FlashFX]
+    "DLL"="FlashFX.DLL"
+    "Prefix"="DSK"
+    "Ioctl"=dword:4
+    "Order"=dword:1
+    "Index"=dword:1
+    "DeviceNum"=dword:0
+    "DiskNum"=dword:0
+    "DiskFlags"=dword:0
+    "Start"=dword:0
+    "Length"=dword:FFFFFFFF
+    "Format"=dword:0
+    "IClass"=multi_sz:$(CE_DRIVER_BLOCK_GUID), $(CE_DRIVER_POWER_MANAGEABLE_BLOCK_GUID)
+    "ProfileName"="FlashFXDisk1Profile"
+
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFXDisk1Profile]
+    "AutoMount"=dword:1
+    "AutoPart"=dword:0
+    "AutoFormat"=dword:0
+    "MountFlags"=dword:2
+    "Name"="Datalight FlashFX"
+    "Folder"="FlashFX Disk"
+    "DefaultFileSystem"="FATFS"
+    "PartitionDriver"="mspart.dll"
+
+; This setting is required when using FlashFX and Reliance together under
+; CE 4.1, and is benign otherwise.  For CE 4.2 and later, the Reliance REG
+; file contains the partition table information.
+;
+[HKEY_LOCAL_MACHINE\System\StorageManager\Profiles\FlashFXDisk1Profile\PartitionTable]
+    "07"="RELIANCE"
+
+[HKEY_LOCAL_MACHINE\Software\Microsoft\TxtShell\Extensions]
+    "DatalightShell"="dlshellext.dll"
+    "FlashFXShell"="fxshellext.dll"
+
+; END HIVE BOOT SECTION
+
+

@@ -1,0 +1,697 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+#include "windows.h"
+#include "commctrl.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_LANDSCAPE MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "C&onnect",                    ID_DEFAULT_ACTION, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "&New...",                     ID_CONN_NEW
+        MENUITEM SEPARATOR
+        MENUITEM "Desktop &Shortcut",           ID_FILE_CREATESHORTCUT
+        MENUITEM "&Delete",                     ID_FILE_DELETE
+        MENUITEM "Rena&me",                     ID_FILE_RENAME
+        MENUITEM "P&roperties",                 ID_FILE_PROPERTIES
+        MENUITEM SEPARATOR
+        MENUITEM "&Close",                      ID_FILE_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT, GRAYED
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY, GRAYED
+        MENUITEM "C&reate Copy",                ID_EDIT_CREATECOPY, GRAYED
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECTALL
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Lar&ge Icons",                ID_VIEW_LARGEICON
+        MENUITEM "S&mall Icons",                ID_VIEW_SMALLICON
+        MENUITEM "Detai&ls",                    ID_VIEW_DETAILS
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                    ID_VIEW_REFRESH
+    END
+    POPUP "Adva&nced"
+    BEGIN
+        MENUITEM "Advanced &Settings...",       ID_ADVANCED_ADVANCED
+    END
+END
+
+IDM_PORTRAIT MENU DISCARDABLE
+BEGIN
+    POPUP "Connection"
+    BEGIN
+        MENUITEM "Connect",                     ID_DEFAULT_ACTION, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "New...",                      ID_CONN_NEW
+        MENUITEM "Advanced &Settings...",       ID_ADVANCED_ADVANCED
+        MENUITEM SEPARATOR
+        MENUITEM "Delete",                      ID_FILE_DELETE
+        MENUITEM "Rename",                      ID_FILE_RENAME
+        MENUITEM "Properties",                  ID_FILE_PROPERTIES
+    END
+END
+
+IDM_CONTEXT MENU DISCARDABLE
+BEGIN
+    POPUP "Context Menu"
+    BEGIN
+        MENUITEM "Connect",                     ID_DEFAULT_ACTION, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "Set as Default",              ID_CONN_SET_AS_DEFAULT
+        MENUITEM SEPARATOR
+        MENUITEM "Desktop Shortcut",            ID_FILE_CREATESHORTCUT
+        MENUITEM "Delete",                      ID_FILE_DELETE
+        MENUITEM "Rename",                      ID_FILE_RENAME
+        MENUITEM SEPARATOR
+        MENUITEM "Properties",                  ID_FILE_PROPERTIES
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+#ifdef NONEW_ICONS
+IDI_REMOTENW              ICON    DISCARDABLE     "remotenw.ico"
+IDI_NEWCONN               ICON    DISCARDABLE     "newcnctn.ico"
+IDI_RNA                   ICON    DISCARDABLE     "dial.ico"
+IDI_DCC                   ICON    DISCARDABLE     "direct.ico"
+IDI_VPN                   ICON    DISCARDABLE     "vpn.ico"
+IDI_LAN_ENABLED           ICON    DISCARDABLE     "lan_enabled.ico"
+IDI_LAN_DISABLED          ICON    DISCARDABLE     "lan_disabled.ico"
+IDI_WLAN_ENABLED          ICON    DISCARDABLE     "wlan_enabled.ico"
+IDI_WLAN_DISABLED         ICON    DISCARDABLE     "wlan_disabled.ico"
+#else
+IDI_REMOTENW              ICON    DISCARDABLE     "remotenw_new.ico"
+IDI_NEWCONN               ICON    DISCARDABLE     "newcnctn_new.ico"
+IDI_RNA                   ICON    DISCARDABLE     "dial_new.ico"
+IDI_DCC                   ICON    DISCARDABLE     "direct_new.ico"
+IDI_VPN                   ICON    DISCARDABLE     "vpn_new.ico"
+IDI_LAN_ENABLED           ICON    DISCARDABLE     "lan_enabled_new.ico"
+IDI_LAN_DISABLED          ICON    DISCARDABLE     "lan_disabled_new.ico"
+IDI_WLAN_ENABLED          ICON    DISCARDABLE     "wlan_enabled_new.ico"
+IDI_WLAN_DISABLED         ICON    DISCARDABLE     "wlan_disabled_new.ico"
+#endif
+IDI_DEFAULTOVERLAY        ICON    DISCARDABLE     "default.ico"
+IDI_ADAPTER_UP_ENABLED    ICON    DISCARDABLE     "up_enabled.ico"
+IDI_ADAPTER_UP_DISABLED   ICON    DISCARDABLE     "up_disabled.ico"
+IDI_ADAPTER_DOWN_ENABLED  ICON    DISCARDABLE     "down_enabled.ico"
+IDI_ADAPTER_DOWN_DISABLED ICON    DISCARDABLE     "down_disabled.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_TOOLBAR               BITMAP  DISCARDABLE     "toolbar.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WIZ_NEW DIALOG DISCARDABLE  0, 0, 165, 104
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Make New Connection"
+BEGIN
+    LTEXT           "&Type a name for the connection:",IDC_STATIC,5,1,155,8,
+                    NOT WS_GROUP
+    ICON            IDI_NEWCONN,IDC_STATIC,5,10,20,20
+    EDITTEXT        IDC_REMNAME,31,16,129,13,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,5,26,155,6
+    LTEXT           "&Select the connection type:",IDC_STATIC,5,35,155,8,NOT
+                    WS_GROUP
+    CONTROL         "&Dial-Up Connection",IDC_NEW_RNA,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,31,45,129,8
+    CONTROL         "D&irect Connection",IDC_NEW_DCC,"Button",
+                    BS_AUTORADIOBUTTON,31,57,129,8
+    CONTROL         "&Virtual Private Network (PPTP)",IDC_NEW_VPN,"Button",
+                    BS_AUTORADIOBUTTON,31,69,129,8
+    CONTROL         "Vi&rtual Private Network (L2TP)",IDC_NEW_L2TPVPN,"Button",
+                    BS_AUTORADIOBUTTON,31,81,129,8
+    CONTROL         "&PPP over Ethernet [PPPoE]",IDC_NEW_PPPOE,"Button",
+                    BS_AUTORADIOBUTTON,31,93,129,8
+END
+
+
+IDD_WIZ_NEW_P DIALOG DISCARDABLE  0, 0, 130, 113
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Make New Connection"
+BEGIN
+    LTEXT           "&Type a name for the connection:",IDC_STATIC,5,1,115,10,
+                    NOT WS_GROUP
+    ICON            IDI_NEWCONN,IDC_STATIC,5,12,20,20
+    EDITTEXT        IDC_REMNAME,30,18,89,13,ES_AUTOHSCROLL
+    GROUPBOX        "",IDC_STATIC,5,31,120,6
+    LTEXT           "&Select the connection type:",IDC_STATIC,5,39,120,10,NOT
+                    WS_GROUP
+    CONTROL         "&Dial-Up Connection",IDC_NEW_RNA,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,5,51,120,10
+    CONTROL         "D&irect Connection",IDC_NEW_DCC,"Button",
+                    BS_AUTORADIOBUTTON,5,63,120,10
+    CONTROL         "&Virtual Private Network (PPTP)",IDC_NEW_VPN,"Button",
+                    BS_AUTORADIOBUTTON,5,75,120,10
+    CONTROL         "Vi&rtual Private Network (L2TP)",IDC_NEW_L2TPVPN,"Button",
+                    BS_AUTORADIOBUTTON,5,87,120,10
+    CONTROL         "&PPP over Ethernet [PPPoE]",IDC_NEW_PPPOE,"Button",
+                    BS_AUTORADIOBUTTON,5,99,120,10
+END
+
+IDD_RNA_0 DIALOG DISCARDABLE  0, 0, 165, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Modem"
+BEGIN
+    ICON            IDI_RNA,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,129,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,155,6
+    LTEXT           "&Select a modem:",IDC_STATIC,5,28,155,10,NOT WS_GROUP
+    COMBOBOX        IDC_DEVICE,5,40,155,70,CBS_DROPDOWNLIST | CBS_SORT |
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "B&luetooth...",IDC_BLUETOOTH,5,55,52,14, NOT WS_VISIBLE
+    PUSHBUTTON      "&Configure...",IDC_CONFIG,108,55,52,14
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,75,77,14
+    PUSHBUTTON      "S&ecurity Settings...",IDC_SECSETTINGS,83,75,77,14
+END
+
+
+IDD_RNA_0_P DIALOG DISCARDABLE  0, 0, 130, 115
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Modem"
+BEGIN
+    ICON            IDI_RNA,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,94,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,120,6
+    LTEXT           "&Select a modem:",IDC_STATIC,5,28,120,10,NOT WS_GROUP
+    COMBOBOX        IDC_DEVICE,5,40,120,70,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Bluetooth...",IDC_BLUETOOTH,5,55,52,14, NOT WS_VISIBLE
+    PUSHBUTTON      "&Configure...",IDC_CONFIG,64,55,52,14
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,75,77,14
+    PUSHBUTTON      "S&ecurity Settings...",IDC_SECSETTINGS,5,92,77,14
+END
+
+IDD_RNA_1 DIALOG DISCARDABLE  0, 0, 165, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Phone Number"
+BEGIN
+    ICON            IDI_RNA,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,129,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,155,6
+    LTEXT           "&Country/region code:",IDC_STATIC,5,28,78,10,NOT
+                    WS_GROUP
+    EDITTEXT        IDC_CNTRYRGN,86,28,30,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Area code:",IDC_STATIC,5,44,78,8,NOT WS_GROUP
+    EDITTEXT        IDC_AREA_CODE,86,41,30,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Phone number:",IDC_STATIC,5,57,78,8,NOT WS_GROUP
+    EDITTEXT        IDC_PHONE_NUM,86,54,74,12,ES_AUTOHSCROLL
+    CONTROL         "&Force long distance",IDC_FORCELD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,71,78,10
+    CONTROL         "F&orce local",IDC_FORCELOCAL,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,5,83,78,10
+END
+
+
+IDD_RNA_1_P DIALOG DISCARDABLE  0, 0, 130, 114
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Phone Number"
+BEGIN
+    ICON            IDI_RNA,IDC_STATIC,5,2,21,20
+    LTEXT           "",IDC_CONNLABEL,31,7,94,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,110,6
+    LTEXT           "&Country/region code:",IDC_STATIC,5,28,78,10,NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_CNTRYRGN,86,28,30,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Area code:",IDC_STATIC,5,44,78,8,NOT WS_GROUP
+    EDITTEXT        IDC_AREA_CODE,86,41,30,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&Phone number:",IDC_STATIC,5,57,78,8,NOT WS_GROUP
+    EDITTEXT        IDC_PHONE_NUM,5,69,74,12,ES_AUTOHSCROLL
+    CONTROL         "&Force long distance",IDC_FORCELD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,87,78,10
+    CONTROL         "F&orce local",IDC_FORCELOCAL,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,99,78,10
+END
+
+
+IDD_DCC_0 DIALOG DISCARDABLE  0, 0, 165, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Device"
+BEGIN
+    ICON            IDI_DCC,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,129,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,155,6
+    LTEXT           "&Select a device:",IDC_STATIC,5,28,155,10,NOT WS_GROUP
+    COMBOBOX        IDC_DEVICE,5,40,155,70,CBS_DROPDOWNLIST | CBS_SORT |
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Configure...",IDC_CONFIG,108,55,52,14
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,75,77,14
+    PUSHBUTTON      "S&ecurity Settings...",IDC_SECSETTINGS,83,75,77,14
+END
+
+
+IDD_DCC_0_P DIALOG DISCARDABLE  0, 0, 130, 115
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Device"
+BEGIN
+    ICON            IDI_DCC,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,94,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,120,6
+    LTEXT           "&Select a device:",IDC_STATIC,5,28,120,10,NOT WS_GROUP
+    COMBOBOX        IDC_DEVICE,5,40,120,70,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Configure...",IDC_CONFIG,64,55,52,14
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,75,77,14
+    PUSHBUTTON      "S&ecurity Settings...",IDC_SECSETTINGS,5,92,77,14
+END
+
+
+IDD_VPN_0 DIALOG DISCARDABLE  0, 0, 165, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Connection"
+BEGIN
+    ICON            IDI_VPN,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,129,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,155,6
+    LTEXT           "&Host name or IP address:",IDC_STATIC,5,28,155,10,NOT
+                    WS_GROUP
+    EDITTEXT        IDC_HOSTNAME,5,40,155,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Configure...",IDC_CONFIG,108,55,52,14
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,75,77,14
+    PUSHBUTTON      "S&ecurity Settings...",IDC_SECSETTINGS,83,75,77,14
+END
+
+
+IDD_VPN_0_P DIALOG DISCARDABLE  0, 0, 130, 111
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Connection"
+BEGIN
+    ICON            IDI_VPN,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,94,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,120,6
+    LTEXT           "&Host name or IP address:",IDC_STATIC,5,28,120,10,NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_HOSTNAME,5,40,120,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Configure...",IDC_CONFIG,71,55,52,14
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,75,77,14
+    PUSHBUTTON      "S&ecurity Settings...",IDC_SECSETTINGS,5,92,77,14
+END
+
+IDD_CONFIG_L2TP DIALOG DISCARDABLE 0, 0, 167, 81
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "IPSEC settings"
+BEGIN
+    ICON            IDI_VPN,-1,5,2,21,20
+    LTEXT           "",IDC_CONNLABEL,31,7,129,8,SS_NOPREFIX
+    CONTROL         "&Use Certificate Authentication",IDC_RB_CERTAUTH,"Button",
+                    BS_AUTORADIOBUTTON,13,30,135,12
+    CONTROL         "U&se Pre-shared Key",IDC_RB_PRESHAREDKEY,"Button",
+                    BS_AUTORADIOBUTTON,13,44,133,10
+    EDITTEXT        IDC_PRESHAREDKEY,11,57,147,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "",-1,5,21,156,55
+END
+
+IDD_CONFIG_L2TP_P DIALOG DISCARDABLE 0, 0, 130, 81
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "IPSEC settings"
+BEGIN
+    ICON            IDI_VPN,-1,2,2,21,20
+    LTEXT           "",IDC_CONNLABEL,31,7,89,8,SS_NOPREFIX
+    CONTROL         "&Use Certificate Authentication",IDC_RB_CERTAUTH,"Button",
+                    BS_AUTORADIOBUTTON,7,30,115,12
+    CONTROL         "U&se Pre-shared Key",IDC_RB_PRESHAREDKEY,"Button",
+                    BS_AUTORADIOBUTTON,7,44,115,10
+    EDITTEXT        IDC_PRESHAREDKEY,7,57,110,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    GROUPBOX        "",-1,3,21,124,55
+END
+
+IDD_PPPOE_0 DIALOG DISCARDABLE  0, 0, 165, 104
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Connection"
+BEGIN
+    ICON            IDI_VPN,IDC_STATIC,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,129,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,155,6
+    LTEXT           "&Select a device:",IDC_STATIC,5,28,120,10,NOT WS_GROUP
+    COMBOBOX        IDC_DEVICE,5,40,120,80,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP    
+    LTEXT           "&PPPoE Service Name (blank for any service):",IDC_STATIC,5,57,155,10,NOT
+                    WS_GROUP
+    EDITTEXT        IDC_HOSTNAME,5,69,155,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,90,77,14
+    PUSHBUTTON      "&Security Settings...",IDC_SECSETTINGS,83,90,77,14
+END
+
+
+IDD_PPPOE_0_P DIALOG DISCARDABLE  0, 0, 130, 119
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Connection"
+BEGIN
+    ICON            IDI_VPN,IDC_STATIC,5,2,21,20
+    LTEXT           "",IDC_CONNLABEL,31,7,94,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,120,6
+    LTEXT           "&Select a device:",IDC_STATIC,5,28,120,10,NOT WS_GROUP
+    COMBOBOX        IDC_DEVICE,5,40,120,80,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP        
+    LTEXT           "&PPPoE Service Name:",IDC_STATIC,5,54,120,10,NOT 
+                    WS_GROUP
+    EDITTEXT        IDC_HOSTNAME,5,66,120,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "&TCP/IP Settings...",IDC_TCPSETTINGS,5,85,77,14
+    PUSHBUTTON      "&Security Settings...",IDC_SECSETTINGS,5,103,77,14
+END
+
+IDD_TCPIP_0 DIALOG DISCARDABLE  0, 0, 165, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "General"
+BEGIN
+    ICON            IDI_RNA,IDC_TCPIP_ICON,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,129,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,155,6
+    CONTROL         "&Use server-assigned IP address",IDC_USESERVIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,28,155,10
+    CONTROL         "",IDC_SERVIPADDR,"RNA_IPAddress",WS_GROUP | WS_TABSTOP |
+                    0x4,18,40,99,12
+    CONTROL         "Use &Slip",IDC_USESLIP,"Button",BS_AUTOCHECKBOX |
+                    WS_TABSTOP,5,59,155,10
+    CONTROL         "Use s&oftware compression",IDC_SOFTCOMPCHK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,71,155,10
+    CONTROL         "Use &IP header compression",IDC_IPCOMP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,83,155,10
+END
+
+
+IDD_TCPIP_0_P DIALOG DISCARDABLE  0, 0, 130, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "General"
+BEGIN
+    ICON            IDI_RNA,IDC_TCPIP_ICON,5,2,21,20
+    LTEXT           "",IDC_CONNLABEL,31,7,94,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,115,6
+    CONTROL         "&Use server-assigned IP address",IDC_USESERVIP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,28,120,10
+    CONTROL         "",IDC_SERVIPADDR,"RNA_IPAddress",WS_GROUP | WS_TABSTOP | 
+                    0x4,18,40,99,12
+    CONTROL         "Use &Slip",IDC_USESLIP,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,59,120,10
+    CONTROL         "Use s&oftware compression",IDC_SOFTCOMPCHK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,71,120,10
+    CONTROL         "Use &IP header compression",IDC_IPCOMP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,83,120,10
+END
+
+
+IDD_TCPIP_1 DIALOG DISCARDABLE  0, 0, 165, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Name Servers"
+BEGIN
+    ICON            IDI_RNA,IDC_TCPIP_ICON,5,2,20,20
+    LTEXT           "",IDC_CONNLABEL,31,7,128,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,155,6
+    CONTROL         "&Use server-assigned addresses",IDC_NAMESERVADDR,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,5,28,155,10
+    LTEXT           "&DNS:",IDC_DNS_LABEL,18,43,35,8,NOT WS_GROUP
+    CONTROL         "",IDC_DNS_IPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,58,40,
+                    72,12
+    LTEXT           "Alt D&NS:",IDC_DNS_ALTLABEL,18,56,35,8,NOT WS_GROUP
+    CONTROL         "",IDC_DNS_ALTIPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,58,
+                    53,72,12
+    LTEXT           "&WINS:",IDC_WINS_LABEL,18,69,35,8,NOT WS_GROUP
+    CONTROL         "",IDC_WINS_IPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,58,
+                    66,72,12
+    LTEXT           "Alt W&INS:",IDC_WINS_ALTLABEL,18,82,35,8,NOT WS_GROUP
+    CONTROL         "",IDC_WINS_ALTIPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,
+                    58,79,72,12
+END
+
+
+IDD_TCPIP_1_P DIALOG DISCARDABLE  0, 0, 130, 95
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Name Servers"
+BEGIN
+    ICON            IDI_RNA,IDC_TCPIP_ICON,5,2,21,20
+    LTEXT           "",IDC_CONNLABEL,31,7,94,8,SS_NOPREFIX
+    GROUPBOX        "",IDC_STATIC,5,19,122,6
+    CONTROL         "&Use server-assigned addresses",IDC_NAMESERVADDR,"Button",
+                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,5,28,115,10
+    LTEXT           "Primary &DNS:",IDC_DNS_LABEL,2,43,57,8,NOT WS_GROUP
+    CONTROL         "",IDC_DNS_IPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,59,40,
+                    70,12
+    LTEXT           "Secondary D&NS:",IDC_DNS_ALTLABEL,2,56,57,8,NOT WS_GROUP
+    CONTROL         "",IDC_DNS_ALTIPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,59,
+                    53,70,12
+    LTEXT           "Primary &WINS:",IDC_WINS_LABEL,2,69,57,8,NOT WS_GROUP
+    CONTROL         "",IDC_WINS_IPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,59,
+                    66,70,12
+    LTEXT           "Secondary W&INS:",IDC_WINS_ALTLABEL,2,82,57,8,NOT 
+                    WS_GROUP
+    CONTROL         "",IDC_WINS_ALTIPADDR,"RNA_IPAddress",WS_TABSTOP | 0x4,
+                    59,79,70,12
+END
+
+
+IDD_ADAPTER_ORDERER DIALOG DISCARDABLE  0, 0, 152, 110
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Advanced Adapter Settings"
+BEGIN
+    CONTROL         "",IDC_ADAPTER_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SHAREIMAGELISTS |
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,5,35,124,53
+    PUSHBUTTON      "",IDC_ADAPTER_UP,133,35,15,15,WS_DISABLED
+    PUSHBUTTON      "",IDC_ADAPTER_DOWN,133,53,15,15,WS_DISABLED
+    DEFPUSHBUTTON   "OK",IDOK,42,93,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,98,93,50,14
+    LTEXT           "Connections are listed in the order in which they are accessed by network services.",
+                    IDC_STATIC,5,5,141,16
+    LTEXT           "Connections:",IDC_STATIC,5,24,72,8
+END
+
+
+IDD_ADAPTER_ORDERER_P DIALOG DISCARDABLE  0, 0, 130, 148
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Advanced Adapter Settings"
+BEGIN
+    CONTROL         "",IDC_ADAPTER_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SHAREIMAGELISTS | 
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,5,46,99,77
+    PUSHBUTTON      "",IDC_ADAPTER_UP,108,46,15,15,WS_DISABLED
+    PUSHBUTTON      "",IDC_ADAPTER_DOWN,108,64,15,15,WS_DISABLED
+    DEFPUSHBUTTON   "OK",IDOK,11,130,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,67,130,50,14
+    LTEXT           "Connections are listed in the order in which they are accessed by network services.",
+                    IDC_STATIC,5,5,125,25
+    LTEXT           "Connections:",IDC_STATIC,5,35,72,8
+END
+
+IDD_SECURITY_SETTINGS DIALOG DISCARDABLE  0, 0, 215, 105
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Advanced Security Settings"
+BEGIN
+    CONTROL         "Use &Data encryption",IDC_CA_CB_ENCRYPTION,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_GROUP |
+                    WS_TABSTOP,5,1,125,8
+    LTEXT           "Logon security:",IDC_STATIC,5,11,125,8
+    CONTROL         "Use &Extensible Authentication Protocol (EAP)",
+                    IDC_CA_CB_EAP,"Button",BS_AUTOCHECKBOX | WS_GROUP |
+                    WS_TABSTOP,5,20,200,8
+    COMBOBOX        IDC_CA_LB_EAPPACKAGES,5,30,135,42,CBS_DROPDOWNLIST |
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "P&roperties...",IDC_CA_PB_PROPERTIES,150,30,60,12
+    CONTROL         "&Unencrypted password (PAP)",IDC_CA_CB_PAP,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_GROUP |
+                    WS_TABSTOP,5,45,200,8
+    CONTROL         "&Challenge Handshake Authentication Protocol (CHAP)",
+                    IDC_CA_CB_CHAP,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,5,54,200,8
+    CONTROL         "&Microsoft CHAP (MS-CHAP)",IDC_CA_CB_MSCHAP,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,5,
+                    63,200,8
+    CONTROL         "M&icrosoft CHAP Version 2 (MS-CHAP v2)",
+                    IDC_CA_CB_MSCHAP2,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,5,72,200,8
+    CONTROL         "&For MS-CHAP protocols, use my Windows credentials",
+                    IDC_CA_CB_USEWINDOWSPW,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,5,81,200,11
+    CONTROL         "&Preview user name and password",
+                    IDC_CA_CB_PREVIEWUSERPW,"Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,
+                    5,91,200,8
+END
+
+
+IDD_SECURITY_SETTINGS_P DIALOG DISCARDABLE  0, 0, 130, 136
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION
+CAPTION "Advanced Security Settings"
+BEGIN
+    CONTROL         "Use &Data encryption",IDC_CA_CB_ENCRYPTION,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_GROUP | 
+                    WS_TABSTOP,5,5,125,10
+    LTEXT           "Logon security:",IDC_STATIC,5,16,125,10
+    CONTROL         "Use &Extensible Auth Protocol (EAP)",IDC_CA_CB_EAP,
+                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,5,28,
+                    125,8
+    COMBOBOX        IDC_CA_LB_EAPPACKAGES,5,40,70,42,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "P&roperties...",IDC_CA_PB_PROPERTIES,77,40,51,12
+    CONTROL         "&Unencrypted password (PAP)",IDC_CA_CB_PAP,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_GROUP | 
+                    WS_TABSTOP,5,56,125,10
+    CONTROL         "&Challenge Handshake  (CHAP)",IDC_CA_CB_CHAP,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,5,
+                    68,125,10
+    CONTROL         "&Microsoft CHAP (MS-CHAP)",IDC_CA_CB_MSCHAP,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,5,
+                    80,125,10
+    CONTROL         "M&icrosoft CHAP v2 (MS-CHAP v2)",IDC_CA_CB_MSCHAP2,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+                    WS_TABSTOP,5,92,125,10
+    CONTROL         "&For MS-CHAP protocols, use my Windows credentials",
+                    IDC_CA_CB_USEWINDOWSPW,"Button",BS_AUTOCHECKBOX | BS_TOP | 
+                    BS_MULTILINE | WS_TABSTOP,5,104,125,19
+    CONTROL         "&Preview user name and password",
+                    IDC_CA_CB_PREVIEWUSERPW,"Button",BS_AUTOCHECKBOX | 
+                    BS_MULTILINE | WS_TABSTOP,5,123,125,13
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+CONNMC_ACCEL ACCELERATORS DISCARDABLE
+BEGIN
+    "A",            ID_EDIT_SELECTALL,      VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_FILE_DELETE,         VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_VIEW_LARGEICON,      VIRTKEY, CONTROL, NOINVERT
+    "D",            ID_VIEW_DETAILS,        VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_HELP,                VIRTKEY, ALT, NOINVERT
+    "L",            ID_VIEW_DETAILS,        VIRTKEY, CONTROL, NOINVERT
+    "M",            ID_VIEW_SMALLICON,      VIRTKEY, CONTROL, NOINVERT
+    "Q",            ID_FILE_EXIT,           VIRTKEY, CONTROL, NOINVERT
+    VK_BACK,        ID_FILE_DELETE,         VIRTKEY, SHIFT, NOINVERT
+    VK_DELETE,      ID_FILE_DELETE,         VIRTKEY, NOINVERT
+    VK_RETURN,      ID_FILE_PROPERTIES,     VIRTKEY, ALT, NOINVERT
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_TITLE_LANDSCAPE     "Network Connections"
+    IDS_TITLE_PORTRAIT      "Connections"
+    IDS_HELPABOUT           "Help About"
+    IDS_COPYRIGHT           "Network Connections\r\n(c) Microsoft 1995-2003"
+    IDS_MAKE_NEW            "Make New Connection"
+    IDS_CONFDEL             "Confirm Connection Delete"
+    IDS_DELCON              "Are you sure you want to permanently delete this connection?"
+    IDS_DELCONS             "Are you sure you want to permanently delete these connections?"
+    IDS_DESKTOP_SHORTCUT    "\\Windows\\Desktop\\Shortcut to %s"
+    IDS_SHORTCUT_STRING     "\\Windows\\rnaapp.exe -e""%s"" -m"
+    IDS_LV_COLUMN_0         "Name"
+    IDS_LV_COLUMN_1         "Type"
+    IDS_LV_COLUMN_2         "Status"
+    IDS_LV_COLUMN_3         "Device Name"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_NEW_NEW             "New..."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_RAS_CONNECT         "Connect"
+    IDS_RAS_DISCONNECT      "Disconnect"    
+	IDS_RAS_STATUS 			"Status"
+    IDS_RAS_CONNECTED       "Connected"
+    IDS_RAS_DISCONNECTED    "Disconnected"
+    IDS_RAS_DIALING         "Dialing..."
+    IDS_RAS_NEW_NAME        "My Connection"
+    IDS_RAS_COPY_OF         "Copy of"
+    IDS_RAS_COPY_NUM_OF     "Copy %u of %s"
+    IDS_TCPIP_PROP_TITLE    "TCP/IP Settings"
+    IDS_RAS_DIRECT          "Direct"
+    IDS_RAS_MODEM           "Dial-up"
+    IDS_RAS_VPN             "Virtual Private Network"
+    IDS_RAS_PPPOE			"PPPoE"
+    IDS_SECURITY_TITLE      "Security Settings"
+    IDS_L2TP_TITLE    		"IPSEC Settings"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_LAN_LAN             "LAN"
+    IDS_LAN_ENABLE          "Enable"
+    IDS_LAN_DISABLE         "Disable"
+    IDS_LAN_ENABLED         "Enabled"
+    IDS_LAN_DISABLED        "Disabled"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_ERROR               "Network Connections Error"
+    IDS_ERR_OOM             "Not enough memory"
+    IDS_ERR_TOOMANYENT      "Too many entries selected."
+    IDS_ERR_SHORTCUT        "Failed to create shortcut."
+    IDS_ERR_DEL_NEW         "The Make New Connection Wizard cannot be deleted."
+    IDS_ERR_RENAME_NEW      "Can't rename Make New Connection"
+    IDS_ERR_SHORTCUT_NEW    "You cannot make a shortcut for Make New Connection."
+    IDS_ERR_PHONEREQ        "Phone number required."
+    IDS_ERR_AREAREQ         "You must enter an area code if you check the force local checkbox."
+    IDS_ERR_NULLNAME        "You must enter a name."
+    IDS_ERR_ALREADY_EXISTS  "A connection already exists with this name."
+    IDS_ERR_BADNAME         "A name cannot contain any of the following characters: \\/:*?<>|"""
+    IDS_ERR_NOT_ALL_DEL     "One or more of the connections you selected cannot be deleted."
+    IDS_ERR_NOT_ALL_COPY    "One or more of the connections you selected cannot be copied."
+    IDS_ERR_DOES_NOT_EXIST  "No connection with this name currently exists."
+    IDS_ERR_HOSTNAMEREQ     "Host name required"
+    IDS_ERR_BADHOSTNAME     "A connection name must be a computer name (DNS or NetBIOS) or a numeric host address string.  The computer name you gave has one or more illegal characters."
+    IDS_ERR_ALL_SPACES     "A name must not be all spaces."
+    IDS_ERR_DUPLICATE    "A connection with the name you specified already exists.  Specify a different name."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_ERR_TITLE           "TCP/IP Settings"
+    IDS_IPBAD_FIELD_VALUE   "%d is not a valid entry. Specify a value between %d and %d for this field."
+END

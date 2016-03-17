@@ -1,0 +1,14 @@
+
+Demo title: 		RenderToMask
+
+Demonstrates: 		How to use vgRenderToMask.
+
+Short Description:	Shows how to use vgRenderToMask.
+
+Full Description:	
+
+Demonstrates how to use vgRenderToMask.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

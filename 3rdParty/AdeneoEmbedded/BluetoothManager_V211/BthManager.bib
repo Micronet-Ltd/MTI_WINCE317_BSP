@@ -1,0 +1,31 @@
+;
+;
+;
+
+;-------------------------------------------------------------------------------
+MODULES
+;-------------------------------------------------------------------------------
+
+;Name           Path                                            Memory Type
+;------------   ----------------------------------------------  -----------
+;-- Bluetooth Manager Application --------------------------------------------------------
+;
+IF BTH_MANAGER
+BthManager.exe		$(_WINCEROOT)\3rdParty\AdeneoEmbedded\BluetoothManager_V211\BthManager.exe		NK
+BthManagerDll.dll	$(_WINCEROOT)\3rdParty\AdeneoEmbedded\BluetoothManager_V211\BthManagerDll.dll	NK
+ENDIF BTH_MANAGER
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+FILES
+;-------------------------------------------------------------------------------
+
+;Name           Path                                            Memory Type
+;------------   ----------------------------------------------  -----------
+;-- Bluetooth Manager Help Files --------------------------------------------------------
+;
+IF BTH_MANAGER
+BthManager.htm	$(_WINCEROOT)\3rdParty\AdeneoEmbedded\BluetoothManager_V211\BthManager.htm	NK
+BthManager.lnk	$(_WINCEROOT)\3rdParty\AdeneoEmbedded\BluetoothManager_V211\BthManager.link	NK
+ENDIF BTH_MANAGER
+;-------------------------------------------------------------------------------

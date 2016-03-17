@@ -1,0 +1,13 @@
+
+Demo title: 		IntroducingSVG
+
+Demonstrates: 		Shows how to use the tools code to load .svg files in OpenVG
+
+Short Description:	Shows how to use the tools code to load .svg files in OpenVG
+
+Full Description:	
+Shows how to use the tools code to load .svg files in OpenVG
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

@@ -1,0 +1,30 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+
+TARGETNAME=i2cproxy
+TARGETTYPE=DYNLINK
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+INCLUDES=$(INCLUDES); \
+         $(_WINCEROOT)\public\ostest\sdk\inc; \
+         $(_TARGETPLATROOT)\src\test\common;  \
+
+SOURCES= \
+          i2cproxy.cpp
+
+SOURCELIBS= \
+          $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+          $(_TARGETPLATLIB)\$(_CPUINDPATH)\bsp_unit_test.lib
+          
+TARGETLIBS= \
+          $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib

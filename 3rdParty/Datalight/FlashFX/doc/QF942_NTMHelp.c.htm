@@ -1,0 +1,3130 @@
+<html>
+<head>
+<title>
+FlashFX API: NTM Helper Functions
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+FlashFX API: NTM Helper Functions
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): FlashFX API: NTM Helper Functions">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        This section contains various helper function may be used by
+        NTMs.  Depending on the style of NTM, the type of flash being
+        used, and EDC/ECC requirements, some, all, or none of these
+        functions may be used in a given NTM.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpBuildSpareArea">FfxNtmHelpBuildSpareArea</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initializes the spare area using the OffsetZero or SSFDC
+    format based on the type of chip being used, as specified
+    by pChipInfo.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpCorrectDataSegment">FfxNtmHelpCorrectDataSegment</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Attempt to correct data errors in the specified data segment
+    (DATA_BYTES_PER_ECC long).
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpCorrectPage">FfxNtmHelpCorrectPage</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function examines an page using the OffsetZero or SSFDC
+    format based on the type of chip being used, as specified by
+    pChipInfo.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpGetPageStatus">FfxNtmHelpGetPageStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Return the page status for a page using the prescribed Tag and
+    Flags offset.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpGetSpareAreaFormat">FfxNtmHelpGetSpareAreaFormat</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determine which "standard" spare area format (supported by
+    the helper functions) to use for the specified chip.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpIsBadBlock">FfxNtmHelpIsBadBlock</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function determines if the given block is bad, according
+    to the bad-block marking style for the given chip class.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpIsRangeErased1Bit">FfxNtmHelpIsRangeErased1Bit</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function determines if the byte range is fully erased, or
+    within one bit thereof.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpReadPageStatus">FfxNtmHelpReadPageStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get the status for a page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpSetBlockType">FfxNtmHelpSetBlockType</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Attempts to mark the given block bad in a fashion that is
+    compatible and distinct from the factory bad block method,
+    according to the style of chip specified by pChipInfo.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpTagDecode">FfxNtmHelpTagDecode</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Decode a FlashFX tag which was encoded with                                FfxNtmHelpTagEncode    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmHelpTagEncode">FfxNtmHelpTagEncode</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Encode a FlashFX tag in the standard format.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmOffsetZeroBuildSpareArea">FfxNtmOffsetZeroBuildSpareArea</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initialize an OffsetZero style spare area using the supplied
+    values, calculating the ECC on the fly.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmOffsetZeroCorrectPage">FfxNtmOffsetZeroCorrectPage</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function examines an "Offset Zero" style page, checking
+    the page flags and potentially the ECC to determine if the
+    page is OK.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmOffsetZeroGetPageStatus">FfxNtmOffsetZeroGetPageStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function returns the page status for OffsetZero style flash.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmOffsetZeroIsBadBlock">FfxNtmOffsetZeroIsBadBlock</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Parameters     
+        
+                         
+              
+              
+hNTM
+     
+                 -     
+                  
+The NTM handle
+     
+     
+
+           
+              
+              
+pfnReadSpareArea
+     
+                 -     
+                  
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmOffsetZeroSetBlockType">FfxNtmOffsetZeroSetBlockType</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Attempts to mark the given block according to the specified
+    ulBlockStatus value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmOffsetZeroSpareAreaECCSet">FfxNtmOffsetZeroSpareAreaECCSet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initialize an OffsetZero style spare area ECC data using the
+    supplied values.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPECCBuildSpareArea">FfxNtmPECCBuildSpareArea</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initializes the spare area using Custom, OffsetZero or SSFDC
+    format based on the type of chip being used, as specified
+    by pChipInfo, or if a requirement exists to use a customized
+    spare area format.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPECCCorrectPage">FfxNtmPECCCorrectPage</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function examines an page using the OffsetZero or SSFDC
+    format based on the type of chip being used, as specified by
+    pChipInfo.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPECCGetPageStatus">FfxNtmPECCGetPageStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Gets the page status for the requested page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPECCIsBadBlock">FfxNtmPECCIsBadBlock</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function determines if the given block is bad, according
+    to the bad-block marking style for the given chip class.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPECCSetBlockType">FfxNtmPECCSetBlockType</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Attempts to mark the given block bad in a fashion that is
+    compatible and distinct from the factory bad block method,
+    according to the style of chip specified by pChipInfo.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPECCTagDecode">FfxNtmPECCTagDecode</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Decode a tag which was encoded with                                FfxNtmPECCTagEncode    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmPECCTagEncode">FfxNtmPECCTagEncode</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Encode a FlashFX tag in the standard format.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSSFDCBuildSpareArea">FfxNtmSSFDCBuildSpareArea</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initializes the spare area with the fixed values and the
+    ECC generated from the data given using the SSFDC format.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSSFDCCorrectPage">FfxNtmSSFDCCorrectPage</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function examines an SSFDC style page, checking the page
+    flags and potentially the ECC to determine if the page is OK.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSSFDCGetPageStatus">FfxNtmSSFDCGetPageStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function returns the page status for SSFDC style flash.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSSFDCIsBadBlock">FfxNtmSSFDCIsBadBlock</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Parameters     
+        
+                         
+              
+              
+hNTM
+     
+                 -     
+                  
+The NTM handle
+     
+     
+
+           
+              
+              
+pfnReadSpareArea
+     
+                 -     
+                  
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxNtmSSFDCSetBlockType">FfxNtmSSFDCSetBlockType</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Attempts to mark the given block according to the specified
+    ulBlockStatus value.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpBuildSpareArea"></a>
+<a NAME="FfxNtmHelpBuildSpareArea"></a>
+FfxNtmHelpBuildSpareArea
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxNtmHelpBuildSpareArea</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    NTMINFO            *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pTag,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>              fUseEcc,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo)
+</div>
+<div class=SectionText>
+
+    Initializes the spare area using the OffsetZero or SSFDC
+    format based on the type of chip being used, as specified
+    by pChipInfo.
+
+<p>    Note that this function is used to build arrays of spare
+    areas when emulating larger page sizes with small-block
+    NAND.
+
+<p>    Likewise when emulating larger page sizes, we only record
+    the tag value in the first one, and therefore the pTag
+    pointer may be NULL if we do not want to record the tag
+    for this given spare area.
+
+<p>    <b>Note</b> -- This function is only appropriate for use where
+              software ECC is being used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle to use.  This value may be
+                      NULL for some NTMs.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NTMINFO structure to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data for which ECCs are to be
+                      calculated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to build the
+                      spare data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTag
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag data to store in the
+                      spare area.  This pointer may be NULL if the
+                      tag value is to remain unset.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fUseEcc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A flag indicating whether ECCs should be used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                      describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a status value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpCorrectDataSegment"></a>
+<a NAME="FfxNtmHelpCorrectDataSegment"></a>
+FfxNtmHelpCorrectDataSegment
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>FfxNtmHelpCorrectDataSegment</font>(<br>&nbsp;&nbsp;&nbsp; 
+    unsigned        nCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pabEccOriginal,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pabEccCalced,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a>    *pIOStat)
+</div>
+<div class=SectionText>
+
+    Attempt to correct data errors in the specified data segment
+    (DATA_BYTES_PER_ECC long).
+
+<p>    If this function does NOT encounter any uncorrectable data
+    errors, the pIOStat->ulCount field will be incremented.
+
+<p>    If this function encounters correctable data errors, the
+    PAGESTATUS_DATACORRECTED value will be OR'd into the
+    supplied pIOStat->op.ulPageStatus field.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The current segment count
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data segment
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabEccOriginal
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The original ECC value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabEccCalced
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The calculated ECC value
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pIOStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure to use.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the segment has uncorrectable errors,
+        otherwise FALSE.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpCorrectPage"></a>
+<a NAME="FfxNtmHelpCorrectPage"></a>
+FfxNtmHelpCorrectPage
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmHelpCorrectPage</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pabECC,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo)
+</div>
+<div class=SectionText>
+
+    This function examines an page using the OffsetZero or SSFDC
+    format based on the type of chip being used, as specified by
+    pChipInfo.
+
+<p>    It determines if the page is OK by checking the page flags
+    and potentially the ECC. If a failure is found, the ECC will
+    attempt to correct the problem and return a status which will
+    indicate the state of the data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to page of data read from the flash.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to spare area associated with the
+                     given data sector.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of ECC bytes -- typically
+                     3 bytes for every DATA_BYTES_PER_ECC worth of
+                     data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                     describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.
+
+<p>        ffxStat will be FFXSTAT_FIMCORRECTABLEDATA if one or more
+        bit errors were corrected with ECC.
+
+<p>        If ffxStat == FFXSTAT_FIMUNCORRECTABLEDATA, the ulCount
+        field will indicate the number of correct segments that
+        were found.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpGetPageStatus"></a>
+<a NAME="FfxNtmHelpGetPageStatus"></a>
+FfxNtmHelpGetPageStatus
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxNtmHelpGetPageStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    size_t              nTagOffset,<br>&nbsp;&nbsp;&nbsp;
+    size_t              nFlagsOffset)
+</div>
+<div class=SectionText>
+
+    Return the page status for a page using the prescribed Tag and
+    Flags offset.  This function only works with standard length 
+    tags.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer containing the spare 
+                       area data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The offset into the spare area where the tag
+                       is stored.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nFlagsOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The offset into the spare area where the flags
+                       bytes are stored.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> containing the page status bits.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpGetSpareAreaFormat"></a>
+<a NAME="FfxNtmHelpGetSpareAreaFormat"></a>
+FfxNtmHelpGetSpareAreaFormat
+</h3>
+<div class=Api>
+NANDSPAREFMT <font class=ApiName>FfxNtmHelpGetSpareAreaFormat</font>(
+    const FFXNANDCHIP *pChip)
+</div>
+<div class=SectionText>
+
+    Determine which "standard" spare area format (supported by
+    the helper functions) to use for the specified chip. This
+    is intended to be used in conjunction with the NTM spare area
+    helper functions.  NTMs which utilize their own spare area
+    format should not need to use this function.
+
+<p>    
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+NSF_OFFSETZERO
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Returned by CHIPFBB_OFFSETZERO or CHIPFBB_NONE
+</td>
+</tr>
+
+<p>    
+<tr class=Def>
+<td class=Def>
+NSF_SSFDC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Returned by CHIPFBB_SSFDC or CHIPFBB_ANYBITZERO
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                      describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a NANDSPAREFMT type indicating which spare area
+        format to use.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpIsBadBlock"></a>
+<a NAME="FfxNtmHelpIsBadBlock"></a>
+FfxNtmHelpIsBadBlock
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmHelpIsBadBlock</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE                   hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA            pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP          *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlock)
+</div>
+<div class=SectionText>
+
+    This function determines if the given block is bad, according
+    to the bad-block marking style for the given chip class.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                           describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                           adjusted for reserved space (if any).
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure describing the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        misc.ulBlockStatus field will contain the block status value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpIsRangeErased1Bit"></a>
+<a NAME="FfxNtmHelpIsRangeErased1Bit"></a>
+FfxNtmHelpIsRangeErased1Bit
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>FfxNtmHelpIsRangeErased1Bit</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pData,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLen)
+</div>
+<div class=SectionText>
+
+    This function determines if the byte range is fully erased, or
+    within one bit thereof.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the byte array to examine.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes to examine.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the data is fully erased, or within a single
+        bit of being erase, or FALSE otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpReadPageStatus"></a>
+<a NAME="FfxNtmHelpReadPageStatus"></a>
+FfxNtmHelpReadPageStatus
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmHelpReadPageStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA    pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo)
+</div>
+<div class=SectionText>
+
+    Get the status for a page.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page from which to return status.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                           describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus field will contain the block status
+        bits pertaining to bad blocks.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpSetBlockType"></a>
+<a NAME="FfxNtmHelpSetBlockType"></a>
+FfxNtmHelpSetBlockType
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmHelpSetBlockType</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE                   hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA            pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    PFNWRITESPAREAREA           pfnWriteSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP          *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlockStatus)
+</div>
+<div class=SectionText>
+
+    Attempts to mark the given block bad in a fashion that is
+    compatible and distinct from the factory bad block method,
+    according to the style of chip specified by pChipInfo.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnWriteSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the WriteSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                            describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                            adjusted for reserved space (if any).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockStatus
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block status value.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure describing the state of
+        the operation.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpTagDecode"></a>
+<a NAME="FfxNtmHelpTagDecode"></a>
+FfxNtmHelpTagDecode
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>FfxNtmHelpTagDecode</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pDest,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pSrc)
+</div>
+<div class=SectionText>
+
+    Decode a FlashFX tag which was encoded with <a HREF="#FfxNtmHelpTagEncode">FfxNtmHelpTagEncode</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDest
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The destination buffer to fill with the 2-byte tag
+                data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 4-byte source buffer to process.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the tag was properly decoded and placed in
+        the buffer specified by pDest, otherwise FALSE.  If FALSE
+        is returned, the buffer specified by pDest will be set to
+        NULLs.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmHelpTagEncode"></a>
+<a NAME="FfxNtmHelpTagEncode"></a>
+FfxNtmHelpTagEncode
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxNtmHelpTagEncode</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pDest,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pSrc)
+</div>
+<div class=SectionText>
+
+    Encode a FlashFX tag in the standard format.  The first two bytes
+    are the standard media-independent value, followed by a check
+    byte calculated from that value, and a Hamming code ECC for the
+    whole thing.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDest
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 4-byte destination buffer to fill.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The source buffer containing the 2-byte tag data.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmOffsetZeroBuildSpareArea"></a>
+<a NAME="FfxNtmOffsetZeroBuildSpareArea"></a>
+FfxNtmOffsetZeroBuildSpareArea
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxNtmOffsetZeroBuildSpareArea</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    NTMINFO            *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pTag,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>              fUseEcc)
+</div>
+<div class=SectionText>
+
+    Initialize an OffsetZero style spare area using the supplied
+    values, calculating the ECC on the fly.  This function will
+    initialize the tag, the ECC bytes, and the flags value to 
+    indicate "Written With ECC".  All other fields will be 
+    initialized to 0xFF.  If pTag is NULL and/or fUseEcc is
+    FALSE, those respective fields will be set to 0xFF.
+
+<p>    Note that this function may be used to build arrays of spare
+    areas when emulating larger page sizes with small-block NAND.
+
+<p>    Likewise when emulating larger page sizes, we only record the
+    tag value in the first one, and therefore the pTag pointer may
+    be NULL if we do not want to record the tag for this given 
+    spare area.
+
+<p>    <b>Note</b> -- This function is typically employed where software
+              ECC is being used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle to use.  This value may be
+                   NULL for some NTMs.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NTMINFO structure to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data for which ECCs are to be
+                   calculated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to build the
+                   spare data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTag
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag data to store in the spare
+                   area.  This pointer may be NULL if the tag value
+                   is to remain unset.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fUseEcc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A flag indicating whether ECCs should be used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmOffsetZeroCorrectPage"></a>
+<a NAME="FfxNtmOffsetZeroCorrectPage"></a>
+FfxNtmOffsetZeroCorrectPage
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmOffsetZeroCorrectPage</font>(<br>&nbsp;&nbsp;&nbsp; 
+    size_t              nSpareSize,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pabECC)
+</div>
+<div class=SectionText>
+
+    This function examines an "Offset Zero" style page, checking
+    the page flags and potentially the ECC to determine if the
+    page is OK.  If a failure is found, the ECC will attempt to
+    correct the problem and return a status which will indicate
+    the state of the data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nSpareSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The spare area size to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to page of data read from the flash.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to spare area associated with the
+                     given data sector.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of ECC bytes, typically
+                     3 bytes for every DATA_BYTES_PER_ECC worth of
+                     data.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.
+
+<p>        ffxStat will be FFXSTAT_FIMCORRECTABLEDATA if one or more
+        bit errors were corrected with ECC.
+
+<p>        If ffxStat == FFXSTAT_FIMUNCORRECTABLEDATA, the ulCount
+        field will indicate the number of correct segments that
+        were found.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmOffsetZeroGetPageStatus"></a>
+<a NAME="FfxNtmOffsetZeroGetPageStatus"></a>
+FfxNtmOffsetZeroGetPageStatus
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmOffsetZeroGetPageStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA    pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage)
+</div>
+<div class=SectionText>
+
+    This function returns the page status for OffsetZero style flash.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipClass
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIPCLASS
+                           describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page from which to return status.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus field will contain the block status
+        bits pertaining to bad blocks.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmOffsetZeroIsBadBlock"></a>
+<a NAME="FfxNtmOffsetZeroIsBadBlock"></a>
+FfxNtmOffsetZeroIsBadBlock
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmOffsetZeroIsBadBlock</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE                   hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA            pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP          *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlock)
+</div>
+<div class=SectionText>
+
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                           describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                           adjusted for reserved space (if any).
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus field will contain the block status
+        bits pertaining to bad blocks.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmOffsetZeroSetBlockType"></a>
+<a NAME="FfxNtmOffsetZeroSetBlockType"></a>
+FfxNtmOffsetZeroSetBlockType
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmOffsetZeroSetBlockType</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA    pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    PFNWRITESPAREAREA   pfnWriteSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlockStatus)
+</div>
+<div class=SectionText>
+
+    Attempts to mark the given block according to the specified
+    ulBlockStatus value.
+
+<p>    <h4>Only two block types are supported</h4>
+
+<p>    
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+BLOCKSTATUS_FACTORYBAD
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Mark the block bad by writing a
+                             non-0xFF value to offset 0 in the
+                             spare area for the first two pages
+                             in a block (non 0xFFFF if 16-bit
+                             flash).
+</td>
+</tr>
+
+<p>    
+<tr class=Def>
+<td class=Def>
+BLOCKSTATUS_BBMBLOCK
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Mark the block as one that is being
+                             used by BBM.  Since BBM does not
+                             write with ECC, we cannot rely on
+                             that mark to identify all blocks
+                             which have been used by FlashFX.
+                             When resizing disks, this BBM mark
+                             will prevent blocks which were
+                             previously used by BBM from being
+                             considered "factory-bad".
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnWriteSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the WriteSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                            describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                            adjusted for reserved space (if any).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockStatus
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block status value.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure describing the state of
+        the operation.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmOffsetZeroSpareAreaECCSet"></a>
+<a NAME="FfxNtmOffsetZeroSpareAreaECCSet"></a>
+FfxNtmOffsetZeroSpareAreaECCSet
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxNtmOffsetZeroSpareAreaECCSet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pabECC,<br>&nbsp;&nbsp;&nbsp;
+    size_t              nECCLen)
+</div>
+<div class=SectionText>
+
+    Initialize an OffsetZero style spare area ECC data using the
+    supplied values.  In addition to the ECC data, this function will
+    set the flags value to indicate "Written With ECC".  All other
+    fields will not be touched.
+
+<p>    This function will handle any abitrary number of ECC bytes, up
+    to 6 per each 16 bytes of spare area.  Regardless of the count,
+    they will be written sequentially to the standard OffsetZero
+    locations in Datalight standard format.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to build the 
+                    spare data.  The length of this buffer must be
+                    at least 16 bytes for each 6 total bytes of ECC
+                    data, as specified by nECCLen.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the array of ECC bytes to use, 
+                    which is nECCLen long.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nECCLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes in pabECC.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPECCBuildSpareArea"></a>
+<a NAME="FfxNtmPECCBuildSpareArea"></a>
+FfxNtmPECCBuildSpareArea
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxNtmPECCBuildSpareArea</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev,<br>&nbsp;&nbsp;&nbsp;
+    NTMINFO            *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    FX_ECC_PARAMS      *pEccParams,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pTag,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>              fUseEcc,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo)
+</div>
+<div class=SectionText>
+
+    Initializes the spare area using Custom, OffsetZero or SSFDC
+    format based on the type of chip being used, as specified
+    by pChipInfo, or if a requirement exists to use a customized
+    spare area format.
+
+<p>    Note that this function is used to build arrays of spare
+    areas when emulating larger page sizes with small-block
+    NAND.
+
+<p>    Likewise when emulating larger page sizes, we only record
+    the tag value in the first one, and therefore the pTag
+    pointer may be NULL if we do not want to record the tag
+    for this given spare area.
+
+<p>    <b>Note</b> -- This function is only appropriate for use where
+              software ECC is being used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+device handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+pointer to NTM information
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pEccParams
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+pointer to structure parameterizing ECC function
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to build the
+                     spare data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTag
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag data to store in the
+                     spare area.  This pointer may be NULL if the
+                     tag value is to remain unset.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fUseEcc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A flag indicating whether ECCs should be used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                     describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a status value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPECCCorrectPage"></a>
+<a NAME="FfxNtmPECCCorrectPage"></a>
+FfxNtmPECCCorrectPage
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxNtmPECCCorrectPage</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMINFO            *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    FX_ECC_PARAMS      *pEccParams,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pReferenceSpare,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo)
+</div>
+<div class=SectionText>
+
+    This function examines an page using the OffsetZero or SSFDC
+    format based on the type of chip being used, as specified by
+    pChipInfo.
+
+<p>    It determines if the page is OK by checking the page flags
+    and potentially the ECC. If a failure is found, the ECC will
+    attempt to correct the problem and return a status which will
+    indicate the state of the data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+NTM Info structure (for uCustomSpareAreaFormat)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pEccParams
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+ECC parameterization structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uSpareSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The spare area size to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to spare area associated with the
+                          given data sector read from the device.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pReferenceSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to spare area buffer containing the
+                          ECC's stored there when data was written.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                          describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Marks an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation. This structure is contained in the
+        pEccParams parameter passed into the function. The function
+        itself returns void.
+
+<p>        If ffxStat == FFXSTAT_SUCCESS, the PAGESTATUS_DATACORRECTED
+        flag in the op.ulPageStatus field may be set if data errors
+        were corrected.
+
+<p>        If ffxStat == FFXSTAT_FIMUNCORRECTABLEDATA, the ulCount
+        field will indicate the number of correct segments that
+        were found.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPECCGetPageStatus"></a>
+<a NAME="FfxNtmPECCGetPageStatus"></a>
+FfxNtmPECCGetPageStatus
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmPECCGetPageStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    NTMINFO            *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA    pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo)
+</div>
+<div class=SectionText>
+
+    Gets the page status for the requested page.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the Ntm Info. Contains data
+                           regardinc custom spare area format.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page from which to return status.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                           describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus field will contain the block status
+        bits pertaining to bad blocks.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPECCIsBadBlock"></a>
+<a NAME="FfxNtmPECCIsBadBlock"></a>
+FfxNtmPECCIsBadBlock
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmPECCIsBadBlock</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE                   hNTM,<br>&nbsp;&nbsp;&nbsp;
+    NTMINFO                    *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA            pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP          *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlock)
+</div>
+<div class=SectionText>
+
+    This function determines if the given block is bad, according
+    to the bad-block marking style for the given chip class.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to the NTMINFO structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                           describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                           adjusted for reserved space (if any).
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure describing the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        misc.ulBlockStatus field will contain the block status value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPECCSetBlockType"></a>
+<a NAME="FfxNtmPECCSetBlockType"></a>
+FfxNtmPECCSetBlockType
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmPECCSetBlockType</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE                   hNTM,<br>&nbsp;&nbsp;&nbsp;
+    NTMINFO                    *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA            pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    PFNWRITESPAREAREA           pfnWriteSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP          *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlockStatus)
+</div>
+<div class=SectionText>
+
+    Attempts to mark the given block bad in a fashion that is
+    compatible and distinct from the factory bad block method,
+    according to the style of chip specified by pChipInfo.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Pointer to the NTMINFO structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnWriteSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the WriteSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                            describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                            adjusted for reserved space (if any).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockStatus
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block status value.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure describing the state of
+        the operation.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPECCTagDecode"></a>
+<a NAME="FfxNtmPECCTagDecode"></a>
+FfxNtmPECCTagDecode
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>FfxNtmPECCTagDecode</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMINFO        *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pDest,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    NANDSPAREFMT    fmt)
+</div>
+<div class=SectionText>
+
+    Decode a tag which was encoded with <a HREF="#FfxNtmPECCTagEncode">FfxNtmPECCTagEncode</a>.
+
+<p>    <b>IMPORTANT NOTE</b> -- In some circumstances with some flash
+    devices, this code can cause sensitivity to endianness issues.
+    In particular, devices or controllers featuring a bus width more
+    than one byte and that designate specific bytes within the spare
+    area for internal purposes may have unwanted interactions with
+    the algorithms in this procedure. Consult your datasheet.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NtmInfo structure. This
+                   structure contains about custom spare area
+                   formatting and device characteristics.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pDest
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The destination buffer to fill with the 2-byte tag
+                   data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The pointer to the spare area buffer containing
+                   encoded tags.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indication of the spare area format to be
+                   considered when decoding tags, if it is not
+                   a custom format.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the tag was properly decoded and placed in
+        the buffer specified by pDest, otherwise FALSE.  If FALSE
+        is returned, the buffer specified by pDest will be set to
+        NULLs.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmPECCTagEncode"></a>
+<a NAME="FfxNtmPECCTagEncode"></a>
+FfxNtmPECCTagEncode
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxNtmPECCTagEncode</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMINFO        *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pSrc,<br>&nbsp;&nbsp;&nbsp;
+    NANDSPAREFMT    fmt)
+</div>
+<div class=SectionText>
+
+    Encode a FlashFX tag in the standard format.  The first two bytes
+    are the standard media-independent value, followed by a check byte
+    calculated from that value, and a Hamming code ECC for the
+    whole thing.
+
+<p>    <b>IMPORTANT NOTE</b> -- In some circumstances with some flash
+    devices, this code can cause sensitivity to endianness issues.
+    In particular, devices or controllers that designate specific
+    bytes within the spare area for internal purposes may have
+    unwanted interactions with the algorithms in this procedure.
+    Consult your datasheet.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NtmInfo structure. This
+                   structure contains information about custom
+                   spare area formatting and device characteristics
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the spare area which will receive
+                   encoded tags.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSrc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Source for raw tag bytes.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fmt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indication of the spare area format to be
+                   considered when encoding tags, if it is not
+                   a custom format.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the tag was properly encoded and placed in
+        the buffer specified by pDest, otherwise FALSE.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSSFDCBuildSpareArea"></a>
+<a NAME="FfxNtmSSFDCBuildSpareArea"></a>
+FfxNtmSSFDCBuildSpareArea
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxNtmSSFDCBuildSpareArea</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    NTMINFO            *pNtmInfo,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pTag,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>              fUseEcc)
+</div>
+<div class=SectionText>
+
+    Initializes the spare area with the fixed values and the
+    ECC generated from the data given using the SSFDC format.
+
+<p>    Note that this function is used to build arrays of spare
+    areas when emulating larger page sizes with small-block
+    NAND.
+
+<p>    Likewise when emulating larger page sizes, we only record
+    the tag value in the first one, and therefore the pTag
+    pointer may be NULL if we do not want to record the tag for
+    this given spare area.
+
+<p>    <b>Note</b> -- This function is only appropriate for use where
+              software ECC is being used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle to use.  This value may be
+                      NULL for some NTMs.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNtmInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NTMINFO structure to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data for which ECCs are to be
+                      calculated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to build the
+                      spare data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTag
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the tag data to store in the
+                      spare area.  This pointer may be NULL if the
+                      tag value is to remain unset.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fUseEcc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A flag indicating whether ECCs should be used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSSFDCCorrectPage"></a>
+<a NAME="FfxNtmSSFDCCorrectPage"></a>
+FfxNtmSSFDCCorrectPage
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmSSFDCCorrectPage</font>(<br>&nbsp;&nbsp;&nbsp; 
+    size_t              nSpareSize,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pabECC)
+</div>
+<div class=SectionText>
+
+    This function examines an SSFDC style page, checking the page
+    flags and potentially the ECC to determine if the page is OK.
+    If a failure is found, the ECC will attempt to correct the
+    problem and return a status which will indicate the state of
+    the data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+nSpareSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The spare area size to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to page of data read from the flash.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to spare area associated with the
+                     given data sector.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of ECC bytes, typically
+                     3 bytes for for every DATA_BYTES_PER_ECC worth
+                     of data.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.
+
+<p>        ffxStat will be FFXSTAT_FIMCORRECTABLEDATA if one or more
+        bit errors were corrected with ECC.
+
+<p>        If ffxStat == FFXSTAT_FIMUNCORRECTABLEDATA, the ulCount
+        field will indicate the number of correct segments that
+        were found.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSSFDCGetPageStatus"></a>
+<a NAME="FfxNtmSSFDCGetPageStatus"></a>
+FfxNtmSSFDCGetPageStatus
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmSSFDCGetPageStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA    pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulPage)
+</div>
+<div class=SectionText>
+
+    This function returns the page status for SSFDC style flash.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipClass
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIPCLASS
+                           describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page from which to return status.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus field will contain the block status
+        bits pertaining to bad blocks.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSSFDCIsBadBlock"></a>
+<a NAME="FfxNtmSSFDCIsBadBlock"></a>
+FfxNtmSSFDCIsBadBlock
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmSSFDCIsBadBlock</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE                   hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA            pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP          *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>                    ulBlock)
+</div>
+<div class=SectionText>
+
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                           to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                           describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                           adjusted for reserved space (if any).
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.  If ffxStat is FFXSTAT_SUCCESS, the
+        op.ulBlockStatus field will contain the block status
+        bits pertaining to bad blocks.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxNtmSSFDCSetBlockType"></a>
+<a NAME="FfxNtmSSFDCSetBlockType"></a>
+FfxNtmSSFDCSetBlockType
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxNtmSSFDCSetBlockType</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHANDLE           hNTM,<br>&nbsp;&nbsp;&nbsp;
+    PFNREADSPAREAREA    pfnReadSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    PFNWRITESPAREAREA   pfnWriteSpareArea,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlockStatus)
+</div>
+<div class=SectionText>
+
+    Attempts to mark the given block according to the specified
+    ulBlockStatus value.
+
+<p>    <h4>Only two block types are supported</h4>
+
+<p>    
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+BLOCKSTATUS_FACTORYBAD
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Mark the block bad by writing a
+                             non-0xFF value to offset 5 in the
+                             spare area for the first two pages
+                             in a block.
+</td>
+</tr>
+
+<p>    
+<tr class=Def>
+<td class=Def>
+BLOCKSTATUS_BBMBLOCK
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Mark the block as one that is being
+                             used by BBM.  Since BBM does not
+                             write with ECC, we cannot rely on
+                             that mark to identify all blocks
+                             which have been used by FlashFX.
+                             When resizing disks, this BBM mark
+                             will prevent blocks which were
+                             previously used by BBM from being
+                             considered "factory-bad".
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNTM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnReadSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ReadSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnWriteSpareArea
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the WriteSpareArea function
+                            to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                            describing the chip being used.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to mark.  Must have been
+                            adjusted for reserved space (if any).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockStatus
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block status value.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure describing the state of
+        the operation.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

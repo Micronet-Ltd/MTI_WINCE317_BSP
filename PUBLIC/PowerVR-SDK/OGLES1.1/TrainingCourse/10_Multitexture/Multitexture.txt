@@ -1,0 +1,11 @@
+Demo title: 		Multitexture
+
+Demonstrates: 		How to use multiple textures
+
+Short Description:	How to use multiple textures
+
+Full Description:	
+Shows how to combine multiple textures in six different ways.
+
+polygon count:		72
+Vertex Count: 		144

@@ -1,0 +1,9 @@
+DIRS=\
+	bmtrace\
+	WL1271_Manager_Applet\
+	WL1271_Manager_App\
+	SerialTest_App\
+	CheckSum\
+	wl1271helper
+
+

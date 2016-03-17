@@ -1,0 +1,8 @@
+TARGETNAME=oal_cpuver_omap35xx_tps659xx_ti_v1
+TARGETTYPE=LIBRARY
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+SOURCES=\
+    oalcpuver.c \
+

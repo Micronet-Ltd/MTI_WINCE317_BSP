@@ -1,0 +1,16 @@
+
+Demo title: 		UserClipPlanes
+
+Demonstrates: 		User clip planes
+
+Short Description:	Illustrates how to use user clip planes
+
+Full Description:	
+A rotating sphere is shown cut by six user clip planes. 
+
+This demo requires 3D hardware which supports user clip planes.
+
+VGP: 			Not Required
+Polygon Count: 		980
+Vertex Count: 		492
+

@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatalogFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequiredVersion="6.00" xsi:schemaLocation="urn:Microsoft.PlatformBuilder/Catalog PbcXml600.xsd" xmlns="urn:Microsoft.PlatformBuilder/Catalog">
+  <FileInformation Id="FileInformation:TexasInstruments:EVM_3530">
+    <Title>Texas Instruments EVM3530 BSP</Title>
+    <Description>Texas Instruments EVM3530 Catalog Items</Description>
+    <Vendor>Texas Instruments</Vendor>
+    <OSVersion>6.00</OSVersion>
+    <FileVersion>6.15.02</FileVersion>
+  </FileInformation>
+  <Bsp Id="Bsp:TexasInstruments:EVM_3530:ARMV4I">
+    <Title>TI_EVM_3530:ARMV4I</Title>
+    <Description>A BSP for the Texas Instruments EVM3530 reference platform.  Uses OS build for ARMV4I architecture.</Description>
+    <PlatformDirectory>TI_EVM_3530</PlatformDirectory>
+    <CpuId>Cpu:ARMV4I</CpuId>
+    <BspItemId>Item:TexasInstruments:RootBusDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:DmaDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:VrfbDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:GpioDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:TledDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:SpiDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:TwlDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:RtcDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:McBspDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:BacklightDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:TouchDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:KeypadDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:UartDriver1:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:UartDriver2:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:UartDriver3:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:WaveDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:HeadsetDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:SdhcDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:DisplayDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:USBOTGDriver:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:HardwareWatchdog:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:LightSense:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:AIO:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:OWR:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:CAN:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:GPS:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:GPRS:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:TemperatureSensor:TI_EVM3530</BspItemId>
+    <BspItemId>Item:TexasInstruments:AX88772:TI_EVM3530</BspItemId>
+    <BspItemId>Item:DefaultVendor:TelitDE910:TI_EVM3530</BspItemId>
+    <BspItemId>Item:DefaultVendor:DefaultCatalogItemName</BspItemId>
+  </Bsp>
+  <Item Id="Item:TexasInstruments:RootBusDriver:TI_EVM3530">
+    <Title>EVM3530 Root Bus Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>evm3530_bus.dll</Module>
+    <Location>Device Drivers\Bus</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\BUS</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\BUS</Path>
+    </SourceCode>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\BUS</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\BUS</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:DmaDriver:TI_EVM3530">
+    <Title>OMAP3530 DMA Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>dma_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\DMA</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\DMA</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\DMA</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:VrfbDriver:TI_EVM3530">
+    <Title>OMAP3530 VRFB Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>omap35xx_vrfb.dll</Module>
+    <Location>Device Drivers\Display</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\VRFB</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\VRFB</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:GpioDriver:TI_EVM3530">
+    <Title>GPIO Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>gpio.dll</Module>
+    <Location>Device Drivers\GPIO</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\GPIO</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\GPIO</Path>
+    </SourceCode>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\GPIO</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\GPIO</Path>
+    </SourceCode>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\GPIO</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\GPIO</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:TledDriver:TI_EVM3530">
+    <Title>TLED Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>tled_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\TPS659XX</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TLED</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TLED</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:SpiDriver:TI_EVM3530">
+    <Title>OMAP3530 SPI Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>spi_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\Serial</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\SPI</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\SPI</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:TwlDriver:TI_EVM3530">
+    <Title>TPS659XX Root Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>twl_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\TPS659XX</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\TWL</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\TWL</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:RtcDriver:TI_EVM3530">
+    <Title>RTC Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>rtc_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\TPS659XX</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\RTC</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\RTC</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:McBspDriver:TI_EVM3530">
+    <Title>OMAP3530 McBSP Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>omap35xx_mcbsp.dll</Module>
+    <Location>Device Drivers\Serial</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\MCBSP</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\MCBSP</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:BacklightDriver:TI_EVM3530">
+    <Title>Backlight Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>backlight.dll</Module>
+    <Location>Device Drivers\Display</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\BACKLIGHT</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\BACKLIGHT</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:TouchDriver:TI_EVM3530">
+    <Title>Touch Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>touch.dll</Module>
+    <Location>Device Drivers\Touch</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\TOUCH</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\TOUCH</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:KeypadDriver:TI_EVM3530">
+    <Title>Keypad Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>keypad_cebase.dll</Module>
+    <Location>Device Drivers\Keypad</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\KEYPAD</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\KEYPAD</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:UartDriver1:TI_EVM3530">
+    <Title>OMAP3530 UART Driver (COM1)</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_COM1</Variable>
+    <Module>uart_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\Serial</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\UART</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\UART</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:UartDriver2:TI_EVM3530">
+    <Title>OMAP3530 UART Driver (COM2)</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_COM2</Variable>
+    <Module>uart_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\Serial</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\UART</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\UART</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:UartDriver3:TI_EVM3530">
+    <Title>OMAP3530 UART Driver (COM3)</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_COM3</Variable>
+    <Module>uart_omap35xx_tps659xx_ti_v1.dll</Module>
+    <Location>Device Drivers\Serial</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\UART</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\UART</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:WaveDriver:TI_EVM3530">
+    <Title>OMAP3530 Wave Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>evm3530_wave.dll</Module>
+    <Location>Device Drivers\Audio</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\WAVE</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\WAVE</Path>
+    </SourceCode>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\WAVE</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap\TPS659XX\WAVE</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:HeadsetDriver:TI_EVM3530">
+    <Title>Headset Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>headset.dll</Module>
+    <Location>Device Drivers\Audio</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\HEADSET</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\HEADSET</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:SdhcDriver:TI_EVM3530">
+    <Title>OMAP3530 SDHC Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>sdhc.dll</Module>
+    <Location>Device Drivers\SDHC</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\SDHC\BASE</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\SDHC\BASE</Path>
+    </SourceCode>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\SDHC\IMPL</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\SDHC\IMPL</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:DisplayDriver:TI_EVM3530">
+    <Title>OMAP3530 DDI Driver</Title>
+    <Type>BspSpecific</Type>
+    <Module>ddi_cebase.dll</Module>
+    <Location>Device Drivers\Display</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\DISPLAY</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\DISPLAY</Path>
+    </SourceCode>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\LCD\VGA</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\LCD\VGA</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:USBOTGDriver:TI_EVM3530">
+    <Title>OMAP3530 USB OTG Driver</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_USBOTG</Variable>
+    <Module>omap35xx_musbotg_tps.dll</Module>
+    <Location>Device Drivers\USB</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\musb</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\COMMON\SRC\SOC\OMAP35XX_TPS659XX_TI_V1\omap35xx\musb</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:HardwareWatchdog:TI_EVM3530">
+    <Title>OMAP3530 Hardware Watchdog</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_WATCHDOG_ENABLE</Variable>
+    <Location>OAL</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\OAL\OALWATCHDOG</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\OAL\OALWATCHDOG</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:LightSense:TI_EVM3530">
+    <Title>Light Sensor Driver</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_LIGHTSENSE</Variable>
+    <Module>ltsr.dll</Module>
+    <Location>Device Drivers\Light Sense</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\LIGHTSENSOR</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\LIGHTSENSOR</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:AIO:TI_EVM3530">
+    <Title>Automotive Input/Output Driver</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_AIODRIVER</Variable>
+    <Module>aiodrvr.dll</Module>
+    <Location>Device Drivers\AIO</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\AIO</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\AIO</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:OWR:TI_EVM3530">
+    <Title>One-Wire Interface</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_OWRDRIVER</Variable>
+    <Module>owrdrvr.dll</Module>
+    <Location>Device Drivers\OWR</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\OWR</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\OWR</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:CAN:TI_EVM3530">
+    <Title>CANBUS Interface</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_CAN</Variable>
+    <Module>canopenlib_hw.dll</Module>
+    <Location>Device Drivers\CAN</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\CAN</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\CAN</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:GPS:TI_EVM3530">
+    <Title>GPS Support</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_GPS</Variable>
+    <Module>GPSdrvr.Dll</Module>
+    <Location>Device Drivers\GPS</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\GPS</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\GPS</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:GPRS:TI_EVM3530">
+    <Title>GSM/GPRS Support</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_GPRS</Variable>
+    <Module>ftdi_ser_virtual.dll</Module>
+    <Location>Device Drivers\GPRS</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\GPRS</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\GPRS</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:TemperatureSensor:TI_EVM3530">
+    <Title>Temperature Sensor Driver</Title>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_TEMPSENSOR</Variable>
+    <Module>pwrkey.dll</Module>
+    <Location>Device Drivers\Temperature Sensor</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\PWRKEY</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\PWRKEY</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:TexasInstruments:AX88772:TI_EVM3530">
+    <Title>AX88772 USB to Ethernet Driver</Title>
+    <Description>AX88772 USB to Ethernet Driver</Description>
+    <Comment>AX88772 USB to Ethernet Driver</Comment>
+    <Type>BspSpecific</Type>
+    <SysgenVariable>SYSGEN_NDIS</SysgenVariable>
+    <Variable>BSP_NIC_AX88772</Variable>
+    <Module>ax88772.dll</Module>
+    <Location>Device Drivers\Networking</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\AX88772</Title>
+      <Description>AX88772 USB to Ethernet Driver</Description>
+      <Comment>AX88772 USB to Ethernet Driver</Comment>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\AX88772</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:DefaultVendor:DefaultCatalogItemName">
+    <Title>USB Audio Class Driver</Title>
+    <Description>A USB audio class driver enables the device to connect to USB audio devices such as USB Headset and USB External Speaker.</Description>
+    <Comment>USB Audio Class Driver</Comment>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_USBAUDIOCLASS</Variable>
+    <SupportedCpuId>Cpu:ARMV4I</SupportedCpuId>
+    <Location>Device Drivers\USB\USB Audio class</Location>
+    <SourceCode>
+      <Title>USB Audio Class Driver ($(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\USBAUDIOCLASS)</Title>
+      <Description>USB Audio Class Driver</Description>
+      <Comment>USB Audio Class Driver</Comment>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\USBAUDIOCLASS</Path>
+    </SourceCode>
+  </Item>
+  <Item Id="Item:DefaultVendor:TelitDE910:TI_EVM3530">
+    <Title>Telit_DE910</Title>
+    <Description>Telit USB Windows CE</Description>
+    <Type>BspSpecific</Type>
+    <Variable>BSP_TELITUSB_DE910</Variable>
+    <Module>CDCDriver.dll</Module>
+    <Location ConditionLocation="">Device Drivers\GPRS</Location>
+    <SourceCode>
+      <Title>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\TELIT_DE910\USB</Title>
+      <Path>$(_WINCEROOT)\PLATFORM\TI_EVM_3530\SRC\DRIVERS\TELIT_DE910\USB</Path>
+    </SourceCode>
+  </Item>
+</CatalogFile>

@@ -1,0 +1,15 @@
+
+Demo title: 		OptimizeMesh
+
+Demonstrates: 		Optimized indexed triangle list exporting
+
+Short Description:	Shows the performance increase when using optimized indexed triangle lists
+
+Full Description:
+Shows a textured model rendered in two different modes: one using a non optimized triangle list and one using an optimized triangle list.
+
+The demo switches mode after a few seconds or after the user presses the action key. Both model data were generated with the PVRMAXExport plug-in utility from the SDK. The optimized triangle list case was generated using the PVRTTriStrip triangle sorting option from PVRMAXExport. MBX devices with up-to-date drivers should show higher performance in the optimized triangle list case. Note that the performance difference will not be visible on PC Emulation builds!
+ 
+VGP: 			Not Required
+Polygon Count: 		9814
+Vertex Count: 		4981

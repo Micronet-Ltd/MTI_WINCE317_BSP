@@ -1,0 +1,384 @@
+<html>
+<head>
+<title>
+FlashFX API: Headers
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+FlashFX API: Headers
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): FlashFX API: Headers">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        These headers are the standard files that OEMs need to use when
+        building FlashFX projects, or FlashFX aware applications.  With the
+        exception of <a HREF="#ffxconf.h">ffxconf.h</a>, all are located in the \flashfx\include
+        directory.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#ffxconf.h">ffxconf.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master FlashFX project configuration header.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#flashfx.h">flashfx.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master FlashFX header file for code which is built    inside     the
+        standard FlashFX build process.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#flashfx_wince.h">flashfx_wince.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master FlashFX header file for code which is built    outside     the
+        standard FlashFX build process, but uses FlashFX functionality.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#fxfmlapi.h">fxfmlapi.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master FlashFX header file for describing the public interface
+        to the FML.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#fxloaderapi.h">fxloaderapi.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master FlashFX header file for describing the public interface
+        to the FlashFX Loader.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#oesl.h">oesl.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master FlashFX Tera header file for a given operating system.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#vbfconf.h">vbfconf.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master FlashFX header file for configuring the VBF allocator.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="ffxconf.h"></a>
+<a NAME="ffxconf.h"></a>
+ffxconf.h
+</h3>
+<div class=SectionText>
+
+        The master FlashFX project configuration header.  This header
+        file resides in each FlashFX <font class=HighText>Project Directory</font>.
+
+<p>        When a new FlashFX project is created, a template ffxconf.h file
+        is copied from the \flashfx\os\wince\newproj directory.
+
+<p>        <b>Note that the default template header may be different for each the various operating systems which FlashFX supports, so mixing copies from different operating system abstractions is not recommended.</b>
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="flashfx.h"></a>
+<a NAME="flashfx.h"></a>
+flashfx.h
+</h3>
+<div class=SectionText>
+
+        The master FlashFX header file for code which is built <b>inside</b> the
+        standard FlashFX build process.  All FlashFX code normally includes
+        this header first, immediately following any OS specific headers, and
+        preceding any other FlashFX or DCL headers.
+
+<p>        If custom code is placed in the FlashFX <font class=HighText>Project Directory</font> to be
+        built by the FlashFX build process, it must include this header first.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="flashfx_wince.h"></a>
+<a NAME="flashfx_wince.h"></a>
+flashfx_wince.h
+</h3>
+<div class=SectionText>
+
+        The master FlashFX header file for code which is built <b>outside</b> the
+        standard FlashFX build process, but uses FlashFX functionality.
+
+<p>        If this header is used independently by code which is calling FlashFX
+        functionality, but is built outside the Datalight standard build
+        process, this header is typically included first, before any other
+        Datalight headers, and after any OS specific headers.
+
+<p>        To use this, the \flashfx\include directory should be in the include
+        search path.
+
+<p>        This header automatically includes dcl_wince.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="fxfmlapi.h"></a>
+<a NAME="fxfmlapi.h"></a>
+fxfmlapi.h
+</h3>
+<div class=SectionText>
+
+        The master FlashFX header file for describing the public interface
+        to the FML.
+
+<p>        To use this header in an externally built application, the
+        \flashfx\include directory should be in the include search path, and
+        the app should first include <a HREF="#flashfx_wince.h">flashfx_wince.h</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="fxloaderapi.h"></a>
+<a NAME="fxloaderapi.h"></a>
+fxloaderapi.h
+</h3>
+<div class=SectionText>
+
+        The master FlashFX header file for describing the public interface
+        to the FlashFX Loader.
+
+<p>        To use this header in an externally built application, the
+        \flashfx\include directory should be in the include search path, and
+        the app should first include <a HREF="#flashfx_wince.h">flashfx_wince.h</a>.
+
+<p>        <b>Note</b> -- Don't confuse the FlashFX Loader with the Datalight Loader
+        implemented in DCL.  The Datalight Loader is designed to provide a
+        simple way to read a file off a file off a FAT or Reliance formatted
+        disk, such as what might be needed if the OS image was stored on a
+        formatted disk.  The FlashFX Loader provides low level flash access
+        routines, such as what are typically used within bootloaders.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="oesl.h"></a>
+<a NAME="oesl.h"></a>
+oesl.h
+</h3>
+<div class=SectionText>
+
+        The master FlashFX Tera header file for a given operating system.  This
+        header contains default configuration values for the specific OS.  This
+        file is not normally changed by an OEM, except in cases where the RTOS
+        Porting Kit is being used to create a FlashFX implementation for a
+        new OS.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="vbfconf.h"></a>
+<a NAME="vbfconf.h"></a>
+vbfconf.h
+</h3>
+<div class=SectionText>
+
+        The master FlashFX header file for configuring the VBF allocator.
+
+<p>        Most FlashFX projects do not need to modify the default settings in
+        this header.  The default version of this file resides in the
+        \flashfx\include directory.  To make project specific changes, copy the
+        file into your <font class=HighText>Project Directory</font> and make the changes there.  Be
+        sure to do a "clean" build after making changes to vbfconf.h.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

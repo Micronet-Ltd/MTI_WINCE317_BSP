@@ -1,0 +1,91 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+
+#include <windows.h>
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icons
+//
+
+IDI_DOCUMENT            ICON   DISCARDABLE   "RES\\document.ico"
+IDI_FOLDER              ICON   DISCARDABLE   "RES\\folder.ico"
+IDI_APPLICATION         ICON   DISCARDABLE   "RES\\application.ico"
+IDI_STORAGECARD         ICON   DISCARDABLE   "RES\\storagecard.ico"
+IDI_NETWORKFOLDER       ICON   DISCARDABLE   "RES\\networkfolder.ico"
+IDI_SHORTCUT            ICON   DISCARDABLE   "RES\\shortcut.ico"
+IDI_EXPLORER2           ICON   DISCARDABLE   "RES\\treeup.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Strings
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+   IDS_FILETYPE_APPLICATION     "Application"
+   IDS_FILETYPE_FOLDER          "Folder"
+   IDS_FILETYPE_FILE            "%s File"
+   IDS_FILETYPE_FILE_GENERIC    "File"
+   IDS_FILETYPE_SHORTCUT        "Shortcut"
+   IDS_FILETYPE_SYSTEM          "System Folder"
+   IDS_FILETYPE_UNKNOWN         "Unknown Type"
+   IDS_OOM                      "There is not enough memory. Please exit some running programs and try again."
+   IDS_OOM_TITLE                "Out Of Memory Error"
+   IDS_SHORTCUT_TO              "Shortcut to %s"
+
+   IDS_SHGOFN_OPEN              "Open"
+   IDS_SHGOFN_SAVE              "Save As"
+   IDS_SHGOFN_TTSTR1            "Up"
+   IDS_SHGOFN_TTSTR2            "List"
+   IDS_SHGOFN_TTSTR3            "Details"
+
+   IDS_SHGOFN_ERR_PATHTOOLONG       "The path is too long. Please select a shorter file name.\n"
+   IDS_SHGOFN_ERR_INVALIDFILENAME   "'%s'\nThis file name is not valid."
+   IDS_SHGOFN_ERR_REPLACEPROMPT     "'%s' This file already exists. Replace existing file?"
+   IDS_SHGOFN_ERR_CREATEPROMPT      "File does not exist.  Do you want to create '%s'?"
+   IDS_SHGOFN_ERR_FILENOTFOUND      "'%s' could not be found.  Make sure that the correct path and file name are given."
+   IDS_SHGOFN_ERR_PATHDOESNOTEXIST  "The folder '%s' is not accessible.\nPlease verify that the correct path was given."
+
+
+// Strings from UI
+
+   IDS_SHFO_ERR_ACCESS          "Access is denied.\n\nMake sure the disk is not full or write-protected and that the file is not currently in use."
+   IDS_SHFO_ERR_ALREADYEXISTS   "\n\nThe destination folder already contains a file or folder with that name."
+   IDS_SHFO_ERR_BADNAME         "\n\nA file name cannot contain any of the following characters:\n\\/: *?""<>|"
+   IDS_SHFO_ERR_DISKFULL        "There is not enough free disk space.\n\nDelete one or more files to free disk space, and then try again."
+   IDS_SHFO_ERR_DSTISSUBFOLDER  "\n\nThe destination folder is a subfolder of the source folder."
+   IDS_SHFO_ERR_FILENOTFOUND    "Cannot read from the source file or disk.\n\nMake sure that the correct path and file name are given."
+   IDS_SHFO_ERR_FOLDERLOCKED    "'%s' is a system folder and is required for Windows to run properly.\n\nIt cannot be deleted, moved or renamed."
+   IDS_SHFO_ERR_GENERIC         "Error code %d.\n\n%s"
+   IDS_SHFO_ERR_HDR_COPY        "Cannot copy '%s': "
+   IDS_SHFO_ERR_HDR_DELETE      "Cannot delete '%s': "
+   IDS_SHFO_ERR_HDR_MOVE        "Cannot move '%s': "
+   IDS_SHFO_ERR_HDR_RENAME      "Cannot rename '%s': "
+   IDS_SHFO_ERR_INROMCOPY       "\n\nFiles located in ROM cannot be copied."
+   IDS_SHFO_ERR_INROMDELETE     "\n\nFiles located in ROM cannot be deleted."
+   IDS_SHFO_ERR_INROMMOVE       "\n\nFiles located in ROM cannot be moved."
+   IDS_SHFO_ERR_INVALID         "\n\nThe file name you specified is invalid or too long. Specify a different file name."
+   IDS_SHFO_ERR_OOM             "There is not enough memory. Please exit some running programs and try again."
+   IDS_SHFO_ERR_SHARING         "There has been a sharing violation\n\nThe source or destination file may be in use."
+   IDS_SHFO_ERR_SRCDSTSAME      "\n\nThe destination folder is the same as the source folder."
+   
+   IDS_RECBININIT_FAILED        "Failed to initize the Recycle Bin. All delete operations will not be saved to disk"
+   IDS_CONFIRM_DEL_BIG          "The file '%s' is too big for the Recycle Bin. "
+   
+   IDS_NEWFOLDER                "New Folder"
+   IDS_FILECOPY_COPY            "Copy"
+   IDS_FILECOPY_OF              "of"
+END

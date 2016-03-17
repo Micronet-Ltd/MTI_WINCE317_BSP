@@ -1,0 +1,1500 @@
+ libopenvg
+
+ Timestamp is 4c9a72cd (Wed Sep 22 17:19:09 2010)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 0002c030H .rdata                  CODE
+ 0001:0002c050 00000026H .rdata$debug            CODE
+ 0001:0002c078 000b5308H .text                   CODE
+ 0001:000e1380 00000030H .xdata                  CODE
+ 0001:000e13b0 0000003cH .idata$2                CODE
+ 0001:000e13ec 00000014H .idata$3                CODE
+ 0001:000e1400 000001b0H .idata$4                CODE
+ 0001:000e15b0 000000c4H .idata$6                CODE
+ 0001:000e1680 0000070dH .edata                  CODE
+ 0002:00000000 000001b0H .idata$5                DATA
+ 0002:000001b0 0000000cH .data                   DATA
+ 0002:000001bc 00000018H .bss                    DATA
+ 0003:00000000 00001b20H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     10001000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     10001004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     10001008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     1000100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     10001010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     10001014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     10001018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     1000101c     corelib0:crt0init.obj
+ 0001:000008b0       ??_C@_0DB@LFFLJMDE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2hwd@ 100018b0     clear.obj
+ 0001:000008e4       ??_C@_0DJ@NNBCMNIN@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100018e4     clear.obj
+ 0001:00000920       ??_C@_0FG@JMEJCMLJ@_SetupUSSEVertexCodeForDepthClea@ 10001920     clear.obj
+ 0001:00000978       ??_C@_0DJ@CKCBJIEC@c?3?2wince?2omap?2ddk1?45?2eurasia?2eur@ 10001978     clear.obj
+ 0001:000009b8       ??_C@_0FA@MOOAMFLE@SetupUSSEVertexCodeForClear?3?5Cou@ 100019b8     clear.obj
+ 0001:00000a08       ??_C@_0FL@LEOLABGK@_SetupUSSEPixelCodeForDepthClear@ 10001a08     clear.obj
+ 0001:00000a68       ??_C@_0FA@NIJFOGFE@_SetupUSSEPixelCodeForClear?3?5Cou@ 10001a68     clear.obj
+ 0001:00000ab8       ??_C@_0CJ@DNEJAEPN@OVGDrawPrimitive?3OVGPrepareToDra@ 10001ab8     clear.obj
+ 0001:00000ae4       ??_C@_07DDBJJFDG@vgClear?$AA@ 10001ae4     clear.obj
+ 0001:00001ea8       ??_C@_0DJ@EDHNFEAI@OVGCreateTGA?5?3?5Failed?5to?5write?5p@ 10002ea8     debug.obj
+ 0001:00001ee4       ??_C@_0DA@PANGDBCL@CreateTGA?5?3?5a?5bit?5depth?5of?5?$CFld?5i@ 10002ee4     debug.obj
+ 0001:00001f14       ??_C@_0CL@MPCMDAFN@OVGCreateTGA?3?5TODO?3?51bit?5and?54bi@ 10002f14     debug.obj
+ 0001:00001f40       ??_C@_0DJ@KNONCHBA@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10002f40     debug.obj
+ 0001:00001f7c       ??_C@_0CH@JCBBJNPO@OVGCreateTga?3?5Failed?5to?5create?5f@ 10002f7c     debug.obj
+ 0001:00001fa4       ??_C@_02GMLFBBN@wb?$AA@    10002fa4     debug.obj
+ 0001:00002538       ??_C@_0CD@DGJHFMAJ@OVGCreateGC?3?5Failed?5to?5init?5the?5@ 10003538     eglglue.obj
+ 0001:0000255c       ??_C@_0CK@BPCOPEEN@OVGCreateGC?3?5Failed?5to?5create?5sh@ 1000355c     eglglue.obj
+ 0001:00002588       ??_C@_0CP@HNHEFIAD@OVGCreateGC?3?5Failed?5to?5create?5ex@ 10003588     eglglue.obj
+ 0001:000025b8       ??_C@_0DL@LHFLNEPB@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100035b8     eglglue.obj
+ 0001:000025f4       ??_C@_0BE@FFAMMNPP@Cannot?5allocate?5pGC?$AA@ 100035f4     eglglue.obj
+ 0001:00002608       ??_C@_0DO@OCEMIDBN@_CreateShareableContextData?3?5Fai@ 10003608     eglglue.obj
+ 0001:00002648       ??_C@_0DJ@HHBGOOPM@_CreateShareableContextData?3?5Fai@ 10003648     eglglue.obj
+ 0001:00002684       ??_C@_0DB@EBAIAAFI@_CreateShareableContextData?3?5Inv@ 10003684     eglglue.obj
+ 0001:000026b8       ??_C@_0DM@GOPGJEKE@_InitContext?3?5Failed?5to?5allocate@ 100036b8     eglglue.obj
+ 0001:000026f4       ??_C@_0DH@GGPMCJMM@_InitContext?3?5Failed?5to?5allocate@ 100036f4     eglglue.obj
+ 0001:00002730       ??_C@_0EC@LLDIDENA@_InitContext?3?5Failed?5to?5allocate@ 10003730     eglglue.obj
+ 0001:00002774       ??_C@_0DK@GJNJFPNI@_InitContext?3?5Failed?5to?5allocate@ 10003774     eglglue.obj
+ 0001:000027b0       ??_C@_0EH@LHEIEAIJ@_CreateShareableContextData?3?5Fai@ 100037b0     eglglue.obj
+ 0001:000027f8       ??_C@_0EM@EFMEMFLJ@_CreateShareableContextData?3?5Fai@ 100037f8     eglglue.obj
+ 0001:00002848       ??_C@_0EO@DKIPOLIC@_CreateShareableContextData?3?5Fai@ 10003848     eglglue.obj
+ 0001:00002898       ??_C@_0EF@KKBHOKHK@_CreateShareableContextData?3?5TQ?5@ 10003898     eglglue.obj
+ 0001:000028e0       ??_C@_0BC@HCKLCAH@TQ?5General?5buffer?$AA@ 100038e0     eglglue.obj
+ 0001:000028f8       ??_C@_0EC@GJNEKOAH@_CreateShareableContextData?3?5TQ?5@ 100038f8     eglglue.obj
+ 0001:0000293c       ??_C@_0P@EDILGKAI@TQ?5USSE?5buffer?$AA@ 1000393c     eglglue.obj
+ 0001:00002950       ??_C@_0EB@GBPANBOP@_CreateShareableContextData?3?5TQ?5@ 10003950     eglglue.obj
+ 0001:00002994       ??_C@_0O@JNGEGLJK@TQ?5PDS?5buffer?$AA@ 10003994     eglglue.obj
+ 0001:000029a4       ??_C@_0DL@OKELPICK@_CreateShareableContextData?3?5TQ?5@ 100039a4     eglglue.obj
+ 0001:000029e0       ??_C@_0FK@EKFGINJJ@_CreateShareableContextData?3?5Dev@ 100039e0     eglglue.obj
+ 0001:00002a40       ??_C@_0FC@PGLHFIGP@_CreateShareableContextData?3?5Dev@ 10003a40     eglglue.obj
+ 0001:00002a98       ??_C@_0EH@OMLFHADC@_CreateShareableContextData?3?5Fai@ 10003a98     eglglue.obj
+ 0001:00002ae0       ??_C@_0EI@DCDDKDCJ@_CreateShareableContextData?3?5Fai@ 10003ae0     eglglue.obj
+ 0001:00002b28       ??_C@_0EG@JFBOKMAM@_CreateShareableContextData?3?5Fai@ 10003b28     eglglue.obj
+ 0001:00002b70       ??_C@_0EF@FFJGGJ@_CreateShareableContextData?3?5Fai@ 10003b70     eglglue.obj
+ 0001:00002bb8       ??_C@_0GH@DHLAPEKK@_CreateShareableContextData?3?5PVR@ 10003bb8     eglglue.obj
+ 0001:00002c20       ??_C@_0GH@DJNODJHE@_CreateShareableContextData?3?5PVR@ 10003c20     eglglue.obj
+ 0001:00002c88       ??_C@_0GK@JBCMFPEF@_CreateShareableContextData?3?5PVR@ 10003c88     eglglue.obj
+ 0001:00002cf8       ??_C@_0EJ@NMENNIGN@_CreateShareableContextData?3?5OVG@ 10003cf8     eglglue.obj
+ 0001:00002d48       ??_C@_0GL@PGEAHMAB@_DeleteShareableContextData?3?5PVR@ 10003d48     eglglue.obj
+ 0001:00002db8       ??_C@_0GI@NBPJMEKJ@_DeleteShareableContextData?3?5PVR@ 10003db8     eglglue.obj
+ 0001:00002e20       ??_C@_0GI@ILBCBAPG@_DeleteShareableContextData?3?5PVR@ 10003e20     eglglue.obj
+ 0001:00002e88       ??_C@_0DE@NOGPIDBA@OVGMakeCurrentGC?3?5Invalid?5drawab@ 10003e88     eglglue.obj
+ 0001:00002ebc       ??_C@_0DP@OJEDKDDC@OVGWrapImageAsRenderSurface?3?5OVG@ 10003ebc     eglglue.obj
+ 0001:00003490       ??_C@_0DL@JOGFAGDB@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10004490     ellipse.obj
+ 0001:00003b60       ??_C@_0DI@CPMAFJKE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10004b60     font.obj
+ 0001:00003b98       ??_C@_0CF@GBBBAJA@vgDrawGlyph?3?5OVGPrepareToDraw?5Fa@ 10004b98     font.obj
+ 0001:00003bc0       ??_C@_0CG@DGPDBJEL@vgDrawGlyphs?3?5OVGPrepareToDraw?5F@ 10004bc0     font.obj
+ 0001:00004178       ??_C@_0DF@CMICPMMI@OVGCreateGeometryBuffer?3OVGCreat@ 10005178     geombuffer.obj
+ 0001:000041b0       ??_C@_0DO@IHBIMLBM@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100051b0     geombuffer.obj
+ 0001:000041f0       ??_C@_0EF@LNGKIBFO@OVGCreateGeometryBuffer?3?5Sys?5Mem@ 100051f0     geombuffer.obj
+ 0001:00004238       ??_C@_0DM@DADGPMCA@OVGGetGeometryBufferAddresses?3?5D@ 10005238     geombuffer.obj
+ 0001:00004274       ??_C@_03GCKCNDHP@1?41?$AA@ 10005274     get.obj
+ 0001:00004278       ??_C@_0BA@HDDICJEH@PowerVR?5SGX?5530?$AA@ 10005278     get.obj
+ 0001:00004288       ??_C@_0BJ@FGEHHHOH@Imagination?5Technologies?$AA@ 10005288     get.obj
+ 0001:00004860       ??_C@_0BK@MJMMJBHE@vgCreateEGLImageTargetKHR?$AA@ 10005860     get.obj
+ 0001:0000487c       ??_C@_0DH@OBCKPFAP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000587c     get.obj
+ 0001:000048b4       ??_C@_0M@FLHNHFPG@vgGetString?$AA@ 100058b4     get.obj
+ 0001:00004e50       ??_C@_0DB@OJACFEEH@OVGSetupFirstPass?3?5OVGGeneratePi@ 10005e50     hwscene.obj
+ 0001:00004e84       ??_C@_0DI@BBABHMKD@OVGSetupFirstPass?3?5Failed?5to?5tok@ 10005e84     hwscene.obj
+ 0001:00004ebc       ??_C@_0DL@IPIOONPP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10005ebc     hwscene.obj
+ 0001:00004ef8       ??_C@_0CL@DGAKDLJG@OVGSetupFirstPass?3?5OVGPrepareToD@ 10005ef8     hwscene.obj
+ 0001:00004f24       ??_C@_0DK@NHMFALNB@OVGPerformOptionalPaintPass?3OVGG@ 10005f24     hwscene.obj
+ 0001:00004f60       ??_C@_0EB@CLAADONO@OVGPerformOptionalPaintPass?3Fail@ 10005f60     hwscene.obj
+ 0001:00004fa4       ??_C@_0CK@PGJPPHJL@OVGStrokePath?3?5Failed?5to?5render?5@ 10005fa4     hwscene.obj
+ 0001:00004fd0       ??_C@_0CN@HNLPLJCJ@OVGFillPathConcave?3_DrawPathPrim@ 10005fd0     hwscene.obj
+ 0001:00005590       ??_C@_0DL@JMDGICIK@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10006590     hwstate.obj
+ 0001:000055d0       ??_C@_0FE@MMJCNOC@_GenerateUSEMTEStateCopyCode?3?5Co@ 100065d0     hwstate.obj
+ 0001:00005bb8       ??_C@_0DJ@DDLKACGB@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10006bb8     image.obj
+ 0001:00005bf4       ??_C@_0CD@MBPBCILH@OVGCreateImage?3?5Invalid?5hKEGLIma@ 10006bf4     image.obj
+ 0001:00005c18       ??_C@_0DA@MJLPGGFP@vgClearImage?3?5OVGGetTextureLinea@ 10006c18     image.obj
+ 0001:00005c48       ??_C@_0CO@JNCCECKJ@vgClearImage?3?5_AlignRectangleWit@ 10006c48     image.obj
+ 0001:00005c78       ??_C@_0DD@INECNNEL@vgGetImageSubData?3?5_AlignRectang@ 10006c78     image.obj
+ 0001:00005cb0       ??_C@_0EC@LBJBDGDD@vgChildImage?3?5Failed?5to?5allocate@ 10006cb0     image.obj
+ 0001:00005cf4       ??_C@_0DP@LHNAHPKK@vgChildImage?3?5Failed?5to?5allocate@ 10006cf4     image.obj
+ 0001:00005d34       ??_C@_0CH@GJIKOHII@OVGSetPixels?3?5Failed?5to?5flush?5ha@ 10006d34     image.obj
+ 0001:00005d5c       ??_C@_0CG@DJDDDEPM@vgGetPixels?3?5Failed?5to?5flush?5har@ 10006d5c     image.obj
+ 0001:00005d84       ??_C@_0DH@DEALCHAG@vgReadPixels?3?5OVGAlignRectangleW@ 10006d84     image.obj
+ 0001:00005dbc       ??_C@_0CH@PCOMKEMB@vgReadPixels?3?5Failed?5to?5flush?5ha@ 10006dbc     image.obj
+ 0001:00005de4       ??_C@_0CH@HNCKCBBJ@vgCopyPixels?3?5Failed?5to?5flush?5ha@ 10006de4     image.obj
+ 0001:00005e10       ??_C@_0EG@POMBMFIC@OVGImageUpdateSubRegion?3?5Failed?5@ 10006e10     image.obj
+ 0001:00005e58       ??_C@_0EL@GHMABOAD@OVGImageUpdateSubRegion?3?5Failed?5@ 10006e58     image.obj
+ 0001:00006438       ??_C@_0DP@CJECGNJN@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10007438     imagefilter.obj
+ 0001:00006478       ??_C@_0BH@JIPFKMPD@Unhandled?5?$DM1bpp?5format?$AA@ 10007478     imagefilter.obj
+ 0001:00009670       ??_C@_0DI@IHMHHINE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000a670     mask.obj
+ 0001:000096a8       ??_C@_0BD@LNKNFGHE@fill?5colour?5failed?$AA@ 1000a6a8     mask.obj
+ 0001:0000a9e0       ??_C@_0DJ@NEGJGKFF@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000b9e0     maths.obj
+ 0001:0000afb0       ??_C@_0DJ@EOJMDEIK@OVGTessellateFillPath?3?5Failed?5to@ 1000bfb0     tessellate.obj
+ 0001:0000aff0       ??_C@_0EF@CIJAOHLM@OVGTessellateFillPath?3?5Could?5not@ 1000bff0     tessellate.obj
+ 0001:0000b038       ??_C@_0DK@CJLDJFCI@OVGTessellateFillPath?3?5Could?5not@ 1000c038     tessellate.obj
+ 0001:0000b074       ??_C@_0CM@NDILENEC@OVGTessellateFillPath?3?5Reallocat@ 1000c074     tessellate.obj
+ 0001:0000b0a0       ??_C@_0CK@LJEAMNKI@OVGTessellateFillPath?3?5Allocatio@ 1000c0a0     tessellate.obj
+ 0001:0000b0cc       ??_C@_0DO@DNPABPHE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000c0cc     tessellate.obj
+ 0001:0000b10c       ??_C@_0DK@PEJPENCF@OVGTessellateFillPath?3?5Failed?3?5I@ 1000c10c     tessellate.obj
+ 0001:0000b148       ??_C@_0EH@HCPJGIMJ@OVGTessellateStrokePath?3?5Could?5n@ 1000c148     tessellate.obj
+ 0001:0000b190       ??_C@_0FB@EHFGPNKC@OVGTessellateStrokePath?3?5Realloc@ 1000c190     tessellate.obj
+ 0001:0000b1e4       ??_C@_0CO@POMOJL@OVGTessellateStrokePath?3?5Realloc@ 1000c1e4     tessellate.obj
+ 0001:0000b214       ??_C@_0DM@BEGJHPJA@OVGTessellateStrokePath?3?5Could?5n@ 1000c214     tessellate.obj
+ 0001:0000b250       ??_C@_0CM@HCGCNOMK@OVGTessellateStrokePath?3?5Allocat@ 1000c250     tessellate.obj
+ 0001:0000b27c       ??_C@_0DH@HNOJBFOE@OVGTessellateStroke?3?5OVGTessella@ 1000c27c     tessellate.obj
+ 0001:0000b2b4       ??_C@_0DM@MJEFKHJN@OVGTessellateStrokePath?3?5Failed?3@ 1000c2b4     tessellate.obj
+ 0001:0000b2f0       ??_C@_0EI@OGOFJNG@_Get32BitsStaticIndexBufferAddr?3@ 1000c2f0     tessellate.obj
+ 0001:0000b338       ??_C@_0DO@BJNKKLJB@OVGTessellateStrokePath?3OVGGetGe@ 1000c338     tessellate.obj
+ 0001:0000b378       ??_C@_0DM@OFIBJODG@OVGTessellateStrokePath?3?5Could?5n@ 1000c378     tessellate.obj
+ 0001:0000c468       ??_C@_1CI@IKNGJJKF@?$AAr?$AAe?$AAl?$AAe?$AAa?$AAs?$AAe?$AA?2?$AAp?$AAr?$AAo?$AAf?$AAi?$AAl?$AAe?$AA?4?$AAt?$AAx?$AAt?$AA?$AA@ 1000d468     win32_os.obj
+ 0001:0000c490       ??_C@_13CIFDLIMG@?$AAw?$AA?$AA@ 1000d490     win32_os.obj
+ 0001:0000c494       ??_C@_1BC@MEIBENDK@?$AAr?$AAe?$AAl?$AAe?$AAa?$AAs?$AAe?$AA?2?$AA?$AA@ 1000d494     win32_os.obj
+ 0001:0000c4a8       ??_C@_1BK@ODALAEPJ@?$AA_?$AAp?$AAr?$AAo?$AAf?$AAi?$AAl?$AAe?$AA?4?$AAt?$AAx?$AAt?$AA?$AA@ 1000d4a8     win32_os.obj
+ 0001:0000c4c4       ??_C@_02DKCKIIND@?$CFs?$AA@ 1000d4c4     win32_os.obj
+ 0001:0000cfe8       ??_C@_0DH@HJGNLFIC@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000dfe8     set.obj
+ 0001:0000d020       ??_C@_0BP@HIHBMPNE@vgSeti?3OVGPrepareToDraw?5Failed?$AA@ 1000e020     set.obj
+ 0001:0000d040       ??_C@_0CD@GNPLMNFN@vgFinish?3?5Failed?5to?5flush?5hardwa@ 1000e040     set.obj
+ 0001:0000d5f8       ??_C@_0DL@HIFIMFGL@OVGCreatePrimitive?3?5Failed?5to?5re@ 1000e5f8     primitive.obj
+ 0001:0000d634       ??_C@_0DF@KKFHJENA@OVGCreatePrimitive?3?5Failed?5to?5al@ 1000e634     primitive.obj
+ 0001:0000d66c       ??_C@_0DN@HMFKIPCG@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000e66c     primitive.obj
+ 0001:0000d6ac       ??_C@_0DC@IHINGOEB@OVGCreatePrimitive?3?5ppsPrim?5is?5a@ 1000e6ac     primitive.obj
+ 0001:0000d6e0       ??_C@_0CF@HLKEIPCI@OVGAttachIndexBuffer?3?5ReAlloc?5Fa@ 1000e6e0     primitive.obj
+ 0001:0000dc98       ??_C@_0DI@CBFLPGCE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000ec98     path.obj
+ 0001:0000e360       ??_C@_0DN@NBMNBFHO@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000f360     statehash.obj
+ 0001:0000e930       ??_C@_0DJ@JOAIJCPD@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1000f930     paint.obj
+ 0001:0000e970       ??_C@_0FM@GPNKFLNC@_SetUpTAGUnitsForPixelShader?3OVG@ 1000f970     paint.obj
+ 0001:0000e9cc       ??_C@_0DA@NKOPCALA@_ValidatePatternImage?3?5Create?5im@ 1000f9cc     paint.obj
+ 0001:0000ea00       ??_C@_0EO@BALLIABC@_ValidatePatternImage?3?5Unable?5to@ 1000fa00     paint.obj
+ 0001:0000ea50       ??_C@_0EL@DDHAHKPA@_ValidatePatternImage?3?5Failed?5to@ 1000fa50     paint.obj
+ 0001:0000ea9c       ??_C@_0CH@GDHHAKJP@OVGCreatePaint?3?5Paint?5creation?5f@ 1000fa9c     paint.obj
+ 0001:0000eac4       ??_C@_0DF@IOLMEKHJ@OVGCreateDefaultColourRamp?3?5Fail@ 1000fac4     paint.obj
+ 0001:0000eafc       ??_C@_0CO@EIBLCOLE@OVGCreateColourRamp?3?5Failed?5to?5C@ 1000fafc     paint.obj
+ 0001:0000eb2c       ??_C@_0CG@OKNPODCA@vgCreatePaint?3?5Paint?5creation?5fa@ 1000fb2c     paint.obj
+ 0001:0000f0e8       ??_C@_0DJ@PDONDCBA@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100100e8     sgxif.obj
+ 0001:0000f124       ??_C@_0CP@HDKMOBP@OVGWaitForTA?3?5Timeout?5failed?5on?5@ 10010124     sgxif.obj
+ 0001:0000f154       ??_C@_0CM@LBMKCODI@WaitForRender?3?5PVRSRVEventObject@ 10010154     sgxif.obj
+ 0001:0000f180       ??_C@_0BH@IPGEHDGD@WaitForRender?3?5Timeout?$AA@ 10010180     sgxif.obj
+ 0001:0000f198       ??_C@_0EI@OLFOKAIC@OVGPrepareToDraw?3?5Failed?5to?5Crea@ 10010198     sgxif.obj
+ 0001:0000f1e0       ??_C@_0CD@KCKGLHPI@OVGPrepareToDraw?3?5Invalid?5Drawab@ 100101e0     sgxif.obj
+ 0001:0000f204       ??_C@_0DD@DHEHCNLA@OVGPrepareToDraw?3?5KEGLResizeRend@ 10010204     sgxif.obj
+ 0001:0000f238       ??_C@_0BJ@GOJGOGLE@Failed?5to?5flush?5hardware?$AA@ 10010238     sgxif.obj
+ 0001:0000f254       ??_C@_0CF@PPCIIHKC@OVGPrepareToDraw?3?5Null?5RenderSur@ 10010254     sgxif.obj
+ 0001:0000f27c       ??_C@_0CP@HGIAGMPC@_SetupZLSRegs?3?5Bad?5external?5Z?5Bu@ 1001027c     sgxif.obj
+ 0001:0000f2ac       ??_C@_0CC@EHIEFPMB@OVGKickSmallTA?3?5Couldn?8t?5flush?5H@ 100102ac     sgxif.obj
+ 0001:0000f2d0       ??_C@_0DB@GOMNKBAN@OVGKickSmallTA?3?5Invalid?5value?5fo@ 100102d0     sgxif.obj
+ 0001:0000f304       ??_C@_0DA@KCJBBEKI@OVGInternalFlushBuffers?3OVGPrepa@ 10010304     sgxif.obj
+ 0001:0000fb30       ??_C@_0DL@GFGKNLEM@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10010b30     useprog.obj
+ 0001:0000fb6c       ??_C@_0CM@PFGCPCBO@Couldn?8t?5allocate?5USE?5code?5for?5H@ 10010b6c     useprog.obj
+ 0001:0000fb98       ??_C@_0EC@KAMKDNPP@OVGSetupUSSEFragmentCodeTQBlit?3?5@ 10010b98     useprog.obj
+ 0001:0000fbe0       ??_C@_0GB@LAJOKMOA@_SetUpPixelShaderPDSPrimaryProgr@ 10010be0     useprog.obj
+ 0001:0000fc44       ??_C@_0DO@BAANOPKB@OVGSetupNOPPixelShader?3Failed?5to@ 10010c44     useprog.obj
+ 0001:0000fc84       ??_C@_0DM@MFNPMBIH@OVGSetupNOPPixelShader?3Failed?5to@ 10010c84     useprog.obj
+ 0001:00010360       ??_C@_0DI@DHGKIOMP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10011360     util.obj
+ 0001:00010398       ??_C@_0BA@FMCJLEC@KickTAThreshold?$AA@ 10011398     util.obj
+ 0001:000103a8       ??_C@_0L@CDGAGNFA@KickTAMode?$AA@ 100113a8     util.obj
+ 0001:000103b4       ??_C@_0BE@NCEPNDKE@ExternalZBufferMode?$AA@ 100113b4     util.obj
+ 0001:000103c8       ??_C@_0BF@GMGALNEL@DefaultVDMBufferSize?$AA@ 100113c8     util.obj
+ 0001:000103e0       ??_C@_0BJ@GGBNLCGB@DefaultPDSFragBufferSize?$AA@ 100113e0     util.obj
+ 0001:000103fc       ??_C@_0BJ@FDELEOJK@DefaultPDSVertBufferSize?$AA@ 100113fc     util.obj
+ 0001:00010418       ??_C@_0BJ@OAODBGJG@DefaultSpecObjBufferSize?$AA@ 10011418     util.obj
+ 0001:00010434       ??_C@_0BP@CGBHEOOJ@DefaultPregenPDSVertBufferSize?$AA@ 10011434     util.obj
+ 0001:00010454       ??_C@_0DI@ENFOOIJC@OVGIsExternalZRequired?3?5Bad?5exte@ 10011454     util.obj
+ 0001:0001048c       ??_C@_01CLKCMJKC@?5?$AA@   1001148c     util.obj
+ 0001:00010490       ??_C@_0BF@JLMGKHEC@BuildExtensionString?$AA@ 10011490     util.obj
+ 0001:00010a38       ??_C@_0DJ@LMHBLMN@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10011a38     state.obj
+ 0001:000110d8       ??_C@_0DL@LCHNBMLE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100120d8     specobj.obj
+ 0001:00011114       ??_C@_0DN@EAKHDIII@OVGSetupPixelEventProgram?3?5Faile@ 10012114     specobj.obj
+ 0001:00011154       ??_C@_0CK@NIPMMDNK@SetupPixelEventProgram?3?5Unknown?5@ 10012154     specobj.obj
+ 0001:00015780       ??_C@_0DP@FMCLOFLK@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10016780     pixelshader.obj
+ 0001:000157c0       ??_C@_0DP@NOCEMNHG@_AssemblePixelShader?3?5Couldn?8t?5a@ 100167c0     pixelshader.obj
+ 0001:00015800       ??_C@_0DO@GBMOMGAI@OVGGeneratePixelShader?3Failed?5to@ 10016800     pixelshader.obj
+ 0001:00015840       ??_C@_0DM@GOJIAAEB@OVGGeneratePixelShader?3Failed?5to@ 10016840     pixelshader.obj
+ 0001:0001587c       ??_C@_0DC@LCKPBLPM@OVGGeneratePixelShader?3Failed?5to@ 1001687c     pixelshader.obj
+ 0001:000158b0       ??_C@_0DK@HAOPLJIO@OVGGeneratePixelShader?3Failed?5to@ 100168b0     pixelshader.obj
+ 0001:000158ec       ??_C@_0DO@HFBCHOPF@OVGGeneratePixelShader?3Failed?5to@ 100168ec     pixelshader.obj
+ 0001:0001592c       ??_C@_0DO@EHCEBMHH@OVGGeneratePixelShader?3Failed?5to@ 1001692c     pixelshader.obj
+ 0001:0001596c       ??_C@_0DL@EABIBDNO@OVGGeneratePixelShader?3Failed?5to@ 1001696c     pixelshader.obj
+ 0001:000159a8       ??_C@_0DP@MBJIPFFF@c?3?2wince?2omap?2ddk1?45?2eurasia?2eur@ 100169a8     pixelshader.obj
+ 0001:000159e8       ??_C@_0FJ@HJMJFFI@AddPaintRadialGradientSection?3?5I@ 100169e8     pixelshader.obj
+ 0001:00015a48       ??_C@_0GA@CPBBFEC@AddPaintRadialGradientSection?3?5I@ 10016a48     pixelshader.obj
+ 0001:00015aa8       ??_C@_0CM@MODKENIO@Swizzle?5section?5not?5loaded?0?5inva@ 10016aa8     pixelshader.obj
+ 0001:00015ad4       ??_C@_0DB@IJFICHJC@Swizzle?5section?5not?5loaded?0?5inva@ 10016ad4     pixelshader.obj
+ 0001:00015b08       ??_C@_0CK@NFIEMPGF@AddUnPremultiplySection?3?5Invalid@ 10016b08     pixelshader.obj
+ 0001:00015b34       ??_C@_0CI@GCFAOML@AddPremultiplySection?3?5Invalid?5L@ 10016b34     pixelshader.obj
+ 0001:00015b5c       ??_C@_0DA@MOMHPNM@AddNonLinearConversionSection?3?5I@ 10016b5c     pixelshader.obj
+ 0001:00015b8c       ??_C@_0CN@MLGCJEDP@AddLinearConversionSection?3?5Inva@ 10016b8c     pixelshader.obj
+ 0001:00015bbc       ??_C@_0DA@HFNBBLJF@AddImageMultiplySection?3?5Invalid@ 10016bbc     pixelshader.obj
+ 0001:00015bec       ??_C@_0DA@MFOGPAGP@AddImageMultiplySection?3?5Invalid@ 10016bec     pixelshader.obj
+ 0001:00015c1c       ??_C@_0DC@HMJFOGOO@AddPerChannelAlphaSection?3?5Inval@ 10016c1c     pixelshader.obj
+ 0001:00015c50       ??_C@_0DC@MMKCANBE@AddPerChannelAlphaSection?3?5Inval@ 10016c50     pixelshader.obj
+ 0001:00015c84       ??_C@_0CI@CIMPOLKJ@AddColourXFormSection?3?5Invalid?5L@ 10016c84     pixelshader.obj
+ 0001:00015cac       ??_C@_0DG@JMKENLOO@AddPREMULTIPLY_IF_ALPHA_ZEROSect@ 10016cac     pixelshader.obj
+ 0001:00015ce4       ??_C@_0DA@MNAPBIKH@AddMaskingSection?3?5Invalid?5Accum@ 10016ce4     pixelshader.obj
+ 0001:00015d14       ??_C@_0CJ@KGKJFKEG@AddMaskingSection?3?5Invalid?5Mask?5@ 10016d14     pixelshader.obj
+ 0001:00015d40       ??_C@_0CJ@PHLOOOKG@AddFakePreUnPreSection?3?5Invalid?5@ 10016d40     pixelshader.obj
+ 0001:00015d70       ??_C@_0FJ@EHLLPMFF@_SetUpTAGUnitsForPixelShader?3OVG@ 10016d70     pixelshader.obj
+ 0001:00015dd0       ??_C@_0EH@CGKHDAFL@_SetUpPixelShaderPDSPrimaryProgr@ 10016dd0     pixelshader.obj
+ 0001:00015e18       ??_C@_0EB@HIEEBKO@_SetUpPixelShaderPDSPrimaryProgr@ 10016e18     pixelshader.obj
+ 0001:00018730       ??_C@_0DP@MOINIJOK@OVGGenerateVertexShader?3Failed?5t@ 10019730     vertexshader.obj
+ 0001:00018770       ??_C@_0DN@FDHBOEKH@OVGGenerateVertexShader?3Failed?5t@ 10019770     vertexshader.obj
+ 0001:000187b0       ??_C@_0DL@GPFADDCA@OVGGenerateVertexShader?3Failed?5t@ 100197b0     vertexshader.obj
+ 0001:000187f0       ??_C@_0EA@IPLJNLPN@OVGGenerateVertexShader?3Failed?5t@ 100197f0     vertexshader.obj
+ 0001:00018830       ??_C@_0EA@KEJEIIDO@OVGGenerateVertexShader?3Failed?5t@ 10019830     vertexshader.obj
+ 0001:00018870       ??_C@_0EA@LNIPLJHP@OVGGenerateVertexShader?3Failed?5t@ 10019870     vertexshader.obj
+ 0001:000188b0       ??_C@_0EA@MAJPNAJF@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100198b0     vertexshader.obj
+ 0001:000188f0       ??_C@_0DM@HBGJCCLL@OVGGenerateVertexShader?3Failed?5t@ 100198f0     vertexshader.obj
+ 0001:00018930       ??_C@_0FJ@EMOLKMJG@_AssembleVertexShaderPhase1?3?5Cou@ 10019930     vertexshader.obj
+ 0001:00018990       ??_C@_0FJ@FEDPHAL@_AssembleVertexShaderPhase0?3?5Cou@ 10019990     vertexshader.obj
+ 0001:00018f80       ??_C@_0DL@OGIJCKA@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10019f80     scissor.obj
+ 0001:00018fbc       ??_C@_0DF@BMIEIOHG@Couldn?8t?5allocate?5USE?5vertex?5cod@ 10019fbc     scissor.obj
+ 0001:00018ff4       ??_C@_0CL@BICPNAIC@OVGSendScissorRectsToStencil?3?5al@ 10019ff4     scissor.obj
+ 0001:0001b15c       ??_C@_0DP@BBGLMFBK@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1001c15c     pixelformat.obj
+ 0001:0001b19c       ??_C@_0BJ@EDLGADKC@Unknown?5pixel?5format?3?5?$CFd?$AA@ 1001c19c     pixelformat.obj
+ 0001:0001b1b8       ??_C@_0CJ@JPNIHBPJ@OVGReadPixelData?3?5Unhandled?5?$DM1bp@ 1001c1b8     pixelformat.obj
+ 0001:0001b778       ??_C@_0DL@GJPPCAGA@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1001c778     texture.obj
+ 0001:0001b7b4       ??_C@_0DJ@DHDCGIEO@OVGGetTextureDeviceAddress?3?5Devi@ 1001c7b4     texture.obj
+ 0001:0001b7f0       ??_C@_0CO@PBHFHKDF@OVGCreateTexture?3OVGCreateMemIns@ 1001c7f0     texture.obj
+ 0001:0001b820       ??_C@_0DA@OIMMDDCM@OVGCreateTexture?3OVGGetFormatDes@ 1001c820     texture.obj
+ 0001:0001b850       ??_C@_0CP@PCFHKGKC@OVGCreateTexture?3Texture?5Struct?5@ 1001c850     texture.obj
+ 0001:0001b880       ??_C@_0DK@JBPALAE@OVGCreateTextureFromEGLImage?3OVG@ 1001c880     texture.obj
+ 0001:0001b8bc       ??_C@_0DM@JJDINFO@OVGCreateTextureFromEGLImage?3OVG@ 1001c8bc     texture.obj
+ 0001:0001b8f8       ??_C@_0DL@KDHBMMOJ@OVGCreateTextureFromEGLImage?3Tex@ 1001c8f8     texture.obj
+ 0001:0001c458       ??_C@_0DD@FJLDMOOD@OVGInitialiseFrameResManagers?3?5V@ 1001d458     meminstance.obj
+ 0001:0001c48c       ??_C@_0DP@EFIMFFOE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1001d48c     meminstance.obj
+ 0001:0001c4cc       ??_C@_0DD@FHNNADDN@OVGInitialiseFrameResManagers?3?5T@ 1001d4cc     meminstance.obj
+ 0001:0001c500       ??_C@_0CP@DEFFEKCL@_FreeMemInstanceFRM?3?5SysMemBacku@ 1001d500     meminstance.obj
+ 0001:0001c530       ??_C@_0DE@NLCKMJGB@OVGCreateMemInstance?3?5Device?5Mem@ 1001d530     meminstance.obj
+ 0001:0001c564       ??_C@_0DA@ELKNONBC@OVGCreateMemInstance?3Mem?5instanc@ 1001d564     meminstance.obj
+ 0001:0001c594       ??_C@_0DC@BFFEFGEM@OVGGhostMemInstance?3Mem?5Instance@ 1001d594     meminstance.obj
+ 0001:0001c5c8       ??_C@_0DL@PNJPKOM@OVGAllocGeneralHeapDeviceMem?3?5De@ 1001d5c8     meminstance.obj
+ 0001:0001c604       ??_C@_0CO@PKDHPBLF@OVGAllocGeneralHeapDeviceMem?3?5In@ 1001d604     meminstance.obj
+ 0001:0001cbc8       ??_C@_0CE@PCGPFHHK@SGXQueueTransfer?5failed?5?$CIerror?3?5@ 1001dbc8     transfer.obj
+ 0001:0001cbec       ??_C@_0DM@CJGPDOHK@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1001dbec     transfer.obj
+ 0001:0001cc28       ??_C@_0DJ@KJJCLCE@TQ?5Mipmapping?5can?5only?5be?5applie@ 1001dc28     transfer.obj
+ 0001:0001d1f8       ??_C@_1BCI@GCCMKGPP@?$AA?$AN?$AA?6?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAA?$AAS?$AAS?$AAE?$AAR?$AAT?$AAI?$AAO?$AAN?$AA?5?$AAF?$AAA?$AAI?$AAL?$AAE?$AAD?$AA?5?$AAi?$AAn?$AA?5?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn@ 1001e1f8     subdivide.obj
+ 0001:0001d320       ??_C@_0DN@PLADNADC@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1001e320     subdivide.obj
+ 0001:0001d360       ??_C@_1BBK@FNMBCMOM@?$AA?$AN?$AA?6?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAA?$AAS?$AAS?$AAE?$AAR?$AAT?$AAI?$AAO?$AAN?$AA?5?$AAF?$AAA?$AAI?$AAL?$AAE?$AAD?$AA?5?$AAi?$AAn?$AA?5?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn@ 1001e360     subdivide.obj
+ 0001:0001d480       ??_C@_1BGK@LGCHBAMJ@?$AA?$AN?$AA?6?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAA?$AAS?$AAS?$AAE?$AAR?$AAT?$AAI?$AAO?$AAN?$AA?5?$AAF?$AAA?$AAI?$AAL?$AAE?$AAD?$AA?5?$AAi?$AAn?$AA?5?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn@ 1001e480     subdivide.obj
+ 0001:0001d5f0       ??_C@_1BGK@OCLMLJOP@?$AA?$AN?$AA?6?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAA?$AAS?$AAS?$AAE?$AAR?$AAT?$AAI?$AAO?$AAN?$AA?5?$AAF?$AAA?$AAI?$AAL?$AAE?$AAD?$AA?5?$AAi?$AAn?$AA?5?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn@ 1001e5f0     subdivide.obj
+ 0001:0001d760       ??_C@_1BGK@LONCHFLH@?$AA?$AN?$AA?6?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAA?$AAS?$AAS?$AAE?$AAR?$AAT?$AAI?$AAO?$AAN?$AA?5?$AAF?$AAA?$AAI?$AAL?$AAE?$AAD?$AA?5?$AAi?$AAn?$AA?5?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn@ 1001e760     subdivide.obj
+ 0001:0001d8d0       ??_C@_1BGK@LAPJJAHK@?$AA?$AN?$AA?6?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAA?$AAS?$AAS?$AAE?$AAR?$AAT?$AAI?$AAO?$AAN?$AA?5?$AAF?$AAA?$AAI?$AAL?$AAE?$AAD?$AA?5?$AAi?$AAn?$AA?5?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn@ 1001e8d0     subdivide.obj
+ 0001:0001da40       ??_C@_1NM@HPMCCKGA@?$AA?$AN?$AA?6?$AA?$CK?$AA?$CK?$AA?$CK?$AA?5?$AAA?$AAS?$AAS?$AAE?$AAR?$AAT?$AAI?$AAO?$AAN?$AA?5?$AAF?$AAA?$AAI?$AAL?$AAE?$AAD?$AA?5?$AAi?$AAn?$AA?5?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn@ 1001ea40     subdivide.obj
+ 0001:0001e390       ??_C@_0EE@ILKNLLOD@OVGGenerateStencilPassShader?3Fai@ 1001f390     stencil.obj
+ 0001:0001e3d8       ??_C@_0EC@DCGHLJHO@OVGGenerateStencilPassShader?3Fai@ 1001f3d8     stencil.obj
+ 0001:0001e420       ??_C@_0EA@MKMEFMKP@OVGGenerateStencilPassShader?3Fai@ 1001f420     stencil.obj
+ 0001:0001e460       ??_C@_0DL@KLDPICMO@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1001f460     stencil.obj
+ 0001:0001e49c       ??_C@_0DO@EPNBBLDA@OVGGenerateStencilPassShader?3Fai@ 1001f49c     stencil.obj
+ 0001:0001e4e0       ??_C@_0GC@PNCLODIL@_AssembleStencilVertexShaderUSEC@ 1001f4e0     stencil.obj
+ 0001:0001e548       ??_C@_0EI@OBFNBPNJ@_AssembleStencilVertexShaderUSEC@ 1001f548     stencil.obj
+ 0001:0001eb20       ??_C@_0DE@EPIJIECO@vgCreateEGLImageTargetKHR?3?5Unsup@ 1001fb20     eglimage.obj
+ 0001:0001eb54       ??_C@_0CI@PAMMKMPN@vgCreateEGLImageTargetKHR?3?5Inval@ 1001fb54     eglimage.obj
+ 0001:0001eb7c       ??_C@_0DM@OBPAGKPO@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1001fb7c     eglimage.obj
+ 0001:0001ebb8       ??_C@_0CC@BCOFHEEO@OVGGetImageSource?3?5Invalid?5sourc@ 1001fbb8     eglimage.obj
+ 0001:0001ebdc       ??_C@_0DA@KJNADMPB@OVGGetImageSource?3?5Format?5mismat@ 1001fbdc     eglimage.obj
+ 0001:0001ec0c       ??_C@_0DG@IANKOBLC@OVGGetImageSource?3?5Texture?5sourc@ 1001fc0c     eglimage.obj
+ 0001:0001ec48       ??_C@_0EK@JCBOHAOK@OVGGetImageSource?3?5Image?5source?5@ 1001fc48     eglimage.obj
+ 0001:0001ec94       ??_C@_0CI@GLCBGMNE@OVGGetImageSource?3?5Invalid?5Image@ 1001fc94     eglimage.obj
+ 0001:0001f7e0       ??_C@_0DO@OCNGBKKA@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100207e0     linkedlist.obj
+ 0001:00020340       ??_C@_0EA@COHBIMCP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10021340     shader_setup.obj
+ 0001:00020380       ??_C@_0DD@DLIFALCH@OVGSetupTexture?3Failed?5to?5retrie@ 10021380     shader_setup.obj
+ 0001:000203b8       ??_C@_0EJ@NADDAPEN@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 100213b8     ovg_sgxtransfer_utils.obj
+ 0001:00020408       ??_C@_0FB@HJEOFLPL@SGXTQ_MemLayoutFromEnum?3?5Can?8t?5t@ 10021408     ovg_sgxtransfer_utils.obj
+ 0001:00020460       ??_C@_0FA@DGOGNANE@SGXTQ_MemLayoutFromEnum?3?5Can?8t?5t@ 10021460     ovg_sgxtransfer_utils.obj
+ 0001:000204b0       ??_C@_0EA@FDOMBGKK@SGXTQ_MemLayoutFromEnum?3?53D?5text@ 100214b0     ovg_sgxtransfer_utils.obj
+ 0001:000204f0       ??_C@_0DD@OHJDKPDJ@SGXTQ_RotationFromEnum?3?5Unrecogn@ 100214f0     ovg_sgxtransfer_utils.obj
+ 0001:00023b58       ??_C@_0DM@IMFKBIIP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10024b58     image_TQ.obj
+ 0001:00023b94       ??_C@_0DA@GIDMBGIE@OVGGetPixelsTQ?3?5OVGGetFBFormatDe@ 10024b94     image_TQ.obj
+ 0001:00023bc4       ??_C@_0DH@KGJBDAMK@OVGScaledBlitTQ?3?5Scaled?5blit?5fai@ 10024bc4     image_TQ.obj
+ 0001:00024190       ??_C@_0DK@KNLMBDIE@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10025190     tqsync.obj
+ 0001:000241cc       ??_C@_0CO@GMCFKLCL@OVGBSReserve?3?5PVRSRVEventObjectW@ 100251cc     tqsync.obj
+ 0001:00024790       ??_C@_0DO@CDDFDGJN@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 10025790     buffersync.obj
+ 0001:000247d0       ??_C@_0DB@DMJLAFHI@OVGBSReserve?3?5Memory?5request?5can@ 100257d0     buffersync.obj
+ 0001:000248a8       ??_C@_0CP@BLJCOKPF@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2cod@ 100258a8     pds.obj
+ 0001:000248d8       ??_C@_0BP@NFBGHLCM@PDSGeneratePixelEventProgram?$CI?$CJ?$AA@ 100258d8     pds.obj
+ 0001:000248f8       ??_C@_0CC@PGCKEBHB@PDSGeneratePixelShaderSAProgram?$CI@ 100258f8     pds.obj
+ 0001:0002491c       ??_C@_0CI@MECGHJNF@PDSGenerateStaticPixelShaderSAPr@ 1002591c     pds.obj
+ 0001:00024944       ??_C@_0CA@BNMMMKJA@PDSGeneratePixelShaderProgram?$CI?$CJ?$AA@ 10025944     pds.obj
+ 0001:00024964       ??_C@_0BO@LFANJAEO@PDSGenerateStateCopyProgram?$CI?$CJ?$AA@ 10025964     pds.obj
+ 0001:00024984       ??_C@_0CD@DHPMMCBB@PDSGenerateVertexShaderSAProgram@ 10025984     pds.obj
+ 0001:000249a8       ??_C@_0CH@OKAPIIMC@PDSGenerateStaticVertexShaderPro@ 100259a8     pds.obj
+ 0001:000249d0       ??_C@_0CB@DOFLMPOO@PDSGenerateVertexShaderProgram?$CI?$CJ@ 100259d0     pds.obj
+ 0001:000249f4       ??_C@_0CA@DLBJABAO@PDSGenerateConstUploadProgram?$CI?$CJ?$AA@ 100259f4     pds.obj
+ 0001:00024a14       ??_C@_0CD@JNNANOAP@PDSGenerateTerminateStateProgram@ 10025a14     pds.obj
+ 0001:00024a38       ??_C@_0CA@JFFAOOOI@PDSPatchTerminateStateProgram?$CI?$CJ?$AA@ 10025a38     pds.obj
+ 0001:00024bc0       asSGXPixelFormat           10025bc0     sgxpixfmts.obj
+ 0001:0002a08c       ??_C@_0BF@NKGAPKNK@USSE?5Fragment?5buffer?$AA@ 1002b08c     buffers.obj
+ 0001:0002a0a4       ??_C@_0BF@BHJKIFJA@PDS?5Fragment?5shader?5?$AA@ 1002b0a4     buffers.obj
+ 0001:0002a0bc       ??_C@_0BF@BEHNBIFA@PreGen?5MTE?5PDS?5Copy?5?$AA@ 1002b0bc     buffers.obj
+ 0001:0002a0d4       ??_C@_0BF@GMKIJELK@PreGen?5Vtx?5PDS?5Sec?5?5?$AA@ 1002b0d4     buffers.obj
+ 0001:0002a0ec       ??_C@_0BF@NBDIKPLA@PDS?5Vertex?5shader?5?5?5?$AA@ 1002b0ec     buffers.obj
+ 0001:0002a104       ??_C@_0BF@IDFGBKIM@Dynamic?5Index?5data?5?5?$AA@ 1002b104     buffers.obj
+ 0001:0002a11c       ??_C@_0BF@GKMGPMBH@Dynamic?5Vertex?5data?5?$AA@ 1002b11c     buffers.obj
+ 0001:0002a134       ??_C@_0BF@FLGLMJAI@VDM?5Control?5Stream?5?5?$AA@ 1002b134     buffers.obj
+ 0001:0002a14c       ??_C@_09EAACOHBK@USSE_FRAG?$AA@ 1002b14c     buffers.obj
+ 0001:0002a158       ??_C@_08FBEBHLMN@PDS_FRAG?$AA@ 1002b158     buffers.obj
+ 0001:0002a164       ??_C@_0BE@LODODMJH@PDS_MTE_COPY_PREGEN?$AA@ 1002b164     buffers.obj
+ 0001:0002a178       ??_C@_0BE@EOHKDACO@PDS_VERT_SEC_PREGEN?$AA@ 1002b178     buffers.obj
+ 0001:0002a18c       ??_C@_08IDOANPNC@PDS_VERT?$AA@ 1002b18c     buffers.obj
+ 0001:0002a198       ??_C@_0L@LKODOEOD@INDEX_DATA?$AA@ 1002b198     buffers.obj
+ 0001:0002a1a4       ??_C@_0M@OCLPNNFM@VERTEX_DATA?$AA@ 1002b1a4     buffers.obj
+ 0001:0002a1b0       ??_C@_08FKFPBJK@VDM_CTRL?$AA@ 1002b1b0     buffers.obj
+ 0001:0002a1dc       pszBufferNames             1002b1dc     buffers.obj
+ 0001:0002a200       ??_C@_0EI@OCAJGJGC@CBUF_GetBufferSpace?3?5Space?5requi@ 1002b200     buffers.obj
+ 0001:0002a248       ??_C@_0DC@FAHGPGHK@CBUF_GetBufferSpace?3?5PVRSRVEvent@ 1002b248     buffers.obj
+ 0001:0002a280       ??_C@_0FD@OFAHCHIC@CBUF_GetBufferSpace?3?5Run?5out?5of?5@ 1002b280     buffers.obj
+ 0001:0002a2d4       ??_C@_0DJ@OEKMILEM@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1002b2d4     buffers.obj
+ 0001:0002a310       ??_C@_0DA@CPLPAHP@CBUF_GetBufferSpace?3?5Buffer?5is?5a@ 1002b310     buffers.obj
+ 0001:0002a340       ??_C@_0CF@HPEOJHMK@CheckPDSBufferSpace?3?5?$CFs?5buffer?5w@ 1002b340     buffers.obj
+ 0001:0002a368       ??_C@_0CE@MBNIKMPE@CheckVIBufferSpace?3?5?$CFs?5buffer?5wr@ 1002b368     buffers.obj
+ 0001:0002a390       ??_C@_0EC@NEDBIKBE@CheckTACtrlBufferSpace?3?5TA?5ctrl?5@ 1002b390     buffers.obj
+ 0001:0002a3d4       ??_C@_0CH@FKKEHHDE@CBUF_UpdateBufferPos?3?5?$CFs?5buffer?5@ 1002b3d4     buffers.obj
+ 0001:0002a400       ??_C@_0EG@GGPKLNEO@CBUF_UpdateBufferPos?3?5Free?5space@ 1002b400     buffers.obj
+ 0001:0002a448       ??_C@_0FB@CFFCNFKF@CBUF_UpdateBufferPos?3?5Number?5of?5@ 1002b448     buffers.obj
+ 0001:0002a4a0       ??_C@_0EJ@OMIAMBLO@CBUF_UpdateBufferPos?3?5More?5dword@ 1002b4a0     buffers.obj
+ 0001:0002a4ec       ??_C@_0DO@KEMAGFPL@CBUF_UpdateBufferPos?3?5Buffer?5is?5@ 1002b4ec     buffers.obj
+ 0001:0002a52c       ??_C@_0CI@MONMBOMA@Kicking?5render?5due?5to?5frag?5buffe@ 1002b52c     buffers.obj
+ 0001:0002a558       ??_C@_0FI@MMMJIKOK@CBUF_UpdateTACtrlKickBase?3?5Shoul@ 1002b558     buffers.obj
+ 0001:0002a5b0       ??_C@_0CH@MFGOLADI@CBUF_CreateBuffer?3?5Invalid?5buffe@ 1002b5b0     buffers.obj
+ 0001:0002a5d8       ??_C@_0FB@BCGMFJP@CBUF_CreateBuffer?3?5Requested?5buf@ 1002b5d8     buffers.obj
+ 0001:0002a630       ??_C@_0FB@DKGMPPAG@CBUF_CreateBuffer?3?5Requested?5buf@ 1002b630     buffers.obj
+ 0001:0002a684       ??_C@_0CG@DBCFPGAD@UCH_CodeHeapCreate?3?5Out?5of?5host?5@ 1002b684     codeheap.obj
+ 0001:0002a6ac       ??_C@_0CG@MDOFKBLI@UCH_CodeHeapCreate?3?5Out?5of?5devic@ 1002b6ac     codeheap.obj
+ 0001:0002a6d4       ??_C@_0DK@FGJBIJND@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1002b6d4     codeheap.obj
+ 0001:0002a710       ??_C@_0CE@EHFGMJNP@UCH_CodeHeapCreate?3?5Out?5of?5host?5@ 1002b710     codeheap.obj
+ 0001:0002a738       ??_C@_0EL@BMPNMIEH@UCH_CodeHeapDestroy?3?5In?5heap?50x?$CF@ 1002b738     codeheap.obj
+ 0001:0002a788       ??_C@_0HD@CLGEIOFK@UCH_CodeHeapDestroy?3?5In?5heap?50x?$CF@ 1002b788     codeheap.obj
+ 0001:0002a7fc       ??_C@_0DF@PCCHIHBO@CodeHeapIsSane?3?5Some?5blocks?5in?5t@ 1002b7fc     codeheap.obj
+ 0001:0002a834       ??_C@_0CM@OPEPOHOE@CodeHeapIsSane?3?5The?5free?5list?5is@ 1002b834     codeheap.obj
+ 0001:0002a860       ??_C@_0EE@NEBABOKO@CodeHeapInsertBlockInFreeList?3?5F@ 1002b860     codeheap.obj
+ 0001:0002a8a8       ??_C@_0EE@NJCAMENL@CodeHeapInsertBlockInFreeList?3?5B@ 1002b8a8     codeheap.obj
+ 0001:0002a8f0       ??_C@_0EO@NCIFCHOE@CodeHeapInsertBlockInFreeList?3?5R@ 1002b8f0     codeheap.obj
+ 0001:0002a940       ??_C@_0EF@FPCPHONP@UCH_TrackCodeHeapAllocate?3?5The?5r@ 1002b940     codeheap.obj
+ 0001:0002a988       ??_C@_0FC@ECEFHNCF@UCH_TrackCodeHeapAllocate?3?5The?5r@ 1002b988     codeheap.obj
+ 0001:0002a9e0       ??_C@_0ED@MIDMBJEL@UCH_TrackCodeHeapFree?3?5Maybe?5it?5@ 1002b9e0     codeheap.obj
+ 0001:0002aa28       ??_C@_0EN@PEEDNNCO@UCH_TrackCodeHeapFree?3?5Block?5at?5@ 1002ba28     codeheap.obj
+ 0001:0002aa78       ??_C@_0DD@PJEIGGEG@FRM_Initialize?3?5Could?5not?5alloca@ 1002ba78     frameresource.obj
+ 0001:0002aaac       ??_C@_0CL@BGAPGLFB@FRM_Initialize?3?5Invalid?5callback@ 1002baac     frameresource.obj
+ 0001:0002aad8       ??_C@_0CI@MDFMGFDK@FRM_Initialize?3?5Invalid?5mutex?5pa@ 1002bad8     frameresource.obj
+ 0001:0002ab00       ??_C@_0DP@HCBPILAO@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 1002bb00     frameresource.obj
+ 0001:0002ab40       ??_C@_0CM@EACCCOOM@FRM_Attach?3?5Unable?5to?5get?5a?5new?5@ 1002bb40     frameresource.obj
+ 0001:0002ab6c       ??_C@_0CM@OONFMJHM@IsResourceInList?3?5Results?5are?5in@ 1002bb6c     frameresource.obj
+ 0001:0002ab98       ??_C@_0CN@CLBGJENG@AllocAttachment?3?5Out?5of?5memory?4?5@ 1002bb98     frameresource.obj
+ 0001:0002abc8       ??_C@_0DL@KGFPCHNO@WaitUntilResourceIsNotNeeded?3?5PV@ 1002bbc8     frameresource.obj
+ 0001:0002ac08       ??_C@_0EC@LBAHPJPB@FRM_Destroy?3?5Destroying?5a?5ghost?5@ 1002bc08     frameresource.obj
+ 0001:0002ac4c       ??_C@_0DI@DCOKEGLL@FRM_SanityCheck?3?5At?5least?5one?5fu@ 1002bc4c     frameresource.obj
+ 0001:0002ac84       ??_C@_0DA@NHCODIOH@FRM_SanityCheck?3?5Attachment?5zero@ 1002bc84     frameresource.obj
+ 0001:0002acb8       ??_C@_0EM@ELDNOPME@FRM_SanityCheck?3?5Some?5attachment@ 1002bcb8     frameresource.obj
+ 0001:0002ad08       ??_C@_0EH@MLPBIDDP@FRM_SanityCheck?3?5The?5free?5list?5o@ 1002bd08     frameresource.obj
+ 0001:0002ad50       ??_C@_0DC@BNGPAGMH@FRM_SanityCheck?3?5The?5free?5list?5g@ 1002bd50     frameresource.obj
+ 0001:0002ad88       ??_C@_0EI@OPLBMMKD@FRM_SanityCheck?3?5The?5inconsisten@ 1002bd88     frameresource.obj
+ 0001:0002add0       ??_C@_0EM@DCAIPEIA@FRM_SanityCheck?3?5The?5inconsisten@ 1002bdd0     frameresource.obj
+ 0001:0002ae1c       ??_C@_0CA@LOGAGBAN@FRM_SanityCheck?3?5Out?5of?5memory?6?$AA@ 1002be1c     frameresource.obj
+ 0001:0002ae3c       ??_C@_0CO@MNLLLFGF@FRM_SanityCheck?3?5The?5attachment?5@ 1002be3c     frameresource.obj
+ 0001:0002ae6c       ??_C@_0DD@OGBHLBGI@FRM_SanityCheck?3?5The?5attachment?5@ 1002be6c     frameresource.obj
+ 0001:0002aea0       ??_C@_0DC@EAFCGJBC@FRM_SanityCheck?3?5The?5manager?5was@ 1002bea0     frameresource.obj
+ 0001:0002aed8       ??_C@_0EP@JCLPHKLN@TestResourceList?3?5At?5least?5one?5a@ 1002bed8     frameresource.obj
+ 0001:0002af28       ??_C@_0EG@GPEILNJP@TestResourceList?3?5The?5attachment@ 1002bf28     frameresource.obj
+ 0001:0002af70       ??_C@_0DH@NOPMEKIC@TestResourceList?3?5At?5least?5one?5l@ 1002bf70     frameresource.obj
+ 0001:0002afa8       ??_C@_0DD@EHMECIFJ@TestResourceList?3?5The?5list?5links@ 1002bfa8     frameresource.obj
+ 0001:0002afe0       ??_C@_0FO@CKJKBAOK@TestResourceList?3?5The?5first?5elem@ 1002bfe0     frameresource.obj
+ 0001:0002c078       OVGSetupVertexShaderForClear 1002d078 f   clear.obj
+ 0001:0002c8f8       OVGSendDepthClear          1002d8f8 f   clear.obj
+ 0001:0002d84c       OVGSendClear               1002e84c f   clear.obj
+ 0001:0002e400       vgClear                    1002f400 f   clear.obj
+ 0001:0002e820       SetUSEExecutionAddress     1002f820 f i clear.obj
+ 0001:0002e9fc       OVGClassifyPolygon2        1002f9fc f   convexitytest.obj
+ 0001:0002f4e8       PreToUnpre                 100304e8 f   conversions.obj
+ 0001:0002f7b8       UnpreToPre                 100307b8 f   conversions.obj
+ 0001:0002f918       GreyLinearToNonLinear      10030918 f   conversions.obj
+ 0001:0002fa3c       RGBLinearToNonLinear       10030a3c f   conversions.obj
+ 0001:0002fbe0       RGBNonLinearToLinear       10030be0 f   conversions.obj
+ 0001:0002fd80       GreyNonLinearToLinear      10030d80 f   conversions.obj
+ 0001:0002fea0       RGBToGrey                  10030ea0 f   conversions.obj
+ 0001:0002ffa8       AlphaSpace                 10030fa8 f   conversions.obj
+ 0001:00030004       OnlyRedChannel             10031004 f   conversions.obj
+ 0001:00030060       ForceAlphaToOne            10031060 f   conversions.obj
+ 0001:00030098       ForceAlphaToZero           10031098 f   conversions.obj
+ 0001:000300d0       QuantiseRedToTwoLevels     100310d0 f   conversions.obj
+ 0001:00030170       QuantiseAlphaToFourLevels  10031170 f   conversions.obj
+ 0001:00030230       QuantiseOnlyAlphaToTwoLevels 10031230 f   conversions.obj
+ 0001:000302b0       ForceAlphaNotZeroToOne     100312b0 f   conversions.obj
+ 0001:0003031c       PrepareColourConversion    1003131c f   conversions.obj
+ 0001:0003077c       PrepareColourConversionTQ  1003177c f   conversions.obj
+ 0001:00030c48       OVGCreateTga               10031c48 f   debug.obj
+ 0001:000318c0       OVGCreateGC                100328c0 f   eglglue.obj
+ 0001:00035bf8       OVGContextRetain           10036bf8 f   eglglue.obj
+ 0001:00035c30       OVGContextRelease          10036c30 f   eglglue.obj
+ 0001:00036a78       OVGDestroyGC               10037a78 f   eglglue.obj
+ 0001:00036ab8       OVGMakeCurrentGC           10037ab8 f   eglglue.obj
+ 0001:000372b4       OVGMakeUnCurrentGC         100382b4 f   eglglue.obj
+ 0001:00037400       OVGFlushBuffersGC          10038400 f   eglglue.obj
+ 0001:00037530       OVGUnWrapImage             10038530 f   eglglue.obj
+ 0001:000375bc       OVGWrapImageAsRenderSurface 100385bc f   eglglue.obj
+ 0001:00037d38       OVGGetRenderSurface        10038d38 f   eglglue.obj
+ 0001:00037d6c       OVGGetDrawableParams       10038d6c f   eglglue.obj
+ 0001:00037d9c       OVGMarkRenderSurfaceAsInvalid 10038d9c f   eglglue.obj
+ 0001:00037e18       PDSXYPriSetINPUT_DOUTD1A   10038e18 f i eglglue.obj
+ 0001:00037e3c       PDSXYPriSetINPUT_DOUTD1B   10038e3c f i eglglue.obj
+ 0001:00037e5c       PDSXYUVPriSetINPUT_DOUTD1A 10038e5c f i eglglue.obj
+ 0001:00037e80       PDSXYUVPriSetINPUT_DOUTD1B 10038e80 f i eglglue.obj
+ 0001:00037ea0       PDSXYUVPriSetINPUT_DOUTD2A 10038ea0 f i eglglue.obj
+ 0001:00037ec4       PDSXYUVPriSetINPUT_DOUTD2B 10038ec4 f i eglglue.obj
+ 0001:00037ee8       PDSXYUVCOLPriSetINPUT_DOUTD1A 10038ee8 f i eglglue.obj
+ 0001:00037f0c       PDSXYUVCOLPriSetINPUT_DOUTD1B 10038f0c f i eglglue.obj
+ 0001:00037f2c       PDSXYUVCOLPriSetINPUT_DOUTD2A 10038f2c f i eglglue.obj
+ 0001:00037f50       PDSXYUVCOLPriSetINPUT_DOUTD2B 10038f50 f i eglglue.obj
+ 0001:00037f74       PDSXYCOLPriSetINPUT_DOUTD1A 10038f74 f i eglglue.obj
+ 0001:00037f98       PDSXYCOLPriSetINPUT_DOUTD1B 10038f98 f i eglglue.obj
+ 0001:00037fb8       PDSXY32PriSetINPUT_DOUTD1A 10038fb8 f i eglglue.obj
+ 0001:00037fdc       PDSXY32PriSetINPUT_DOUTD1B 10038fdc f i eglglue.obj
+ 0001:00037ffc       PDSXYUV32PriSetINPUT_DOUTD1A 10038ffc f i eglglue.obj
+ 0001:00038020       PDSXYUV32PriSetINPUT_DOUTD1B 10039020 f i eglglue.obj
+ 0001:00038040       PDSXYUV32PriSetINPUT_DOUTD2A 10039040 f i eglglue.obj
+ 0001:00038064       PDSXYUV32PriSetINPUT_DOUTD2B 10039064 f i eglglue.obj
+ 0001:00038088       PDSXYUVCOL32PriSetINPUT_DOUTD1A 10039088 f i eglglue.obj
+ 0001:000380ac       PDSXYUVCOL32PriSetINPUT_DOUTD1B 100390ac f i eglglue.obj
+ 0001:000380cc       PDSXYUVCOL32PriSetINPUT_DOUTD2A 100390cc f i eglglue.obj
+ 0001:000380f0       PDSXYUVCOL32PriSetINPUT_DOUTD2B 100390f0 f i eglglue.obj
+ 0001:00038114       PDSXYCOL32PriSetINPUT_DOUTD1A 10039114 f i eglglue.obj
+ 0001:00038138       PDSXYCOL32PriSetINPUT_DOUTD1B 10039138 f i eglglue.obj
+ 0001:00038158       OVGFindEllipse             10039158 f   ellipse.obj
+ 0001:00038b20       OVGFindEllipseTangents     10039b20 f   ellipse.obj
+ 0001:000394cc       OVGFindUnitCircleCentre    1003a4cc f   ellipse.obj
+ 0001:000398a0       OVGSuggestEllipticalArcTessMetric 1003a8a0 f   ellipse.obj
+ 0001:00039cec       OVGComputeEllipticalArcLength 1003acec f   ellipse.obj
+ 0001:0003a364       OVGCircumferenceOfEllipse  1003b364 f   ellipse.obj
+ 0001:0003a44c       OVGRemoveFont              1003b44c f   font.obj
+ 0001:0003a5ec       vgCreateFont               1003b5ec f   font.obj
+ 0001:0003a7b0       vgDestroyFont              1003b7b0 f   font.obj
+ 0001:0003a918       vgSetGlyphToPath           1003b918 f   font.obj
+ 0001:0003aec0       vgSetGlyphToImage          1003bec0 f   font.obj
+ 0001:0003b260       vgClearGlyph               1003c260 f   font.obj
+ 0001:0003b574       vgDrawGlyph                1003c574 f   font.obj
+ 0001:0003bafc       vgDrawGlyphs               1003cafc f   font.obj
+ 0001:0003c374       OVGCreateGeometryBuffer    1003d374 f   geombuffer.obj
+ 0001:0003c460       OVGDestroyGeometryBuffer   1003d460 f   geombuffer.obj
+ 0001:0003c4f0       OVGGetGeometryBufferAddresses 1003d4f0 f   geombuffer.obj
+ 0001:0003c814       vgGetString                1003d814 f   get.obj
+ 0001:0003c938       vgGetf                     1003d938 f   get.obj
+ 0001:0003cfe8       vgGeti                     1003dfe8 f   get.obj
+ 0001:0003d5ac       vgGetVectorSize            1003e5ac f   get.obj
+ 0001:0003d874       vgGetfv                    1003e874 f   get.obj
+ 0001:0003de90       vgGetiv                    1003ee90 f   get.obj
+ 0001:0003e464       vgGetParameterf            1003f464 f   get.obj
+ 0001:0003ea18       vgGetParameteri            1003fa18 f   get.obj
+ 0001:0003ef10       vgGetParameterVectorSize   1003ff10 f   get.obj
+ 0001:0003f210       vgGetParameterfv           10040210 f   get.obj
+ 0001:0003f7b4       vgGetParameteriv           100407b4 f   get.obj
+ 0001:0003fd7c       vgGetError                 10040d7c f   get.obj
+ 0001:0003fdf8       vgHardwareQuery            10040df8 f   get.obj
+ 0001:00040004       OVGSetupFirstPass          10041004 f   hwscene.obj
+ 0001:00040314       OVGPerformOptionalPaintPass 10041314 f   hwscene.obj
+ 0001:00040534       OVGDrawPrimitive           10041534 f   hwscene.obj
+ 0001:000405e8       OVGStrokePath              100415e8 f   hwscene.obj
+ 0001:00040fdc       OVGFillPath                10041fdc f   hwscene.obj
+ 0001:00041140       OVGDrawImage               10042140 f   hwscene.obj
+ 0001:000414cc       OVGSetPixel                100424cc f   hwscene.obj
+ 0001:0004158c       OVGSetDefaultHWState       1004258c f   hwstate.obj
+ 0001:000416b0       OVGSendVertexStateUpdate   100426b0 f   hwstate.obj
+ 0001:00042b14       OVGSendIndexStateUpdate    10043b14 f   hwstate.obj
+ 0001:00042dbc       PDSMTEStateCopySetDMA0     10043dbc f i hwstate.obj
+ 0001:00042ddc       PDSMTEStateCopySetDMA1     10043ddc f i hwstate.obj
+ 0001:00042e00       PDSMTEStateCopySetDMA2     10043e00 f i hwstate.obj
+ 0001:00042e24       PDSMTEStateCopySetDMA3     10043e24 f i hwstate.obj
+ 0001:00042e48       PDSMTEStateCopySetUSE0     10043e48 f i hwstate.obj
+ 0001:00042e6c       PDSMTEStateCopySetUSE1     10043e6c f i hwstate.obj
+ 0001:00042e90       OVGImageCreateSubRegionList 10043e90 f   image.obj
+ 0001:00042f28       OVGImageRetainSubRegionList 10043f28 f   image.obj
+ 0001:00042ff8       OVGImageReleaseSubRegionList 10043ff8 f   image.obj
+ 0001:00043098       OVGImageInvalidateSubRegionList 10044098 f   image.obj
+ 0001:00043158       OVGImageRetainSubRegion    10044158 f   image.obj
+ 0001:000431d4       OVGImageReleaseSubRegion   100441d4 f   image.obj
+ 0001:00043364       OVGImageCreateSubRegion    10044364 f   image.obj
+ 0001:000437f0       OVGImageUpdateSubRegion    100447f0 f   image.obj
+ 0001:00043f74       OVGComputeBlitRegion       10044f74 f   image.obj
+ 0001:000445a0       OVGImageRelease            100455a0 f   image.obj
+ 0001:000445ec       OVGImageRetain             100455ec f   image.obj
+ 0001:0004461c       OVGImageGetHandle          1004561c f   image.obj
+ 0001:0004464c       OVGImageSetHandle          1004564c f   image.obj
+ 0001:00044670       OVGImageDealloc            10045670 f   image.obj
+ 0001:00044698       OVGAlignWithAncestors      10045698 f   image.obj
+ 0001:000446f4       OVGRemoveImage             100456f4 f   image.obj
+ 0001:00044be4       OVGAlignRectangleWithRenderTarget 10045be4 f   image.obj
+ 0001:00044d7c       OVGAlignRectangleWithRectangle 10045d7c f   image.obj
+ 0001:00044e78       OVGCreateImage             10045e78 f   image.obj
+ 0001:00045340       vgCreateImage              10046340 f   image.obj
+ 0001:0004560c       OVGDestroyImage            1004660c f   image.obj
+ 0001:00045664       vgDestroyImage             10046664 f   image.obj
+ 0001:00045774       vgClearImage               10046774 f   image.obj
+ 0001:00046b2c       vgDrawImage                10047b2c f   image.obj
+ 0001:00046c84       OVGImageSubData            10047c84 f   image.obj
+ 0001:00046e2c       vgImageSubData             10047e2c f   image.obj
+ 0001:00047120       vgGetImageSubData          10048120 f   image.obj
+ 0001:00047488       vgChildImage               10048488 f   image.obj
+ 0001:00047b70       vgGetParent                10048b70 f   image.obj
+ 0001:00047d40       vgCopyImage                10048d40 f   image.obj
+ 0001:0004811c       OVGSetPixels               1004911c f   image.obj
+ 0001:000484c0       vgSetPixels                100494c0 f   image.obj
+ 0001:0004866c       vgWritePixels              1004966c f   image.obj
+ 0001:00048954       vgGetPixels                10049954 f   image.obj
+ 0001:00048d90       vgReadPixels               10049d90 f   image.obj
+ 0001:00049188       vgCopyPixels               1004a188 f   image.obj
+ 0001:000495b0       OVGScaledBlit              1004a5b0 f   image.obj
+ 0001:000497f0       vgColorMatrix              1004a7f0 f   imagefilter.obj
+ 0001:0004e9d0       vgConvolve                 1004f9d0 f   imagefilter.obj
+ 0001:0004f42c       vgSeparableConvolve        1005042c f   imagefilter.obj
+ 0001:000502e8       vgGaussianBlur             100512e8 f   imagefilter.obj
+ 0001:0005b320       vgLookup                   1005c320 f   imagefilter.obj
+ 0001:0005bd54       vgLookupSingle             1005cd54 f   imagefilter.obj
+ 0001:0005c57c       vgMask                     1005d57c f   mask.obj
+ 0001:0005cb9c       vgRenderToMask             1005db9c f   mask.obj
+ 0001:0005d658       OVGImageFillWithColour     1005e658 f   mask.obj
+ 0001:0005de60       vgCreateMaskLayer          1005ee60 f   mask.obj
+ 0001:0005dff8       vgDestroyMaskLayer         1005eff8 f   mask.obj
+ 0001:0005e12c       vgFillMaskLayer            1005f12c f   mask.obj
+ 0001:0005e398       vgCopyMask                 1005f398 f   mask.obj
+ 0001:0005e924       OVGComputeQuadBezier       1005f924 f   splines.obj
+ 0001:0005eac8       OVGComputeCubicBezier      1005fac8 f   splines.obj
+ 0001:0005ee0c       OVGComputeQuadBezierTangent 1005fe0c f   splines.obj
+ 0001:0005f0ec       OVGComputeCubicBezierTangent 100600ec f   splines.obj
+ 0001:0005f728       OVGSuggestQuadBezierTessMetric 10060728 f   splines.obj
+ 0001:0005fbe0       OVGSuggestCubicBezierTessMetric 10060be0 f   splines.obj
+ 0001:0006003c       OVGComputeQuadBezierLength 1006103c f   splines.obj
+ 0001:000601e4       OVGComputeCubicBezierLength 100611e4 f   splines.obj
+ 0001:0006039c       OVGCalculateQuadBezierTangents 1006139c f   splines.obj
+ 0001:00060628       OVGCalculateCubicBezierTangents 10061628 f   splines.obj
+ 0001:00060904       OVGDetermineCubicDirections 10061904 f   splines.obj
+ 0001:00060c98       OVGPointAlongCatmulRomSpline 10061c98 f   splines.obj
+ 0001:00061414       OVGCalculateExtraControlPoint 10062414 f   splines.obj
+ 0001:0006196c       OVGFloorLog2               1006296c f   maths.obj
+ 0001:000619c4       OVGClampf                  100629c4 f   maths.obj
+ 0001:00061a54       OVGComputeBoundingBoxUnion 10062a54 f   maths.obj
+ 0001:00061c50       OVGRectangleIntersection   10062c50 f   maths.obj
+ 0001:00061ef0       OVGRectangleFlipY          10062ef0 f   maths.obj
+ 0001:00061f44       OVGDoRectsOverlap          10062f44 f   maths.obj
+ 0001:0006202c       OVGLoadIdentity            1006302c f   maths.obj
+ 0001:000620cc       OVGMatrixMultiply          100630cc f   maths.obj
+ 0001:00062730       OVGMatrixInvert            10063730 f   maths.obj
+ 0001:00062d9c       OVGCalculateDeterminant2x2 10063d9c f   maths.obj
+ 0001:00062e30       OVGTransformPoint          10063e30 f   maths.obj
+ 0001:00062f68       OVGTessellateFillPath      10063f68 f   tessellate.obj
+ 0001:00066710       OVGTessellateStrokePath    10067710 f   tessellate.obj
+ 0001:0006adc8       OVGTessellateDashedStroke  1006bdc8 f   tessellate.obj
+ 0001:0006cd04       OVGTessellateStrokeJoins   1006dd04 f   tessellate.obj
+ 0001:0006ef50       OVGTessellateStrokeCaps    1006ff50 f   tessellate.obj
+ 0001:00070fe4       HostAllocWinCEMem          10071fe4 f   win32_os.obj
+ 0001:00071028       HostFreeWinCEMem           10072028 f   win32_os.obj
+ 0001:00071044       HostCallocWinCEMem         10072044 f   win32_os.obj
+ 0001:0007108c       HostReallocWinCEMem        1007208c f   win32_os.obj
+ 0001:000710d4       OVGSleep                   100720d4 f   win32_os.obj
+ 0001:000710f8       OVGInitProfileOutput       100720f8 f   win32_os.obj
+ 0001:00071234       OVGDeInitProfileOutput     10072234 f   win32_os.obj
+ 0001:00071268       OVGProfileOutput           10072268 f   win32_os.obj
+ 0001:00071374       OVGSetError                10072374 f   set.obj
+ 0001:000713b4       vgSeti                     100723b4 f   set.obj
+ 0001:00071b5c       vgSetf                     10072b5c f   set.obj
+ 0001:000723b0       vgSetfv                    100733b0 f   set.obj
+ 0001:000733b4       vgSetiv                    100743b4 f   set.obj
+ 0001:0007429c       vgSetParameterf            1007529c f   set.obj
+ 0001:0007461c       vgSetParameteri            1007561c f   set.obj
+ 0001:0007494c       vgSetParameterfv           1007594c f   set.obj
+ 0001:000751bc       vgSetParameteriv           100761bc f   set.obj
+ 0001:00075aa8       vgFlush                    10076aa8 f   set.obj
+ 0001:00075ae4       vgFinish                   10076ae4 f   set.obj
+ 0001:00075ba0       OVGCreatePrimitive         10076ba0 f   primitive.obj
+ 0001:00075e24       OVGAttachIndexBufferBatch  10076e24 f   primitive.obj
+ 0001:00076170       OVGDestroyPrimitive        10077170 f   primitive.obj
+ 0001:00076328       OVGRemovePath              10077328 f   path.obj
+ 0001:000765b8       vgCreatePath               100775b8 f   path.obj
+ 0001:00076a84       OVGPath_release            10077a84 f   path.obj
+ 0001:00076ae0       OVGPath_retain             10077ae0 f   path.obj
+ 0001:00076b10       OVGPath_setHandle          10077b10 f   path.obj
+ 0001:00076b34       OVGPath_dealloc            10077b34 f   path.obj
+ 0001:00076b5c       vgAppendPathData           10077b5c f   path.obj
+ 0001:00076fc8       vgClearPath                10077fc8 f   path.obj
+ 0001:00077158       vgDestroyPath              10078158 f   path.obj
+ 0001:0007729c       vgRemovePathCapabilities   1007829c f   path.obj
+ 0001:000773f0       vgGetPathCapabilities      100783f0 f   path.obj
+ 0001:00077544       vgAppendPath               10078544 f   path.obj
+ 0001:00077770       vgModifyPathCoords         10078770 f   path.obj
+ 0001:00077d8c       vgDrawPath                 10078d8c f   path.obj
+ 0001:00077fa4       vgTransformPath            10078fa4 f   path.obj
+ 0001:00079af0       vgInterpolatePath          1007aaf0 f   path.obj
+ 0001:0007a2f8       vgPathLength               1007b2f8 f   path.obj
+ 0001:0007b1a4       vgPathBounds               1007c1a4 f   path.obj
+ 0001:0007b7ec       vgPathTransformedBounds    1007c7ec f   path.obj
+ 0001:0007be58       vgPointAlongPath           1007ce58 f   path.obj
+ 0001:0007c614       OVGPath_setDirty           1007d614 f   path.obj
+ 0001:0007c63c       OVGGetCodeBlockHashValue   1007d63c f   statehash.obj
+ 0001:0007c7f4       OVGHashCodeBlock           1007d7f4 f   statehash.obj
+ 0001:0007c8d8       OVGMatchWithHashedCodeBlock 1007d8d8 f   statehash.obj
+ 0001:0007ca30       OVGFreeAllHashedCodeBlocks 1007da30 f   statehash.obj
+ 0001:0007cb20       OVGSubmitObject            1007db20 f   statehash.obj
+ 0001:0007ce34       OVGRetrieveObjectWithType  1007de34 f   statehash.obj
+ 0001:0007cf08       OVGRetrieveObject          1007df08 f   statehash.obj
+ 0001:0007cfd8       OVGInvalidateHandle        1007dfd8 f   statehash.obj
+ 0001:0007d168       OVGCleanObjectPool         1007e168 f   statehash.obj
+ 0001:0007d338       OVGPaint_tokenise          1007e338 f   paint.obj
+ 0001:0007e5d8       OVGPaint_pixelShaderiseForTAG 1007f5d8 f   paint.obj
+ 0001:0007eb80       OVGPaint_setNeedsTokenising 1007fb80 f   paint.obj
+ 0001:0007eba4       OVGPaint_tokenised         1007fba4 f   paint.obj
+ 0001:0007ebd4       OVGPaint_pixelShaderisedForTAG 1007fbd4 f   paint.obj
+ 0001:0007ec04       OVGPaint_setNeedsPixelShaderisingForTAG 1007fc04 f   paint.obj
+ 0001:0007ec28       OVGPaint_release           1007fc28 f   paint.obj
+ 0001:0007ec80       OVGPaint_retain            1007fc80 f   paint.obj
+ 0001:0007ecb0       OVGPaintResourceUpdate     1007fcb0 f   paint.obj
+ 0001:0007f030       OVGCreatePaintObject       10080030 f   paint.obj
+ 0001:0007f2c0       OVGRemovePaint             100802c0 f   paint.obj
+ 0001:0007f434       OVGCreateDefaultColourRamp 10080434 f   paint.obj
+ 0001:0007fc10       OVGCreateColourRamp        10080c10 f   paint.obj
+ 0001:00081c20       OVGSetLinearGradientUVTransform 10082c20 f   paint.obj
+ 0001:000824c8       OVGSetPatternUVTransform   100834c8 f   paint.obj
+ 0001:00082690       OVGRemoveCurrentPaint      10083690 f   paint.obj
+ 0001:000827ec       vgCreatePaint              100837ec f   paint.obj
+ 0001:0008294c       vgDestroyPaint             1008394c f   paint.obj
+ 0001:00082a80       vgSetPaint                 10083a80 f   paint.obj
+ 0001:00082d4c       vgGetPaint                 10083d4c f   paint.obj
+ 0001:00082ee8       vgSetColor                 10083ee8 f   paint.obj
+ 0001:00083038       vgGetColor                 10084038 f   paint.obj
+ 0001:000831a4       vgPaintPattern             100841a4 f   paint.obj
+ 0001:000833d4       OVGWaitForTA               100843d4 f   sgxif.obj
+ 0001:00083490       OVGWaitForRender           10084490 f   sgxif.obj
+ 0001:00083594       OVGScheduleTA              10084594 f   sgxif.obj
+ 0001:00084440       OVGPrepareToDraw           10085440 f   sgxif.obj
+ 0001:0008513c       OVGChangeDrawableParams    1008613c f   sgxif.obj
+ 0001:00085258       OVGKickSmallTA             10086258 f   sgxif.obj
+ 0001:0008544c       OVGKickLimit_ScheduleTA    1008644c f   sgxif.obj
+ 0001:000854c0       OVGInternalFlushBuffers    100864c0 f   sgxif.obj
+ 0001:00085648       OVGSetupUSSEFragmentCodeForAccumulate 10086648 f   useprog.obj
+ 0001:00085874       OVGSetupUSSEFragmentCodeForTQBlit 10086874 f   useprog.obj
+ 0001:00085bf8       OVGCreateDummyPixelPDSProgram 10086bf8 f   useprog.obj
+ 0001:00085db4       OVGSetupNOPPixelShader     10086db4 f   useprog.obj
+ 0001:00086184       OVGGetProgramSize          10087184 f   useprog.obj
+ 0001:00086208       OVGAssembleSections        10087208 f   useprog.obj
+ 0001:00086380       OVGEncodeDmaBurst          10087380 f   util.obj
+ 0001:000866d4       OVGGetApplicationHints     100876d4 f   util.obj
+ 0001:000868b4       OVGIsExternalZRequired     100878b4 f   util.obj
+ 0001:000869dc       OVGColourConvertToHWFormat 100879dc f   util.obj
+ 0001:00086ef0       OVGLoadUSECodeFromHeader   10087ef0 f   util.obj
+ 0001:000870fc       OVGFloatPaintColourToDword 100880fc f   util.obj
+ 0001:00087440       OVGOpenVGImageFormatToPixelFormat 10088440 f   util.obj
+ 0001:0008768c       OVGOpenVGImageFormatToSGXTextureFormat 1008868c f   util.obj
+ 0001:00087898       OVGOpenVGImageFormatToSGXPBEPackMode 10088898 f   util.obj
+ 0001:00087ac0       OVGGetImageFormatBytesPerPixel 10088ac0 f   util.obj
+ 0001:00087ca0       OVGIsSwizzleRequired       10088ca0 f   util.obj
+ 0001:00087e40       OVGFormatIsNonLinear       10088e40 f   util.obj
+ 0001:00087ee8       OVGFormatIsNonPre          10088ee8 f   util.obj
+ 0001:00087fa8       OVGFormatIsOpaque          10088fa8 f   util.obj
+ 0001:000880c0       OVGFormatIgnoringAlpha     100890c0 f   util.obj
+ 0001:00088160       OVGIsPixelScissored        10089160 f   util.obj
+ 0001:000882b8       OVGBuildExtensionString    100892b8 f   util.obj
+ 0001:000883ec       OVGDestroyExtensionString  100893ec f   util.obj
+ 0001:00088440       OVGInputFloatToInt         10089440 f   util.obj
+ 0001:0008858c       OVGFloatToParam            1008958c f   util.obj
+ 0001:00088610       OVGParamToFloat            10089610 f   util.obj
+ 0001:000886b4       OVGIntToParam              100896b4 f   util.obj
+ 0001:00088738       OVGSetupPixelTaskSizeState 10089738 f   state.obj
+ 0001:00088c9c       OVGSetupVertexTaskSizeState 10089c9c f   state.obj
+ 0001:00088f88       OVGSetupVertexTaskSizeStateByAttribCount 10089f88 f   state.obj
+ 0001:000891f0       OVGIsDestinationRequiredForBlend 1008a1f0 f   state.obj
+ 0001:000894e4       OVGValidateSWStateAndConfigureHWState 1008a4e4 f   state.obj
+ 0001:00089a44       OVGTokeniseStateForShaders 1008aa44 f   state.obj
+ 0001:0008a9f8       OVGContext_bitsetCurrentDrawMode 1008b9f8 f   state.obj
+ 0001:0008aa34       OVGContext_bitunsetCurrentDrawMode 1008ba34 f   state.obj
+ 0001:0008aa74       OVGContext_setCurrentDrawMode 1008ba74 f   state.obj
+ 0001:0008aad4       OVGContext_currentDrawMode 1008bad4 f   state.obj
+ 0001:0008ab08       OVGSetupBGObject           1008bb08 f   specobj.obj
+ 0001:0008b1d4       OVGSetupPixelEventProgram  1008c1d4 f   specobj.obj
+ 0001:0008bcb8       OVGSendAccumulateObject    1008ccb8 f   specobj.obj
+ 0001:0008cb6c       OVGGetPathVertex           1008db6c f   pathutils.obj
+ 0001:0008cca4       OVGSizeofDataType          1008dca4 f   pathutils.obj
+ 0001:0008cd38       OVGSegmentRequiredBlockCapacity 1008dd38 f   pathutils.obj
+ 0001:0008ced8       OVGCheckConvexity          1008ded8 f   pathutils.obj
+ 0001:0008cfa0       OVGRecordCurrentStrokeParams 1008dfa0 f   pathutils.obj
+ 0001:0008d140       OVGAreStrokeParamsDirty    1008e140 f   pathutils.obj
+ 0001:0008d3c4       OVGSetPathDirty            1008e3c4 f   pathutils.obj
+ 0001:0008d3f4       OVGGenerateIterativeClipIndices 1008e3f4 f   pathutils.obj
+ 0001:0008d7bc       OVGFreeSegmentBlock        1008e7bc f   pathutils.obj
+ 0001:0008d810       OVGCopyPathSegments        1008e810 f   pathutils.obj
+ 0001:0008d96c       OVGCopyAndPromotePathSegments 1008e96c f   pathutils.obj
+ 0001:0008e9f4       OVGGetSegmentLastControlPoint 1008f9f4 f   pathutils.obj
+ 0001:0008eb68       OVGAdvanceSegmentDataPtr   1008fb68 f   pathutils.obj
+ 0001:0008ec88       OVGCalculateSegmentLength  1008fc88 f   pathutils.obj
+ 0001:0008ee6c       OVGPointAlongSegment       1008fe6c f   pathutils.obj
+ 0001:0008fd60       OVGProcessSegment          10090d60 f   pathutils.obj
+ 0001:00090708       OVGPixelShader_setNeedsGenerattingPrimaryPDS 10091708 f   pixelshader.obj
+ 0001:00090730       OVGPixelShader_generatedPrimaryPDS 10091730 f   pixelshader.obj
+ 0001:00090764       OVGPixelShader_setNeedsBlittingPaintTAG 10091764 f   pixelshader.obj
+ 0001:0009078c       OVGPixelShader_blittedPaintTAG 1009178c f   pixelshader.obj
+ 0001:000907c0       _CreatePixelCodeBlockFromSections 100917c0 f   pixelshader.obj
+ 0001:00090b60       _SetUpTextureFilteringBits 10091b60 f   pixelshader.obj
+ 0001:00090c84       _SetUpMipMappingBits       10091c84 f   pixelshader.obj
+ 0001:00090d74       OVGGeneratePixelShader     10091d74 f   pixelshader.obj
+ 0001:00098570       OVGSetUpBoundingRectVertexBuffer 10099570 f   vertexshader.obj
+ 0001:00098750       OVGGenerateVertexShader    10099750 f   vertexshader.obj
+ 0001:0009c058       PDSVtxSecSetSTREAM_ADDR    1009d058 f i vertexshader.obj
+ 0001:0009c07c       PDSVtxSecSetPAINT_COLOUR   1009d07c f i vertexshader.obj
+ 0001:0009c0a0       PDSVtxSecSetPRI_USE_EXE1   1009d0a0 f i vertexshader.obj
+ 0001:0009c0c4       PDSVtxSecSetPRI_USE_EXE2   1009d0c4 f i vertexshader.obj
+ 0001:0009c0e8       PDSVtxSecSetPRI_USE_EXE3   1009d0e8 f i vertexshader.obj
+ 0001:0009c10c       PDSVtxSecSetSEC_DOUTD_A0   1009d10c f i vertexshader.obj
+ 0001:0009c12c       PDSVtxSecSetSEC_DOUTD_A1   1009d12c f i vertexshader.obj
+ 0001:0009c150       PDSVtxSecSetSEC_DOUTD_B0   1009d150 f i vertexshader.obj
+ 0001:0009c174       PDSVtxSecSetSEC_DOUTD_B1   1009d174 f i vertexshader.obj
+ 0001:0009c198       PDSVtxSecSetUSE0           1009d198 f i vertexshader.obj
+ 0001:0009c1bc       PDSVtxSecSetUSE1           1009d1bc f i vertexshader.obj
+ 0001:0009c1e0       PDSVtxSecSetUSE2           1009d1e0 f i vertexshader.obj
+ 0001:0009c204       _FromOVGRectToEGLRect      1009d204 f   scissor.obj
+ 0001:0009c49c       OVGSendScissorRects        1009d49c f   scissor.obj
+ 0001:0009d720       OVGSendFullScreenEnable    1009e720 f   scissor.obj
+ 0001:0009d744       OVGSendRectToStencil       1009e744 f   scissor.obj
+ 0001:0009ddd4       OVGSendScissorRectsToStencil 1009edd4 f   scissor.obj
+ 0001:0009df7c       OVGGetMaxScale             1009ef7c f   matrix.obj
+ 0001:0009e124       OVGLoadCurrentActiveMatrix 1009f124 f   matrix.obj
+ 0001:0009e240       OVGValidateInversePaintMatrix 1009f240 f   matrix.obj
+ 0001:0009e334       vgLoadIdentity             1009f334 f   matrix.obj
+ 0001:0009e3ac       vgLoadMatrix               1009f3ac f   matrix.obj
+ 0001:0009e5b4       vgGetMatrix                1009f5b4 f   matrix.obj
+ 0001:0009e76c       vgMultMatrix               1009f76c f   matrix.obj
+ 0001:0009e8f0       vgTranslate                1009f8f0 f   matrix.obj
+ 0001:0009e9bc       vgScale                    1009f9bc f   matrix.obj
+ 0001:0009ea88       vgShear                    1009fa88 f   matrix.obj
+ 0001:0009eb54       vgRotate                   1009fb54 f   matrix.obj
+ 0001:0009ecd8       OVGGetFormatDescriptor     1009fcd8 f   pixelformat.obj
+ 0001:0009f1cc       OVGCheckForValidFBFormat   100a01cc f   pixelformat.obj
+ 0001:0009f288       OVGGetFBFormatDescriptor   100a0288 f   pixelformat.obj
+ 0001:0009f750       OVGPickPreferedVGImageFormat 100a0750 f   pixelformat.obj
+ 0001:0009f970       OVGFormatDescriptorToPixelFormat 100a0970 f   pixelformat.obj
+ 0001:0009fb00       OVGPixelPosFromTwiddledAddr 100a0b00 f   pixelformat.obj
+ 0001:0009fc24       SetTwiddledAddrParams      100a0c24 f   pixelformat.obj
+ 0001:0009fd1c       OVGReadPixelData           100a0d1c f   pixelformat.obj
+ 0001:000a0084       OVGTiledReadPixelData      100a1084 f   pixelformat.obj
+ 0001:000a0b1c       OVGWritePixelData          100a1b1c f   pixelformat.obj
+ 0001:000a0edc       _PixelColourConversionScaleBias 100a1edc f   pixelformat.obj
+ 0001:000a1180       OVGColourConversion        100a2180 f   pixelformat.obj
+ 0001:000a1f00       OVGSpecialTileFillColourConversion 100a2f00 f   pixelformat.obj
+ 0001:000a2bf0       OVGScaledBlitSW            100a3bf0 f   pixelformat.obj
+ 0001:000a3574       OVGGetTextureLinearAddress 100a4574 f   texture.obj
+ 0001:000a37bc       OVGGetTextureDeviceAddress 100a47bc f   texture.obj
+ 0001:000a3a2c       OVGReferenceTextureInCurrentFrame 100a4a2c f   texture.obj
+ 0001:000a3ba4       OVGCreateTexture           100a4ba4 f   texture.obj
+ 0001:000a42dc       OVGCreateTextureFromEGLImage 100a52dc f   texture.obj
+ 0001:000a4598       OVGFreeTexture             100a5598 f   texture.obj
+ 0001:000a4634       OVGFrameBufferCreateWithContext 100a5634 f   texture.obj
+ 0001:000a46e4       OVGFrameBufferRelease      100a56e4 f   texture.obj
+ 0001:000a4740       OVGFrameBufferDealloc      100a5740 f   texture.obj
+ 0001:000a47a4       OVGFrameBufferAllocMaskRenderBuffer 100a57a4 f   texture.obj
+ 0001:000a4854       OVGFrameBufferAllocRenderBuffer 100a5854 f   texture.obj
+ 0001:000a4f50       OVGFrameBufferDeallocRenderBuffer 100a5f50 f   texture.obj
+ 0001:000a5034       OVGContextSaveState        100a6034 f   texture.obj
+ 0001:000a51cc       OVGContextRestoreState     100a61cc f   texture.obj
+ 0001:000a5378       OVGContextInitialiseStateForRenderToMask 100a6378 f   texture.obj
+ 0001:000a5484       OVGContextSetRenderToMainIfNeeded 100a6484 f   texture.obj
+ 0001:000a562c       OVGContextSetRenderToMaskWithFrameBuffer 100a662c f   texture.obj
+ 0001:000a57dc       OVGInitialiseFrameResManagers 100a67dc f   meminstance.obj
+ 0001:000a5cb0       OVGDestroyFrameResManagers 100a6cb0 f   meminstance.obj
+ 0001:000a5cf8       OVGFreeRedundantMem        100a6cf8 f   meminstance.obj
+ 0001:000a5e28       OVGFreeMemInstance         100a6e28 f   meminstance.obj
+ 0001:000a5fb0       OVGFreeRedundantMemList    100a6fb0 f   meminstance.obj
+ 0001:000a6274       OVGCreateMemInstance       100a7274 f   meminstance.obj
+ 0001:000a63bc       OVGGhostMemInstance        100a73bc f   meminstance.obj
+ 0001:000a67c8       OVGAllocGeneralHeapDeviceMem 100a77c8 f   meminstance.obj
+ 0001:000a6d08       OVGCleanupRedundantMemInstances 100a7d08 f   meminstance.obj
+ 0001:000a6f98       OVGGenerateMipMaps         100a7f98 f   transfer.obj
+ 0001:000a7240       DynamicTessellateBezier    100a8240 f   subdivide.obj
+ 0001:000a7f8c       DynamicStrokeBezier        100a8f8c f   subdivide.obj
+ 0001:000addf0       OVGGenerateStencilPassShader 100aedf0 f   stencil.obj
+ 0001:000af168       vgCreateEGLImageTargetKHR  100b0168 f   eglimage.obj
+ 0001:000af4f4       OVGGetImageSource          100b04f4 f   eglimage.obj
+ 0001:000af8e8       OVGLL_Init                 100b08e8 f   linkedlist.obj
+ 0001:000af928       OVGLL_AddObject            100b0928 f   linkedlist.obj
+ 0001:000afa24       OVGLL_AddFunction          100b0a24 f   linkedlist.obj
+ 0001:000afb20       OVGLL_GetHeadObject        100b0b20 f   linkedlist.obj
+ 0001:000afb70       OVGLL_GetHeadFunction      100b0b70 f   linkedlist.obj
+ 0001:000afbc0       OVGLL_RemoveHead           100b0bc0 f   linkedlist.obj
+ 0001:000afc6c       OVGLL_RemoveTail           100b0c6c f   linkedlist.obj
+ 0001:000afd6c       OVGLL_RemoveObject         100b0d6c f   linkedlist.obj
+ 0001:000afe74       OVGLL_Count                100b0e74 f   linkedlist.obj
+ 0001:000afea4       OVGLL_Destroy              100b0ea4 f   linkedlist.obj
+ 0001:000aff30       OVGIterator_Init           100b0f30 f   listiterator.obj
+ 0001:000aff84       OVGIterator_HasNext        100b0f84 f   listiterator.obj
+ 0001:000affd4       OVGIterator_NextObject     100b0fd4 f   listiterator.obj
+ 0001:000b004c       OVGIterator_NextFunction   100b104c f   listiterator.obj
+ 0001:000b00c4       OVGSetupUSSEPrimary        100b10c4 f   shader_setup.obj
+ 0001:000b0250       OVGSetupUSSESecondary      100b1250 f   shader_setup.obj
+ 0001:000b0334       OVGInitIterators           100b1334 f   shader_setup.obj
+ 0001:000b0374       OVGAddIterator_Texture     100b1374 f   shader_setup.obj
+ 0001:000b03fc       OVGAddIterator_Position    100b13fc f   shader_setup.obj
+ 0001:000b0484       OVGSetupIterators          100b1484 f   shader_setup.obj
+ 0001:000b05b4       OVGSetupTAG_Memory         100b15b4 f   shader_setup.obj
+ 0001:000b07fc       OVGSetupTAG_Texture        100b17fc f   shader_setup.obj
+ 0001:000b08d0       OVGGetPDSPrimarySizes      100b18d0 f   shader_setup.obj
+ 0001:000b0ad0       OVGGetPDSSecondarySizes    100b1ad0 f   shader_setup.obj
+ 0001:000b0d74       OVG_SGXTQ_SetPBEState      100b1d74 f   ovg_sgxtransfer_utils.obj
+ 0001:000b14e0       OVG_SGXTQ_GetPBEFormat     100b24e0 f   ovg_sgxtransfer_utils.obj
+ 0001:000b1904       OVGTransferInit            100b2904 f   transferobj.obj
+ 0001:000b1954       OVGTransferSetSrc_Image    100b2954 f   transferobj.obj
+ 0001:000b19ac       OVGTransferSetSrc_Texture  100b29ac f   transferobj.obj
+ 0001:000b1d10       OVGTransferSetDst_Image    100b2d10 f   transferobj.obj
+ 0001:000b1d68       OVGTransferSetDst_Texture  100b2d68 f   transferobj.obj
+ 0001:000b1f84       OVGTransferSetSrc_SysMem   100b2f84 f   transferobj.obj
+ 0001:000b2058       OVGTransferSetDst_SysMem   100b3058 f   transferobj.obj
+ 0001:000b2134       OVGTransferSetSrc_Surface  100b3134 f   transferobj.obj
+ 0001:000b23c0       OVGTransferSetDst_Surface  100b33c0 f   transferobj.obj
+ 0001:000b25ac       OVGTransferSetSrc_DevMem   100b35ac f   transferobj.obj
+ 0001:000b2678       OVGTransferSetDst_DevMem   100b3678 f   transferobj.obj
+ 0001:000b274c       OVGTransferLaunch          100b374c f   transferobj.obj
+ 0001:000b2798       OVGTransferDestroy         100b3798 f   transferobj.obj
+ 0001:000b2834       OVGTransferIsSameData      100b3834 f   transferobj.obj
+ 0001:000b2920       OVGTransferIsOverlapping   100b3920 f   transferobj.obj
+ 0001:000b2994       OVGTTQInit_Fill            100b3994 f   transfer_TQ.obj
+ 0001:000b3084       OVGTTQInit_Upload          100b4084 f   transfer_TQ.obj
+ 0001:000b3208       OVGTTQInit_Blit            100b4208 f   transfer_TQ.obj
+ 0001:000b3a90       OVGTTQInit_CustomShader    100b4a90 f   transfer_TQ.obj
+ 0001:000b3c84       OVGTTQInit_Custom          100b4c84 f   transfer_TQ.obj
+ 0001:000b409c       OVGTSWInit_Blit            100b509c f   transfer_SW.obj
+ 0001:000c77e0       OVGColorMatrixTQ           100c87e0 f   imagefilter_TQ.obj
+ 0001:000c8604       OVGLookupSingleTQ          100c9604 f   imagefilter_TQ.obj
+ 0001:000c8a18       OVGLookupTQ                100c9a18 f   imagefilter_TQ.obj
+ 0001:000c8dc0       OVGConvolveTQ              100c9dc0 f   imagefilter_TQ.obj
+ 0001:000ca6c8       OVGSeparableConvolveTQ     100cb6c8 f   imagefilter_TQ.obj
+ 0001:000cc9cc       OVGGaussianBlurSepConvTQ   100cd9cc f   imagefilter_TQ.obj
+ 0001:000cd17c       OVGCBInit                  100ce17c f   circularbuffer.obj
+ 0001:000cd1ec       OVGCBCanStore              100ce1ec f   circularbuffer.obj
+ 0001:000cd44c       OVGCBReserve               100ce44c f   circularbuffer.obj
+ 0001:000cd7d0       OVGCBUpdateWrite           100ce7d0 f   circularbuffer.obj
+ 0001:000cd82c       OVGCBUpdateRead            100ce82c f   circularbuffer.obj
+ 0001:000cd850       OVGCBCommit                100ce850 f   circularbuffer.obj
+ 0001:000cd8b0       OVGCBRevert                100ce8b0 f   circularbuffer.obj
+ 0001:000cd8f4       OVGCBCancel                100ce8f4 f   circularbuffer.obj
+ 0001:000cd920       OVGCBIsEmpty               100ce920 f   circularbuffer.obj
+ 0001:000cd97c       OVGCopyTextureTQ           100ce97c f   image_TQ.obj
+ 0001:000ce094       OVGGetPixelsTQ             100cf094 f   image_TQ.obj
+ 0001:000ce3e0       OVGImageSubDataTQ          100cf3e0 f   image_TQ.obj
+ 0001:000cee74       OVGScaledBlitTQ            100cfe74 f   image_TQ.obj
+ 0001:000cf078       OVGTQSInit                 100d0078 f   tqsync.obj
+ 0001:000cf158       OVGTQSDestroy              100d0158 f   tqsync.obj
+ 0001:000cf1dc       OVGTQSCreateTransfer       100d01dc f   tqsync.obj
+ 0001:000cf454       OVGTQSCancelTransfer       100d0454 f   tqsync.obj
+ 0001:000cf480       OVGTQSSetSync              100d0480 f   tqsync.obj
+ 0001:000cf4c4       OVGTQSAddListener          100d04c4 f   tqsync.obj
+ 0001:000cf50c       OVGTQSRemoveListener       100d050c f   tqsync.obj
+ 0001:000cf534       OVGTQSUpdate               100d0534 f   tqsync.obj
+ 0001:000cf650       OVGTQSGetTransferId        100d0650 f   tqsync.obj
+ 0001:000cf680       OVGBSInit                  100d0680 f   buffersync.obj
+ 0001:000cfa50       OVGBSDestroy               100d0a50 f   buffersync.obj
+ 0001:000cfbb4       OVGBSReserve               100d0bb4 f   buffersync.obj
+ 0001:000d0138       OVGBSUpdateWrite           100d1138 f   buffersync.obj
+ 0001:000d0164       OVGBSCommit                100d1164 f   buffersync.obj
+ 0001:000d028c       OVGBSCancel                100d128c f   buffersync.obj
+ 0001:000d0314       OVG_GetTLSID               100d1314 f   wince6_tls.obj
+ 0001:000d033c       OVG_GetTLSValue            100d133c f   wince6_tls.obj
+ 0001:000d0394       OVG_SetTLSValue            100d1394 f   wince6_tls.obj
+ 0001:000d0410       GetCurrentThreadId         100d1410 f i wince6_tls.obj
+ 0001:000d043c       TlsAlloc                   100d143c f i wince6_tls.obj
+ 0001:000d046c       PDSGeneratePixelEventProgram 100d146c f   pds.obj
+ 0001:000d0640       PDSGeneratePixelShaderSAProgram 100d1640 f   pds.obj
+ 0001:000d0de8       PDSGenerateStaticPixelShaderSAProgram 100d1de8 f   pds.obj
+ 0001:000d139c       PDSGeneratePixelShaderProgram 100d239c f   pds.obj
+ 0001:000d1b70       PDSGenerateStateCopyProgram 100d2b70 f   pds.obj
+ 0001:000d20cc       PDSGenerateVertexShaderSAProgram 100d30cc f   pds.obj
+ 0001:000d2640       PDSGenerateStaticVertexShaderProgram 100d3640 f   pds.obj
+ 0001:000d3260       PDSGenerateVertexShaderProgram 100d4260 f   pds.obj
+ 0001:000d4664       PDSPatchVertexShaderProgram 100d5664 f   pds.obj
+ 0001:000d4824       PDSGenerateConstUploadProgram 100d5824 f   pds.obj
+ 0001:000d4e18       PDSGenerateTerminateStateProgram 100d5e18 f   pds.obj
+ 0001:000d530c       PDSPatchTerminateStateProgram 100d630c f   pds.obj
+ 0001:000d5918       PDSPixelEventSetPTOFF0     100d6918 f i pds.obj
+ 0001:000d5938       PDSPixelEventSetPTOFF1     100d6938 f i pds.obj
+ 0001:000d595c       PDSPixelEventSetPTOFF2     100d695c f i pds.obj
+ 0001:000d5980       PDSPixelEventSetEOT0       100d6980 f i pds.obj
+ 0001:000d59a4       PDSPixelEventSetEOT1       100d69a4 f i pds.obj
+ 0001:000d59c8       PDSPixelEventSetEOT2       100d69c8 f i pds.obj
+ 0001:000d59ec       PDSPixelEventSetEOR0       100d69ec f i pds.obj
+ 0001:000d5a10       PDSPixelEventSetEOR1       100d6a10 f i pds.obj
+ 0001:000d5a34       PDSPixelEventSetEOR2       100d6a34 f i pds.obj
+ 0001:000d5a58       PDSEncodeMOVS              100d6a58 f i pds.obj
+ 0001:000d5ae4       PDSEncodeHALT              100d6ae4 f i pds.obj
+ 0001:000d5b10       PDSEncodeADD               100d6b10 f i pds.obj
+ 0001:000d5b7c       PDSEncodeMUL               100d6b7c f i pds.obj
+ 0001:000d5be8       PDSEncodeSHL               100d6be8 f i pds.obj
+ 0001:000d5c4c       PDSEncodeSHR               100d6c4c f i pds.obj
+ 0001:000d5cb0       PDSEncodeMOVSA             100d6cb0 f i pds.obj
+ 0001:000d5d40       WritePTOffUSSECode         100d6d40 f   pixevent.obj
+ 0001:000d5da4       WriteEndOfRenderUSSECode   100d6da4 f   pixevent.obj
+ 0001:000d5e84       WriteEndOfTileUSSECode     100d6e84 f   pixevent.obj
+ 0001:000d6090       CBUF_GetBufferSpace        100d7090 f   buffers.obj
+ 0001:000d6be8       CBUF_UpdateBufferPos       100d7be8 f   buffers.obj
+ 0001:000d6dc8       CBUF_GetBufferDeviceAddress 100d7dc8 f   buffers.obj
+ 0001:000d6e88       CBUF_UpdateBufferCommittedPrimOffsets 100d7e88 f   buffers.obj
+ 0001:000d702c       CBUF_UpdateBufferCommittedHWOffsets 100d802c f   buffers.obj
+ 0001:000d70f0       CBUF_UpdateTACtrlKickBase  100d80f0 f   buffers.obj
+ 0001:000d71e0       CBUF_CreateBuffer          100d81e0 f   buffers.obj
+ 0001:000d74f0       CBUF_DestroyBuffer         100d84f0 f   buffers.obj
+ 0001:000d751c       UCH_CodeHeapCreate         100d851c f   codeheap.obj
+ 0001:000d7740       UCH_CodeHeapDestroy        100d8740 f   codeheap.obj
+ 0001:000d78f8       UCH_CodeHeapFreeFunc       100d88f8 f   codeheap.obj
+ 0001:000d7f18       UCH_CodeHeapAllocateFunc   100d8f18 f   codeheap.obj
+ 0001:000d8c08       UCH_TrackCodeHeapAllocate  100d9c08 f   codeheap.obj
+ 0001:000d8df8       UCH_TrackCodeHeapFree      100d9df8 f   codeheap.obj
+ 0001:000d8f08       FRM_Initialize             100d9f08 f   frameresource.obj
+ 0001:000d91d8       FRM_Attach                 100da1d8 f   frameresource.obj
+ 0001:000d97ac       FRM_IsResourceInUse        100da7ac f   frameresource.obj
+ 0001:000d9af4       FRM_IsResourceNeeded       100daaf4 f   frameresource.obj
+ 0001:000d9cb8       FRM_WaitUntilResourceIsNotNeeded 100dacb8 f   frameresource.obj
+ 0001:000d9e40       FRM_WaitForAllResources    100dae40 f   frameresource.obj
+ 0001:000d9f7c       FRM_GhostResource          100daf7c f   frameresource.obj
+ 0001:000da0b4       FRM_ReclaimUnneededResources 100db0b4 f   frameresource.obj
+ 0001:000da2d0       FRM_DestroyUnneededGhosts  100db2d0 f   frameresource.obj
+ 0001:000da670       FRM_RemoveResourceFromAllLists 100db670 f   frameresource.obj
+ 0001:000da704       FRM_RemoveSurfaceReferences 100db704 f   frameresource.obj
+ 0001:000da96c       FRM_Destroy                100db96c f   frameresource.obj
+ 0001:000daaa8       FRM_SanityCheck            100dbaa8 f   frameresource.obj
+ 0001:000db0f0       DeTwiddleAddress16bpp      100dc0f0 f   twiddle.obj
+ 0001:000dd248       ReadBackTwiddle16bpp       100de248 f   twiddle.obj
+ 0001:000dd660       DeTwiddleAddress32bpp      100de660 f   twiddle.obj
+ 0001:000df560       ReadBackTwiddle32bpp       100e0560 f   twiddle.obj
+ 0001:000df978       ReadBackTwiddle8bpp        100e0978 f   twiddle.obj
+ 0001:000dfb70       ReadBackTwiddleETC1        100e0b70 f   twiddle.obj
+ 0001:000dfcb4       DeTwiddleAddress8bpp       100e0cb4 f   twiddle.obj
+ 0001:000e0044       DeTwiddleAddressETC1       100e1044 f   twiddle.obj
+ 0001:000e0488       PVRSRVDebugAssertFail      100e1488 f   srvclum:SRVCLUM.dll
+ 0001:000e0498       PVRSRVDebugPrintf          100e1498 f   srvclum:SRVCLUM.dll
+ 0001:000e04a8       PVRSRVMemCopy              100e14a8 f   srvclum:SRVCLUM.dll
+ 0001:000e04b8       PVRSRVUnlockMutex          100e14b8 f   srvclum:SRVCLUM.dll
+ 0001:000e04c8       PVRSRVLockMutex            100e14c8 f   srvclum:SRVCLUM.dll
+ 0001:000e04d8       PVRSRVAllocDeviceMem       100e14d8 f   srvclum:SRVCLUM.dll
+ 0001:000e04e8       PVRSRVCreateMutex          100e14e8 f   srvclum:SRVCLUM.dll
+ 0001:000e04f8       PVRSRVDestroyMutex         100e14f8 f   srvclum:SRVCLUM.dll
+ 0001:000e0508       PVRSRVFreeDeviceMem        100e1508 f   srvclum:SRVCLUM.dll
+ 0001:000e0518       PVRSRVMemSet               100e1518 f   srvclum:SRVCLUM.dll
+ 0001:000e0528       PVRSRVPollForValue         100e1528 f   srvclum:SRVCLUM.dll
+ 0001:000e0538       PVRSRVEventObjectWait      100e1538 f   srvclum:SRVCLUM.dll
+ 0001:000e0548       SGXKickTA                  100e1548 f   srvclum:SRVCLUM.dll
+ 0001:000e0558       PVRSRVFreeAppHintState     100e1558 f   srvclum:SRVCLUM.dll
+ 0001:000e0568       PVRSRVGetAppHint           100e1568 f   srvclum:SRVCLUM.dll
+ 0001:000e0578       PVRSRVCreateAppHintState   100e1578 f   srvclum:SRVCLUM.dll
+ 0001:000e0588       SGXQueueTransfer           100e1588 f   srvclum:SRVCLUM.dll
+ 0001:000e0598       PVRSRVFreeUserModeMem      100e1598 f   srvclum:SRVCLUM.dll
+ 0001:000e05a8       PVRSRVAllocUserModeMem     100e15a8 f   srvclum:SRVCLUM.dll
+ 0001:000e05b8       PVRSRVCallocUserModeMem    100e15b8 f   srvclum:SRVCLUM.dll
+ 0001:000e05c8       PVRSRVReallocUserModeMem   100e15c8 f   srvclum:SRVCLUM.dll
+ 0001:000e05d8       KEGLGetDrawableParameters  100e15d8 f   libimgegl:libIMGEGL.dll
+ 0001:000e05e8       KEGLGetImageSource         100e15e8 f   libimgegl:libIMGEGL.dll
+ 0001:000e05f8       KEGLResizeRenderSurface    100e15f8 f   libimgegl:libIMGEGL.dll
+ 0001:000e0608       KEGLCreateRenderSurface    100e1608 f   libimgegl:libIMGEGL.dll
+ 0001:000e0618       KEGLDestroyRenderSurface   100e1618 f   libimgegl:libIMGEGL.dll
+ 0001:000e0628       KEGLUnbindImage            100e1628 f   libimgegl:libIMGEGL.dll
+ 0001:000e0638       KEGLBindImage              100e1638 f   libimgegl:libIMGEGL.dll
+ 0001:000e0648       Sleep                      100e1648 f   coredll:COREDLL.dll
+ 0001:000e0658       GetModuleFileNameW         100e1658 f   coredll:COREDLL.dll
+ 0001:000e0668       OutputDebugStringW         100e1668 f   coredll:COREDLL.dll
+ 0001:000e0678       __GetUserKData             100e1678 f   coredll:COREDLL.dll
+ 0001:000e0688       TlsGetValue                100e1688 f   coredll:COREDLL.dll
+ 0001:000e0698       TlsCall                    100e1698 f   coredll:COREDLL.dll
+ 0001:000e06a8       TlsSetValue                100e16a8 f   coredll:COREDLL.dll
+ 0001:000e06b8       DllMain                    100e16b8 f   corelib0:dllmain.obj
+ 0001:000e06f4       _DllMainCRTStartup         100e16f4 f   corelib0:pegdmain.obj
+ 0001:000e089c       __security_init_cookie     100e189c f   corelib0:seccinit.obj
+ 0001:000e0964       __GSHandlerCheck           100e1964 f   corelib0:gshandler.obj
+ 0001:000e09ac       __GSHandlerCheckCommon     100e19ac f   corelib0:gshandler.obj
+ 0001:000e0a54       __security_check_cookie    100e1a54 f   corelib0:armsecgs.obj
+ 0001:000e0a68       __gsfailure                100e1a68 f   corelib0:armsecgs.obj
+ 0001:000e0aac       exit                       100e1aac f   corelib0:cexit.obj
+ 0001:000e0bf0       _exit                      100e1bf0 f   corelib0:cexit.obj
+ 0001:000e0c14       _cexit                     100e1c14 f   corelib0:cexit.obj
+ 0001:000e0c30       _c_exit                    100e1c30 f   corelib0:cexit.obj
+ 0001:000e0c4c       GetCurrentProcess          100e1c4c f i corelib0:cexit.obj
+ 0001:000e0c64       _initterm                  100e1c64 f   corelib0:crt0dat.obj
+ 0001:000e0cb8       _cinit                     100e1cb8 f   corelib0:crt0dat.obj
+ 0001:000e0cec       _onexit                    100e1cec f   corelib0:onexit.obj
+ 0001:000e0ecc       atexit                     100e1ecc f   corelib0:onexit.obj
+ 0001:000e0f20       memcpy                     100e1f20 f   corelib1:COREDLL.dll
+ 0001:000e0f30       memset                     100e1f30 f   corelib1:COREDLL.dll
+ 0001:000e0f40       __utos                     100e1f40 f   corelib1:COREDLL.dll
+ 0001:000e0f50       __subs                     100e1f50 f   corelib1:COREDLL.dll
+ 0001:000e0f60       __rt_udiv                  100e1f60 f   corelib1:COREDLL.dll
+ 0001:000e0f70       __stou                     100e1f70 f   corelib1:COREDLL.dll
+ 0001:000e0f80       __divs                     100e1f80 f   corelib1:COREDLL.dll
+ 0001:000e0f90       __muls                     100e1f90 f   corelib1:COREDLL.dll
+ 0001:000e0fa0       __itos                     100e1fa0 f   corelib1:COREDLL.dll
+ 0001:000e0fb0       __adds                     100e1fb0 f   corelib1:COREDLL.dll
+ 0001:000e0fc0       __nes                      100e1fc0 f   corelib1:COREDLL.dll
+ 0001:000e0fd0       __stod                     100e1fd0 f   corelib1:COREDLL.dll
+ 0001:000e0fe0       __eqd                      100e1fe0 f   corelib1:COREDLL.dll
+ 0001:000e0ff0       __gts                      100e1ff0 f   corelib1:COREDLL.dll
+ 0001:000e1000       __lts                      100e2000 f   corelib1:COREDLL.dll
+ 0001:000e1010       __les                      100e2010 f   corelib1:COREDLL.dll
+ 0001:000e1020       pow                        100e2020 f   corelib1:COREDLL.dll
+ 0001:000e1030       __dtos                     100e2030 f   corelib1:COREDLL.dll
+ 0001:000e1040       __eqs                      100e2040 f   corelib1:COREDLL.dll
+ 0001:000e1050       printf                     100e2050 f   corelib1:COREDLL.dll
+ 0001:000e1060       fclose                     100e2060 f   corelib1:COREDLL.dll
+ 0001:000e1070       fwrite                     100e2070 f   corelib1:COREDLL.dll
+ 0001:000e1080       fopen                      100e2080 f   corelib1:COREDLL.dll
+ 0001:000e1090       __stoi                     100e2090 f   corelib1:COREDLL.dll
+ 0001:000e10a0       acos                       100e20a0 f   corelib1:COREDLL.dll
+ 0001:000e10b0       sin                        100e20b0 f   corelib1:COREDLL.dll
+ 0001:000e10c0       cos                        100e20c0 f   corelib1:COREDLL.dll
+ 0001:000e10d0       fabs                       100e20d0 f   corelib1:COREDLL.dll
+ 0001:000e10e0       __negs                     100e20e0 f   corelib1:COREDLL.dll
+ 0001:000e10f0       sqrt                       100e20f0 f   corelib1:COREDLL.dll
+ 0001:000e1100       fmod                       100e2100 f   corelib1:COREDLL.dll
+ 0001:000e1110       strcmp                     100e2110 f   corelib1:COREDLL.dll
+ 0001:000e1120       __rt_sdiv                  100e2120 f   corelib1:COREDLL.dll
+ 0001:000e1130       free                       100e2130 f   corelib1:COREDLL.dll
+ 0001:000e1140       malloc                     100e2140 f   corelib1:COREDLL.dll
+ 0001:000e1150       __ned                      100e2150 f   corelib1:COREDLL.dll
+ 0001:000e1160       __muld                     100e2160 f   corelib1:COREDLL.dll
+ 0001:000e1170       __divd                     100e2170 f   corelib1:COREDLL.dll
+ 0001:000e1180       __addd                     100e2180 f   corelib1:COREDLL.dll
+ 0001:000e1190       __dtou                     100e2190 f   corelib1:COREDLL.dll
+ 0001:000e11a0       __ged                      100e21a0 f   corelib1:COREDLL.dll
+ 0001:000e11b0       __ltd                      100e21b0 f   corelib1:COREDLL.dll
+ 0001:000e11c0       __utod                     100e21c0 f   corelib1:COREDLL.dll
+ 0001:000e11d0       __itod                     100e21d0 f   corelib1:COREDLL.dll
+ 0001:000e11e0       exp                        100e21e0 f   corelib1:COREDLL.dll
+ 0001:000e11f0       __ges                      100e21f0 f   corelib1:COREDLL.dll
+ 0001:000e1200       memmove                    100e2200 f   corelib1:COREDLL.dll
+ 0001:000e1210       calloc                     100e2210 f   corelib1:COREDLL.dll
+ 0001:000e1220       realloc                    100e2220 f   corelib1:COREDLL.dll
+ 0001:000e1230       _wfopen                    100e2230 f   corelib1:COREDLL.dll
+ 0001:000e1240       wcscpy                     100e2240 f   corelib1:COREDLL.dll
+ 0001:000e1250       wcscat                     100e2250 f   corelib1:COREDLL.dll
+ 0001:000e1260       wcsrchr                    100e2260 f   corelib1:COREDLL.dll
+ 0001:000e1270       strlen                     100e2270 f   corelib1:COREDLL.dll
+ 0001:000e1280       fprintf                    100e2280 f   corelib1:COREDLL.dll
+ 0001:000e1290       atan                       100e2290 f   corelib1:COREDLL.dll
+ 0001:000e12a0       strcat                     100e22a0 f   corelib1:COREDLL.dll
+ 0001:000e12b0       floor                      100e22b0 f   corelib1:COREDLL.dll
+ 0001:000e12c0       __gtd                      100e22c0 f   corelib1:COREDLL.dll
+ 0001:000e12d0       __dtoi                     100e22d0 f   corelib1:COREDLL.dll
+ 0001:000e12e0       memcmp                     100e22e0 f   corelib1:COREDLL.dll
+ 0001:000e12f0       ceil                       100e22f0 f   corelib1:COREDLL.dll
+ 0001:000e1300       strcpy                     100e2300 f   corelib1:COREDLL.dll
+ 0001:000e1310       _XcptFilter                100e2310 f   corelib1:COREDLL.dll
+ 0001:000e1320       __C_specific_handler       100e2320 f   corelib1:COREDLL.dll
+ 0001:000e1330       __security_gen_cookie2     100e2330 f   corelib1:COREDLL.dll
+ 0001:000e1340       __report_gsfailure         100e2340 f   corelib1:COREDLL.dll
+ 0001:000e1350       _msize                     100e2350 f   corelib1:COREDLL.dll
+ 0001:000e1360       DisableThreadLibraryCalls  100e2360 f   coredll:COREDLL.dll
+ 0001:000e1370       TerminateProcess           100e2370 f   coredll:COREDLL.dll
+ 0001:000e13b0       __IMPORT_DESCRIPTOR_SRVCLUM 100e23b0     srvclum:SRVCLUM.dll
+ 0001:000e13c4       __IMPORT_DESCRIPTOR_libIMGEGL 100e23c4     libimgegl:libIMGEGL.dll
+ 0001:000e13d8       __IMPORT_DESCRIPTOR_COREDLL 100e23d8     coredll:COREDLL.dll
+ 0001:000e13ec       __NULL_IMPORT_DESCRIPTOR   100e23ec     srvclum:SRVCLUM.dll
+ 0002:00000000       __imp_pow                  100e3000     corelib1:COREDLL.dll
+ 0002:00000004       __imp_DisableThreadLibraryCalls 100e3004     coredll:COREDLL.dll
+ 0002:00000008       __imp__msize               100e3008     corelib1:COREDLL.dll
+ 0002:0000000c       __imp___report_gsfailure   100e300c     corelib1:COREDLL.dll
+ 0002:00000010       __imp___security_gen_cookie2 100e3010     corelib1:COREDLL.dll
+ 0002:00000014       __imp___C_specific_handler 100e3014     corelib1:COREDLL.dll
+ 0002:00000018       __imp__XcptFilter          100e3018     corelib1:COREDLL.dll
+ 0002:0000001c       __imp_strcpy               100e301c     corelib1:COREDLL.dll
+ 0002:00000020       __imp_ceil                 100e3020     corelib1:COREDLL.dll
+ 0002:00000024       __imp_memcmp               100e3024     corelib1:COREDLL.dll
+ 0002:00000028       __imp___dtoi               100e3028     corelib1:COREDLL.dll
+ 0002:0000002c       __imp___gtd                100e302c     corelib1:COREDLL.dll
+ 0002:00000030       __imp_floor                100e3030     corelib1:COREDLL.dll
+ 0002:00000034       __imp_strcat               100e3034     corelib1:COREDLL.dll
+ 0002:00000038       __imp_atan                 100e3038     corelib1:COREDLL.dll
+ 0002:0000003c       __imp_fprintf              100e303c     corelib1:COREDLL.dll
+ 0002:00000040       __imp_strlen               100e3040     corelib1:COREDLL.dll
+ 0002:00000044       __imp_wcsrchr              100e3044     corelib1:COREDLL.dll
+ 0002:00000048       __imp_wcscat               100e3048     corelib1:COREDLL.dll
+ 0002:0000004c       __imp_wcscpy               100e304c     corelib1:COREDLL.dll
+ 0002:00000050       __imp__wfopen              100e3050     corelib1:COREDLL.dll
+ 0002:00000054       __imp_realloc              100e3054     corelib1:COREDLL.dll
+ 0002:00000058       __imp_calloc               100e3058     corelib1:COREDLL.dll
+ 0002:0000005c       __imp_memmove              100e305c     corelib1:COREDLL.dll
+ 0002:00000060       __imp___ges                100e3060     corelib1:COREDLL.dll
+ 0002:00000064       __imp_exp                  100e3064     corelib1:COREDLL.dll
+ 0002:00000068       __imp___itod               100e3068     corelib1:COREDLL.dll
+ 0002:0000006c       __imp___utod               100e306c     corelib1:COREDLL.dll
+ 0002:00000070       __imp___ltd                100e3070     corelib1:COREDLL.dll
+ 0002:00000074       __imp___ged                100e3074     corelib1:COREDLL.dll
+ 0002:00000078       __imp_Sleep                100e3078     coredll:COREDLL.dll
+ 0002:0000007c       __imp_GetModuleFileNameW   100e307c     coredll:COREDLL.dll
+ 0002:00000080       __imp_OutputDebugStringW   100e3080     coredll:COREDLL.dll
+ 0002:00000084       __imp___GetUserKData       100e3084     coredll:COREDLL.dll
+ 0002:00000088       __imp_TlsGetValue          100e3088     coredll:COREDLL.dll
+ 0002:0000008c       __imp_TlsCall              100e308c     coredll:COREDLL.dll
+ 0002:00000090       __imp_TlsSetValue          100e3090     coredll:COREDLL.dll
+ 0002:00000094       __imp_memcpy               100e3094     corelib1:COREDLL.dll
+ 0002:00000098       __imp_memset               100e3098     corelib1:COREDLL.dll
+ 0002:0000009c       __imp___utos               100e309c     corelib1:COREDLL.dll
+ 0002:000000a0       __imp___subs               100e30a0     corelib1:COREDLL.dll
+ 0002:000000a4       __imp___rt_udiv            100e30a4     corelib1:COREDLL.dll
+ 0002:000000a8       __imp___stou               100e30a8     corelib1:COREDLL.dll
+ 0002:000000ac       __imp___divs               100e30ac     corelib1:COREDLL.dll
+ 0002:000000b0       __imp___muls               100e30b0     corelib1:COREDLL.dll
+ 0002:000000b4       __imp___itos               100e30b4     corelib1:COREDLL.dll
+ 0002:000000b8       __imp___adds               100e30b8     corelib1:COREDLL.dll
+ 0002:000000bc       __imp___nes                100e30bc     corelib1:COREDLL.dll
+ 0002:000000c0       __imp___stod               100e30c0     corelib1:COREDLL.dll
+ 0002:000000c4       __imp___eqd                100e30c4     corelib1:COREDLL.dll
+ 0002:000000c8       __imp___gts                100e30c8     corelib1:COREDLL.dll
+ 0002:000000cc       __imp___lts                100e30cc     corelib1:COREDLL.dll
+ 0002:000000d0       __imp___les                100e30d0     corelib1:COREDLL.dll
+ 0002:000000d4       __imp_TerminateProcess     100e30d4     coredll:COREDLL.dll
+ 0002:000000d8       __imp___dtos               100e30d8     corelib1:COREDLL.dll
+ 0002:000000dc       __imp___eqs                100e30dc     corelib1:COREDLL.dll
+ 0002:000000e0       __imp_printf               100e30e0     corelib1:COREDLL.dll
+ 0002:000000e4       __imp_fclose               100e30e4     corelib1:COREDLL.dll
+ 0002:000000e8       __imp_fwrite               100e30e8     corelib1:COREDLL.dll
+ 0002:000000ec       __imp_fopen                100e30ec     corelib1:COREDLL.dll
+ 0002:000000f0       __imp___stoi               100e30f0     corelib1:COREDLL.dll
+ 0002:000000f4       __imp_acos                 100e30f4     corelib1:COREDLL.dll
+ 0002:000000f8       __imp_sin                  100e30f8     corelib1:COREDLL.dll
+ 0002:000000fc       __imp_cos                  100e30fc     corelib1:COREDLL.dll
+ 0002:00000100       __imp_fabs                 100e3100     corelib1:COREDLL.dll
+ 0002:00000104       __imp___negs               100e3104     corelib1:COREDLL.dll
+ 0002:00000108       __imp_sqrt                 100e3108     corelib1:COREDLL.dll
+ 0002:0000010c       __imp_fmod                 100e310c     corelib1:COREDLL.dll
+ 0002:00000110       __imp_strcmp               100e3110     corelib1:COREDLL.dll
+ 0002:00000114       __imp___rt_sdiv            100e3114     corelib1:COREDLL.dll
+ 0002:00000118       __imp_free                 100e3118     corelib1:COREDLL.dll
+ 0002:0000011c       __imp_malloc               100e311c     corelib1:COREDLL.dll
+ 0002:00000120       __imp___ned                100e3120     corelib1:COREDLL.dll
+ 0002:00000124       __imp___muld               100e3124     corelib1:COREDLL.dll
+ 0002:00000128       __imp___divd               100e3128     corelib1:COREDLL.dll
+ 0002:0000012c       __imp___addd               100e312c     corelib1:COREDLL.dll
+ 0002:00000130       __imp___dtou               100e3130     corelib1:COREDLL.dll
+ 0002:00000134       \177COREDLL_NULL_THUNK_DATA 100e3134     coredll:COREDLL.dll
+ 0002:00000138       __imp_PVRSRVGetAppHint     100e3138     srvclum:SRVCLUM.dll
+ 0002:0000013c       __imp_PVRSRVDebugPrintf    100e313c     srvclum:SRVCLUM.dll
+ 0002:00000140       __imp_PVRSRVMemCopy        100e3140     srvclum:SRVCLUM.dll
+ 0002:00000144       __imp_PVRSRVUnlockMutex    100e3144     srvclum:SRVCLUM.dll
+ 0002:00000148       __imp_PVRSRVLockMutex      100e3148     srvclum:SRVCLUM.dll
+ 0002:0000014c       __imp_PVRSRVAllocDeviceMem 100e314c     srvclum:SRVCLUM.dll
+ 0002:00000150       __imp_PVRSRVCreateMutex    100e3150     srvclum:SRVCLUM.dll
+ 0002:00000154       __imp_PVRSRVDestroyMutex   100e3154     srvclum:SRVCLUM.dll
+ 0002:00000158       __imp_PVRSRVReallocUserModeMem 100e3158     srvclum:SRVCLUM.dll
+ 0002:0000015c       __imp_PVRSRVCallocUserModeMem 100e315c     srvclum:SRVCLUM.dll
+ 0002:00000160       __imp_PVRSRVAllocUserModeMem 100e3160     srvclum:SRVCLUM.dll
+ 0002:00000164       __imp_PVRSRVFreeUserModeMem 100e3164     srvclum:SRVCLUM.dll
+ 0002:00000168       __imp_SGXQueueTransfer     100e3168     srvclum:SRVCLUM.dll
+ 0002:0000016c       __imp_PVRSRVCreateAppHintState 100e316c     srvclum:SRVCLUM.dll
+ 0002:00000170       __imp_PVRSRVDebugAssertFail 100e3170     srvclum:SRVCLUM.dll
+ 0002:00000174       __imp_PVRSRVFreeAppHintState 100e3174     srvclum:SRVCLUM.dll
+ 0002:00000178       __imp_SGXKickTA            100e3178     srvclum:SRVCLUM.dll
+ 0002:0000017c       __imp_PVRSRVEventObjectWait 100e317c     srvclum:SRVCLUM.dll
+ 0002:00000180       __imp_PVRSRVPollForValue   100e3180     srvclum:SRVCLUM.dll
+ 0002:00000184       __imp_PVRSRVMemSet         100e3184     srvclum:SRVCLUM.dll
+ 0002:00000188       __imp_PVRSRVFreeDeviceMem  100e3188     srvclum:SRVCLUM.dll
+ 0002:0000018c       \177SRVCLUM_NULL_THUNK_DATA 100e318c     srvclum:SRVCLUM.dll
+ 0002:00000190       __imp_KEGLGetImageSource   100e3190     libimgegl:libIMGEGL.dll
+ 0002:00000194       __imp_KEGLResizeRenderSurface 100e3194     libimgegl:libIMGEGL.dll
+ 0002:00000198       __imp_KEGLCreateRenderSurface 100e3198     libimgegl:libIMGEGL.dll
+ 0002:0000019c       __imp_KEGLDestroyRenderSurface 100e319c     libimgegl:libIMGEGL.dll
+ 0002:000001a0       __imp_KEGLUnbindImage      100e31a0     libimgegl:libIMGEGL.dll
+ 0002:000001a4       __imp_KEGLBindImage        100e31a4     libimgegl:libIMGEGL.dll
+ 0002:000001a8       __imp_KEGLGetDrawableParameters 100e31a8     libimgegl:libIMGEGL.dll
+ 0002:000001ac       \177libIMGEGL_NULL_THUNK_DATA 100e31ac     libimgegl:libIMGEGL.dll
+ 0002:000001b4       __security_cookie          100e31b4     corelib0:seccinit.obj
+ 0002:000001b8       __security_cookie_complement 100e31b8     corelib0:seccinit.obj
+ 0002:000001c4       _exitflag                  100e31c4     corelib0:cexit.obj
+ 0002:000001c8       __onexitend                100e31c8     <common>
+ 0002:000001cc       __onexitbegin              100e31cc     <common>
+ 0002:000001d0       _pRawDllMain               100e31d0     <common>
+
+ entry point at        0001:000e06f4
+
+ Static symbols
+
+ 0001:0002c318       _SetupUSSEVertexCodeForDepthClear 1002d318 f   clear.obj
+ 0001:0002c530       UCH_CODEHEAPALLOCATE       1002d530 f   clear.obj
+ 0001:0002c5e4       _SetupUSSEVertexCodeForClear 1002d5e4 f   clear.obj
+ 0001:0002cf40       _SetupPixelShaderForClear  1002df40 f   clear.obj
+ 0001:0002d51c       _SetupUSSEPixelCodeForDepthClear 1002e51c f   clear.obj
+ 0001:0002d6ac       _SetupUSSEPixelCodeForClear 1002e6ac f   clear.obj
+ 0001:00031aec       _InitContext               10032aec f   eglglue.obj
+ 0001:00032714       _SetupMTEPregenBuffer      10033714 f   eglglue.obj
+ 0001:000327d4       _CreateContext             100337d4 f   eglglue.obj
+ 0001:00032800       _DestroyContext            10033800 f   eglglue.obj
+ 0001:0003281c       _CreateShareableContextData 1003381c f   eglglue.obj
+ 0001:00033b24       UCH_CODEHEAPALLOCATE       10034b24 f   eglglue.obj
+ 0001:00033bd8       _InitialiseConversionTableNonLinearToLinear 10034bd8 f   eglglue.obj
+ 0001:00034be8       _InitialiseConversionTableLinearToNonLinear 10035be8 f   eglglue.obj
+ 0001:00035f84       _DeleteShareableContextData 10036f84 f   eglglue.obj
+ 0001:00036a44       UCH_CODEHEAPFREE           10037a44 f   eglglue.obj
+ 0001:00037218       _ValidatePBufferImage      10038218 f   eglglue.obj
+ 0001:00037a0c       _ValidateImageFormatAsRenderFormat 10038a0c f   eglglue.obj
+ 0001:00039ba0       OVGNormaliseVector         1003aba0 f   ellipse.obj
+ 0001:0003a23c       OVGLineDistance            1003b23c f   ellipse.obj
+ 0001:0003ad84       OVGCheckPtrAligned         1003bd84 f   font.obj
+ 0001:0003adb8       _GetHash                   1003bdb8 f   font.obj
+ 0001:0003c70c       OVGGetRTSyncInfo           1003d70c f   geombuffer.obj
+ 0001:0003c7b4       OVGGetProcAddress          1003d7b4 f   get.obj
+ 0001:0003de5c       OVGCheckPtrAligned         1003ee5c f   get.obj
+ 0001:0004017c       OVGGetActivePaint          1004117c f   hwscene.obj
+ 0001:00040bec       _DrawPathPrimitive         10041bec f   hwscene.obj
+ 0001:00041764       _PatchMTEStateCopy         10042764 f   hwstate.obj
+ 0001:00041a50       OVGGetNextUSEPipe          10042a50 f   hwstate.obj
+ 0001:00041ad8       _GetMTEStateBlock          10042ad8 f   hwstate.obj
+ 0001:000427ac       _GenerateUSEMTEStateCopyCode 100437ac f   hwstate.obj
+ 0001:00042a60       UCH_CODEHEAPALLOCATE       10043a60 f   hwstate.obj
+ 0001:00042bc4       _GenerateVDMIndexBlock     10043bc4 f   hwstate.obj
+ 0001:000439d0       _DoSubRegionScaledBlit     100449d0 f   image.obj
+ 0001:00044898       _Adjust_Parent_FirstChild_NextSibling_Pointers 10045898 f   image.obj
+ 0001:00046860       _AlignRectangleWithImage   10047860 f   image.obj
+ 0001:000469f0       OVGCheckForValidTQImageSubDataFormat 100479f0 f   image.obj
+ 0001:000470ec       OVGCheckPtrAligned         100480ec f   image.obj
+ 0001:00047ae8       _AddChildToParent          10048ae8 f   image.obj
+ 0001:000483d4       OVGGetRTSyncInfo           100493d4 f   image.obj
+ 0001:0004847c       _YAdjustRectangle          1004947c f   image.obj
+ 0001:00049d7c       OVGCheckPtrAligned         1004ad7c f   imagefilter.obj
+ 0001:00049db0       _IF_PreparePreProc         1004adb0 f   imagefilter.obj
+ 0001:0004a3b8       _IF_TileFill               1004b3b8 f   imagefilter.obj
+ 0001:0004a4e4       _IF_TilePad                1004b4e4 f   imagefilter.obj
+ 0001:0004a630       _IF_TileRepeat             1004b630 f   imagefilter.obj
+ 0001:0004a848       _IF_TileReflect            1004b848 f   imagefilter.obj
+ 0001:0004ab20       _IF_OffsetStride           1004bb20 f   imagefilter.obj
+ 0001:0004ab98       _IF_OffsetTwiddle          1004bb98 f   imagefilter.obj
+ 0001:0004ad0c       _IF_ReadSrc32              1004bd0c f   imagefilter.obj
+ 0001:0004af28       _IF_ReadSrc16              1004bf28 f   imagefilter.obj
+ 0001:0004b144       _IF_ReadSrc8               1004c144 f   imagefilter.obj
+ 0001:0004b360       _IF_ReadSrcOthers          1004c360 f   imagefilter.obj
+ 0001:0004b680       _IF_Convert                1004c680 f   imagefilter.obj
+ 0001:0004b6f4       _IF_PreparePostProc        1004c6f4 f   imagefilter.obj
+ 0001:0004bd10       _IF_ReadDst32              1004cd10 f   imagefilter.obj
+ 0001:0004bf2c       _IF_ReadDst16              1004cf2c f   imagefilter.obj
+ 0001:0004c148       _IF_ReadDst8               1004d148 f   imagefilter.obj
+ 0001:0004c364       _IF_ReadDstOthers          1004d364 f   imagefilter.obj
+ 0001:0004c684       _IF_Write32                1004d684 f   imagefilter.obj
+ 0001:0004cc04       _IF_Write16                1004dc04 f   imagefilter.obj
+ 0001:0004d18c       _IF_Write8                 1004e18c f   imagefilter.obj
+ 0001:0004d710       _IF_WriteOthers            1004e710 f   imagefilter.obj
+ 0001:0004de2c       _IF_ClampPre               1004ee2c f   imagefilter.obj
+ 0001:0004e0c8       _IF_ClampUnpre             1004f0c8 f   imagefilter.obj
+ 0001:0004e334       _IF_MaskingPre             1004f334 f   imagefilter.obj
+ 0001:0004e76c       _IF_MaskingNonpre          1004f76c f   imagefilter.obj
+ 0001:0004e840       _IF_FreePreProc            1004f840 f   imagefilter.obj
+ 0001:0004e8a8       _IF_FreePostProc           1004f8a8 f   imagefilter.obj
+ 0001:0004e900       _PrepareRects              1004f900 f   imagefilter.obj
+ 0001:0004f9b4       OVGSeparableConvolve       100509b4 f   imagefilter.obj
+ 0001:00050c68       OVGGaussianBlurThreeBoxes  10051c68 f   imagefilter.obj
+ 0001:00055274       OVGGaussianBlurSkipSM      10056274 f   imagefilter.obj
+ 0001:0005aca8       OVGGaussianBlurSepConv     1005bca8 f   imagefilter.obj
+ 0001:0005fab8       OVGLineDistance            10060ab8 f   splines.obj
+ 0001:00060b2c       OVGSegmentDirection        10061b2c f   splines.obj
+ 0001:00061820       OVGNormaliseVector         10062820 f   splines.obj
+ 0001:00066530       OVGPathSegment             10067530 f   tessellate.obj
+ 0001:0006656c       OVGPathOrient              1006756c f   tessellate.obj
+ 0001:000665a8       _PathUserToSurfaceMatrixChange 100675a8 f   tessellate.obj
+ 0001:0006a178       OVGNormaliseVector         1006b178 f   tessellate.obj
+ 0001:0006a2c4       _DynamicStrokeBezierInScratch 1006b2c4 f   tessellate.obj
+ 0001:0006a394       _DoubleTessellationScratchBuffer 1006b394 f   tessellate.obj
+ 0001:0006a458       _StrokeLine                1006b458 f   tessellate.obj
+ 0001:0006a650       OVGComputeNormal           1006b650 f   tessellate.obj
+ 0001:0006a7d4       _StrokePoint               1006b7d4 f   tessellate.obj
+ 0001:0006a98c       _IsShortStroke             1006b98c f   tessellate.obj
+ 0001:0006ac9c       _Create32BitStaticIndexBuffer 1006bc9c f   tessellate.obj
+ 0001:0006e27c       _GenerateJoin              1006f27c f   tessellate.obj
+ 0001:00070598       _GenerateCap               10071598 f   tessellate.obj
+ 0001:00073380       OVGCheckPtrAligned         10074380 f   set.obj
+ 0001:00076f94       OVGCheckPtrAligned         10077f94 f   path.obj
+ 0001:00079a70       OVGPathSegment             1007aa70 f   path.obj
+ 0001:00079aac       OVGPathOrient              1007aaac f   path.obj
+ 0001:0007b07c       OVGLineDistance            1007c07c f   path.obj
+ 0001:0007b3c0       _PathBounds                1007c3c0 f   path.obj
+ 0001:0007caec       UCH_CODEHEAPFREE           1007daec f   statehash.obj
+ 0001:0007db90       _SetPaintFormatTokens      1007eb90 f   paint.obj
+ 0001:0007dd58       _GetSolidColorForInvalidGradient 1007ed58 f   paint.obj
+ 0001:0007ee00       _ValidatePatternImage      1007fe00 f   paint.obj
+ 0001:0007efa8       _IsScaledPatternRequired   1007ffa8 f   paint.obj
+ 0001:0008184c       _OVGCalculateStops         1008284c f   paint.obj
+ 0001:0008403c       OVGGetRTSyncInfo           1008503c f   sgxif.obj
+ 0001:000840e4       _OVGOutputTerminateState   100850e4 f   sgxif.obj
+ 0001:000849c4       _StartFrame                100859c4 f   sgxif.obj
+ 0001:00084bb4       _InitRegs                  10085bb4 f   sgxif.obj
+ 0001:00084de4       _SetupZLSRegs              10085de4 f   sgxif.obj
+ 0001:000857c0       UCH_CODEHEAPALLOCATE       100867c0 f   useprog.obj
+ 0001:00085eb4       _SetUpDummyPixelShaderPDSSecondaryProgram 10086eb4 f   useprog.obj
+ 0001:00086058       _SetUpDummyPixelShaderPDSPrimaryProgram 10087058 f   useprog.obj
+ 0001:00086310       _CopyProgram               10087310 f   useprog.obj
+ 0001:000883d4       _GetExternalExtensionString 100893d4 f   util.obj
+ 0001:0008a854       _SetImageFormatTokens      1008b854 f   state.obj
+ 0001:0008bc04       UCH_CODEHEAPALLOCATE       1008cc04 f   specobj.obj
+ 0001:0008c710       _SetupVertexShaderForAccum 1008d710 f   specobj.obj
+ 0001:0008c968       _SetupUSSEVertexCodeForAccum 1008d968 f   specobj.obj
+ 0001:0008ce9c       OVGPathSegment             1008de9c f   pathutils.obj
+ 0001:0008e9b8       OVGPathOrient              1008f9b8 f   pathutils.obj
+ 0001:0008fc14       OVGNormaliseVector         10090c14 f   pathutils.obj
+ 0001:00090a90       UCH_CODEHEAPALLOCATE       10091a90 f   pixelshader.obj
+ 0001:00090b44       AddNopSection              10091b44 f   pixelshader.obj
+ 0001:000911d4       _PixelShaderHasChanged     100921d4 f   pixelshader.obj
+ 0001:0009125c       _AssemblePixelShaderPhase0 1009225c f   pixelshader.obj
+ 0001:00091534       _PickPhase0Sections        10092534 f   pixelshader.obj
+ 0001:00091928       AddTileFillSection         10092928 f   pixelshader.obj
+ 0001:00091b78       AddPaintRadialGradientSection 10092b78 f   pixelshader.obj
+ 0001:00092244       AddSwizzleSection          10093244 f   pixelshader.obj
+ 0001:00092488       _PickPhase1Sections        10093488 f   pixelshader.obj
+ 0001:00092984       AddUnPremultiplySection    10093984 f   pixelshader.obj
+ 0001:00092b04       AddPremultiplySection      10093b04 f   pixelshader.obj
+ 0001:00092c94       AddNonLinearConversionSection 10093c94 f   pixelshader.obj
+ 0001:00092e14       AddLinearConversionSection 10093e14 f   pixelshader.obj
+ 0001:00092f90       AddImageMultiplySection    10093f90 f   pixelshader.obj
+ 0001:0009335c       AddPerChannelAlphaSection  1009435c f   pixelshader.obj
+ 0001:00093564       AddColourXFormSection      10094564 f   pixelshader.obj
+ 0001:0009374c       _PickPhase2Sections        1009474c f   pixelshader.obj
+ 0001:0009404c       AddPremultiplyIfAlphaZeroSection 1009504c f   pixelshader.obj
+ 0001:000941bc       AddMaskingSection          100951bc f   pixelshader.obj
+ 0001:00094314       AddBlendSection            10095314 f   pixelshader.obj
+ 0001:000948a0       AddFakePreUnPreSection     100958a0 f   pixelshader.obj
+ 0001:00094a2c       AddStencilBlendSection     10095a2c f   pixelshader.obj
+ 0001:00094b3c       AddMaskBlendPopulationSection 10095b3c f   pixelshader.obj
+ 0001:00094c0c       AddMaskBlendOperationSection 10095c0c f   pixelshader.obj
+ 0001:00094c88       _SetUpInitialOperandLocations 10095c88 f   pixelshader.obj
+ 0001:00095300       _SetUpIteratorsForPixelShader 10096300 f   pixelshader.obj
+ 0001:00095784       _SetUpTAGUnitsForPixelShader 10096784 f   pixelshader.obj
+ 0001:00096450       _SetUpUSEControlForPixelShader 10097450 f   pixelshader.obj
+ 0001:00096554       _SetUpPixelShaderPDSPrimaryProgram 10097554 f   pixelshader.obj
+ 0001:00096abc       _CalculatePDSSizes         10097abc f   pixelshader.obj
+ 0001:00096bb0       _ExtractPDSTokens          10097bb0 f   pixelshader.obj
+ 0001:00096fe0       _SetUpPixelShaderPDSSecondaryProgram 10097fe0 f   pixelshader.obj
+ 0001:00098100       _SetUpPixelShaderRadialGradientSA 10099100 f   pixelshader.obj
+ 0001:00098a70       _VertexShaderHasChanged    10099a70 f   vertexshader.obj
+ 0001:00098ad8       _AssembleVertexShaderPhase2 10099ad8 f   vertexshader.obj
+ 0001:00098e4c       UCH_CODEHEAPALLOCATE       10099e4c f   vertexshader.obj
+ 0001:00098f00       _AssembleVertexShaderPhase1 10099f00 f   vertexshader.obj
+ 0001:00099474       _AssembleVertexShaderPhase0 1009a474 f   vertexshader.obj
+ 0001:00099868       _SetUpUSEControlForVertexShader 1009a868 f   vertexshader.obj
+ 0001:000999e8       _SetUpVertexShaderPDSPrimaryProgram 1009a9e8 f   vertexshader.obj
+ 0001:00099e84       _SetUpImageVertexBuffer    1009ae84 f   vertexshader.obj
+ 0001:0009acf8       _SetUpVertexShaderPDSSecondaryProgram 1009bcf8 f   vertexshader.obj
+ 0001:0009bb24       _SetUpVertexShaderRadialGradientSA 1009cb24 f   vertexshader.obj
+ 0001:0009c64c       _SendScissorRect           1009d64c f   scissor.obj
+ 0001:0009cb34       _CalcRegionClip            1009db34 f   scissor.obj
+ 0001:0009cd14       _SetupVerticesAndShaderForDrawmask 1009dd14 f   scissor.obj
+ 0001:0009cf7c       _SetupVerticesForDrawmask  1009df7c f   scissor.obj
+ 0001:0009d490       _SetupUSSEVertexCodeForDrawmask 1009e490 f   scissor.obj
+ 0001:0009d66c       UCH_CODEHEAPALLOCATE       1009e66c f   scissor.obj
+ 0001:0009e580       OVGCheckPtrAligned         1009f580 f   matrix.obj
+ 0001:000a3afc       OVGGetRTSyncInfo           100a4afc f   texture.obj
+ 0001:000a5960       _FreeMemInstanceFRM        100a6960 f   meminstance.obj
+ 0001:000a5b08       _DestroyMemInstanceFRM     100a6b08 f   meminstance.obj
+ 0001:000a61cc       OVGGetRTSyncInfo           100a71cc f   meminstance.obj
+ 0001:000a79ac       PushABFG                   100a89ac f   subdivide.obj
+ 0001:000a7a4c       LargeDisplacement          100a8a4c f   subdivide.obj
+ 0001:000aa8c4       HighCurvature              100ab8c4 f   subdivide.obj
+ 0001:000aae90       MaxFabsInterval            100abe90 f   subdivide.obj
+ 0001:000aaf7c       SetInterval                100abf7c f   subdivide.obj
+ 0001:000aaff0       UpdateInterval             100abff0 f   subdivide.obj
+ 0001:000ab078       AddIntervals               100ac078 f   subdivide.obj
+ 0001:000ab100       SubIntervals               100ac100 f   subdivide.obj
+ 0001:000ab188       MulIntervals               100ac188 f   subdivide.obj
+ 0001:000ab354       SquareInterval             100ac354 f   subdivide.obj
+ 0001:000ab484       AdjustControlPointsAndRetryStroking 100ac484 f   subdivide.obj
+ 0001:000abcc4       SubdivideAtArbitraryPoint  100accc4 f   subdivide.obj
+ 0001:000ac324       LookForCusp                100ad324 f   subdivide.obj
+ 0001:000aca70       SolveQuadratic             100ada70 f   subdivide.obj
+ 0001:000ad014       OutputCuspFullCircle       100ae014 f   subdivide.obj
+ 0001:000ad930       RegionIsTiny               100ae930 f   subdivide.obj
+ 0001:000adc84       NotDegenerated             100aec84 f   subdivide.obj
+ 0001:000ae320       _SetUpStencilVertexShaderPDSSecondaryProgram 100af320 f   stencil.obj
+ 0001:000aeb38       _SetUpStencilVertexShaderPDSPrimaryProgram 100afb38 f   stencil.obj
+ 0001:000aed34       _SetUpUSEControlForStencilVertexShader 100afd34 f   stencil.obj
+ 0001:000aee30       _AssembleStencilVertexShaderUSECode 100afe30 f   stencil.obj
+ 0001:000af0b4       UCH_CODEHEAPALLOCATE       100b00b4 f   stencil.obj
+ 0001:000b1118       SGXTQ_MemLayoutFromEnum    100b2118 f   ovg_sgxtransfer_utils.obj
+ 0001:000b13b8       SGXTQ_RotationFromEnum     100b23b8 f   ovg_sgxtransfer_utils.obj
+ 0001:000b1470       SGXTQ_FindNearestLog2      100b2470 f   ovg_sgxtransfer_utils.obj
+ 0001:000b1bc0       _CreateData                100b2bc0 f   transferobj.obj
+ 0001:000b2318       OVGGetRTSyncInfo           100b3318 f   transferobj.obj
+ 0001:000b2a38       _TTQLaunch_Fill            100b3a38 f   transfer_TQ.obj
+ 0001:000b2b20       CheckTransfer              100b3b20 f   transfer_TQ.obj
+ 0001:000b2c18       _PrepareTQStructure        100b3c18 f   transfer_TQ.obj
+ 0001:000b30c0       _TTQLaunch_Upload          100b40c0 f   transfer_TQ.obj
+ 0001:000b32c4       _TTQLaunch_Blit            100b42c4 f   transfer_TQ.obj
+ 0001:000b3b38       _TTQLaunch_CustomShader    100b4b38 f   transfer_TQ.obj
+ 0001:000b3d2c       _TTQLaunch_Custom          100b4d2c f   transfer_TQ.obj
+ 0001:000b403c       _TTQDestroy                100b503c f   transfer_TQ.obj
+ 0001:000b40d8       _TSWLaunch_Blit            100b50d8 f   transfer_SW.obj
+ 0001:000b4170       _NormalBlit                100b5170 f   transfer_SW.obj
+ 0001:000bd840       PrepareSWStructure         100be840 f   transfer_SW.obj
+ 0001:000bdb90       _ScissoringBlit            100beb90 f   transfer_SW.obj
+ 0001:000c7720       _IsPixelScissored          100c8720 f   transfer_SW.obj
+ 0001:000c77c4       _TSWDestroy                100c87c4 f   transfer_SW.obj
+ 0001:000c7a54       _StoreConversionSAs        100c8a54 f   imagefilter_TQ.obj
+ 0001:000c7ae4       _StoreChannelMaskingSAs    100c8ae4 f   imagefilter_TQ.obj
+ 0001:000c7bdc       _PrepareTransfer_Simple    100c8bdc f   imagefilter_TQ.obj
+ 0001:000c7e98       _PreparePreProc            100c8e98 f   imagefilter_TQ.obj
+ 0001:000c7f24       _GetNormalisedFormat       100c8f24 f   imagefilter_TQ.obj
+ 0001:000c800c       _PreparePostProc           100c900c f   imagefilter_TQ.obj
+ 0001:000c81e4       _GenerateUSSE              100c91e4 f   imagefilter_TQ.obj
+ 0001:000c82c0       _GeneratePrimaryPDS        100c92c0 f   imagefilter_TQ.obj
+ 0001:000c83e0       _GenerateSecondaryPDS      100c93e0 f   imagefilter_TQ.obj
+ 0001:000c84fc       _PrepareSAs                100c94fc f   imagefilter_TQ.obj
+ 0001:000c9110       _GetNormalisedFormatBis    100ca110 f   imagefilter_TQ.obj
+ 0001:000c91e8       _Convolve_TilingConversion 100ca1e8 f   imagefilter_TQ.obj
+ 0001:000ca0a4       _Convolve_Convolve         100cb0a4 f   imagefilter_TQ.obj
+ 0001:000cadb0       _SepConv_Conversion        100cbdb0 f   imagefilter_TQ.obj
+ 0001:000cb2b0       _SepConv_ConvolveX         100cc2b0 f   imagefilter_TQ.obj
+ 0001:000cc17c       _SepConv_ConvolveY         100cd17c f   imagefilter_TQ.obj
+ 0001:000cd3d4       _GetAlignmentPaddingSize   100ce3d4 f   circularbuffer.obj
+ 0001:000cdc44       _CheckSrcFormat            100cec44 f   image_TQ.obj
+ 0001:000cdd88       _CheckDstFormat            100ced88 f   image_TQ.obj
+ 0001:000cde98       _PrepareConversion         100cee98 f   image_TQ.obj
+ 0001:000ce590       _ImageSubData_Upload       100cf590 f   image_TQ.obj
+ 0001:000ce6ac       _ImageSubData_AdjustFormat 100cf6ac f   image_TQ.obj
+ 0001:000ceb88       _ImageSubData_FormatNeedAdjustment 100cfb88 f   image_TQ.obj
+ 0001:000cec68       _ImageSubData_Convert      100cfc68 f   image_TQ.obj
+ 0001:000cf2cc       _IsIdentifierAvailable     100d02cc f   tqsync.obj
+ 0001:000cf350       _HasFinished               100d0350 f   tqsync.obj
+ 0001:000cf5d4       _TransferFinished          100d05d4 f   tqsync.obj
+ 0001:000cf8e4       _TransferFinished          100d08e4 f   buffersync.obj
+ 0001:000cfe8c       _EnlargeBuffer             100d0e8c f   buffersync.obj
+ 0001:000d199c       PDSEncodeSimpleMOVS        100d299c f   pds.obj
+ 0001:000d53b4       PDSGetNextConstant         100d63b4 f   pds.obj
+ 0001:000d5514       PDSGetTemps                100d6514 f   pds.obj
+ 0001:000d55ac       PDSGetConstants            100d65ac f   pds.obj
+ 0001:000d5644       PDSGetDS0ConstantOffset    100d6644 f   pds.obj
+ 0001:000d56c0       PDSGetDS1ConstantOffset    100d66c0 f   pds.obj
+ 0001:000d5740       PDSSetDS0Constant          100d6740 f   pds.obj
+ 0001:000d578c       PDSSetDS1Constant          100d678c f   pds.obj
+ 0001:000d57d8       PDSGetNumConstants         100d67d8 f   pds.obj
+ 0001:000d6428       CheckPDSBufferSpace        100d7428 f   buffers.obj
+ 0001:000d65d0       GetBufferSpaceLeftInBytes  100d75d0 f   buffers.obj
+ 0001:000d66d4       CheckUSSEBufferSpace       100d76d4 f   buffers.obj
+ 0001:000d689c       ExtraSizeForAlignment      100d789c f   buffers.obj
+ 0001:000d6914       CheckVIBufferSpace         100d7914 f   buffers.obj
+ 0001:000d6a3c       GetTotalBufferSpaceLeftInBytes 100d7a3c f   buffers.obj
+ 0001:000d6ac4       CheckTACtrlBufferSpace     100d7ac4 f   buffers.obj
+ 0001:000d7a34       CodeHeapIsSane             100d8a34 f   codeheap.obj
+ 0001:000d7b90       CodeHeapInsertBlockInFreeList 100d8b90 f   codeheap.obj
+ 0001:000d89b0       FindFreeBlock              100d99b0 f   codeheap.obj
+ 0001:000d94ac       IsResourceInList           100da4ac f   frameresource.obj
+ 0001:000d95a4       AllocAttachment            100da5a4 f   frameresource.obj
+ 0001:000d9884       IsResourceInUse            100da884 f   frameresource.obj
+ 0001:000d9a70       IsFrameFinished            100daa70 f   frameresource.obj
+ 0001:000d9ba8       IsResourceNeeded           100daba8 f   frameresource.obj
+ 0001:000d9d70       WaitUntilResourceIsNotNeeded 100dad70 f   frameresource.obj
+ 0001:000da160       ReclaimUnneededResourcesInList 100db160 f   frameresource.obj
+ 0001:000da370       RemoveResourceFromAllLists 100db370 f   frameresource.obj
+ 0001:000da540       FreeAttachment             100db540 f   frameresource.obj
+ 0001:000da7c0       RemoveSurfaceReferencesInList 100db7c0 f   frameresource.obj
+ 0001:000dae8c       TestResourceList           100dbe8c f   frameresource.obj
+ 0001:000db1b0       InitLookupTable32          100dc1b0 f   twiddle.obj
+ 0001:000db4d4       TwiddleSmallTexture16bpp   100dc4d4 f   twiddle.obj
+ 0001:000db928       Write8x8Pixels16bpp        100dc928 f   twiddle.obj
+ 0001:000dc370       RecursiveTwid16bpp         100dd370 f   twiddle.obj
+ 0001:000dc4dc       Twiddle32x3216bpp          100dd4dc f   twiddle.obj
+ 0001:000dcaf0       TwiddleRectangularTexture16bpp 100ddaf0 f   twiddle.obj
+ 0001:000dd1a4       GetRectangularOffset       100de1a4 f   twiddle.obj
+ 0001:000dd4cc       Untwiddle16Bpp             100de4cc f   twiddle.obj
+ 0001:000dd720       TwiddleSmallTexture32bpp   100de720 f   twiddle.obj
+ 0001:000ddb9c       Write8x8Pixels32bpp        100deb9c f   twiddle.obj
+ 0001:000de6e4       RecursiveTwid32bpp         100df6e4 f   twiddle.obj
+ 0001:000de850       Twiddle32x3232bpp          100df850 f   twiddle.obj
+ 0001:000dee8c       TwiddleRectangularTexture32bpp 100dfe8c f   twiddle.obj
+ 0001:000df7e4       Untwiddle32bpp             100e07e4 f   twiddle.obj
+ 0001:000dfa4c       getTwiddledAddress         100e0a4c f   twiddle.obj
+ 0001:000dff10       getUV                      100e0f10 f   twiddle.obj
+ 0001:000e0748       _DllMainCRTStartupHelper   100e1748 f   corelib0:pegdmain.obj
+ 0001:000e0ad0       doexit                     100e1ad0 f   corelib0:cexit.obj

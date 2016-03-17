@@ -1,0 +1,33 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+; Copyright (c) 2007, 2013 2008 Micronet Ltd. All rights reserved.
+; by Vladimir Zatulovsky
+;
+!endif
+
+
+TARGETNAME=keypad_cebase
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+DEFFILE=omap_keypad.def
+
+SOURCES= \
+    vk_map.c
+
+SOURCELIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\tps659xx_keypad_lib_omap35xx_tps659xx_ti_v1.lib
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\coredll.lib
+    

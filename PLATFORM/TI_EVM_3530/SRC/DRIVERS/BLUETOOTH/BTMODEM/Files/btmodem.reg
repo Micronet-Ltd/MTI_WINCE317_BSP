@@ -1,0 +1,29 @@
+;
+; Copyright (c) Micronet.  All rights reserved.
+;
+; BTModem service
+;
+
+; @CESYSGEN IF CE_MODULES_BTMODEM
+[HKEY_LOCAL_MACHINE\Software\microsoft\bluetooth\modemgw]
+    "ModemPortName"=- 
+    "ModemBaud"=- 
+    "ModemParity"=- 
+    "ModemByteSize"=- 
+    "ModemStopBits"=- 
+    "ModemFlowControl"=- 
+    "BthPortName"=- 
+    "MTU"=-
+
+[HKEY_LOCAL_MACHINE\Software\microsoft\bluetooth\modemgw]
+    "ModemPortName"="COM0:"
+    "ModemBaud"=dword:1c200
+    "ModemParity"=dword:0
+    "ModemByteSize"=dword:8
+    "ModemStopBits"=dword:0
+    "ModemFlowControl"=dword:1
+    "ModemRegCmd"="AT+CREG?<cr>"
+    "ModemRegOkResp"="+CREG: 0,1"
+    "BthPortName"="BSP4:"
+    "MTU"=dword:100
+; @CESYSGEN ENDIF

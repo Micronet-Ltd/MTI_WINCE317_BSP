@@ -1,0 +1,43 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+!endif
+
+!IF "$(BSP_LIGHTSENSE)" == ""
+SKIPBUILD=1
+!ENDIF
+
+CPL=1
+TARGETNAME=KeyPadCpl
+RELEASETYPE=PLATFORM
+WINCEOEM=1
+
+TARGETTYPE=DYNLINK
+COPYRES=1
+DLLENTRY=DllEntry
+
+TARGETDEFNAME=$(TARGETNAME)
+WINCETARGETFILES=$(_RELEASELIBDIR)\$(TARGETNAME).res
+WINCETARGETFILE0=$(_RELEASELIBDIR)\$(TARGETDEFNAME).def
+
+TARGETLIBS=$(TARGETLIBS) \
+	$(_COMMONSDKLIB)\$(_CPUINDPATH)\commctrl.lib \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib
+
+INCLUDES= $(INCLUDES); $(_TARGETPLATROOT)\SRC\INC; $(_PUBLICROOT)\common\sdk\inc;
+
+
+
+SOURCES=KeyPadCpl.cpp KeyPadCpl.rc Sliders.cpp
+
+FILE_VIEW_INCLUDES_FOLDER= \
+	KeypadCpl.h \
+	Sliders.h \

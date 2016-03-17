@@ -1,0 +1,13 @@
+
+Demo title: 		Mouse
+
+Demonstrates: 		VGP Toon Shading
+
+Short Description:	Shows cell-shading (a.k.a. Toon shading) effects applied on an animated model
+
+Full Description:	
+Cell-Shading is the "art" of rendering your objects to look like cartoons. This demo shows a dancing mouse with a hard black outline and banded shading to achieve the desired cartoon-look. Both effects are set-up using an optimised vertex shader program or, in the case the hardware platform does not have a VGP unit, using optimised software routines.
+
+VGP: 			Supported
+Polygon Count: 		3500
+Vertex Count: 		2000

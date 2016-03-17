@@ -1,0 +1,196 @@
+; @CESYSGEN IF BSP_NIC_AX88772
+;IF BSP_NIC_AX88772
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\2965_30496\Default\Default\AX88772]
+   	"DLL"="AX88772.DLL"
+   	"Prefix"="ASX"
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\2965_30506\Default\Default\AX88772]
+   	"DLL"="AX88772.DLL"
+   	"Prefix"="ASX"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\AX88772]
+   	"DLL"="AX88772.DLL"
+   	"Prefix"="ASX"
+
+[HKEY_LOCAL_MACHINE\Comm\AX88772]
+   	"DisplayName"="ASIX AX88772 USB 2.0 Fast Ethernet Driver"
+   	"Group"="NDIS"
+   	"ImagePath"="AX88772.dll"
+  
+[HKEY_LOCAL_MACHINE\Comm\AX88772\Linkage]
+   	"Route"=multi_sz:"AX887721","AX887722","AX887723","AX887724"
+
+[HKEY_LOCAL_MACHINE\Comm\AX887721]
+   	"DisplayName"="ASIX AX88772 USB 2.0 Fast Ethernet Driver"
+   	"Group"="NDIS"
+   	"ImagePath"="AX88772.dll"
+	
+[HKEY_LOCAL_MACHINE\Comm\AX887721\Parms]
+      	"BusNumber"=dword:0
+   	"BusType"=dword:1   	
+;      	"NetworkAddress"="02-12-34-56-78-9a" 	;Define an override MAC address 02-12-34-56-78-9a
+
+;===========================================================================
+; AX88772 Driver Parameters:
+;   "ConnectionType" ==> 0 = "AutoSense"; 2 = "10BaseT Half_Duplex"; 3 = "10BaseT Full_Duplex"
+; 		         	     8 = "100BaseTx Half_Duplex"; 9 = "100BaseTx Full_Duplex"
+;   "FlowControl"   ==>  0 = "Disable"; 1 = "TX PAUSE"; 2 = "RX PAUSE"; 3 = "Enable"
+;	"wakeup"		==>  0 = "Disable"; 2 = "Link-up"; 4 = "Magic Packet"; 8 = "Wakeup Frame"		
+;						 6 = "Link-up" & "Magic Packet";
+;						a = "Link-up" & "Wakeup Frame";
+;						c = "Magic Packet" & "Wakeup Frame";
+;						e = "All"
+;						ps: "Wakeup Frame" is only for AX88772A chip
+;===========================================================================
+   	"ConnectionType"=dword:0
+   	"FlowControl"=dword:3
+	"WakeUp"=dword:0
+;======================================================
+;the follow only for AX88772A chip
+;======================================================
+	"WakeUpFrameType"=dword:3		; 1 = "Ping"; 2 = "ARP"; 3 = "All";
+	"VlanEnable"=dword:0			; 0 = "Disable"; 1 = "Enable";
+	"VlanId"=dword:0				; 0 - 4095
+
+[HKEY_LOCAL_MACHINE\Comm\AX887721\Parms\TcpIp]
+;	"EnableDHCP"=dword:0			;Disable DHCP function
+;	"IpAddress"="xxx.xxx.xxx.aaa"		;Define your IP address (xxx.xxx.xxx.aaa)
+;	"Subnetmask"="255.255.255.0"		;Define Submask IP address
+;	"DefaultGateway"="xxx.xxx.xxx.bbb"	;Define Gateway IP address
+;	"DNS"="xxx.xxx.xxx.ccc"			;Define DNS server IP address
+
+   	"AutoCfg"=dword:1
+   	"EnableDHCP"=dword:1			;Enable DHCP function
+	"UseZeroBroadcast"=dword:0		;Use zero for broadcast address?
+		
+[HKEY_LOCAL_MACHINE\Comm\AX887722]
+   	"DisplayName"="ASIX AX88772 USB 2.0 Fast Ethernet Driver"
+   	"Group"="NDIS"
+   	"ImagePath"="AX88772.dll"
+	
+[HKEY_LOCAL_MACHINE\Comm\AX887722\Parms]
+      	"BusNumber"=dword:0
+   	"BusType"=dword:1   	
+;      	"NetworkAddress"="02-12-34-56-78-9a" 	;Define an override MAC address 02-12-34-56-78-9a
+
+;===========================================================================
+; AX88772 Driver Parameters:
+;   "ConnectionType" ==> 0 = "AutoSense"; 2 = "10BaseT Half_Duplex"; 3 = "10BaseT Full_Duplex"
+; 		         	     8 = "100BaseTx Half_Duplex"; 9 = "100BaseTx Full_Duplex"
+;   "FlowControl"   ==>  0 = "Disable"; 1 = "TX PAUSE"; 2 = "RX PAUSE"; 3 = "Enable"
+;	"wakeup"		==>  0 = "Disable"; 2 = "Link-up"; 4 = "Magic Packet"; 8 = "Wakeup Frame"		
+;						 6 = "Link-up" & "Magic Packet";
+;						a = "Link-up" & "Wakeup Frame";
+;						c = "Magic Packet" & "Wakeup Frame";
+;						e = "All"
+;						ps: "Wakeup Frame" is only for AX88772A chip
+;===========================================================================
+   	"ConnectionType"=dword:0
+   	"FlowControl"=dword:3
+	"WakeUp"=dword:0
+;======================================================
+;the follow only for AX88772A chip
+;======================================================
+	"WakeUpFrameType"=dword:3		; 1 = "Ping"; 2 = "ARP"; 3 = "All";
+	"VlanEnable"=dword:0			; 0 = "Disable"; 1 = "Enable";
+	"VlanId"=dword:0				; 0 - 4095
+
+[HKEY_LOCAL_MACHINE\Comm\AX887722\Parms\TcpIp]
+	"EnableDHCP"=dword:0			;Disable DHCP function
+	"IpAddress"="10.1.2.22"		;Define your IP address (xxx.xxx.xxx.aaa)
+	"Subnetmask"="255.255.255.0"		;Define Submask IP address
+;	"DefaultGateway"="xxx.xxx.xxx.bbb"	;Define Gateway IP address
+;	"DNS"="xxx.xxx.xxx.ccc"			;Define DNS server IP address
+
+   	"AutoCfg"=dword:1
+;   	"EnableDHCP"=dword:1			;Enable DHCP function
+	"UseZeroBroadcast"=dword:0		;Use zero for broadcast address?
+		
+[HKEY_LOCAL_MACHINE\Comm\AX887723]
+   	"DisplayName"="ASIX AX88772 USB 2.0 Fast Ethernet Driver"
+   	"Group"="NDIS"
+   	"ImagePath"="AX88772.dll"
+	
+[HKEY_LOCAL_MACHINE\Comm\AX887723\Parms]
+      	"BusNumber"=dword:0
+   	"BusType"=dword:1   	
+;      	"NetworkAddress"="02-12-34-56-78-9a" 	;Define an override MAC address 02-12-34-56-78-9a
+
+;===========================================================================
+; AX88772 Driver Parameters:
+;   "ConnectionType" ==> 0 = "AutoSense"; 2 = "10BaseT Half_Duplex"; 3 = "10BaseT Full_Duplex"
+; 		         	     8 = "100BaseTx Half_Duplex"; 9 = "100BaseTx Full_Duplex"
+;   "FlowControl"   ==>  0 = "Disable"; 1 = "TX PAUSE"; 2 = "RX PAUSE"; 3 = "Enable"
+;	"wakeup"		==>  0 = "Disable"; 2 = "Link-up"; 4 = "Magic Packet"; 8 = "Wakeup Frame"		
+;						 6 = "Link-up" & "Magic Packet";
+;						a = "Link-up" & "Wakeup Frame";
+;						c = "Magic Packet" & "Wakeup Frame";
+;						e = "All"
+;						ps: "Wakeup Frame" is only for AX88772A chip
+;===========================================================================
+   	"ConnectionType"=dword:0
+   	"FlowControl"=dword:3
+	"WakeUp"=dword:0
+;======================================================
+;the follow only for AX88772A chip
+;======================================================
+	"WakeUpFrameType"=dword:3		; 1 = "Ping"; 2 = "ARP"; 3 = "All";
+	"VlanEnable"=dword:0			; 0 = "Disable"; 1 = "Enable";
+	"VlanId"=dword:0				; 0 - 4095
+
+[HKEY_LOCAL_MACHINE\Comm\AX887723\Parms\TcpIp]
+;	"EnableDHCP"=dword:0			;Disable DHCP function
+;	"IpAddress"="xxx.xxx.xxx.aaa"		;Define your IP address (xxx.xxx.xxx.aaa)
+;	"Subnetmask"="255.255.255.0"		;Define Submask IP address
+;	"DefaultGateway"="xxx.xxx.xxx.bbb"	;Define Gateway IP address
+;	"DNS"="xxx.xxx.xxx.ccc"			;Define DNS server IP address
+
+   	"AutoCfg"=dword:1
+   	"EnableDHCP"=dword:1			;Enable DHCP function
+	"UseZeroBroadcast"=dword:0		;Use zero for broadcast address?
+		
+[HKEY_LOCAL_MACHINE\Comm\AX887724]
+   	"DisplayName"="ASIX AX88772 USB 2.0 Fast Ethernet Driver"
+   	"Group"="NDIS"
+   	"ImagePath"="AX88772.dll"
+	
+[HKEY_LOCAL_MACHINE\Comm\AX887724\Parms]
+      	"BusNumber"=dword:0
+   	"BusType"=dword:1   	
+;      	"NetworkAddress"="02-12-34-56-78-9a" 	;Define an override MAC address 02-12-34-56-78-9a
+
+;===========================================================================
+; AX88772 Driver Parameters:
+;   "ConnectionType" ==> 0 = "AutoSense"; 2 = "10BaseT Half_Duplex"; 3 = "10BaseT Full_Duplex"
+; 		         	     8 = "100BaseTx Half_Duplex"; 9 = "100BaseTx Full_Duplex"
+;   "FlowControl"   ==>  0 = "Disable"; 1 = "TX PAUSE"; 2 = "RX PAUSE"; 3 = "Enable"
+;	"wakeup"		==>  0 = "Disable"; 2 = "Link-up"; 4 = "Magic Packet"; 8 = "Wakeup Frame"		
+;						 6 = "Link-up" & "Magic Packet";
+;						a = "Link-up" & "Wakeup Frame";
+;						c = "Magic Packet" & "Wakeup Frame";
+;						e = "All"
+;						ps: "Wakeup Frame" is only for AX88772A chip
+;===========================================================================
+   	"ConnectionType"=dword:0
+   	"FlowControl"=dword:3
+	"WakeUp"=dword:0
+;======================================================
+;the follow only for AX88772A chip
+;======================================================
+	"WakeUpFrameType"=dword:3		; 1 = "Ping"; 2 = "ARP"; 3 = "All";
+	"VlanEnable"=dword:0			; 0 = "Disable"; 1 = "Enable";
+	"VlanId"=dword:0				; 0 - 4095
+
+[HKEY_LOCAL_MACHINE\Comm\AX887724\Parms\TcpIp]
+;	"EnableDHCP"=dword:0			;Disable DHCP function
+;	"IpAddress"="xxx.xxx.xxx.aaa"		;Define your IP address (xxx.xxx.xxx.aaa)
+;	"Subnetmask"="255.255.255.0"		;Define Submask IP address
+;	"DefaultGateway"="xxx.xxx.xxx.bbb"	;Define Gateway IP address
+;	"DNS"="xxx.xxx.xxx.ccc"			;Define DNS server IP address
+
+   	"AutoCfg"=dword:1
+   	"EnableDHCP"=dword:1			;Enable DHCP function
+	"UseZeroBroadcast"=dword:0		;Use zero for broadcast address?
+		
+;ENDIF BSP_NIC_AX88772	
+; @CESYSGEN ENDIF BSP_NIC_AX88772
+

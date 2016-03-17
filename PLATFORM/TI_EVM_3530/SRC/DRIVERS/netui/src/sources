@@ -1,0 +1,71 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+!endif
+
+
+WINCEOEM=1
+SYNCHRONIZE_BLOCK=1
+
+TARGETNAME=netui_lib
+TARGETTYPE=LIBRARY
+RELEASETYPE=PLATFORM
+
+RCFILE=netui
+WINCETARGETFILES=ResFile
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+_ISVINCPATH=$(_WINCEROOT)\public\common\sdk\inc;
+_OEMINCPATH=$(_WINCEROOT)\public\common\ddk\inc;$(_WINCEROOT)\public\common\oak\inc;$(_WINCEROOT)\public\common\sdk\inc;
+INCLUDES= $(INCLUDES)
+
+CONDITIONAL_INCLUDES=prshtp.h
+
+PREPROCESSDEFFILE=1
+
+SOURCES= \
+	netui.c \
+	getip.c \
+	ipaddr.c \
+	getuser.c \
+	linecnfg.c \
+	wnet.c \
+	netcard.c \
+    certui.cpp  \
+	showcert.cpp \
+	eaptlscfg.cpp \
+	network.c \
+        transdlg.c \
+        reg.c \
+        util.c \
+	wzcui.c \
+	wzcprops.c \
+	btmgmtui.cpp \
+        WzcQuickCfgUi.c \
+        IpQuickCfgUi.c \
+        QuickConfigUi.c \
+        WzcLogging.c \
+        WzcPopup.c \
+	netui.rc  \
+    wnet_wrapper.cpp \
+    netui_wrapper.cpp \
+    getuser_wrapper.cpp \
+    gwes_wrapper.cpp \
+    getip_wrapper.cpp \
+    linecnfg_wrapper.cpp \
+    transdlg_wrapper.cpp \
+    network_wrapper.cpp \
+    netcard_wrapper.cpp 
+
+
+#xref VIGUID {981e169a-5517-4b5e-be2f-0e5ad1b20e21}
+#xref VSGUID {1737fed1-338d-4bfc-b15e-0e27007ff058}

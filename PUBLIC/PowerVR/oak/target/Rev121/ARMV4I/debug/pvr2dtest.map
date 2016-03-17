@@ -1,0 +1,783 @@
+ pvr2dtest
+
+ Timestamp is 4c9a6c4e (Wed Sep 22 16:51:26 2010)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 00006c84H .rdata                  CODE
+ 0001:00006ca4 00000026H .rdata$debug            CODE
+ 0001:00006ccc 0000e4f0H .text                   CODE
+ 0001:000151bc 00000028H .xdata                  CODE
+ 0001:000151e4 00000034H .xdata$x                CODE
+ 0001:00015218 00000028H .idata$2                CODE
+ 0001:00015240 00000014H .idata$3                CODE
+ 0001:00015254 00000114H .idata$4                CODE
+ 0001:00015368 00000246H .idata$6                CODE
+ 0001:000155ae 00000000H .edata                  CODE
+ 0002:00000000 00000114H .idata$5                DATA
+ 0002:00000114 00000020H .data                   DATA
+ 0002:00000134 0000000cH .bss                    DATA
+ 0003:00000000 00000a78H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     00011000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     00011004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     00011008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     0001100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     00011010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     00011014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     00011018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     0001101c     corelib0:crt0init.obj
+ 0001:0000003c       ??_C@_0BL@IKOIDLAP@Invalid?5selection?5?$CI?$CFi?1?$CFi?$CJ?6?$AA@ 0001103c     main.obj
+ 0001:00000058       ??_C@_02IKAHHCAI@?$CFi?$AA@ 00011058     main.obj
+ 0001:0000005c       ??_C@_0CH@IGKHNFBD@?6Choose?5a?5test?1operation?5?$CIby?5num@ 0001105c     main.obj
+ 0001:00000084       ??_C@_07FCMIJJOF@?$CFu?4?5?$CFs?6?$AA@ 00011084     main.obj
+ 0001:0000008c       ??_C@_01EEMJAFIK@?6?$AA@   0001108c     main.obj
+ 0001:00000090       ??_C@_04LBABLPF@Exit?$AA@  00011090     main.obj
+ 0001:00000098       ??_C@_0BI@BCPHBMOF@32?5bit?5alpha?5blend?5test?$AA@ 00011098     main.obj
+ 0001:000000b0       ??_C@_0BP@CJPBFBLD@16?5bit?5masked?5source?5copy?5test?$AA@ 000110b0     main.obj
+ 0001:000000d0       ??_C@_0BN@LGNFKJAP@Masked?5destination?5copy?5test?$AA@ 000110d0     main.obj
+ 0001:000000f0       ??_C@_0CI@HFPJBNP@16?5bit?5source?5copy?5test?5with?5col@ 000110f0     main.obj
+ 0001:00000118       ??_C@_0CA@MBMONALL@24?5bit?5clipped?5source?5copy?5test?$AA@ 00011118     main.obj
+ 0001:00000138       ??_C@_0BI@OLJCEOMM@16?5bit?5source?5copy?5test?$AA@ 00011138     main.obj
+ 0001:00000150       ??_C@_0BI@MECNPGFM@Invert?5destination?5test?$AA@ 00011150     main.obj
+ 0001:00000168       ??_C@_0BC@JMJPADAB@Pattern?5copy?5test?$AA@ 00011168     main.obj
+ 0001:0000017c       ??_C@_0P@KLGDDFJI@Fill?5copy?5test?$AA@ 0001117c     main.obj
+ 0001:0000018c       ??_C@_0N@OPFFLDIA@Toggle?5debug?$AA@ 0001118c     main.obj
+ 0001:0000019c       ??_C@_0BA@DHNFCGII@Start?5all?5tests?$AA@ 0001119c     main.obj
+ 0001:00002ab0       ??_C@_0EP@PPAIEAEF@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 00013ab0     ctestenv.obj
+ 0001:00002b00       ??_C@_0CK@IGKHEMGF@CTestBitmap?3?3ConstructL?5failed?4?5@ 00013b00     ctestenv.obj
+ 0001:00002b2c       ??_C@_0CE@LKHNHIBM@CTestEnv?3?3CopyData?3?5ERROR?5Dest?5i@ 00013b2c     ctestenv.obj
+ 0001:00002b50       ??_C@_0CO@HFNMGPDF@CTestEnv?3?3CopyData?3?5unsupported?5@ 00013b50     ctestenv.obj
+ 0001:00002b80       ??_C@_0DB@HNOPPKPF@PVR2DTest?3?5CopyImage?3?5Unexpected@ 00013b80     ctestenv.obj
+ 0001:00002bb4       ??_C@_0CD@KFFIGOGC@PVR2DTest?3?5CopyImage?3?5Dest?5is?5NU@ 00013bb4     ctestenv.obj
+ 0001:00002bd8       ??_C@_0DE@PBHKGFGF@CTestEnv?3?3ConstructL?3?5Couldn?8t?5c@ 00013bd8     ctestenv.obj
+ 0001:00002c0c       ??_C@_0CH@CHKIJIIA@CTestEnv?3?3ConstructL?5failed?4?5Err@ 00013c0c     ctestenv.obj
+ 0001:00002c34       ??_7CTestEnv@@6B@          00013c34     ctestenv.obj
+ 0001:00002c38       ??_C@_0FE@CNPDPCMM@c?3?2wince?2omap?2ddk1?45?2eurasia?2eur@ 00013c38     ctestenv.obj
+ 0001:00002c90       ??_C@_0EC@PLEJOCIP@PVRIF_State?3?3?$HOPVRIF_State?3?5PVR2D@ 00013c90     ctestenv.obj
+ 0001:00002cd4       ??_C@_0DJ@KKIIDLAA@DrawCheckboardBackground?5failed?5@ 00013cd4     graphics_op.obj
+ 0001:00002d10       ??_C@_0DK@MBOJPDFG@DrawCheckboardBackground?5failed?5@ 00013d10     graphics_op.obj
+ 0001:0000356c       ??_C@_0CA@PBLMLCCO@?5?5?5?5?5?5?5?5?5?5?5?5?5FAILED?$CB?5?5?5?5?5?5?5?5?5?5?5?$AA@ 0001456c     graphics_op.obj
+ 0001:0000358c       ??_C@_0CA@PFFCLFAO@?5?5?5?5?5?5?5?5?5?5?5?5GOP?5Test?5?5?5?5?5?5?5?5?5?5?5?$AA@ 0001458c     graphics_op.obj
+ 0001:000035ac       ??_C@_0CA@MDIFNAKF@?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$CK?$AA@ 000145ac     graphics_op.obj
+ 0001:000035cc       ??_C@_0CC@DKEFJMNA@Blend?5complete?5bitmap?5with?5scree@ 000145cc     graphics_op.obj
+ 0001:000035f0       ??_C@_0BP@HDNJMKLF@TGopBitBltAlphaChannel?5?$CI32bpp?$CJ?$AA@ 000145f0     graphics_op.obj
+ 0001:00003610       ??_C@_0CB@JBMIGPHB@Copy?5section?5of?5bitmap?5to?5screen@ 00014610     graphics_op.obj
+ 0001:00003634       ??_C@_0CA@ONJNMDEO@TGopBitBlt?5?$CIsection?5from?524bpp?$CJ?$AA@ 00014634     graphics_op.obj
+ 0001:00003654       ??_C@_0CI@DCAEAIEA@Copy?5complete?5bitmap?5referencing@ 00014654     graphics_op.obj
+ 0001:0000367c       ??_C@_0CA@BMHDGNMD@TGopBitBltMasked?5?$CISource?516bpp?$CJ?$AA@ 0001467c     graphics_op.obj
+ 0001:0000369c       ??_C@_0CH@LEPOLAEF@Copy?5screen?5section?5referencing?5@ 0001469c     graphics_op.obj
+ 0001:000036c4       ??_C@_0BI@CHDHNGPL@TGopBitBltMasked?5?$CIDest?$CJ?$AA@ 000146c4     graphics_op.obj
+ 0001:000036dc       ??_C@_0CA@KGPGNCME@Inverts?5a?5section?5of?5the?5screen?$AA@ 000146dc     graphics_op.obj
+ 0001:000036fc       ??_C@_0P@NIEAHFAK@TGopInvertRect?$AA@ 000146fc     graphics_op.obj
+ 0001:0000370c       ??_C@_0BN@IGGGBDFF@Copy?5small?5bitmap?5repeatedly?$AA@ 0001470c     graphics_op.obj
+ 0001:0000372c       ??_C@_0BK@MCACOCCA@TGopFilledRectWithPattern?$AA@ 0001472c     graphics_op.obj
+ 0001:00003748       ??_C@_0DG@MIKEPALE@Copy?5complete?5bitmap?5ignoring?5pi@ 00014748     graphics_op.obj
+ 0001:00003780       ??_C@_0BJ@IMHEMMDF@TGopTransparency?5?$CI16bpp?$CJ?$AA@ 00014780     graphics_op.obj
+ 0001:0000379c       ??_C@_0BD@MNHCHGP@TGopBitBlt?5?$CI16bpp?$CJ?$AA@ 0001479c     graphics_op.obj
+ 0001:000037b0       ??_C@_0CM@HHCMNDPA@TGopFilledRect?5?$CI16bpp?$CJ?5?$CL?54?5clipp@ 000147b0     graphics_op.obj
+ 0001:000037dc       ??_C@_0N@EGPBAMCG@?$DOGop?3?3DoTest?$AA@ 000147dc     graphics_op.obj
+ 0001:00003c64       ??_C@_0CA@NNDGBJEG@?5GOP?5Wait?5for?5Tests?5Complete?5?5?5?$AA@ 00014c64     graphics_op.obj
+ 0001:00003c84       ??_C@_0BL@ECFICAOA@?$DOGop?3?3WaitForTestsComplete?$AA@ 00014c84     graphics_op.obj
+ 0001:00003ca0       ??_C@_0BF@BIHCPAAC@?$DOCGraphOp?3?3?$HOCGraphOp?$AA@ 00014ca0     graphics_op.obj
+ 0001:00003cb8       ??_C@_0BE@BMGOGMEP@?$DOCGraphOp?3?3CGraphOp?$AA@ 00014cb8     graphics_op.obj
+ 0001:00003ccc       ??_C@_09EOFIEPCE@TRACE?3?5?$CFs?$AA@ 00014ccc     testbase.obj
+ 0001:00003cd8       ??_C@_02DKCKIIND@?$CFs?$AA@ 00014cd8     testbase.obj
+ 0001:00003cdc       ??_C@_09KNHDMLGN@ERROR?3?5?$CFs?$AA@ 00014cdc     testbase.obj
+ 0001:00003ce8       ??_C@_0CC@MBOCNPPM@CTestEnv?3?3NewL?5failed?4?5?5Error?3?5?$CF@ 00014ce8     PVR2DTest.obj
+ 0001:00003d0c       ??_C@_0O@LKPFJPPO@?$DM?$DM?5ConstructL?$AA@ 00014d0c     PVR2DTest.obj
+ 0001:00003d20       ??_C@_0FA@ELKFGIJM@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 00014d20     PVR2DTest.obj
+ 0001:00003d70       ??_C@_0O@DLMHOOBI@?$DO?$DO?5ConstructL?$AA@ 00014d70     PVR2DTest.obj
+ 0001:00003e80       ??_C@_07MGJJDDHB@?$DM?$DM?5NewL?$AA@ 00014e80     PVR2DTest.obj
+ 0001:00003e88       ??_C@_07BDCDCFCF@?$DO?$DO?5NewL?$AA@ 00014e88     PVR2DTest.obj
+ 0001:00003e90       ??_C@_0BE@ECBLEDKJ@?$DM?$DM?5?$HOCPVR2DAppView?$CI?$CJ?$AA@ 00014e90     PVR2DTest.obj
+ 0001:00003ea4       ??_C@_0BE@PMGBDDNE@?$DO?$DO?5?$HOCPVR2DAppView?$CI?$CJ?$AA@ 00014ea4     PVR2DTest.obj
+ 0001:00003eb8       ??_C@_0BM@HFAAHMJM@?$DOCPVR2DAppView?3?3DrawTestNow?$AA@ 00014eb8     PVR2DTest.obj
+ 0001:00003ed4       ??_C@_0BL@GDGMLKHJ@PVR2DTest?3Unknown?5test?3?5?$CFd?$AA@ 00014ed4     PVR2DTest.obj
+ 0001:00003ef0       ??_C@_0CB@CKGOABPK@PVR2DTest?332bit?5Alpha?5Blend?5Test@ 00014ef0     PVR2DTest.obj
+ 0001:00003f14       ??_C@_0CF@FCPFOAOO@PVR2DTest?316bit?5MASKED?5SRC?5COPY?5@ 00014f14     PVR2DTest.obj
+ 0001:00003f3c       ??_C@_0CI@IHJKPAHC@PVR2DTest?3MASKED?5DST?5?$CIScreen?$CJ?5CO@ 00014f3c     PVR2DTest.obj
+ 0001:00003f64       ??_C@_0CC@NKKDFNBI@PVR2DTest?3?516bit?5SRC_CK_COPY?5Tes@ 00014f64     PVR2DTest.obj
+ 0001:00003f88       ??_C@_0CH@IMHDJENI@PVR2DTest?3?524bit?5Clipped?5SRC?5COP@ 00014f88     PVR2DTest.obj
+ 0001:00003fb0       ??_C@_0BP@HPKOOHKK@PVR2DTest?3?516bit?5SRC?5COPY?5Test?$AA@ 00014fb0     PVR2DTest.obj
+ 0001:00003fd0       ??_C@_0BM@NNFOEIAH@PVR2DTest?3?5Invert?5Dest?5Test?$AA@ 00014fd0     PVR2DTest.obj
+ 0001:00003fec       ??_C@_0BN@GDELAJJD@PVR2DTest?3?5Pattern?5Copy?5Test?$AA@ 00014fec     PVR2DTest.obj
+ 0001:0000400c       ??_C@_0BJ@NEDIKGAH@PVR2DTest?3?5FillCopy?5Test?$AA@ 0001500c     PVR2DTest.obj
+ 0001:00004028       ??_C@_0BI@BDJHDHKN@PVR2DTest?3?5Toggle?5debug?$AA@ 00015028     PVR2DTest.obj
+ 0001:00004040       ??_C@_0BL@DKPKHGGJ@PVR2DTest?3?5start?5all?5tests?$AA@ 00015040     PVR2DTest.obj
+ 0001:00004060       ??_C@_0FK@NHJIAFJO@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 00015060     pvr2dif_accelhard.obj
+ 0001:000040bc       ??_C@_0CI@HBBOAHJE@CPVR2DHardwareGraphicsAccelerato@ 000150bc     pvr2dif_accelhard.obj
+ 0001:00004138       ??_C@_0DG@GIFFKOF@CPVR2DHardwareGraphicsAccelerato@ 00015138     pvr2dif_accelhard.obj
+ 0001:00004170       ??_C@_0EM@LFKNCPJ@CPVR2DHardwareGraphicsAccelerato@ 00015170     pvr2dif_accelhard.obj
+ 0001:000041bc       ??_C@_0CO@BIECGNJO@CPVR2DHardwareGraphicsAccelerato@ 000151bc     pvr2dif_accelhard.obj
+ 0001:000041ec       ??_C@_0CL@NGNHCHGA@?$HOCPVR2DHardwareGraphicsAccelerat@ 000151ec     pvr2dif_accelhard.obj
+ 0001:00004218       ??_C@_0GK@CACLNDBD@CPVR2DHardwareGraphicsAccelerato@ 00015218     pvr2dif_accelhard.obj
+ 0001:00004288       ??_C@_0GN@CNKAADNA@CPVR2DHardwareGraphicsAccelerato@ 00015288     pvr2dif_accelhard.obj
+ 0001:000042f8       ??_C@_0CD@GCEACEGO@?$HOCPVR2DHardwareGraphicsAccelerat@ 000152f8     pvr2dif_accelhard.obj
+ 0001:0000431c       ??_C@_0DN@PIJFEGKF@PVR2DIF_HardwareBitmapGetInfo?3?5U@ 0001531c     pvr2dif_bitmap.obj
+ 0001:00004360       ??_C@_0FH@CFKMNHKH@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 00015360     pvr2dif_bitmap.obj
+ 0001:000043b8       ??_C@_0CH@EJMJAGHH@PVR2DIF_HardwareBitmapGetInfo?3?5N@ 000153b8     pvr2dif_bitmap.obj
+ 0001:000043e0       ??_C@_0DN@JHDBOHLM@PVR2DIF_HardwareBitmapScreenRefe@ 000153e0     pvr2dif_bitmap.obj
+ 0001:00004420       ??_C@_0CG@JCFKMBHF@PVR2DIF_HardwareBitmapScreenRefe@ 00015420     pvr2dif_bitmap.obj
+ 0001:00004448       ??_C@_0CJ@JOMGDFIG@GlobalDataInit?3?5eFormat?5?$CFd?5not?5s@ 00015448     pvr2dif_bitmap.obj
+ 0001:00004474       ??_C@_0DE@OODIOPFD@PVR2DIF_HardwareBitmapCreate?3?5Gl@ 00015474     pvr2dif_bitmap.obj
+ 0001:000044a8       ??_C@_0DI@BMJPLOGH@PVR2DIF_HardwareBitmapCreate?3?5Fa@ 000154a8     pvr2dif_bitmap.obj
+ 0001:000044e0       ??_C@_0DF@LKGGGHEM@PVR2DIF_HardwareBitmapCreate?3?5Un@ 000154e0     pvr2dif_bitmap.obj
+ 0001:00004518       ??_C@_0CJ@IMEGGKHA@PVR2DIF_HardwareBitmapCreate?3?5EC@ 00015518     pvr2dif_bitmap.obj
+ 0001:00004544       ??_C@_0CI@JEMNPCFI@PVR2DIF_HardwareBitmapCreate?3?5EC@ 00015544     pvr2dif_bitmap.obj
+ 0001:0000456c       ??_C@_0CH@DNPOCEPE@PVR2DIF_HardwareBitmapCreate?3?5EC@ 0001556c     pvr2dif_bitmap.obj
+ 0001:00004594       ??_C@_0CI@FMMELJAJ@PVR2DIF_HardwareBitmapCreate?3?5EC@ 00015594     pvr2dif_bitmap.obj
+ 0001:000045bc       ??_C@_0CF@FAPOGEPB@PVR2DIF_HardwareBitmapCreate?3?5EG@ 000155bc     pvr2dif_bitmap.obj
+ 0001:000045e4       ??_C@_0CI@KMLOLMNA@PVR2DIF_HardwareBitmapCreate?3?5?$CI?$CF@ 000155e4     pvr2dif_bitmap.obj
+ 0001:00004668       ??_C@_0BO@KLBAOPBN@PVR2DIF_HardwareBitmapDestroy?$AA@ 00015668     pvr2dif_bitmap.obj
+ 0001:00004688       ??_C@_08JNAJMDOE@ARGB8888?$AA@ 00015688     pvr2dif_ops.obj
+ 0001:00004694       ??_C@_06OOMPDBHP@RGB888?$AA@ 00015694     pvr2dif_ops.obj
+ 0001:0000469c       ??_C@_08LHIACHDF@ARGB4444?$AA@ 0001569c     pvr2dif_ops.obj
+ 0001:000046a8       ??_C@_06KDJFLKOF@RGB565?$AA@ 000156a8     pvr2dif_ops.obj
+ 0001:000046b0       ??_C@_04ECIGHKIG@1BPP?$AA@ 000156b0     pvr2dif_ops.obj
+ 0001:000048c8       ??_C@_0DI@HNNKJLLA@?$CFs?5PVR2DMEMINFO?5ui32DevAddr?50x?$CF0@ 000158c8     pvr2dif_ops.obj
+ 0001:00004900       ??_C@_0DA@NEKLLOMO@?$CFs?5PVR2DMEMINFO?5pBase?50x?$CF08x?0?5ui@ 00015900     pvr2dif_ops.obj
+ 0001:00004930       ??_C@_0BM@EAGKMBKI@PVR2DIF?3?5?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$DN?$AA@ 00015930     pvr2dif_ops.obj
+ 0001:0000494c       ??_C@_0DB@OPNGHBKE@PVR2DIF?3?5Alpha?5?3?5BlendingFunc?5?$CFd@ 0001594c     pvr2dif_ops.obj
+ 0001:00004980       ??_C@_0CK@OBBBJIMM@PVR2DIF?3?5Colour?3?50x?$CF08x?0?5ColourK@ 00015980     pvr2dif_ops.obj
+ 0001:000049ac       ??_C@_0CJ@NKJIPOLO@PVR2DIF?3?5Flags?5?3?50x?$CF08x?0?5CopyCod@ 000159ac     pvr2dif_ops.obj
+ 0001:000049d8       ??_C@_0BA@FAHKJAIA@PVR2DIF?3?5DEST?5?3?$AA@ 000159d8     pvr2dif_ops.obj
+ 0001:000049e8       ??_C@_0EC@JNGIICDD@PVR2DIF?3?5DEST?5?3?5?$CFs?5?$CFd?5x?5?$CFd?5from?5@ 000159e8     pvr2dif_ops.obj
+ 0001:00004a2c       ??_C@_0BL@HNFGLLDH@PVR2DIF?3?5SRC?5?3?5Not?5present?$AA@ 00015a2c     pvr2dif_ops.obj
+ 0001:00004a48       ??_C@_0P@MGDCHBLL@PVR2DIF?3?5SRC?5?3?$AA@ 00015a48     pvr2dif_ops.obj
+ 0001:00004a58       ??_C@_0EB@DDBBAHHC@PVR2DIF?3?5SRC?5?3?5?$CFs?5?$CFd?5x?5?$CFd?5from?5?$CI@ 00015a58     pvr2dif_ops.obj
+ 0001:00004a9c       ??_C@_0BM@DLINNMPJ@PVR2DIF?3?5?$DN?$DN?$DNPVR2DBLTINFO?$DN?$DN?$DN?$AA@ 00015a9c     pvr2dif_ops.obj
+ 0001:00004ab8       ??_C@_0BH@CALDMCIK@PVR2DIF?3?5Query?5Blts?5OK?$AA@ 00015ab8     pvr2dif_ops.obj
+ 0001:00004ad0       ??_C@_0BN@IELCBEO@PVR2DIF?3?5Query?5Blts?5error?5?$CFd?$AA@ 00015ad0     pvr2dif_ops.obj
+ 0001:00004af0       ??_C@_0FE@OMAPACC@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2eur@ 00015af0     pvr2dif_ops.obj
+ 0001:00004b44       ??_C@_0BL@DKPHNOGL@PVR2DIF?3?5Blts?5not?5complete?$AA@ 00015b44     pvr2dif_ops.obj
+ 0001:00004b60       ??_C@_0BG@CCOPAJCG@PVR2DIF?3?5Blt?5error?5?$CFd?$AA@ 00015b60     pvr2dif_ops.obj
+ 0001:00004b78       ??_C@_0CC@IHEDMEO@PVR2DIF?3?5HW?5feature?5not?5supporte@ 00015b78     pvr2dif_ops.obj
+ 0001:00004b9c       ??_C@_0BA@PBBKPBDB@PVR2DIF?3?5Blt?5OK?$AA@ 00015b9c     pvr2dif_ops.obj
+ 0001:00004bac       ??_C@_0CH@OCKMNDMG@_ConvertColour?3?5PVR2DFORMAT?5?$CFd?5u@ 00015bac     pvr2dif_ops.obj
+ 0001:00004c0c       ??_C@_0CP@GOEMEMBM@PVR2DEnumerateDevices?3?5PVRSRVDis@ 00015c0c     libpvr2d:pvr2dinit.obj
+ 0001:00004c3c       ??_C@_0DB@CPICKOBP@PVR2DEnumerateDevices?3?5PVRSRVOpe@ 00015c3c     libpvr2d:pvr2dinit.obj
+ 0001:00004c70       ??_C@_0DC@MJBPKOFC@PVR2DEnumerateDevices?3?5PVRSRVClo@ 00015c70     libpvr2d:pvr2dinit.obj
+ 0001:00004ca8       ??_C@_0EA@BCLPPHL@PVR2DEnumerateDevices?3?5display?5d@ 00015ca8     libpvr2d:pvr2dinit.obj
+ 0001:00004ce8       ??_C@_0CO@BIDNLPAM@PVR2DEnumerateDevices?3?5PVRSRVGet@ 00015ce8     libpvr2d:pvr2dinit.obj
+ 0001:00004d18       ??_C@_0CN@CGDEMGP@PVR2DEnumerateDevices?3?5PVRSRVMem@ 00015d18     libpvr2d:pvr2dinit.obj
+ 0001:00004d48       ??_C@_0DG@EPLBBJNP@PVR2DEnumerateDevices?3?5PVRSRVAcq@ 00015d48     libpvr2d:pvr2dinit.obj
+ 0001:00004d80       ??_C@_0DF@OLCJPKFL@PVR2DEnumerateDevices?3?5PVRSRVEnu@ 00015d80     libpvr2d:pvr2dinit.obj
+ 0001:00004db8       ??_C@_0DA@KIIFPJJA@PVR2DEnumerateDevices?3?5PVRSRVEnu@ 00015db8     libpvr2d:pvr2dinit.obj
+ 0001:00004de8       ??_C@_0DL@OLNKMMDM@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2pvr@ 00015de8     libpvr2d:pvr2dinit.obj
+ 0001:00004e24       ??_C@_0CM@IEFAJHEH@PVR2DEnumerateDevices?3?5PVRSRVCon@ 00015e24     libpvr2d:pvr2dinit.obj
+ 0001:00004e50       ??_C@_0DC@OIHPBJHH@PVR2DCreateDeviceContext?3?5PVRSRV@ 00015e50     libpvr2d:pvr2dinit.obj
+ 0001:00004e84       ??_C@_0DP@FEHDPOKG@PVR2DCreateDeviceContext?3?5PVRSRV@ 00015e84     libpvr2d:pvr2dinit.obj
+ 0001:00004ec4       ??_C@_0DH@BBPJEACL@PVR2DCreateDeviceContext?3?5PVRSRV@ 00015ec4     libpvr2d:pvr2dinit.obj
+ 0001:00004efc       ??_C@_0DF@PFIBECBC@PVR2DCreateDeviceContext?3?5PVRSRV@ 00015efc     libpvr2d:pvr2dinit.obj
+ 0001:00004f34       ??_C@_0DO@NOOCPKCD@PVR2DCreateDeviceContext?3?5PVRSRV@ 00015f34     libpvr2d:pvr2dinit.obj
+ 0001:00004f74       ??_C@_0DL@LCNPMJIF@PVR2DCreateDeviceContext?3?5SGXDes@ 00015f74     libpvr2d:pvr2dinit.obj
+ 0001:00004fb0       ??_C@_0DK@KBIEJECK@PVR2DCreateDeviceContext?3?5SGXCre@ 00015fb0     libpvr2d:pvr2dinit.obj
+ 0001:00004fec       ??_C@_0DD@DFJFFBEB@PVR2DCreateDeviceContext?3?5InitDi@ 00015fec     libpvr2d:pvr2dinit.obj
+ 0001:00005020       ??_C@_0CM@LLNPAHNL@PVR2DCreateDeviceContext?3?52D?5hea@ 00016020     libpvr2d:pvr2dinit.obj
+ 0001:0000504c       ??_C@_0DO@HMECCDCM@PVR2DCreateDeviceContext?3?5PVRSRV@ 0001604c     libpvr2d:pvr2dinit.obj
+ 0001:0000508c       ??_C@_0DJ@LEPALDDF@PVR2DCreateDeviceContext?3?5PVRSRV@ 0001608c     libpvr2d:pvr2dinit.obj
+ 0001:000050c8       ??_C@_0DI@HOMPHFAE@PVR2DCreateDeviceContext?3?5PVRSRV@ 000160c8     libpvr2d:pvr2dinit.obj
+ 0001:00005100       ??_C@_0DD@FFPFFIJJ@PVR2DCreateDeviceContext?3?5PVRSRV@ 00016100     libpvr2d:pvr2dinit.obj
+ 0001:00005134       ??_C@_0CP@LKHMKLPE@PVR2DCreateDeviceContext?3?5PVRSRV@ 00016134     libpvr2d:pvr2dinit.obj
+ 0001:00005164       ??_C@_0DG@JLOIKKAP@PVR2DCreateDeviceContext?3?5Not?5en@ 00016164     libpvr2d:pvr2dinit.obj
+ 0001:0000519c       ??_C@_0BO@LMGPDEHA@?$CK?$CK?$CK?5PVR2D?5Blt?5via?53D?5Core?5?$CK?$CK?$CK?$AA@ 0001619c     libpvr2d:pvr2dinit.obj
+ 0001:000051bc       ??_C@_0CO@FPBDHHKP@InitDisplayDevice?3?5PVRSRVCloseDC@ 000161bc     libpvr2d:pvr2dinit.obj
+ 0001:000051ec       ??_C@_0DH@GKDENFGN@InitDisplayDevice?3?5PVRSRVUnmapDe@ 000161ec     libpvr2d:pvr2dinit.obj
+ 0001:00005224       ??_C@_0DF@PBAGKNDA@InitDisplayDevice?3?5PVRSRVMapDevi@ 00016224     libpvr2d:pvr2dinit.obj
+ 0001:0000525c       ??_C@_0DC@IDIIKMOI@InitDisplayDevice?3?5PVRSRVGetDCSy@ 0001625c     libpvr2d:pvr2dinit.obj
+ 0001:00005290       ??_C@_0CL@HOAICNPJ@InitDisplayDevice?3?5PVRSRVEnumDCD@ 00016290     libpvr2d:pvr2dinit.obj
+ 0001:000052bc       ??_C@_0CO@MLILDPCH@InitDisplayDevice?3?5PVRSRVEnumDCF@ 000162bc     libpvr2d:pvr2dinit.obj
+ 0001:000052ec       ??_C@_0CP@COJCPHAL@InitDisplayDevice?3?5Not?5enough?5me@ 000162ec     libpvr2d:pvr2dinit.obj
+ 0001:0000531c       ??_C@_0CP@LEDICDEF@InitDisplayDevice?3?5PVRSRVsEnumDC@ 0001631c     libpvr2d:pvr2dinit.obj
+ 0001:0000534c       ??_C@_0CL@PDFNOBOJ@InitDisplayDevice?3?5?$CIPVRSRVGetDCI@ 0001634c     libpvr2d:pvr2dinit.obj
+ 0001:00005378       ??_C@_0CH@FFAMAKBN@InitDisplayDevice?3?5OpenDCDevice?5@ 00016378     libpvr2d:pvr2dinit.obj
+ 0001:000053a0       ??_C@_0DD@LFGIAEBC@PVR2DDestroyDeviceContext?3?5PVRSR@ 000163a0     libpvr2d:pvr2dinit.obj
+ 0001:000053d8       ??_C@_0EB@BFEIGGFE@PVR2DDestroryDeviceContext?3?5PVRS@ 000163d8     libpvr2d:pvr2dinit.obj
+ 0001:0000541c       ??_C@_0DI@PECEKBLI@PVR2DDestroyDeviceContext?3?5PVRSR@ 0001641c     libpvr2d:pvr2dinit.obj
+ 0001:00005454       ??_C@_0DH@BKMBLINH@PVR2DDestroryDeviceContext?3?5PVRS@ 00016454     libpvr2d:pvr2dinit.obj
+ 0001:0000548c       ??_C@_0DM@FBPMJAPN@PVR2DDestroyDeviceContext?3?5SGXDe@ 0001648c     libpvr2d:pvr2dinit.obj
+ 0001:000054c8       ??_C@_0DD@JEGHKANJ@PVR2DDestroyDeviceContext?3?5Destr@ 000164c8     libpvr2d:pvr2dinit.obj
+ 0001:000054fc       ??_C@_0DP@ENBOFEEH@PVR2DDestroyDeviceContext?3?5PVRSR@ 000164fc     libpvr2d:pvr2dinit.obj
+ 0001:0000553c       ??_C@_0BP@FONIDIFH@PVR2DGetAPIRev?3?5Invalid?5params?$AA@ 0001653c     libpvr2d:pvr2dinit.obj
+ 0001:0000555c       ??_C@_0DG@IIOKCCLH@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2pvr@ 0001655c     libpvr2d:pvr2dmode.obj
+ 0001:00005594       ??_C@_0DB@LNFCKCJK@PVR2DGetDeviceInfo?3?5Invalid?5prim@ 00016594     libpvr2d:pvr2dmode.obj
+ 0001:000055c8       ??_C@_0DD@JEJKILM@ConvertPVRSRVPixelFormatToPVR2D?3@ 000165c8     libpvr2d:pvr2dmode.obj
+ 0001:000055fc       ??_C@_0DB@PAAFIDCN@PVR2DGetScreenMode?3?5Invalid?5prim@ 000165fc     libpvr2d:pvr2dmode.obj
+ 0001:00005630       ??_C@_0DF@DIGDGFHI@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2pvr@ 00016630     libpvr2d:pvr2dmem.obj
+ 0001:00005668       ??_C@_0DA@JIODLO@PVR2D?5error?5?9?5could?5not?5allocate@ 00016668     libpvr2d:pvr2dmem.obj
+ 0001:00005698       ??_C@_0CO@JBHOBJHO@PVR2D?5error?5?9?5could?5not?5export?5d@ 00016698     libpvr2d:pvr2dmem.obj
+ 0001:000056c8       ??_C@_0CO@OMOOGDKA@PVR2D?5error?5?9?5could?5not?5wrap?5ext@ 000166c8     libpvr2d:pvr2dmem.obj
+ 0001:000056f8       ??_C@_0CO@GFBAGPI@PVR2D?5error?5?9?5Must?5specify?5some?5@ 000166f8     libpvr2d:pvr2dmem.obj
+ 0001:00005728       ??_C@_0CN@DEJLJOF@PVR2DMemMap?5error?3?5mapping?5of?5me@ 00016728     libpvr2d:pvr2dmem.obj
+ 0001:00005758       ??_C@_0CG@NPCJNMHN@PVR2DMemMap?5error?3?5invalid?5param@ 00016758     libpvr2d:pvr2dmem.obj
+ 0001:00005780       ??_C@_0CH@KDDDPMBN@PVR2DMemFree?5error?5?9?5invalid?5mem@ 00016780     libpvr2d:pvr2dmem.obj
+ 0001:000057a8       ??_C@_0CM@IMNEECGH@PVR2DMemFree?5error?3?5unmap?5of?5mem@ 000167a8     libpvr2d:pvr2dmem.obj
+ 0001:000057d4       ??_C@_0DH@HAPMOJEP@PVR2DMemFree?5error?5?9?5could?5not?5u@ 000167d4     libpvr2d:pvr2dmem.obj
+ 0001:0000580c       ??_C@_0DD@EIAFANPK@PVR2DMemFree?5error?5?9?5could?5not?5f@ 0001680c     libpvr2d:pvr2dmem.obj
+ 0001:00005840       ??_C@_0CP@HJNOHGKD@PVR2DMemFree?5?9?$DO?5PVR2DQueryBlitsC@ 00016840     libpvr2d:pvr2dmem.obj
+ 0001:00006070       ??_C@_0EB@LBBAPCBN@PVR2DQueryBlitsComplete?3?5timeout@ 00017070     libpvr2d:pvr2dblt.obj
+ 0001:000060b4       ??_C@_0CJ@BIEIJBMI@PVR2DQueryBlitsComplete?3?5Invalid@ 000170b4     libpvr2d:pvr2dblt.obj
+ 0001:000060e0       ??_C@_0DK@JGMJIFOI@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2pvr@ 000170e0     libpvr2d:pvr2dblt.obj
+ 0001:0000611c       ??_C@_0CI@MCDLJKFF@PVR2DQueryBlitsComplete?3?5Invalid@ 0001711c     libpvr2d:pvr2dblt.obj
+ 0001:00006144       ??_C@_0DE@JILMCMDF@PVR2DSetPresentBltProperties?5err@ 00017144     libpvr2d:pvr2dblt.obj
+ 0001:00006178       ??_C@_0GA@GCJIMEEM@PVR2DSetPresentBltProperties?5?9?5s@ 00017178     libpvr2d:pvr2dblt.obj
+ 0001:000061d8       ??_C@_0EH@KBHCIOMG@PVR2DSetPresentBltProperties?5?9?5E@ 000171d8     libpvr2d:pvr2dblt.obj
+ 0001:00006220       ??_C@_0CO@LBFBDMBJ@AltPresentBlt?3?5SGXQueueTransfer?5@ 00017220     libpvr2d:pvr2dblt.obj
+ 0001:00006250       ??_C@_0CK@BNNBPGOD@SGXQueueTransfer?5failed?5with?5err@ 00017250     libpvr2d:pvr2dblt.obj
+ 0001:00006280       ??_C@_0GA@EEACOPG@PVR2DBltClipped?3?5destination?5mem@ 00017280     libpvr2d:pvr2dblt.obj
+ 0001:000062e0       ??_C@_0FG@HCPPJIHD@PVR2DBltClipped?3?5source?5memory?5o@ 000172e0     libpvr2d:pvr2dblt.obj
+ 0001:00006338       ??_C@_0DD@GKKICHHC@PVR2DBltClipped?3?5source?5format?5n@ 00017338     libpvr2d:pvr2dblt.obj
+ 0001:0000636c       ??_C@_0CN@PACGKHAN@PVR2DBltClipped?3?5source?5format?5n@ 0001736c     libpvr2d:pvr2dblt.obj
+ 0001:0000639c       ??_C@_0CC@BFMPFKN@PVR2DBltClipped?3?5null?5pSrcMemInf@ 0001739c     libpvr2d:pvr2dblt.obj
+ 0001:000063c0       ??_C@_0CE@OGBKIEGB@PVR2DBltClipped?3?5rop?5needs?5a?5sou@ 000173c0     libpvr2d:pvr2dblt.obj
+ 0001:000063e4       ??_C@_0CC@KBPCGAGD@PVR2DBltClipped?3?5null?5pDstMemInf@ 000173e4     libpvr2d:pvr2dblt.obj
+ 0001:00006408       ??_C@_0CF@IKCMPAPP@PVR2DBltClipped?3?5Masks?5not?5suppo@ 00017408     libpvr2d:pvr2dblt.obj
+ 0001:00006430       ??_C@_0CP@JAHAPPEL@PVR2DBltClipped?3?5Rop?5code?5not?5su@ 00017430     libpvr2d:pvr2dblt.obj
+ 0001:00006460       ??_C@_0CC@POLPIDII@PVR2DBltClipped?3?5invalid?5pBltInf@ 00017460     libpvr2d:pvr2dblt.obj
+ 0001:00006484       ??_C@_0DA@LBEICJHI@PVR2DBltClipped?3?5Illegal?5dest?5pi@ 00017484     libpvr2d:pvr2dblt.obj
+ 0001:000064b8       ??_C@_0EO@OCDBDLPM@PVR2DBltClipped?3?5PVR2D_BLIT_FULL@ 000174b8     libpvr2d:pvr2dblt.obj
+ 0001:00006508       ??_C@_0CM@IHDPNHJE@PVR2DBltClipped?3?5only?51?5clip?5rec@ 00017508     libpvr2d:pvr2dblt.obj
+ 0001:00006534       ??_C@_0DM@LAFGKCEG@DstOffset?5too?5large?5conflicts?5wi@ 00017534     libpvr2d:pvr2dblt.obj
+ 0001:00006570       ??_C@_0CG@MNLNAADE@Negative?5stride?5?3?5DstOffset?5too?5@ 00017570     libpvr2d:pvr2dblt.obj
+ 0001:00006598       ??_C@_0DN@EJFOMFCC@SrcOffset?5too?5large?0?5conflicts?5w@ 00017598     libpvr2d:pvr2dblt.obj
+ 0001:000065d8       ??_C@_0CG@NEFANLKG@Negative?5stride?5?3?5SrcOffset?5too?5@ 000175d8     libpvr2d:pvr2dblt.obj
+ 0001:00006600       ??_C@_0CK@GLAPBPFB@No?5intersection?5of?5dst?5surf?5and?5@ 00017600     libpvr2d:pvr2dblt.obj
+ 0001:0000662c       ??_C@_0DE@BHOGGOGN@Clip?5rectangle?5goes?5outside?5the?5@ 0001762c     libpvr2d:pvr2dblt.obj
+ 0001:00006660       ??_C@_0CJ@HGEIKAGL@No?5intersection?5of?5dst?5surf?5and?5@ 00017660     libpvr2d:pvr2dblt.obj
+ 0001:0000668c       ??_C@_0DD@FEELCPPH@Blt?5rectangle?5goes?5outside?5the?5d@ 0001768c     libpvr2d:pvr2dblt.obj
+ 0001:000066c0       ??_C@_0CP@FBFDGOPC@No?5intersection?5of?5source?5surf?5a@ 000176c0     libpvr2d:pvr2dblt.obj
+ 0001:000066f0       ??_C@_0DB@FPDOJBIP@Source?5rectangle?5goes?5outside?5th@ 000176f0     libpvr2d:pvr2dblt.obj
+ 0001:00006724       ??_C@_0CB@KCEFIIGI@Src?5rect?5width?1height?5must?5be?5?$DO0@ 00017724     libpvr2d:pvr2dblt.obj
+ 0001:00006748       ??_C@_0CB@MMEAGLIO@Dst?5rect?5width?1height?5must?5be?5?$DO0@ 00017748     libpvr2d:pvr2dblt.obj
+ 0001:000067a0       ??_C@_0EB@EELMFKNB@PVR2DCreateFlipChain?3?5can?8t?5map?5@ 000177a0     libpvr2d:pvr2dflip.obj
+ 0001:000067e4       ??_C@_0CL@PLCJCEIB@PVR2DCreateFlipChain?3?5couldn?8t?5g@ 000177e4     libpvr2d:pvr2dflip.obj
+ 0001:00006810       ??_C@_0EH@EPMJDAPG@PVR2DCreateFlipChain?3?5can?8t?5allo@ 00017810     libpvr2d:pvr2dflip.obj
+ 0001:00006858       ??_C@_0EL@OHONBAJG@PVR2DCreateFlipChain?3?5can?8t?5allo@ 00017858     libpvr2d:pvr2dflip.obj
+ 0001:000068a4       ??_C@_0CN@JLMDOAHB@PVR2DCreateFlipChain?3?5can?8t?5crea@ 000178a4     libpvr2d:pvr2dflip.obj
+ 0001:000068d4       ??_C@_0DO@GOBNIFBO@PVR2DCreateFlipChain?3?5No?5flip?5ch@ 000178d4     libpvr2d:pvr2dflip.obj
+ 0001:00006914       ??_C@_0DH@BBKLGILB@PVR2DCreateFlipChain?3?5Pointer?5to@ 00017914     libpvr2d:pvr2dflip.obj
+ 0001:0000694c       ??_C@_0DG@JDCOGHPP@C?3?2WinCE?2OMAP?2DDK1?45?2eurasia?2pvr@ 0001794c     libpvr2d:pvr2dflip.obj
+ 0001:00006984       ??_C@_0CI@OAGEMHLD@PVR2DCreateFlipChain?3?5Invalid?5pa@ 00017984     libpvr2d:pvr2dflip.obj
+ 0001:000069ac       ??_C@_0CP@IIIEKPHH@PVR2DDestroyFlipChain?3?5can?8t?5des@ 000179ac     libpvr2d:pvr2dflip.obj
+ 0001:000069dc       ??_C@_0DD@GNOGPHHB@PVR2DDestroyFlipChain?3?5Can?8t?5fli@ 000179dc     libpvr2d:pvr2dflip.obj
+ 0001:00006a10       ??_C@_0EE@CGDJJGCP@PVR2DCreateFlipChain?3?5can?8t?5unma@ 00017a10     libpvr2d:pvr2dflip.obj
+ 0001:00006a54       ??_C@_0DD@LMEPLDGL@DestroyFlipChain?5?9?$DO?5PVR2DQueryBl@ 00017a54     libpvr2d:pvr2dflip.obj
+ 0001:00006a88       ??_C@_0CP@PGNDDLGB@PVR2DDestroyFlipChain?3?5DestroyFl@ 00017a88     libpvr2d:pvr2dflip.obj
+ 0001:00006ab8       ??_C@_0ED@EAACACIM@PVR2DDestroyFlipChain?3?5Context?5d@ 00017ab8     libpvr2d:pvr2dflip.obj
+ 0001:00006afc       ??_C@_0CJ@MIJCPDG@PVR2DDestroyFlipChain?3?5Invalid?5p@ 00017afc     libpvr2d:pvr2dflip.obj
+ 0001:00006b28       ??_C@_0CM@NMIHPAAH@PVR2DGetFlipChainBuffers?3?5Invali@ 00017b28     libpvr2d:pvr2dflip.obj
+ 0001:00006b54       ??_C@_0DB@HNAJKIJP@PVR2DPresentFlip?3?5Can?8t?5flip?5to?5@ 00017b54     libpvr2d:pvr2dflip.obj
+ 0001:00006b88       ??_C@_0CF@OBDPLA@PVR2DPresentFlip?3?5Device?5not?5pre@ 00017b88     libpvr2d:pvr2dflip.obj
+ 0001:00006bb0       ??_C@_0DA@BIHEICDO@PVR2DPresentFlip?3?5Buffer?5not?5par@ 00017bb0     libpvr2d:pvr2dflip.obj
+ 0001:00006be0       ??_C@_0CE@CLPCMKAI@PVR2DPresentFlip?3?5Invalid?5parame@ 00017be0     libpvr2d:pvr2dflip.obj
+ 0001:00006c08       ??_C@_0EK@EMBGCIO@PVR2DSetPresentFlipProperties?5er@ 00017c08     libpvr2d:pvr2dflip.obj
+ 0001:00006c58       ??_C@_0EM@IGNNNBGJ@PVR2DSetPresentFlipProperties?5er@ 00017c58     libpvr2d:pvr2dflip.obj
+ 0001:00006cd4       main                       00017cd4 f   main.obj
+ 0001:00006ef4       WinMain                    00017ef4 f   main.obj
+ 0001:00006f2c       ?ConstructL@CTestBitmap@@AAAXVTSize@@W4TDisplayMode@@@Z 00017f2c f   ctestenv.obj
+ 0001:0000704c       ?NewL@CTestBitmap@@SAPAV1@PAVPVRIF_State@@VTSize@@W4TDisplayMode@@@Z 0001804c f   ctestenv.obj
+ 0001:00007200       ??1CTestBitmap@@QAA@XZ     00018200 f   ctestenv.obj
+ 0001:0000725c       ?ScreenAccelSpec@CTestEnv@@QAAPAU_PVR2DIFBitmapData_@@XZ 0001825c f   ctestenv.obj
+ 0001:00007298       ?CopyData@CTestEnv@@AAAXPAE0JAAVTSize@@J@Z 00018298 f   ctestenv.obj
+ 0001:00007440       ?CopyImageData16bitSmall@CTestEnv@@AAAXAAVTAcceleratedBitmapInfo@@@Z 00018440 f   ctestenv.obj
+ 0001:000074ec       ?CopyImageMaskData@CTestEnv@@AAAXAAVTAcceleratedBitmapInfo@@@Z 000184ec f   ctestenv.obj
+ 0001:00007590       ?CopyImageData@CTestEnv@@AAAXAAVTAcceleratedBitmapInfo@@@Z 00018590 f   ctestenv.obj
+ 0001:000078b8       ?ConstructL@CTestEnv@@AAAXXZ 000188b8 f   ctestenv.obj
+ 0001:00007d58       ?NewL@CTestEnv@@SAPAV1@XZ  00018d58 f   ctestenv.obj
+ 0001:00007ec0       ??1CTestEnv@@UAA@XZ        00018ec0 f   ctestenv.obj
+ 0001:000080d4       ??1TSize@@QAA@XZ           000190d4 f i ctestenv.obj
+ 0001:000080e8       ??0XError@@QAA@J@Z         000190e8 f i ctestenv.obj
+ 0001:0000811c       ?ErrorCode@XError@@QBAJXZ  0001911c f i ctestenv.obj
+ 0001:00008148       ??0CTestBitmap@@AAA@XZ     00019148 f i ctestenv.obj
+ 0001:00008180       ??0TAcceleratedBitmapInfo@@QAA@XZ 00019180 f i ctestenv.obj
+ 0001:000081b8       ??0TSize@@QAA@XZ           000191b8 f i ctestenv.obj
+ 0001:000081e0       ??_GCTestBitmap@@QAAPAXI@Z 000191e0 f i ctestenv.obj
+ 0001:00008224       ??1TAcceleratedBitmapInfo@@QAA@XZ 00019224 f i ctestenv.obj
+ 0001:00008244       ?BitmapData@CPVR2DHardwareGraphicsAccelerator@@QAAPAU_PVR2DIFBitmapData_@@XZ 00019244 f i ctestenv.obj
+ 0001:00008270       ??0TSize@@QAA@JJ@Z         00019270 f i ctestenv.obj
+ 0001:000082b4       ?PVR2DContextOpen@PVRIF_State@@QAAPAXXZ 000192b4 f i ctestenv.obj
+ 0001:000082e8       ?ContextOpen@PVRIF_State@@AAAPAXXZ 000192e8 f i ctestenv.obj
+ 0001:00008384       ?AccelInfo@CTestBitmap@@QAA?AVTAcceleratedBitmapInfo@@XZ 00019384 f i ctestenv.obj
+ 0001:000083d4       ??0CTestEnv@@AAA@XZ        000193d4 f i ctestenv.obj
+ 0001:0000841c       ??0PVRIF_State@@QAA@XZ     0001941c f i ctestenv.obj
+ 0001:00008460       ??_ECTestEnv@@UAAPAXI@Z    00019460 f i ctestenv.obj
+ 0001:00008460       ??_GCTestEnv@@UAAPAXI@Z    00019460 f i ctestenv.obj
+ 0001:000084a4       ?PVR2DContextClose@PVRIF_State@@QAAXXZ 000194a4 f i ctestenv.obj
+ 0001:000084f8       ?ContextDisconnect@PVRIF_State@@AAAXPAX@Z 000194f8 f i ctestenv.obj
+ 0001:00008524       ??1PVRIF_State@@QAA@XZ     00019524 f i ctestenv.obj
+ 0001:00008590       ??_GCPVR2DHardwareGraphicsAccelerator@@QAAPAXI@Z 00019590 f i ctestenv.obj
+ 0001:000085dc       ?DrawCheckboardBackground@CGraphOp@@AAAXXZ 000195dc f   graphics_op.obj
+ 0001:00008c64       ?GetTestArea@CGraphOp@@AAA?AVTRect@@J@Z 00019c64 f   graphics_op.obj
+ 0001:00008e64       ?DoTest@CGraphOp@@QAAJJ_N@Z 00019e64 f   graphics_op.obj
+ 0001:0000a0d8       ?WaitForTestsComplete@CGraphOp@@QAAJXZ 0001b0d8 f   graphics_op.obj
+ 0001:0000a18c       ??1CGraphOp@@QAA@XZ        0001b18c f   graphics_op.obj
+ 0001:0000a1b0       ??0CGraphOp@@QAA@PAVCTestEnv@@@Z 0001b1b0 f   graphics_op.obj
+ 0001:0000a1f8       ??0TPoint@@QAA@JJ@Z        0001b1f8 f i graphics_op.obj
+ 0001:0000a244       ??0TRect@@QAA@XZ           0001b244 f i graphics_op.obj
+ 0001:0000a2a4       ??0TPoint@@QAA@XZ          0001b2a4 f i graphics_op.obj
+ 0001:0000a2e8       ??1TPoint@@QAA@XZ          0001b2e8 f i graphics_op.obj
+ 0001:0000a304       ??0TRect@@QAA@ABVTSize@@@Z 0001b304 f i graphics_op.obj
+ 0001:0000a388       ??0TRect@@QAA@VTPoint@@VTSize@@@Z 0001b388 f i graphics_op.obj
+ 0001:0000a434       ??0TPoint@@QAA@ABV0@@Z     0001b434 f i graphics_op.obj
+ 0001:0000a48c       ??HTPoint@@QBA?AV0@ABVTSize@@@Z 0001b48c f i graphics_op.obj
+ 0001:0000a57c       ??1TRect@@QAA@XZ           0001b57c f i graphics_op.obj
+ 0001:0000a5cc       ?SetRect@TRect@@QAAXVTPoint@@VTSize@@@Z 0001b5cc f i graphics_op.obj
+ 0001:0000a674       ??0TRgb@@QAA@EEE@Z         0001b674 f i graphics_op.obj
+ 0001:0000a6d8       ??1TRgb@@QAA@XZ            0001b6d8 f i graphics_op.obj
+ 0001:0000a6f4       ??0TGopFilledRect@@QAA@ABVTRect@@ABVTRgb@@@Z 0001b6f4 f i graphics_op.obj
+ 0001:0000a78c       ??0TGraphicsOperation@@QAA@W4eGraphOp@0@@Z 0001b78c f i graphics_op.obj
+ 0001:0000a7c0       ??1TGraphicsOperation@@QAA@XZ 0001b7c0 f i graphics_op.obj
+ 0001:0000a7dc       ??0TRect@@QAA@ABV0@@Z      0001b7dc f i graphics_op.obj
+ 0001:0000a848       ??0TRgb@@QAA@ABV0@@Z       0001b848 f i graphics_op.obj
+ 0001:0000a8d0       ??1TGopFilledRect@@QAA@XZ  0001b8d0 f i graphics_op.obj
+ 0001:0000a940       ?HardwareAccelerator@CTestEnv@@QAAPAVCPVR2DHardwareGraphicsAccelerator@@XZ 0001b940 f i graphics_op.obj
+ 0001:0000a970       ?ScreenSize@CTestEnv@@QBA?AVTSize@@XZ 0001b970 f i graphics_op.obj
+ 0001:0000a9d0       ?Size@CTestBitmap@@QBA?AVTSize@@XZ 0001b9d0 f i graphics_op.obj
+ 0001:0000aa20       ?TestLogo16Bit@CTestEnv@@QAAPAVCTestBitmap@@XZ 0001ba20 f i graphics_op.obj
+ 0001:0000aa58       ??HTPoint@@QBA?AV0@ABV0@@Z 0001ba58 f i graphics_op.obj
+ 0001:0000ab48       ??0TRect@@QAA@VTPoint@@0@Z 0001bb48 f i graphics_op.obj
+ 0001:0000abf0       ?Width@TRect@@QBAJXZ       0001bbf0 f i graphics_op.obj
+ 0001:0000ac2c       ?Height@TRect@@QBAJXZ      0001bc2c f i graphics_op.obj
+ 0001:0000ac74       ?Move@TRect@@QAAXJJ@Z      0001bc74 f i graphics_op.obj
+ 0001:0000ace4       ??YTPoint@@QAAAAV0@ABVTSize@@@Z 0001bce4 f i graphics_op.obj
+ 0001:0000ad50       ??0TGopFillPattern@@QAA@XZ 0001bd50 f i graphics_op.obj
+ 0001:0000ad88       ??1TGopFillPattern@@QAA@XZ 0001bd88 f i graphics_op.obj
+ 0001:0000adb0       ??0TGopFilledRectWithPattern@@QAA@ABVTRect@@ABVTGopFillPattern@@@Z 0001bdb0 f i graphics_op.obj
+ 0001:0000ae48       ??0TGopFillPattern@@QAA@ABV0@@Z 0001be48 f i graphics_op.obj
+ 0001:0000ae98       ??1TGopFilledRectWithPattern@@QAA@XZ 0001be98 f i graphics_op.obj
+ 0001:0000af10       ??0TGopInvertRect@@QAA@ABVTRect@@@Z 0001bf10 f i graphics_op.obj
+ 0001:0000af80       ??1TGopInvertRect@@QAA@XZ  0001bf80 f i graphics_op.obj
+ 0001:0000afd0       ??0TGopBitBlt@@QAA@ABVTPoint@@PAU_PVR2DIFBitmapData_@@ABVTRect@@@Z 0001bfd0 f i graphics_op.obj
+ 0001:0000b080       ??1TGopBitBlt@@QAA@XZ      0001c080 f i graphics_op.obj
+ 0001:0000b0f8       ??0TGopBitBltMasked@@QAA@ABVTPoint@@PAU_PVR2DIFBitmapData_@@ABVTRect@@1@Z 0001c0f8 f i graphics_op.obj
+ 0001:0000b1b8       ??1TGopBitBltMasked@@QAA@XZ 0001c1b8 f i graphics_op.obj
+ 0001:0000b228       ??0TGopTransparency@@QAA@ABVTRgb@@@Z 0001c228 f i graphics_op.obj
+ 0001:0000b260       ??1TGopTransparency@@QAA@XZ 0001c260 f i graphics_op.obj
+ 0001:0000b284       ??0TGopBitBltTransparent@@QAA@ABVTPoint@@PAU_PVR2DIFBitmapData_@@ABVTRect@@ABVTGopTransparency@@@Z 0001c284 f i graphics_op.obj
+ 0001:0000b364       ??1TGopBitBltTransparent@@QAA@XZ 0001c364 f i graphics_op.obj
+ 0001:0000b3fc       ??0TGopTransparency@@QAA@ABV0@@Z 0001c3fc f i graphics_op.obj
+ 0001:0000b43c       ??0TGopBitBltAlphaChannel@@QAA@ABVTPoint@@PAU_PVR2DIFBitmapData_@@ABVTRect@@@Z 0001c43c f i graphics_op.obj
+ 0001:0000b4ec       ??1TGopBitBltAlphaChannel@@QAA@XZ 0001c4ec f i graphics_op.obj
+ 0001:0000b55c       ?Verbose1@CTestBase@@IAAXPBDZZ 0001c55c f i graphics_op.obj
+ 0001:0000b5a0       ?AccelSpec@CTestBitmap@@QAAPAU_PVR2DIFBitmapData_@@XZ 0001c5a0 f i graphics_op.obj
+ 0001:0000b5cc       ?TestLogo24Bit@CTestEnv@@QAAPAVCTestBitmap@@XZ 0001c5cc f i graphics_op.obj
+ 0001:0000b5fc       ?TestLogo32Bit@CTestEnv@@QAAPAVCTestBitmap@@XZ 0001c5fc f i graphics_op.obj
+ 0001:0000b62c       ?TestLogo16BitSmall@CTestEnv@@QAAPAVCTestBitmap@@XZ 0001c62c f i graphics_op.obj
+ 0001:0000b65c       ?TestLogoMask@CTestEnv@@QAAPAVCTestBitmap@@XZ 0001c65c f i graphics_op.obj
+ 0001:0000b694       ?VDebug@CTestBase@@AAAXPBDPAD@Z 0001c694 f   testbase.obj
+ 0001:0000b6f4       ?VPrint@CTestBase@@AAAXW4VERBOSE_LEVEL_tag@1@PBDPAD@Z 0001c6f4 f   testbase.obj
+ 0001:0000b76c       ?Print@CTestBase@@IAAXPBDZZ 0001c76c f   testbase.obj
+ 0001:0000b7e0       ?Error@CTestBase@@IAAXPBDZZ 0001c7e0 f   testbase.obj
+ 0001:0000b84c       ??0CPVR2DAppView@@IAA@XZ   0001c84c f   PVR2DTest.obj
+ 0001:0000b87c       ?ConstructL@CPVR2DAppView@@QAAXXZ 0001c87c f   PVR2DTest.obj
+ 0001:0000b9e4       ?NewL@CPVR2DAppView@@SAPAV1@XZ 0001c9e4 f   PVR2DTest.obj
+ 0001:0000bb24       ??1CPVR2DAppView@@QAA@XZ   0001cb24 f   PVR2DTest.obj
+ 0001:0000bc10       ?DrawTestNow@CPVR2DAppView@@QAAXW4GopTestType@CGraphOp@@_N@Z 0001cc10 f   PVR2DTest.obj
+ 0001:0000bc68       ?DrawAllTestsNow@CPVR2DAppView@@QAAXXZ 0001cc68 f   PVR2DTest.obj
+ 0001:0000bce4       ?ToggleVerbose@CPVR2DAppView@@QAAXXZ 0001cce4 f   PVR2DTest.obj
+ 0001:0000bd58       ?ConstructL@CPVR2DAppUi@@QAAXXZ 0001cd58 f   PVR2DTest.obj
+ 0001:0000bd88       ?OldL@CPVR2DAppUi@@AAAXXZ  0001cd88 f   PVR2DTest.obj
+ 0001:0000bde8       ??1CPVR2DAppUi@@QAA@XZ     0001cde8 f   PVR2DTest.obj
+ 0001:0000be04       ?HandleCommandL@CPVR2DAppUi@@QAAXJ@Z 0001ce04 f   PVR2DTest.obj
+ 0001:0000c104       ??_GCPVR2DAppView@@QAAPAXI@Z 0001d104 f i PVR2DTest.obj
+ 0001:0000c148       ??_GCGraphOp@@QAAPAXI@Z    0001d148 f i PVR2DTest.obj
+ 0001:0000c18c       ?SetVerboseLevel@CTestBase@@QAAXW4VERBOSE_LEVEL_tag@1@@Z 0001d18c f i PVR2DTest.obj
+ 0001:0000c1b4       ?NewL@CPVR2DHardwareGraphicsAccelerator@@SAPAV1@PAVPVRIF_State@@PAU_PVR2DIFBitmapData_@@@Z 0001d1b4 f   pvr2dif_accelhard.obj
+ 0001:0000c360       ?ConstructL@CPVR2DHardwareGraphicsAccelerator@@IAAXXZ 0001d360 f   pvr2dif_accelhard.obj
+ 0001:0000c418       ?Operation@CPVR2DHardwareGraphicsAccelerator@@QAAJABVTGraphicsOperation@@@Z 0001d418 f   pvr2dif_accelhard.obj
+ 0001:0000c460       ?Operation@CPVR2DHardwareGraphicsAccelerator@@QAAJABVTGraphicsOperation@@JPAVTRect@@@Z 0001d460 f   pvr2dif_accelhard.obj
+ 0001:0000c4bc       ?QueryOpsComplete@CPVR2DHardwareGraphicsAccelerator@@QAAJW4eQueryOpsMode@1@@Z 0001d4bc f   pvr2dif_accelhard.obj
+ 0001:0000c530       ??1CPVR2DHardwareGraphicsAccelerator@@QAA@XZ 0001d530 f   pvr2dif_accelhard.obj
+ 0001:0000c63c       ??0CPVR2DHardwareGraphicsAccelerator@@IAA@XZ 0001d63c f i pvr2dif_accelhard.obj
+ 0001:0000c664       ?PVR2DContextGet@PVRIF_State@@QAAPAXXZ 0001d664 f i pvr2dif_accelhard.obj
+ 0001:0000c690       ?PVR2DIF_HardwareBitmapGetInfo@@YAJPAU_PVR2DIFBitmapData_@@AAVTAcceleratedBitmapInfo@@@Z 0001d690 f   pvr2dif_bitmap.obj
+ 0001:0000c880       ?PVR2DIF_HardwareBitmapScreenReference@@YAJPAU_PVR2DIFBitmapData_@@PAVPVRIF_State@@@Z 0001d880 f   pvr2dif_bitmap.obj
+ 0001:0000cb40       ?PVR2DIF_HardwareBitmapCreate@@YAJPAU_PVR2DIFBitmapData_@@PAVPVRIF_State@@W4TDisplayMode@@VTSize@@@Z 0001db40 f   pvr2dif_bitmap.obj
+ 0001:0000ce90       ?PVR2DIF_HardwareBitmapDestroy@@YAXPAU_PVR2DIFBitmapData_@@PAVPVRIF_State@@@Z 0001de90 f   pvr2dif_bitmap.obj
+ 0001:0000cefc       ?TraceMemInfo@@YAXPBDPAU_PVR2DMEMINFO@@@Z 0001defc f   pvr2dif_ops.obj
+ 0001:0000cf5c       ?TraceBltInfo@@YAXPAU_PVR2DBLTINFO@@@Z 0001df5c f   pvr2dif_ops.obj
+ 0001:0000d160       ?OpQueryGraphicsOpsComplete@@YAJPAVPVRIF_State@@PAU_PVR2DIFBitmapData_@@_N@Z 0001e160 f   pvr2dif_ops.obj
+ 0001:0000d268       ?OpGraphicsOperation@@YAJPAVPVRIF_State@@PAU_PVR2DIFBitmapData_@@ABVTGraphicsOperation@@JPAVTRect@@@Z 0001e268 f   pvr2dif_ops.obj
+ 0001:0000e84c       ?Function@TGraphicsOperation@@QBA?AW4eGraphOp@1@XZ 0001f84c f i pvr2dif_ops.obj
+ 0001:0000e878       ?Size@TRect@@QBA?AVTSize@@XZ 0001f878 f i pvr2dif_ops.obj
+ 0001:0000e8e0       ?Color@TGopTransparency@@QBA?AVTRgb@@XZ 0001f8e0 f i pvr2dif_ops.obj
+ 0001:0000e92c       ?_Color16M@TRgb@@QBAKXZ    0001f92c f i pvr2dif_ops.obj
+ 0001:0000e990       ?_Color16MA@TRgb@@QBAKXZ   0001f990 f i pvr2dif_ops.obj
+ 0001:0000ea10       ??0TRect@@QAA@JJJJ@Z       0001fa10 f i pvr2dif_ops.obj
+ 0001:0000ea80       ?ContextConnect@PVRIF_State@@AAAPAXXZ 0001fa80 f   pvr2dif_state.obj
+ 0001:0000eb80       PVR2DEnumerateDevices      0001fb80 f   libpvr2d:pvr2dinit.obj
+ 0001:0000f02c       PVR2DCreateDeviceContext   0002002c f   libpvr2d:pvr2dinit.obj
+ 0001:0000fcc8       PVR2DDestroyDeviceContext  00020cc8 f   libpvr2d:pvr2dinit.obj
+ 0001:0000fff4       PVR2DGetAPIRev             00020ff4 f   libpvr2d:pvr2dinit.obj
+ 0001:00010078       PVR2DGetFrameBuffer        00021078 f   libpvr2d:pvr2dmode.obj
+ 0001:00010108       PVR2DGetDeviceInfo         00021108 f   libpvr2d:pvr2dmode.obj
+ 0001:000103a4       PVR2DGetMiscDisplayInfo    000213a4 f   libpvr2d:pvr2dmode.obj
+ 0001:00010498       PVR2DGetScreenMode         00021498 f   libpvr2d:pvr2dmode.obj
+ 0001:000105e4       PVR2DMemAlloc              000215e4 f   libpvr2d:pvr2dmem.obj
+ 0001:0001073c       PVR2DMemExport             0002173c f   libpvr2d:pvr2dmem.obj
+ 0001:000107c8       PVR2DMemWrap               000217c8 f   libpvr2d:pvr2dmem.obj
+ 0001:00010ad8       PVR2DMemMap                00021ad8 f   libpvr2d:pvr2dmem.obj
+ 0001:00010c70       PVR2DMemFree               00021c70 f   libpvr2d:pvr2dmem.obj
+ 0001:00010ec0       GetPvrSrvPixelFormat       00021ec0 f   libpvr2d:pvr2dblt.obj
+ 0001:00010fe8       PVR2DBltClipped            00021fe8 f   libpvr2d:pvr2dblt.obj
+ 0001:00011030       PVR2DBlt                   00022030 f   libpvr2d:pvr2dblt.obj
+ 0001:00011070       PVR2DQueryBlitsComplete    00022070 f   libpvr2d:pvr2dblt.obj
+ 0001:00011430       PVR2DSetPresentBltProperties 00022430 f   libpvr2d:pvr2dblt.obj
+ 0001:00011684       PVR2DPresentBlt            00022684 f   libpvr2d:pvr2dblt.obj
+ 0001:0001363c       PVR2DSet1555Alpha          0002463c f   libpvr2d:pvr2dblt.obj
+ 0001:0001367c       PVR2DCreateFlipChain       0002467c f   libpvr2d:pvr2dflip.obj
+ 0001:00013d10       DestroyFlipChain           00024d10 f   libpvr2d:pvr2dflip.obj
+ 0001:00013f2c       PVR2DDestroyFlipChain      00024f2c f   libpvr2d:pvr2dflip.obj
+ 0001:000140cc       PVR2DGetFlipChainBuffers   000250cc f   libpvr2d:pvr2dflip.obj
+ 0001:000141d4       PVR2DPresentFlip           000251d4 f   libpvr2d:pvr2dflip.obj
+ 0001:000143b4       PVR2DSetPresentFlipProperties 000253b4 f   libpvr2d:pvr2dflip.obj
+ 0001:00014634       PVRSRVDebugPrintf          00025634 f   srvclum:SRVCLUM.dll
+ 0001:00014644       PVRSRVTrace                00025644 f   srvclum:SRVCLUM.dll
+ 0001:00014654       PVRSRVDebugAssertFail      00025654 f   srvclum:SRVCLUM.dll
+ 0001:00014664       PVRSRVDisconnect           00025664 f   srvclum:SRVCLUM.dll
+ 0001:00014674       PVRSRVCloseDCDevice        00025674 f   srvclum:SRVCLUM.dll
+ 0001:00014684       PVRSRVMemCopy              00025684 f   srvclum:SRVCLUM.dll
+ 0001:00014694       PVRSRVGetDCInfo            00025694 f   srvclum:SRVCLUM.dll
+ 0001:000146a4       PVRSRVOpenDCDevice         000256a4 f   srvclum:SRVCLUM.dll
+ 0001:000146b4       PVRSRVFreeUserModeMem      000256b4 f   srvclum:SRVCLUM.dll
+ 0001:000146c4       PVRSRVCallocUserModeMem    000256c4 f   srvclum:SRVCLUM.dll
+ 0001:000146d4       PVRSRVAcquireDeviceData    000256d4 f   srvclum:SRVCLUM.dll
+ 0001:000146e4       PVRSRVEnumerateDevices     000256e4 f   srvclum:SRVCLUM.dll
+ 0001:000146f4       PVRSRVEnumerateDeviceClass 000256f4 f   srvclum:SRVCLUM.dll
+ 0001:00014704       PVRSRVConnect              00025704 f   srvclum:SRVCLUM.dll
+ 0001:00014714       PVRSRVDestroyDeviceMemContext 00025714 f   srvclum:SRVCLUM.dll
+ 0001:00014724       PVRSRVReleaseMiscInfo      00025724 f   srvclum:SRVCLUM.dll
+ 0001:00014734       PVRSRVUnmapDeviceClassMemory 00025734 f   srvclum:SRVCLUM.dll
+ 0001:00014744       SGXDestroyTransferContext  00025744 f   srvclum:SRVCLUM.dll
+ 0001:00014754       SGXCreateTransferContext   00025754 f   srvclum:SRVCLUM.dll
+ 0001:00014764       PVRSRVCreateDeviceMemContext 00025764 f   srvclum:SRVCLUM.dll
+ 0001:00014774       PVRSRVGetMiscInfo          00025774 f   srvclum:SRVCLUM.dll
+ 0001:00014784       PVRSRVMapDeviceClassMemory 00025784 f   srvclum:SRVCLUM.dll
+ 0001:00014794       PVRSRVGetDCSystemBuffer    00025794 f   srvclum:SRVCLUM.dll
+ 0001:000147a4       PVRSRVEnumDCDims           000257a4 f   srvclum:SRVCLUM.dll
+ 0001:000147b4       PVRSRVAllocUserModeMem     000257b4 f   srvclum:SRVCLUM.dll
+ 0001:000147c4       PVRSRVEnumDCFormats        000257c4 f   srvclum:SRVCLUM.dll
+ 0001:000147d4       PVRSRVAllocDeviceMem       000257d4 f   srvclum:SRVCLUM.dll
+ 0001:000147e4       PVRSRVExportDeviceMem      000257e4 f   srvclum:SRVCLUM.dll
+ 0001:000147f4       PVRSRVWrapExtMemory        000257f4 f   srvclum:SRVCLUM.dll
+ 0001:00014804       PVRSRVMapDeviceMemory      00025804 f   srvclum:SRVCLUM.dll
+ 0001:00014814       PVRSRVUnmapDeviceMemory    00025814 f   srvclum:SRVCLUM.dll
+ 0001:00014824       PVRSRVUnwrapExtMemory      00025824 f   srvclum:SRVCLUM.dll
+ 0001:00014834       PVRSRVFreeDeviceMem        00025834 f   srvclum:SRVCLUM.dll
+ 0001:00014844       PVRSRVEventObjectWait      00025844 f   srvclum:SRVCLUM.dll
+ 0001:00014854       PVRSRVClockus              00025854 f   srvclum:SRVCLUM.dll
+ 0001:00014864       PVRSRVReallocUserModeMem   00025864 f   srvclum:SRVCLUM.dll
+ 0001:00014874       SGXQueueTransfer           00025874 f   srvclum:SRVCLUM.dll
+ 0001:00014884       PVRSRVMemSet               00025884 f   srvclum:SRVCLUM.dll
+ 0001:00014894       PVRSRVGetDCBuffers         00025894 f   srvclum:SRVCLUM.dll
+ 0001:000148a4       PVRSRVCreateDCSwapChain    000258a4 f   srvclum:SRVCLUM.dll
+ 0001:000148b4       PVRSRVDestroyDCSwapChain   000258b4 f   srvclum:SRVCLUM.dll
+ 0001:000148c4       PVRSRVSwapToDCSystem       000258c4 f   srvclum:SRVCLUM.dll
+ 0001:000148d4       PVRSRVSwapToDCBuffer       000258d4 f   srvclum:SRVCLUM.dll
+ 0001:000148e4       PVRSRVSetDCDstRect         000258e4 f   srvclum:SRVCLUM.dll
+ 0001:000148f4       WinMainCRTStartup          000258f4 f   corelib0:pegwmain.obj
+ 0001:000149c8       __security_init_cookie     000259c8 f   corelib0:seccinit.obj
+ 0001:00014a90       __GSHandlerCheck           00025a90 f   corelib0:gshandler.obj
+ 0001:00014ad8       __GSHandlerCheckCommon     00025ad8 f   corelib0:gshandler.obj
+ 0001:00014b80       __security_check_cookie    00025b80 f   corelib0:armsecgs.obj
+ 0001:00014b94       __gsfailure                00025b94 f   corelib0:armsecgs.obj
+ 0001:00014bd8       exit                       00025bd8 f   corelib0:cexit.obj
+ 0001:00014d1c       _exit                      00025d1c f   corelib0:cexit.obj
+ 0001:00014d40       _cexit                     00025d40 f   corelib0:cexit.obj
+ 0001:00014d5c       _c_exit                    00025d5c f   corelib0:cexit.obj
+ 0001:00014d78       GetCurrentProcess          00025d78 f i corelib0:cexit.obj
+ 0001:00014d90       _initterm                  00025d90 f   corelib0:crt0dat.obj
+ 0001:00014de4       _cinit                     00025de4 f   corelib0:crt0dat.obj
+ 0001:00014e18       _onexit                    00025e18 f   corelib0:onexit.obj
+ 0001:00014ff8       atexit                     00025ff8 f   corelib0:onexit.obj
+ 0001:0001504c       scanf                      0002604c f   corelib1:COREDLL.dll
+ 0001:0001505c       printf                     0002605c f   corelib1:COREDLL.dll
+ 0001:0001506c       __CxxFrameHandler3         0002606c f   corelib1:COREDLL.dll
+ 0001:0001507c       memcpy                     0002607c f   corelib1:COREDLL.dll
+ 0001:0001508c       __CxxThrowException        0002608c f   corelib1:COREDLL.dll
+ 0001:0001509c       ??_7type_info@@6B@         0002609c f   corelib1:COREDLL.dll
+ 0001:000150ac       ??3@YAXPAX@Z               000260ac f   corelib1:COREDLL.dll
+ 0001:000150bc       ??2@YAPAXI@Z               000260bc f   corelib1:COREDLL.dll
+ 0001:000150cc       ??_M@YAXPAXIHP6AX0@Z@Z     000260cc f   corelib1:COREDLL.dll
+ 0001:000150dc       ??_L@YAXPAXIHP6AX0@Z1@Z    000260dc f   corelib1:COREDLL.dll
+ 0001:000150ec       __rt_sdiv                  000260ec f   corelib1:COREDLL.dll
+ 0001:000150fc       _vsnprintf                 000260fc f   corelib1:COREDLL.dll
+ 0001:0001510c       memset                     0002610c f   corelib1:COREDLL.dll
+ 0001:0001511c       free                       0002611c f   corelib1:COREDLL.dll
+ 0001:0001512c       malloc                     0002612c f   corelib1:COREDLL.dll
+ 0001:0001513c       strlen                     0002613c f   corelib1:COREDLL.dll
+ 0001:0001514c       _XcptFilter                0002614c f   corelib1:COREDLL.dll
+ 0001:0001515c       __C_specific_handler       0002615c f   corelib1:COREDLL.dll
+ 0001:0001516c       __security_gen_cookie2     0002616c f   corelib1:COREDLL.dll
+ 0001:0001517c       __report_gsfailure         0002617c f   corelib1:COREDLL.dll
+ 0001:0001518c       realloc                    0002618c f   corelib1:COREDLL.dll
+ 0001:0001519c       _msize                     0002619c f   corelib1:COREDLL.dll
+ 0001:000151ac       TerminateProcess           000261ac f   coredll:COREDLL.dll
+ 0001:000151e4       _TI1?AVXError@@            000261e4     ctestenv.obj
+ 0001:000151f4       _CTA1?AVXError@@           000261f4     ctestenv.obj
+ 0001:000151fc       _CT??_R0?AVXError@@@84     000261fc     ctestenv.obj
+ 0001:00015218       __IMPORT_DESCRIPTOR_SRVCLUM 00026218     srvclum:SRVCLUM.dll
+ 0001:0001522c       __IMPORT_DESCRIPTOR_COREDLL 0002622c     corelib1:COREDLL.dll
+ 0001:00015240       __NULL_IMPORT_DESCRIPTOR   00026240     srvclum:SRVCLUM.dll
+ 0002:00000000       __imp_TerminateProcess     00027000     coredll:COREDLL.dll
+ 0002:00000004       __imp__msize               00027004     corelib1:COREDLL.dll
+ 0002:00000008       __imp_realloc              00027008     corelib1:COREDLL.dll
+ 0002:0000000c       __imp___report_gsfailure   0002700c     corelib1:COREDLL.dll
+ 0002:00000010       __imp___security_gen_cookie2 00027010     corelib1:COREDLL.dll
+ 0002:00000014       __imp___C_specific_handler 00027014     corelib1:COREDLL.dll
+ 0002:00000018       __imp__XcptFilter          00027018     corelib1:COREDLL.dll
+ 0002:0000001c       __imp_strlen               0002701c     corelib1:COREDLL.dll
+ 0002:00000020       __imp_malloc               00027020     corelib1:COREDLL.dll
+ 0002:00000024       __imp_free                 00027024     corelib1:COREDLL.dll
+ 0002:00000028       __imp_memset               00027028     corelib1:COREDLL.dll
+ 0002:0000002c       __imp__vsnprintf           0002702c     corelib1:COREDLL.dll
+ 0002:00000030       __imp___rt_sdiv            00027030     corelib1:COREDLL.dll
+ 0002:00000034       __imp_??_L@YAXPAXIHP6AX0@Z1@Z 00027034     corelib1:COREDLL.dll
+ 0002:00000038       __imp_??_M@YAXPAXIHP6AX0@Z@Z 00027038     corelib1:COREDLL.dll
+ 0002:0000003c       __imp_??2@YAPAXI@Z         0002703c     corelib1:COREDLL.dll
+ 0002:00000040       __imp_??3@YAXPAX@Z         00027040     corelib1:COREDLL.dll
+ 0002:00000044       __imp_??_7type_info@@6B@   00027044     corelib1:COREDLL.dll
+ 0002:00000048       __imp___CxxThrowException  00027048     corelib1:COREDLL.dll
+ 0002:0000004c       __imp_memcpy               0002704c     corelib1:COREDLL.dll
+ 0002:00000050       __imp___CxxFrameHandler3   00027050     corelib1:COREDLL.dll
+ 0002:00000054       __imp_printf               00027054     corelib1:COREDLL.dll
+ 0002:00000058       __imp_scanf                00027058     corelib1:COREDLL.dll
+ 0002:0000005c       \177COREDLL_NULL_THUNK_DATA 0002705c     corelib1:COREDLL.dll
+ 0002:00000060       __imp_PVRSRVAllocUserModeMem 00027060     srvclum:SRVCLUM.dll
+ 0002:00000064       __imp_PVRSRVEnumDCFormats  00027064     srvclum:SRVCLUM.dll
+ 0002:00000068       __imp_PVRSRVAllocDeviceMem 00027068     srvclum:SRVCLUM.dll
+ 0002:0000006c       __imp_PVRSRVExportDeviceMem 0002706c     srvclum:SRVCLUM.dll
+ 0002:00000070       __imp_PVRSRVWrapExtMemory  00027070     srvclum:SRVCLUM.dll
+ 0002:00000074       __imp_PVRSRVMapDeviceMemory 00027074     srvclum:SRVCLUM.dll
+ 0002:00000078       __imp_PVRSRVUnmapDeviceMemory 00027078     srvclum:SRVCLUM.dll
+ 0002:0000007c       __imp_PVRSRVUnwrapExtMemory 0002707c     srvclum:SRVCLUM.dll
+ 0002:00000080       __imp_PVRSRVFreeDeviceMem  00027080     srvclum:SRVCLUM.dll
+ 0002:00000084       __imp_PVRSRVEventObjectWait 00027084     srvclum:SRVCLUM.dll
+ 0002:00000088       __imp_PVRSRVEnumDCDims     00027088     srvclum:SRVCLUM.dll
+ 0002:0000008c       __imp_PVRSRVReallocUserModeMem 0002708c     srvclum:SRVCLUM.dll
+ 0002:00000090       __imp_SGXQueueTransfer     00027090     srvclum:SRVCLUM.dll
+ 0002:00000094       __imp_PVRSRVMemSet         00027094     srvclum:SRVCLUM.dll
+ 0002:00000098       __imp_PVRSRVGetDCBuffers   00027098     srvclum:SRVCLUM.dll
+ 0002:0000009c       __imp_PVRSRVCreateDCSwapChain 0002709c     srvclum:SRVCLUM.dll
+ 0002:000000a0       __imp_PVRSRVDestroyDCSwapChain 000270a0     srvclum:SRVCLUM.dll
+ 0002:000000a4       __imp_PVRSRVSwapToDCSystem 000270a4     srvclum:SRVCLUM.dll
+ 0002:000000a8       __imp_PVRSRVSwapToDCBuffer 000270a8     srvclum:SRVCLUM.dll
+ 0002:000000ac       __imp_PVRSRVSetDCDstRect   000270ac     srvclum:SRVCLUM.dll
+ 0002:000000b0       __imp_PVRSRVGetDCSystemBuffer 000270b0     srvclum:SRVCLUM.dll
+ 0002:000000b4       __imp_PVRSRVMapDeviceClassMemory 000270b4     srvclum:SRVCLUM.dll
+ 0002:000000b8       __imp_PVRSRVGetMiscInfo    000270b8     srvclum:SRVCLUM.dll
+ 0002:000000bc       __imp_PVRSRVCreateDeviceMemContext 000270bc     srvclum:SRVCLUM.dll
+ 0002:000000c0       __imp_SGXCreateTransferContext 000270c0     srvclum:SRVCLUM.dll
+ 0002:000000c4       __imp_SGXDestroyTransferContext 000270c4     srvclum:SRVCLUM.dll
+ 0002:000000c8       __imp_PVRSRVUnmapDeviceClassMemory 000270c8     srvclum:SRVCLUM.dll
+ 0002:000000cc       __imp_PVRSRVReleaseMiscInfo 000270cc     srvclum:SRVCLUM.dll
+ 0002:000000d0       __imp_PVRSRVDestroyDeviceMemContext 000270d0     srvclum:SRVCLUM.dll
+ 0002:000000d4       __imp_PVRSRVConnect        000270d4     srvclum:SRVCLUM.dll
+ 0002:000000d8       __imp_PVRSRVEnumerateDeviceClass 000270d8     srvclum:SRVCLUM.dll
+ 0002:000000dc       __imp_PVRSRVEnumerateDevices 000270dc     srvclum:SRVCLUM.dll
+ 0002:000000e0       __imp_PVRSRVAcquireDeviceData 000270e0     srvclum:SRVCLUM.dll
+ 0002:000000e4       __imp_PVRSRVCallocUserModeMem 000270e4     srvclum:SRVCLUM.dll
+ 0002:000000e8       __imp_PVRSRVFreeUserModeMem 000270e8     srvclum:SRVCLUM.dll
+ 0002:000000ec       __imp_PVRSRVOpenDCDevice   000270ec     srvclum:SRVCLUM.dll
+ 0002:000000f0       __imp_PVRSRVGetDCInfo      000270f0     srvclum:SRVCLUM.dll
+ 0002:000000f4       __imp_PVRSRVMemCopy        000270f4     srvclum:SRVCLUM.dll
+ 0002:000000f8       __imp_PVRSRVCloseDCDevice  000270f8     srvclum:SRVCLUM.dll
+ 0002:000000fc       __imp_PVRSRVDisconnect     000270fc     srvclum:SRVCLUM.dll
+ 0002:00000100       __imp_PVRSRVDebugAssertFail 00027100     srvclum:SRVCLUM.dll
+ 0002:00000104       __imp_PVRSRVTrace          00027104     srvclum:SRVCLUM.dll
+ 0002:00000108       __imp_PVRSRVClockus        00027108     srvclum:SRVCLUM.dll
+ 0002:0000010c       __imp_PVRSRVDebugPrintf    0002710c     srvclum:SRVCLUM.dll
+ 0002:00000110       \177SRVCLUM_NULL_THUNK_DATA 00027110     srvclum:SRVCLUM.dll
+ 0002:00000114       ??_R0?AVXError@@@8         00027114     ctestenv.obj
+ 0002:0000012c       __security_cookie          0002712c     corelib0:seccinit.obj
+ 0002:00000130       __security_cookie_complement 00027130     corelib0:seccinit.obj
+ 0002:00000134       _exitflag                  00027134     corelib0:cexit.obj
+ 0002:00000138       __onexitend                00027138     <common>
+ 0002:0000013c       __onexitbegin              0002713c     <common>
+
+ entry point at        0001:000148f4
+
+ Static symbols
+
+ 0001:fffff038       __unwind$35065             00010038 f   pvr2dif_ops.obj
+ 0001:fffff06c       __unwind$34992             0001006c f   pvr2dif_ops.obj
+ 0001:fffff084       __unwind$34993             00010084 f   pvr2dif_ops.obj
+ 0001:fffff09c       __unwind$34994             0001009c f   pvr2dif_ops.obj
+ 0001:fffff0a4       __unwind$35031             000100a4 f   pvr2dif_ops.obj
+ 0001:fffff0bc       __unwind$35032             000100bc f   pvr2dif_ops.obj
+ 0001:00006ea0       __unwind$34770             00017ea0 f   main.obj
+ 0001:00007020       __unwind$34866             00018020 f   ctestenv.obj
+ 0001:00007108       __catch$34911              00018108 f   ctestenv.obj
+ 0001:000071a8       __unwind$34912             000181a8 f   ctestenv.obj
+ 0001:000071c8       __unwind$34913             000181c8 f   ctestenv.obj
+ 0001:00007240       __unwind$34990             00018240 f   ctestenv.obj
+ 0001:000074c0       __unwind$35036             000184c0 f   ctestenv.obj
+ 0001:0000756c       __unwind$35062             0001856c f   ctestenv.obj
+ 0001:00007cb8       __unwind$35104             00018cb8 f   ctestenv.obj
+ 0001:00007cd0       __unwind$35105             00018cd0 f   ctestenv.obj
+ 0001:00007ce8       __unwind$35106             00018ce8 f   ctestenv.obj
+ 0001:00007d00       __unwind$35108             00018d00 f   ctestenv.obj
+ 0001:00007d18       __unwind$35110             00018d18 f   ctestenv.obj
+ 0001:00007d30       __unwind$35112             00018d30 f   ctestenv.obj
+ 0001:00007de4       __catch$35193              00018de4 f   ctestenv.obj
+ 0001:00007e90       __unwind$35194             00018e90 f   ctestenv.obj
+ 0001:000080b4       __unwind$35275             000190b4 f   ctestenv.obj
+ 0001:00008abc       __unwind$35005             00019abc f   graphics_op.obj
+ 0001:00008adc       __unwind$35006             00019adc f   graphics_op.obj
+ 0001:00008afc       __unwind$35007             00019afc f   graphics_op.obj
+ 0001:00008b1c       __unwind$35008             00019b1c f   graphics_op.obj
+ 0001:00008b3c       __unwind$35009             00019b3c f   graphics_op.obj
+ 0001:00008b5c       __unwind$35010             00019b5c f   graphics_op.obj
+ 0001:00008b7c       __unwind$35012             00019b7c f   graphics_op.obj
+ 0001:00008b9c       __unwind$35013             00019b9c f   graphics_op.obj
+ 0001:00008bbc       __unwind$35014             00019bbc f   graphics_op.obj
+ 0001:00008bdc       __unwind$35015             00019bdc f   graphics_op.obj
+ 0001:00008c08       __unwind$35017             00019c08 f   graphics_op.obj
+ 0001:00008c28       __unwind$35018             00019c28 f   graphics_op.obj
+ 0001:00008dc4       __unwind$35415             00019dc4 f   graphics_op.obj
+ 0001:00008ddc       __unwind$35416             00019ddc f   graphics_op.obj
+ 0001:00008df4       __unwind$35417             00019df4 f   graphics_op.obj
+ 0001:00008e0c       __unwind$35419             00019e0c f   graphics_op.obj
+ 0001:00008e24       __unwind$35420             00019e24 f   graphics_op.obj
+ 0001:00009b7c       __unwind$35507             0001ab7c f   graphics_op.obj
+ 0001:00009ba4       __unwind$35508             0001aba4 f   graphics_op.obj
+ 0001:00009bcc       __unwind$35509             0001abcc f   graphics_op.obj
+ 0001:00009bf4       __unwind$35510             0001abf4 f   graphics_op.obj
+ 0001:00009c28       __unwind$35511             0001ac28 f   graphics_op.obj
+ 0001:00009c50       __unwind$35512             0001ac50 f   graphics_op.obj
+ 0001:00009c78       __unwind$35514             0001ac78 f   graphics_op.obj
+ 0001:00009c98       __unwind$35516             0001ac98 f   graphics_op.obj
+ 0001:00009cb8       __unwind$35518             0001acb8 f   graphics_op.obj
+ 0001:00009cd8       __unwind$35520             0001acd8 f   graphics_op.obj
+ 0001:00009cf8       __unwind$35521             0001acf8 f   graphics_op.obj
+ 0001:00009d20       __unwind$35522             0001ad20 f   graphics_op.obj
+ 0001:00009d48       __unwind$35523             0001ad48 f   graphics_op.obj
+ 0001:00009d68       __unwind$35524             0001ad68 f   graphics_op.obj
+ 0001:00009d88       __unwind$35525             0001ad88 f   graphics_op.obj
+ 0001:00009da8       __unwind$35526             0001ada8 f   graphics_op.obj
+ 0001:00009dc8       __unwind$35527             0001adc8 f   graphics_op.obj
+ 0001:00009de8       __unwind$35528             0001ade8 f   graphics_op.obj
+ 0001:00009e08       __unwind$35530             0001ae08 f   graphics_op.obj
+ 0001:00009e28       __unwind$35531             0001ae28 f   graphics_op.obj
+ 0001:00009e48       __unwind$35532             0001ae48 f   graphics_op.obj
+ 0001:00009e68       __unwind$35533             0001ae68 f   graphics_op.obj
+ 0001:00009e88       __unwind$35534             0001ae88 f   graphics_op.obj
+ 0001:00009ea8       __unwind$35535             0001aea8 f   graphics_op.obj
+ 0001:00009ec8       __unwind$35536             0001aec8 f   graphics_op.obj
+ 0001:00009ee8       __unwind$35537             0001aee8 f   graphics_op.obj
+ 0001:00009f08       __unwind$35538             0001af08 f   graphics_op.obj
+ 0001:00009f28       __unwind$35541             0001af28 f   graphics_op.obj
+ 0001:00009f48       __unwind$35542             0001af48 f   graphics_op.obj
+ 0001:00009f68       __unwind$35543             0001af68 f   graphics_op.obj
+ 0001:00009f88       __unwind$35544             0001af88 f   graphics_op.obj
+ 0001:00009fa8       __unwind$35545             0001afa8 f   graphics_op.obj
+ 0001:00009fc8       __unwind$35547             0001afc8 f   graphics_op.obj
+ 0001:00009fe8       __unwind$35548             0001afe8 f   graphics_op.obj
+ 0001:0000a008       __unwind$35549             0001b008 f   graphics_op.obj
+ 0001:0000a028       __unwind$35550             0001b028 f   graphics_op.obj
+ 0001:0000a048       __unwind$35551             0001b048 f   graphics_op.obj
+ 0001:0000a068       __unwind$35552             0001b068 f   graphics_op.obj
+ 0001:0000a28c       __unwind$35121             0001b28c f i graphics_op.obj
+ 0001:0000a368       __unwind$35155             0001b368 f i graphics_op.obj
+ 0001:0000a3ec       __unwind$35174             0001b3ec f i graphics_op.obj
+ 0001:0000a404       __unwind$35175             0001b404 f i graphics_op.obj
+ 0001:0000a41c       __unwind$35176             0001b41c f i graphics_op.obj
+ 0001:0000a528       __unwind$35214             0001b528 f i graphics_op.obj
+ 0001:0000a540       __unwind$35215             0001b540 f i graphics_op.obj
+ 0001:0000a5ac       __unwind$35240             0001b5ac f i graphics_op.obj
+ 0001:0000a644       __unwind$35260             0001b644 f i graphics_op.obj
+ 0001:0000a65c       __unwind$35261             0001b65c f i graphics_op.obj
+ 0001:0000a758       __unwind$35301             0001b758 f i graphics_op.obj
+ 0001:0000a770       __unwind$35302             0001b770 f i graphics_op.obj
+ 0001:0000a830       __unwind$35341             0001b830 f i graphics_op.obj
+ 0001:0000a90c       __unwind$35368             0001b90c f i graphics_op.obj
+ 0001:0000a924       __unwind$35369             0001b924 f i graphics_op.obj
+ 0001:0000aaf4       __unwind$35797             0001baf4 f i graphics_op.obj
+ 0001:0000ab0c       __unwind$35798             0001bb0c f i graphics_op.obj
+ 0001:0000aba8       __unwind$35823             0001bba8 f i graphics_op.obj
+ 0001:0000abc0       __unwind$35824             0001bbc0 f i graphics_op.obj
+ 0001:0000abd8       __unwind$35825             0001bbd8 f i graphics_op.obj
+ 0001:0000accc       __unwind$35871             0001bccc f i graphics_op.obj
+ 0001:0000ae14       __unwind$35914             0001be14 f i graphics_op.obj
+ 0001:0000ae2c       __unwind$35915             0001be2c f i graphics_op.obj
+ 0001:0000aed4       __unwind$35948             0001bed4 f i graphics_op.obj
+ 0001:0000aeec       __unwind$35949             0001beec f i graphics_op.obj
+ 0001:0000af60       __unwind$35973             0001bf60 f i graphics_op.obj
+ 0001:0000afb0       __unwind$35992             0001bfb0 f i graphics_op.obj
+ 0001:0000b044       __unwind$36011             0001c044 f i graphics_op.obj
+ 0001:0000b05c       __unwind$36012             0001c05c f i graphics_op.obj
+ 0001:0000b0bc       __unwind$36036             0001c0bc f i graphics_op.obj
+ 0001:0000b0d4       __unwind$36037             0001c0d4 f i graphics_op.obj
+ 0001:0000b17c       __unwind$36061             0001c17c f i graphics_op.obj
+ 0001:0000b194       __unwind$36062             0001c194 f i graphics_op.obj
+ 0001:0000b1f4       __unwind$36086             0001c1f4 f i graphics_op.obj
+ 0001:0000b20c       __unwind$36087             0001c20c f i graphics_op.obj
+ 0001:0000b30c       __unwind$36128             0001c30c f i graphics_op.obj
+ 0001:0000b324       __unwind$36129             0001c324 f i graphics_op.obj
+ 0001:0000b340       __unwind$36130             0001c340 f i graphics_op.obj
+ 0001:0000b3ac       __unwind$36159             0001c3ac f i graphics_op.obj
+ 0001:0000b3c4       __unwind$36160             0001c3c4 f i graphics_op.obj
+ 0001:0000b3e0       __unwind$36161             0001c3e0 f i graphics_op.obj
+ 0001:0000b4b0       __unwind$36199             0001c4b0 f i graphics_op.obj
+ 0001:0000b4c8       __unwind$36200             0001c4c8 f i graphics_op.obj
+ 0001:0000b528       __unwind$36224             0001c528 f i graphics_op.obj
+ 0001:0000b540       __unwind$36225             0001c540 f i graphics_op.obj
+ 0001:0000b944       __catch$34872              0001c944 f   PVR2DTest.obj
+ 0001:0000b9a4       __unwind$34873             0001c9a4 f   PVR2DTest.obj
+ 0001:0000ba98       __catch$34925              0001ca98 f   PVR2DTest.obj
+ 0001:0000bb00       __unwind$34926             0001cb00 f   PVR2DTest.obj
+ 0001:0000c324       __unwind$34557             0001d324 f   pvr2dif_accelhard.obj
+ 0001:0000c33c       __unwind$34558             0001d33c f   pvr2dif_accelhard.obj
+ 0001:0000c9c0       ?GlobalDataInit@@YAJPAU_PVR2DIFBitmapData_@@KIIKPAU_PVR2DMEMINFO@@@Z 0001d9c0 f   pvr2dif_bitmap.obj
+ 0001:0000ce48       __unwind$34629             0001de48 f   pvr2dif_bitmap.obj
+ 0001:0000da3c       __unwind$34875             0001ea3c f   pvr2dif_ops.obj
+ 0001:0000da5c       __unwind$34877             0001ea5c f   pvr2dif_ops.obj
+ 0001:0000da7c       __unwind$34878             0001ea7c f   pvr2dif_ops.obj
+ 0001:0000da9c       __unwind$34880             0001ea9c f   pvr2dif_ops.obj
+ 0001:0000dabc       __unwind$34881             0001eabc f   pvr2dif_ops.obj
+ 0001:0000dadc       __unwind$34883             0001eadc f   pvr2dif_ops.obj
+ 0001:0000dafc       __unwind$34885             0001eafc f   pvr2dif_ops.obj
+ 0001:0000db1c       __unwind$34887             0001eb1c f   pvr2dif_ops.obj
+ 0001:0000db3c       ?_DoPVR2DBlit@@YAJPAXPAU_PVR2DBLTINFO@@JPAVTRect@@PAU_PVR2DIFBitmapData_@@@Z 0001eb3c f   pvr2dif_ops.obj
+ 0001:0000dd90       ?DoFillRect@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTGopFilledRect@@@Z 0001ed90 f   pvr2dif_ops.obj
+ 0001:0000de38       ?_ConvertColour@@YAJAAKKVTRgb@@@Z 0001ee38 f   pvr2dif_ops.obj
+ 0001:0000dfdc       __unwind$35166             0001efdc f   pvr2dif_ops.obj
+ 0001:0000e004       ?PVR2DIF_InitBlitInfo@@YAXAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@1ABVTRect@@2@Z 0001f004 f   pvr2dif_ops.obj
+ 0001:0000e214       ?DoFilledRectUsingDrawMode@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTGopFilledRectUsingDrawMode@@@Z 0001f214 f   pvr2dif_ops.obj
+ 0001:0000e408       ?DoFilledRectWithPattern@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@1ABVTGopFilledRectWithPattern@@@Z 0001f408 f   pvr2dif_ops.obj
+ 0001:0000e4e4       __unwind$35258             0001f4e4 f   pvr2dif_ops.obj
+ 0001:0000e504       ?DoInvertRect@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTGopInvertRect@@@Z 0001f504 f   pvr2dif_ops.obj
+ 0001:0000e56c       ?DoFadeRect@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTGopFadeRect@@@Z 0001f56c f   pvr2dif_ops.obj
+ 0001:0000e594       ?DoBlitBlt@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTRect@@12@Z 0001f594 f   pvr2dif_ops.obj
+ 0001:0000e5e4       ?DoBitBltMasked@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTRect@@121@Z 0001f5e4 f   pvr2dif_ops.obj
+ 0001:0000e704       ?DoBitBltTransparent@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTRect@@12VTRgb@@@Z 0001f704 f   pvr2dif_ops.obj
+ 0001:0000e7bc       __unwind$35334             0001f7bc f   pvr2dif_ops.obj
+ 0001:0000e7dc       ?DoBitBltAlphaChannel@@YAJAAU_PVR2DBLTINFO@@PBU_PVR2DIFBitmapData_@@ABVTRect@@12@Z 0001f7dc f   pvr2dif_ops.obj
+ 0001:0000ea68       __unwind$35275             0001fa68 f i pvr2dif_ops.obj
+ 0001:0000f724       InitDisplayDevice          00020724 f   libpvr2d:pvr2dinit.obj
+ 0001:0000fc78       _PVR2DCreateContext        00020c78 f   libpvr2d:pvr2dinit.obj
+ 0001:0000fcac       _PVR2DDestroyContext       00020cac f   libpvr2d:pvr2dinit.obj
+ 0001:00010280       ConvertPVRSRVPixelFormatToPVR2D 00021280 f   libpvr2d:pvr2dmode.obj
+ 0001:000112c8       OpsComplete                000222c8 f   libpvr2d:pvr2dblt.obj
+ 0001:000113d8       LocalAbsDiff               000223d8 f   libpvr2d:pvr2dblt.obj
+ 0001:00011764       AltPresentBlt              00022764 f   libpvr2d:pvr2dblt.obj
+ 0001:00011b48       AltBltClipped              00022b48 f   libpvr2d:pvr2dblt.obj
+ 0001:00012c58       GetSurfs                   00023c58 f   libpvr2d:pvr2dblt.obj
+ 0001:00012d1c       bIntersect                 00023d1c f   libpvr2d:pvr2dblt.obj
+ 0001:00012ec8       ValidateParams             00023ec8 f   libpvr2d:pvr2dblt.obj
+ 0001:00014928       WinMainCRTStartupHelper    00025928 f   corelib0:pegwmain.obj
+ 0001:00014bfc       doexit                     00025bfc f   corelib0:cexit.obj

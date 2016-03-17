@@ -1,0 +1,63 @@
+
+;
+; MCP2515 CAN Bus Driver for Micronet MXL Board
+;
+; Defaults : Speed = 125,000 bit/sec ( Xtal 16 MHz, BRP=3/PropSeg=4/PhaseSeg1=4/PhaseSeg2=1 )
+; ##### !!! Wrong calculations above.
+
+;  PropSeg + PS1 >= PS2      ; PropSeg : 1 – 8 TQ
+;  PropSeg + PS1 >= TDELAY   ; PS1     : 1 – 8 TQ
+;  PS2 > SJW                 ; PS2     : 2 – 8 TQ
+;  The total number of TIME QUANTA in a bit time has to be programmable at least from
+;  8 to 25.
+
+; Prescaler division coefficient = (BRP+1)*2
+; If to take bit time = 8, the maximum nominal bit rate can be 1 mbits/sec
+; according CAN V2.0B specification
+; So, without changing default registry parameters PropSeg, PS1 and PS2, 
+; nominal bit rate (NBR) can be set according to formula:
+
+;     NBR = 1000000 / k    , where k = 1 ... 64;  k = BRP+1
+
+;  PropSeg = 1, PS1 = 4 , PS2 = 2, 
+
+[HKEY_LOCAL_MACHINE\Drivers\BuiltIn\CANBD]
+	"Dll"="canopenlib_hw.dll"
+	"Prefix"="CAN"
+    "Index"=dword:1	
+	"Order"=dword:1E
+	"IClass"="{A32942B7-920C-486b-B0E6-92A702A99B35}"
+	"BRP"=dword:7			; CAN Specific : Bit Timing 
+	"PropSeg"=dword:0		; CAN Specific : Bit Timing  ; PropSeg = 1  
+	"PhaseSeg1"=dword:3		; CAN Specific : Bit Timing  ; PS1 = 4
+	"PhaseSeg2"=dword:1		; CAN Specific : Bit Timing  ; PS2 = 2
+	"BTL"=dword:1			; CAN Specific : Bit Timing
+	"SJW"=dword:0			; CAN Specific : Bit Timing  ; SJW = 1 
+	"Samples"=dword:0		; CAN Specific : Quantity of Samples at Sample Point
+	"WAKFIL"=dword:0		; CAN Specific : Wake-Up Filter
+	"RTO"=dword:EA60		; Read Time Out for ReadFile, in mSec (default 1 minute)
+	"WTO"=dword:3E8			; Write Time Out for WriteFile, in mSec (default 1 second)
+	"RXMB0"=dword:0			; Receive Buffer #0 Operating Mode Default
+	"RXMB1"=dword:0			; Receive Buffer #1 Operating Mode Default
+	"SIDMASK0"=dword:0		; SID Mask #0
+	"EIDMASK0"=dword:0		; EID Mask #0
+	"SIDMASK1"=dword:0		; SID Mask #1
+	"EIDMASK1"=dword:0		; EID Mask #1
+	"SIDFILTER0"=dword:0		; Filter #0 for Standard ID
+	"FILSWITCH0"=dword:0		; Filter applied only to 0 - Standard / 1 - Extended Frames
+	"EIDFILTER0"=dword:0		; Filter #0 for Extended ID
+	"SIDFILTER1"=dword:0		; Filter #1 for Standard ID
+	"FILSWITCH1"=dword:0		; Filter applied only to 0 - Standard / 1 - Extended Frames
+	"EIDFILTER1"=dword:0		; Filter #1 for Extended ID
+	"SIDFILTER2"=dword:0		; Filter #2 for Standard ID
+	"FILSWITCH2"=dword:0		; Filter applied only to 0 - Standard / 1 - Extended Frames
+	"EIDFILTER2"=dword:0		; Filter #2 for Extended ID
+	"SIDFILTER3"=dword:0		; Filter #3 for Standard ID
+	"FILSWITCH3"=dword:0		; Filter applied only to 0 - Standard / 1 - Extended Frames
+	"EIDFILTER3"=dword:0		; Filter #3 for Extended ID
+	"SIDFILTER4"=dword:0		; Filter #4 for Standard ID
+	"FILSWITCH4"=dword:0		; Filter applied only to 0 - Standard / 1 - Extended Frames
+	"EIDFILTER4"=dword:0		; Filter #4 for Extended ID
+	"SIDFILTER5"=dword:0		; Filter #5 for Standard ID
+	"FILSWITCH5"=dword:0		; Filter applied only to 0 - Standard / 1 - Extended Frames
+	"EIDFILTER5"=dword:0		; Filter #5 for Extended ID

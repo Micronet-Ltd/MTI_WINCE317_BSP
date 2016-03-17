@@ -1,0 +1,23 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+!INCLUDE "..\..\..\sources.inc"
+
+TARGETNAME=$(OMAP3530)_smartreflex_policy_lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=$(INCLUDES);\
+			$(_PLATFORMROOT)\COMMON\src\soc\COMMON_TI_V1\COMMON_TI\PM\INC
+SOURCES= \
+    smartreflexpolicy.cpp \

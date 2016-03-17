@@ -1,0 +1,59 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_LIGHT_SENSOR_ICON             ICON    DISCARDABLE     "LightSensor.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+//EXSTYLE WS_EX_CAPTIONOKBTN
+
+
+IDD_LSDLG DIALOG DISCARDABLE 0, 10, 206, 75
+STYLE WS_OVERLAPPED | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Light Sensor Configuration"
+BEGIN
+    CONTROL         "",IDC_LIGTH_HIGH,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,70,8,107,16
+    CONTROL         "",IDC_LIGTH_LOW,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,70,32,107,16
+    LTEXT           "High Light:",IDC_STATIC,8,16,52,8
+    LTEXT           "Low Light:",IDC_STATIC,8,40,52,8
+    LTEXT           "100%",IDC_STATIC,180,16,21,8
+    LTEXT           "100%",IDC_STATIC,180,40,21,8
+    RTEXT           "0",IDC_STATIC,50,16,18,8
+    RTEXT           "0",IDC_STATIC,50,40,18,8
+    LTEXT           "Current State:",IDC_STATIC,8,58,52,8
+    LTEXT           "Normal",IDC_ST_STATE,66,58,52,8
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_LIGHT_SENSOR_TITLE			"Light Sensor"
+    IDS_LIGHT_SENSOR_DESCRIPTION	"Light Sensor Configuration"
+END
+
+
+
+
+

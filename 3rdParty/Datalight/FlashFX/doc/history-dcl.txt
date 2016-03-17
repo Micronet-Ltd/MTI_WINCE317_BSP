@@ -1,0 +1,416 @@
+
+        Datalight FlashFX Tera SDK for Microsoft Windows CE
+        Flash Media Manager
+        Copyright (c) 1993-2012 Datalight, Inc.
+        All Rights Reserved Worldwide.
+        Version 2.1.1 Build 2128DF created on 04/24/2012
+        --------------------------------------------------------------
+
+
+        This file contains a list of updates made to the Datalight
+        Common Libraries over the course of recent releases.
+
+
+---[ History ]--------------------------------------------------------
+
+    v3.1.2 - April 2012
+             This version was released with FlashFX Tera v2.1.1
+
+    - Added support for the VxWorks 6.9.2 tool chains.
+    - Updated support for Windows CE Platform Build based builds.
+    - Fixed a bug in the DCLISALIGNED() macro (benign for current 
+      usages).
+
+    ------------------------------------------------------------------
+    v3.1.2 Build 1190AX - December 2011
+           This version was released with FlashFX Tera v2.1.
+
+    - Reduced the debug level on some diagnostic messages.
+
+    ------------------------------------------------------------------
+    v3.1.2 Build 1190AP - November 2011
+           This version was released with Reliance Nitro v2.0.3.
+
+    - Fixed GNU OS abstraction Bug 3354 where the Static OS Mutex
+      was not properly capable of being destroyed an recreated.
+    - Added Win32 Kernel Mode OS Services support for threading.
+    - Fixed an issue in the Win32 Kernel Mode implemenation of 
+      DclOsSleep().
+    - For the TICCS ToolSet abstraction, changed the armv5tej CPU 
+      "family" name to ARM.
+    - Fixed the RTOS kit implementations of stat() and statfs() to 
+      resolve Bug 1004.
+    - Added the /FILL and /SPARSE options to FSIOTEST.
+    - Enhanced the Log Service to support atomic operations.
+    - Updated the WinCE SDK to add the DLFileSpy filter.
+    - Added MSWCE ToolSet support for Windows CE 7.
+
+    ------------------------------------------------------------------
+    v3.1.1 Build 1190S - February 2011
+           This version was released with Reliance Nitro v2.0.2 and
+           FlashFX Tera v2.0.1.
+             
+    - Added functions for manipulating Master Boot Records (MBRs) and
+      disk partitions.
+
+    ------------------------------------------------------------------
+    v3.1.1 Build 1190P - February 2011
+           This version was released with Reliance Nitro v2.0.1
+
+    - Updated the MSVS ToolSet abstraction to support Visual Studio 2010.
+    - Updated the Nucleus OS Services mutex implementation to support the
+      static OS mutex.
+
+    ------------------------------------------------------------------
+    v3.1 Build 1190E - December 2010
+         This version was released with Reliance Nitro v2.0 and
+         FlashFX Tera v2.0.
+
+    New Concepts:
+    - Major update to implement the concepts of DCL Instances, Services,
+      and Projects.
+    - The following systems are implemented as DCL Services:
+      - Console output.
+      - Console input.
+      - Logging.
+      - Standard timers.
+      - HighRes timers.
+      - Memory tracking.
+    - DCL Services can be dynamically rather than statically linked.
+    - The default DCL Services are specified in dlosconf.h for each OS
+      abstraction.  A given project may override the default DCL Services
+      in its dclconf.h file.
+
+    Project Configuration:
+    - Each project now has its own dclproj.c and dclproj.mak.  Overridden
+      OS Services files which formerly were listed in relproj.mak (for
+      example) are now listed in dclproj.mak.
+    - The mechanism for specifying the overridden files is much simpler
+      and less error prone.
+    - dclproj.c may be used by an OEM to provide thread-safe, instanced,
+      project data.
+
+    ToolSet Abstractions, Building and Cleaning:
+    - Updated to use a Datalight specific build of GNU Make v3.81 which
+      works around the "CreateProcess() error 234" problem, which stemmed
+      from the environment being too large to handle.
+    - Eliminated the use of SHREDIR, which is no longer necessary with GNU
+      Make v3.81.
+    - Updated to display build errors in a GUI window (when doing Win32
+      hosted builds).
+
+    OS Services Abstraction:
+    - Added an "atomic" API, as well as an OS Service atomic implementation
+      in osatomic.c.
+    - Enhanced the mutex OS Service to support the concept of a single,
+      statically allocated mutex.
+    - Added an interface to abstract memory mapping.
+    - Added an OS Service for abstracting access to a block device.
+
+    Test Enhancements:
+    - Updated DCLTEST to add a large number of new test categories.
+    - Added a block device I/O performance test -- DEVIOTEST.
+    - Added a generalized file system stress test -- DLFSSTRESSTEST.
+
+    Miscellaneous Items:
+    - Added an error mode setting to the MemTracking Service, configurable
+      with a Service IOCTL(), which controls whether memory corruption
+      errors results in an assert, or simply a failure return code.  Used
+      by the memory manager tests.
+    - Changed the definition of D_BOOL from D_UINT16 to "int".
+    - Fixed inaccuracies in the profiler's self-calibration feature.
+    - Added a Critical Section API.
+    - Added a generalized ECC correction function to match the ECC
+      calculation function.
+    - Added functions to support full 64 by 64-bit divide and modulo
+      operations in environments where they are not natively supported.
+
+    ------------------------------------------------------------------
+    v2.7.4 Build 884EC - November 2010
+           This version was released with Reliance Nitro v1.2.9.
+
+    - Enhanced a variety of tests in FSIOTEST.
+    - Added DCL unit tests.
+
+    ------------------------------------------------------------------
+    v2.7.4 Build 884DZ - October 2010
+           This version was released with Reliance Nitro v1.2.8.
+
+    - Miscellaneous fixes for the TICCS ToolSet.
+
+    ------------------------------------------------------------------
+    v2.7.4 Build 884DX - October 2010
+           This version was released with FlashFX Tera v1.2.3.
+
+    - Internal build related issues fixed (not customer oriented).
+
+    ------------------------------------------------------------------
+    v2.7.4 Build 884DW - September 2010
+           This version was released with Reliance Nitro v1.2.7.
+
+    - Added ARM9 support to the TICCS ToolSet.
+
+    ------------------------------------------------------------------
+    v2.7.4 Build 884DT - September 2010
+           This version was released with Reliance Nitro v1.2.6.
+
+    - Fixed to build cleanly with the Code Sourcery GNU tools.
+    - Fixed several issues with Nucleus OS services.
+    - Updated the WinCEBL ostick.c abstraction to use OALGetTickCount().
+
+    ------------------------------------------------------------------
+    v2.7.3 Build 884DG - August 2010
+           This version was released with Reliance Nitro v1.2.5.
+
+    - Fixed a Win32 issue where semaphores were being created in the
+      global name space, and could affect performance when using
+      multiple Reliance volumes.
+
+    ------------------------------------------------------------------
+    v2.7.3 Build 884CY - June 2010
+           This version was released with FlashFX Tera v1.2.2 and
+           Reliance Nitro v1.2.4.
+
+    - Major update to FSIOTEST (now v3.0) to perform a wider range of
+      testing and to provide results in a more user-friendly fashion.
+      Added the ability to run tests in a backwards compatible mode
+      (from an I/O standpoint).
+    - Added the "TICCS" ToolSet abstraction, to allow building with the
+      TI Code Composer Studio tool chain v4.0. 
+    - Cleaned up various pieces of DCL code to build cleanly with the
+      TI Code Composer Studio tool chain.
+    - Corrected some error code mappings in the RTOS SDK.
+    - Added the DCL file system API functions DclFsDirTreeEnumerate()
+      and DclFsDirTreeDelete() to allow enumerating and deleting entire
+      directory trees, respectively.
+
+    ------------------------------------------------------------------
+    v2.7.2 Build 884CG - April 2010
+           This version was released with Reliance Nitro v1.2.1 and
+           FlashFX Tera v1.2.1.
+
+    - When building Linux kernel modules with non-standard licenses,
+      warn instead of failing the build.
+
+    ------------------------------------------------------------------
+    v2.7.2 Build 884CA - March 2010
+           This version was released with Reliance Nitro v1.2 and 
+           FlashFX Tera v1.2.
+           
+    - Eliminated the DCLPACK abstraction.
+    - Fixed the Win32 OS semaphore abstraction to <not> create the
+      semaphore in the global namespace.
+    - Fixed the INT64SUFFIX/UINT64SUFFIX definitions for several 
+      ToolSet abstractions.
+
+    ------------------------------------------------------------------
+    v2.7.1 Build 884Y - November 2009
+           This version was released with Reliance Nitro v1.1.2.
+
+    Linux/GNU Updates:
+    - Updated DclOsFsFileFlush() for GNU to use fsync().
+    - Implemented the OS Requestor Service for GNU.
+
+    VxWorks Updates:
+    - Added support for VxWorks 6.8.
+
+    ------------------------------------------------------------------
+    v2.7 Build 884Q - June 2009
+                      General release to support Reliance Nitro v1.1.
+
+    - Enhanced UTF-8 support.
+    - Fixed a bug in DclLtoA() where negative numbers did not always
+      format correctly.
+
+    Windows CE Updates:
+    - Updated to work better with Windows CE Platform Builder IDE builds.
+    - Fixed a memory leak in DclOsFsFileClose().
+
+    VxWorks Updates:
+    - Changed the default stack size to 12KB.
+    - Improved the error handling for DclOsMutexRelease() to detect
+      anomalous error codes returned from semGive().
+    - Changed the file I/O abstraction to no longer default to using the
+      streams interface.
+    - Conditioned DclOsFsFileDelete() to use unlink() rather than remove()
+      for VxWorks versions 6.2 and above.      
+    - Changed DclOsSleep() to call nanosleep() with a minimum of 1 ns so
+      that taskDelay() will be called which will allow for a task switch
+      to occur.
+
+    ------------------------------------------------------------------
+    v2.7 Build 884D - April 2009
+                      General release to support FlashFX Tera v1.1.
+
+    ToolSet Abstractions, Building and Cleaning:
+    - Added the "mswce" ToolSet abstraction and deprecated "mswce4".
+    - Added the "marvellsdt" ToolSet abstraction.
+    - Updated all the prjclean, prjbuild, and prjcopy batch files to ensure
+      that both B_ERROR and the ERRORLEVEL are initialized upon completion.
+    - Updated the "clean" processes to clean files named SOURCES, DIRS, and
+      MAKEFILE, <only> if they contain the text "auto-generated".
+    - Updated the general addlibs.bat implementation to allow more than
+      8 source libraries to be specified.
+    - Updated the "clean" process to skip cleaning directories which have
+      a .MAK file which contains the keyword "SKIPCLEAN".
+    - Updated makeall.bat (run by prjbuild.bat) to call prjcopy.bat
+      automatically if it exists in the project, and if the build was
+      successful.
+
+    General Shell Functionality:
+    - Added the ability to rename a command.
+    - Added the ability to support OS specific commands.
+    - Added the ability to specify partial command names.
+    - Added commands to open/close a requestor interface
+    - Added the ability to direct profiler and trace commands to operate
+      through the requestor interface.
+    - Fixed the file system command to preserve the error codes returned
+      by the various FS functions, rather than throwing them away and
+      returning DCLSTAT_FAILURE.
+
+    DCLTEST Enhancements:
+    - Updated to enhance the byte order test to verbosely display the
+      memory byte, word, and dword order.
+    - Added more tests for DCLISALIGNED().
+    - Added a new test which exercises the memory management system.
+    - Enhanced the Sleep test to provide more useful information.
+    - Added a "macros" test category.
+
+    FSIOTEST Enhancements:
+    - Added a wear-leveling test.
+    - Added the /FSBlockSize and /FSDevName command-line options.
+    - Enhanced the stats interface to iterate through sub-types.
+    - Modified the /FRAG test to fill the disk by spreading the files
+      across a set of subdirectories to speed things up.
+    - Modified the "tiny" file size for that test to be the device block
+      size.
+    - Added the /stats command-line option and modified so the stats
+      interfaces are only called if that is used.
+    - Added a new SCAN test.
+    - Fixed a parameter parsing error that prevented the /DIRS switch
+      from working.
+    - Updated the RAND test to process a fixed amount of data to allow
+      the test to be deterministic.
+    - Added more readable summary information to the FRAG test.
+    - Fixed the SEQ write and rewrite tests to do one last flush before
+      timing is stopped.
+    - Reduced the number of iterations that the RAND test runs so the
+      test runs faster.
+    - Tweaked the "small" file size used by the FRAG test so disk space
+      issues are more predictable.
+    - Updated so separate requestor handles can be opened to the BlockDev
+      and the FileSys.
+    - Updated the profiler commands so that it can separately talk to the
+    - BlockDev or FileSys.
+    - Fixed a file naming mechanism which was causing some filenames to
+      not be deterministic.
+    - Modified the RAND flush-on-write ratio to 128.
+    - Added the ability to start and stop tracing around each test.
+    - Updated the SEQ tests to do microsecond based timing.
+
+    Miscellaneous Items:
+    - Implemented a unified, automated documentation generation system.
+    - Added a generalized abstraction at the project level which allows
+      C compiler specific command-line options to be specified, which will
+      apply to every C file which is built.  The new setting is B_CFLAGS.
+      This variable needs to be set (or in most cases, cleared) in each
+      prjinfo.bat file (and that has been done).
+    - Renamed DclOsGetChar() to DclOsInputChar(), and extended the interface
+      to accommodate more sophisticated input systems.  Modified all the
+      various implementations of DclOsGetChar() to use the new scheme.
+      Updated all the code which was using the OS services functions to use
+      the new mid-level abstraction.
+    - Added DclTimePassedUS() and DclTimePassedNS() so higher level software
+      can now transparently take advantage of the HighRes timers without
+      losing accuracy.
+    - Added an ARMV4I assembly language implementation of DclCpuIsMmuOn().
+    - Within any local make file, the B_LOCALCFLAGS setting can be used to
+      set flags which will apply for just that directory -- this replaces
+      the old B_COPTION variable which was used in some places.  This
+      provides consistent nomenclature with B_LOCALDEFINES and B_LOCALINCS.
+    - Updated the external requestor interface so the device type is
+      specified on the open call, rather than when functions are dispatched.
+    - Enhanced the internal heap implementation to no longer require
+      memory to be released in reverse order of allocation.
+    - Modified DclMemFree() to return a DCLSTATUS value rather than
+      returning void.
+    - Fixed DclVSNPrintf() so it is not conditioned on DCLCONF_OUTPUT_ENABLED.
+    - Added "hardware" includes under \dcl\include\hardware.  The purpose
+      for these headers (all prefixed with "hw") is to provide a standard
+      place to store product independent hardware (platform) specific
+      information such as register addresses, clock timings, etc.
+
+    Windows CE Port:
+    - Added the OS specific commands to the shell -- ospart, oscomm, and
+      osloaddriver.
+    - Added default IOCTL codes for "BlockDev" and "FileSys" requests.
+    - Modified the prjcopy.bat to copy LIBs into the oak/lib directory, and
+      other executables into the oak/target as well as the FLATRELEASEDIR
+      directory.
+    - Added a new DLPART utility which allows command-line control of
+      creating, destroying, mounting and dismounting stores and partitions,
+      as well as formatting partitions.  The functionality is also usable
+      from with the Datalight Shell.
+    - Refactored the LOADDRV utility for CE so the functionality can be
+      invoked from within the Datalight Shell.  Made the command-line
+      parameters consistent.
+    - Added a DCL.BIB file.
+    - Updated the ARM assembly language code to be compatible with CE 6.0.
+    - Updated the build process to accommodate environment variable names
+      which may <not> be all uppercase, as is typical, and cause failures
+      in GNU Make, since it treats variables as case sensitive.
+
+    Win32 Port:
+    - Added the specific commands to the shell -- oscomm.
+
+    RTOS Port:
+    - Modified DCL_OSFEATURE_THREADS to default to FALSE -- since by default
+      there is no RTOS services implementations of threads, mutexes, or
+      semaphores.
+
+    ------------------------------------------------------------------
+    v2.5 Build 701 - January 2008
+      Branch "v2_5_Release" created for use with the FlashFX Pro
+      v3.3 release and the Reliance v3.2 release.
+
+    ------------------------------------------------------------------
+    v2.4 Build 684 - November 2007
+      Branch "v2_4_Release" created for use with the Reliance
+      v3.1 release.
+
+    ------------------------------------------------------------------
+    v2.3 Build 571 - April 2007
+      Branch "V230_RELEASE" created for use with the Reliance
+      v3.0 release.
+
+    ------------------------------------------------------------------
+    v2.11 Build 427 - September 2006
+      Branch "FFX_V310_RELEASE" created for use with the FlashFX
+      Pro v3.1 release.
+
+    ------------------------------------------------------------------
+    v2.11 Build 353 - March 2006
+      Released with Reliance v2.1 Build 1057
+
+    ------------------------------------------------------------------
+    v2.11 Build 351 - March 2006
+      Released with Reliance v2.1 Build 1053
+      Released with FlashFX Pro v3.0 Build 1253
+
+    ------------------------------------------------------------------
+    v2.10 Build 301 - December 2005
+      New code tree.
+
+    ------------------------------------------------------------------
+    v1.00 Build 100 - Initial release.
+
+
+---[ Contacting Datalight ]-------------------------------------------
+
+        Datalight can be contacted at:
+
+        Datalight, Inc              Phone:  425-951-8086
+        21520 30th Drive SE                 800-221-6630
+        Suite 110                   Fax:    425-951-8094
+        Bothell, WA  98021          Web:    http://www.datalight.com
+

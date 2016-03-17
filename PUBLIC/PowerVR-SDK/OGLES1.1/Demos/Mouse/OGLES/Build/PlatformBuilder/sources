@@ -1,0 +1,45 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES
+PROJECTNAME=Mouse
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Mouse_float.obj \
+	$(OBJDIR)\Mouse_fixed.obj \
+	$(OBJDIR)\FloorToon.obj \
+	$(OBJDIR)\MouseToon.obj \
+	$(OBJDIR)\Toon.obj \
+	$(OBJDIR)\WallToon.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Mouse_float.cpp \
+	$(APPROOT)\Content\Mouse_fixed.cpp \
+	$(APPROOT)\Content\FloorToon.cpp \
+	$(APPROOT)\Content\MouseToon.cpp \
+	$(APPROOT)\Content\Toon.cpp \
+	$(APPROOT)\Content\WallToon.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

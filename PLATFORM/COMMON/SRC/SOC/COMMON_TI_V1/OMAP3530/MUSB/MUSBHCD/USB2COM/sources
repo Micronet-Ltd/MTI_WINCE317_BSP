@@ -1,0 +1,10 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!INCLUDE "..\..\..\sources.inc"
+
+TARGETNAME=$(OMAP3530)_musbhcd2lib
+TARGETTYPE=LIBRARY
+
+INCLUDES=$(INCLUDES);..\MUSBMHDRC;..\..\INCLUDE
+CONDITIONAL_INCLUDES=macwin32.h
+
+SOURCES= cphysmem.cpp sync.cpp cdevice.cpp hcd.cpp hcddrv.cpp

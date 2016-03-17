@@ -1,0 +1,8 @@
+DIRS=\
+FW_Transfer \
+Ctrl \
+MacServices \
+Data_Service \
+TwIf \
+FirmwareApi \
+TWDriver

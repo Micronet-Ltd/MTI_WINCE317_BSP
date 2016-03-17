@@ -1,0 +1,75 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+!endif
+#
+# THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+# ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+# PARTICULAR PURPOSE.
+#
+
+TARGETNAME=cplmain_lib
+RELEASETYPE=PLATFORM
+WINCEOEM=1
+
+
+TARGETTYPE=LIBRARY
+# TARGETDEFNAME=cplmain
+# WINCETARGETFILE0=$(_RELEASELIBDIR)\$(TARGETDEFNAME).def
+# WINCETARGETFILE0=$(TARGETDEFNAME).def
+
+
+# WINCETARGETFILES=resfiles
+
+# To use LASS to do the authentication on the CPL 
+# uncomment the following line.
+# CDEFINES=$CDEFINES -DUSE_LASS_AUTH
+
+RCADDNULL=1
+PRECOMPILED_INCLUDE=cplpch.h
+PRECOMPILED_CXX=1
+INCLUDES=	$(_TARGETPLATROOT)\SRC\INC; \
+			$(_PUBLICROOT)\SHELLSDK\SDK\INC; \
+			$(_PUBLICROOT)\common\sdk\inc; \
+			$(_PUBLICROOT)\GDIEX\SDK\INC;
+
+SOURCES=\
+	cplmain.cpp \
+	cplutils.cpp \
+	comm.cpp \
+	keybd.cpp \
+	passwd.cpp \
+	owner.cpp \
+	power.cpp \
+	system.cpp \
+	screen.cpp \
+	stylus.cpp \
+	volume.cpp \
+	sndschem.cpp \
+	sipcpl.cpp \
+	colschem.cpp \
+    certcpl.cpp \
+    base64.cpp \
+    rootdlg.cpp \
+    datetime.cpp \
+	remove.cpp \
+	unloadn.cpp \
+	acc_soundd.cpp \
+	acc_keybdd.cpp \
+	acc_dispd.cpp \
+	acc_moused.cpp \
+	acc_gend.cpp \
+	copyr.cpp
+
+
+#xref VIGUID {a6f47b2b-bbb1-4649-bf8c-bea8e8df85ce}
+#xref VSGUID {b8ea39d9-b00e-49e3-9863-708ae556721f}

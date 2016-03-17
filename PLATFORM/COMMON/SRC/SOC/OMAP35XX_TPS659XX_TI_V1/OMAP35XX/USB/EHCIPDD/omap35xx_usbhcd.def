@@ -1,0 +1,23 @@
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this source code is subject to the terms of the Microsoft end-user
+; license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+; If you did not accept the terms of the EULA, you are not authorized to use
+; this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+; install media.
+;
+LIBRARY omap35xx_musbhcd
+
+EXPORTS  EHC_Init = HCD_Init
+                EHC_PowerUp = HCD_PowerUp 
+                EHC_PowerDown = HCD_PowerDown 
+                EHC_Deinit = HCD_Deinit 
+                EHC_Open = HCD_Open 
+                EHC_Close = HCD_Close 
+                EHC_Read = HCD_Read 
+                EHC_Write = HCD_Write 
+                EHC_Seek = HCD_Seek 
+                EHC_IOControl = HCD_IOControl 
+

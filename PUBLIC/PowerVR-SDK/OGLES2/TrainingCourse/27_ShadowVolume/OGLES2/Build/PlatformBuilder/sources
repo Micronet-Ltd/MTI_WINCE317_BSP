@@ -1,0 +1,49 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES2
+PROJECTNAME=ShadowVolume
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Background.obj \
+	$(OBJDIR)\Rust.obj \
+	$(OBJDIR)\BaseFragShader.obj \
+	$(OBJDIR)\BaseVertShader.obj \
+	$(OBJDIR)\ConstFragShader.obj \
+	$(OBJDIR)\ShadowVolVertShader.obj \
+	$(OBJDIR)\FullscreenVertShader.obj \
+	$(OBJDIR)\scene.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Background.cpp \
+	$(APPROOT)\Content\Rust.cpp \
+	$(APPROOT)\Content\BaseFragShader.cpp \
+	$(APPROOT)\Content\BaseVertShader.cpp \
+	$(APPROOT)\Content\ConstFragShader.cpp \
+	$(APPROOT)\Content\ShadowVolVertShader.cpp \
+	$(APPROOT)\Content\FullscreenVertShader.cpp \
+	$(APPROOT)\Content\scene.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

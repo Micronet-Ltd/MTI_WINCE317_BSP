@@ -1,0 +1,526 @@
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this sample source code is subject to the terms of the Microsoft
+; license agreement under which you licensed this sample source code. If
+; you did not accept the terms of the license agreement, you are not
+; authorized to use this sample source code. For the terms of the license,
+; please see the license agreement between you and Microsoft or, if applicable,
+; see the LICENSE.RTF on your install media or the root of your tools installation.
+; THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+;
+; Copyright (c) 2007, 2013 2008 Micronet Ltd. All rights reserved.
+; by Vladimir Zatulovsky
+;
+;
+;               Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+;
+;   Use of this software is controlled by the terms and conditions found
+;   in the license agreement under which this software has been supplied.
+;
+;===============================================================================
+
+MODULES
+
+
+;Name           Path                                            Memory Type
+;------------   ----------------------------------------------  -----------
+
+;-------------------------------------------------------------------------------
+; OMAP specific shell extensions, needed in image only if using command line utility - do.exe
+; If not using do.exe, then shell extension dlls will be loaded as needed via KITL connection.
+; @CESYSGEN IF CE_MODULES_SHELL
+IF BSP_SHELL_EXTENSIONS_DO_CMD
+omap_shell.dll       $(_FLATRELEASEDIR)\omap_shell.dll          NK  SH
+proxydriver.dll      $(_FLATRELEASEDIR)\proxydriver.dll         NK  SHK
+i2cproxy.dll         $(_FLATRELEASEDIR)\i2cproxy.dll            NK  SHK
+do.exe               $(_FLATRELEASEDIR)\do.exe                  NK
+ENDIF
+; @CESYSGEN ENDIF CE_MODULES_SHELL
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_DEVICE
+
+;---CEDDK-----------------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_CEDDK
+   ceddk.dll       $(_FLATRELEASEDIR)\ceddk_omap35xx_tps659xx_ti_v1.dll                NK  SHQ
+; @CESYSGEN ENDIF CE_MODULES_CEDDK
+;-------------------------------------------------------------------------------
+
+;-- Installable Interrupt Handler ----------------------------------------------
+; @CESYSGEN IF CE_MODULES_GIISR
+GIISR.dll       $(_FLATRELEASEDIR)\GIISR.dll                  NK  SHK
+; @CESYSGEN ENDIF CE_MODULES_GIISR
+;-------------------------------------------------------------------------------
+
+;-- Bus driver -----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+bus.dll         $(_FLATRELEASEDIR)\evm3530_bus.dll             NK SHK
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+;-------------------------------------------------------------------------------
+
+afdp.exe         $(_FLATRELEASEDIR)\afdp.exe				   NK SH
+;-- FMD Driver -----------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_FSDMGR
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+IF BSP_NONAND !
+IF BSP_FLASHFX	
+#include "$(_WINCEROOT)\3rdParty\Datalight\flashfx\projects\beagleboard\flashfx.bib"
+ENDIF
+IF BSP_FLASHFX !	
+nand.dll        $(_FLATRELEASEDIR)\tievm3530_nand.dll            NK SHK
+ENDIF
+ENDIF BSP_NONAND !
+
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+; @CESYSGEN ENDIF CE_MODULES_FSDMGR
+;-------------------------------------------------------------------------------
+
+;-- Power Management Extension -------------------------------------------------
+; @CESYSGEN IF CE_MODULES_PM
+; @CESYSGEN IF GWES_MGBASE
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+IF BSP_NOPMEXT !
+pmext.dll $(_FLATRELEASEDIR)\pmext_omap35xx_tps659xx_ti_v1.dll                          NK SHK
+
+ti_policies.dll $(_FLATRELEASEDIR)\ti_policies_omap35xx_tps659xx_ti_v1.dll              NK SHK
+IF BSP_NOCPUPOLICY !
+ti_cpuloadpolicy.dll $(_FLATRELEASEDIR)\ti_cpuloadpolicy_omap35xx_tps659xx_ti_v1.dll   NK SHK
+ENDIF BSP_NOCPUPOLICY !
+ti_constraintadapters.dll $(_FLATRELEASEDIR)\ti_constraintadapters_omap35xx_tps659xx_ti_v1.dll NK SHK
+ENDIF BSP_NOPMEXT !
+IF BSP_NOSYSSTATEPOLICY !
+ti_systemstatepolicy.dll $(_FLATRELEASEDIR)\ti_systemstatepolicy_omap35xx_tps659xx_ti_v1.dll NK SHK
+ENDIF BSP_NOSYSSTATEPOLICY !
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+; @CESYSGEN ENDIF GWES_MGBASE
+; @CESYSGEN ENDIF CE_MODULES_PM
+;-------------------------------------------------------------------------------
+
+;-- DMA driver -----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NODMA !
+dma.dll         $(_FLATRELEASEDIR)\dma_omap35xx_tps659xx_ti_v1.dll             NK SHK
+ENDIF BSP_NODMA !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- VRFB driver -----------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_DISPLAY
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOVRFB !
+vrfb.dll        $(_FLATRELEASEDIR)\vrfb_omap35xx_tps659xx_ti_v1.dll            NK SHK
+ENDIF BSP_NOVRFB !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_DISPLAY
+;-------------------------------------------------------------------------------
+
+;-- GPIO driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOGPIO !
+gpio.dll        $(_FLATRELEASEDIR)\gpio.dll                     NK SHK
+ENDIF BSP_NOGPIO !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- AIO driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_AIODRIVER
+aiodrvr.dll        $(_FLATRELEASEDIR)\aiodrvr.dll                               NK SHK
+ENDIF BSP_AIODRIVER
+
+IF BSP_GPS
+usbser.dll        $(_FLATRELEASEDIR)\usbser.dll                                 NK SHK
+gpsdrvr.dll       $(_FLATRELEASEDIR)\gpsdrvr.dll                                NK SHK
+ENDIF BSP_GPS
+
+IF BSP_GPRS
+ftdi_ser_virtual.dll  $(_FLATRELEASEDIR)\ftdi_ser_virtual.dll                   NK SHK
+ENDIF BSP_GPRS
+
+ftdi_ser.dll          $(_FLATRELEASEDIR)\ftdi_ser.dll                           NK SHK
+vsp.dll               $(_FLATRELEASEDIR)\vsp.dll                                NK SHK
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- OWR driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_OWRDRIVER
+owrdrvr.dll        $(_FLATRELEASEDIR)\owrdrvr.dll               NK SHK
+inp_isr.dll        $(_FLATRELEASEDIR)\inp_isr.dll               NK SHK
+ENDIF BSP_OWRDRIVER
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- CAN driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_CAN
+canopenlib_hw.dll	$(_FLATRELEASEDIR)\canopenlib_hw.dll         NK SHK
+canopenlib.dll		$(_FLATRELEASEDIR)\canopenlib.dll			 NK U
+ENDIF BSP_CAN
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- CDS driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_CDS
+cds.dll        $(_FLATRELEASEDIR)\cds.dll               NK SHK
+cds_isr.dll        $(_FLATRELEASEDIR)\cds_isr.dll       NK SHK
+ENDIF BSP_CDS
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- MADC driver ----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOMADC !
+madc.dll        $(_FLATRELEASEDIR)\madc_omap35xx_tps659xx_ti_v1.dll            NK SHK
+ENDIF BSP_NOMADC !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- LIGHT SENSE Driver ----------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_GWES
+IF BSP_LIGHTSENSE
+ltsr.dll        $(_FLATRELEASEDIR)\ltsr.dll            NK SHK
+ENDIF BSP_LIGHTSENSE
+; @CESYSGEN ENDIF CE_MODULES_GWES
+
+;-- TRITON LED driver ----------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOTLED !
+tled.dll        $(_FLATRELEASEDIR)\tled_omap35xx_tps659xx_ti_v1.dll            NK SHK
+ENDIF BSP_NOTLED !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- SPI driver -----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOSPI !
+spi.dll         $(_FLATRELEASEDIR)\spi_omap35xx_tps659xx_ti_v1.dll             NK SHK
+ENDIF BSP_NOSPI !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- Triton driver --------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOTWL !
+twl.dll         $(_FLATRELEASEDIR)\twl_omap35xx_tps659xx_ti_v1.dll             NK SHK
+ENDIF BSP_NOTWL !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- RTC driver -----------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NORTC !
+rtc.dll         $(_FLATRELEASEDIR)\rtc_omap35xx_tps659xx_ti_v1.dll             NK SHK
+ENDIF BSP_NORTC !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- McBSP Driver ---------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOMCBSP !
+mcbsp.dll       $(_FLATRELEASEDIR)\omap35xx_mcbsp.dll							NK SHK
+ENDIF BSP_NOMCBSP !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- NLED driver -------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_NLEDDRVR
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NONLED !
+nleddrvr.dll    $(_FLATRELEASEDIR)\nleddrvr.dll            NK SHK
+ENDIF BSP_NONLED !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_NLEDDRVR
+;-------------------------------------------------------------------------------
+
+;-- Backlight Driver -----------------------------------------------------------
+; @CESYSGEN IF DEVICE_PMIF
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOBACKLIGHT !
+backlight.dll       $(_FLATRELEASEDIR)\backlight.dll            NK SHK
+; @CESYSGEN IF CE_MODULES_COMMCTRL
+AdvBacklight.dll    $(_FLATRELEASEDIR)\AdvBacklight.dll         NK  S
+; @CESYSGEN ENDIF CE_MODULES_COMMCTRL
+ENDIF BSP_NOBACKLIGHT !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF DEVICE_PMIF
+;-------------------------------------------------------------------------------
+
+;-- Touch Screen driver --------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_POINTER
+; @CESYSGEN IF GWES_TCHUI
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOTOUCH !
+touch.dll          $(_FLATRELEASEDIR)\touch.dll            NK SHK
+ENDIF BSP_NOTOUCH
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF GWES_TCHUI
+; @CESYSGEN ENDIF CE_MODULES_POINTER
+;-------------------------------------------------------------------------------
+
+;-- Keyboard driver ------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_KEYBD
+IF BSP_NOKEYBD !
+
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+keypad.dll          $(_FLATRELEASEDIR)\keypad_cebase.dll        NK SHK
+kbdmouse.dll        $(_FLATRELEASEDIR)\KbdNopUS.dll             NK SHK
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+
+ENDIF BSP_NOKEYBD !
+; @CESYSGEN ENDIF CE_MODULES_KEYBD
+;-------------------------------------------------------------------------------
+
+;-- Serial driver --------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_SERIAL
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOCOM !
+uart.dll        $(_FLATRELEASEDIR)\uart_omap35xx_tps659xx_ti_v1.dll            NK SHK
+ENDIF BSP_NOCOM !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_SERIAL
+;-------------------------------------------------------------------------------
+
+;-- Audio Driver ---------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_WAVEAPI
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOAUDIO !
+wave.dll        $(_FLATRELEASEDIR)\evm3530_wave.dll            NK SHK
+
+; @CESYSGEN IF CE_MODULES_USBHOST
+IF BSP_NOUSBAUDIOCLASS !
+usbaudio.dll      $(_FLATRELEASEDIR)\usbaudio.dll          NK SHK
+ENDIF BSP_NOUSBAUDIOCLASS !
+; @CESYSGEN ENDIF CE_MODULES_USBHOST
+
+ENDIF BSP_NOAUDIO !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_WAVEAPI
+;-------------------------------------------------------------------------------
+
+;-- Headset Driver ---------------------------------------------------------------
+; @CESYSGEN IF GWES_MSGQUE
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOHEADSET !
+headset.dll     $(_FLATRELEASEDIR)\headset.dll         NK SHK
+ENDIF BSP_NOHEADSET !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF GWES_MSGQUE
+;-------------------------------------------------------------------------------
+
+;-- USB OTG, HOST and FN Drivers -----------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOUSB !
+
+; @CESYSGEN IF CE_MODULES_USBOTG
+IF BSP_USBOTG
+
+IF BSP_NOUSBHSOTG !
+IF BSP_USBHSOTG_TPS659XX
+musbotg.dll      $(_FLATRELEASEDIR)\omap35xx_musbotg_tps.dll          NK SHK
+ENDIF
+IF BSP_USBHSOTG_ISP1504
+musbotg.dll      $(_FLATRELEASEDIR)\omap35xx_musbotg.dll          NK SHK
+ENDIF
+ENDIF BSP_NOUSBHSOTG !
+; @CESYSGEN IF CE_MODULES_USBFN
+IF BSP_NOUSBHSFN !
+musbfn.dll      $(_FLATRELEASEDIR)\musbfn_omap35xx_tps659xx_ti_v1.dll          NK SHK
+ENDIF BSP_NOUSBHSFN !
+; @CESYSGEN ENDIF CE_MODULES_USBFN
+; @CESYSGEN IF CE_MODULES_USBHOST
+IF BSP_NOUSBHSHCD !
+musbhcd.dll      $(_FLATRELEASEDIR)\musbhcd_omap35xx_tps659xx_ti_v1.dll          NK SHK
+ENDIF BSP_NOUSBHSHCD !
+; @CESYSGEN ENDIF CE_MODULES_USBHOST
+
+ENDIF BSP_USBOTG
+; @CESYSGEN ENDIF CE_MODULES_USBOTG
+
+
+; @CESYSGEN IF CE_MODULES_USBHOST
+IF BSP_NOUSBEHCI !
+ehcihcd.dll      $(_FLATRELEASEDIR)\ehcihcd_omap35xx_tps659xx_ti_v1.dll          NK SHK
+ENDIF BSP_NOUSBEHCI !
+; @CESYSGEN ENDIF CE_MODULES_USBHOST
+
+ENDIF BSP_NOUSB !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- IrDa driver ----------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_IRDASTK
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOIRDA !
+;irda.dll        $(_FLATRELEASEDIR)\omap35xx_irda.dll            NK SHK
+ENDIF BSP_NOIRDA !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_IRDASTK
+;-------------------------------------------------------------------------------
+
+;-- SDIO host controller driver ------------------------------------------------
+; @CESYSGEN IF CE_MODULES_SDBUS
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOSDHC !
+sdhc.dll            $(_FLATRELEASEDIR)\sdhc.dll                 NK SHK
+ENDIF BSP_NOSDHC !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_SDBUS
+
+;-- Hdq/1-wire driver ----------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NOHDQ  !
+hdq.dll        $(_FLATRELEASEDIR)\hdq_omap35xx_tps659xx_ti_v1.dll              NK SHK
+
+ENDIF BSP_NOHDQ !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- Battery driver -------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_BATTDRVR
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+; @CESYSGEN IF PM_PMSTUBS !
+IF BSP_NOBATTERY !
+IF BSP_BATTERY_BQ27000
+battdrvr.dll        $(_FLATRELEASEDIR)\battdrvr_bq27000.dll    NK SHK
+ELSE
+battdrvr.dll        $(_FLATRELEASEDIR)\null_battdrvr.dll    NK SHK
+ENDIF
+ENDIF BSP_NOBATTERY !
+; @CESYSGEN ENDIF PM_PMSTUBS !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_BATTDRVR
+;-------------------------------------------------------------------------------
+
+; @CESYSGEN ENDIF CE_MODULES_DEVICE
+;-------------------------------------------------------------------------------
+
+;-- Display driver -------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_DISPLAY
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NODISPLAY !
+IF SYSGEN_POWERVR
+	omap_dss.dll		$(_FLATRELEASEDIR)\ddi_cebase.dll               NK SHK
+ELSE
+	ddi.dll				$(_FLATRELEASEDIR)\ddi_cebase.dll               NK SHK
+ENDIF
+ENDIF BSP_NODISPLAY !
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_DISPLAY
+;-------------------------------------------------------------------------------
+
+;-- SYSTEM TOOLS ---------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+
+IF BSP_NOPROXYDRIVER !
+proxydriver.dll $(_FLATRELEASEDIR)\proxydriver.dll              NK SHK
+ENDIF BSP_NOPROXYDRIVER !
+
+IF BSP_NOI2CPROXY!
+i2cproxy.dll $(_FLATRELEASEDIR)\i2cproxy.dll                    NK SHK
+ENDIF BSP_NOI2CPROXY !
+
+; @CESYSGEN IF CE_MODULES_PM
+IF BSP_NOPMXPROXY !
+pmxproxy.dll $(_FLATRELEASEDIR)\pmxproxy_omap35xx_tps659xx_ti_v1.dll                    NK SHK
+ENDIF BSP_NOPMXPROXY !
+; @CESYSGEN ENDIF CE_MODULES_PM
+
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+;-------------------------------------------------------------------------------
+
+;-- BSP Info control panel applet ----------------------------------------------
+; @CESYSGEN IF WCESHELLFE_MODULES_CPLMAIN
+IF BSP_NO_BSPINFO !
+BspInfo.cpl     $(_FLATRELEASEDIR)\BspInfo.cpl                  NK SH
+ENDIF
+IF BSP_LIGHTSENSE
+LightSensor.cpl		$(_FLATRELEASEDIR)\LightSensor.cpl					NK SH
+IF BSP_NOKEYBD !
+KeypadCpl.Cpl		$(_FLATRELEASEDIR)\KeypadCpl.cpl					NK SH
+ENDIF
+IF BSP_NOAUDIO !
+MicrophoneCpl.Cpl	$(_FLATRELEASEDIR)\MicrophoneCpl.cpl				NK SH
+ENDIF
+IF BSP_NO_IGNITION !
+IgnitionCpl.Cpl	$(_FLATRELEASEDIR)\IgnitionCpl.cpl				NK SH
+ENDIF
+IF BSP_NO_WIRELESS !
+IF HOST_PLAT_EVM_OMAP3530 !
+WirelessCpl.Cpl	$(_FLATRELEASEDIR)\WirelessCpl.cpl				NK SH
+ENDIF
+ENDIF
+IF BSP_GPS
+GpsCpl.Cpl	$(_FLATRELEASEDIR)\GpsCpl.cpl						NK SH
+ENDIF
+IF BSP_GPRS
+ModemCpl.Cpl	$(_FLATRELEASEDIR)\ModemCpl.cpl						NK SH
+ENDIF
+ENDIF
+; @CESYSGEN ENDIF WCESHELLFE_MODULES_CPLMAIN
+
+;-- PWRON key driver -----------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_PM
+; @CESYSGEN IF GWES_MGBASE
+; @XIPREGION IF PACKAGE_OEMXIPKERNEL
+IF BSP_NOPWRKEY !
+pwrkey.dll $(_FLATRELEASEDIR)\pwrkey.dll                          NK SHK
+ENDIF BSP_NOPWRKEY !
+; @XIPREGION ENDIF PACKAGE_OEMXIPKERNEL
+; @CESYSGEN ENDIF GWES_MGBASE
+; @CESYSGEN ENDIF CE_MODULES_PM
+;-------------------------------------------------------------------------------
+
+;-- NDIS Driver ----------------------------------------------------------------
+; @CESYSGEN IF CE_MODULES_NDIS
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_NIC_AX88772
+ax88772.dll    $(_TARGETPLATROOT)\SRC\DRIVERS\AX88772\files\ax88772.dll                 NK SHK
+ENDIF BSP_NIC_AX88772
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+; @CESYSGEN ENDIF CE_MODULES_NDIS
+;-------------------------------------------------------------------------------
+
+;-- SDMA Proxy Driver ----------------------------------------------------------
+;-------------------------------------------------------------------------------
+; @XIPREGION IF PACKAGE_OEMDRIVERS
+IF BSP_SDMAPROXY
+sdmaproxy.dll         $(_FLATRELEASEDIR)\sdmaproxy.dll             NK SHK
+ENDIF BSP_SDMAPROXY
+; @XIPREGION ENDIF PACKAGE_OEMDRIVERS
+
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+MicUserSdk.dll                      $(_FLATRELEASEDIR)\MicUserSdk.dll                         NK    U
+psc.exe                             $(_FLATRELEASEDIR)\psc.exe				                  NK    SH
+;===============================================================================
+
+FILES
+
+; @CESYSGEN IF IMAGING_IMG_JPEGDECODER
+omaphand.jpg    $(_FLATRELEASEDIR)\omaphand.jpg                                NK S
+; @CESYSGEN ENDIF IMAGING_IMG_JPEGDECODER
+
+;-------------------------------------------------------------------------------
+
+IF BSP_GSM710MUX
+	Mux07_10.dll			$(_FLATRELEASEDIR)\Mux07_10.dll						NK S
+ENDIF BSP_GSM710MUX
+
+IF BSP_NO_TELIT_USB_DE910 !
+IF BSP_TELITUSB_DE910	
+	CDCDriver.dll			$(_TARGETPLATROOT)\SRC\DRIVERS\Telit_DE910\USB\CDCDriver.dll NK SHK
+ENDIF BSP_TELITUSB_DE910
+	;rilgsm.dll				$(_FLATRELEASEDIR)\rilgsm.dll						NK SHK
+ENDIF BSP_NO_TELIT_USB_DE910 !
+
+;===============================================================================

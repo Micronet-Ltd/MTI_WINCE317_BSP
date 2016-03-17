@@ -1,0 +1,10 @@
+LIBRARY     NLEDDRVR
+; DESCRIPTION   Notification LED MDD/sample driver
+
+EXPORTS Init
+    Deinit
+    Open
+    Close
+    PowerDown
+    PowerUp
+    IOControl

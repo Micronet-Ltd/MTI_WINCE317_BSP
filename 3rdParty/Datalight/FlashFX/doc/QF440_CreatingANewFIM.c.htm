@@ -1,0 +1,440 @@
+<html>
+<head>
+<title>
+Porting Guide: Creating a New FIM
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Porting Guide: Creating a New FIM
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Porting Guide: Creating a New FIM">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        FlashFX Tera uses a Flash Interface Module (FIM) to interface with flash
+        memory. The FIM is a portion of the Flash Memory Services Layer (FMSL)
+        which provides the algorithms needed for a specific flash device or
+        family of devices.  One or more FIMs are linked as part of the FlashFX
+        driver to support various flash parts that may be used in the
+        embedded device.  The FMSL maintains a list of these FIMs and calls
+        each as needed to access the particular flash parts.
+
+<p>        The FIM interfaces FlashFX Tera to a specific flash part or class of
+        parts.
+
+<p>        You may not need to build a FIM because FlashFX Tera includes several
+        FIMs that are ready for use with your FlashFX Tera driver.  Source code
+        for the FIMs are included in the FMSL directory tree.  Some FIMs
+        support multiple flash parts.  The <a HREF="FlashFX_Supported_Hardware.pdf">FlashFX Supported Hardware</a>
+        document, located in the DOC directory, and on the Datalight web site,
+        lists the parts that are supported by each FIM.
+
+<p>        A FIM provides the read/write/erase functionality for a particular
+        flash part or family of parts.  A FIM is typically about five hundred
+        lines of source code.  Use the source code for existing FIMs located in
+        the FMSL directory tree as a basis for implementing the required FIM
+        functions.
+
+<p>        <b>Note</b> -- FlashFX Tera uses a single NAND FIM to support all NAND
+        parts.  Specialized NAND support is implemented in NAND Technology
+        Modules (NTMs).  See the documentation on writing a new NTM for more
+        information on this topic.
+
+<p>        <h4>NAND FIM Support</h4>
+
+<p>        The process of recognizing NAND chip ID information is table driven. At
+        the top level is an array of FFXNANDMFGs. Each Manufacturer has its'
+        manufacturer ID value, a manufacturer name string, and a pointer to an
+        array of FFXNANDCHIPs.
+
+<p>        Each Chip similarly has a device ID value and a device name string, and
+        a pointer to a FFXNANDCHIPCLASS that describes the chip.
+
+<p>        The ChipClass represents a class of chips that have the same total
+        size, page size, and command set. It also has some special-case
+        characteristics that differentiate otherwise very similar parts (for
+        example, special handling for chip errata).
+
+<p>        <b>Note</b> -- The arrays of FFXNANDMFGs and FFXNANDCHIPs are searched
+        linearly (they are small, and this is infrequent). There is no need to
+        have the entries in any particular order, but they are generally sorted
+        so that it's convenient for people to look for an ID and avoid
+        duplicating an entry.
+
+<p>        The NAND ID table is located within nandid.c found within the
+        ..\fmsl\nand\ directory.
+
+<p>        <h4>Writing a Flash Interface Module</h4>
+
+<p>        The NOR FIMs are implemented in the \[FlashFX Root]\fmsl\nor directory,
+        while the NAND FIM and NTMs are implemented in the \[FlashFX Root]\fmsl\nand directory.
+
+<p>        Some older NOR FIMs use a slightly older architecture.  These FIMs are
+        wrapped by the norwrap.c module so that they appear as the new style
+        NOR FIMs.  It is highly recommended that any new FIM you implement use
+        the new FIM model.  The norram.c FIM is an example of the new style
+        interface.
+
+<p>        For additional details regarding the FIM functions, see the API
+        Reference portion of this documentation, and refer to the existing code
+        contained in the FMSL directory tree.
+
+<p>        <b>FIM Naming Convention</b>
+
+<p>        NOR FIMs use a standard naming convention, which consists of the
+        following:
+
+<p>        <ul>
+<li>The first letter denotes the flash manufacturer, i.e., 'i' for Intel, 'a' for AMD, etc.
+        <li>The next two-three letters are reserved to denote the flash family, for example, "sf" = StrataFlash, and "swf"=Sibley Wireless Flash.
+        <li>The next four letters are reserved for the configuration, i.e. "2x16".
+        <li>The last letter is reserved for any other differentiating characteristic, as needed.
+        <li>The FIM name must be entirely lowercase.
+</ul>
+        <b>Note</b> -- Some special case FIMs such as the RAM disk FIM may not use the
+        standard naming convention.
+
+<p>        <h4>The FIM API</h4>
+
+<p>        The FIM API is relatively straightforward, consisting of
+        <a HREF=QF920_FIM.c.htm#FfxFimCreate>FfxFimCreate()</a>, <a HREF=QF920_FIM.c.htm#FfxFimDestroy>FfxFimDestroy()</a>, <a HREF=QF920_FIM.c.htm#FfxFimParameterGet>FfxFimParameterGet()</a>,
+        <a HREF=QF920_FIM.c.htm#FfxFimParameterSet>FfxFimParameterSet()</a>, and <a HREF=QF920_FIM.c.htm#FfxFimIORequest>FfxFimIORequest()</a> functions. See the API
+        Reference section of this documentation for detailed information on the
+        calling conventions for these functions.
+
+<p>        <b>Note</b> -- To avoid namespace conflicts with other FIMs, the FIM entry
+        points must be declared static or given unique names. Declaring the
+        entry points as static is preferred.
+
+<p>        <a HREF=QF920_FIM.c.htm#FfxFimCreate>FfxFimCreate()</a>
+
+<p>        This function creates a FIM instance, and returns information regarding
+        the flash array and characteristics in a FIMINFO structure.
+
+<p>        Some flash devices have special characteristics that require special
+        handling by FlashFX Tera. If necessary, the FIM may communicate these
+        characteristics by setting bits in the uDeviceFlags member of the
+        FIMINFO structure returned by Create. In some cases, FlashFX Tera can
+        operate more efficiently if it is aware of the device characteristics;
+        in other cases, the device characteristics must be taken into account
+        to ensure correct operation.
+
+<p>        The constants for device characteristics bits are defined in
+        fxdevice.h.  Each is described below.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+DEV_NOT_MLC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This characteristic indicates that the flash is not
+        multi-level cell (MLC).  MLC flash encodes multiple bits in a single
+        flash storage cell.  Because of this, a write to one bit that is
+        interrupted by power loss can cause a different bit to change state.
+        The normal behavior of FlashFX Tera takes this into account by
+        performing multiple writes when discarding an allocation in NOR flash.
+        Setting this bit allows an allocation to be discarded with a single
+        write instead of requiring two writes.  The sense of this bit is chosen
+        for backwards compatibility: an old FIM that doesn't set this bit is
+        handled in safe but slow fashion.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DEV_MERGE_WRITES
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Most flash parts correctly process a write of data
+        containing ones where zeroes were previously programmed.  Some flash
+        parts do not accept this, and will indicate an error when they detect
+        that after programming, there is a zero where the programmed data value
+        contained a one.  To accommodate such parts, this bit instructs FlashFX
+        to read existing data from the flash before programming and merge
+        it with new data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DEV_PGM_ONCE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Some preliminary specifications for NOR flash parts
+        prohibit programming a bit to zero more than once before erasing it,
+        indicating that doing this can produce an unerasable bit.  Note that
+        DEV_PGM_ONCE is incompatible with DEV_MERGE_WRITES.  A FIM should never
+        set both of these bits.  If both are set, DEV_PGM_ONCE takes precedence.
+</td>
+</tr>
+</table>
+
+<p>
+        <a HREF=QF920_FIM.c.htm#FfxFimDestroy>FfxFimDestroy()</a>
+
+<p>        This function destroys a FIM instance, and releases any acquired
+        resources in reverse order of allocation.
+
+<p>        <a HREF=QF920_FIM.c.htm#FfxFimParameterGet>FfxFimParameterGet()</a>
+
+<p>        This function is supplied for future use, and does not currently need
+        to do anything.
+
+<p>        <a HREF=QF920_FIM.c.htm#FfxFimParameterSet>FfxFimParameterSet()</a>
+
+<p>        This function is used to specify the page size to use.  Future versions
+        of FlashFX Tera may use this for additional settings.
+
+<p>        <a HREF=QF920_FIM.c.htm#FfxFimIORequest>FfxFimIORequest()</a>
+
+<p>        This function dispatches I/O request operations, and implements the
+        core of the FIM logic.
+
+<p>        For NOR FIMs, the following request types must
+        be supported:
+
+<p>        <ul>
+<li>FXIOFUNC_FIM_ERASE_START
+</ul>
+        Initiates an erase operation. Typically it will issue the appropriate
+        command sequence to the flash, and initiate a timer which is local to
+        the FIM instance, then return.
+
+<p>        After a successful call to FXIOFUNC_FIM_ERASE_START the only valid FIM
+        function calls are FXIOFUNC_FIM_ERASE_POLL and, if supported,
+        FXIOFUNC_FIM_ERASE_SUSPEND. The behavior of any other call is undefined.
+
+<p>        <ul>
+<li>FXIOFUNC_FIM_ERASE_POLL
+</ul>
+        Checks the successful completion, timeout, or error status from the
+        flash device. Upon successful completion it returns the length of the
+        flash erase zone that was erased, which may be less than the length
+        that was requested. Logic outside of the FIM is responsible for issuing
+        another call to FXIOFUNC_FIM_ERASE_START with a new starting address
+        and length if the FIM erased less than what was requested. After
+        completion, the FIM must leave the flash in normal read mode if
+        possible (this is always possible when successful, but may not be after
+        a failure). Note that FXIOFUNC_FIM_ERASE_POLL may be called multiple
+        times after completion (whether successful or not) and should continue
+        to return the same status until the next call to
+        FXIOFUNC_FIM_ERASE_START.
+
+<p>        <ul>
+<li>FXIOFUNC_FIM_READ_GENERIC
+        <li>FXIOSUBFUNC_FIM_READ_PAGES
+        <li>FXIOFUNC_FIM_WRITE_GENERIC
+        <li>FXIOSUBFUNC_FIM_WRITE_PAGES
+        <li>FXIOFUNC_FIM_READ_CONTROLDATA
+        <li>FXIOFUNC_FIM_WRITE_CONTROLDATA
+</ul>
+        Additionally, if the flash type supports suspending erase operations,
+        the following two requests should be handled:
+
+<p>        <ul>
+<li>FXIOFUNC_FIM_ERASE_SUSPEND
+</ul>
+        Only called after a successful call to FXIOFUNC_FIM_ERASE_START and
+        before FXIOFUNC_FIM_ERASE_POLL has indicated completion. It must
+        suspend the erase operation and return the flash to normal read mode.
+        After a successful call to FXIOFUNC_FIM_ERASE_SUSPEND the only FIM
+        functions which will be called are the standard read and write
+        functions, along with FXIOFUNC_FIM_ERASE_RESUME.
+
+<p>        The behavior of any other call is undefined.
+
+<p>        <ul>
+<li>FXIOFUNC_FIM_ERASE_RESUME
+</ul>
+        Only called after a successful call to FXIOFUNC_FIM_ERASE_SUSPEND. It
+        must resume the erase operation.
+
+<p>        The behavior of any other call is undefined.
+
+<p>        See the FlashFX Tera API Reference Manual, and the code in norram.c for
+        more information on coding handlers for these requests.
+
+<p>        <h4>Integrating the New NOR FIM into FlashFX Tera</h4>
+
+<p>        The FIMs are compiled into the fxnor.lib and linked into FlashFX Tera as
+        needed.  To add support for a new FIM, the following files
+        must be modified:
+        <ul>
+
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<li>nor.mak
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add the FIM to the Dependencies section.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<li>devflash.c
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add an entry for the new FIM into the "FIMs" section. This is the entry for the external declaration of the device. The following is an example declaration of the Intel Strata Flash 2x16 FIM.
+</ul>
+                extern FIMDEVICE FFXFIM_isf2x16;
+</td>
+</tr>
+</table>
+
+<p>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

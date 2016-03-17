@@ -1,0 +1,66 @@
+!if 0
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+!endif
+
+TARGETNAME=xldrsd
+TARGETTYPE=PROGRAM
+RELEASETYPE=PLATFORM
+EXEENTRY=StartUp
+SYNCHRONIZE_DRAIN=1
+
+# SD XLDR is loaded into the CPU internal RAM and a max size of 62KB, 
+# this size can only be achived using optimized code.
+# This requires that we link explicitly to retail libraries built in the
+# BSP as well as forcing optimizations in the XLDR code itself.  This 
+# could result in confusion if other BSP libraries are out of date, so 
+# we will not build the SD XLDR at all in debug environment.
+!IF "$(WINCEDEBUG)" == "debug"
+SKIPBUILD=1
+!ENDIF
+
+# Disable the generation of unwanted and unnecessary checking code in boot loader
+STACK_CHECK_DISABLE=1
+
+LDEFINES=/DEBUG /DEBUGTYPE:CV /FIXED:NO
+WINCETARGETFILES=xldr_sd_mlo
+
+INCLUDES=$(INCLUDES);..\..\;
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO -DBUILDING_XLDR_SD
+
+CDEFINES=$(CDEFINES) -DFMD_NAND
+
+SOURCES=\
+    sdmain.c \
+    ..\platform.c
+
+ARM_SOURCES=\
+    ..\startup.s \
+    ..\jumpto.s
+
+TARGETLIBS= \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_debug_uart.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_tps659xx.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_twl.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\xldr_i2c.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_stall.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_bootstubs.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_fatfs.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_sdmemory.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_boot_sdhc.lib \
+    $(_EBOOTLIBS)\$(_CPUDEPPATH)\eboot.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_log.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_io.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_other.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_blnk.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_blcommon.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\gsnull.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\fulllibc.lib
+

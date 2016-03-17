@@ -1,0 +1,246 @@
+<html>
+<head>
+<title>
+Porting Guide: Discard Interfaces
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Porting Guide: Discard Interfaces
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Porting Guide: Discard Interfaces">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        <h4>Overview</h4>
+
+<p>        With a real disk drive, once data is written to a portion of the disk,
+        the device driver can completely forget about it. An application can
+        read it, write over it, or completely ignore it -- and it is of no
+        concern to the device driver. An application can even read areas of the
+        disk that have never been written to, and the device driver doesn't
+        care.
+
+<p>        However, with flash memory, this is not the case. FlashFX, (and any
+        flash manager for that matter) is performing a logical-to-physical
+        mapping and must continually track all the data that is ever written to
+        the flash disk. As more data is written to the disk, FlashFX
+        requires more overhead to track the data. To optimize FlashFX
+        performance, the file system (or embedded application) must notify
+        FlashFX when data is no longer in use.
+
+<p>        For example, consider a typical scenario where the system consists of a
+        physical disk drive, a block device driver for that disk drive, an
+        operating system, a file system, and an embedded application. When the
+        embedded application deletes a file, it typically calls an OS or
+        C-library function, which translates that call into a file system
+        operation. The file system then calls into the block device driver and
+        writes a few bytes to whatever control structures are necessary to mark
+        that file as no longer valid. However the data associated with that
+        file is not modified, and the block device driver neither knows nor
+        cares, because with a real disk drive the block device driver has no
+        need to track any data once it's written to the disk. The file system
+        will simply choose to overwrite that area at some point in the future.
+
+<p>        Now consider the same scenario, but substitute flash memory for the
+        physical disk drive, and the FlashFX device driver for the disk
+        block device driver. Since FlashFX is a block device driver, as is
+        the physical disk block device driver, it knows nothing about file
+        systems. It knows nothing about the file system structures on the flash
+        disk. When the file system calls into FlashFX to delete the file,
+        the file system control structures are modified, however FlashFX
+        has no way to know that the data associated with that file no longer
+        needs to be tracked. Because it does not know this, FlashFX will
+        have the extra baggage of tracking this data, until such time as the
+        file system decides to overwrite that area of the disk with something
+        new. This will cause a very significant performance degradation.
+
+<p>        <b>Note</b> -- This issue exists with all block device drivers for flash memory.
+
+<p>        <b>Implementing a Discard Sectors Function</b>
+
+<p>        The ideal solution to this problem is to use a file system that
+        contains a special IOCTL function to notify the block device driver
+        when sectors are no longer in use. Many modern file systems for
+        embedded applications now include this functionality.
+
+<p>        The file system driver simply needs to call into the FlashFX block
+        device driver and notify it of the starting sector, and the number of
+        sectors to mark as free. The FlashFX device driver will then internally
+        update its mapping tables so that it no longer needs to track that data.
+
+<p>        <b>Using a Free Space Monitor</b>
+
+<p>        If the file system being used does not implement an IOCTL function to 
+        notify the block device driver when sectors are no longer in use, a free 
+        space monitor can be used. A free space monitor contains explicit knowledge 
+        about a file system. It monitors writes to the file system structures and 
+        examines this information to determine when areas of the disk no longer 
+        contain data that must be tracked. The Free Space Monitor supports a block 
+        size of 512, 1024, 2048 and 4096 bytes.
+
+<p>        FlashFX includes a free space monitor for FAT12, FAT16 and FAT32 file 
+        systems. To enable this functionality, edit the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file and set the 
+        FFXCONF_FATMONITORSUPPORT value to TRUE.
+
+<p>        If you are using one of the standard FlashFX device drivers, or you are 
+        using the FlashFX device driver framework, simply setting 
+        FFXCONF_FATMONITORSUPPORT to TRUE will enable the free space monitor for 
+        use with FAT12, FAT16 or FAT32 file systems. If you are implementing your 
+        own device driver, so long as you are writing to the disk using 
+        <a HREF=QF860_DFWSect.c.htm#FfxDriverSectorWrite>FfxDriverSectorWrite()</a> the FAT monitor code will get a chance to examine 
+        the data.
+
+<p>        <b>Note</b> -- It is strongly recommended that the standard device driver
+        framework be used if the FlashFX FAT Monitor is to be used, as it
+        completely handles the issues described above.
+
+<p>        <b>Managing Free Space in Other Environments</b>
+
+<p>        In an embedded application which is directly using FlashFX, the
+        <a HREF=QF860_DFWSect.c.htm#FfxDriverSectorDiscard>FfxDriverSectorDiscard()</a> API can be used to notify FlashFX that
+        specific sectors are no longer needed.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

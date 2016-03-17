@@ -1,0 +1,74 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+#include "..\common.rc"
+
+// New Partition Dialog -- not a property sheet
+IDD_PROPPAGE_NEWPART DIALOG DISCARDABLE 0, 0, 142, 58
+STYLE WS_CHILD | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_CONTEXTHELP
+CAPTION "Create New Partition"
+BEGIN	
+    LTEXT			"Name:",IDC_LABEL_NAME,7,8,30,8
+    LTEXT			"Sectors:",IDC_LABEL_SIZE,7,23,30,8
+    EDITTEXT		IDC_EDIT_NAME,40,6,76,14,0
+    EDITTEXT        IDC_EDIT_SIZE,40,21,76,14,ES_NUMBER
+    AUTOCHECKBOX	"Use All Available Disk Space",IDC_CHECKBOX_SPACE,7,38,120,8
+END
+
+// Partition Information Dialog -- not a property sheet
+IDD_PROPPAGE_PARTINFO DIALOG DISCARDABLE  0, 0, 150, 109
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_CONTEXTHELP
+CAPTION "Partition Properties"
+BEGIN
+    LTEXT           "Name",IDC_LABEL_PARTNAME,7,14,61,8
+    LTEXT           "Size",IDC_LABLE_PARTSIZE,7,24,61,8
+    LTEXT           "Type",IDC_LABEL_PARTTYPE,7,34,61,8
+    LTEXT           "File System",IDC_LABEL_FILESYS,7,44,61,8
+    LTEXT           "Flags",IDC_LABEL_FLAGS,7,54,61,8
+    LTEXT           "PART00",IDC_TEXT_PARTNAME,68,14,80,8
+    LTEXT           "0.0 MB",IDC_TEXT_PARTSIZE,68,24,80,8
+    LTEXT           "0x00",IDC_TEXT_PARTTYPE,68,34,80,8
+    LTEXT           "",IDC_TEXT_FILESYS,68,44,80,8
+    LTEXT           "",IDC_TEXT_PARTFLAGS,68,54,80,8
+    DEFPUSHBUTTON   "&Mount",IDC_BUTTON_MOUNT,5,71,43,14
+    PUSHBUTTON      "D&ismount",IDC_BUTTON_UNMOUNT,51,71,43,14
+    PUSHBUTTON      "F&ormat",IDC_BUTTON_FORMAT,5,90,43,14
+    PUSHBUTTON      "&Scan",IDC_BUTTON_SCAN,52,90,43,14
+    PUSHBUTTON      "Def&rag",IDC_BUTTON_DEFRAG,99,90,43,14
+END
+
+// landscape mode dialog
+IDD_PROPPAGE_MAIN DIALOG DISCARDABLE  0, 0, 265, 81
+STYLE DS_CONTROL | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    COMBOBOX        IDC_COMBO_DISK,12,9,110,102,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LIST_PARTITIONS,142,10,52,63,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_GROUP | WS_TABSTOP
+    PUSHBUTTON      "&New",IDC_BUTTON_NEW,203,15,52,14
+    PUSHBUTTON      "D&elete",IDC_BUTTON_DELETE,203,34,52,14
+    DEFPUSHBUTTON   "&Properties",IDC_BUTTON_PROPERTIES,203,54,52,14
+    GROUPBOX        "Partitions:",IDC_STATIC_PARTITIONS,135,0,129,79
+    LTEXT           "Capacity:",IDC_LABEL_CAPACITY,13,25,48,8
+    LTEXT           "Unallocated:",IDC_LABEL_UNALLOCATED,13,36,48,8
+    LTEXT           "Sector Size:",IDC_LABLE_SECTORSIZE,13,47,48,8
+    LTEXT           "0.0 MB",IDC_TEXT_CAPACITY,63,25,49,8
+    LTEXT           "0.0 MB",IDC_TEXT_UNALLOCATED,63,37,49,8
+    LTEXT           "0.0 MB",IDC_TEXT_SECTORSIZE,63,48,49,8
+    PUSHBUTTON      "&Format",IDC_BUTTON_FORMATSTORE,14,60,45,14
+    PUSHBUTTON      "&Dismount",IDC_BUTTON_DISMOUNTSTORE,70,60,47,14
+    GROUPBOX        "Store Info:",IDC_STATIC_INFO,4,0,126,79
+END

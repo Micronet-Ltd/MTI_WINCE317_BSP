@@ -1,0 +1,778 @@
+<html>
+<head>
+<title>
+DCL Public API: CRCs and ECCs
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Public API: CRCs and ECCs
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Public API: CRCs and ECCs">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclCrc16Update">DclCrc16Update</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Compute a CRC16 for the given data buffer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclCrc32Update">DclCrc32Update</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Compute a CRC32 for the given data buffer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclEccCalculate">DclEccCalculate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Generate an ECC in canonical form.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclEccCanonicalToOmap35x">DclEccCanonicalToOmap35x</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert an ECC in the Datalight canonical format to the format
+    used by the OMAP 3530 hardware.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclEccCorrect">DclEccCorrect</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Compare a calculated ECC with the stored ECC and correct a data
+    stream or the stored ECC as appropriate.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclEccOmap35xToCanonical">DclEccOmap35xToCanonical</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert an ECC in the format provided by the OMAP 3530 hardware,
+    into the Datalight canonical 32-bit format.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclHammingCalculate">DclHammingCalculate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Calculate Hamming code check bits or error syndrome for a
+    buffer of data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclHammingCorrect">DclHammingCorrect</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Correct a single-bit error.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclCrc16Update"></a>
+<a NAME="DclCrc16Update"></a>
+DclCrc16Update
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> <font class=ApiName>DclCrc16Update</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uCrc16,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLength)
+</div>
+<div class=SectionText>
+
+    Compute a CRC16 for the given data buffer.  This is <b>not</b> the
+    CCITT-16 compliant CRC.  The initial CRC must be set to 0.  To
+    CRC multiple buffers, call this function with the previously
+    returned CRC value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+uCrc16
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting CRC value.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Data buffer to calculate the CRC from.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of bytes of data in the given buffer.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the updated CRC value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclCrc32Update"></a>
+<a NAME="DclCrc32Update"></a>
+DclCrc32Update
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>DclCrc32Update</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulCrc32,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLength)
+</div>
+<div class=SectionText>
+
+    Compute a CRC32 for the given data buffer.  For CCITT-32
+    compliance, the initial CRC must be set to 0.  To CRC
+    multiple buffers, call this function with the previously
+    returned CRC value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulCrc32
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting CRC value.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Data buffer to calculate the CRC from.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of bytes of data in the given buffer.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the updated CRC value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclEccCalculate"></a>
+<a NAME="DclEccCalculate"></a>
+DclEccCalculate
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>DclEccCalculate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const void     *pData,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLength)
+</div>
+<div class=SectionText>
+
+    Generate an ECC in canonical form.  The generated ECC has two
+    bits per significant bit of bit-level address, so the length
+    in bytes is limited to 8K.
+
+<p>    Note that the canonical form used here will set any unused
+    high-order bits to zero.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An array of data for which the ECC is to be
+                       computed
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length of the data in bytes.  It must a
+                       a power-of-two value not exceeding 8 KB.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the ECC value in canonical form.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclEccCanonicalToOmap35x"></a>
+<a NAME="DclEccCanonicalToOmap35x"></a>
+DclEccCanonicalToOmap35x
+</h3>
+<div class=Api>
+void <font class=ApiName>DclEccCanonicalToOmap35x</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulECC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pabECC)
+</div>
+<div class=SectionText>
+
+    Convert an ECC in the Datalight canonical format to the format
+    used by the OMAP 3530 hardware.  See dlecc.c and the 3530
+    specification for details.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The ECC in Datalight canonical format.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a three byte buffer to receive
+                      the results.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclEccCorrect"></a>
+<a NAME="DclEccCorrect"></a>
+DclEccCorrect
+</h3>
+<div class=Api>
+DCLECCRESULT <font class=ApiName>DclEccCorrect</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pData,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLength,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>       *pulOldECC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulNewECC)
+</div>
+<div class=SectionText>
+
+    Compare a calculated ECC with the stored ECC and correct a data
+    stream or the stored ECC as appropriate.
+
+<p>    If any differences exist between the two ECCs, it is determined
+    whether it is a correctable data error (i.e., all parity bit
+    pairs have 1 error and 1 match), a correctable error in the ECC
+    itself (i.e., only one bit is different), or an uncorrectable
+    error.  If it is one of the correctable types, then the error
+    is corrected in the data or ECC value, as appropriate.
+
+<p>    Note that the canonical form used here requires that any unused
+    high-order bits be set to zero.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An array of the ECC data to be checked.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data buffer length, which must be a power-
+                    of-two value.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulOldECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ECC which was originally
+                    calculated for the data (in canonical form).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulNewECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The ECC for the supplied data bytes, in canonical
+                    form.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a DCLECCRESULT value which will be one of the
+        following values:
+          
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+DCLECC_VALID
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data and old ECC value had no
+                                 errors.
+</td>
+</tr>
+
+<p>          
+<tr class=Def>
+<td class=Def>
+DCLECC_DATACORRECTED
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data was corrected.
+</td>
+</tr>
+
+<p>          
+<tr class=Def>
+<td class=Def>
+DCLECC_ECCCORRECTED
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The old ECC value was corrected.
+</td>
+</tr>
+
+<p>          
+<tr class=Def>
+<td class=Def>
+DCLECC_UNCORRECTABLE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data and/or old ECC has
+                                 uncorrectable errors.
+</td>
+</tr>
+</table>
+
+<p>
+
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclEccOmap35xToCanonical"></a>
+<a NAME="DclEccOmap35xToCanonical"></a>
+DclEccOmap35xToCanonical
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>DclEccOmap35xToCanonical</font>(
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pabECC)
+</div>
+<div class=SectionText>
+
+    Convert an ECC in the format provided by the OMAP 3530 hardware,
+    into the Datalight canonical 32-bit format.  See dlecc.c and the
+    3530 specification for details.
+
+<p>    Note that the hardware ECC for data which is all zeros or all
+    ones is all zeros, which is opposite of what the Datalight 
+    canonical format uses.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the three ECC bytes provided by
+                     the hardware.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the ECC in the Datalight canonical format.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclHammingCalculate"></a>
+<a NAME="DclHammingCalculate"></a>
+DclHammingCalculate
+</h3>
+<div class=Api>
+unsigned long <font class=ApiName>DclHammingCalculate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const void             *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t                  nLength,<br>&nbsp;&nbsp;&nbsp;
+    unsigned long           ulParity)
+</div>
+<div class=SectionText>
+
+    Calculate Hamming code check bits or error syndrome for a
+    buffer of data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to data for which to calculate the
+                   Hamming code check bits
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulParity
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Zero to calculate check bits, or previously
+                   calculated check bits to use in calculating an
+                   error syndrome.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Check bits for a future call to correct a single-bit error,
+        or an error syndrome to correct an error now.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclHammingCorrect"></a>
+<a NAME="DclHammingCorrect"></a>
+DclHammingCorrect
+</h3>
+<div class=Api>
+void <font class=ApiName>DclHammingCorrect</font>(<br>&nbsp;&nbsp;&nbsp; 
+    void           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLength,<br>&nbsp;&nbsp;&nbsp;
+    unsigned long   ulCheck)
+</div>
+<div class=SectionText>
+
+    Correct a single-bit error.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to data in which to correct a single-bit
+                  error.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCheck
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The non-zero error syndrome from a call to
+                  <a HREF="#DclHammingCalculate">DclHammingCalculate</a> with previously calculated
+                  check bits.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

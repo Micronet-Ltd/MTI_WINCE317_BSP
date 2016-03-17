@@ -1,0 +1,1611 @@
+<html>
+<head>
+<title>
+Project Settings Reference
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Project Settings Reference
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Project Settings Reference">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        These preprocessor symbols are typically defined in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>
+        and define the compilation characteristics for the driver
+        built by the project.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_ALLOCATORSUPPORT">FFXCONF_ALLOCATORSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the driver should have
+        allocator support built in or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_BBMFORMAT">FFXCONF_BBMFORMAT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        ability to perform a BBM format.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_DRIVERAUTOFORMAT">FFXCONF_DRIVERAUTOFORMAT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver should
+        contain logic to auto-format a Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_FATFORMATSUPPORT">FFXCONF_FATFORMATSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        ability to write a FAT format to a Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_FATSUPPORT">FFXCONF_FATSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the driver should have
+        support for the FAT file system.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_FORMATSUPPORT">FFXCONF_FORMATSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether FlashFX contains any
+        formatting code.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_ISWFSUPPORT">FFXCONF_ISWFSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the driver should
+        support Intel Sibley Wireless Flash or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_LATENCYREDUCTIONENABLED">FFXCONF_LATENCYREDUCTIONENABLED</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        latency reduction features included or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_MBRFORMAT">FFXCONF_MBRFORMAT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        ability to write an MBR to a Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_NANDSUPPORT">FFXCONF_NANDSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the driver should
+        support NAND flash or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_NORSUPPORT">FFXCONF_NORSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the driver should
+        support NOR flash or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_OTPSUPPORT">FFXCONF_OTPSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the driver should support 
+        One-Time Programming (OTP) or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_POWERSUSPENDRESUME">FFXCONF_POWERSUSPENDRESUME</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the FlashFX call stack should
+        support power suspend/resume requests.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_QUICKMOUNTSUPPORT">FFXCONF_QUICKMOUNTSUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the FlashFX QuickMount
+        feature is enabled.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFXCONF_RELIANCESUPPORT">FFXCONF_RELIANCESUPPORT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Set to TRUE or FALSE to indicate whether the driver should have
+        support for the Datalight Reliance file system.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_COMPACTIONMODEL">FFX_COMPACTIONMODEL</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Defines the style of background compaction operations to support.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DEV0_BBM">FFX_DEV0_BBM</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This setting defines several characteristics of the BBM format
+	functionality.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DEV0_FIMS">FFX_DEV0_FIMS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This setting defines the list of FIMs which will be associated with the
+	Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DEV0_LATENCY">FFX_DEV0_LATENCY</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This is the desired latency characteristics for the device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DEV0_NTMS">FFX_DEV0_NTMS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This setting defines the list of NTMs which will be associated with the
+	Device, if the NAND FIM is used.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DEV0_SETTINGS">FFX_DEV0_SETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This defines the basic configuration information for each Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DEV0_TIMING">FFX_DEV0_TIMING</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This defines the timing characteristics for the device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DISK0_ALLOCATOR">FFX_DISK0_ALLOCATOR</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This defines the allocator settings for each Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DISK0_COMPACTION">FFX_DISK0_COMPACTION</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	Define the compaction settings for the Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DISK0_FORMAT">FFX_DISK0_FORMAT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This defines the format settings for each Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_DISK0_SETTINGS">FFX_DISK0_SETTINGS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This defines the basic configuration information for each Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_MAX_DEVICES">FFX_MAX_DEVICES</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Defines the maximum number of                      Devices        which the FlashFX Tera device
+        driver will support.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_MAX_DISKS">FFX_MAX_DISKS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        Defines the maximum number of                      Disks        which the FlashFX Tera device
+        driver will support.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_MAX_PAGESIZE">FFX_MAX_PAGESIZE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        A power-of-two value which defines the maximum size page supported
+        by the driver.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FFX_VBFOPT flags">FFX_VBFOPT flags</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+	This defines the VBF option flags for each Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#VBFCONF_COMPACTIONTHRESHOLD">VBFCONF_COMPACTIONTHRESHOLD</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Specifies the percentage of dirtiness that a given VBF Erase Unit
+    must have before it becomes a qualified candidate for background
+    compaction.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#VBFCONF_DEFAULTCUSHION">VBFCONF_DEFAULTCUSHION</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Specifies the default VBF cushion percentage to use.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#VBFCONF_DEFERREDDISCARD">VBFCONF_DEFERREDDISCARD</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Specifies whether the Deferred NAND Discard feature is enabled
+    or not.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#VBFCONF_REGIONCACHESIZE">VBFCONF_REGIONCACHESIZE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Specifies the VBF region cache size.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#VBFCONF_STATICREGION">VBFCONF_STATICREGION</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Specifies a VBF region number to keep statically mounted all the
+    time.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#VBF_MAX_UNIT_SIZE">VBF_MAX_UNIT_SIZE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The maximum size of an erase unit.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_ALLOCATORSUPPORT"></a>
+<a NAME="FFXCONF_ALLOCATORSUPPORT"></a>
+FFXCONF_ALLOCATORSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the driver should have
+        allocator support built in or not.  Typically this setting is
+        always TRUE except in cases where low-level boot loader code is
+        being built, which does not require a virtual-to-physical
+        translation.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_BBMFORMAT"></a>
+<a NAME="FFXCONF_BBMFORMAT"></a>
+FFXCONF_BBMFORMAT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        ability to perform a BBM format.  Since BBM formatting is often
+        done during manufacturing, this setting may be turned off to
+        reduce the device driver size.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_DRIVERAUTOFORMAT"></a>
+<a NAME="FFXCONF_DRIVERAUTOFORMAT"></a>
+FFXCONF_DRIVERAUTOFORMAT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver should
+        contain logic to auto-format a Disk.  If this setting is TRUE,
+        if FlashFX cannot detect an Allocator on the Disk it will format
+        the Disk and place an Allocator format on the Disk.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_FATFORMATSUPPORT"></a>
+<a NAME="FFXCONF_FATFORMATSUPPORT"></a>
+FFXCONF_FATFORMATSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        ability to write a FAT format to a Disk.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_FATSUPPORT"></a>
+<a NAME="FFXCONF_FATSUPPORT"></a>
+FFXCONF_FATSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the driver should have
+        support for the FAT file system.  This simply indicates that the
+        driver will be FAT "aware" or not, and does not require that the
+        FAT file system be used.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_FORMATSUPPORT"></a>
+<a NAME="FFXCONF_FORMATSUPPORT"></a>
+FFXCONF_FORMATSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether FlashFX contains any
+        formatting code.  If this is FALSE, than all formatting features
+        within every level of FlashFX are compiled out.  When this setting
+        is FALSE, the following settings are all either undefined or set
+        to FALSE:
+          <ul>
+<li><a HREF="#FFXCONF_DRIVERAUTOFORMAT">FFXCONF_DRIVERAUTOFORMAT</a>
+          <li><a HREF="#FFXCONF_MBRFORMAT">FFXCONF_MBRFORMAT</a>
+          <li><a HREF="#FFXCONF_FATFORMATSUPPORT">FFXCONF_FATFORMATSUPPORT</a>
+          <li><a HREF="#FFXCONF_BBMFORMAT">FFXCONF_BBMFORMAT</a>
+</ul>
+
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_ISWFSUPPORT"></a>
+<a NAME="FFXCONF_ISWFSUPPORT"></a>
+FFXCONF_ISWFSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the driver should
+        support Intel Sibley Wireless Flash or not.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_LATENCYREDUCTIONENABLED"></a>
+<a NAME="FFXCONF_LATENCYREDUCTIONENABLED"></a>
+FFXCONF_LATENCYREDUCTIONENABLED
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        latency reduction features included or not.
+
+<p>        If this is enabled, the <a HREF="#FFX_DEV0_TIMING">FFX_DEV0_TIMING</a> and <a HREF="#FFX_DEV0_LATENCY">FFX_DEV0_LATENCY</a> settings
+        for each Device will be used to determine the maximum amount of time
+        which will be spent in the FIM layer performing any single read, write,
+        or erase operation. If this feature is not included, then reads,
+        writes, and erases will not be broken into smaller chunks, regardless
+        how large they may be.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+FFXCONF_LATENCYAUTOTUNE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This feature defines whether code to
+        automatically determine the FIM performance timings is included.
+        The latency settings are only valid if the <a HREF="#FFX_DEV0_TIMING">FFX_DEV0_TIMING</a> settings
+        are accurate, or this auto-tune feature is used to dynamically
+        determine the flash performance at startup time.  Enabling this feature
+        also helps ensure consistent latency characteristics as the flash
+        gradually wears out and slows down over time.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+FFXCONF_ERASESUSPENDSUPPORT
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This feature defines whether FlashFX Tera
+        includes the ability to suspend erase operations to allow reads and
+        writes to proceed.  Note that not all flash types support suspending
+        erases, so this feature is enabled by default only if NOR or ISWF
+        flash support is included.
+</td>
+</tr>
+</table>
+
+<p>
+
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_MBRFORMAT"></a>
+<a NAME="FFXCONF_MBRFORMAT"></a>
+FFXCONF_MBRFORMAT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether FlashFX driver has the
+        ability to write an MBR to a Disk.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_NANDSUPPORT"></a>
+<a NAME="FFXCONF_NANDSUPPORT"></a>
+FFXCONF_NANDSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the driver should
+        support NAND flash or not.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_NORSUPPORT"></a>
+<a NAME="FFXCONF_NORSUPPORT"></a>
+FFXCONF_NORSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the driver should
+        support NOR flash or not.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_OTPSUPPORT"></a>
+<a NAME="FFXCONF_OTPSUPPORT"></a>
+FFXCONF_OTPSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the driver should support 
+        One-Time Programming (OTP) or not.  OTP is currently only supported in 
+        select NTMs.  
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_POWERSUSPENDRESUME"></a>
+<a NAME="FFXCONF_POWERSUSPENDRESUME"></a>
+FFXCONF_POWERSUSPENDRESUME
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the FlashFX call stack should
+        support power suspend/resume requests.  Typically this setting is
+        defined in the <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> file for each specific operating system, based
+        on whether that environment supports power suspend/resume operations.
+
+<p>        In addition to ensuring that this value is TRUE, supporting power 
+        suspend/resume may require modifications both in the OS specific block 
+        driver code, as well as in the FIM or NTM.  See the section in this 
+        documentation regarding supporting power suspend/resume functionality.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_QUICKMOUNTSUPPORT"></a>
+<a NAME="FFXCONF_QUICKMOUNTSUPPORT"></a>
+FFXCONF_QUICKMOUNTSUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the FlashFX QuickMount
+        feature is enabled. This option allows saving allocator state info
+        during a disk unmount so that it does not have to be regenerated
+        during the subsequent disk mount.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFXCONF_RELIANCESUPPORT"></a>
+<a NAME="FFXCONF_RELIANCESUPPORT"></a>
+FFXCONF_RELIANCESUPPORT
+</h3>
+<div class=SectionText>
+
+        Set to TRUE or FALSE to indicate whether the driver should have
+        support for the Datalight Reliance file system.  This simply
+        indicates that the driver will be Reliance "aware" or not, and
+        does not require that Reliance be used.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_COMPACTIONMODEL"></a>
+<a NAME="FFX_COMPACTIONMODEL"></a>
+FFX_COMPACTIONMODEL
+</h3>
+<div class=SectionText>
+
+    Defines the style of background compaction operations to support.  FlashFX
+    includes three different compaction models.  The compaction model is
+    typically set to a default value in the <a HREF=QF640_Headers.c.htm#oesl.h>oesl.h</a> file for the specific
+    FlashFX port.  The compaction model applies to the entire FlashFX driver,
+    not an individual Disk.  It may default to different values for different
+    operating systems.
+
+<p>    A FlashFX Project may override the default compaction model by specifying
+    a different compaction model in the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file.
+
+<p>	The three compaction
+	models are:
+
+<p>    	<ul>
+<li><a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_NONE>FFX_COMPACT_NONE</a>
+	    <li><a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDIDLE>FFX_COMPACT_BACKGROUNDIDLE</a>
+	    <li><a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDTHREAD>FFX_COMPACT_BACKGROUNDTHREAD</a>
+</ul>
+    <h4>Symbol</h4> <a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_NONE>FFX_COMPACT_NONE</a>
+
+<p>    This option only performs compaction as needed during the course of writes,
+    making it synchronous in nature.  This is the simplest compaction model to
+    use, but results in the slowest overall performance.  Regardless of the
+    compaction model selected, synchronous compaction operations will very
+    likely always happen to one degree or another.
+
+<p>	<h4>Symbol</h4> <a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDIDLE>FFX_COMPACT_BACKGROUNDIDLE</a>
+
+<p>	This option performs background compaction operations in system idle time.
+	Typically this option is used in those operating systems where threading is
+	either not supported, or is not practical.  To implement this, an idle loop
+	somewhere in the system is modified to call FfxDriverCompactIfIdle.
+
+<p>	<h4>Symbol</h4> <a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDTHREAD>FFX_COMPACT_BACKGROUNDTHREAD</a>
+
+<p>	This option performs background compaction operations on a separate, low
+	priority thread.  This is the default setting for those operating systems
+	which support threads.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DEV0_BBM"></a>
+<a NAME="FFX_DEV0_BBM"></a>
+FFX_DEV0_BBM
+</h3>
+<div class=SectionText>
+
+	This setting defines several characteristics of the BBM format
+	functionality. These settings are only used if NAND support is enabled, and
+	the specific Device type is NAND. These are specified as a structure
+	initialization, in curly braces. The following fields must be initialized:
+
+<p>	{fEnable, uFormatState, uFormatType, ulSparePercent, nReserved}
+
+<p>    <ul>
+<li><b>fEnable</b> indicates whether BBM should be enabled for the Device or not.
+</ul>
+	<ul>
+<li><b>uFormatState</b> defines the format state to use for the device, which must
+      be one of the following values:
+</ul>
+	
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_NEVER>FFX_FORMAT_NEVER</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Never BBM format the Device. If there is not already
+	                      a valid BBM format on the Device, the Device
+	                      initialization will fail.
+</td>
+</tr>
+
+<p>	
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_ONCE>FFX_FORMAT_ONCE</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Perform a BBM format only if BBM fails to initialize
+	                      on the Device.
+</td>
+</tr>
+
+<p>	
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_ALWAYS>FFX_FORMAT_ALWAYS</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Perform a BBM format every time the Device loads.
+</td>
+</tr>
+
+<p>	
+<tr class=Def>
+<td class=Def>
+FFX_FORMAT_UNFORMAT
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Erase any previous BBM (and FlashFX) information
+	                      on the Device.  Once the "unformat" is complete, the
+	                      Device will fail to initialize.
+</td>
+</tr>
+</table>
+
+<p>
+	<ul>
+<li><b>uFormatType</b> defines the type of BBM format to perform, which must
+	  be one of the following values:
+</ul>
+	
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_BBMFORMAT_PRESERVE_BADBLOCKS>FFX_BBMFORMAT_PRESERVE_BADBLOCKS</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Preserve any previously found bad
+	                                          blocks on the Device.
+</td>
+</tr>
+
+<p>	
+<tr class=Def>
+<td class=Def>
+FFX_BBMFORMAT_REUSE_DISCOVEREDBADBLOCKS
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Reformat (re-use) any aftermarket
+	                                          discovered bad blocks, but preserve
+	                                          any Factory Bad Blocks.
+</td>
+</tr>
+
+<p>	
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_BBMFORMAT_REUSE_FACTORYBADBLOCKS>FFX_BBMFORMAT_REUSE_FACTORYBADBLOCKS</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Reformat (re-use) any factory marked
+	                                          bad blocks (which implies re-using
+	                                          the "discovered" bad blocks as well).
+	                                          This option is strongly discouraged
+	                                          as it violates the specifications
+	                                          from most NAND manufacturer’s data
+	                                          sheets. This may render the flash
+	                                          unusable.
+</td>
+</tr>
+</table>
+
+<p>
+	<ul>
+<li><b>ulSparePercent</b> defines the percentage of the Device's manufacturer
+	   recommended number of reserved blocks.  Leave this value set to 100
+	   to use the default size.  Generally, the default is approximately 2.4%
+	   or 24 blocks out of every 1024.
+</ul>
+	<ul>
+<li><b>nReserved</b> is a reserved field which must always be 0.
+</ul>
+	By default, FlashFX uses BBM settings of {FFX_DEFAULT_BBM_SETTINGS},
+	which resolves to:
+
+<p>	{ TRUE, <a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_ONCE>FFX_FORMAT_ONCE</a>, <a HREF=QF680_PreprocSymbols.c.htm#FFX_BBMFORMAT_PRESERVE_BADBLOCKS>FFX_BBMFORMAT_PRESERVE_BADBLOCKS</a>, 100, 0 }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DEV0_FIMS"></a>
+<a NAME="FFX_DEV0_FIMS"></a>
+FFX_DEV0_FIMS
+</h3>
+<div class=SectionText>
+
+	This setting defines the list of FIMs which will be associated with the
+	Device. FlashFX will attempt to initialize each FIM listed, in the
+	order specified, until one is loaded successfully. The list is
+	specified in curly braces, with each FIM specified as an address, and
+	the entire list must be terminated with a NULL entry. See the FlashFX
+	Supported Hardware document from the Resource section of the Datalight
+	Website, or the source file devflash.c for a complete list of FIMs and
+	their device names.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DEV0_LATENCY"></a>
+<a NAME="FFX_DEV0_LATENCY"></a>
+FFX_DEV0_LATENCY
+</h3>
+<div class=SectionText>
+
+	This is the desired latency characteristics for the device.  This is
+	only used if <a HREF="#FFXCONF_LATENCYREDUCTIONENABLED">FFXCONF_LATENCYREDUCTIONENABLED</a> is TRUE.  This feature is
+	only accurate if the flash device timing characteristics are accurate.
+	According to the flash timing, large operations will be broken up as
+	necessary to reduce overall system latency.  This setting has the
+	following form:
+
+<p>	{ReadTime, WriteTime, EraseTime, ErasePollInterval}
+
+<p>	<b>ReadTime</b>, <b>WriteTime</b>, and <b>EraseTime</b> are the desired maximum number
+	of microseconds to spend in any given read, write, or erase operation.
+	Set	these values to 0 to cause the "minimum latency" settings to be used
+	where exactly one page or block will be processed at a time.  Set these
+	values to -1 to get the "maximum-throughput" configuration, (but higher
+	latency).  This is the default setting.
+
+<p>	<b>ErasePollInterval</b> is the number of microseconds to sleep between
+	polling for the completion of an erase operation.  Specify 0 to disable
+	sleeping while polling, or -1 to use default values based on the flash
+	performance.
+
+<p>	By default, FlashFX uses latency settings of
+	{FFX_DEFAULT_LATENCY_SETTINGS},	which resolves to:
+
+<p>	{ -1, -1, -1, -1 }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DEV0_NTMS"></a>
+<a NAME="FFX_DEV0_NTMS"></a>
+FFX_DEV0_NTMS
+</h3>
+<div class=SectionText>
+
+	This setting defines the list of NTMs which will be associated with the
+	Device, if the NAND FIM is used. FlashFX will attempt to initialize
+	each NTM listed, in the order specified, until one is loaded
+	successfully. The list is specified in curly braces, with each NTM
+	specified as an address, and the entire list must be terminated with a
+	NULL entry. See the FlashFX Supported Hardware document from the
+	Resource section of the Datalight Website, or the source file nand.c
+	for a complete list of NTMs and their device names.
+
+<p>	NTMs are only used if the NAND FIM is used. If NAND is not being used,
+	the FFX_DEV0_NTMS setting should be set to {NULL}.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DEV0_SETTINGS"></a>
+<a NAME="FFX_DEV0_SETTINGS"></a>
+FFX_DEV0_SETTINGS
+</h3>
+<div class=SectionText>
+
+	This defines the basic configuration information for each Device.  This
+	setting has the form:
+
+<p>	{UncachedAddress, ReservedLoKB, ReservedHiKB, MaxDevSizeKB}
+
+<p>	<ul>
+<li><b>UnchachedAddress</b> is the base address of the flash array. For flash
+	   types such as NAND, or the NOR "ram" or "file" FIMS, where virtual
+	   address mapping is not required, this value is not used and is
+	   typically set to FFX_BADADDRESS.
+	<li><b>ReservedLoKB</b> specifies the amount of flash at the beginning of the
+	   flash array in KB, which will not be touched by FlashFX.
+	<li><b>ReservedHiKB</b> specifies the amount of flash at the end of the flash
+	   array in KB, which will not be touched by FlashFX.
+	<li><b>MaxDevSizeKB</b> is the maximum amount of flash in KB, to use for the
+	   device, <b>AFTER removing any reserved space</b>. For NAND, the actual
+	   usable amount of flash will be less than that specified here, due
+	   to BBM overhead.
+</ul>
+	Note that when working with NOR flash, setting MaxDevSizeKB to a size
+	greater than the available physical flash will cause FlashFX to
+	access the address space outside of the address space of the flash
+	array, which is not allowed on many systems. Please use FFX_REMAINING
+	only if you know that issueing the flash identify command to the
+	address space outside of your flash array will not cause problems on
+	your system.
+
+<p>	<h4>Notes</h4>
+	<ul>
+<li>If the total of ReservedLoKB, ReservedHiKB, and MaxDevSizeKB is less
+	  than the total amount of flash, the effective ReservedHiKB value will
+	  be increased.
+	<li>If the total of ReservedLoKB, ReservedHiKB, and MaxDevSizeKB is greater
+	  than the total amount of flash, the effective MaxDevSizeKB value will be
+	  automatically reduced.
+	<li>If, due to any of these factors, MaxDevSizeKB becomes zero, the Device
+	  will fail to initialize.
+	<li>The boundaries between the various reserved areas and the usable flash
+	must fall on erase block boundaries.
+</ul>
+	A new FlashFX project uses default Device settings of
+	{FFX_DEFAULT_DEV_SETTINGS},	which resolves to:
+
+<p>	{ FFX_BADADDRESS, 0, 0, FFX_REMAINING }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DEV0_TIMING"></a>
+<a NAME="FFX_DEV0_TIMING"></a>
+FFX_DEV0_TIMING
+</h3>
+<div class=SectionText>
+
+	This defines the timing characteristics for the device.  This is only
+	used when <a HREF="#FFXCONF_LATENCYREDUCTIONENABLED">FFXCONF_LATENCYREDUCTIONENABLED</a> is TRUE.  This setting has
+	the following form:
+
+<p>	{PageReadTime, PageWriteTime, BlockEraseTime}
+
+<p>	These values are the number of microseconds required to read a page,
+	write a page, and erase a block.  If these values are set to zero, and
+	the feature FFXCONF_LATENCYAUTOTUNE is enabled, the values will be
+	calculated at run-time.
+
+<p>	By default, FlashFX uses timing settings of {FFX_DEFAULT_TIMING_SETTINGS},
+	which resolves to:
+
+<p>	{ 0, 0, 0 }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DISK0_ALLOCATOR"></a>
+<a NAME="FFX_DISK0_ALLOCATOR"></a>
+FFX_DISK0_ALLOCATOR
+</h3>
+<div class=SectionText>
+
+	This defines the allocator settings for each Disk.  This setting has
+	the form:
+
+<p>	{Allocator}
+
+<p>	<ul>
+<li><b>Allocator</b> is one of FFX_ALLOC_NONE or FFX_ALLOC_VBF.
+</ul>
+	By default, FlashFX uses allocator settings of
+	{FFX_DEFAULT_ALLOCATOR_SETTINGS}, which resolves to:
+
+<p>	{ FFX_ALLOC_VBF }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DISK0_COMPACTION"></a>
+<a NAME="FFX_DISK0_COMPACTION"></a>
+FFX_DISK0_COMPACTION
+</h3>
+<div class=SectionText>
+
+	Define the compaction settings for the Disk.  This setting is used to
+	configure compaction if either of the <a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDIDLE>FFX_COMPACT_BACKGROUNDIDLE</a> or
+	<a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDTHREAD>FFX_COMPACT_BACKGROUNDTHREAD</a> models are used.  <a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_NONE>FFX_COMPACT_NONE</a>
+	requires no configuration and this setting is not used.
+
+<p>	The configuration settings are specified as a structure initialization,
+	in curly braces.  The following fields must be initialized:
+
+<p>	{ulReadIdleMS, ulWriteIdleMS, ulSleepMS, uThreadPriority}
+
+<p>	<ul>
+<li><b>ulReadIdleMS</b> is the minimum number of milliseconds which must elapse
+	   after the last read operation before the background compaction attempt
+	   will begin examining the flash for erase zones to compact.
+	<li><b>ulWriteIdleMS</b> is the minimum number of milliseconds which must elapse
+	   after the last write/discard operation before the background compaction
+	   attempt will begin examining the flash for erase zones to compact.
+	<li><b>ulSleepMS</b> is the minimum number of milliseconds which the compaction
+	   thread will sleep if it finds that there is nothing to compact.
+	<li><b>uThreadPriority</b> is the thread priority (DCL_THREADPRIORITY_*) at which
+	   the compaction thread will run.
+</ul>
+	Note that the <b>ulSleepMS</b> and <b>uThreadPriority</b> settings are only
+	meaningful if the compaction model is set to <a HREF=QF680_PreprocSymbols.c.htm#FFX_COMPACT_BACKGROUNDTHREAD>FFX_COMPACT_BACKGROUNDTHREAD</a>.
+
+<p>	By default, FlashFX uses compaction settings of
+	{FFX_DEFAULT_COMPACTION_SETTINGS}, which resolves to:
+
+<p>	{ 1000UL, 3000UL, 1000UL, DCL_THREADPRIORITY_IDLE }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DISK0_FORMAT"></a>
+<a NAME="FFX_DISK0_FORMAT"></a>
+FFX_DISK0_FORMAT
+</h3>
+<div class=SectionText>
+
+	This defines the format settings for each Disk.  This setting has
+	the form:
+
+<p>	{FormatState, FileSystem, UseMBR, Reserved}
+
+<p>	<ul>
+<li><b>FormatState</b> is one of <a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_NEVER>FFX_FORMAT_NEVER</a>, <a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_ONCE>FFX_FORMAT_ONCE</a>, or
+	   <a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_ALWAYS>FFX_FORMAT_ALWAYS</a>.
+	<li><b>FileSystem</b> specifies the type of format to perform, which is one
+	   of the following:
+</ul>
+  	   
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_FILESYS_UNKNOWN>FFX_FILESYS_UNKNOWN</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Don't write any file system
+</td>
+</tr>
+
+<p>	   
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_FILESYS_FAT>FFX_FILESYS_FAT</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Write a FAT file system
+</td>
+</tr>
+
+<p>	   
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_FILESYS_RELIANCE>FFX_FILESYS_RELIANCE</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Write a Reliance file system
+</td>
+</tr>
+</table>
+
+<p>
+	<ul>
+<li><b>UseMBR</b> is a TRUE or FALSE value which indicates whether an MBR should
+	   be written to the Disk.  This value is only used if the FileSystem is
+	   "FAT" or "Reliance".
+    <li><b>Reserved</b> is a reserved field which should always be zero.
+</ul>
+	By default, FlashFX uses format settings of
+	{FFX_DEFAULT_FORMAT_SETTINGS}, which resolves to:
+
+<p>	{ <a HREF=QF680_PreprocSymbols.c.htm#FFX_FORMAT_ONCE>FFX_FORMAT_ONCE</a>, <a HREF=QF680_PreprocSymbols.c.htm#FFX_FILESYS_UNKNOWN>FFX_FILESYS_UNKNOWN</a>, FALSE, 0 }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_DISK0_SETTINGS"></a>
+<a NAME="FFX_DISK0_SETTINGS"></a>
+FFX_DISK0_SETTINGS
+</h3>
+<div class=SectionText>
+
+	This defines the basic configuration information for each Disk.  This
+	setting has the form:
+
+<p>	{DeviceNum, OffsetKB, LengthKB, Flags}
+
+<p>	<ul>
+<li><b>DeviceNum</b> is the Device number, from 0 to FFX_MAX_DEVICES-1, on which
+	   the Disk is to reside.
+	<li><b>OffsetKB</b> is the offset within the Device, in kilobytes, where the Disk
+	   is to start. This offset must be on an erase block boundary. If it is
+	   not, the offset will be rounded up to the next boundary.
+	<li><b>LengthKB</b> is the size of the Disk, in kilobytes. This length must be
+       evenly divisible by the size of an erase block if it is not, it will
+       be reduced as necessary. A disk may not overlap any other disks which
+       are mapped onto the disk. Set this value to FFX_REMAINING to use the
+       remaining space on the device (starting at OffsetKB).
+    <li><b>Flags</b> may be zero, or include any combination of the following values:
+</ul>
+       
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_DISK_SPANDEVICES>FFX_DISK_SPANDEVICES</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Allows the Disk to span multiple Devices with
+                              the same basic characteristics, starting with
+                              the Device specified by DeviceNum.
+</td>
+</tr>
+
+<p>       
+<tr class=Def>
+<td class=Def>
+<a HREF=QF680_PreprocSymbols.c.htm#FFX_DISK_RAW>FFX_DISK_RAW</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Disk may include the BBM area.
+</td>
+</tr>
+</table>
+
+<p>
+    <b>OffsetKB</b> and <b>LengthKB</b> values which are not evenly divisible by the
+    Device's erase block size, will be adjusted up for offsets and down for
+    the length.  A Disk may not overlap any other Disks which are mapped
+    onto the Device.
+
+<p>	A new FlashFX project uses default Disk settings of
+	{FFX_DEFAULT_DISK_SETTINGS}, which resolves to:
+
+<p>	{ 0, 0, FFX_REMAINING, 0 }
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_MAX_DEVICES"></a>
+<a NAME="FFX_MAX_DEVICES"></a>
+FFX_MAX_DEVICES
+</h3>
+<div class=SectionText>
+
+        Defines the maximum number of <font class=HighText>Devices</font> which the FlashFX Tera device
+        driver will support. This value should be set no higher than is
+        necessary to conserve memory space (though the amount of memory
+        consumed for an uninitialized Device is low). FlashFX has an internal
+        limit of 8, however can easily be modified to support up to 32.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_MAX_DISKS"></a>
+<a NAME="FFX_MAX_DISKS"></a>
+FFX_MAX_DISKS
+</h3>
+<div class=SectionText>
+
+        Defines the maximum number of <font class=HighText>Disks</font> which the FlashFX Tera device
+        driver will support.  This value should be set no higher than is
+        necessary to conserve memory space (though the amount of memory
+        consumed for an uninitialized Disk is low). FlashFX has an internal
+        limit of 8, however can easily be modified to support up to 32.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_MAX_PAGESIZE"></a>
+<a NAME="FFX_MAX_PAGESIZE"></a>
+FFX_MAX_PAGESIZE
+</h3>
+<div class=SectionText>
+
+        A power-of-two value which defines the maximum size page supported
+        by the driver.  Reducing this value to the same size page used by
+        the hardware will result in more efficient memory usage.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FFX_VBFOPT^flags"></a>
+<a NAME="FFX_VBFOPT flags"></a>
+FFX_VBFOPT flags
+</h3>
+<div class=SectionText>
+
+	This defines the VBF option flags for each Disk.  The following flag
+	settings are currently supported:
+
+<p>	<h4>FFX_VBFOPT_NONE</h4>       No VBF options are used for this disk.
+	FFX_VBFOPT_QUICKMOUNT: Use the QuickMount feature for this disk.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="VBFCONF_COMPACTIONTHRESHOLD"></a>
+<a NAME="VBFCONF_COMPACTIONTHRESHOLD"></a>
+VBFCONF_COMPACTIONTHRESHOLD
+</h3>
+<div class=SectionText>
+
+    Specifies the percentage of dirtiness that a given VBF Erase Unit
+    must have before it becomes a qualified candidate for background
+    compaction.
+
+<p>    This is the percentage of allocations which have been discarded,
+    relative to the total number of allocations in the erase unit.
+
+<p>    Set this too high and performance may suffer, set it too low and
+    the flash will wear out sooner.
+
+<p>    This value must either be -1, or a positive percentage value
+    from 0 to 100.
+
+<p>    The value defaults to -1, which tells FlashFX to automatically
+    choose the threshold.  Currently the default threshold for NAND
+    is 65% and for NOR is 50%.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="VBFCONF_DEFAULTCUSHION"></a>
+<a NAME="VBFCONF_DEFAULTCUSHION"></a>
+VBFCONF_DEFAULTCUSHION
+</h3>
+<div class=SectionText>
+
+    Specifies the default VBF cushion percentage to use.
+
+<p>    Cushion is a portion of the flash which is set aside for use
+    by FlashFX and is not available to the client.  The flash used
+    for the cushion reduces the ratio of erases to writes when the
+    flash is dirty.  This results in better performance at the cost
+    of less available flash.
+
+<p>    Cushion is specified in 10ths of a percent.  The default cushion
+    value is 6.2%.  When formatting the Disk, FlashFX will adjust
+    the cushion percentage as necessary to accommodate the flash
+    geometry.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="VBFCONF_DEFERREDDISCARD"></a>
+<a NAME="VBFCONF_DEFERREDDISCARD"></a>
+VBFCONF_DEFERREDDISCARD
+</h3>
+<div class=SectionText>
+
+    Specifies whether the Deferred NAND Discard feature is enabled
+    or not.
+
+<p>    The Deferred NAND Discard feature allows discard requests to be
+    put off until the last possible moment.  This feature is only
+    meaningful on NAND, and is most beneficial when there is a
+    reasonably high percentage of regions cached, and there is a
+    significant amount of random writes to previously written areas.
+
+<p>    Defaults to being enabled if NAND support is enabled.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="VBFCONF_REGIONCACHESIZE"></a>
+<a NAME="VBFCONF_REGIONCACHESIZE"></a>
+VBFCONF_REGIONCACHESIZE
+</h3>
+<div class=SectionText>
+
+    Specifies the VBF region cache size.  The region cache size
+    represents the maximum number of regions which can be mounted
+    at any given time.  This directly affects the number of
+    concurrent threads which may be accessing different areas of
+    the flash.
+
+<p>    Each region cache entry requires a substantial amount of memory,
+    typically in the 8KB vicinity, depending on other configuration
+    options.
+
+<p>    This value may be specified as a positive absolute number of
+    regions, or as a negative percentage of regions to cache.
+
+<p>    If the value is positive, the minimum value is 1, however if a
+    static region is defined with <a HREF="#VBFCONF_STATICREGION">VBFCONF_STATICREGION</a>, this value
+    must be at least 2.  If the value is larger than the number of
+    regions in the Disk, then it will be automatically reduced when
+    VBF is initialized for the Disk (memory will not be wasted).
+
+<p>    If the value is negative, it must range from -1 to -100, which
+    indicates the percentage of the total regions for which to create
+    cache entries.  The number will be truncated when it is rounded
+    during the calculation, but regardless a safe minimum number of
+    region cache entries will be created.
+
+<p>    The default value is -25, to cache 25% of the regions.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="VBFCONF_STATICREGION"></a>
+<a NAME="VBFCONF_STATICREGION"></a>
+VBFCONF_STATICREGION
+</h3>
+<div class=SectionText>
+
+    Specifies a VBF region number to keep statically mounted all the
+    time.  If there is a small number of region cache entries, for
+    some file systems it is optimal to keep a specific region mounted
+    at all times, because file systems often store metadata in fixed
+    locations on the Disk.
+
+<p>    When there is a reasonably large number of region cache entries,
+    this is not as valuable because the LRU algorithm is going to
+    ensure that the more recently accessed regions are always in
+    the cache.
+
+<p>    The static region feature is disabled by default.  Uncomment the
+    line below to enable the feature and specify the region to cache.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="VBF_MAX_UNIT_SIZE"></a>
+<a NAME="VBF_MAX_UNIT_SIZE"></a>
+VBF_MAX_UNIT_SIZE
+</h3>
+<div class=SectionText>
+
+    The maximum size of an erase unit.  This must be a power of two
+    equal to at least 32 VBF allocation blocks and not more than 2048
+    allocation blocks.  The default is 512K, or 1024 allocations of
+    512 bytes each.
+
+<p>    This directly affects run-time memory needed by FlashFX.
+    Decreasing this value to the size of the flash hardware erase
+    zone can be useful in memory-constrained applications.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

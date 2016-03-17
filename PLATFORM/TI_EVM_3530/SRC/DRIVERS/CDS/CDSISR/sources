@@ -1,0 +1,28 @@
+WINCEOEM=1
+
+TARGETNAME=cds_isr
+
+SOURCES= \
+    cdsisr.cpp \
+
+DEFFILE  = $(TARGETNAME).def
+
+DLLENTRY = DllEntry
+
+RELEASETYPE=PLATFORM
+
+CDEFINES=$(CDEFINES) -DCDSISR_EXPORTS
+
+TARGETLIBS= \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_SYSGENSDKROOT)\LIB\$(_CPUINDPATH)\coredll.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\gsnull.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\cds.lib    
+
+INCLUDES=\
+    $(INCLUDES);                                  \
+	$(_TARGETPLATROOT)\SRC\sdk\inc;		          \
+	$(_TARGETPLATROOT)\SRC\DRIVERS\CDS\CDSDriver; \
+
+TARGETTYPE=DYNLINK

@@ -1,0 +1,280 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#include "resdefce.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_WCE_MUX_ACT         ICON                    "mux.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU MENU 
+BEGIN
+    POPUP "&MUX"
+    BEGIN
+        MENUITEM "&Activate",                   ID_MUX_ACTIVATE
+        MENUITEM "&Deactivate",                 ID_MUX_DEACTIVATE
+        MENUITEM "Activate + set default",      ID_MUX_ACTIVATE_DEFAULT
+        MENUITEM "Deactivate + set default",    ID_MUX_DEACTIVATE_DEFAULT
+        MENUITEM "Send ""Modem is on"" message to MUX", ID_MUX_SEND_MODEM_ON_MESSAGE
+        MENUITEM "E&xit",                       ID_EXIT
+    END
+    POPUP "Modem"
+    BEGIN
+        MENUITEM "Turn modem on",               ID_MODEM_TURN_ON
+        MENUITEM "Turn modem on + registration", ID_MODEM_TURN_ON_REG
+        MENUITEM "Turn modem off",              ID_MODEM_TURN_OFF
+    END
+    POPUP "Voice"
+    BEGIN
+        MENUITEM "Activate voice",              ID_VOICE_ACTIVATE
+        MENUITEM "Voice call",                  ID_VOICE_CALL
+        MENUITEM "Auto Answer",                 ID_VOICE_AUTOANSWER
+    END
+    POPUP "Tests"
+    BEGIN
+        MENUITEM "Try open ports",              ID_TEST_OPEN_PORTS
+        POPUP "Listen port"
+        BEGIN
+            MENUITEM "COM6",                        ID_LISTEN_PORT_COM6
+            MENUITEM "COM8",                        ID_LISTEN_PORT_COM8
+            MENUITEM "COM0",                        ID_LISTEN_PORT_COM0
+        END
+        MENUITEM "Stop listening",              ID_VOICE_STOP_LISTENING
+        POPUP "Sent AT command to"
+        BEGIN
+            MENUITEM "COM6",                        ID_SENTATCOMMANDTO_COM6
+            MENUITEM "COM8",                        ID_SENTATCOMMANDTO_COM8
+            MENUITEM "COM0",                        ID_SENTATCOMMANDTO_COM0
+        END
+        MENUITEM "Start RSSI test",             ID_TESTS_STARTRSSITEST
+        MENUITEM "Stop RSSI test",              ID_TESTS_STOPRSSITEST
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_WCE_MUX_ACT ACCELERATORS 
+BEGIN
+    "A",            IDM_HELP_ABOUT,         VIRTKEY, CONTROL, NOINVERT
+    "Q",            IDOK,                   VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG  0, 0, 125, 55
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE 0x80000000L
+CAPTION "About wce_mux_act"
+FONT 8, "MS Sans Serif"
+BEGIN
+    ICON            IDI_WCE_MUX_ACT,IDC_STATIC,11,17,20,20
+    LTEXT           "wce_mux_act Version 1.0",IDC_STATIC,38,10,70,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2010",IDC_STATIC,38,25,70,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 118
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#include ""resdefce.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1255)\r\n"
+    "#include ""mux.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#endif\r\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_APP_TITLE           "wce_mux_act"
+    IDC_WCE_MUX_ACT         "WCE_MUX_ACT"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_TOOLS               "Tools"
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_AT_COMMAND DIALOG  0, 0, 149, 54
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Test"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,22,33,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,77,33,50,14
+    LTEXT           "AT command:",IDC_STATIC,7,10,44,8
+    EDITTEXT        IDC_EDIT1,55,7,87,14,ES_AUTOHSCROLL
+END
+
+IDD_VOICE_CALL DIALOG  0, 0, 207, 116
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Voice call"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "1",ID1,7,7,30,23
+    LTEXT           "Phone number:",IDC_STATIC,132,15,50,8
+    EDITTEXT        IDC_NUMBER,115,26,85,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "2",ID2,40,7,30,23
+    PUSHBUTTON      "3",ID3,73,7,30,23
+    PUSHBUTTON      "4",ID4,7,33,30,23
+    PUSHBUTTON      "5",ID5,40,33,30,23
+    PUSHBUTTON      "6",ID6,73,33,30,23
+    PUSHBUTTON      "7",ID7,8,60,30,23
+    PUSHBUTTON      "8",ID8,41,60,30,23
+    PUSHBUTTON      "9",ID9,74,60,30,23
+    PUSHBUTTON      "0",ID0,41,86,30,23
+    DEFPUSHBUTTON   "Dial",IDDIAL,115,76,40,33
+    PUSHBUTTON      "Cancel",IDCANCEL,160,86,40,23
+    PUSHBUTTON      "Clear",IDCLEAR,160,48,40,23
+    PUSHBUTTON      "<--",IDBACKSPACE,115,48,40,23
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_AT_COMMAND, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 142
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 47
+    END
+
+    IDD_VOICE_CALL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 200
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 109
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Hebrew resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1255)
+#include "mux.rc2"  // non-Microsoft Visual C++ edited resources
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

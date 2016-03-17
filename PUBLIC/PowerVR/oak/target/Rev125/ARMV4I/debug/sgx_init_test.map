@@ -1,0 +1,317 @@
+ sgx_init_test
+
+ Timestamp is 4c9a70f5 (Wed Sep 22 17:11:17 2010)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 000010a0H .rdata                  CODE
+ 0001:000010c0 0000002aH .rdata$debug            CODE
+ 0001:000010ec 00002778H .text                   CODE
+ 0001:00003864 00000020H .xdata                  CODE
+ 0001:00003884 00000028H .idata$2                CODE
+ 0001:000038ac 00000014H .idata$3                CODE
+ 0001:000038c0 000000d4H .idata$4                CODE
+ 0001:00003994 000000eaH .idata$6                CODE
+ 0001:00003a7e 00000000H .edata                  CODE
+ 0002:00000000 000000d4H .idata$5                DATA
+ 0002:000000d4 00000008H .data                   DATA
+ 0002:000000dc 00000010H .bss                    DATA
+ 0003:00000000 000000d8H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     00011000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     00011004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     00011008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     0001100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     00011010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     00011014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     00011018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     0001101c     corelib0:crt0init.obj
+ 0001:0000003c       ??_C@_0BE@GEDKFGMC@Not?5recognised?50x?$CFx?$AA@ 0001103c     sgx_init_test.obj
+ 0001:00000050       ??_C@_0CD@BDGFMHBG@PVRSRV_DEVICE_TYPE_EXT?5?$CI3rd?5Part@ 00011050     sgx_init_test.obj
+ 0001:00000074       ??_C@_0BH@OGEGGGCD@PVRSRV_DEVICE_ID_MSVDX?$AA@ 00011074     sgx_init_test.obj
+ 0001:0000008c       ??_C@_0BF@BBCLGMON@PVRSRV_DEVICE_ID_SGX?$AA@ 0001108c     sgx_init_test.obj
+ 0001:000000a4       ??_C@_0BJ@IMBALOKG@PVRSRV_DEVICE_ID_UNKNOWN?$AA@ 000110a4     sgx_init_test.obj
+ 0001:000000c0       ??_C@_0BI@ICLDLMDM@?4?4?4?4?5ui32ProcessID?3?$CFlu?6?$AA@ 000110c0     sgx_init_test.obj
+ 0001:000000d8       ??_C@_0DH@PINPAELL@?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9End?5loop?5?$CFd@ 000110d8     sgx_init_test.obj
+ 0001:00000110       ??_C@_0BD@NOILHFAN@PVRSRVDisconnect?3?6?$AA@ 00011110     sgx_init_test.obj
+ 0001:00000124       ??_C@_0BH@LMCBNGLN@SGXReleaseClientInfo?3?6?$AA@ 00011124     sgx_init_test.obj
+ 0001:0000013c       ??_C@_0CF@DBFHMBAF@Display?5Class?5API?3?5close?5the?5dev@ 0001113c     sgx_init_test.obj
+ 0001:00000164       ??_C@_0CM@LDEJMMMA@Attempt?5to?5destroy?5memory?5contex@ 00011164     sgx_init_test.obj
+ 0001:00000190       ??_C@_0DD@GODBIEMM@Display?5Class?5API?3?5unmap?5display@ 00011190     sgx_init_test.obj
+ 0001:000001c4       ??_C@_0CP@IFAFGPME@Display?5Class?5API?3?5map?5display?5s@ 000111c4     sgx_init_test.obj
+ 0001:000001f8       ??_C@_0EK@BPNJOJAB@?4?4?4?4?5Shared?5heap?5?$CFlu?5?9?5HeapID?30x@ 000111f8     sgx_init_test.obj
+ 0001:00000244       ??_C@_0DE@BODOPOHG@Display?5Class?5API?3?5get?5the?5syste@ 00011244     sgx_init_test.obj
+ 0001:00000278       ??_C@_0ED@NNKEOJPF@?4?4?4?4?5Display?5dimensions?5?$CFlu?5?9?5By@ 00011278     sgx_init_test.obj
+ 0001:000002bc       ??_C@_0DB@DPDHNDGF@Display?5Class?5API?3?5enumerate?5dis@ 000112bc     sgx_init_test.obj
+ 0001:000002f0       ??_C@_0CK@PAKBMFJN@?4?4?4?4?5Display?5format?5?$CFlu?5?9?5Pixelf@ 000112f0     sgx_init_test.obj
+ 0001:0000031c       ??_C@_0CO@GIPBIACE@Display?5Class?5API?3?5enumerate?5dis@ 0001131c     sgx_init_test.obj
+ 0001:0000034c       ??_C@_0BK@DMGFAHCI@?4?4?4?4?5MaxSwapInterval?3?$CFlu?6?$AA@ 0001134c     sgx_init_test.obj
+ 0001:00000368       ??_C@_0BK@CPCAOBID@?4?4?4?4?5MinSwapInterval?3?$CFlu?6?$AA@ 00011368     sgx_init_test.obj
+ 0001:00000384       ??_C@_0BO@POAFDAJE@?4?4?4?4?5MaxSwapChainBuffers?3?$CFlu?6?$AA@ 00011384     sgx_init_test.obj
+ 0001:000003a4       ??_C@_0BI@BLGHILNJ@?4?4?4?4?5MaxSwapChains?3?$CFlu?6?$AA@ 000113a4     sgx_init_test.obj
+ 0001:000003bc       ??_C@_0O@GDPIEJBG@?4?4?4?4?5Name?3?$CFs?6?$AA@ 000113bc     sgx_init_test.obj
+ 0001:000003cc       ??_C@_0CF@FMDFFMKC@Display?5Class?5API?3?5Get?5display?5i@ 000113cc     sgx_init_test.obj
+ 0001:000003f4       ??_C@_0CA@DAONOMAK@Display?5Class?5API?3?5open?5device?6?$AA@ 000113f4     sgx_init_test.obj
+ 0001:00000414       ??_C@_0CL@DNLHEBLI@Attempt?5to?5create?5memory?5context@ 00011414     sgx_init_test.obj
+ 0001:00000440       ??_C@_0DM@CIPNLPOO@PVRSRVEnumerateDeviceClass?$CI?$CJ?5ret@ 00011440     sgx_init_test.obj
+ 0001:0000047c       ??_C@_0CG@MMBLEMBO@Display?5Class?5API?3?5enumerate?5dev@ 0001147c     sgx_init_test.obj
+ 0001:000004a4       ??_C@_0BJ@NLALCGOE@Getting?5SGX?5Client?5info?6?$AA@ 000114a4     sgx_init_test.obj
+ 0001:000004c0       ??_C@_0BP@IDIGABKI@Attempt?5to?5acquire?5device?5?$CFd?3?6?$AA@ 000114c0     sgx_init_test.obj
+ 0001:000004e0       ??_C@_01EEMJAFIK@?6?$AA@   000114e0     sgx_init_test.obj
+ 0001:000004e4       ??_C@_0BH@PPGIPGOP@?5?5?5?5?5?5?5?5?5?5?5?5?$CF04d?5?5?5?5?$HM?5?$AA@ 000114e4     sgx_init_test.obj
+ 0001:000004fc       ??_C@_0CD@INKLJIDI@?4?4?4?4?5Device?5Number?5?5?$HM?5Device?5Typ@ 000114fc     sgx_init_test.obj
+ 0001:00000520       ??_C@_0BK@GEDDINJE@?4?4?4?4?5Reported?5?$CFu?5devices?6?$AA@ 00011520     sgx_init_test.obj
+ 0001:0000053c       ??_C@_0CA@DGGJNKGO@?5Test?5Memory?5Allocation?5FAILED?6?$AA@ 0001153c     sgx_init_test.obj
+ 0001:0000055c       ??_C@_0DE@KAFOOJDI@Get?5number?5of?5devices?5from?5PVRSR@ 0001155c     sgx_init_test.obj
+ 0001:00000590       ??_C@_0EA@LNIAFGAD@Try?5calling?5PVRSRVEnumerateDevic@ 00011590     sgx_init_test.obj
+ 0001:000005d0       ??_C@_0M@FBGHFOFL@?5FAIL?5?9?5?$CFs?6?$AA@ 000115d0     sgx_init_test.obj
+ 0001:000005dc       ??_C@_0CL@KFFMIBHA@Call?5PVRSRVConnect?5with?5a?5valid?5@ 000115dc     sgx_init_test.obj
+ 0001:00000608       ??_C@_04LNELOFCG@?5OK?6?$AA@ 00011608     sgx_init_test.obj
+ 0001:00000610       ??_C@_06HEMPAKAM@?5FAIL?6?$AA@ 00011610     sgx_init_test.obj
+ 0001:00000618       ??_C@_0DF@NBHKCIFP@Try?5calling?5PVRSRVConnect?5with?5a@ 00011618     sgx_init_test.obj
+ 0001:00000650       ??_C@_0DH@PPPHAACG@?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?5Start?5?9?9@ 00011650     sgx_init_test.obj
+ 0001:00000688       ??_C@_0BD@FOHFKAOE@INVALID?5ERROR?5CODE?$AA@ 00011688     sgx_init_test.obj
+ 0001:0000069c       ??_C@_0BM@NJBBOLAG@PVRSRV_ERROR_BUILD_MISMATCH?$AA@ 0001169c     sgx_init_test.obj
+ 0001:000006b8       ??_C@_0CC@JCFDHBML@PVRSRV_ERROR_DDK_VERSION_MISMATC@ 000116b8     sgx_init_test.obj
+ 0001:000006dc       ??_C@_0BD@COEEPPOL@PVRSRV_ERROR_RETRY?$AA@ 000116dc     sgx_init_test.obj
+ 0001:000006f0       ??_C@_0CG@FCILKACH@PVRSRV_ERROR_CANNOT_GET_RENDERDE@ 000116f0     sgx_init_test.obj
+ 0001:00000718       ??_C@_0CE@NLLBGAEA@PVRSRV_ERROR_CANNOT_GET_QUEUE_SP@ 00011718     sgx_init_test.obj
+ 0001:0000073c       ??_C@_0CA@NBGAMPKE@PVRSRV_ERROR_CANNOT_FLUSH_QUEUE?$AA@ 0001173c     sgx_init_test.obj
+ 0001:0000075c       ??_C@_0BG@OJDNODAO@PVRSRV_ERROR_NO_MUTEX?$AA@ 0001175c     sgx_init_test.obj
+ 0001:00000774       ??_C@_0CA@KIDKOOGL@PVRSRV_ERROR_PROCESSING_BLOCKED?$AA@ 00011774     sgx_init_test.obj
+ 0001:00000794       ??_C@_0BL@FINKNLDE@PVRSRV_ERROR_NOT_SUPPORTED?$AA@ 00011794     sgx_init_test.obj
+ 0001:000007b0       ??_C@_0BM@MCHBLHIP@PVRSRV_ERROR_TOOMANYBUFFERS?$AA@ 000117b0     sgx_init_test.obj
+ 0001:000007cc       ??_C@_0BN@BKNBJNB@PVRSRV_ERROR_INDOSORLOWPOWER?$AA@ 000117cc     sgx_init_test.obj
+ 0001:000007ec       ??_C@_0BJ@IIGHNIEG@PVRSRV_ERROR_TA_RECOVERY?$AA@ 000117ec     sgx_init_test.obj
+ 0001:00000808       ??_C@_0BI@JBKNPCOM@PVRSRV_ERROR_FIFO_SPACE?$AA@ 00011808     sgx_init_test.obj
+ 0001:00000820       ??_C@_0CE@FHHHLEGE@PVRSRV_ERROR_DEVICE_REGISTER_FAI@ 00011820     sgx_init_test.obj
+ 0001:00000844       ??_C@_0BJ@PHLIKBPN@PVRSRV_ERROR_CMD_TOO_BIG?$AA@ 00011844     sgx_init_test.obj
+ 0001:00000860       ??_C@_0BP@PFBLKCEO@PVRSRV_ERROR_CMD_NOT_PROCESSED?$AA@ 00011860     sgx_init_test.obj
+ 0001:00000880       ??_C@_0CB@HFGDLHLE@PVRSRV_ERROR_FAILED_DEPENDENCIES@ 00011880     sgx_init_test.obj
+ 0001:000008a4       ??_C@_0BP@LELIGCIL@PVRSRV_ERROR_INVALID_INTERRUPT?$AA@ 000118a4     sgx_init_test.obj
+ 0001:000008c4       ??_C@_0BK@JAAFMMBM@PVRSRV_ERROR_STREAM_ERROR?$AA@ 000118c4     sgx_init_test.obj
+ 0001:000008e0       ??_C@_0BL@JPEIBKNH@PVRSRV_ERROR_SCENE_INVALID?$AA@ 000118e0     sgx_init_test.obj
+ 0001:000008fc       ??_C@_0CE@JDEGJNCH@PVRSRV_ERROR_CANNOT_ACQUIRE_SYSD@ 000118fc     sgx_init_test.obj
+ 0001:00000920       ??_C@_0BP@FMELGOJO@PVRSRV_ERROR_FLIP_CHAIN_EXISTS?$AA@ 00011920     sgx_init_test.obj
+ 0001:00000940       ??_C@_0BI@CDPBDDFH@PVRSRV_ERROR_NO_PRIMARY?$AA@ 00011940     sgx_init_test.obj
+ 0001:00000958       ??_C@_0BF@KGIMOMJE@PVRSRV_ERROR_TIMEOUT?$AA@ 00011958     sgx_init_test.obj
+ 0001:00000970       ??_C@_0BJ@PHFCJIBD@PVRSRV_ERROR_BAD_MAPPING?$AA@ 00011970     sgx_init_test.obj
+ 0001:0000098c       ??_C@_0BH@OEOFFCIM@PVRSRV_ERROR_NOT_OWNER?$AA@ 0001198c     sgx_init_test.obj
+ 0001:000009a4       ??_C@_0BM@COIEDMNF@PVRSRV_ERROR_INVALID_DEVICE?$AA@ 000119a4     sgx_init_test.obj
+ 0001:000009c0       ??_C@_0CE@POPMCOCG@PVRSRV_ERROR_CANT_REGISTER_CALLB@ 000119c0     sgx_init_test.obj
+ 0001:000009e4       ??_C@_0BK@JHPIKHJG@PVRSRV_ERROR_INIT_FAILURE?$AA@ 000119e4     sgx_init_test.obj
+ 0001:00000a00       ??_C@_0BN@MGJEIKFE@PVRSRV_ERROR_TILE_MAP_FAILED?$AA@ 00011a00     sgx_init_test.obj
+ 0001:00000a20       ??_C@_0BM@LGNAOM@PVRSRV_ERROR_INVALID_PARAMS?$AA@ 00011a20     sgx_init_test.obj
+ 0001:00000a3c       ??_C@_0BL@BKMGFOLH@PVRSRV_ERROR_OUT_OF_HSPACE?$AA@ 00011a3c     sgx_init_test.obj
+ 0001:00000a58       ??_C@_0BO@EGNEIFEA@PVRSRV_ERROR_SYMBOL_NOT_FOUND?$AA@ 00011a58     sgx_init_test.obj
+ 0001:00000a78       ??_C@_0BN@IHBDMIPO@PVRSRV_ERROR_TOO_FEW_BUFFERS?$AA@ 00011a78     sgx_init_test.obj
+ 0001:00000a98       ??_C@_0BL@BOENCAIM@PVRSRV_ERROR_OUT_OF_MEMORY?$AA@ 00011a98     sgx_init_test.obj
+ 0001:00000ab4       ??_C@_0BF@KHEAJDEG@PVRSRV_ERROR_GENERIC?$AA@ 00011ab4     sgx_init_test.obj
+ 0001:00000acc       ??_C@_09KMCHPOPM@PVRSRV_OK?$AA@ 00011acc     sgx_init_test.obj
+ 0001:00000ad8       ??_C@_0CD@PBGAODGL@?4?4?4?4?5USE_SUPPORT_NO_TA3D_OVERLAP@ 00011ad8     sgx_init_test.obj
+ 0001:00000afc       ??_C@_0CH@KDLNALHG@?4?4?4?4?5SUPPORT_SGX_PRIORITY_SCHEDU@ 00011afc     sgx_init_test.obj
+ 0001:00000b24       ??_C@_0CC@PBEBICKP@?4?4?4?4?5SUPPORT_SGX_MMU_DUMMY_PAGE?3@ 00011b24     sgx_init_test.obj
+ 0001:00000b48       ??_C@_0BK@JEEICFNJ@?4?4?4?4?5SUPPORT_SGX_HWPERF?3?5?$AA@ 00011b48     sgx_init_test.obj
+ 0001:00000b64       ??_C@_0BN@IKKPFPFH@?4?4?4?4?5SUPPORT_PERCONTEXT_PB?3?5?$AA@ 00011b64     sgx_init_test.obj
+ 0001:00000b84       ??_C@_0CI@KGPIAJLH@?4?4?4?4?5SUPPORT_DISPLAYCONTROLLER_T@ 00011b84     sgx_init_test.obj
+ 0001:00000bac       ??_C@_0CH@FMAMMJDI@?4?4?4?4?5SUPPORT_ACTIVE_POWER_MANAGE@ 00011bac     sgx_init_test.obj
+ 0001:00000bd4       ??_C@_0BP@EKNECPM@?4?4?4?4?5SGX_SUPPORT_HWPROFILING?3?5?$AA@ 00011bd4     sgx_init_test.obj
+ 0001:00000bf4       ??_C@_0CA@EGNBMLMJ@?4?4?4?4?5SGX_FEATURE_SYSTEM_CACHE?3?5?$AA@ 00011bf4     sgx_init_test.obj
+ 0001:00000c14       ??_C@_0CC@NPOADBLC@?4?4?4?4?5SGX_FEATURE_OVERLAPPED_SPM?3@ 00011c14     sgx_init_test.obj
+ 0001:00000c38       ??_C@_0CJ@CGFGFCIK@?4?4?4?4?5SGX_FEATURE_MULTITHREADED_U@ 00011c38     sgx_init_test.obj
+ 0001:00000c64       ??_C@_04PEDNGLFL@?$CFld?6?$AA@ 00011c64     sgx_init_test.obj
+ 0001:00000c6c       ??_C@_0CB@ODIPCGL@?4?4?4?4?5SGX_FEATURE_MP_CORE_COUNT?3?5@ 00011c6c     sgx_init_test.obj
+ 0001:00000c90       ??_C@_0BG@EHGIBNPN@?4?4?4?4?5SGX_FEATURE_MP?3?5?$AA@ 00011c90     sgx_init_test.obj
+ 0001:00000ca8       ??_C@_0BH@CEHELPHH@?4?4?4?4?5SGX_FEATURE_DCU?3?5?$AA@ 00011ca8     sgx_init_test.obj
+ 0001:00000cc0       ??_C@_0BJ@NDCCFHBD@?4?4?4?4?5SGX_FAST_DPM_INIT?3?5?$AA@ 00011cc0     sgx_init_test.obj
+ 0001:00000cdc       ??_C@_0BK@DFJDHFPM@?4?4?4?4?5SGX_DMS_AGE_ENABLE?3?5?$AA@ 00011cdc     sgx_init_test.obj
+ 0001:00000cf8       ??_C@_0BP@CMJHKMAD@?4?4?4?4?5SGX_BYPASS_SYSTEM_CACHE?3?5?$AA@ 00011cf8     sgx_init_test.obj
+ 0001:00000d18       ??_C@_0BK@EFNNGEBJ@?4?4?4?4?5PVR_SECURE_HANDLES?3?5?$AA@ 00011d18     sgx_init_test.obj
+ 0001:00000d34       ??_C@_0BL@MHAEDBH@?4?4?4?4?5SUPPORT_HW_RECOVERY?3?5?$AA@ 00011d34     sgx_init_test.obj
+ 0001:00000d50       ??_C@_0CE@EBOHCEFA@?4?4?4?4?5PVRSRV_USSE_EDM_STATUS_DEBU@ 00011d50     sgx_init_test.obj
+ 0001:00000d74       ??_C@_0N@CBKLAPJJ@?4?4?4?4?5PDUMP?3?5?$AA@ 00011d74     sgx_init_test.obj
+ 0001:00000d84       ??_C@_0N@PMKALKLK@?4?4?4?4?5DEBUG?3?5?$AA@ 00011d84     sgx_init_test.obj
+ 0001:00000d94       ??_C@_0BP@GFIFMEMA@SGX?5microkernel?5build?5options?6?$AA@ 00011d94     sgx_init_test.obj
+ 0001:00000db4       ??_C@_0DP@OBEHLMF@?4?4?4?4?5SGX?5microkernel?5software?5co@ 00011db4     sgx_init_test.obj
+ 0001:00000df4       ??_C@_0DA@JOODEMOL@?4?4?4?4?5SGX?5microkernel?5DDK?5version@ 00011df4     sgx_init_test.obj
+ 0001:00000e24       ??_C@_0BM@LFGEPCCF@?4?4?4?4?5Hardware?5core?5ID?3?5?$CFld?6?$AA@ 00011e24     sgx_init_test.obj
+ 0001:00000e40       ??_C@_0CG@PMKABEN@?4?4?4?4?5Hardware?5core?5ID?3?5?$CFld?0?5name@ 00011e40     sgx_init_test.obj
+ 0001:00000e66       ??_C@_00CNPNBAHC@?$AA@     00011e66     sgx_init_test.obj
+ 0001:00000e68       ??_C@_0L@FANDILD@SGX?554x?9MP?$AA@ 00011e68     sgx_init_test.obj
+ 0001:00000e74       ??_C@_07MGEBGODC@SGX?5531?$AA@ 00011e74     sgx_init_test.obj
+ 0001:00000e7c       ??_C@_07KHGCLNLD@SGX?5545?$AA@ 00011e7c     sgx_init_test.obj
+ 0001:00000e84       ??_C@_07NKBFEJPG@SGX?5540?$AA@ 00011e84     sgx_init_test.obj
+ 0001:00000e8c       ??_C@_07KCCNKLDG@SGX?5535?$AA@ 00011e8c     sgx_init_test.obj
+ 0001:00000e94       ??_C@_0M@JDCKMKKM@SGX?5520?1530?$AA@ 00011e94     sgx_init_test.obj
+ 0001:00000ea0       ??_C@_0DN@PDOMMKDJ@?4?4?4?4?5Hardware?5core?5designer?3?5?$CFd?0@ 00011ea0     sgx_init_test.obj
+ 0001:00000ee0       ??_C@_0DI@JECPMKED@Misc?5Info?5API?3?5Query?5the?5SGX?5fea@ 00011ee0     sgx_init_test.obj
+ 0001:00000f18       ??_C@_0DA@FHGIJGL@?4?4?4?4?5SGX?5Host?5driver?5DDK?5version@ 00011f18     sgx_init_test.obj
+ 0001:00000f48       ??_C@_0DI@JAJOLEGH@Misc?5Info?5API?3?5Query?5the?5SGX?5fea@ 00011f48     sgx_init_test.obj
+ 0001:00000f80       ??_C@_09JLJAGNAE@disabled?6?$AA@ 00011f80     sgx_init_test.obj
+ 0001:00000f8c       ??_C@_08EHJFGCDI@enabled?6?$AA@ 00011f8c     sgx_init_test.obj
+ 0001:00000f98       ??_C@_1CC@HNHLKECD@?$AA?$CI?$AAe?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAc?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$AA@ 00011f98     wince_unittests.obj
+ 0001:00000fbc       ??_C@_1CI@OHCJFJPM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?5?$AAl?$AAi?$AAn?$AAe?$AA?5?$AA?$CF?$AAd?$AA?3?$AA?5?$AA?$AA@ 00011fbc     wince_unittests.obj
+ 0001:00000fe8       ??_C@_1HC@FHLJBOEE@?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn?$AAC?$AAE?$AA?2?$AAO?$AAM?$AAA?$AAP?$AA?2?$AAD?$AAD?$AAK?$AA1?$AA?4?$AA5?$AA?2?$AAe?$AAu?$AAr?$AAa?$AAs?$AAi?$AAa?$AA?2?$AAu?$AAn?$AAi@ 00011fe8     wince_unittests.obj
+ 0001:0000105c       ??_C@_1M@DMCDIEDK@?$AAP?$AAK?$AAM?$AA1?$AA?3?$AA?$AA@ 0001205c     wince_unittests.obj
+ 0001:00001068       ??_C@_0L@GPAGIAIC@?9disablepm?$AA@ 00012068     wince_unittests.obj
+ 0001:00001074       ??_C@_1DG@PCJNAHOH@?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAg?$AAe?$AAt?$AA?5?$AAm?$AAo?$AAn?$AAi?$AAt?$AAo?$AAr?$AA?5?$AAi?$AAn?$AAf?$AAo?$AA?$AA@ 00012074     wince_unittests.obj
+ 0001:000010ac       ??_C@_1M@ILHOPKA@?$AAE?$AAr?$AAr?$AAo?$AAr?$AA?$AA@ 000120ac     wince_unittests.obj
+ 0001:000010b8       ??_C@_07FBLHGNAH@app?4exe?$AA@ 000120b8     wince_unittests.obj
+ 0001:000010ec       print_dev_type             000120ec f   sgx_init_test.obj
+ 0001:000011a8       print_sgx_info             000121a8 f   sgx_init_test.obj
+ 0001:000011d8       main                       000121d8 f   sgx_init_test.obj
+ 0001:000028a0       GPE_DPF                    000138a0 f   wince_unittests.obj
+ 0001:00002934       AppWndProc                 00013934 f   wince_unittests.obj
+ 0001:000029cc       WinMain                    000139cc f   wince_unittests.obj
+ 0001:00002ddc       OutputDebugStringW         00013ddc f   coredll:COREDLL.dll
+ 0001:00002dec       MultiByteToWideChar        00013dec f   coredll:COREDLL.dll
+ 0001:00002dfc       DefWindowProcW             00013dfc f   coredll:COREDLL.dll
+ 0001:00002e0c       PostQuitMessage            00013e0c f   coredll:COREDLL.dll
+ 0001:00002e1c       ReleasePowerRequirement    00013e1c f   coredll:COREDLL.dll
+ 0001:00002e2c       NKDbgPrintfW               00013e2c f   coredll:COREDLL.dll
+ 0001:00002e3c       GetLastError               00013e3c f   coredll:COREDLL.dll
+ 0001:00002e4c       SetPowerRequirement        00013e4c f   coredll:COREDLL.dll
+ 0001:00002e5c       WideCharToMultiByte        00013e5c f   coredll:COREDLL.dll
+ 0001:00002e6c       SetCursorPos               00013e6c f   coredll:COREDLL.dll
+ 0001:00002e7c       GetCursorPos               00013e7c f   coredll:COREDLL.dll
+ 0001:00002e8c       MessageBoxW                00013e8c f   coredll:COREDLL.dll
+ 0001:00002e9c       GetMonitorInfo             00013e9c f   coredll:COREDLL.dll
+ 0001:00002eac       MonitorFromPoint           00013eac f   coredll:COREDLL.dll
+ 0001:00002ebc       PVRSRVDisconnect           00013ebc f   srvclum:SRVCLUM.dll
+ 0001:00002ecc       SGXReleaseClientInfo       00013ecc f   srvclum:SRVCLUM.dll
+ 0001:00002edc       PVRSRVCloseDCDevice        00013edc f   srvclum:SRVCLUM.dll
+ 0001:00002eec       PVRSRVDestroyDeviceMemContext 00013eec f   srvclum:SRVCLUM.dll
+ 0001:00002efc       PVRSRVUnmapDeviceClassMemory 00013efc f   srvclum:SRVCLUM.dll
+ 0001:00002f0c       PVRSRVMapDeviceClassMemory 00013f0c f   srvclum:SRVCLUM.dll
+ 0001:00002f1c       PVRSRVGetDCSystemBuffer    00013f1c f   srvclum:SRVCLUM.dll
+ 0001:00002f2c       PVRSRVEnumDCDims           00013f2c f   srvclum:SRVCLUM.dll
+ 0001:00002f3c       PVRSRVEnumDCFormats        00013f3c f   srvclum:SRVCLUM.dll
+ 0001:00002f4c       PVRSRVGetDCInfo            00013f4c f   srvclum:SRVCLUM.dll
+ 0001:00002f5c       PVRSRVOpenDCDevice         00013f5c f   srvclum:SRVCLUM.dll
+ 0001:00002f6c       PVRSRVCreateDeviceMemContext 00013f6c f   srvclum:SRVCLUM.dll
+ 0001:00002f7c       PVRSRVEnumerateDeviceClass 00013f7c f   srvclum:SRVCLUM.dll
+ 0001:00002f8c       SGXGetClientInfo           00013f8c f   srvclum:SRVCLUM.dll
+ 0001:00002f9c       PVRSRVAcquireDeviceData    00013f9c f   srvclum:SRVCLUM.dll
+ 0001:00002fac       PVRSRVEnumerateDevices     00013fac f   srvclum:SRVCLUM.dll
+ 0001:00002fbc       PVRSRVConnect              00013fbc f   srvclum:SRVCLUM.dll
+ 0001:00002fcc       SGXGetMiscInfo             00013fcc f   srvclum:SRVCLUM.dll
+ 0001:00002fdc       WinMainCRTStartup          00013fdc f   corelib0:pegwmain.obj
+ 0001:000030b0       exit                       000140b0 f   corelib0:cexit.obj
+ 0001:000031f4       _exit                      000141f4 f   corelib0:cexit.obj
+ 0001:00003218       _cexit                     00014218 f   corelib0:cexit.obj
+ 0001:00003234       _c_exit                    00014234 f   corelib0:cexit.obj
+ 0001:00003250       GetCurrentProcess          00014250 f i corelib0:cexit.obj
+ 0001:00003268       __security_init_cookie     00014268 f   corelib0:seccinit.obj
+ 0001:00003330       __GSHandlerCheck           00014330 f   corelib0:gshandler.obj
+ 0001:00003378       __GSHandlerCheckCommon     00014378 f   corelib0:gshandler.obj
+ 0001:00003420       __security_check_cookie    00014420 f   corelib0:armsecgs.obj
+ 0001:00003434       __gsfailure                00014434 f   corelib0:armsecgs.obj
+ 0001:00003478       _initterm                  00014478 f   corelib0:crt0dat.obj
+ 0001:000034cc       _cinit                     000144cc f   corelib0:crt0dat.obj
+ 0001:00003500       _onexit                    00014500 f   corelib0:onexit.obj
+ 0001:000036e0       atexit                     000146e0 f   corelib0:onexit.obj
+ 0001:00003734       printf                     00014734 f   corelib1:COREDLL.dll
+ 0001:00003744       free                       00014744 f   corelib1:COREDLL.dll
+ 0001:00003754       malloc                     00014754 f   corelib1:COREDLL.dll
+ 0001:00003764       atol                       00014764 f   corelib1:COREDLL.dll
+ 0001:00003774       strcmp                     00014774 f   corelib1:COREDLL.dll
+ 0001:00003784       strcpy                     00014784 f   corelib1:COREDLL.dll
+ 0001:00003794       sprintf                    00014794 f   corelib1:COREDLL.dll
+ 0001:000037a4       swprintf                   000147a4 f   corelib1:COREDLL.dll
+ 0001:000037b4       _stricmp                   000147b4 f   corelib1:COREDLL.dll
+ 0001:000037c4       _isctype                   000147c4 f   corelib1:COREDLL.dll
+ 0001:000037d4       wcslen                     000147d4 f   corelib1:COREDLL.dll
+ 0001:000037e4       memset                     000147e4 f   corelib1:COREDLL.dll
+ 0001:000037f4       _XcptFilter                000147f4 f   corelib1:COREDLL.dll
+ 0001:00003804       __C_specific_handler       00014804 f   corelib1:COREDLL.dll
+ 0001:00003814       __security_gen_cookie2     00014814 f   corelib1:COREDLL.dll
+ 0001:00003824       __report_gsfailure         00014824 f   corelib1:COREDLL.dll
+ 0001:00003834       realloc                    00014834 f   corelib1:COREDLL.dll
+ 0001:00003844       _msize                     00014844 f   corelib1:COREDLL.dll
+ 0001:00003854       TerminateProcess           00014854 f   coredll:COREDLL.dll
+ 0001:00003884       __IMPORT_DESCRIPTOR_COREDLL 00014884     coredll:COREDLL.dll
+ 0001:00003898       __IMPORT_DESCRIPTOR_SRVCLUM 00014898     srvclum:SRVCLUM.dll
+ 0001:000038ac       __NULL_IMPORT_DESCRIPTOR   000148ac     coredll:COREDLL.dll
+ 0002:00000000       __imp_OutputDebugStringW   00015000     coredll:COREDLL.dll
+ 0002:00000004       __imp_MultiByteToWideChar  00015004     coredll:COREDLL.dll
+ 0002:00000008       __imp_DefWindowProcW       00015008     coredll:COREDLL.dll
+ 0002:0000000c       __imp_PostQuitMessage      0001500c     coredll:COREDLL.dll
+ 0002:00000010       __imp_ReleasePowerRequirement 00015010     coredll:COREDLL.dll
+ 0002:00000014       __imp_NKDbgPrintfW         00015014     coredll:COREDLL.dll
+ 0002:00000018       __imp_GetLastError         00015018     coredll:COREDLL.dll
+ 0002:0000001c       __imp_SetPowerRequirement  0001501c     coredll:COREDLL.dll
+ 0002:00000020       __imp_WideCharToMultiByte  00015020     coredll:COREDLL.dll
+ 0002:00000024       __imp_SetCursorPos         00015024     coredll:COREDLL.dll
+ 0002:00000028       __imp_GetCursorPos         00015028     coredll:COREDLL.dll
+ 0002:0000002c       __imp_MessageBoxW          0001502c     coredll:COREDLL.dll
+ 0002:00000030       __imp_GetMonitorInfo       00015030     coredll:COREDLL.dll
+ 0002:00000034       __imp_MonitorFromPoint     00015034     coredll:COREDLL.dll
+ 0002:00000038       __imp__msize               00015038     corelib1:COREDLL.dll
+ 0002:0000003c       __imp_realloc              0001503c     corelib1:COREDLL.dll
+ 0002:00000040       __imp___report_gsfailure   00015040     corelib1:COREDLL.dll
+ 0002:00000044       __imp___security_gen_cookie2 00015044     corelib1:COREDLL.dll
+ 0002:00000048       __imp___C_specific_handler 00015048     corelib1:COREDLL.dll
+ 0002:0000004c       __imp__XcptFilter          0001504c     corelib1:COREDLL.dll
+ 0002:00000050       __imp_memset               00015050     corelib1:COREDLL.dll
+ 0002:00000054       __imp_wcslen               00015054     corelib1:COREDLL.dll
+ 0002:00000058       __imp__isctype             00015058     corelib1:COREDLL.dll
+ 0002:0000005c       __imp__stricmp             0001505c     corelib1:COREDLL.dll
+ 0002:00000060       __imp_swprintf             00015060     corelib1:COREDLL.dll
+ 0002:00000064       __imp_TerminateProcess     00015064     coredll:COREDLL.dll
+ 0002:00000068       __imp_sprintf              00015068     corelib1:COREDLL.dll
+ 0002:0000006c       __imp_strcpy               0001506c     corelib1:COREDLL.dll
+ 0002:00000070       __imp_strcmp               00015070     corelib1:COREDLL.dll
+ 0002:00000074       __imp_atol                 00015074     corelib1:COREDLL.dll
+ 0002:00000078       __imp_malloc               00015078     corelib1:COREDLL.dll
+ 0002:0000007c       __imp_free                 0001507c     corelib1:COREDLL.dll
+ 0002:00000080       __imp_printf               00015080     corelib1:COREDLL.dll
+ 0002:00000084       \177COREDLL_NULL_THUNK_DATA 00015084     coredll:COREDLL.dll
+ 0002:00000088       __imp_SGXGetMiscInfo       00015088     srvclum:SRVCLUM.dll
+ 0002:0000008c       __imp_PVRSRVConnect        0001508c     srvclum:SRVCLUM.dll
+ 0002:00000090       __imp_PVRSRVEnumerateDevices 00015090     srvclum:SRVCLUM.dll
+ 0002:00000094       __imp_PVRSRVAcquireDeviceData 00015094     srvclum:SRVCLUM.dll
+ 0002:00000098       __imp_SGXGetClientInfo     00015098     srvclum:SRVCLUM.dll
+ 0002:0000009c       __imp_PVRSRVEnumerateDeviceClass 0001509c     srvclum:SRVCLUM.dll
+ 0002:000000a0       __imp_PVRSRVOpenDCDevice   000150a0     srvclum:SRVCLUM.dll
+ 0002:000000a4       __imp_PVRSRVGetDCInfo      000150a4     srvclum:SRVCLUM.dll
+ 0002:000000a8       __imp_PVRSRVEnumDCFormats  000150a8     srvclum:SRVCLUM.dll
+ 0002:000000ac       __imp_PVRSRVEnumDCDims     000150ac     srvclum:SRVCLUM.dll
+ 0002:000000b0       __imp_PVRSRVGetDCSystemBuffer 000150b0     srvclum:SRVCLUM.dll
+ 0002:000000b4       __imp_PVRSRVMapDeviceClassMemory 000150b4     srvclum:SRVCLUM.dll
+ 0002:000000b8       __imp_PVRSRVUnmapDeviceClassMemory 000150b8     srvclum:SRVCLUM.dll
+ 0002:000000bc       __imp_PVRSRVDestroyDeviceMemContext 000150bc     srvclum:SRVCLUM.dll
+ 0002:000000c0       __imp_PVRSRVCloseDCDevice  000150c0     srvclum:SRVCLUM.dll
+ 0002:000000c4       __imp_SGXReleaseClientInfo 000150c4     srvclum:SRVCLUM.dll
+ 0002:000000c8       __imp_PVRSRVDisconnect     000150c8     srvclum:SRVCLUM.dll
+ 0002:000000cc       __imp_PVRSRVCreateDeviceMemContext 000150cc     srvclum:SRVCLUM.dll
+ 0002:000000d0       \177SRVCLUM_NULL_THUNK_DATA 000150d0     srvclum:SRVCLUM.dll
+ 0002:000000d4       __security_cookie          000150d4     corelib0:seccinit.obj
+ 0002:000000d8       __security_cookie_complement 000150d8     corelib0:seccinit.obj
+ 0002:000000dc       pfnRegisteredWndProc       000150dc     wince_unittests.obj
+ 0002:000000e0       _exitflag                  000150e0     corelib0:cexit.obj
+ 0002:000000e4       __onexitend                000150e4     <common>
+ 0002:000000e8       __onexitbegin              000150e8     <common>
+
+ entry point at        0001:00002fdc
+
+ Static symbols
+
+ 0001:00002064       GetString                  00013064 f   sgx_init_test.obj
+ 0001:00002288       SGXUT_query_sgx_corerev    00013288 f   sgx_init_test.obj
+ 0001:000027bc       SGXUT_decode_dword         000137bc f   sgx_init_test.obj
+ 0001:00002858       SGXUT_decode_build_option  00013858 f   sgx_init_test.obj
+ 0001:00003010       WinMainCRTStartupHelper    00014010 f   corelib0:pegwmain.obj
+ 0001:000030d4       doexit                     000140d4 f   corelib0:cexit.obj

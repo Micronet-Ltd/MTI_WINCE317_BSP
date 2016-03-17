@@ -1,0 +1,42 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+!IF "$(_TGTPLAT)" != "TI_EVM_3530"
+SKIPBUILD=1
+!ENDIF 
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+# INCLUDES=$(INCLUDES);$(_TARGETPLATROOT)\src\drivers\gprs; 
+INCLUDES=$(INCLUDES);
+
+TARGETNAME=tps659xx_wave_omap35xx_tps659xx_ti_v1
+TARGETTYPE=LIBRARY
+WINCEOEM=1
+SYNCHRONIZE_DRAIN=1
+
+# OMAP hardware can use direct access to memory
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+!IF "$(SYSGEN_BTH_AG)" != ""
+CDEFINES=$(CDEFINES) -DSYSGEN_BTH_AG
+!ENDIF 
+
+
+_OEMINCPATH=$(_WINCEROOT)\public\common\oak\inc
+_OEMINCPATH=$(_OEMINCPATH);$(_WINCEROOT)\public\common\sdk\inc
+_OEMINCPATH=$(_OEMINCPATH);$(_WINCEROOT)\public\common\ddk\inc
+
+INCLUDES=$(INCLUDES)
+
+SOURCES= \
+    debug.cpp \
+    tps659xx_audio.cpp

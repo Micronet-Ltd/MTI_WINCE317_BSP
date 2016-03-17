@@ -1,0 +1,61 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+
+// common resources for the landscape and portrait versions of main dialog
+
+// disk info strings
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_STRING_XSECTORS			"%u Sectors"
+    IDS_STRING_XBYTES			"%u Bytes"    
+END
+
+// error strings
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_ERROR_PARTCREATE 		"Unable to create partition"
+	IDS_ERROR_PARTDELETE		"Unable to delete partition"
+	IDS_ERROR_PARTMOUNT			"Unable to mount partition"
+	IDS_ERROR_PARTDISMOUNT		"Unable to dismount partition"
+	IDS_ERROR_PARTFORMAT		"Unable to format partition"
+	IDS_ERROR_STOREFORMAT		"Unable to format store"
+	IDS_ERROR_STOREDISMOUNT		"Unable to dismount store"
+END	
+
+// warning strings
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_CONFIRM_FMTSTORE_TITLE	"Format the selected store?"
+    IDS_CONFIRM_FMTSTORE	  	"This operation will permanently erase all data on the storage device"
+    IDS_CONFIRM_DELPART_TITLE	"Delete the selected partition?"
+    IDS_CONFIRM_DELPART	  		"This operation will permanently erase all data on the partition"
+END
+
+// success strings
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_SUCCESS_FMTSTORE_TITLE	"Format store succeeded"
+	IDS_SUCCESS_FMTSTORE	  	"The format operation completed successfully"
+END
+
+// cpl name/info strings
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_PROP				  "Storage Properties"
+    IDS_TITLE                 "Storage Manager"
+    IDS_INFO                  "Manage your storage media and disk partitions"
+END
+
+// our icon
+IDI_PARTMAN           ICON    DISCARDABLE     "stgui.ico"

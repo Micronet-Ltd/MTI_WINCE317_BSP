@@ -1,0 +1,10 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!INCLUDE "..\sources.inc"
+
+TARGETNAME=$(OMAP3530)_mcbsp
+TARGETTYPE=LIBRARY
+
+SOURCES= \
+    mcbsp.cpp \
+
+

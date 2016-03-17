@@ -1,0 +1,6 @@
+
+SKIPBUILD=1
+
+FILE_VIEW_ROOT_FOLDER= \
+    CDCDriver_DE910.reg \
+    1vv0300821_CC864_UC864_DE910_WinCE6.0_User_Guide_r4.pdf \

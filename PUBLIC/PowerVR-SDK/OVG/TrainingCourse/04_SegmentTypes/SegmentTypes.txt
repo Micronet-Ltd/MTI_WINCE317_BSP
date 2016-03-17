@@ -1,0 +1,13 @@
+
+Demo title: 		SegmentTypes
+
+Demonstrates: 		Simple example showing the different segment types in OpenVG
+
+Short Description:	Simple example showing the different segment types in OpenVG
+
+Full Description:	
+Simple example showing the different segment types in OpenVG
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

@@ -1,0 +1,206 @@
+/*---------------------------------------------------------------------------
+               ----> DO NOT REMOVE THE FOLLOWING NOTICE <----
+
+                  Copyright (c) 1993 - 2009 Datalight, Inc.
+                       All Rights Reserved Worldwide.
+
+  Datalight, Incorporated is a Washington State corporation located at:
+
+        21520 30th Dr SE, Suite 110,      Tel:  425-951-8086
+        Bothell, WA  98021                Fax:  425-951-8094
+        USA                               Web:  http://www.datalight.com
+
+  This software, including without limitation all source code and documen-
+  tation, is the confidential, trade secret property of Datalight, Inc.
+  and is protected under the copyright laws of the United States and other
+  jurisdictions.  Patents may be pending.
+
+  In addition to civil penalties for infringement of copyright under appli-
+  cable U.S. law, 17 U.S.C. 1204 provides criminal penalties for violation
+  of (a) the restrictions on circumvention of copyright protection systems
+  found in 17 U.S.C. 1201 and (b) the protections for the integrity of
+  copyright management information found in 17 U.S.C. 1202.
+
+  U.S. Government Restricted Rights:  Use, duplication, reproduction, or
+  transfer of this commercial product and accompanying documentation is
+  restricted in accordance with FAR 12.212 and DFARS 227.7202 and by a
+  License Agreement.
+
+  IN ADDITION TO COPYRIGHT AND PATENT LAW, THIS SOFTWARE IS PROTECTED UNDER
+  A SOURCE CODE AGREEMENT, NON-DISCLOSURE AGREEMENT, AND/OR SIMILAR BINDING
+  CONTRACT BETWEEN DATALIGHT, INC. AND THE LICENSEE ("BINDING AGREEMENTS").
+  IF YOU ARE A LICENSEE, YOUR RIGHT, IF ANY, TO COPY, PUBLISH, MODIFY, OR
+  OTHERWISE USE THE SOFTWARE, IS SUBJECT TO THE TERMS AND CONDITIONS OF THE
+  BINDING AGREEMENTS.  BY USING THE SOFTWARE IN ANY MANNER, IN WHOLE OR IN
+  PART, YOU AGREE TO BE BOUND BY THE TERMS OF THE BINDING AGREEMENTS.
+
+  IF YOU ARE NOT A DATALIGHT LICENSEE, ANY USE MAY RESULT IN CIVIL AND
+  CRIMINAL ACTION AGAINST YOU.  CONTACT DATALIGHT, INC. AT THE ADDRESS
+  SET FORTH ABOVE IF YOU OBTAINED THIS SOFTWARE IN ERROR.
+---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+                                Description
+
+    This module contains the default OS Services implementations for the file
+    system management functions.
+
+    Should these routines need customization for your project, copy this
+    module into your Project Directory, make your changes, and modify the
+    make file to build the new module.
+---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+                                Revision History
+    $Log: osfile.c $
+    Revision 1.9  2009/04/10 20:52:02Z  garyp
+    Documentation updated -- no functional changes.
+    Revision 1.8  2008/04/17 01:57:51Z  brandont
+    Updated DclOsFsFileRename argument names to match the prototype.
+    Revision 1.7  2008/04/17 01:19:12Z  brandont
+    Updated to use the new file system services.
+    Revision 1.6  2008/04/05 03:55:20Z  brandont
+    Updated to use the DclOsFs services prefix.
+    Revision 1.5  2008/04/04 00:17:18Z  brandont
+    Changed max path length and max name length members
+    of the DCLFSSTATFS structure to be of type unsigned.
+    Revision 1.4  2008/04/04 00:10:59Z  brandont
+    Changed the uAttributes field of the DCLFSSTAT structure to be
+    32-bits.
+    Revision 1.3  2008/04/03 23:55:40Z  brandont
+    Updated all defines and structures used by the DCL file system
+    services to use the DCLFS prefix.
+    Revision 1.2  2007/11/03 23:31:25Z  Garyp
+    Added the standard module header.
+    Revision 1.1  2007/08/02 18:53:44Z  brandont
+    Initial revision
+---------------------------------------------------------------------------*/
+
+#include <dcl.h>
+#include <dlapiprv.h>
+
+
+/*-------------------------------------------------------------------
+    Public: DclOsFsFileDelete()
+
+    Delete a file.
+
+    Parameters:
+        pszPath - The path of the file to delete.
+
+    Return Value:
+        Returns a DCLSTATUS code indicating the result.
+-------------------------------------------------------------------*/
+DCLSTATUS DclOsFsFileDelete(
+    const char * pszPath)
+{
+    DclProductionAssert(pszPath);
+    DclProductionError();
+    return DCLSTAT_FS_BADCMD;
+}
+
+
+/*-------------------------------------------------------------------
+    Public: DclOsFsStat()
+
+    Retrieve information about a file or directory.
+
+    Parameters:
+        pszName - The name of the object to get info about.
+        pStat   - A buffer to receive the Stat information.
+
+    Return Value:
+        Returns a DCLSTATUS code indicating the result.
+-------------------------------------------------------------------*/
+DCLSTATUS DclOsFsStat(
+    const char * pszName,
+    DCLFSSTAT * pStat)
+{
+    DclProductionAssert(pszName);
+    DclProductionAssert(pStat);
+    DclProductionError();
+    return DCLSTAT_FS_BADCMD;
+}
+
+
+/*-------------------------------------------------------------------
+    Public: DclOsFsStatFs()
+
+    Retrieve information about a file system.
+
+    Parameters:
+        pszPath - A path on the target file system.
+        pStatFs - A buffer to receive the StatFs information.
+
+    Return Value:
+        Returns a DCLSTATUS code indicating the result.
+-------------------------------------------------------------------*/
+DCLSTATUS DclOsFsStatFs(
+    const char * pszPath,
+    DCLFSSTATFS * pStatFs)
+{
+    DclProductionAssert(pszPath);
+    DclProductionAssert(pStatFs);
+    DclProductionError();
+    return DCLSTAT_FS_BADCMD;
+}
+
+
+/*-------------------------------------------------------------------
+    Public: DclOsFsFileRename()
+
+    Rename or move a file.
+
+    Parameters:
+        pszOrigPath - The old path.
+        pszNewPath  - The new path.
+
+    Return Value:
+        Returns a DCLSTATUS code indicating the result.
+-------------------------------------------------------------------*/
+DCLSTATUS DclOsFsFileRename(
+    const char * pszOrigPath,
+    const char * pszNewPath)
+{
+    DclProductionAssert(pszOrigPath);
+    DclProductionAssert(pszNewPath);
+    DclProductionError();
+    return DCLSTAT_FS_BADCMD;
+}
+
+
+/*-------------------------------------------------------------------
+    Public: DclOsFsBecomeFileUser()
+
+    Allow this thread to access the file system.
+
+    Parameters:
+        None.
+
+    Return:
+        Returns a DCLSTATUS value representing a class of errors
+        defined in dlstatus.h.
+-------------------------------------------------------------------*/
+DCLSTATUS DclOsFsBecomeFileUser(void)
+{
+    DclProductionError();
+    return DCLSTAT_FS_BADCMD;
+}
+
+
+/*-------------------------------------------------------------------
+    Public: DclOsFsReleaseFileUser()
+
+    Indicate that this thread is finished accessing the file system.
+
+    Parameters:
+        None.
+
+    Return Value:
+        Returns a DCLSTATUS code indicating the result.
+-------------------------------------------------------------------*/
+DCLSTATUS DclOsFsReleaseFileUser(void)
+{
+    DclProductionError();
+    return DCLSTAT_FS_BADCMD;
+}

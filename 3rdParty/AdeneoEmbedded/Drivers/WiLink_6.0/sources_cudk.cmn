@@ -1,0 +1,104 @@
+!if 0
+Common definitions for TI Wilink build
+!endif
+
+TWD_ROOT=$(DK_ROOT)\TWD
+STAD_ROOT=$(DK_ROOT)\stad
+EXTDRV_ROOT=$(DK_ROOT)\external_drivers\omap2430\wince
+OS_ROOT=$(DK_ROOT)\platforms\os\wince
+
+
+TWD_INCLUDES= \
+        $(TWD_ROOT)\Ctrl; \
+        $(TWD_ROOT)\Ctrl\Export_Inc; \
+        $(TWD_ROOT)\Data_Service; \
+        $(TWD_ROOT)\Data_Service\Export_Inc; \
+        $(TWD_ROOT)\FirmwareApi; \
+        $(TWD_ROOT)\FW_Transfer; \
+        $(TWD_ROOT)\FW_Transfer\Export_Inc; \
+        $(TWD_ROOT)\MacServices; \
+        $(TWD_ROOT)\MacServices\Export_Inc; \
+        $(TWD_ROOT)\TWDriver; \
+        $(TWD_ROOT)\TwIf; \
+
+STAD_INCLUDES= \
+        $(STAD_ROOT)\src\AirLink_Managment; \
+        $(STAD_ROOT)\src\Application; \
+        $(STAD_ROOT)\src\Connection_Managment; \
+        $(STAD_ROOT)\src\Ctrl_Interface; \
+        $(STAD_ROOT)\src\Data_link; \
+        $(STAD_ROOT)\src\Sta_Management; \
+        $(STAD_ROOT)\Export_Inc; \
+
+APP_INCLUDES= \
+	$(DK_ROOT)\CUDK\configurationutility\inc; \
+	$(DK_ROOT)\CUDK\os\common\inc; \
+	$(DK_ROOT)\CUDK\os\win\inc; \
+	$(DK_ROOT)\CUDK\logger\wince\inc; \
+
+PLATFORM_INCLUDES= \
+        $(DK_ROOT)\platforms\os\common\inc; \
+        $(DK_ROOT)\platforms\os\wince\Export_Inc; \
+        $(DK_ROOT)\platforms\hw\host_platform_omap2430\wince; \
+
+!IF "$(BSP_TI_WIFI_CCX_ENABLED)" == "1"
+CDEFINES= $(CDEFINES) \
+	-DCCX_MODULE_INCLUDED
+
+STAD_INCLUDES= $(STAD_INCLUDES) \
+        $(STAD_ROOT)\src\CCX; \
+        $(STAD_ROOT)\Export_Inc\CCX; \
+        $(DK_ROOT)\utils\CCX;
+
+APP_INCLUDES=  $(APP_INCLUDES) \
+        $(DK_ROOT)\CUDK\configurationutility\ccx;
+!ENDIF
+
+INCLUDES= \
+        $(INCLUDES); \
+        $(STAD_INCLUDES); \
+        $(TWD_INCLUDES); \
+        $(PLATFORM_INCLUDES); \
+        $(APP_INCLUDES); \
+        $(DK_ROOT)\utils;  \
+        $(DK_ROOT)\Test;  \
+        $(OS_ROOT)\Export_Inc; \
+        $(DK_ROOT)\Txn;  \
+
+CDEFINES= $(CDEFINES) \
+	-DBSP_H5 \
+	-D__BYTE_ORDER_LITTLE_ENDIAN \
+	-DCONFIGURE_BSS_TYPE_STA \
+	-DTNETW1251=1 \
+	-DTIWLN_MAJOR_VERSION=5 \
+	-DTIWLN_MINOR_VERSION=1 \
+	-DNOT_SUPPORT_08_BIT_ACCESS_COMMAND \
+	-DFOUR_ALIGNMENT \
+	-DFIRMWARE_DYNAMIC_LOAD \
+	-DNDIS51_MINIPORT=1 \
+	-D_WINDOWS \
+	-DHOST_COMPILE \
+	-DFW_RUNNING_AS_STA \
+	-DWINCE5_BUILD \
+	-DAKU30_SUPPORT \
+	-DPERIODIC_WAKEUP \
+	-DNO_WPA_SUPPL \
+	-DTI_DBG \
+	-DREPORT_LOG \
+	-DTNETW1273 
+
+!IF "$(FPGA1273_STAGE_)" == "1"
+CDEFINES= $(CDEFINES) \
+	-DFPGA1273_STAGE_
+!ENDIF
+
+!IF "$(ETH_SUPPORT)"=="1"
+CDEFINES= $(CDEFINES) \
+        -DETH_SUPPORT
+!ENDIF
+
+!IF "$(TI_WIFI_BMTRACE)"=="1"
+CDEFINES= $(CDEFINES) \
+        -DTIWLAN_BMTRACE
+!ENDIF
+

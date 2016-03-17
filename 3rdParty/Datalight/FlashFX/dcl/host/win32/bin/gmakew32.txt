@@ -1,0 +1,9 @@
+
+	The gmakew32.exe supplied with this product is a slightly modified
+	version of GNU Make for Win32 and is covered by the GNU General
+	Public License.  For information concerning the GPL or GNU Make
+	go to www.gnu.org.  If you wish to receive a copy of the modified
+	source code for this executable, Datalight will supply it upon
+	request or you can visit www.gnu.org and download the unmodified
+	source code.
+

@@ -1,0 +1,24 @@
+
+#define IDM_POS_RUN				(0)
+#define IDM_POS_VIEW			(1)
+#define IDM_POS_PAUSE   		(2)
+#define IDM_POS_HELP			(3)
+
+
+#define IDM_RUN              	1000
+#define IDM_RUN_SAVEAS        	1001
+#define IDM_RUN_EXIT         	1002
+
+#define IDM_VIEW              	1100
+#define IDM_VIEW_KEEPONTOP		1101
+#define IDM_VIEW_FONTFIXED     	1102
+#define IDM_VIEW_FONTVARIABLE  	1103
+#define IDM_VIEW_FONTCHOOSE    	1104
+#define IDM_VIEW_SETTINGS    	1105
+#define IDM_VIEW_SAVESETTINGS   1106
+#define IDM_VIEW_DELETESETTINGS 1107
+
+#define IDM_PAUSE_GO          	1201
+
+#define IDM_HELPABOUT         	1301
+

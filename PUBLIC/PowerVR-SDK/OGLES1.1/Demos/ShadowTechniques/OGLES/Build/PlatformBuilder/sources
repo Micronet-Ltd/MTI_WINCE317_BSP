@@ -1,0 +1,43 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES
+PROJECTNAME=ShadowTechniques
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Scene_fixed.obj \
+	$(OBJDIR)\Scene_float.obj \
+	$(OBJDIR)\Blob.obj \
+	$(OBJDIR)\TableCover.obj \
+	$(OBJDIR)\Kettle.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Scene_fixed.cpp \
+	$(APPROOT)\Content\Scene_float.cpp \
+	$(APPROOT)\Content\Blob.cpp \
+	$(APPROOT)\Content\TableCover.cpp \
+	$(APPROOT)\Content\Kettle.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

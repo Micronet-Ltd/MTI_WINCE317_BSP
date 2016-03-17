@@ -1,0 +1,160 @@
+ libOpenVGU
+
+ Timestamp is 4c9a6dec (Wed Sep 22 16:58:20 2010)
+
+ Preferred load address is 10000000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 0000001cH .rdata                  CODE
+ 0001:0000003c 00000027H .rdata$debug            CODE
+ 0001:00000064 00004094H .text                   CODE
+ 0001:000040f8 0000001cH .xdata                  CODE
+ 0001:00004114 00000028H .idata$2                CODE
+ 0001:0000413c 00000014H .idata$3                CODE
+ 0001:00004150 00000094H .idata$4                CODE
+ 0001:000041e4 0000001aH .idata$6                CODE
+ 0001:00004200 0000011aH .edata                  CODE
+ 0002:00000000 00000094H .idata$5                DATA
+ 0002:00000094 00000008H .data                   DATA
+ 0002:0000009c 00000010H .bss                    DATA
+ 0003:00000000 00000108H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     10001000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     10001004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     10001008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     1000100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     10001010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     10001014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     10001018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     1000101c     corelib0:crt0init.obj
+ 0001:00000064       vguLine                    10001064 f   vgu.obj
+ 0001:000006cc       vguPolygon                 100016cc f   vgu.obj
+ 0001:00000970       vguRect                    10001970 f   vgu.obj
+ 0001:00000afc       vguRoundRect               10001afc f   vgu.obj
+ 0001:00001050       vguEllipse                 10002050 f   vgu.obj
+ 0001:00001260       vguArc                     10002260 f   vgu.obj
+ 0001:00001eb4       vguComputeWarpQuadToSquare 10002eb4 f   vgu.obj
+ 0001:00002750       vguComputeWarpSquareToQuad 10003750 f   vgu.obj
+ 0001:00002e74       vguComputeWarpQuadToQuad   10003e74 f   vgu.obj
+ 0001:00003660       vgGetError                 10004660 f   libopenvg:libopenvg.dll
+ 0001:00003670       vgAppendPathData           10004670 f   libopenvg:libopenvg.dll
+ 0001:00003680       vgGetParameteri            10004680 f   libopenvg:libopenvg.dll
+ 0001:00003690       vgGetParameterf            10004690 f   libopenvg:libopenvg.dll
+ 0001:000036a0       DllMain                    100046a0 f   corelib0:dllmain.obj
+ 0001:000036dc       _DllMainCRTStartup         100046dc f   corelib0:pegdmain.obj
+ 0001:00003884       __security_init_cookie     10004884 f   corelib0:seccinit.obj
+ 0001:0000394c       __GSHandlerCheck           1000494c f   corelib0:gshandler.obj
+ 0001:00003994       __GSHandlerCheckCommon     10004994 f   corelib0:gshandler.obj
+ 0001:00003a3c       __security_check_cookie    10004a3c f   corelib0:armsecgs.obj
+ 0001:00003a50       __gsfailure                10004a50 f   corelib0:armsecgs.obj
+ 0001:00003a94       exit                       10004a94 f   corelib0:cexit.obj
+ 0001:00003bd8       _exit                      10004bd8 f   corelib0:cexit.obj
+ 0001:00003bfc       _cexit                     10004bfc f   corelib0:cexit.obj
+ 0001:00003c18       _c_exit                    10004c18 f   corelib0:cexit.obj
+ 0001:00003c34       GetCurrentProcess          10004c34 f i corelib0:cexit.obj
+ 0001:00003c4c       _initterm                  10004c4c f   corelib0:crt0dat.obj
+ 0001:00003ca0       _cinit                     10004ca0 f   corelib0:crt0dat.obj
+ 0001:00003cd4       _onexit                    10004cd4 f   corelib0:onexit.obj
+ 0001:00003eb4       atexit                     10004eb4 f   corelib0:onexit.obj
+ 0001:00003f08       free                       10004f08 f   corelib1:COREDLL.dll
+ 0001:00003f18       floor                      10004f18 f   corelib1:COREDLL.dll
+ 0001:00003f28       malloc                     10004f28 f   corelib1:COREDLL.dll
+ 0001:00003f38       __adds                     10004f38 f   corelib1:COREDLL.dll
+ 0001:00003f48       __stod                     10004f48 f   corelib1:COREDLL.dll
+ 0001:00003f58       __dtoi                     10004f58 f   corelib1:COREDLL.dll
+ 0001:00003f68       __subs                     10004f68 f   corelib1:COREDLL.dll
+ 0001:00003f78       __divs                     10004f78 f   corelib1:COREDLL.dll
+ 0001:00003f88       __les                      10004f88 f   corelib1:COREDLL.dll
+ 0001:00003f98       __negs                     10004f98 f   corelib1:COREDLL.dll
+ 0001:00003fa8       __lts                      10004fa8 f   corelib1:COREDLL.dll
+ 0001:00003fb8       __gts                      10004fb8 f   corelib1:COREDLL.dll
+ 0001:00003fc8       sin                        10004fc8 f   corelib1:COREDLL.dll
+ 0001:00003fd8       cos                        10004fd8 f   corelib1:COREDLL.dll
+ 0001:00003fe8       __dtos                     10004fe8 f   corelib1:COREDLL.dll
+ 0001:00003ff8       __muls                     10004ff8 f   corelib1:COREDLL.dll
+ 0001:00004008       __eqs                      10005008 f   corelib1:COREDLL.dll
+ 0001:00004018       __eqd                      10005018 f   corelib1:COREDLL.dll
+ 0001:00004028       __ltd                      10005028 f   corelib1:COREDLL.dll
+ 0001:00004038       __gtd                      10005038 f   corelib1:COREDLL.dll
+ 0001:00004048       __muld                     10005048 f   corelib1:COREDLL.dll
+ 0001:00004058       __subd                     10005058 f   corelib1:COREDLL.dll
+ 0001:00004068       __divd                     10005068 f   corelib1:COREDLL.dll
+ 0001:00004078       _XcptFilter                10005078 f   corelib1:COREDLL.dll
+ 0001:00004088       __C_specific_handler       10005088 f   corelib1:COREDLL.dll
+ 0001:00004098       __security_gen_cookie2     10005098 f   corelib1:COREDLL.dll
+ 0001:000040a8       __report_gsfailure         100050a8 f   corelib1:COREDLL.dll
+ 0001:000040b8       realloc                    100050b8 f   corelib1:COREDLL.dll
+ 0001:000040c8       _msize                     100050c8 f   corelib1:COREDLL.dll
+ 0001:000040d8       DisableThreadLibraryCalls  100050d8 f   coredll:COREDLL.dll
+ 0001:000040e8       TerminateProcess           100050e8 f   coredll:COREDLL.dll
+ 0001:00004114       __IMPORT_DESCRIPTOR_libopenvg 10005114     libopenvg:libopenvg.dll
+ 0001:00004128       __IMPORT_DESCRIPTOR_COREDLL 10005128     corelib1:COREDLL.dll
+ 0001:0000413c       __NULL_IMPORT_DESCRIPTOR   1000513c     libopenvg:libopenvg.dll
+ 0002:00000000       __imp_cos                  10006000     corelib1:COREDLL.dll
+ 0002:00000004       __imp_DisableThreadLibraryCalls 10006004     coredll:COREDLL.dll
+ 0002:00000008       __imp__msize               10006008     corelib1:COREDLL.dll
+ 0002:0000000c       __imp_realloc              1000600c     corelib1:COREDLL.dll
+ 0002:00000010       __imp_free                 10006010     corelib1:COREDLL.dll
+ 0002:00000014       __imp_floor                10006014     corelib1:COREDLL.dll
+ 0002:00000018       __imp_malloc               10006018     corelib1:COREDLL.dll
+ 0002:0000001c       __imp___adds               1000601c     corelib1:COREDLL.dll
+ 0002:00000020       __imp___stod               10006020     corelib1:COREDLL.dll
+ 0002:00000024       __imp___dtoi               10006024     corelib1:COREDLL.dll
+ 0002:00000028       __imp___subs               10006028     corelib1:COREDLL.dll
+ 0002:0000002c       __imp___divs               1000602c     corelib1:COREDLL.dll
+ 0002:00000030       __imp___les                10006030     corelib1:COREDLL.dll
+ 0002:00000034       __imp___negs               10006034     corelib1:COREDLL.dll
+ 0002:00000038       __imp___lts                10006038     corelib1:COREDLL.dll
+ 0002:0000003c       __imp___gts                1000603c     corelib1:COREDLL.dll
+ 0002:00000040       __imp_sin                  10006040     corelib1:COREDLL.dll
+ 0002:00000044       __imp_TerminateProcess     10006044     coredll:COREDLL.dll
+ 0002:00000048       __imp___dtos               10006048     corelib1:COREDLL.dll
+ 0002:0000004c       __imp___muls               1000604c     corelib1:COREDLL.dll
+ 0002:00000050       __imp___eqs                10006050     corelib1:COREDLL.dll
+ 0002:00000054       __imp___eqd                10006054     corelib1:COREDLL.dll
+ 0002:00000058       __imp___ltd                10006058     corelib1:COREDLL.dll
+ 0002:0000005c       __imp___gtd                1000605c     corelib1:COREDLL.dll
+ 0002:00000060       __imp___muld               10006060     corelib1:COREDLL.dll
+ 0002:00000064       __imp___subd               10006064     corelib1:COREDLL.dll
+ 0002:00000068       __imp___divd               10006068     corelib1:COREDLL.dll
+ 0002:0000006c       __imp__XcptFilter          1000606c     corelib1:COREDLL.dll
+ 0002:00000070       __imp___C_specific_handler 10006070     corelib1:COREDLL.dll
+ 0002:00000074       __imp___security_gen_cookie2 10006074     corelib1:COREDLL.dll
+ 0002:00000078       __imp___report_gsfailure   10006078     corelib1:COREDLL.dll
+ 0002:0000007c       \177COREDLL_NULL_THUNK_DATA 1000607c     corelib1:COREDLL.dll
+ 0002:00000080       __imp_vgGetParameterf      10006080     libopenvg:libopenvg.dll
+ 0002:00000084       __imp_vgGetParameteri      10006084     libopenvg:libopenvg.dll
+ 0002:00000088       __imp_vgAppendPathData     10006088     libopenvg:libopenvg.dll
+ 0002:0000008c       __imp_vgGetError           1000608c     libopenvg:libopenvg.dll
+ 0002:00000090       \177libopenvg_NULL_THUNK_DATA 10006090     libopenvg:libopenvg.dll
+ 0002:00000094       __security_cookie          10006094     corelib0:seccinit.obj
+ 0002:00000098       __security_cookie_complement 10006098     corelib0:seccinit.obj
+ 0002:0000009c       _exitflag                  1000609c     corelib0:cexit.obj
+ 0002:000000a0       __onexitend                100060a0     <common>
+ 0002:000000a4       __onexitbegin              100060a4     <common>
+ 0002:000000a8       _pRawDllMain               100060a8     <common>
+
+ entry point at        0001:000036dc
+
+ Static symbols
+
+ 0001:00000138       OVGNormaliseData           10001138 f   vgu.obj
+ 0001:00000620       OVG_VGU_Error              10001620 f   vgu.obj
+ 0001:00000934       OVGCheckPtrAlignment       10001934 f   vgu.obj
+ 0001:00001fb0       OVG_VGU_mx3d_tra           10002fb0 f   vgu.obj
+ 0001:000020e4       OVG_VGU_mx3d_invert        100030e4 f   vgu.obj
+ 0001:00002fc4       OVG_VGU_mx3d_mul           10003fc4 f   vgu.obj
+ 0001:00003730       _DllMainCRTStartupHelper   10004730 f   corelib0:pegdmain.obj
+ 0001:00003ab8       doexit                     10004ab8 f   corelib0:cexit.obj

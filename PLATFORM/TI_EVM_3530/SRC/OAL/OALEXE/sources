@@ -1,0 +1,69 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+SYNCHRONIZE_DRAIN=1
+NOLIBC=1
+
+TARGETNAME=oal
+TARGETTYPE=PROGRAM
+
+EXEENTRY=StartUp
+
+LDEFINES=/DEBUG /DEBUGTYPE:CV /FIXED:NO
+
+TARGETLIBS= \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_i2c.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_twl.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_rtc.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_args.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_stall.lib \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_kitl_reg.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_intr_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_power_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_ioctl_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_misc_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_prcm_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_cache_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_sr_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_timer.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_memory_arm.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_vfp_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_io.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_other.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_log.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_ilt.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\oemmain.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\nkldr.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\fulllibc.lib \
+    $(_COMMONOAKLIB)\$(_CPUDEPPATH)\nkstub.lib \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_cpuver_omap35xx_tps659xx_ti_v1.lib \
+
+!IF "$(ENABLE_OAL_MHZPROFILER)" == "1"
+TARGETLIBS=$(TARGETLIBS) \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_timer_gp1_profiler_omap35xx_tps659xx_ti_v1.lib
+!ELSE
+
+TARGETLIBS=$(TARGETLIBS) \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\oal_timer_gp1_omap35xx_tps659xx_ti_v1.lib
+!ENDIF 
+
+!IF "$(BSP_WATCHDOG_ENABLE)" == "1"
+TARGETLIBS=$(TARGETLIBS) \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_watchdog_omap35xx.lib
+!ELSE
+TARGETLIBS=$(TARGETLIBS) \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\oal_watchdog_stub_omap35xx.lib
+!ENDIF
+
+SOURCES=

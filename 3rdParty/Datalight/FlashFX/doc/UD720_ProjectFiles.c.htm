@@ -1,0 +1,368 @@
+<html>
+<head>
+<title>
+DCL Project Files
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Project Files
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Project Files">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        This section describes the DCL specific files which are placed into
+        the Project Directory when a new project is created.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#dclconf.h">dclconf.h</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The master DCL project configuration header.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#dclproj.c">dclproj.c</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        A container for the DCL project startup and shutdown code, which
+        may be customized by an OEM.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#dclproj.mak">dclproj.mak</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        The make file which controls the compilation of DCL specific code in
+        the Project Directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#prjbuild.bat">prjbuild.bat</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        PRJBUILD is the command which invokes Win32 hosted builds.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#prjclean.bat">prjclean.bat</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        PRJCLEAN is the command which cleans the build tree.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#prjinfo.bat">prjinfo.bat</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+        This batch file contains information about the project.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="dclconf.h"></a>
+<a NAME="dclconf.h"></a>
+<a HREF=UD640_Headers.c.htm#dclconf.h>dclconf.h</a>
+</h3>
+<div class=SectionText>
+
+        The master DCL project configuration header.  This header file resides
+        in each DCL <font class=HighText>Project Directory</font>, and is automatically included by
+        <a HREF=UD640_Headers.c.htm#dcl.h>dcl.h</a>.
+
+<p>        When a new project is created, a template <a HREF=UD640_Headers.c.htm#dclconf.h>dclconf.h</a> file is copied from
+        the \dcl\os\wince\newproj directory.
+
+<p>        See the section <i>DCL Project Configuration Settings</i> for
+        information on the contents of this file.
+
+<p>        <b>Note that the default template header may be different for each the various operating systems which DCL supports, so mixing copies from different operating system abstractions is not recommended.</b>
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="dclproj.c"></a>
+<a NAME="dclproj.c"></a>
+dclproj.c
+</h3>
+<div class=SectionText>
+
+        A container for the DCL project startup and shutdown code, which
+        may be customized by an OEM.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="dclproj.mak"></a>
+<a NAME="dclproj.mak"></a>
+dclproj.mak
+</h3>
+<div class=SectionText>
+
+        The make file which controls the compilation of DCL specific code in
+        the Project Directory.
+
+<p>        <b>Note</b> -- This file is used for Win32 hosted projects, and does not exist for GNU hosted projects.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="prjbuild.bat"></a>
+<a NAME="prjbuild.bat"></a>
+prjbuild.bat
+</h3>
+<div class=SectionText>
+
+        PRJBUILD is the command which invokes Win32 hosted builds.  It takes
+        one optional command line parameter, which must be a number from 0 to 3.
+        This value indicates the debug level to use, with '0' indicating that
+        the build is a release build.  If this value is not supplied, the build
+        process will use the value of the B_DEBUG environment variable.  If the
+        B_DEBUG environment variable is not set, the debug setting will default
+        to '0'. 
+
+<p>        <b>Note</b> -- This file is used for Win32 hosted projects, and does not exist for GNU hosted projects.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="prjclean.bat"></a>
+<a NAME="prjclean.bat"></a>
+prjclean.bat
+</h3>
+<div class=SectionText>
+
+        PRJCLEAN is the command which cleans the build tree.  It has the
+        following syntax:
+
+<p>                prjclean [all | everything] 
+
+<p>        By default, PRJCLEAN simply iterates over the product directory tree and
+        deletes all files generated during the build.  However it does NOT delete
+        the files created in the DEBUG and RELEASE directories for your project
+        (or any other project). 
+
+<p>        If the "all" option is used, PRJCLEAN will also additionally delete the
+        DEBUG and RELEASE directories for the current project only. 
+
+<p>        If the "everything" option is used, PRJCLEAN will additionally delete 
+        the DEBUG and RELEASE directories for all projects in the product's 
+        "projects" directory tree. 
+
+<p>        <b>Note</b> -- The "all" and "everything" options are case sensitive and
+        must be lowercase. 
+
+<p>        <b>Note</b> -- This file is used for Win32 hosted projects, and does not exist for GNU hosted projects.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="prjinfo.bat"></a>
+<a NAME="prjinfo.bat"></a>
+prjinfo.bat
+</h3>
+<div class=SectionText>
+
+        This batch file contains information about the project.  It has the
+        general form:
+
+<p>        <pre>
+        REM ---------- Product/Project Settings ----------
+        set P_ROOT=c:\dl\dcl
+        set P_PROJDIR=c:\dl\dcl\projects\myproj
+        set P_OS=wince
+        set P_TOOLSET=toolsetname
+        set P_TOOLROOT=c:\toolchainroot
+        set P_CPUFAMILY=arm
+        set P_CPUTYPE=xscale
+        set P_PRIVATE=1
+
+<p>        REM --------------- Build Settings ---------------
+        REM Define any product-wide C compiler flags to use
+        set B_CFLAGS=
+        </pre>
+
+<p>        <b>Note</b> -- This file is used for Win32 hosted projects, and does not exist for GNU hosted projects.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

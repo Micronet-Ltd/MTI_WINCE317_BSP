@@ -1,0 +1,76 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+# Title        : Tools makefile
+# Author       : 
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies.  All rights reserved.
+#              : No part of this software, either material or conceptual 
+#              : may be copied or distributed, transmitted, transcribed,
+#              : stored in a retrieval system or translated into any 
+#              : human or computer language in any form by any means,
+#              : electronic, mechanical, manual or other-wise, or 
+#              : disclosed to third parties without the express written
+#              : permission of VideoLogic Limited, Unit 8, HomePark
+#              : Industrial Estate, King's Langley, Hertfordshire,
+#              : WD4 8LZ, U.K.
+#
+# Description  : Makefile for Tools
+#
+# Platform     : Platform Builder
+#
+# $Revision: 1.4 $
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+!INCLUDE $(SDKROOT)\Builds\PlatformBuilder\sources.cmn
+
+API=OGLES2
+TARGETNAME=$(API)Tools
+TARGETTYPE=LIBRARY
+
+WINCETARGETFILE0=\
+	$(OBJDIR)\PVRTPrint3DAPI.obj	\
+	$(OBJDIR)\PVRTgles2Ext.obj		\
+	$(OBJDIR)\PVRTTextureAPI.obj 	\
+	$(OBJDIR)\PVRTBackground.obj 	\
+	$(OBJDIR)\PVRTPFXParserAPI.obj	\
+	$(OBJDIR)\PVRTShader.obj		\
+	$(OBJDIR)\PVRTFixedPoint.obj 	\
+	$(OBJDIR)\PVRTMatrixF.obj		\
+	$(OBJDIR)\PVRTQuaternionF.obj	\
+	$(OBJDIR)\PVRTMisc.obj			\
+	$(OBJDIR)\PVRTTrans.obj			\
+	$(OBJDIR)\PVRTVertex.obj 		\
+	$(OBJDIR)\PVRTModelPOD.obj		\
+	$(OBJDIR)\PVRTDecompress.obj	\
+	$(OBJDIR)\PVRTTriStrip.obj		\
+	$(OBJDIR)\PVRTTexture.obj		\
+	$(OBJDIR)\PVRTPrint3D.obj		\
+	$(OBJDIR)\PVRTResourceFile.obj 	\
+	$(OBJDIR)\PVRTString.obj		\
+	$(OBJDIR)\PVRTPFXParser.obj		\
+	$(OBJDIR)\PVRTShadowVol.obj 	\
+	$(OBJDIR)\PVRTVector.obj        \
+    $(OBJDIR)\PVRTError.obj
+
+
+CDEFINES = $(CDEFINES) -DBUILD_$(API)=1
+
+INCLUDES=\
+	$(INCLUDES)								\
+	$(SDKROOT)\Tools;						\
+	$(SDKROOT)\Tools\OGLES2;				\
+	$(SDKROOT)\Builds\OGLES2\Include;		\
+	$(SDKROOT)\Builds\OGLES2\WindowsPC\Include;
+
+SOURCES=
+	 
+SOURCELIBS = $(WINCETARGETFILE0)
+
+	

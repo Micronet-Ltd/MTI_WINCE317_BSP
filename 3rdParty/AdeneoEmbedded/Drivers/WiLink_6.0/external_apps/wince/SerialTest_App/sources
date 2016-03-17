@@ -1,0 +1,46 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+TARGETNAME=SerialTest_App
+TARGETTYPE=PROGRAM
+
+SOURCELIBS= \
+	
+    
+TARGETLIBS= \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+
+
+SOURCES= \
+    SerialPort.cpp \
+    SerialTest_App.cpp \
+    SerialTest_App.rc \
+    CommHandler.cpp \
+
+
+FILE_VIEW_PARAMETER_FOLDER= \
+  ProjSysgen.bat \
+
+
+FILE_VIEW_ROOT_FOLDER= \
+  prelink.bat \
+  postlink.bat \
+
+
+PRELINK_PASS_CMD=prelink.bat
+POSTLINK_PASS_CMD=postlink.bat
+FILE_VIEW_INCLUDES_FOLDER= \
+    resource.h \
+    SerialTest_App.h \
+    SerialPort.h \
+    CommHandler.h \
+
+FILE_VIEW_RESOURCE_FOLDER= \
+  SerialTest_App.link \
+
+
+POSTLINK_PASS_CMD=postlink.bat

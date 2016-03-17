@@ -1,0 +1,91 @@
+!!IMGvp1.0
+
+PARAM mvp[4]	= { state.matrix.mvp };		# MVP Matrix
+PARAM model[4]	= { state.matrix.program[0] };	# Model Matrix
+
+# Inputs
+
+ATTRIB iVertex	= vertex.position;
+ATTRIB iTex	= vertex.texcoord;
+ATTRIB iNormal	= vertex.normal;
+
+# Outputs
+
+OUTPUT oPos	= result.position;
+OUTPUT oCol	= result.color;
+OUTPUT oTex	= result.texcoord;
+
+# Precalculated Constants
+
+PARAM cAr	= program.env[0];
+PARAM cAg	= program.env[1];
+PARAM cAb	= program.env[2];
+
+PARAM cBr	= program.env[3];
+PARAM cBg	= program.env[4];
+PARAM cBb	= program.env[5];
+
+PARAM cC	= program.env[6];
+
+PARAM Const	= { 1.0f, 0.0f, 0.0f, 0.0f };
+
+# Temnp Registers
+
+TEMP		r0, r1, r2, r3;
+
+# Transform Position
+
+DP4	oPos.x,	iVertex,	mvp[0];
+DP4	oPos.y,	iVertex,	mvp[1];
+DP4	oPos.z,	iVertex,	mvp[2];
+DP4	oPos.w,	iVertex,	mvp[3];
+
+# Transform the Normal and add a homogenous 1
+
+DP3	r0.x,	iNormal,	model[0];
+DP3	r0.y,	iNormal,	model[1];
+DP3	r0.z,	iNormal,	model[2];
+MOV	r0.w,	Const.x;
+
+# Compute 1st 4 basis functions - linear + constant
+# r0 is the normal with a homegenous 1
+# c* are precomputed constants
+
+DP4	r2.x,	cAr,	r0;	# r channel from 1st 4 basis functions
+DP4	r2.y,	cAg,	r0;	# g channel from 1st 4 basis functions
+DP4	r2.z,	cAb,	r0;	# b channel from 1st 4 basis functions
+
+# Compute polynomials for the next 4 basis functions
+
+MUL	r1,	r0.yzzx,	r0.xyzz;	# r1 is { xy, yz, z^2, xz}
+
+# Add contributions and store them in r3
+
+DP4	r3.x,	cBr,	r1;
+DP4	r3.y,	cBg,	r1;
+DP4	r3.z,	cBb,	r1;
+
+# Compute the final basis function x^2 - y^2
+
+MUL	r0.z,	r0.y,	r0.y;
+MAD	r0.w,	r0.x,	r0.x,	-r0.z;
+
+# Combine the first 2 sets : 8 basis functions
+
+ADD	r1.xyz,	r2,	r3;
+
+# Add in the final 9th basis function to create the final RGB Lighting
+
+MAD	oCol.xyz,	cC,	r0.w,	r1;
+
+# Write constant to Alpha Channel 
+
+MOV	oCol.w,		Const.x;
+
+# Output Texture Coordinate for Base Texture
+
+MOV	oTex.xy, iTex;
+
+END
+
+

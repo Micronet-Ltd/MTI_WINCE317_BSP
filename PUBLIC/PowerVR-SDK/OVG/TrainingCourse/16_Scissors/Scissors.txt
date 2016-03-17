@@ -1,0 +1,13 @@
+
+Demo title: 		Scissors
+
+Demonstrates: 		How to use OpenVG Scissor rects
+
+Short Description:	How to use OpenVG Scissor rects
+
+Full Description:	
+This training course shows how to set up and enable scissor rectangles so you can limit the area that you can draw to.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

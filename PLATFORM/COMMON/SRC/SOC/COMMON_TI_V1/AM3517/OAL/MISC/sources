@@ -1,0 +1,14 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!INCLUDE "..\..\sources.inc"
+
+TARGETNAME=$(AM3517)_oal_misc
+TARGETTYPE=LIBRARY
+
+#INCLUDES=$(INCLUDES)
+
+
+SOURCES= \
+    feature.c
+
+ARM_SOURCES= \
+    getidcode.s

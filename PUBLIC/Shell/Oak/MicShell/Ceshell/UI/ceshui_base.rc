@@ -1,0 +1,352 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+
+#include <windows.h>
+#include <commctrl.h>
+#include "resource.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icons
+//
+
+IDI_BITBUCKET           ICON   DISCARDABLE   "RES\\bitbucket.ico"
+IDI_BITBUCKET_FULL      ICON   DISCARDABLE   "RES\\bitbucket_full.ico"
+IDI_CONFIRMMOVE         ICON   DISCARDABLE   "RES\\confirm_move.ico"
+IDI_CONFIRMRENAME       ICON   DISCARDABLE   "RES\\confirm_rename.ico"
+IDI_CONFIRMREPLACE      ICON   DISCARDABLE   "RES\\confirm_replace.ico"
+IDI_DATABASE            ICON   DISCARDABLE   "RES\\database.ico"
+IDI_DELETE_PERMANENTLY  ICON   DISCARDABLE   "RES\\delete.ico"
+IDI_DRAGCOPY            ICON   DISCARDABLE   "RES\\dragcopy.ico"
+IDI_DRAGLINK            ICON   DISCARDABLE   "RES\\draglink.ico"
+IDI_DRAGMOVE            ICON   DISCARDABLE   "RES\\dragmove.ico"
+IDI_DRAGNONE            ICON   DISCARDABLE   "RES\\dragnone.ico"
+IDI_MULTIPLEFILES       ICON   DISCARDABLE   "RES\\multiple.ico"
+IDI_MYCOMPUTER          ICON   DISCARDABLE   "RES\\mycomputer.ico"
+IDI_SYSFILE             ICON   DISCARDABLE   "RES\\sysfile.ico"
+IDI_TTFFILE             ICON   DISCARDABLE   "RES\\ttffile.ico"
+IDI_WAVFILE             ICON   DISCARDABLE   "RES\\wavfile.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menus
+//
+
+IDM_DEF_POPUP_MENUS MENU
+BEGIN
+    POPUP "" // FOLDER_MENU_OFFSET
+    BEGIN
+        POPUP "View" // FOLDER_VIEW_MENU_OFFSET
+        BEGIN
+            MENUITEM "Large Icons",     IDC_VIEW_ICONS
+            MENUITEM "Small Icons",     IDC_VIEW_SMALL
+            MENUITEM "Details",         IDC_VIEW_DETAILS
+        END
+        MENUITEM SEPARATOR
+        POPUP "Arrange Icons By" // FOLDER_ARRANGEBY_MENU_OFFSET
+        BEGIN
+            MENUITEM "&Name",           IDC_ARRANGE_BYNAME
+            MENUITEM "&Type",           IDC_ARRANGE_BYTYPE
+            MENUITEM "&Size",           IDC_ARRANGE_BYSIZE
+            MENUITEM "&Date",           IDC_ARRANGE_BYDATE
+            MENUITEM SEPARATOR
+            MENUITEM "&Auto Arrange",   IDC_ARRANGE_AUTO
+        END
+        MENUITEM "Refresh",             IDC_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "Paste",               IDC_EDIT_PASTE
+        MENUITEM "Paste Shortcut",      IDC_EDIT_PASTESHORTCUT
+        MENUITEM SEPARATOR
+        MENUITEM "New Folder",          IDC_FILE_NEWFOLDER
+        MENUITEM SEPARATOR
+        MENUITEM "Properties",          IDC_FILE_PROPERTIES
+    END
+
+    POPUP "" // ITEM_MENU_OFFSET
+    BEGIN
+        MENUITEM "Open",                IDC_FILE_OPEN // USER_INSERT_OFFSET-1
+        MENUITEM SEPARATOR
+        MENUITEM "Cut",                 IDC_EDIT_CUT
+        MENUITEM "Copy",                IDC_EDIT_COPY
+        MENUITEM SEPARATOR
+        MENUITEM "Delete",              IDC_FILE_DELETE
+        MENUITEM "Rename",              IDC_FILE_RENAME
+        MENUITEM SEPARATOR
+        MENUITEM "Properties",          IDC_FILE_PROPERTIES
+    END
+END
+
+IDM_FILE_SENDTO_MENU MENU
+BEGIN
+    POPUP "x"
+    BEGIN
+        MENUITEM "Desktop as Shortcut", IDC_FILE_SENDTO_DESKTOP
+        MENUITEM "My Documents",        IDC_FILE_SENDTO_MYDOCUMENTS
+    END
+END
+
+IDM_RECBIN_POPUP_MENUS MENU
+BEGIN
+    POPUP "" // FOLDER_MENU_OFFSET
+    BEGIN
+        MENUITEM "Restore All",         IDC_BITBUCKET_RESTORE_ALL
+        MENUITEM "Empty Recycle Bin",   IDC_BITBUCKET_EMPTY
+        MENUITEM SEPARATOR
+        POPUP "Arrange Icons By"
+        BEGIN
+            MENUITEM "&Name",           IDC_ARRANGE_BYNAME
+            MENUITEM "&Origin",         IDC_ARRANGE_BYTYPE
+            MENUITEM "&Delete Date",    IDC_ARRANGE_BYDATE
+            MENUITEM "&Size",           IDC_ARRANGE_BYSIZE
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Paste",               IDC_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Properties",          IDC_FILE_PROPERTIES
+    END
+
+    POPUP "" // ITEM_MENU_OFFSET
+    BEGIN
+        MENUITEM "Restore",             IDC_BITBUCKET_RESTORE
+        MENUITEM SEPARATOR
+        MENUITEM "Delete",              IDC_FILE_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "Properties",          IDC_FILE_PROPERTIES
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Strings
+//
+
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CONFIRM_DEL              "Are you sure you want to permanently delete '%s'?"
+    IDS_CONFIRM_DELCANCEL        "To permanently delete tap Yes, to cancel the operation tap No."
+    IDS_CONFIRM_DEL_BIG          "The file '%s' is too big for the Recycle Bin. "
+    IDS_CONFIRM_DEL_EXE          "The file '%s' is a program.\n\nIf you remove it, you will no longer be able to run this program or edit some documents. "
+    IDS_CONFIRM_DEL_MUL          "Are you sure you want to permanently delete these %u items?"
+    IDS_CONFIRM_DEL_MUL_RECBIN   "Are you sure you want to send these %u items to the Recycle Bin?"        
+    IDS_CONFIRM_DEL_READONLY     "The file '%s' is a read-only file. "
+    IDS_CONFIRM_DEL_RECBIN       "Are you sure you want to send '%s' to the Recycle Bin?"
+    IDS_CONFIRM_DEL_SYSTEM       "The file '%s' is a system file.\n\nIf you remove it, your computer or one of your programs may no longer work correctly. "
+    IDS_CONFIRM_GEN_PROTECTED    "Renaming, moving or deleting 'Program Files' could make some programs not work.\nAre you sure you want to do this?"
+    IDS_CONFIRM_MOV_READONLY     "Are you sure you want to move the read-only file '%s'?"
+    IDS_CONFIRM_MOV_SYSTEM       "Are you sure you want to move the system file '%s'?"
+    IDS_CONFIRM_MRG_FOLDER       "This folder already contains a folder called '%s'.\n\nIf the files in the existing folder have the same name as files in the folder you are moving or copying, they will be replaced. Do you still want to move or copy the folder?"
+    IDS_CONFIRM_REN_EXTENSION    "If you change a file name extension, the file may become unusable.\nAre you sure you want to change it?"
+    IDS_CONFIRM_REN_READONLY     "Are you sure you want to rename the read-only file '%s' to '%s'?"
+    IDS_CONFIRM_REN_SYSTEM       "Are you sure you want to rename the system file '%s' to '%s'?"
+    IDS_CONFIRM_REP              "This folder already contains a file called '%s'."
+    IDS_CONFIRM_REP_READONLY     "This folder already contains a read-only file called '%s'."
+    IDS_CONFIRM_REP_SYSTEM       "This folder already contains a system file called '%s'."
+
+//    IDS_FILECOPY_COPY            "Copy"
+//    IDS_FILECOPY_OF              "of"
+
+    IDS_FORMAT_MODIFIED          "modified:"
+
+    IDS_HDR_DEFVIEW_DATE         "Date Modified"
+    IDS_HDR_DEFVIEW_NAME         "Name"
+    IDS_HDR_DEFVIEW_SIZE         "Size"
+    IDS_HDR_DEFVIEW_TYPE         "Type"
+    IDS_HDR_RECBINVIEW_DATE      "Date Deleted"
+    IDS_HDR_RECBINVIEW_LOCATION  "Original Location"
+
+    IDS_MENU_EDIT_COPY           "&Copy\tCtrl+C"
+    IDS_MENU_EDIT_CUT            "Cu&t\tCtrl+X"
+    IDS_MENU_EDIT_PASTE          "&Paste\tCtrl+V"
+    IDS_MENU_EDIT_PASTESHORTCUT  "Paste &Shortcut"
+    IDS_MENU_EDIT_SELECTALL      "Select &All\tCtrl+A" 
+    IDS_MENU_EDIT_UNDO           "&Undo\tCtrl+Z"
+    IDS_MENU_EDIT_UNDOCPY        "&Undo Copy\tCtrl+Z"
+    IDS_MENU_EDIT_UNDODEL        "&Undo Delete\tCtrl+Z"
+    IDS_MENU_EDIT_UNDOMOVE       "&Undo Move\tCtrl+Z"
+    IDS_MENU_EDIT_UNDOPASTE      "&Undo Paste\tCtrl+Z"
+    IDS_MENU_EDIT_UNDOREN        "&Undo Rename\tCtrl+Z"
+    IDS_MENU_FILE_DELETE         "&Delete"
+    IDS_MENU_FILE_EDIT           "Edit"
+    IDS_MENU_FILE_EMPTYRECBIN    "Empty Recycle &Bin"
+    IDS_MENU_FILE_NEWFOLDER      "&New Folder"
+    IDS_MENU_FILE_OPEN           "&Open"
+    IDS_MENU_FILE_PRINT          "Print"
+    IDS_MENU_FILE_PROPERTIES     "P&roperties"
+    IDS_MENU_FILE_RENAME         "Rena&me"
+    IDS_MENU_FILE_RESTORE        "R&estore"
+    IDS_MENU_FILE_SENDTO         "Send &To"
+    IDS_MENU_GO_MYDOCUMENTS      "&My Documents"
+    IDS_MENU_VIEW_ARRANGEICONS   "Arrange &Icons"
+    IDS_MENU_VIEW_DETAILS        "&Details"
+    IDS_MENU_VIEW_LARGE          "Lar&ge Icons"
+    IDS_MENU_VIEW_OPTIONS        "&Options..."
+    IDS_MENU_VIEW_SMALL          "S&mall Icons"
+
+    IDS_NET_ERR_ACCESS_DENIED    "%s is not accessible. You might not have permission to use this network resource.\n\nAccess is denied."
+    IDS_NET_ERR_ACCESS_GENERIC   "The network resource is not accessible.\n\nAccess is denied."
+    IDS_NET_ERR_BAD_NETPATH      "Bad network path.  Check to see if the path you typed is correct and that your dial-up connection is active or your network card is properly inserted."
+    IDS_NET_ERR_NO_NETWORK       "Cannot connect to the network.  Check to see if your dial-up connection is active or if your network card is properly inserted."
+
+    IDS_NEWFOLDER                "New Folder"
+    IDS_NEWFOLDER_ERR            "Problem creating folder '%s'."
+    IDS_NEWFOLDER_ERR_ACCESS     "Cannot create folder '%s': Access is denied.\n\nMake sure the disk is not full or write-protected."
+    IDS_NEWFOLDER_ERR_BUFFER     "Unable to create folder '%s'. The file name or extension is too long."
+    IDS_NEWFOLDER_ERR_DISKFULL   "Unable to create the folder '%s'\n\nThere is not enough space on the disk."
+
+    IDS_ORDER_BYTES              "%s bytes"
+    IDS_ORDER_KB                 "%sKB"
+    IDS_ORDER_MB                 "%sMB"
+    IDS_ORDER_GB                 "%sGB"
+    IDS_ORDER_TB                 "%sTB"
+
+    IDS_PROPERTIES_ALLIN         "All in %s"
+    IDS_PROPERTIES_ERR_ACCESS    "Cannot update properties for '%s': Access is denied.\n\nMake sure the disk is not full or write-protected."
+    IDS_PROPERTIES_ERR_NOTARGET  "Target does not exist"
+    IDS_PROPERTIES_FREE          "Free:"
+    IDS_PROPERTIES_NUMOFFILES    "%d Files, %d Folders"
+    IDS_PROPERTIES_RECBINMAX     "Recycle Bin Maximum Size Reached"
+    IDS_PROPERTIES_SYSTEMFOLDER  "System Folder"
+    IDS_PROPERTIES_TYPEALL       "All of type %s"
+    IDS_PROPERTIES_TYPEMULTI     "Multiple Types"
+    IDS_PROPERTIES_USED          "Used:"
+
+    //IDS_RECBININIT_FAILED        "Failed to initize the Recycle Bin. All delete operations will not be saved to disk"
+    IDS_RENAME_NONAME            "You must type a file name."
+
+/*
+    IDS_SHFO_ERR_ACCESS          "Access is denied.\n\nMake sure the disk is not full or write-protected and that the file is not currently in use."
+    IDS_SHFO_ERR_ALREADYEXISTS   "\n\nThe destination folder already contains a file or folder with that name."
+    IDS_SHFO_ERR_BADNAME         "\n\nA file name cannot contain any of the following characters:\n\\/: *?""<>|"
+    IDS_SHFO_ERR_DISKFULL        "There is not enough free disk space.\n\nDelete one or more files to free disk space, and then try again."
+    IDS_SHFO_ERR_DSTISSUBFOLDER  "\n\nThe destination folder is a subfolder of the source folder."
+*/
+    IDS_SHFO_ERR_FILENOTFOUND    "Cannot read from the source file or disk.\n\nMake sure that the correct path and file name are given."
+
+/*
+    IDS_SHFO_ERR_FOLDERLOCKED    "'%s' is a system folder and is required for Windows to run properly.\n\nIt cannot be deleted or moved."
+    IDS_SHFO_ERR_GENERIC         "Error code %d.\n\n%s"
+*/
+    IDS_SHFO_ERR_HDR_COPY        "Cannot copy '%s': "
+    IDS_SHFO_ERR_HDR_DELETE      "Cannot delete '%s': "
+    IDS_SHFO_ERR_HDR_MOVE        "Cannot move '%s': "
+/*
+    IDS_SHFO_ERR_HDR_RENAME      "Cannot rename '%s': "
+
+    IDS_SHFO_ERR_INROMCOPY       "\n\nFiles located in ROM cannot be copied."
+    IDS_SHFO_ERR_INROMDELETE     "\n\nFiles located in ROM cannot be deleted."
+    IDS_SHFO_ERR_INROMMOVE       "\n\nFiles located in ROM cannot be moved."
+    IDS_SHFO_ERR_INVALID         "\n\nThe file name you specified is invalid or too long. Specify a different file name."
+    IDS_SHFO_ERR_OOM             "There is not enough memory. Please exit some running programs and try again."
+    IDS_SHFO_ERR_SHARING         "There has been a sharing violation\n\nThe source or destination file may be in use."
+*/
+    IDS_SHFO_ERR_SRCDSTSAME      "\n\nThe destination folder is the same as the source folder."
+    IDS_SHFO_PROGRESS_PREP_COPY  "Preparing to copy..."
+    IDS_SHFO_PROGRESS_PREP_MOVE  "Preparing to move..."
+    IDS_SHFO_PROGRESS_PREP_DELE  "Preparing to delete..."
+    IDS_SHFO_PROGRESS_FROM       "From '%s'"
+    IDS_SHFO_PROGRESS_FROM_TO    "From '%s' to '%s'"
+    IDS_SHFO_PROGRESS_LT_MINUTE  "Less Than A Minute Remaining"
+    IDS_SHFO_PROGRESS_X_MINUTES  "%u Minutes Remaining"
+    IDS_SHFO_PROMPT_CREATEFOLDER "The %s folder does not exist.\n\nDo you want to create it?"
+    IDS_SHFO_PROMPT_TOOMUCHDATA  "The size of the file(s) you are trying to copy or move exceeds the available space in the destination. Continuing with this operation will copy or move as many whole files as possible.\n\nDo you wish to proceed?"
+    IDS_SHORTCUT_ERR             "Unable to create shortcut for '%s'. "
+
+    IDS_STATUS_BASE              "%s object(s)"
+    IDS_STATUS_SELECTED          "%s object(s) selected"
+
+    IDS_TITLE_CONFIRMDELETE      "Confirm Delete"
+    IDS_TITLE_CONFIRMMERGE       "Confirm Folder Replace"
+    IDS_TITLE_CONFIRMMOVE        "Confirm File Move"
+    IDS_TITLE_CONFIRMRENAME      "Confirm File Rename"
+    IDS_TITLE_CONFIRMREPLACE     "Confirm File Replace"
+    IDS_TITLE_COPYERROR          "Error Copying File or Folder"
+    IDS_TITLE_DELETEERROR        "Error Deleting File or Folder"
+    IDS_TITLE_FILEOPERATION      "File Operation"
+    IDS_TITLE_GENERAL            "General"
+    IDS_TITLE_INTERNAL           "Internal"
+    IDS_TITLE_MOVEERROR          "Error Moving File or Folder"
+    IDS_TITLE_NETWORKING         "Window CE Networking"
+    IDS_TITLE_PROPERTIES         "Properties"
+    IDS_TITLE_PROTECTEDFOLDER    "Protected Folder"
+    IDS_TITLE_RECYCLEBIN         "Recycle Bin"
+    IDS_TITLE_RENAMEERROR        "Error Renaming File or Folder"
+    IDS_TITLE_SHORTCUT           "Shortcut"
+
+    IDS_TTSTR1                   "Back"
+    IDS_TTSTR2                   "Forward"
+    IDS_TTSTR3                   "Up"
+    IDS_TTSTR4                   "Delete"
+    IDS_TTSTR5                   "Properties"
+    IDS_TTSTR6                   "Views"
+END
+
+// Display names for folders and namespaces
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DISPLAY_APPDATA          "Application Data"
+    IDS_DISPLAY_DESKTOPDIRECTORY "Desktop"
+    IDS_DISPLAY_FAVORITES        "Favorites"
+    IDS_DISPLAY_FONTS            "Fonts"
+    IDS_DISPLAY_FSFOLDER         "File Folder"
+    IDS_DISPLAY_DRIVES           "My Device"
+    IDS_DISPLAY_MYDOCUMENTS      "My Documents"
+    IDS_DISPLAY_PROGRAMFILES     "Program Files"
+    IDS_DISPLAY_PROGRAMS         "Programs"
+    IDS_DISPLAY_RECENT           "Recent"
+    IDS_DISPLAY_RECYCLEBIN       "Recycle Bin"
+    IDS_DISPLAY_STARTUP          "StartUp"
+    IDS_DISPLAY_WINDOWS          "Windows"
+END
+
+// Application types
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_APPTYPE_APPLICATION      "Application"
+    IDS_APPTYPE_CPLFILE          "Control Panel extension"
+    IDS_APPTYPE_DLLFILE          "Application Extension"
+    IDS_APPTYPE_HELPFILE         "Help File"
+    IDS_APPTYPE_TTFFILE          "TrueType Font file"
+    IDS_APPTYPE_WAVFILE          "Wave Sound"
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator table
+//
+
+IDA_DEFVIEW ACCELERATORS DISCARDABLE
+BEGIN
+    "Z",           IDC_EDIT_UNDO,        VIRTKEY,NOINVERT,CONTROL
+    "X",           IDC_EDIT_CUT,         VIRTKEY,NOINVERT,CONTROL
+    "C",           IDC_EDIT_COPY,        VIRTKEY,NOINVERT,CONTROL
+    "V",           IDC_EDIT_PASTE,       VIRTKEY,NOINVERT,CONTROL
+    "A",           IDC_EDIT_SELECTALL,   VIRTKEY,NOINVERT,CONTROL
+    "H",           IDC_HELP_TOPICS,      VIRTKEY,NOINVERT,ALT
+    VK_INSERT,     IDC_EDIT_COPY,        VIRTKEY,NOINVERT,CONTROL
+    VK_INSERT,     IDC_EDIT_PASTE,       VIRTKEY,NOINVERT,SHIFT
+    "O",           IDC_FILE_OPEN,        VIRTKEY,NOINVERT,CONTROL
+    VK_DELETE,     IDC_FILE_DELETE,      VIRTKEY,NOINVERT
+    VK_DELETE,     IDC_FILE_DELETE,      VIRTKEY,NOINVERT,SHIFT
+    VK_RETURN,     IDC_FILE_PROPERTIES,  VIRTKEY,NOINVERT,ALT
+    VK_BACK,       IDC_GO_FOLDERUP,      VIRTKEY,NOINVERT
+    VK_F1,         IDC_HELP_TOPICS,      VIRTKEY,NOINVERT
+    VK_F5,         IDC_REFRESH,          VIRTKEY,NOINVERT
+    VK_F10,        ID_CONTEXTMENU,       VIRTKEY,NOINVERT,SHIFT
+    VK_ESCAPE,     ID_ESCAPE,            VIRTKEY,NOINVERT
+END
+

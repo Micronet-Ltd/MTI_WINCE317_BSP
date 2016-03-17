@@ -1,0 +1,248 @@
+<html>
+<head>
+<title>
+NAND Bad Block Management
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+NAND Bad Block Management
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): NAND Bad Block Management">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        This section provides a general overview of Bad Block Management topics.
+        It is provided as general information, but it is not necessary to
+        understand these topics to use FlashFX.
+
+<p>        <h4>Overview</h4>
+
+<p>        Most NAND flash ships from the factory with bad erase blocks and these
+        bad blocks are factory marked with a write to a standard location in
+        each bad block.  It is expected that a device using NAND flash will
+        not use these bad blocks in any way other than reading the factory bad
+        block marker.
+
+<p>        Over the life of the device, manufacturers expect that some number of
+        bad blocks will go bad during normal usage.  These failures are
+        detected during writes and erases, and must accommodated on the fly.
+        Every NAND device has a rating which prescribes the maximum number of
+        erase blocks that are expected to go bad over the course of the life of
+        the device.  This count includes those blocks which were found to be
+        bad at the factory.
+
+<p>        Note that NOR flash is manufactured with a different process and it is
+        guaranteed to be good from the factory, as well as to remain functional
+        for the rated life of the device.
+
+<p>        <h4>Bad Block Manager</h4>
+
+<p>        Bad block management is the process of accommodating both the original
+        factory marked bad blocks, as well as handling blocks which go bad
+        during normal use.  The typical method for handling blocks which go bad
+        during use, is to copy any good data from the block (reading from a bad
+        block is still possible), and placing that good data into a block which
+        is taken from a spare pool of blocks.  Block maps are updated so that
+        the bad block is ignored, and requests are redirected to the
+        replacement block.
+
+<p>        The Bad Block Manager (BBM) is the software component of FlashFX Tera
+        which provides the bad block management functionality.
+
+<p>        BBM provides a reliable and durable mechanism to record factory bad
+        blocks and to atomically add bad blocks to the record on an as needed
+        basis.
+
+<p>        <b>BBM Disk Organization</b>
+
+<p>        The organization of BBM is relatively simple.  A fixed number of blocks
+        is reserved as replacement blocks for the remaining data blocks.  This
+        number is usually specified by the flash manufacturer and is fixed once
+        the medium has been formatted.
+
+<p>        If the exact number of replacement blocks is not specified in the
+        FlashFX NAND flash ID tables, FlashFX will use a ratio of 24
+        replacement blocks for every 1024 total blocks.  Regardless whether the
+        number of required replacement blocks is specified in the NAND ID
+        tables, or whether the default ratio is used, the OEM can override the
+        behavior and reserve a different number of blocks by modifying the
+        ulSparePercent field in the <a HREF=QF160_ProjectSettings.c.htm#FFX_DEV0_BBM>FFX_DEV0_BBM</a> settings in the project's
+        <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file.
+
+<p>        BBM structures are constructed and laid out on a per chip basis, as the
+        FIM/NTM layers describe the flash.  This simplifies manufacturing
+        processes, since flash images for each chip are self-contained.
+
+<p>        <b>BBM and Reserved Space</b>
+
+<p>        Like the rest of FlashFX, BBM honors any OEM reserved areas of the
+        flash array and does not touch them.  This has some ramifications
+        regarding the replacement block ratio.  Because flash manufacturers
+        make no guarantee regarding the distribution of bad blocks, the full
+        count of replacement blocks must be set aside, even if only a portion
+        of the flash chip is being managed by BBM.
+
+<p>        For example, if an OEM configures the reserved space such that the first
+        900 blocks are not to be touched by FlashFX, then in a 1024 block chip,
+        FlashFX will manage the last 124 blocks.  Using the default ratio of 24
+        replacement blocks for every 1024 managed blocks, FlashFX <b>must still</b>
+        reserve all 24 replacement blocks, since most or all of the eventual
+        bad blocks for that chip <b>could</b> occur in that last 124 blocks.
+
+<p>        This can lead to some scenarios which might be non-obvious to the
+        casual observer, such as:
+        <ul>
+<li>The ratio of replacement blocks to usable blocks being really high.
+        <li>BBM failing to initialize at all because there are not enough blocks available.
+</ul>
+        <b>Configuring BBM Settings</b>
+
+<p>        Generally, there is no need for the OEM to directly interface with BBM
+        as it is handled transparently within the FlashFX Device Manager.  See
+        the FFX_DEFAULT_BBM_SETTINGS topic for details about specific
+        configuration settings.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

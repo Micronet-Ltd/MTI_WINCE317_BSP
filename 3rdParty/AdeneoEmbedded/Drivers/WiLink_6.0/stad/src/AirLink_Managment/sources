@@ -1,0 +1,22 @@
+
+
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=AirLink_Managment
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+SwitchChannel.c \
+measurementMgr.c \
+measurementMgrSM.c \
+requestHandler.c \
+spectrumMngmntMgr.c \
+SoftGemini.c \
+regulatoryDomain.c

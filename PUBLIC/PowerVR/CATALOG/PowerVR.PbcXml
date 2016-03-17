@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CatalogFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequiredVersion="6.00" xsi:schemaLocation="urn:Microsoft.PlatformBuilder/Catalog PbcXml600.xsd" xmlns="urn:Microsoft.PlatformBuilder/Catalog">
+  <FileInformation Id="FileInformation:DefaultCatalogFile">
+    <Title>Default Catalog File</Title>
+    <Vendor>Default Vendor</Vendor>
+    <OSVersion>6.00</OSVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </FileInformation>
+  <Item Id="Item:ImaginationTechnologies:powerVR:3DAPI:OpenGLES1">
+    <Title>OpenGLES 1.0</Title>
+    <SysgenVariable>SYSGEN_PVR_OPENGLES1</SysgenVariable>
+    <Variable>PVR_OPENGLES1</Variable>
+    <Location>PowerVR\3D API</Location>
+  </Item>
+  <Item Id="Item:ImaginationTechnologies:powerVR:3DAPI:OpenGLES2">
+    <Title>OpenGLES 2.0</Title>
+    <SysgenVariable>SYSGEN_PVR_OPENGLES2</SysgenVariable>
+    <Variable>PVR_OPENGLES2</Variable>
+    <Location>PowerVR\3D API</Location>
+  </Item>
+  <Item Id="Item:ImaginationTechnologies:powerVR:3DAPI:OpenVG">
+    <Title>OpenVG 1.0.1</Title>
+    <SysgenVariable>SYSGEN_PVR_OPENVG</SysgenVariable>
+    <Variable>PVR_OPENVG</Variable>
+    <Location>PowerVR\3D API</Location>
+  </Item>
+  <Item Id="Item:ImaginationTechnologies:powerVR:CoreRev121">
+    <Title>SGX Core Revision 121</Title>
+    <Description>SGX530 Core Revision 121. Present in: OMAP35x, AM35x, etc.</Description>
+    <SysgenVariable>SYSGEN_PVR_SGXCOREREV_121</SysgenVariable>
+    <Location>PowerVR</Location>
+  </Item>
+  <Item Id="Item:ImaginationTechnologies:powerVR:CoreRev125">
+    <Title>SGX Core Revision 125</Title>
+    <Description>SGX530 Core Revision 125. Present in DM37x, AM37x, etc.</Description>
+    <SysgenVariable>SYSGEN_PVR_SGXCOREREV_125</SysgenVariable>    
+    <Location>PowerVR</Location>
+  </Item>
+  <Item Id="Item:ImaginationTechnologies:PowerVR:Support">
+    <Title>PowerVR</Title>
+    <SysgenVariable>SYSGEN_POWERVR</SysgenVariable>
+    <Variable>PVR_SERVICES4</Variable>
+    <SupportedCpuId>Cpu:ARMV4I</SupportedCpuId>
+    <Location />
+  </Item>
+</CatalogFile>

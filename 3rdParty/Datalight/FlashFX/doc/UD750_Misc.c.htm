@@ -1,0 +1,2235 @@
+<html>
+<head>
+<title>
+DCL Public API: Miscellaneous
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Public API: Miscellaneous
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Public API: Miscellaneous">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclAbsolutePath">DclAbsolutePath</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Resolve a relative path string to an absolute path.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclArgClear">DclArgClear</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Clear the specified argument.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclArgCount">DclArgCount</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get the number of arguments in a string.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclArgRetrieve">DclArgRetrieve</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Retrieve the specified argument.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclBitCount">DclBitCount</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Determines the number of "one" bits in a 32-bit value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclBitCountArray">DclBitCountArray</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Count the number of one bits, within an array of bits.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclBitHighest">DclBitHighest</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Find the highest set bit in a 32-bit value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclBitmapRangeClear">DclBitmapRangeClear</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Clear a range of bits in a bitmap to 0.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclBitmapRangeGet">DclBitmapRangeGet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Return the number of matching sequential bits starting at the 
+    extent specified by pExtent.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclBitmapRangeSet">DclBitmapRangeSet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set a range of bits in a bitmap to 1.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclCmdLineProcessCmdLine">DclCmdLineProcessCmdLine</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Parse command line options.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclCriticalSectionEnter">DclCriticalSectionEnter</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Enter a critical section.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclCriticalSectionLeave">DclCriticalSectionLeave</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Leave a critical section.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclIoctlDispatch">DclIoctlDispatch</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Dispatch generic IOCTL requests which came from outside DCL.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMulDiv">DclMulDiv</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Multiply two 32-bit numbers and divide by another 32-bit number,
+    returning a 64-bit result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclMulDiv64">DclMulDiv64</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Multiply 64-bit and 32-bit numbers, and divide by a 64-bit number,
+    returning a 64-bit result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclRatio">DclRatio</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Return a ratio value formatted as a floating point string
+    accurate to the specified number of decimal places.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclRatio64">DclRatio64</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Return a ratio value formatted as a floating point string
+    accurate to the specified number of decimal places.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclScaleBytes">DclScaleBytes</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function formats a number, which is supplied as a count of
+    bytes, but scales it to KiloBytes, MegaBytes or GigaBytes if it
+    is nice and round, or if it exceeds a 30x factor over the lower
+    threshold.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclScaleItems">DclScaleItems</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Format a number, which is supplied as a count of items, each a
+    specific bytes length in size, and scale the total byte count to
+    Peta, Tera, Giga, Mega, Kilo, or Bytes.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclScaleKB">DclScaleKB</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function formats a number, which is supplied as a count
+    of KiloBytes, but scales it to MegaBytes or GigaBytes if it
+    is nice and round, or if it exceeds a 30x factor over the
+    lower threshold.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclSignOn">DclSignOn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function displays the Datalight Common Libraries sign-on
+    messages and returns a pointer to the sign-on information
+    strings.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclSizeToUL">DclSizeToUL</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert an ASCII hex or decimal number, which may may have a
+    "B", "KB", or "MB" suffix (case insensitive), and converts it
+    to a binary value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclSizeToULKB">DclSizeToULKB</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Convert an ASCII hex or decimal number, which may may have a
+    "KB", "MB", or "GB" suffix (case insensitive), and converts
+    it to a binary kilobytes value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclSortInsertion32">DclSortInsertion32</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform an insertion sort on an array of <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> items.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclStatusToErrorlevel">DclStatusToErrorlevel</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function converts a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value to an errorlevel
+    value in the range of 0 to 255.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclSystemInfoQuery">DclSystemInfoQuery</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Fill the supplied DCLSYSTEMINFO structure.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclAbsolutePath"></a>
+<a NAME="DclAbsolutePath"></a>
+DclAbsolutePath
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>DclAbsolutePath</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *pszRelPath,<br>&nbsp;&nbsp;&nbsp;
+    const char     *pszCWD,<br>&nbsp;&nbsp;&nbsp;
+    const char     *pszSeparators,<br>&nbsp;&nbsp;&nbsp;
+    char           *pszAbsPath)
+</div>
+<div class=SectionText>
+
+    Resolve a relative path string to an absolute path.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszRelPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The relative path to resolve.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszCWD
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An optional current working directory to use if the
+                          relative path does not contain the root.  If this is
+                          NULL the root is implied.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszSeparators
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A NULL terminated string of path separators.
+                          The first character in the list is used when
+                          creating the absolute path.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszAbsPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the absolute path.
+</td>
+</tr>
+</table>
+
+<p>
+        <h4>Note</h4> The CWD must be an absolute path and should not have
+              a trailing path separator.
+
+<p>    <h4>Return Value</h4>
+        Returns TRUE if the path was converted successfully,
+        otherwise FALSE.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclArgClear"></a>
+<a NAME="DclArgClear"></a>
+DclArgClear
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>DclArgClear</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char       *pszArgString,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>    uArgNum)
+</div>
+<div class=SectionText>
+
+    Clear the specified argument.  This function clears the specified
+    argument to spaces.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszArgString
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated argument
+                          string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uArgNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The argument number (relative to 1)
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if successful, otherwise FALSE.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclArgCount"></a>
+<a NAME="DclArgCount"></a>
+DclArgCount
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> <font class=ApiName>DclArgCount</font>(
+    const char     *pszArgString)
+</div>
+<div class=SectionText>
+
+    Get the number of arguments in a string.  This function returns
+    the number of arguments in the specified string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszArgString
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated argument
+                          string.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the number of arguments.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclArgRetrieve"></a>
+<a NAME="DclArgRetrieve"></a>
+DclArgRetrieve
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>DclArgRetrieve</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *pszArgString,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uArgNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uBuffLen,<br>&nbsp;&nbsp;&nbsp;
+    char           *pachBuffer)
+</div>
+<div class=SectionText>
+
+    Retrieve the specified argument.  This function returns the
+    specified argument in the supplied buffer.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszArgString
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated argument
+                          string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uArgNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The argument number (relative to 1)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uBuffLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The output buffer length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pachBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the output buffer
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if successful, otherwise FALSE.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclBitCount"></a>
+<a NAME="DclBitCount"></a>
+DclBitCount
+</h3>
+<div class=Api>
+unsigned <font class=ApiName>DclBitCount</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulValue)
+</div>
+<div class=SectionText>
+
+    Determines the number of "one" bits in a 32-bit value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulValue
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to examine
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a count of the number of bits which are set.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclBitCountArray"></a>
+<a NAME="DclBitCountArray"></a>
+DclBitCountArray
+</h3>
+<div class=Api>
+unsigned <font class=ApiName>DclBitCountArray</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nLen)
+</div>
+<div class=SectionText>
+
+    Count the number of one bits, within an array of bits.  This 
+    function is designed to operate on bits stored in byte arrays.
+
+<p>    <b>Note</b> -- The DCLBITGET, DCLBITSET, and DCLBITCLEAR macros
+              make no adjustments for byte-ordering.  This means that
+              when using datatypes wider than a byte on a big-endian
+              system, that this function will not work properly
+              unless the total count of bits is evenly divisible by
+              the number of bits in the integral data type.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of <a HREF=UD660_DataTypes.c.htm#D_BYTE>D_BYTE</a>s (D_BUFFER)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of the array in bits.  The last <a HREF=UD660_DataTypes.c.htm#D_BYTE>D_BYTE</a>
+                  in the array must have zeros in all bits beyond
+                  nLen.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The number of bits which are set.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclBitHighest"></a>
+<a NAME="DclBitHighest"></a>
+DclBitHighest
+</h3>
+<div class=Api>
+unsigned <font class=ApiName>DclBitHighest</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulValue)
+</div>
+<div class=SectionText>
+
+    Find the highest set bit in a 32-bit value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulValue
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number in which to find the highest bit
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Zero if ulValue is zero.  Otherwise, the index of the highest
+        set bit, with one representing the lowest bit.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclBitmapRangeClear"></a>
+<a NAME="DclBitmapRangeClear"></a>
+DclBitmapRangeClear
+</h3>
+<div class=Api>
+void <font class=ApiName>DclBitmapRangeClear</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pBuffer,<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulOffset,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulCount)
+</div>
+<div class=SectionText>
+
+    Clear a range of bits in a bitmap to 0.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the bitmap to examine
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The offset of the first bit to clear.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bits to clear.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclBitmapRangeGet"></a>
+<a NAME="DclBitmapRangeGet"></a>
+DclBitmapRangeGet
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>DclBitmapRangeGet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pBuffer,<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulOffset,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulCount,<br>&nbsp;&nbsp;&nbsp;
+    unsigned       *pnValue)
+</div>
+<div class=SectionText>
+
+    Return the number of matching sequential bits starting at the 
+    extent specified by pExtent.  The state of the bits is returned
+    in pnValue.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the bitmap to examine
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The offset of the first bit to examine.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bits to examine.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pnValue
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an unsigned variable to receive
+                   the state of the bits.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the count of matching bits.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclBitmapRangeSet"></a>
+<a NAME="DclBitmapRangeSet"></a>
+DclBitmapRangeSet
+</h3>
+<div class=Api>
+void <font class=ApiName>DclBitmapRangeSet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pBuffer,<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulOffset,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulCount)
+</div>
+<div class=SectionText>
+
+    Set a range of bits in a bitmap to 1.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the bitmap to examine
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The offset of the first bit to set.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bits to set.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclCmdLineProcessCmdLine"></a>
+<a NAME="DclCmdLineProcessCmdLine"></a>
+DclCmdLineProcessCmdLine
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclCmdLineProcessCmdLine</font>(<br>&nbsp;&nbsp;&nbsp; 
+    DCLCMDLINE     *paCmdLine,<br>&nbsp;&nbsp;&nbsp;
+    int             argc,<br>&nbsp;&nbsp;&nbsp;
+    const char     *argv[],<br>&nbsp;&nbsp;&nbsp;
+    const char    **ppszBadArg)
+</div>
+<div class=SectionText>
+
+    Parse command line options.  The options are defined in an array
+    of DCLCMDLINE structures.  The options string(s) may be specified
+    individually in the argc/argv[] array, or as one single options
+    string, with argc being set to 1 (a mix is also supported).
+
+<p>    All options begin with a switch character which is environment
+    specific.
+
+<p>    The options "?" and "/?" (or "-?") are implicitly defined, and if
+    found anywhere in the option strings, will result in the status
+    code DCLSTAT_HELPREQUEST being returned.  Whenever this status 
+    code is returned, all option processing is aborted, and none of
+    the option data should be considered to be valid, even though
+    some of the options may have been successfully processed.
+
+<p>    <h4>DCL_CMDTYPE_UINT32 Options</h4>
+        A UINT32 option has the form /OptionName:nnnn, and
+        can optionally use the flags DCL_CMDFLAG_RANGE and 
+        DCL_CMDFLAG_RANGEPOW2.  The resulting value is placed
+        in the paCmdLine->pResult field, which <b>MUST</b> point to
+        a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> field.
+
+<p>        For UINT32 options with range validation, the paCmdLine->v.Range
+        structure must be filled in with the range data.
+
+<p>    <h4>DCL_CMDTYPE_SIZEKB Options</h4>
+        A SIZEKB option has the form /OptionName:nnnn[suffix],
+        and can optionally use the flags DCL_CMDFLAG_RANGE and 
+        DCL_CMDFLAG_RANGEPOW2.  The resulting value is placed in the
+        paCmdLine->pResult field, which <b>MUST</b> point to a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> field.
+        Suffixes of "KB", "MB", and "GB" are are supported, as are hex
+        numbers prefixed with "0x".  The value specified is a count of KB
+        if no suffix is specified, otherwise the result is translated
+        into KB.
+
+<p>        For SIZEKB options with range validation, the paCmdLine->v.Range
+        structure must be filled in with the range data.
+
+<p>    <h4>DCL_CMDTYPE_BOOL Options</h4>
+        A BOOL option has the for /OptionName.  The resulting value 
+        is placed in the paCmdLine->pResult field, which <b>MUST</b> point
+        to a <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> field.
+
+<p>    <h4>DCL_CMDTYPE_STRING Options</h4>
+        A STRING option has the form /OptionName:string, /OptionName:"long
+        string", or /OptionName:'long string'.
+
+<p>        For STRING options the paCmdLine->pResult field must specify
+        a buffer of the length paCmdLine->nLen in size. If the buffer
+        is not large enough for the string value, an error will be 
+        returned.
+
+<p>    For all options, upon completion, each option's paCmdLine->fValid
+    field will be set to TRUE or FALSE to indicate that an option was
+    specified and its data is valid.  If this value is set to FALSE,
+    none of that option's results fields will be valid.
+
+<p>    <h4>The optional flags values are</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+DCL_CMDFLAG_REQUIRED
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The option is required.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCL_CMDFLAG_RANGE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The UINT32 or SIZEKB argument must fall
+                                in a range.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCL_CMDFLAG_RANGEPOW2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The UINT32 or SIZEKB argument must fall
+                                in a range and be a power-of-two value.
+</td>
+</tr>
+</table>
+
+<p>   
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+paCmdLine
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of DCLCMDLINE structures,
+                       with the final structure containing a NULL in
+                       the pszName field.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+argc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of elements in argv[].
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+argv
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An array of argument string pointers.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ppszBadArg
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The location in which to store a pointer to
+                       argument data which is bad.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclCriticalSectionEnter"></a>
+<a NAME="DclCriticalSectionEnter"></a>
+DclCriticalSectionEnter
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>DclCriticalSectionEnter</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_ATOMIC32>D_ATOMIC32</a>     *pulAtomicSectionGate,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulTimeoutMS,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>          fSleepOK)
+</div>
+<div class=SectionText>
+
+    Enter a critical section.  Code must not attempt to recursively
+    enter the section.
+
+<p>    The value pointed to by pulAtomicSectionGate must be initialized
+    to zero prior to calling this function, and thereafter should be
+    considered to be private to the critical section functions.
+
+<p>    <b>Note</b> -- Critical sections are for serializing access to a
+              section of code, and are typically used to facilitate
+              atomically updating a group of variables.  Critical 
+              sections are designed to be held for very short periods
+              of time.  Generally software should <b>not</b> be calling out
+              to other functions while executing inside a critical 
+              section -- a mutex is more appropriate for that.
+
+<p>    <b>Note</b> -- Generally this function should not be used with both a
+              ulTimeoutMS value of 0 (forever) and a fSleepOK value
+              of FALSE, as a deadlock could result if the critical
+              section requestor ends up blocked by a lower priority
+              thread.  If the OS thread scheduler is not time-slice
+              based, the higher priority blocked thread may end up 
+              spinning forever.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pulAtomicSectionGate
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a <a HREF=UD660_DataTypes.c.htm#D_ATOMIC32>D_ATOMIC32</a> variable
+                               which controls access to the section.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulTimeoutMS
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The maximum number of milliseconds to
+                               wait, or 0 to wait forever.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fSleepOK
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+TRUE if it is OK to sleep while waiting.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if the section was entered, or FALSE if the
+        operation timed out.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclCriticalSectionLeave"></a>
+<a NAME="DclCriticalSectionLeave"></a>
+DclCriticalSectionLeave
+</h3>
+<div class=Api>
+void <font class=ApiName>DclCriticalSectionLeave</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_ATOMIC32>D_ATOMIC32</a>     *pulAtomicSectionGate)
+</div>
+<div class=SectionText>
+
+    Leave a critical section.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pulAtomicSectionGate
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a <a HREF=UD660_DataTypes.c.htm#D_ATOMIC32>D_ATOMIC32</a> variable
+                               which controls access to the section.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclIoctlDispatch"></a>
+<a NAME="DclIoctlDispatch"></a>
+DclIoctlDispatch
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclIoctlDispatch</font>(
+    DCLIOREQUEST   *pReqHdr)
+</div>
+<div class=SectionText>
+
+    Dispatch generic IOCTL requests which came from outside DCL.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pReqHdr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the request block for the function.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the status of the
+        request.  Note that this status value indicates whether the
+        IOCTL request and interface are working properly, NOT whether
+        the actual function call was successful.  If this function
+        returns DCLSTAT_SUCCESS, then the returned request structure
+        must be examined to see if the actual API function was
+        successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMulDiv"></a>
+<a NAME="DclMulDiv"></a>
+DclMulDiv
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a> <font class=ApiName>DclMulDiv</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>    ulBase,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>    ulMultiplier,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>    ulDivisor)
+</div>
+<div class=SectionText>
+
+    Multiply two 32-bit numbers and divide by another 32-bit number,
+    returning a 64-bit result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulBase
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The base number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulMultiplier
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number by which to multiply.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulDivisor
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number by which to divide.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the 64-bit unsigned integer result.  Always returns
+        zero if either ulBase or ulMultiplier are zero (regardless
+        what ulDivisor is).  Returns <a HREF=UD690_PreprocSymbols.c.htm#D_UINT64_MAX>D_UINT64_MAX</a> if if ullDivisor
+        is zero, with the other operands being non-zero.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclMulDiv64"></a>
+<a NAME="DclMulDiv64"></a>
+DclMulDiv64
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a> <font class=ApiName>DclMulDiv64</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a>    ullBase,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>    ulMultiplier,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a>    ullDivisor)
+</div>
+<div class=SectionText>
+
+    Multiply 64-bit and 32-bit numbers, and divide by a 64-bit number,
+    returning a 64-bit result.
+
+<p>    <b>Warning</b> -- This function may return an approximate value if
+                 multiplying ullBase and ulMultplier results in a
+                 number larger than 64-bits <and> this cannot be
+                 avoided by scaling.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ullBase
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The base 64-bit number number.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulMultiplier
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 32-bit number by which to multiply.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ullDivisor
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The 64-bit number by which to divide.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the 64-bit unsigned integer result.  Always returns
+        zero if either ullBase or ulMultiplier are zero (regardless
+        what ullDivisor is).  Returns <a HREF=UD690_PreprocSymbols.c.htm#D_UINT64_MAX>D_UINT64_MAX</a> if an overflow
+        condition occurred, or if ullDivisor is zero.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclRatio"></a>
+<a NAME="DclRatio"></a>
+DclRatio
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclRatio</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char       *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    unsigned    nBufferLen,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>    ulDividend,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>    ulDivisor,<br>&nbsp;&nbsp;&nbsp;
+    unsigned    nDecPlaces)
+</div>
+<div class=SectionText>
+
+    Return a ratio value formatted as a floating point string
+    accurate to the specified number of decimal places.  This
+    function is similar to <a HREF="#DclRatio64">DclRatio64</a> but with smaller data
+    types.  See that function for a detailed description.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to store the
+                     null terminated results.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length of the output buffer.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulDividend
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The "total" value to divide.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulDivisor
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The portion of ulDividend for which to calculate
+                     the ratio (may be greater than ulDividend).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nDecPlaces
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of decimal places to use, from 0 to 9.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pBuffer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclRatio64"></a>
+<a NAME="DclRatio64"></a>
+DclRatio64
+</h3>
+<div class=Api>
+<font class=ApiName>DclRatio64</font>(<br>&nbsp;&nbsp;&nbsp; szBuffer,<br>&nbsp;&nbsp;&nbsp; sizeof(szBuffer),<br>&nbsp;&nbsp;&nbsp; N*100,<br>&nbsp;&nbsp;&nbsp; Y,<br>&nbsp;&nbsp;&nbsp; 2);
+</div>
+<div class=SectionText>
+
+    Return a ratio value formatted as a floating point string
+    accurate to the specified number of decimal places.  The 
+    function exists to provide floating point style output 
+    without using any actual floating point types.
+
+<p>    This function may scale the numbers down to avoid overflow
+    at the high end.  Likewise, potential divide-by-zero errors
+    are internally avoided.  Here are some examples:
+
+<p>    <pre>
+        Dividend  Divisor   DecPlaces   Result
+        --------  -------   ---------   ------
+        12133     28545     2           "0.42"
+        1539      506       2           "3.04"
+    </pre>
+
+<p>    To get a number formatted as a percentage, take the take the
+    portion of the total (normally the smaller part), multiply it
+    by 100, and pass it to this function as the Dividend, pass the
+    "total" value to this function as the Divisor, and specify the
+    desired number of decimal places.
+
+<p>    For example, if you have a disk format overhead value of N blocks
+    out of a total of Y blocks on the disk, and you want to display 
+    the format overhead as a percentage, you would use a function call
+    similar to:
+
+<p>    <pre>
+        DclRatio64(szBuffer, sizeof(szBuffer), N*100, Y, 2);
+    </pre>
+
+<p>    If N=145, Y=4096, and decimal places is 2, the resulting output
+    would be "3.54".
+
+<p>    The string returned will always be null-terminated, even if it
+    means stomping on the least significant decimal digit.
+
+<p>    If either the dividend or divisor values are zero, the string
+    "0.0" will be returned, with the prescribed number of decimal
+    places.
+
+<p>    <b>Note</b> -- This function has "reasonable" limits which meet the
+              needs of the various supplemental utilities which use
+              this function.  Extremely large ratios, or using many
+              decimal places may not function as desired.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer in which to store the
+                      null terminated results.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The length of the output buffer.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ullDividend
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The "total" value to divide.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ullDivisor
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The portion of ulDividend for which to calculate
+                      the ratio (may be greater than ulDividend).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nDecPlaces
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of decimal places to use, from 0 to 9.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pBuffer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclScaleBytes"></a>
+<a NAME="DclScaleBytes"></a>
+DclScaleBytes
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclScaleBytes</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulByteValue,<br>&nbsp;&nbsp;&nbsp;
+    char           *pszBuffer,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nBufferSize)
+</div>
+<div class=SectionText>
+
+    This function formats a number, which is supplied as a count of
+    bytes, but scales it to KiloBytes, MegaBytes or GigaBytes if it
+    is nice and round, or if it exceeds a 30x factor over the lower
+    threshold.  The number is output in the forms: "nnn", "nnn KB",
+    "~nnn KB", where "KB" could be "MB" or "GB".
+
+<p>    Even if a number is not exactly evenly divisible by KB, MB or
+    GB, it may still be formatted and displayed in that fashion.
+    For example, if a byte value is passed in which is 33.6 KB,
+    even though the value is not evenly divisible by KB, because it
+    is over the 30x threshold, it will be rounded up and displayed
+    as "~34 KB".
+
+<p>    For any byte value which is under 30KB, and is not evenly
+    divisible by 1024, it will be formatted as "nnn", without any
+    suffix.
+
+<p>    If the buffer size is not large enough, then the buffer will
+    contain an empty string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulByteValue
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to scale, in bytes
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to contain the scaled string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of the output buffer
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pszBuffer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclScaleItems"></a>
+<a NAME="DclScaleItems"></a>
+DclScaleItems
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclScaleItems</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT64>D_UINT64</a>        ullItems,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulItemSize,<br>&nbsp;&nbsp;&nbsp;
+    char           *pszBuffer,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nBufferSize)
+</div>
+<div class=SectionText>
+
+    Format a number, which is supplied as a count of items, each a
+    specific bytes length in size, and scale the total byte count to
+    Peta, Tera, Giga, Mega, Kilo, or Bytes.
+
+<p>    <h4>The number is output in the forms</h4> "nnn KB" or "~nnn KB".
+
+<p>    Even if a number is not exactly evenly divisible, it may still
+    be formatted and displayed in that fashion.  For example, if a
+    byte value is passed in which is 33.6 MB, even though the value
+    is not evenly divisible by MB, because it is over the 30x 
+    threshold, it will be rounded up and displayed as "~34 MB".
+
+<p>    If the buffer size is not large enough, then the buffer will
+    contain an empty string.
+
+<p>    If either ullItems or ulItemSize is zero, then the output buffer
+    will contain an empty string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ullItems
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of items
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulItemSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of each item, in bytes
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to contain the scaled string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of the output buffer
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pszBuffer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclScaleKB"></a>
+<a NAME="DclScaleKB"></a>
+DclScaleKB
+</h3>
+<div class=Api>
+char * <font class=ApiName>DclScaleKB</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulKBValue,<br>&nbsp;&nbsp;&nbsp;
+    char           *pszBuffer,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nBufferSize)
+</div>
+<div class=SectionText>
+
+    This function formats a number, which is supplied as a count
+    of KiloBytes, but scales it to MegaBytes or GigaBytes if it
+    is nice and round, or if it exceeds a 30x factor over the
+    lower threshold.  The number is output in the forms: "nnn KB"
+    or "~nnn KB".
+
+<p>    Even if a number is not exactly evenly divisible by MB or GB,
+    it may still be formatted and displayed in that fashion.  For
+    example, if a KB value is passed in which is 33.6 MB, even
+    though the value is not evenly divisible by MB, because it is
+    over the 30x threshold, it will be rounded up and displayed
+    as "~34 MB".
+
+<p>    If the buffer size is not large enough, then the buffer will
+    contain an empty string.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulKBValue
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The value to scale, in KB
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to contain the scaled string
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nBufferSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of the output buffer
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns pszBuffer.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclSignOn"></a>
+<a NAME="DclSignOn"></a>
+DclSignOn
+</h3>
+<div class=Api>
+const char * <font class=ApiName>DclSignOn</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>    fQuiet)
+</div>
+<div class=SectionText>
+
+    This function displays the Datalight Common Libraries sign-on
+    messages and returns a pointer to the sign-on information
+    strings.
+
+<p>    If <a HREF=UD140_ProjectSettings.c.htm#DCLCONF_OUTPUT_ENABLED>DCLCONF_OUTPUT_ENABLED</a> is TRUE, the sign-on messages have
+    the form:
+
+<p>        PRODUCTNAME <lf>
+        PRODUCTLEGAL <lf>
+        [PRODUCTPATENTS <lf>]       (if any)
+        PRODUCTEDITION <lf> 0
+
+<p>    If <a HREF=UD140_ProjectSettings.c.htm#DCLCONF_OUTPUT_ENABLED>DCLCONF_OUTPUT_ENABLED</a> is FALSE, the sign-on messages have
+    the form:
+
+<p>        PRODUCTNAME <lf>
+        PRODUCTLEGAL <lf> 0
+
+<p>    The various PRODUCT* strings are defined in dlver.h.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+fQuiet
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If TRUE indicates that the act of signing on
+                 should be ignored -- just return the sign-on
+                 message string.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the sign-on message string.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclSizeToUL"></a>
+<a NAME="DclSizeToUL"></a>
+DclSizeToUL
+</h3>
+<div class=Api>
+const char * <font class=ApiName>DclSizeToUL</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char *pachNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>   *pulResult)
+</div>
+<div class=SectionText>
+
+    Convert an ASCII hex or decimal number, which may may have a
+    "B", "KB", or "MB" suffix (case insensitive), and converts it
+    to a binary value.  Hex numbers must be prefixed with "0x".
+
+<p>    <b>If there is no postfix, KB is assumed!</b>
+
+<p>    May fail due to bad formatting or overflow.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pachNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ASCII number to convert.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulResult
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> in which to place the
+                    result.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the byte following the string, or NULL
+        to indicate an error.  In the event of an error, *pulResult
+        will not be modified.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclSizeToULKB"></a>
+<a NAME="DclSizeToULKB"></a>
+DclSizeToULKB
+</h3>
+<div class=Api>
+const char * <font class=ApiName>DclSizeToULKB</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char *pachNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>   *pulResult)
+</div>
+<div class=SectionText>
+
+    Convert an ASCII hex or decimal number, which may may have a
+    "KB", "MB", or "GB" suffix (case insensitive), and converts
+    it to a binary kilobytes value.  Hex numbers must be prefixed
+    with "0x".
+
+<p>    <b>If there is no postfix, KB is assumed!</b>
+
+<p>    May fail due to bad formatting or overflow.
+
+<p>    Since the KB value which is returned is 32-bits wide, the maximum
+    
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+effective return value is the equivalent to 4 terabytes
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+1024.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pachNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the ASCII number to convert.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulResult
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> in which to place the
+                    kilobyte result.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the byte following the string, or NULL
+        to indicate an error.  In the event of an error, *pulResult
+        will not be modified.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclSortInsertion32"></a>
+<a NAME="DclSortInsertion32"></a>
+DclSortInsertion32
+</h3>
+<div class=Api>
+size_t <font class=ApiName>DclSortInsertion32</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>   *pulList,<br>&nbsp;&nbsp;&nbsp;
+    size_t      nElements)
+</div>
+<div class=SectionText>
+
+    Perform an insertion sort on an array of <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> items.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pulList
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The list to sort.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nElements
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of elements in pulList.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a count from 0 to nElements, indicating the level
+        of unsortedness.  Returns 0 if the list was already sorted.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclStatusToErrorlevel"></a>
+<a NAME="DclStatusToErrorlevel"></a>
+DclStatusToErrorlevel
+</h3>
+<div class=Api>
+int <font class=ApiName>DclStatusToErrorlevel</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a>   dclStat)
+</div>
+<div class=SectionText>
+
+    This function converts a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value to an errorlevel
+    value in the range of 0 to 255.
+
+<p>    This function should only be used for <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> values
+    where the product number is DCL, the status class is
+    "Error", and the status locale is "General".  Additionally
+    the status value must be 255 or less.  If any of these
+    conditions are NOT met, an errorlevel value of 255 will
+    be returned.
+
+<p>    (One exception is that the *STAT_SUCCESS and *STAT_FAILURE
+    codes are identical regardless of the product code, and will
+    properly return DCLERRORLEVEL_SUCCESS/FAILURE respectively.)
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+dclStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCLSTAT_* value to convert
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an errorlevel value in the range of 0 to 255.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclSystemInfoQuery"></a>
+<a NAME="DclSystemInfoQuery"></a>
+DclSystemInfoQuery
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclSystemInfoQuery</font>(
+    DCLSYSTEMINFO  *pDSS)
+</div>
+<div class=SectionText>
+
+    Fill the supplied DCLSYSTEMINFO structure.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDSS
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the DCLSYSTEMINFO structure to fill.
+                   On entry, the uStrucLen field must be set to the
+                   size of the structure.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

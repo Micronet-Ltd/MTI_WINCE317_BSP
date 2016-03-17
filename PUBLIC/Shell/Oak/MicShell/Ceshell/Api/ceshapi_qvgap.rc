@@ -1,0 +1,62 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+
+#include <windows.h>
+#include <commctrl.h>
+#include "resource.h"
+
+
+// Special value to identify QVGA resources
+IDR_QVGAENABLED         BOOL   DISCARDABLE   {TRUE}
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialogs
+//
+
+IDD_BROWSEFORFOLDER DIALOG DISCARDABLE  0, 0, 130, 140
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_CAPTION | WS_POPUP | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Browse for Folder"
+BEGIN
+    LTEXT           "",IDC_BROWSETITLE,11,27,106,12
+    LTEXT           "",IDC_BROWSESTATUS,11,7,106,20
+    EDITTEXT        IDC_BROWSEEDIT, 11,27,106,12, ES_AUTOHSCROLL
+    CONTROL         "",IDC_FOLDERLIST, WC_TREEVIEW,
+                    WS_TABSTOP | TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT,7,42,116,92
+END
+
+
+IDD_GETOPENFILENAME DIALOG DISCARDABLE 0, 0, 134, 165
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE
+BEGIN
+    LTEXT           "&Name:",IDC_FILEOPENNAMELABEL,5,134,20,10
+    EDITTEXT        IDC_FILEOPENNAME,28,132,101,13,ES_AUTOHSCROLL,
+    				WS_EX_CLIENTEDGE
+    LTEXT           "&Type:",IDC_FILEOPENTYPELABEL,5,150,20,10
+    COMBOBOX        IDC_FILEOPENTYPE,28,148,101,52,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP,WS_EX_CLIENTEDGE
+    CONTROL         "List1",IDC_FILEOPENLIST,"SysListView32",WS_TABSTOP,5,16,124,113
+END
+
+IDD_GETOPENFILENAME_SIP DIALOG DISCARDABLE 0, 0, 134, 120
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE
+BEGIN
+    LTEXT           "&Name:",IDC_FILEOPENNAMELABEL,5,89,20,10
+    EDITTEXT        IDC_FILEOPENNAME,28,87,101,13,ES_AUTOHSCROLL, WS_EX_CLIENTEDGE
+    LTEXT           "&Type:",IDC_FILEOPENTYPELABEL,5,105,20,10
+    COMBOBOX        IDC_FILEOPENTYPE,28,103,101,52,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP,WS_EX_CLIENTEDGE
+    CONTROL         "List1",IDC_FILEOPENLIST,"SysListView32",WS_TABSTOP,5,16,124,68
+END

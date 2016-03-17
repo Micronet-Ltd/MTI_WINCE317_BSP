@@ -1,0 +1,20 @@
+;
+;==============================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;==============================================================================
+;
+
+LIBRARY keypad
+
+EXPORTS 
+    KPG_Init
+    KPG_Deinit
+    KPG_Open
+    KPG_Close
+    KPG_PowerUp
+    KPG_IOControl

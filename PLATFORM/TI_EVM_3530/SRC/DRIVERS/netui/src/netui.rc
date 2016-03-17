@@ -1,0 +1,1393 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#if 0
+#endif
+
+#include "windows.h"
+#include "netui_args.h"
+#include "resource.h"
+#include "commctrl.h"
+
+rcinclude Bluetooth.rc
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Strings
+//
+
+STRINGTABLE DISCARDABLE
+BEGIN
+	// Used by GetIPAddress
+	IDS_ERR_TITLE                           "Invalid IP Address"
+
+	// Used by the IPAddress Control
+	IDS_IPBAD_FIELD_VALUE   "%d is not a valid entry. Specify a value between %d and %d for this field."
+
+	// Quick config dialog
+	IDS_QCIP_TITLE					"IP Information"
+	IDS_QCWZC_TITLE					"Wireless Information"
+	IDS_QC_IPRENEWERR				"Could not renew IP information."
+	IDS_QC_SIGNAL0					"No Signal"
+	IDS_QC_SIGNAL1					"Very Low"
+	IDS_QC_SIGNAL2					"Low"
+	IDS_QC_SIGNAL3					"Good"
+	IDS_QC_SIGNAL4					"Very Good"
+	IDS_QC_SIGNAL5					"Excellent"
+	IDS_QC_STATIC_IP				"Static"
+	IDS_QC_DHCP						"DHCP"
+
+	IDS_QC_ASSOCIATING				"Associating with %s..."
+	IDS_QC_ASSOCIATED				"Associated with %s"
+	IDS_QC_FAILED_ASSOCIATE			"Failed to associate with %s"
+	IDS_QC_AUTHENTICATING			"Authenticating to %s..."
+	IDS_QC_FAILED_AUTHENTICATION	"Failed to authenticate to %s [Error: 0x%x]"
+	IDS_QC_CANCEL_AUTHENTICATION	"Cancelled authentication to %s"
+	IDS_QC_AUTHENTICATED			"Authenticated to %s"
+	IDS_QC_CONNECTED				"Connected to %s"
+	IDS_QC_REAUTHENTICATING			"Reauthenticating to %s..."
+	IDS_QC_NOT_CONNECTED			"Not Connected"
+	IDS_QC_SCANNING					"Scanning..."
+
+	IDS_QC_PREFERRED 				" (preferred)"
+	IDS_QC_ADDNEW					"Add New..."
+
+	IDS_QC_CONNECT					"Connect"
+	IDS_QC_CONFIGURE				"Configure"
+	IDS_QC_DELETE					"Delete"
+        
+	// Strings for the network connection details dialog
+	IDS_IPCFG_PH_ADDR       "Physical Address"
+	IDS_IPCFG_IPADDR        "IP Address"
+	IDS_IPCFG_SUBNET        "Subnet Mask"
+	IDS_IPCFG_DEFGW         "Default Gateway"
+	IDS_IPCFG_DHCP          "DHCP Server"
+        IDS_IPCFG_DNSSERVERS    "DNS Servers"
+        IDS_IPCFG_WINSSERVERS   "WINS Servers"
+	IDS_IPCFG_LEASE_OBT     "Lease Obtained"
+	IDS_IPCFG_LEASE_EXP     "Lease Expires"
+	IDS_IPCFG_PRAMETER      "Property"
+	IDS_IPCFG_VALUE         "Value"
+    
+	IDS_WZCADV_ALLAVAIL				"All available"
+	IDS_WZCADV_ACCESSPTS			"Only access points"
+	IDS_WZCADV_ADHOC				"Only computer-to-computer"
+
+	// Zero config properties
+	IDS_WZC_OPEN					"Open"
+	IDS_WZC_SHARED					"Shared"
+	IDS_WZC_SSN						"WPA"
+	IDS_WZC_SSNPSK					"WPA-PSK"
+	IDS_WZC_DISABLED				"Disabled"
+	IDS_WZC_WEP						"WEP"
+	IDS_WZC_TKIP					"TKIP"
+	IDS_WZC_AES						"AES"	
+	IDS_WZC_WPA2PSK					"WPA2-PSK"
+	IDS_WZC_WPA2					"WPA2"
+
+	// Advanced logging dialog
+	IDS_QC_WZCSTARTED				"ZeroConfig started"
+	IDS_QC_CLOSE_EAPOL_SESSION		"Close EAPOL session"
+	IDS_QC_PREF_LIST_EXHAUSTED		"Preferred List Exhausted"
+
+        // IPv6 strings
+        IDS_QC_V6_TITLE                         "IPv6 Information"
+        IDS_QC_V6_ADDR_UNAVAIL                  "Not Available"
+
+    // config.c strings
+    IDS_PORT_SETTINGS           "Port Settings"
+    IDS_CALL_OPTIONS            "Call Options"
+    IDS_DEVICE_PROPERTIES       "Device Properties"
+    IDS_PARAMETER_NONE          "None"
+    IDS_PARAMETER_ODD           "Odd"
+    IDS_PARAMETER_EVEN          "Even"
+    IDS_PARAMETER_MARK          "Mark"
+    IDS_PARAMETER_SPACE         "Space"
+    IDS_PARAMETER_SOFTWARE      "Software"
+    IDS_PARAMETER_HARDWARE      "Hardware"
+
+    // Strings used by the redir and WNet APIs
+    IDS_SRVLOGON_TITLE          "Logon to Network Server"
+	IDS_WININET_TITLE			"Enter Network Password"
+    IDS_SRVLOGON_AUTH_FAIL_TITLE "Logon failed"
+    IDS_RESFMT_STR              "Resource:  %s"
+	IDS_WININET_SITE			"Site:"
+	IDS_WININET_PROXY			"Firewall:"
+    IDS_SRVLOGON_CHK_STR        "Update Default &Credentials"
+    IDS_NETMSGBOX_TITLE         "Windows CE Networking"
+
+	// Strings used by the network dialogs
+	IDS_NETWORK_IPADDR                      "IP Address"
+	IDS_NETWORK_NAMESERV            "Name Servers"
+	IDS_NETWORK_IP_TITLE            "'%.64s' Settings"
+	IDS_NETWORK_ERR_BADIP           "No IP address was specified. An IP address is required to identify this workstation on the TCP/IP network."
+        IDS_NETWORK_WLAN_TITLE          "Wireless Networks"
+
+END
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_NETUI_DIRECT_NAME           "`Desktop @ 19200`"
+	IDS_NETUI_DFLT_LOCALNAME        "%s on %s"
+
+        // The following strings are for NetMsgBox, which uses FormatMessage
+	IDS_NETUI_OPEN_FILE_CONF          "There are currently files open on %1!s! (connected to %2!s!). \nDo you want to disconnect anyway?"
+	IDS_NETUI_BAD_RES_NAME            "Invalid Resource Name %1!s!."
+	IDS_NETUI_ERR_ADDCONNECT          "Error connecting to resource: %1!d!"
+	IDS_NETUI_ERR_INV_COMPNAME        "Network services cannot be started. \nBefore you can connect to the network you must change your computer name.  You can change the name by opening the system control panel."
+	IDS_NETUI_ERR_ADDNAME             "Error registering name on network (may be duplicate).\nChange in system control panel and try again."
+	IDS_NETUI_DISCON_ERROR            "Error disconnecting resource: %1!d!"
+	IDS_NETUI_SAVE_PWD                "Saving your network password on this device could expose your network to unauthorized access if this device is lost or stolen.  Do you wish to save anyway?"
+	IDS_NETUI_NO_IPADDR               "DHCP was unable to obtain an IP address. If the netcard is removable, then you can remove/reinsert it to have DHCP make another attempt to obtain an IP address for it. Otherwise, you can statically assign an address."
+	IDS_NETUI_LEASE_EXPIRED           "Your IP address lease has expired. DHCP was unable to renew your lease."
+	IDS_NETUI_CACHED_LEASE            "A DHCP Server could not be contacted. Using cached lease information."
+	IDS_NETUI_PRINT_COMPLETE          "Print job %1!u! on queue \\\\%2!s!\\%3!s! has finished printing.\nSize of job is %4!u! bytes."
+	IDS_NETUI_PRINT_STATUS            "Status for print job %1!u! on queue \\\\%2!s!\\%3!s!:\n%4!s!"
+	IDS_NETUI_PRINT_STATUS_OFFLINE    "The printer is offline"
+	IDS_NETUI_PRINT_STATUS_PAPER      "The printer is out of paper"
+	IDS_NETUI_PRINT_STATUS_OTHER      "Unrecognized printer error"
+	IDS_NETUI_PRINT_STATUS_NETERR     "Network error occurred. Will not receive further notifications for this job."
+	IDS_NETUI_USB_INSTALL_FAILURE     "Error installing USB driver %1!s!"
+	IDS_NETUI_ARP_CONFLICT_OLD_DHCP   "The system has detected a conflict for dynamically assigned IP address %1 and with the system having hardware address %2. The network will remain active, but problems may occur."
+	IDS_NETUI_ARP_CONFLICT_OLD_STATIC "The system has detected a conflict for statically assigned IP address %1 and with the system having hardware address %2. The local interface will remain active, but problems may occur."
+	IDS_NETUI_ARP_CONFLICT_NETDOWN    "The system has detected a conflict for statically assigned IP address %1 and with the system having hardware address %2. The local interface has been disabled."
+END
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_PCCARD_TYPE_MFC                 "Multi-Function"
+    IDS_PCCARD_TYPE_MEMORY              "Memory"
+    IDS_PCCARD_TYPE_SERIAL              "Serial"
+    IDS_PCCARD_TYPE_PARALLEL    "Parallel"
+    IDS_PCCARD_TYPE_DISK                "Storage"
+    IDS_PCCARD_TYPE_VIDEO               "Video"
+    IDS_PCCARD_TYPE_NETWORK             "Network"
+    IDS_PCCARD_TYPE_AIMS                "Storage"
+    IDS_PCCARD_TYPE_SCSI                "SCSI"
+    IDS_PCCARD_TYPE_UNKNOWN             "Unknown"
+    IDS_PCCARD_SOCKET                   "%1!s! card in Socket %2!d!"
+    IDS_USB_CAPTION                     "Unidentified USB Device"
+    IDS_USB_CMDTEXT                     "Enter the name of the driver for this USB device:"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_ERR_APPLICATION     "Internal error.\nQuit and restart the program."
+    IDS_ERR_MEMORY          "There is not enough memory to complete the operation.\nQuit some programs, and then try again."
+    IDS_ERR_ALREADY_IN_LIST "A location with this name already exists.\nPlease enter a different name."
+    IDS_ERR_INVALID_INI     "The stored Telephony parameter is corrupt or missing.\nWould you like to reset to the default values?"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_CHANGE_PASSWORD         "Change Password"
+    IDS_CHANGE_PASSWORD_MISTYPE "The passwords you typed do not match. Please type the same new password in both boxes."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_LOCATION_REMOVE_OR_STUPID
+                            "Are you sure you want to remove the selected location?"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_WRN_LOCATION_NAME_REQUIRED
+                            "A valid location name is required.\rType a proper name."
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_WRN_TITLE_WARNING   "Warning"
+    IDS_WRN_TITLE_NAMEINUSE "Name in Use"
+    IDS_REMOVE_TITLE        "Remove Location"
+    IDS_WRN_TITLE_REQUIRED  "Required Entry Not Made"
+	IDS_CALL_WAITING_STR1	"*70,"
+	IDS_CALL_WAITING_STR2	"70#,"
+	IDS_CALL_WAITING_STR3	"1170,"
+
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+// Location is an SzSz string, but can have empty strings.  But that causes the SzSz to terminate early (double NULL)
+// So be very careful not to define any empty strings below.  In most cases a single blank can be used instead
+    INTLMSG_RES_LOCATION		"Work\0009,G\0009,1FG\0009,011,EFG\000206\000noCW\0001\0000\000"
+END
+
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_WZC_AUTH_OPEN       "Open"
+    IDS_WZC_AUTH_SHARED     "Shared"
+    IDS_WZC_AUTH_AUTO       "AutoSwitch"
+    IDS_WZC_INFRA_IBSS      "Adhoc"
+    IDS_WZC_INFRA_INFRA     "Infrastructure"
+    IDS_WZC_INFRA_AUTO      "Auto (Infrastructure Preferred)"
+    IDS_WZC_ERR_DUPSSID     "%1!s! Service Set Identifier '%2!s!' is already configured.\nPlease change either the Service Set Identifier or the Infrastructure mode before adding this entry to the preferred list."
+    IDS_WZC_PRIV_ABS        "Absent"
+    IDS_WZC_PRIV_REQ        "Required"
+    IDS_WZC_WEP_DISABLED    "Disabled"
+    IDS_WZC_WEP_ENABLED     "Enabled"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_WZC_KLEN_40X        "40 bits (10 digits)"
+    IDS_WZC_KLEN_104X       "104 bits (26 digits)"
+    IDS_WZC_KLEN_40A        "40 bits (5 characters)"
+    IDS_WZC_KLEN_104A       "104 bits (13 characters)"
+    IDS_WZC_KFMT_X          "Hexadecimal digits"
+    IDS_WZC_KFMT_A          "ASCII characters"
+    IDS_WZC_KFMT_LEN		"The network key you entered is incorrect for this authentication type.  Refer to the documentation to determine the allowable key lengths for this particular configuration."
+    IDS_WZC_KFMT_DGTS		"The WEP key you entered contains invalid digits for the specified size."
+    IDS_WZC_KERR_IDX        "The WEP key index you entered is outside the permitted range.\nPlease adjust the key index to a value within %1!s! and %2!s!."
+    IDS_WZC_INFRA_IBSS2     "Adhoc"
+    IDS_WZC_INFRA_INFRA2    "Infrastructure"
+    IDS_WZC_ERROR_CAPTION   "Wireless Configuration"
+    IDS_WZC_SSID_LEN		"The network name cannot be empty."
+END
+
+// CERTUI
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_SUBJECT             "Subject"
+    IDS_ISSUER              "Issuer"
+    IDS_FRIENDLY_NAME       "Name"
+    IDS_NOT_BEFORE			"Valid From"
+    IDS_NOT_AFTER			"Valid Till"
+    IDS_PRIVATE_KEY			"Private Key"
+    IDS_KEY_USAGE			"Key Usage"
+    IDS_PUBLIC_KEY			"Public Key"
+    IDS_CERT_SERIALNUMBER	"Serial Number"
+    IDS_NOT_PRESENT			"Not Present"
+    IDS_PRESENT	 			"Present"
+    IDS_ALL_PURPOSES		"All Purposes"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_ALG_MD2             "MD2"
+    IDS_ALG_MD4             "MD4"
+    IDS_ALG_MD5             "MD5"
+    IDS_ALG_SHA             "SHA"
+    IDS_ALG_MAC             "MAC"
+    IDS_ALG_HMAC            "HMAC"
+    IDS_ALG_RSA_SIGN        "RSA"
+    IDS_ALG_DSS_SIGN        "DSS"
+    IDS_ALG_RSA_KEYX        "RSA"
+    IDS_ALG_DES             "DES"
+    IDS_ALG_3DES_112        "2 KeyTriple DES"
+    IDS_ALG_3DES            "Triple DES"
+    IDS_ALG_RC2             "RC2"
+    IDS_ALG_RC4             "RC4"
+    IDS_ALG_RC5             "RC5"
+    IDS_ALG_SEAL            "SEAL"
+    IDS_ALG_DH_SF           "Diffie Hellman store and forward"
+    IDS_ALG_DH_EPHEM        "Diffie Hellman Ephemeral"
+    IDS_ALG_KEA_KEYX        "KEY (Fortezza)"
+    IDS_ALG_SKIPJACK        "SKIPJACK (Fortezza)"
+    IDS_ALG_TEK             "TEK (Fortezza)"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_LW95_ENTERAUTHINFO  "Please enter your authentication information."
+    IDS_SECERT_CERTINFO     "Subject:\r\n%1\r\nIssuer:\r\n%2\r\nEffective Date:\t%3\r\nExpiration Date:\t%4\r\nSecurity Protocol:\t%5\r\nSignature Type:\t%6\r\nEncryption Type:\t%7\r\nPrivacy Strength:\t%9 (%8!u! bits)"
+    IDS_SECERT_STRENGTH_HIGH "High"
+    IDS_SECERT_STRENGTH_MEDIUM "Medium"
+    IDS_SECERT_STRENGTH_LOW "Low"
+    IDS_CERT_SUBJECT        "Subject"
+    IDS_CERT_ISSUER         "Issuer"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_CERT_EFFECTIVE_DATE "Effective date"
+    IDS_CERT_EXPIRATION_DATE "Expiration date"
+    IDS_CERT_PROTOCOL       "Security protocol"
+    IDS_CERT_ENCRYPT_ALG    "Encryption type"
+    IDS_CERT_USAGE          "Certificate usage"
+    IDS_COMMENT_EXPIRES     "The certificate you are viewing has expired. "
+    IDS_COMMENT_NOT_VALID   "The certificate is not valid. Make sure the time on your computer is correct."
+    IDS_COMMENT_BAD_CN      "The certificate you are viewing does not match the name of the site you are trying to view.  "
+    IDS_COMMENT_BAD_CA      "This certificate was issued by an unknown security agency."
+    IDS_CERT_COMMENT        "Comment"
+    IDS_COMMENT_BAD_SIGNATURE
+                            "This certificate is corrupted, and its authenticity cannot be verified."
+    IDS_CERT_FRIENDLY_ERROR "Unable to change certificate friendly name."
+    IDS_CERT_FRIENDLY_ERR_TITLE
+                            "Certificate"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_PROTOCOL_UNKNOWN    "Unknown"
+    IDS_PROTOCOL_SSL2       "SSL 2.0"
+    IDS_PROTOCOL_SSL3       "SSL 3.0"
+    IDS_PROTOCOL_PCT1       "PCT 1.0"
+    IDS_PROTOCOL_TLS1       "TLS 1.0"
+    IDS_CIPHER_UNKNOWN      "Unknown Cipher"
+    IDS_DOMAIN              "&Domain"
+    IDS_REALM               "Realm"
+    IDS_SITE                "Site:"
+    IDS_FIREWALL            "Firewall:"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_STRING_CIPHMSG      "%1!s! with %2!d! bit encryption (%3!s!)."
+    IDS_STRING_HASHMSG      "%1!s! with %2!d! bit hash key."
+    IDS_STRING_EXCHMSG      "%1!s! with %2!d! bit exchange (%3!s!)"
+    IDS_CERT_FINGERPRINT    "Fingerprint"
+    IDS_HASH_UNKNOWN        "Unknown Hash"
+    IDS_EXCH_UNKNOWN        "Unknown Key Exchange"
+    IDS_CERT_HASH_ALG       "Hash type"
+    IDS_CERT_EXCH_ALG       "Key Exchange"
+END
+
+// EAPTLS UI
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_SERVER_VALIDATION_ERROR "Server Validation Error"
+	IDS_UNKNOWN_ROOT_ERROR "The server certificate is issued by an unknown authority."
+	IDS_CERT_EXPIRED_ERROR "The server certificate has expired or your system date is incorrect."
+	IDS_UNKNOWN_CERT_ERROR "The server certificate is invalid." 
+	IDS_GENERIC_CERT_ERROR "Unknown certificate error."
+END
+
+
+// IPV6 details list view Strings
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDS_IPV6_COL_PROPERTY		"Property"
+	IDS_IPV6_COL_VALUE			"Value"
+
+	IDS_IPV6_DEFAULT_GATEWAY	"Default Gateway"
+	IDS_IPV6_GLOBAL				"Global"
+	IDS_IPV6_SITE_LOCAL			"Site Local"
+	IDS_IPV6_LINK_LOCAL			"Link Local"
+	IDS_IPV6_6TO4				"6to4"
+	IDS_IPV6_AUTO_TUNNEL		"Auto Tunnel"
+	IDS_IPV6_AUTO_TUNNEL2		"Auto Tunnel 2"
+	IDS_IPV6_AUTO_TUNNEL3		"Auto Tunnel 3"
+END
+
+
+
+IDB_WZCSTATE            BITMAP  DISCARDABLE     "wzcui.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialogs
+//
+
+
+// For GetUsernamePassword
+IDD_NTLM_AUTH_W DIALOG 0, 0, 264, 110
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Enter Network Password"
+BEGIN
+    ICON            IDI_SECURITY4,IDC_STATIC,15,8,20,20
+    LTEXT           "Please type your user name and password.",IDC_CMDTEXT,42,
+                    9,144,15
+    LTEXT           "Site/Firewall:",IDC_SITE_OR_FIREWALL,42,27,39,8,NOT WS_VISIBLE
+    LTEXT           "__Server_Or_Proxy__",IDC_SERVER_OR_PROXY,92,26,136,8,NOT WS_VISIBLE
+    LTEXT           "&User Name",IDC_USERNAME_TAG,43,45,37,8
+    EDITTEXT        IDC_USERNAME,90,44,140,12,ES_AUTOHSCROLL
+    LTEXT           "&Password",IDC_PASSWORD_TAG,43,63,37,9
+    EDITTEXT        IDC_PASSWORD,90,61,140,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "&Domain",IDC_DOMAIN_TAG,43,81,37,8
+    EDITTEXT        IDC_DOMAIN_FIELD,90,78,140,12,ES_AUTOHSCROLL
+    CONTROL         "&Save password",
+                    IDC_SAVE_PASSWORD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    42,96,158,8
+END
+
+
+IDD_NTLM_AUTH_N DIALOG 0, 0, 130, 120
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Enter Network Password"
+BEGIN
+    ICON            IDI_SECURITY4,IDC_STATIC,15,12,21,20
+    LTEXT           "Please type your user name and password.",IDC_CMDTEXT,
+                    42,13,80,18
+    LTEXT           "Site/Firewall:",IDC_SITE_OR_FIREWALL,7,36,39,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "__Server_Or_Proxy__",IDC_SERVER_OR_PROXY,57,35,65,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "&User Name",IDC_USERNAME_TAG,8,54,37,8
+    EDITTEXT        IDC_USERNAME,55,53,67,12,ES_AUTOHSCROLL
+    LTEXT           "&Password",IDC_PASSWORD_TAG,8,72,37,9
+    EDITTEXT        IDC_PASSWORD,55,70,68,12,ES_PASSWORD | ES_AUTOHSCROLL
+    LTEXT           "&Domain",IDC_DOMAIN_TAG,8,90,37,8
+    EDITTEXT        IDC_DOMAIN_FIELD,55,87,68,12,ES_AUTOHSCROLL
+    CONTROL         "&Save password",IDC_SAVE_PASSWORD,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,105,116,10
+END
+
+
+IDD_REALM_AUTH_W DIALOG 0, 0, 264, 110
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Enter Network Password"
+BEGIN
+    ICON            IDI_SECURITY4,IDC_STATIC,15,12,20,20
+    LTEXT           "Please type your user name and password.",IDC_STATIC,42,
+                    13,144,15
+    LTEXT           "Site/Firewall:",IDC_SITE_OR_FIREWALL,42,31,39,8
+    LTEXT           "__Server_Or_Proxy__",IDC_SERVER_OR_PROXY,91,30,136,8
+    LTEXT           "Realm",IDC_REALM_TAG,42,48,39,8
+    LTEXT           "__Realm__",IDC_REALM_FIELD,91,47,137,8
+    LTEXT           "&User Name",IDC_USERNAME_TAG,42,65,46,8
+    EDITTEXT        IDC_USERNAME,88,63,140,14,ES_AUTOHSCROLL
+    LTEXT           "&Password",IDC_PASSWORD_TAG,42,83,42,9
+    EDITTEXT        IDC_PASSWORD,88,82,140,14,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+
+IDD_REALM_AUTH_N DIALOG 0, 0, 130, 120
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Enter Network Password"
+BEGIN
+    ICON            IDI_SECURITY4,IDC_STATIC,15,12,21,20
+    LTEXT           "Please type your user name and password.",IDC_STATIC,42,
+                    13,73,20
+    LTEXT           "Site/Firewall:",IDC_SITE_OR_FIREWALL,5,46,39,8
+    LTEXT           "__Server_Or_Proxy__",IDC_SERVER_OR_PROXY,52,45,75,8
+    LTEXT           "Realm",IDC_REALM_TAG,5,63,42,8
+    LTEXT           "__Realm__",IDC_REALM_FIELD,49,62,76,8
+    LTEXT           "&User Name",IDC_USERNAME_TAG,5,80,46,8
+    EDITTEXT        IDC_USERNAME,49,79,66,14,ES_AUTOHSCROLL
+    LTEXT           "&Password",IDC_PASSWORD_TAG,5,98,42,9
+    EDITTEXT        IDC_PASSWORD,48,97,67,14,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+// Change password dialog for GetNewPassword - wide screen version
+IDD_CHANGE_PASSWORD_W DIALOG 0, 0, 264, 65
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Change Password"
+BEGIN
+    ICON            IDI_SECURITY4,IDC_STATIC,15,12,20,20
+    LTEXT           "Your password has expired, please enter new password",IDC_STATIC,42,13,210,15
+    LTEXT           "&New Password",IDC_STATIC,32,28,50,9
+    EDITTEXT        IDC_NEW_PASSWORD,90,27,140,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Confirm Password",IDC_STATIC,32,46,57,9
+    EDITTEXT        IDC_CONFIRM_PASSWORD,90,44,140,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+END
+
+// Change password dialog for GetNewPassword - narrowscreen version
+IDD_CHANGE_PASSWORD_N DIALOG 0, 0, 130, 65
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Change Password"
+BEGIN
+    ICON            IDI_SECURITY4,IDC_STATIC,9,5,21,20
+    LTEXT           "Your password has expired, please enter new password",IDC_STATIC,35,5,89,17
+    LTEXT           "&New Password",IDC_STATIC,3,28,50,9
+    EDITTEXT        IDC_NEW_PASSWORD,63,27,62,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    LTEXT           "&Confirm Password",IDC_STATIC,3,46,57,9
+    EDITTEXT        IDC_CONFIRM_PASSWORD,63,44,62,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+END
+
+IDD_USERNAME DIALOG DISCARDABLE  0, 0, 130, 78
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "User Logon"
+BEGIN
+    LTEXT           "Enter your user name to logon",
+		    IDC_CMDTEXT,6,7,152,8
+    LTEXT           "&User Name:",IDC_STATIC,6,22,38,8
+    EDITTEXT        IDC_USERNAME,56,20,70,12,ES_AUTOHSCROLL
+    LTEXT           "D&omain:",IDC_STATIC,6,39,37,8
+    EDITTEXT        IDC_DOMAIN,56,37,70,12,ES_AUTOHSCROLL
+END
+
+
+// For GetResourcePassword
+IDD_RESPWD_N DIALOG DISCARDABLE  0, 0, 130, 53
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Enter Password"
+BEGIN
+    LTEXT           "Resource: ",IDC_CMDTEXT,6,7,112,8
+    DEFPUSHBUTTON   "OK",IDOK,10,54,50,14
+    PUSHBUTTON      "CANCEL",IDCANCEL,70,54,50,14
+    LTEXT           "&Password:",IDC_STATIC,6,27,37,8
+    EDITTEXT        IDC_PASSWORD,55,25,70,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+
+IDD_RESPWD_W DIALOG DISCARDABLE  0, 0, 130, 75
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter Network Password"
+BEGIN
+    LTEXT           "Resource: ",IDC_CMDTEXT,6,7,112,8
+    DEFPUSHBUTTON   "OK",IDOK,144,7,50,14
+    PUSHBUTTON      "CANCEL",IDCANCEL,143,26,50,14
+    LTEXT           "&Password:",IDC_STATIC,8,27,37,8
+    EDITTEXT        IDC_PASSWORD,58,25,70,12,ES_PASSWORD | ES_AUTOHSCROLL
+END
+
+// For GetIPAddress
+IDD_IPADDR DIALOG DISCARDABLE 0, 0, 130, 65
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION
+CAPTION "Enter IP Address for Connection"
+BEGIN
+    DEFPUSHBUTTON   "OK", IDOK, 10, 45, 50, 14
+    PUSHBUTTON      "CANCEL", IDCANCEL, 70, 45, 50, 14
+    LTEXT           "IP &address:", IDC_IPADDRLABEL,20,13,38,10
+    CONTROL         "", IDC_IP_ADDR, "RNA_IPAddress", WS_TABSTOP | 0x4,
+					20, 26, 100, 11
+END
+
+// For LineConfigDialog
+IDD_PORT_SETTINGS DIALOG DISCARDABLE  0, 0, 260, 85
+STYLE DS_CENTER | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    CONTROL         "&Manual Dial (user supplies dial strings)",
+		    IDC_CHK_MANUAL,"Button",BS_AUTOCHECKBOX | BS_MULTILINE |
+					WS_TABSTOP, 5,6,115,20
+    CONTROL         "Use terminal window b&efore dialing",IDC_CHK_PREDIAL,
+		    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,
+					15,43,100,20
+    CONTROL         "Use terminal window &after dialing",IDC_CHK_POSTDIAL,
+		    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,
+					15,63,100,20
+    GROUPBOX        "Terminals ",IDC_STATIC,5,33,115,51
+
+    LTEXT           "&Baud Rate",IDC_STATIC,140,12,45,10
+    COMBOBOX        IDC_BAUD_RATE,195,10,60,75,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Data Bits",IDC_STATIC,140,27,35,8
+    COMBOBOX        IDC_DATA_BITS,195,25,60,65,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Parity",IDC_STATIC,140,42,25,10
+    COMBOBOX        IDC_PARITY,195,40,60,85,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Stop Bits",IDC_STATIC,140,57,45,10
+    COMBOBOX        IDC_STOP_BITS,195,55,60,40,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Flow Control",IDC_STATIC,140,72,45,10
+    COMBOBOX        IDC_FLOW_CONTROL,195,70,60,65,CBS_DROPDOWNLIST |
+		    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Connection Preferences",IDC_STATIC,130,0,128,84
+
+END
+IDD_PORT_SETTINGS2 DIALOG DISCARDABLE  0, 0, 130, 136
+STYLE DS_CENTER | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    GROUPBOX        "",IDC_STATIC,90,0,35,6
+	LTEXT                   "Connection Preferences",IDC_STATIC,5,0,78,8
+
+    LTEXT           "&Baud Rate:",IDC_STATIC,11,12,45,8
+    COMBOBOX        IDC_BAUD_RATE,66,10,60,75,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Data Bits:",IDC_STATIC,11,26,35,8
+    COMBOBOX        IDC_DATA_BITS,66,24,60,65,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Parity:",IDC_STATIC,11,40,25,10
+    COMBOBOX        IDC_PARITY,66,38,60,85,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Stop Bits:",IDC_STATIC,11,54,45,10
+    COMBOBOX        IDC_STOP_BITS,66,52,60,40,CBS_DROPDOWNLIST | WS_VSCROLL |
+		    WS_TABSTOP
+    LTEXT           "&Flow Control:",IDC_STATIC,11,68,45,10
+    COMBOBOX        IDC_FLOW_CONTROL,66,66,60,65,CBS_DROPDOWNLIST |
+		    WS_VSCROLL | WS_TABSTOP
+
+    GROUPBOX        "",IDC_STATIC,32,78,95,6
+	LTEXT                   "Terminal",IDC_STATIC,5,78,85,8
+
+    CONTROL         "Use terminal window b&efore dialing",IDC_CHK_PREDIAL,
+		    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,88,130,10
+    CONTROL         "Use terminal window &after dialing",IDC_CHK_POSTDIAL,
+		    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,100,130,10
+
+    GROUPBOX        "",IDC_STATIC,5,111,122,6
+    CONTROL         "&Manual Dial", IDC_CHK_MANUAL,"Button",
+					BS_AUTOCHECKBOX | WS_TABSTOP, 5,117,130,10
+
+END
+
+IDD_DIALING_SETTINGS DIALOG DISCARDABLE  0, 0, 260, 85
+STYLE DS_CONTROL | DS_CENTER | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS
+BEGIN
+    CONTROL         "&Cancel the call if not connected within",
+                    IDC_CHK_TIMEOUT,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    WS_TABSTOP,15,15,135,10
+    LTEXT           "&seconds",IDC_TEXT_SECONDS,174,16,46,8
+    EDITTEXT        IDC_EDIT_TIMEOUT,151,14,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "&Wait for dial tone before dialing",IDC_CHK_BLIND_DIAL,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,27,119,10
+    RTEXT           "Wait for credit card &tone",IDC_STATIC,14,40,100,8
+    EDITTEXT        IDC_EDIT_WAITBONG,116,38,20,12,ES_AUTOHSCROLL |
+                    ES_NUMBER
+    LTEXT           "seconds",IDC_STATIC,139,40,42,8
+    LTEXT           "E&xtra Settings (special modem commands may be inserted into the dial string)",
+                    IDC_STATIC,5,60,255,10
+    EDITTEXT        IDC_EXTRA,44,70,160,14,ES_AUTOHSCROLL
+    GROUPBOX        "Call Setup",IDC_STATIC,5,5,250,50
+END
+
+IDD_DIALING_SETTINGS2 DIALOG DISCARDABLE  0, 0, 130, 136
+STYLE DS_CENTER | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CONTROL
+BEGIN
+    GROUPBOX        "",IDC_STATIC,37,0,90,6
+	LTEXT                   "Call Setup",IDC_STATIC,5,0,85,8
+
+    CONTROL         "&Cancel the call if not connected within",
+		    IDC_CHK_TIMEOUT,"Button",BS_AUTOCHECKBOX | BS_TOP |
+		    WS_TABSTOP | BS_MULTILINE,5,12,120,20
+
+    EDITTEXT        IDC_EDIT_TIMEOUT,15,34,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "&seconds",IDC_TEXT_SECONDS,37,36,46,8
+
+    CONTROL         "&Wait for dial tone before dialing",IDC_CHK_BLIND_DIAL,
+		    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,50,119,10
+
+    LTEXT           "Wait for credit card &tone",IDC_STATIC,15,64,78,8
+    EDITTEXT        IDC_EDIT_WAITBONG,94,62,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "sec.",IDC_STATIC,114,64,42,8
+
+    GROUPBOX        "",IDC_STATIC,50,78,77,6
+    LTEXT           "Extra Settings", IDC_STATIC,5,78,255,10
+    LTEXT           "Special modem commands may be inserted into the dial string",
+		    IDC_STATIC,5,92,120,20
+    EDITTEXT        IDC_EXTRA,5,116,120,14,ES_AUTOHSCROLL
+END
+
+// For ConnectionDialog
+IDD_ADD_CONNECTION_W DIALOG DISCARDABLE  30, 30, 231, 47
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Map Network Connection"
+BEGIN
+    LTEXT           "&Local Name:",IDC_STATIC,9,26,46,8
+    EDITTEXT        IDC_LOCALNAME,61,26,95,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,171,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,171,26,50,14
+    LTEXT           "&Remote Path:",IDC_STATIC,9,7,46,8
+    EDITTEXT        IDC_REMOTENAME,61,7,95,12,ES_AUTOHSCROLL
+END
+
+
+IDD_ADD_CONNECTION_N DIALOG DISCARDABLE  30, 30, 130, 74
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+EXSTYLE WS_EX_TOPMOST
+CAPTION "Add Connection"
+BEGIN
+    LTEXT           "&Local Name:",IDC_STATIC,5,28,46,8
+    EDITTEXT        IDC_LOCALNAME,56,26,61,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,11,53,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,70,53,50,14
+    LTEXT           "&Remote Path:",IDC_STATIC,5,9,46,8
+    EDITTEXT        IDC_REMOTENAME,56,7,60,12,ES_AUTOHSCROLL
+END
+
+// For DisconnectDialog
+IDD_REMOVE_CONNECTION_W DIALOG DISCARDABLE  0, 0, 260, 95
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Disconnect Network Connection"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,203,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,203,24,50,14
+    LISTBOX         IDC_DISCONLIST,7,19,178,62,LBS_SORT | LBS_USETABSTOPS |
+		    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LTEXT           "Network Connection:",IDC_STATIC,7,7,68,8
+END
+
+
+IDD_REMOVE_CONNECTION_N DIALOG DISCARDABLE  0, 0, 130, 111
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Disconnect Connection"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,10,90,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,70,90,50,14
+    LISTBOX         IDC_DISCONLIST,9,19,110,62,LBS_SORT | LBS_USETABSTOPS | 
+                    WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    LTEXT           "Network Connection:",IDC_STATIC,7,7,68,8
+END
+
+// For network dialogs
+IDD_NETWORK_IP DIALOG DISCARDABLE 0, 0, 260, 85
+STYLE DS_CENTER | DS_MODALFRAME | DS_SETFOREGROUND | WS_POPUP | WS_VISIBLE | WS_CAPTION
+BEGIN
+	LTEXT           "An IP address can be automatically assigned to this computer.  If your network does not automatically assign IP addresses, ask your network administrator for an address, and then type it in the space provided.",
+				IDC_STATIC, 5, 10, 100, 75
+
+    CONTROL             "&Obtain an IP address via DHCP",IDC_USEDHCP,
+				"Button", BS_AUTORADIOBUTTON,110,10,140,10
+    CONTROL             "&Specify an IP address",IDC_DONTUSEDHCP,
+				"Button", BS_AUTORADIOBUTTON,110,24,140,10
+
+    LTEXT       "IP &Address:",IDC_IPADDRLABEL,110,38,60,10
+    CONTROL     "",IDC_IP_ADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+				175,37,66,11
+    LTEXT       "S&ubnet Mask:",IDC_SUBNETLABEL,110,52,60,10
+    CONTROL     "",IDC_SUBNET_MASK,"RNA_IPAddress", WS_TABSTOP | 0x4,
+				175,51,66,11
+    LTEXT       "Default &Gateway:",IDC_GATEWAYLABEL,110,66,60,10
+    CONTROL     "",IDC_GATEWAY,"RNA_IPAddress", WS_TABSTOP | 0x4,
+				175,65,66,11
+
+END
+
+// For network dialogs
+IDD_NETWORK_IP2 DIALOG DISCARDABLE 0, 0, 130, 136
+STYLE DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+BEGIN
+	LTEXT		"An IP address can be automatically assigned to this computer.",
+				IDC_STATIC,5,5,120,20
+    CONTROL     "Obtain an IP address via DHCP",IDC_USEDHCP,
+				"Button", BS_AUTORADIOBUTTON,5,25,140,10
+    CONTROL     "Specify an IP address",IDC_DONTUSEDHCP,
+				"Button", BS_AUTORADIOBUTTON,5,39,140,10
+
+    LTEXT       "IP Address:",IDC_IPADDRLABEL,5,53,60,10
+    CONTROL     "",IDC_IP_ADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+				65,52,64,11
+    LTEXT       "Subnet Mask:",IDC_SUBNETLABEL,5,67,60,10
+    CONTROL     "",IDC_SUBNET_MASK,"RNA_IPAddress", WS_TABSTOP | 0x4,
+				65,66,64,11
+    LTEXT       "Default Gateway:",IDC_GATEWAYLABEL,5,81,60,10
+    CONTROL     "",IDC_GATEWAY,"RNA_IPAddress", WS_TABSTOP | 0x4,
+				65,80,64,11
+
+END
+
+IDD_NETWORK_NAMESERV DIALOG DISCARDABLE 0, 0, 260, 85
+STYLE DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+BEGIN
+	LTEXT           "Name server addresses may be automatically assigned if DHCP is enabled on this adapter.  You can specify additional WINS or DNS resolvers in the space provided.",
+				IDC_STATIC, 5, 10, 100, 75
+
+    LTEXT           "Primary &DNS:",IDC_DNS_LABEL,110,10,47,8
+    CONTROL         "",IDC_DNS_ADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					175,9,66,11
+    LTEXT           "Secondary D&NS:",IDC_DNS_ALTLABEL,110,24,59,8
+    CONTROL         "",IDC_DNS_ALTADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					175,23,66,11
+    LTEXT           "Primary &WINS:",IDC_WINS_LABEL,110,38,50,8
+    CONTROL         "",IDC_WINS_ADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					175,37,66,11
+    LTEXT           "Secondary W&INS:",IDC_WINS_ALTLABEL,110,52,60,8
+    CONTROL         "",IDC_WINS_ALTADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					175,51,66,11
+END
+
+IDD_NETWORK_NAMESERV2 DIALOG DISCARDABLE 0, 0, 130, 136
+STYLE DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION
+BEGIN
+	LTEXT		"Name server addresses",
+				IDC_STATIC,5,5,120,10
+    LTEXT           "Primary DNS:",IDC_DNS_LABEL,5,25,47,8
+    CONTROL         "",IDC_DNS_ADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					65,24,64,11
+    LTEXT           "Secondary DNS:",IDC_DNS_ALTLABEL,5,39,59,8
+    CONTROL         "",IDC_DNS_ALTADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					65,38,64,11
+    LTEXT           "Primary WINS:",IDC_WINS_LABEL,5,53,50,8
+    CONTROL         "",IDC_WINS_ADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					65,52,64,11
+    LTEXT           "Secondary WINS:",IDC_WINS_ALTLABEL,5,67,60,8
+    CONTROL         "",IDC_WINS_ALTADDR,"RNA_IPAddress", WS_TABSTOP | 0x4,
+					65,66,64,11
+END
+
+IDC_WZC_DLG_PROPS_W DIALOG 0, 0, 265, 110
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_OVERLAPPED
+CAPTION "Wireless Network Properties"
+BEGIN
+    LTEXT           "Network &name (SSID):",IDC_STATIC,10,3,71,8
+    EDITTEXT        IDC_WZC_EDIT_SSID,82,2,110,12,ES_AUTOHSCROLL |
+                    WS_DISABLED
+    CONTROL         "This is a &computer-to-computer (ad hoc) network",
+                    IDC_ADHOC,"Button",BS_AUTOCHECKBOX | BS_TOP |
+                    BS_MULTILINE | WS_TABSTOP,10,19,170,8
+    LTEXT           "&Encryption:",IDC_STATIC,10,44,47,8
+   	COMBOBOX		IDC_WZC_ENCRYPT,60,43,94,53,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+	LTEXT			"Aut&hentication:",IDC_STATIC,10,58,47,8
+   	COMBOBOX		IDC_WZC_AUTHEN,60,57,94,53,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+	LTEXT           "Network &key:",IDC_WZC_LBL_KMAT,10,72,47,8
+ 	EDITTEXT        IDC_WZC_EDIT_KMAT,60,71,94,12,ES_AUTOHSCROLL
+	LTEXT           "Key inde&x:",IDC_WZC_LBL_KIDX,9,85,46,8
+    EDITTEXT        IDC_WZC_EDIT_KIDX,60,84,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "The key is provided &automatically",
+                    IDC_USEHARDWAREPW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,98,131,10
+    CONTROL         "Enable 802.1X a&uthentication on this network",
+                    IDC_WZC_CHK_ENABLE8021X,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,157,44,
+                    106,10
+    COMBOBOX        IDC_WZC_CB_EAPTYPE,194,57,68,53,CBS_DROPDOWN | CBS_SORT |
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "EAP type:",IDC_STATIC,157,58,32,8
+    PUSHBUTTON      "&Properties",IDB_WZC_EAPPROPS,194,73,68,14
+    PUSHBUTTON      "OK",IDOK,157,94,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,212,94,50,14
+     LTEXT           "Wireless network key (WEP):",IDC_STATIC,10,32,130,8
+    LTEXT           "IEEE 802.1X Authentication:",IDC_STATIC,157,32,104,8
+END
+
+
+IDC_WZC_DLG_PROPS_N DIALOG 0, 0, 130, 145
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_OVERLAPPED
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Wireless Properties"
+BEGIN
+    LTEXT           "Network &name (SSID):",IDC_STATIC,3,8,105,10
+    EDITTEXT        IDC_WZC_EDIT_SSID,58,20,71,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    CONTROL         "This is an ad &hoc network",IDC_ADHOC,"Button",
+                    BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,6,
+                    36,97,10
+    LTEXT           "&Encryption:",IDC_STATIC,6,49,51,8
+    COMBOBOX        IDC_WZC_ENCRYPT,59,48,69,100,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Aut&hentication:",IDC_STATIC,6,63,51,8
+    COMBOBOX        IDC_WZC_AUTHEN,59,62,69,100,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Network &key:",IDC_WZC_LBL_KMAT,6,77,51,8
+    EDITTEXT        IDC_WZC_EDIT_KMAT,59,76,67,12,ES_AUTOHSCROLL
+    LTEXT           "Key inde&x:",IDC_WZC_LBL_KIDX,6,91,51,8
+    EDITTEXT        IDC_WZC_EDIT_KIDX,59,90,20,12,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "The key is provided &automatically",IDC_USEHARDWAREPW,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,104,119,10
+    CONTROL         "Enable 802.1X a&uthentication",IDC_WZC_CHK_ENABLE8021X,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,115,109,10
+    COMBOBOX        IDC_WZC_CB_EAPTYPE,40,127,42,100,CBS_DROPDOWN | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    LTEXT           "EAP type:",IDC_STATIC,4,130,34,8
+    PUSHBUTTON      "&Properties",IDB_WZC_EAPPROPS,84,127,44,14
+END
+
+IDD_LAN_WZC_ADVANCED DIALOG 0, 0, 262, 110
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_OVERLAPPED
+CAPTION "Advanced Wireless Settings"
+BEGIN
+	CONTROL         "Use Windows to configure my wireless settings",
+					IDC_WZC_CHK_ENABLEWZC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,5,
+					171,8
+	LTEXT           "Windows will connect to the following networks whenever they are available.  Preference will be given to networks at the top of this list.",
+					IDC_STATIC,185,7,73,62
+	CONTROL         "Preferred networks",IDC_WZC_PREF_LIST,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS |  LVS_NOCOLUMNHEADER |
+                    LVS_NOSORTHEADER | WS_DISABLED | WS_BORDER | WS_TABSTOP,
+                    14,27,121,43
+	PUSHBUTTON      "Up",IDC_WZC_PREF_UP,142,24,30,15
+	PUSHBUTTON      "Down",IDC_WZC_PREF_DOWN,142,41,30,15
+	PUSHBUTTON      "Delete",IDC_WZC_PREF_DELETE,142,59,30,15
+	CONTROL         "Automatically connect to non-preferred networks",
+					IDC_WZC_CHK_FALLBACK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,82,
+					172,8
+	LTEXT           "Networks to access:",IDC_STATIC,7,95,65,8
+	COMBOBOX        IDC_WZC_NETACCESS_COMBO,74,92,106,36,CBS_DROPDOWNLIST |
+					WS_VSCROLL | WS_TABSTOP
+	PUSHBUTTON      "Ok",IDOK,214,73,40,14
+	PUSHBUTTON      "Cancel",IDCANCEL,214,90,40,14
+	GROUPBOX        "Preferred Networks",IDC_STATIC,7,17,171,62
+END
+
+// For GetDriverName
+IDD_DRIVERNAME DIALOG DISCARDABLE  0, 0, 134, 55
+STYLE DS_MODALFRAME | DS_CENTER | DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Unidentified PCCard Adapter"
+BEGIN
+    LTEXT           "Enter the name of the driver for this PCCard:",
+		    IDC_CMDTEXT,6,7,120,16
+    LTEXT           "Driver Name:",IDC_STATIC,6,30,48,8
+    EDITTEXT        IDC_DRIVERNAME,56,28,72,12,ES_AUTOHSCROLL
+END
+
+// For Dialing Properties dialog
+IDI_DIALINGICON		ICON    DISCARDABLE   	"dialing.ico"
+IDI_SECURITY4		ICON    DISCARDABLE     "key.ico"
+
+// Wide Translate Dialog
+DIAL_DLG_POPUP_W DIALOG DISCARDABLE  0, 15, 264, 96
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Dialing Properties"
+#if defined(TARGET_NT)
+FONT 9, "Tahoma"
+#endif
+BEGIN
+    LTEXT           "When dialing &from:",IDC_STATIC,0,9,65,8
+    COMBOBOX        IDCC_DL_CURR_LOCATION,67,7,124,57,CBS_DROPDOWNLIST |
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_GROUP |
+                    WS_TABSTOP
+    PUSHBUTTON      "&New...",IDCB_DL_NEW_LOCATION,191,7,33,14,WS_GROUP
+    PUSHBUTTON      "&Remove",IDCB_DL_REMOVE_LOCATION,226,7,38,14,WS_GROUP
+    RTEXT           "The local &area code is:",IDC_STATIC,16,34,103,8
+    EDITTEXT        IDCE_DL_AREA_CODE,127,33,20,12,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    RTEXT           "The local &country/region code is:",IDC_STATIC,16,50,104,8
+    EDITTEXT        IDCE_DL_CNTRYRGN_CODE,127,49,20,12,ES_AUTOHSCROLL | ES_NUMBER |
+                    WS_GROUP
+    RTEXT           "Dial using:",IDC_STATIC,25,64,94,8
+    CONTROL         "&Tone",IDCR_TONE,"Button",BS_AUTORADIOBUTTON | WS_GROUP |
+                    WS_TABSTOP,127,63,48,10
+    CONTROL         "&Pulse",IDCR_PULSE,"Button",BS_AUTORADIOBUTTON |
+                    WS_TABSTOP,175,63,64,10
+    CONTROL         "Disable call &waiting by dialing:",IDCK_DL_CALL_WAITING,
+                    "Button",BS_AUTOCHECKBOX | BS_RIGHT | WS_GROUP |
+                    WS_TABSTOP,12,75,107,11
+    COMBOBOX        IDCC_DL_CALL_WAITING,127,74,52,57,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Dialing Patterns...",IDCB_DL_CHANGE_PATERN,175,33,77,14,WS_GROUP
+    GROUPBOX        "Local settings are:",IDC_STATIC,2,24,259,67
+END
+
+// Narrow Translate Dialog
+DIAL_DLG_POPUP_N DIALOG DISCARDABLE  0, 15, 134, 145
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Dialing Properties"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    CONTROL         "&Location:",IDC_STATIC,
+                    STATIC,SS_LEFT,4,2,34,8
+    COMBOBOX        IDCC_DL_CURR_LOCATION,40,0,90,57,CBS_DROPDOWNLIST |
+                    CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_GROUP |
+                    WS_TABSTOP
+    CONTROL         "&New...",IDCB_DL_NEW_LOCATION,
+                    BUTTON,BS_PUSHBUTTON | WS_GROUP| WS_TABSTOP,40,14,43,14
+    CONTROL         "&Remove",IDCB_DL_REMOVE_LOCATION,
+                    BUTTON,BS_PUSHBUTTON | WS_GROUP| WS_TABSTOP,87,14,43,14
+    RTEXT           "&Area code:",IDC_STATIC,3,40,52,8
+    EDITTEXT        IDCE_DL_AREA_CODE,56,38,20,12,ES_AUTOHSCROLL | WS_GROUP | ES_NUMBER
+    RTEXT           "&Country/Region:",IDC_STATIC,3,52,52,8
+    EDITTEXT        IDCE_DL_CNTRYRGN_CODE,56,51,20,12,ES_AUTOHSCROLL | WS_GROUP | ES_NUMBER
+    CONTROL         "&Tone dialing",
+                    IDCR_TONE,BUTTON,BS_AUTORADIOBUTTON |
+                    WS_GROUP | WS_TABSTOP,80,39,55,10
+    CONTROL         "&Pulse dialing",IDCR_PULSE,BUTTON,
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,80,51,55,10
+    CONTROL         "&Disable call waiting;",IDCK_DL_CALL_WAITING,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,3,65,77,11
+    LTEXT           "d&ial:",IDC_STATIC_DIAL,80,66,14,8
+    COMBOBOX        IDCC_DL_CALL_WAITING,96,65,34,57,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Edit...",IDCB_DL_CHANGE_PATERN,
+                    BUTTON,BS_PUSHBUTTON | WS_GROUP| WS_TABSTOP,87,120,43,14
+    CONTROL         "Local / Long Distance / International:",
+                    IDC_STATIC,STATIC,SS_LEFT,5,87,136,8
+    CONTROL         "IDC_STATIC_LOCAL",IDC_STATIC_LOCAL,STATIC,
+                    SS_LEFTNOWORDWRAP | WS_GROUP,5,95,120,8
+    CONTROL         "IDC_STATIC_LONG",IDC_STATIC_LONG,STATIC,
+                    SS_LEFTNOWORDWRAP | WS_GROUP,5,103,120,8
+    CONTROL         "IDC_STATIC_INTL",IDC_STATIC_INTL,STATIC,
+                    SS_LEFTNOWORDWRAP | WS_GROUP,5,111,120,8
+    LTEXT           "Local settings are:",IDC_STATIC_LCLSET,4,29,69,8
+    GROUPBOX        "",IDC_STATIC,73,28,57,6
+    LTEXT           "Dialing patterns are:",IDC_STATIC_DIALPAT,4,79,76,8
+    GROUPBOX        "",IDC_STATIC,80,79,50,6
+END
+
+// Wide Dialing Patterns
+IDD_EDIT_PATTERN_W DIALOG DISCARDABLE  0, 0, 198, 109
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#ifndef APSTUDIO_INVOKED
+EXSTYLE WS_EX_CAPTIONOKBTN
+#endif
+CAPTION "Dialing Patterns"
+#if defined(TARGET_NT)
+FONT 9, "Tahoma"
+#endif
+BEGIN
+    LTEXT           "Edit the dialing pattern for each type of call to change how the phone is dialed.",
+                    IDC_STATIC,3,2,190,19
+    LTEXT           "For &Local calls dial:",IDC_STATIC,5,20,64,8
+    EDITTEXT        IDCE_DL_LOCAL_CALLS,5,29,189,12,ES_AUTOHSCROLL
+    LTEXT           "For Long &Distance calls dial:",IDC_STATIC,5,42,95,8
+    EDITTEXT        IDCE_DL_LONG_DIST_CALLS,5,51,189,12,ES_AUTOHSCROLL
+    LTEXT           "For &International calls dial:",IDC_STATIC,5,66,95,8
+    EDITTEXT        IDCE_DL_INTL_CALLS,5,75,189,12,ES_AUTOHSCROLL
+    CTEXT           "(E,e = Country/Region Code; F,f = Area Code; G,g = Number)",
+                    IDC_STATIC,0,89,198,17
+END
+
+// Narrow Dialing Patterns
+IDD_EDIT_PATTERN_N DIALOG DISCARDABLE  0, 12, 134, 94
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#ifndef APSTUDIO_INVOKED
+EXSTYLE WS_EX_CAPTIONOKBTN
+#endif
+CAPTION "Edit Dialing Patterns"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    CONTROL         "For Local calls, dial:",
+                    IDC_STATIC,STATIC,SS_LEFT,5,2,64,8
+    EDITTEXT        IDCE_DL_LOCAL_CALLS,5,11,125,12,ES_AUTOHSCROLL
+    CONTROL         "For Long Distance calls, dial:",
+                    IDC_STATIC,STATIC,SS_LEFT,5,25,95,8
+    EDITTEXT        IDCE_DL_LONG_DIST_CALLS,5,33,125,12,ES_AUTOHSCROLL
+    CONTROL         "For International calls, dial:",
+                    IDC_STATIC,STATIC,SS_LEFT,5,47,95,8
+    EDITTEXT        IDCE_DL_INTL_CALLS,5,56,125,12,ES_AUTOHSCROLL
+    CONTROL         "(E,e = country/region code; F,f = area code; G,g = number)",
+                    IDC_STATIC,STATIC,SS_CENTER,3,71,129,17
+END
+
+// Wide New Locations
+IDD_NEW_LOCATION_W DIALOG DISCARDABLE  0, 0, 157, 35
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#ifndef APSTUDIO_INVOKED
+EXSTYLE WS_EX_CAPTIONOKBTN
+#endif
+CAPTION "Create New Location"
+#if defined(TARGET_NT)
+FONT 9, "Tahoma"
+#endif
+BEGIN
+    LTEXT           "Create a new location named:",IDC_STATIC,3,4,142,11
+    EDITTEXT        IDCE_NL_NEW_LOCATION,2,17,153,12,ES_AUTOHSCROLL
+END
+
+// Narrow New Locations
+IDD_NEW_LOCATION_N DIALOG DISCARDABLE  0, 40, 134, 36
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+#ifndef APSTUDIO_INVOKED
+EXSTYLE WS_EX_CAPTIONOKBTN
+#endif
+CAPTION "Create New Location"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    CONTROL         "Location name:",IDC_STATIC,STATIC,SS_LEFT,3,4,105,11
+    EDITTEXT        IDCE_NL_NEW_LOCATION,3,17,128,12,ES_AUTOHSCROLL
+END
+
+IDD_PICKCERT DIALOG DISCARDABLE  0, 0, 200, 110
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+#ifndef APSTUDIO_INVOKED
+EXSTYLE WS_EX_CAPTIONOKBTN | WS_EX_NODRAG
+#endif
+CAPTION "Select a Certificate"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    LTEXT           "The Web site you want to view requests identification.",
+                    -1,14,16,173,10,SS_NOPREFIX
+    CONTROL         "List1",IDC_CERTLISTVIEW,"SysListView32",LVS_REPORT |
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS |WS_BORDER | WS_TABSTOP,14,26,171,53
+    PUSHBUTTON      "&View Certificate...",IDC_BTN_CERTVIEW,14,89,68,14
+    GROUPBOX        "Identification",-1,6,6,188,99
+END
+
+IDD_EAPTLSCONFIG_W DIALOG DISCARDABLE 0, 0, 186, 90
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Authentication Settings"
+BEGIN
+    CONTROL         "&Validate Server",IDCB_VALIDATESERVER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,68,65,10
+    PUSHBUTTON   "&Select..",IDB_PICKCERT ,124,47,50,14
+    LTEXT           "Issued to :",IDC_STATIC,11,20,38,8
+    LTEXT           "Issued by :",IDC_STATIC,11,31,38,8
+    LTEXT           "",IDC_ISSUEDTO_VALUE,54,20,122,8
+    LTEXT           "",IDC_ISSUEDBY_VALUE,54,31,122,8
+    GROUPBOX        "User Certificate",IDC_STATIC,7,8,172,57
+END
+
+
+IDD_EAPTLSCONFIG_N DIALOG DISCARDABLE 0, 0, 130, 110
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Authentication Settings"
+BEGIN
+    CONTROL         "&Validate Server",IDCB_VALIDATESERVER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,95,65,10
+    PUSHBUTTON      "&Select..",IDB_PICKCERT,65,69,50,14
+    LTEXT           "Issued to :",IDC_STATIC,11,20,38,8
+    LTEXT           "Issued by :",IDC_STATIC,11,42,38,8
+    LTEXT           "",IDC_ISSUEDTO_VALUE,15,31,100,8
+    LTEXT           "",IDC_ISSUEDBY_VALUE,15,53,96,8
+    GROUPBOX        "User Certificate",IDC_STATIC,7,8,116,82
+END
+
+IDD_VIEW_CERT_W DIALOG DISCARDABLE  0, 0, 173, 112
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Properties"
+BEGIN
+    LTEXT           "Friendly &Name",-1,12,10,48,8
+    EDITTEXT        IDC_CERT_FRIENDLYNAME,64,10,86,12,ES_AUTOHSCROLL
+    LTEXT           "&Field:",-1,12,26,34,8
+    LISTBOX         IDC_FIELDLIST,12,36,56,68,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Details:",-1,74,26,46,8
+    EDITTEXT        IDC_DETAILSLIST,74,36,88,68,ES_MULTILINE | ES_AUTOHSCROLL
+    GROUPBOX        "Certificate properties",-1,6,1,162,107
+END
+
+IDD_VIEW_CERT_N DIALOG DISCARDABLE  0, 0, 132, 132
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Properties"
+BEGIN
+    LTEXT           "Friendly &Name",IDC_STATIC,12,18,48,8
+    EDITTEXT        IDC_CERT_FRIENDLYNAME,68,16,48,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "&Field:",-1,12,34,64,8
+    LISTBOX         IDC_FIELDLIST,12,44,104,42,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Details:",-1,12,92,64,8
+    EDITTEXT        IDC_DETAILSLIST,12,102,104,16,ES_MULTILINE | ES_AUTOHSCROLL
+	GROUPBOX        "Certificate properties",-1,6,6,120,120
+END
+
+#if 0
+IDD_CERTDETAILS_W DIALOG DISCARDABLE  0, 0, 150, 90
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Certificate Details"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    LTEXT           "Friendly &Name",IDC_STATIC,7,7,48,11
+    EDITTEXT        IDC_CERT_FRIENDLYNAME,57,7,86,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Field",IDC_STATIC,7,23,48,11
+    COMBOBOX        IDC_COMBO_CERTFIELD,57,21,86,62,CBS_DROPDOWNLIST |
+                    WS_VSCROLL | WS_TABSTOP
+//    LTEXT           "Static",IDC_STATIC,9,22,19,8
+    EDITTEXT        IDC_CERTFIELDVALUE,7,38,136,45,ES_MULTILINE |
+                    ES_AUTOVSCROLL | WS_VSCROLL | ES_AUTOHSCROLL | ES_READONLY
+END
+
+
+IDD_CERTDETAILS_N DIALOG DISCARDABLE  0, 0, 129, 115
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Certificate Details"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    LTEXT           "Friendly &Name",IDC_STATIC,7,7,48,11
+    EDITTEXT        IDC_CERT_FRIENDLYNAME,57,7,62,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Field",IDC_STATIC,7,23,48,11
+    COMBOBOX        IDC_COMBO_CERTFIELD,57,21,62,62,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_CERTFIELDVALUE,7,38,112,68,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_READONLY | 
+                    WS_VSCROLL
+END
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+// Icons for Quick Config dialog
+
+IDI_CONNECTED		ICON	DISCARDABLE "xmitrecv.ico"
+IDI_DISCONNECTED	ICON	DISCARDABLE	"disconnect.ico"
+IDI_LANCONNECT		ICON	DISCARDABLE	"lan.ico"
+IDI_LANDISCONNECT	ICON	DISCARDABLE	"lan_disconnect.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+
+IDD_QCNOTIF DIALOG DISCARDABLE 0,0, 1, 1
+STYLE 0
+BEGIN
+END
+
+IDD_WZCQCFG_W DIALOG DISCARDABLE  0, 0, 253, 105
+STYLE WS_CAPTION | DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_VISIBLE
+CAPTION "Wireless Information"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    LTEXT           "Select a network and press connect or right-click for more options.  To add a new network, double-click 'Add New'.",
+                    IDC_WZCQCFG_LBL_INFO,4,1,247,15
+    CONTROL         "List1",IDC_WZCQCFG_NETWORKS,"SysListView32",
+    				LVS_REPORT | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | LVS_SINGLESEL |
+    				LVS_NOSORTHEADER | WS_TABSTOP | WS_BORDER,
+    				4,19,188,43
+	CONTROL         "Notify me when new wireless networks are available",
+					IDC_WZC_SHOWCFG,"Button",BS_AUTOCHECKBOX | WS_TABSTOP | BS_MULTILINE,4,88,
+					188,10
+    PUSHBUTTON      "&Connect",IDC_WZCQCFG_CONNECT,200,16,50,14
+    PUSHBUTTON      "&Advanced...",IDC_WZCQCFG_ADVANCED,200,34,50,14
+	PUSHBUTTON		"View &Log...",IDC_WZCQCFG_LOGGING,200,52,50,14
+    LTEXT		   	"Status:",IDC_WZCQCFG_STATUS_LBL,4,66,56,8
+    LTEXT		   	"",IDC_WZCQCFG_STATUS_LBL_INF,65,66,127,8
+    LTEXT           "Signal Strength:",IDC_WZCQCFG_SIGNAL_LBL,4,77,56,8
+    LTEXT           "No Signal",IDC_WZCQCFG_SIGNAL_LBL_INF,65,77,127,8
+END
+
+
+IDD_WZCQCFG_N DIALOG DISCARDABLE  0, 0, 130, 136
+STYLE WS_CAPTION | DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_VISIBLE
+CAPTION "Wireless Information"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    LTEXT           "Select a network and press connect or right-click for more options.  To add a new network, double-click 'Add New'.",
+                    IDC_WZCQCFG_LBL_INFO,7,3,115,33
+    CONTROL         "List1",IDC_WZCQCFG_NETWORKS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,38,115,33
+    CONTROL         "Notify when new networks available",IDC_WZC_SHOWCFG,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,4,
+                    100,127,19
+    PUSHBUTTON      "&Connect",IDC_WZCQCFG_CONNECT,1,120,39,14
+    PUSHBUTTON      "&Advanced...",IDC_WZCQCFG_ADVANCED,41,120,47,14
+    PUSHBUTTON      "&Log...",IDC_WZCQCFG_LOGGING,89,120,41,14
+    LTEXT           "Status:",IDC_WZCQCFG_STATUS_LBL,7,78,56,8
+    LTEXT           "",IDC_WZCQCFG_STATUS_LBL_INF,67,78,63,8
+    LTEXT           "Signal Strength:",IDC_WZCQCFG_SIGNAL_LBL,7,89,56,8
+    LTEXT           "No Signal",IDC_WZCQCFG_SIGNAL_LBL_INF,67,89,63,8
+END
+
+IDD_IPQCFG_W DIALOG DISCARDABLE  0, 0, 253, 105
+STYLE WS_CAPTION | DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | DS_SETFOREGROUND
+CAPTION "IP Information"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    PUSHBUTTON      "&Details...",IDC_WZCQCFG_DETAILS,192,64,48,14
+    PUSHBUTTON      "&Renew",IDC_WZCQCFG_RENEW,10,86,48,14
+    LTEXT           "Address Type:",IDC_ADDRTYPE_LBL,15,13,58,8
+    LTEXT           "IP Address:",IDC_IPADDR_LBL,15,27,58,8
+    LTEXT           "Subnet Mask:",IDC_SUBNETMSK_LBL,15,41,58,8
+    LTEXT           "Default Gateway:",IDC_GATEWAY_LBL,15,55,58,8
+    LTEXT           "",IDC_ADDRTYPE_LBL_INF,77,13,113,8
+    LTEXT           "",IDC_IPADDR_LBL_INF,77,27,113,8
+    LTEXT           "",IDC_GATEWAY_LBL_INF,77,55,113,8
+    LTEXT           "",IDC_SUBNETMSK_LBL_INF,77,41,113,8
+    GROUPBOX   		"Internet Protocol (TCP/IP)",IDC_IP_FRAME,9,0,235,83
+END
+
+
+IDD_IPQCFG_N DIALOG DISCARDABLE  0, 0, 130, 134
+STYLE WS_CAPTION | DS_CENTER | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | DS_SETFOREGROUND
+CAPTION "IP Information"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    PUSHBUTTON      "&Details...",IDC_WZCQCFG_DETAILS,69,115,48,14
+    PUSHBUTTON      "&Renew",IDC_WZCQCFG_RENEW,11,115,48,14
+    LTEXT           "Address Type:",IDC_ADDRTYPE_LBL,13,20,58,9
+    LTEXT           "IP Address:",IDC_IPADDR_LBL,13,32,58,9
+    LTEXT           "Subnet Mask:",IDC_SUBNETMSK_LBL,13,56,58,9
+    LTEXT           "Default Gateway:",IDC_GATEWAY_LBL,13,80,58,9
+    LTEXT           "",IDC_ADDRTYPE_LBL_INF,74,20,43,11
+    LTEXT           "",IDC_IPADDR_LBL_INF,23,44,85,11
+    LTEXT           "",IDC_GATEWAY_LBL_INF,23,90,85,11
+    LTEXT           "",IDC_SUBNETMSK_LBL_INF,23,68,85,11
+    GROUPBOX        "Internet Protocol (TCP/IP)",IDC_IP_FRAME,7,7,116,102
+END
+
+IDD_NETDETAILS_W DIALOG DISCARDABLE  0, 0, 190, 111
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_OVERLAPPED
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    LTEXT           "Network Connection Details:",IDC_STATIC,3,3,95,8
+    CONTROL         "List1",IDC_LIST_IPCFG,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,3,14,184,78
+    DEFPUSHBUTTON   "&Close",IDOK,137,95,50,14
+END
+
+
+IDD_NETDETAILS_N DIALOG DISCARDABLE  0, 0, 130, 140
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_OVERLAPPED
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    LTEXT           "Network Connection Details:",IDC_STATIC,1,7,95,8
+    CONTROL         "List1",IDC_LIST_IPCFG,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,1,17,126,93
+    DEFPUSHBUTTON   "&Close",IDOK,75,117,50,14
+END
+
+IDD_QC_WZCLOG_W DIALOG DISCARDABLE  0, 0, 260, 100
+STYLE WS_OVERLAPPED | WS_MINIMIZEBOX | DS_CENTER | WS_CAPTION | WS_SYSMENU | WS_VISIBLE
+CAPTION "Wireless Networking Log"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    EDITTEXT        IDC_QC_WZCLOG,0,0,260,100, WS_HSCROLL | ES_MULTILINE | ES_WANTRETURN | ES_READONLY
+END
+
+
+IDD_QC_WZCLOG_N DIALOG DISCARDABLE  0, 0, 130, 145
+STYLE WS_OVERLAPPED | WS_MINIMIZEBOX | DS_CENTER | WS_CAPTION | WS_SYSMENU | WS_VISIBLE
+CAPTION "Wireless Networking Log"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+    EDITTEXT        IDC_QC_WZCLOG,0,0,130,145, WS_HSCROLL | ES_MULTILINE | ES_WANTRETURN | ES_READONLY
+END
+
+
+IDD_IPV6DETAILS_W DIALOG DISCARDABLE  0, 0, 253, 105
+STYLE WS_CAPTION
+CAPTION "IPv6 Information"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+	CONTROL         "",IDC_IPV6_LISTBOX,"SysListView32",LVS_REPORT |
+					LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP | WS_HSCROLL,
+                    10, 12, 232, 82
+
+	GROUPBOX        "Internet Protocol Version 6 (TCP/IPv6)",IDC_IPV6_FRAME,5,2,242,96
+END
+
+
+IDD_IPV6DETAILS_N DIALOG DISCARDABLE  0, 0, 130, 136
+STYLE WS_CAPTION
+CAPTION "IPv6 Information"
+#if defined(TARGET_NT)
+FONT 8, "MS Sans Serif"
+#endif
+BEGIN
+	CONTROL         "",IDC_IPV6_LISTBOX,"SysListView32",LVS_REPORT |
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP | WS_HSCROLL,
+                    12, 18, 106, 109
+
+    GROUPBOX        "Internet Protocol Version 6",IDC_IPV6_FRAME,7,8,116,124
+END
+
+

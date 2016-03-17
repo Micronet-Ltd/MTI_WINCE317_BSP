@@ -1,0 +1,13 @@
+
+Demo title: 		ImageFilter
+
+Demonstrates: 		How to use OpenVG image filters
+
+Short Description:	How to use OpenVG image filters
+
+Full Description:	
+This training course shows how to apply several of the inbuilt filters in OpenVG. The filters shown are the Gaussian blur, convolution, separable convolution and an image lookup.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

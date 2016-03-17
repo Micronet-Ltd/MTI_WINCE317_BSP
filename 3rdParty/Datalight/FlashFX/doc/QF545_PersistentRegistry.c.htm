@@ -1,0 +1,597 @@
+<html>
+<head>
+<title>
+Implementing Persistent Registry Storage
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Implementing Persistent Registry Storage
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Implementing Persistent Registry Storage">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        FlashFX Tera supports both the hive-based registry mechanism introduced
+        with Windows CE .NET, as well as its own persistent registry storage
+        solution.
+
+<p>        FlashFX Tera makes persistent registry storage easy.  Storing registry
+        values on a FlashFX Tera disk allows the size of the registry to grow as
+        needed with fine-grained allocations that match the disk cluster size.
+        It is no longer necessary to squander entire erase zones to allow for
+        registry updates.  The ability to access the persistent registry as a
+        file also simplifies backing-up and maintaining the registry contents.
+
+<p>        <h4>Using the Windows CE Hive Based Registry</h4>
+
+<p>        Using the hive-based registry with FlashFX Tera is very straightforward.
+        The following steps are not intended to replace the Windows CE .NET
+        documentation on the topic, but rather to provide a quick reference
+        guide to supplement the official documentation.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Using the Component Catalog, add the hive-based registry component
+        to your project.  Windows CE .NET will automatically deselect the
+        default registry component if it was previously selected.
+</td>
+</tr>
+</table>
+
+<p>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If you had enabled the FlashFX Tera persistent registry solution
+        (described below), disable it.  The OAL will fail to compile if the
+        code contains references to pReadRegistryFromOEM and
+        pWriteRegistryToOEM.
+</td>
+</tr>
+</table>
+
+<p>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add the following entries to
+        project.reg:
+</td>
+</tr>
+</table>
+
+<p>
+        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#59&#32&#72&#73&#86&#69&#32&#66&#79&#79&#84&#32&#83&#69&#67&#84&#73&#79&#78&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#91&#72&#75&#69&#89&#95&#76&#79&#67&#65&#76&#95&#77&#65&#67&#72&#73&#78&#69&#92&#73&#110&#105&#116&#92&#66&#111&#111&#116&#86&#97&#114&#115&#93&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#34&#83&#121&#115&#116&#101&#109&#72&#105&#118&#101&#34&#61&#34&#115&#121&#115&#116&#101&#109&#46&#104&#118&#34&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#34&#83&#116&#97&#114&#116&#32&#68&#101&#118&#77&#103&#114&#34&#61&#100&#119&#111&#114&#100&#58&#49&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#34&#68&#101&#102&#97&#117&#108&#116&#85&#115&#101&#114&#34&#61&#34&#68&#101&#102&#97&#117&#108&#116&#85&#115&#101&#114&#34&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#59&#32&#69&#78&#68&#32&#72&#73&#86&#69&#32&#66&#79&#79&#84&#32&#83&#69&#67&#84&#73&#79&#78&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Ensure that the "MountFlags" value for the StorageManager profile
+        for the device is set to 2 (this is the default value as supplied with
+        FlashFX Tera).
+</td>
+</tr>
+</table>
+
+<p>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+5
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Clean and build the entire project.  Cleaning at this point is vital
+        to ensure that all the components and registry settings are
+        regenerated.
+</td>
+</tr>
+</table>
+
+<p>
+        <h4>Using the FlashFX Tera Persistent Registry Solution</h4>
+
+<p>        <b>Please Note</b> -- This style of persistent registry storage is not
+        currently supported.  Please see the note in the readme.txt file.
+
+<p>        The FlashFX Tera persistent registry storage feature may be used if you
+        choose not to use the hive-based registry found in Windows CE .NET, or
+        if you are using older versions of Windows CE.
+
+<p>        When using the FlashFX Tera persistent registry solution, you will
+        compile and link FlashFX Tera into your target system two times.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The standard FlashFX Tera device driver is built and used as described in the rest of this manual.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+FlashFX Tera is built a second time and linked into the OAL.  Datalight supplies a special OS abstraction for this purpose.  This OS abstraction is used when integrating FlashFX Tera into a boot loader, or when integrating FlashFX Tera into the OAL, as described here.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Note</b> -- It is vital that before beginning the process of building
+        FlashFX Tera into the OAL, complete step 1 above and ensure that FlashFX
+        is fully functional for normal usage.  Ensure that the unit tests
+        complete successfully.
+
+<p>        <b>Building FlashFX Tera into the OAL</b>
+
+<p>        Once you have successfully implemented and tested the FlashFX Tera
+        device driver on your platform, you are ready to begin the integration
+        of FlashFX Tera into the OAL.  Datalight provides a special OS
+        abstraction named WINCEBL that is tailored specifically for this
+        purpose.   The WINCEBL OS abstraction is distinct from the WINCE OS
+        abstraction.  Rather than building a device driver target, it simply
+        builds an fxboot.lib link library target.  This library is then linked
+        with the OAL.
+
+<p>        The WINCEBL based project must be built from the command-line rather
+        than from Platform Builder.  This helps ensure that the targets
+        generated from this build process are not confused with those created
+        when building the general FlashFX Tera device driver.
+
+<p>        The process of integrating FlashFX Tera into the OAL requires the
+        following steps:
+        <ul>
+<li>Use newproj.bat to create a new project.
+        <li>Customize the FlashFX Tera project for your platform.
+        <li>Build the FlashFX Tera project, creating an fxboot.lib .
+        <li>Modify the OAL code to use FlashFX Tera and link with fxboot.lib .
+        <li>Build a new OAL.
+</ul>
+        <b>Note</b> --The steps for using the FlashFX Tera persistent registry
+        solution are virtually identical to those required to configure and
+        build FlashFX Tera into a boot loader.
+
+<p>        <b>Use NEWPROJ.BAT to Create a New FlashFX Tera Project</b>
+
+<p>        The newproj.bat file, located in the root of the FlashFX Tera
+        installation, is used to create a new FlashFX Tera project.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Specify "wincebl" as the OS to target.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Specify "mswce" as the ToolSet to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Choose the same CPU types as used when build the FlashFX Tera driver in Platform Builder.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Customize the FlashFX Tera Project</b>
+
+<p>        The changes to the project are very similar to those made to the
+        project used to generate the FlashFX Tera device driver.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Modify the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file to reference the same FIM name that was used when building the FlashFX Tera device driver.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Modify the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file and set the DEV0_BASEADDRESS and DEV0_LENGTH values to the same start and length values placed in the flashfx.reg file used in the device driver project.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Modify the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> to define either the <a HREF=QF160_ProjectSettings.c.htm#FFXCONF_FATSUPPORT>FFXCONF_FATSUPPORT</a> or <a HREF=QF160_ProjectSettings.c.htm#FFXCONF_RELIANCESUPPORT>FFXCONF_RELIANCESUPPORT</a> to cause the FlashFX Tera Loader code to call either the FAT Loader or the Reliance Loader code.  While it is possible to build OAL code that can read the registry from either a FAT or Reliance disk, typically either one or the other is chosen.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+If any special platform specific code is necessary in the OE Services or Project Hooks modules, implement it as necessary.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Build the FlashFX Tera Project</b>
+
+<p>        Build the FlashFX Tera project using the PRJBUILD batch file.  Upon
+        completion of a successful build, the %p_cputype%\debug|release
+        directory will contain the final fxboot.lib that will be linked with
+        the OAL.
+
+<p>        <b>Modifying the OAL to Use FlashFX Tera</b>
+
+<p>        To save and restore the registry on the FlashFX Tera disk, you must set
+        the values of two Windows CE global variables when the OEMInit
+        function is executed, and link the FlashFX Tera libraries into the OAL
+        code.  The FlashFX Tera persistent registry storage is accomplished by
+        providing pre-built routines that perform the OEM registry read and
+        write functions of Windows CE.
+
+<p>        In order for Windows CE to make use of the pre-built FlashFX Tera
+        registry read and write functions you must insert the following code
+        into the body of your Windows CE OEMInit function:
+
+<p>        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#47&#42&#32&#80&#108&#97&#99&#101&#32&#116&#104&#101&#32&#102&#111&#108&#108&#111&#119&#105&#110&#103&#32&#101&#120&#116&#101&#114&#110&#32&#100&#101&#102&#105&#110&#105&#116&#105&#111&#110&#115&#32&#97&#116&#32&#116&#104&#101&#32&#116&#111&#112&#32&#111&#102&#32&#116&#104&#101&#32&#102&#105&#108&#101&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#101&#120&#116&#101&#114&#110&#32&#68&#87&#79&#82&#68&#32&#70&#88&#82&#101&#97&#100&#82&#101&#103&#105&#115&#116&#114&#121&#70&#114&#111&#109&#79&#69&#77&#40&#68&#87&#79&#82&#68&#32&#100&#119&#70&#108&#97&#103&#115&#44&#32&#76&#80&#66&#89&#84&#69&#32&#112&#66&#117&#102&#44&#32&#68&#87&#79&#82&#68&#32&#100&#119&#76&#101&#110&#41&#59&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#101&#120&#116&#101&#114&#110&#32&#68&#87&#79&#82&#68&#32&#70&#88&#87&#114&#105&#116&#101&#82&#101&#103&#105&#115&#116&#114&#121&#84&#111&#79&#69&#77&#40&#68&#87&#79&#82&#68&#32&#100&#119&#70&#108&#97&#103&#115&#44&#32&#76&#80&#66&#89&#84&#69&#32&#112&#66&#117&#102&#44&#32&#68&#87&#79&#82&#68&#32&#100&#119&#76&#101&#110&#41&#59&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#101&#120&#116&#101&#114&#110&#32&#68&#87&#79&#82&#68&#32&#40&#42&#112&#82&#101&#97&#100&#82&#101&#103&#105&#115&#116&#114&#121&#70&#114&#111&#109&#79&#69&#77&#41&#40&#68&#87&#79&#82&#68&#32&#100&#119&#70&#108&#97&#103&#115&#44&#32&#76&#80&#66&#89&#84&#69&#32&#112&#66&#117&#102&#44&#32&#68&#87&#79&#82&#68&#32&#100&#119&#76&#101&#110&#41&#59&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#101&#120&#116&#101&#114&#110&#32&#68&#87&#79&#82&#68&#32&#40&#42&#112&#87&#114&#105&#116&#101&#82&#101&#103&#105&#115&#116&#114&#121&#84&#111&#79&#69&#77&#41&#40&#68&#87&#79&#82&#68&#32&#100&#119&#70&#108&#97&#103&#115&#44&#32&#76&#80&#66&#89&#84&#69&#32&#112&#66&#117&#102&#44&#32&#68&#87&#79&#82&#68&#32&#100&#119&#76&#101&#110&#41&#59&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#47&#42&#32&#80&#108&#97&#99&#101&#32&#116&#104&#101&#32&#102&#111&#108&#108&#111&#119&#105&#110&#103&#32&#99&#111&#100&#101&#32&#105&#110&#115&#105&#100&#101&#32&#116&#104&#101&#32&#79&#69&#77&#73&#110&#105&#116&#32&#102&#117&#110&#99&#116&#105&#111&#110&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#42&#47&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#112&#82&#101&#97&#100&#82&#101&#103&#105&#115&#116&#114&#121&#70&#114&#111&#109&#79&#69&#77&#32&#61&#32&#70&#88&#82&#101&#97&#100&#82&#101&#103&#105&#115&#116&#114&#121&#70&#114&#111&#109&#79&#69&#77&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#112&#87&#114&#105&#116&#101&#82&#101&#103&#105&#115&#116&#114&#121&#84&#111&#79&#69&#77&#32&#32&#61&#32&#70&#88&#87&#114&#105&#116&#101&#82&#101&#103&#105&#115&#116&#114&#121&#84&#111&#79&#69&#77&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        For your convenience, the code listed above is available in the
+        oeminit.mod file located in the Project Directory.  Simply cut and
+        paste the code into the OAL module containing the OEMInit function.
+
+<p>        Establishing these global pointer values informs Windows CE that the
+        OAL supports the OEM registry read and write functions.  The source
+        code for the FlashFX Tera registry read and write functions can be found
+        in the os\wincebl\common directory.
+
+<p>        The ReadRegistryFromOEM function will be called early in the boot
+        process before the FlashFX Tera DLL is loaded.  The
+        FXReadRegistryFromOEM function uses the FlashFX Tera Loader module to
+        read the registry file as requested by the kernel.  The default name of
+        the registry file ( savedreg.reg ) is specified in the fxreg.h file.
+
+<p>        <b>Note</b> -- When using Datalight Reliance, modify the fxreg.h file to
+        change the folder name for savereg.reg from " \\FlashFX Disk " to "
+        \\DL_RELIANCE ".  Additionally note that Reliance is case sensitive and
+        therefore, mismatched names may prevent the registry from loading
+        properly at boot time.
+
+<p>        The WriteRegistryToOEM function is called by Windows CE whenever an
+        application calls the Windows RegFlushKey function.
+        FXWriteRegistryToOEM loads coredll.dll and relies on the Win32 file
+        system API to write the registry entries to the FlashFX Tera disk.
+
+<p>        Because Windows CE reads and writes registry entry values one at a
+        time, FXWriteRegistryToOEM buffers registry writes. The buffer size
+        used by the registry write routine is 32Kbytes by default and is
+        defined in fxreg.h .
+
+<p>        <b>Note</b> -- The FlashFX Tera persistent registry solution is compatible
+        with Datalight Reliance, as well as FAT12 and FAT16 formatted disks.
+        It will not work on FAT32 disks.
+
+<p>        <b>Building the OAL</b>
+
+<p>        The FlashFX Tera libraries must be statically linked into the OAL to
+        provide persistent registry storage on the FlashFX Tera disk.  To link
+        the necessary library code into your OAL, add the following text to the
+        sources.cmn file for the OAL:
+
+<p>        <pre>
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#32&#66&#101&#103&#105&#110&#32&#70&#108&#97&#115&#104&#70&#88&#32&#115&#101&#99&#116&#105&#111&#110&#32&#111&#102&#32&#83&#79&#85&#82&#67&#69&#83&#46&#67&#77&#78&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#32&#84&#104&#101&#32&#70&#108&#97&#115&#104&#70&#88&#32&#108&#105&#98&#114&#97&#114&#105&#101&#115&#32&#110&#101&#101&#100&#101&#100&#32&#102&#111&#114&#32&#98&#111&#116&#104&#32&#116&#104&#101&#32&#98&#111&#111&#116&#108&#111&#97&#100&#101&#114&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#32&#97&#110&#100&#32&#112&#101&#114&#115&#105&#115&#116&#101&#110&#116&#32&#114&#101&#103&#105&#115&#116&#114&#121&#32&#102&#117&#110&#99&#116&#105&#111&#110&#115&#46&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#70&#88&#76&#73&#66&#83&#61&#36&#40&#66&#95&#82&#69&#76&#68&#73&#82&#41&#92&#70&#88&#66&#79&#79&#84&#46&#76&#73&#66&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#35&#32&#69&#110&#100&#32&#70&#108&#97&#115&#104&#70&#88&#32&#115&#101&#99&#116&#105&#111&#110&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+        &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+        </pre>
+
+<p>        The code shown above depends on the B_RELDIR environment variable,
+        which specifies the location where the fxboot.lib file resides.  You
+        must ensure that this variable is set, either in the command line
+        environment, if building the OAL from the command line, or in the
+        Platform Builder settings, if building the OAL from within Platform
+        Builder.
+
+<p>        <b>Note</b> -- Remember that the changes above apply to the sources.cmn file
+        for the OAL, not to the sources.cmn file located in the FlashFX Tera
+        installation.
+
+<p>        Next, all the sources files in the kernel\buildexe tree for the given
+        OAL must be modified to include the FlashFX Tera libraries in the
+        TARGETLIBS setting.  For example, you could add code similar to the
+        following to all the sources files:
+
+<p>                TARGETLIBS=$(TARGETLIBS) $(FFXLIBS)
+
+<p>        Note how the FFXLIBS value is concatenated to the existing TARGETLIBS
+        value.
+
+<p>        <b>Note</b> -- Failure to follow this practice of concatenating the
+        TARGETLIBS values in the sources files will result in link failures, or
+        in the FlashFX Tera code not being linked into the OAL at all.
+
+<p>        When these changes are made, simply rebuild the OAL.
+
+<p>        <b>Forcing the Registry to be Saved with SAVEREG</b>
+
+<p>        When the FlashFX Tera registry write routine has been incorporated in
+        the OAL, Windows CE will save the registry to the FlashFX Tera disk
+        whenever the Windows RegFlushKey function is called.  The SAVEREG
+        utility program provided with FlashFX Tera is a simple program that will
+        force the registry to be saved to the FlashFX Tera disk.  savereg.exe
+        builds automatically when the FlashFX Tera device driver is built.
+
+<p>        <b>Note</b> -- Due to the nature of Windows CE, the WriteRegistryToOEM and
+        ReadRegistryFromOEM routines can reverse the order of registry keys.
+        This can cause problems for registry keys that are order dependent, yet
+        have not implemented the "Order" value.  Please refer to the Microsoft
+        web site for more information:
+        <a href="http&#58&#47&#47support.microsoft.com/support/kb/articles/Q260/0/58.ASP?LN=EN-US&SD=gn&FR=0">support.microsoft.com/support/kb/articles/Q260/0/58.ASP?LN=EN-US&SD=gn&FR=0</a>
+
+<p>        <b>Managing the Persistent Registry File During Development</b>
+
+<p>        Changing Windows CE components may change the values in the default
+        registry contained in the binary image file.  The persistent registry
+        file stored on a FlashFX Tera disk contains the most recently committed
+        active registry.  Consequently, changing Windows CE components may
+        cause these two registry copies to be inconsistent.  Since a FlashFX
+        persistent registry file necessarily takes precedence over the
+        default registry in the binary image file, the registry settings for
+        incrementally developed components may not be available when the new
+        components are loaded.  The most likely result of such a stale registry
+        file is that new components may fail to load.
+
+<p>        Since applications may be installed and configured as part of an
+        incremental development effort, it is also possible for the persistent
+        registry file to contain keys that do not exist or that are different
+        in value from those in the default registry of the binary image file.
+        Unique keys in the persistent registry file would include any settings
+        established using the Control Panel.
+
+<p>        There are two procedural options for avoiding the stale registry
+        problem:
+
+<p>        <ul>
+<li>Manually enter all registry keys that are unique to the default registry into the active registry using the "Remote Registry Editor" from the Platform Builder "Tools" menu and then save the changes before rebooting with the new kernel image.  This option maintains all unique registry keys in a FlashFX Tera persistent registry file.  This option may require booting from a release configuration in order for ActiveSync to function correctly.
+        <li>Remove the READ-ONLY attribute from the saved registry file (savedreg.reg ) and then delete it so that the default registry in the binary image file will take affect on the next boot.  Any unique registry settings contained in the persistent registry file will be lost.  The new default registry information can be saved to a FlashFX Tera disk after rebooting.
+</ul>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

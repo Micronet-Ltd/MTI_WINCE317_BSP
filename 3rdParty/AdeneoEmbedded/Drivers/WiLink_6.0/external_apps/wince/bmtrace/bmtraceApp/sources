@@ -1,0 +1,15 @@
+
+TARGETTYPE=PROGRAM
+TARGETNAME=bmtraceApp
+
+!INCLUDE $(DK_ROOT)\SOURCES_CUDK.CMN
+
+
+TARGETLIBS= $(TARGETLIBS) \
+    $(_SYSGENOAKROOT)\LIB\$(_CPUINDPATH)\ceddk.lib \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib \
+    $(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\bmtrace.lib \
+
+EXEENTRY=mainACRTStartup
+
+SOURCES=bmtraceApp.c 

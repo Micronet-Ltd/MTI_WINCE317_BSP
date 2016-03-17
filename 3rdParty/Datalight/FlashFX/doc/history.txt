@@ -1,0 +1,1673 @@
+
+        Datalight FlashFX Tera SDK for Microsoft Windows CE
+        Flash Media Manager
+        Copyright (c) 1993-2012 Datalight, Inc.
+        All Rights Reserved Worldwide.
+        Version 2.1.1 Build 2128DF created on 04/24/2012
+        --------------------------------------------------------------
+
+
+        This file contains a list of updates made to FlashFX over
+        the course of recent releases.
+
+        Be certain to examine the DCL history.txt file for DCL
+        specific information.
+
+---[ History ]--------------------------------------------------------
+
+    FlashFX Tera v2.1.1 - General Release (April 2012) 
+                          WinCE, VxWorks, Linux, RTOS -- SDKs and CSKs
+
+    - Fixed Bug 3302: FfxMMNandReadHeader() handling of an ECC error
+      in EUH page.
+    - Fixed Bug 3384: Issues with the handling of reserved space.
+    - Fixed Bug 3566: Certain geometries can cause QuickMount to fail
+      to recognize a QuickMount format.
+    - Fixed Bug 3579: On Linux, an I/O error can leave calling process
+      hung.
+    - Added support for Linux kernels through version 3.3.
+    - Updated support for Windows CE Platform Build based builds.
+    - Added support for the VxWorks 6.9.2 tool chains.
+
+    ---------------------------------------------------------------------- 
+    FlashFX Tera v2.1 Build 2128CL - General Release (December 2011) 
+                      WinCE, VxWorks, Linux, RTOS -- SDKs and CSKs
+
+    General Concepts:
+    - Include support for Micron ClearNAND devices.
+    - Include support for the i.MX51 controller.
+    - Added support for Windows Embedded Compact 7.
+    - Improvements to the FAT Monitor.
+    - Add support for VxWorks 6.9.
+    - Added basic support for ONFI 2.3.
+    - Added documentation and sample project for the Linux MTD FIM.
+    - General bug fixes.
+    
+    Support for Micron ClearNAND devices:
+    - Added the "Ntstdclrnand" NTM and support files to drive Micron
+      Standard ClearNAND devices.
+    - Added the Nteclrnand" NTM and support files to drive Micron
+      Enhanced ClearNAND devices
+    - Modified the Device Manager and FMSL Test to accommodate devices
+      with built-in EDC mechanisms that are outside software control.
+
+    Support For the i.MX51 controller:
+    - Added the "Ntmx51" NTM and support files to drive the NAND
+      controller built into the i.MX51 controller.
+    - Added sample projects to use this NTM for Windows Embedded
+      Compact 7 and Linux.
+
+    Windows Embedded Compact 7:
+    - FlashFX was updated to work with Windows Embedded Compact 7.
+      The sample project utilizing the new i.MX51 support is a
+      Windows Embedded Compact 7 project.
+    
+    Improvements to FATMON:
+    - The FAT Monitor component (FATMON) has been updated to support
+      sector sizes larger than 512 bytes.
+      
+    VxWorks 6.9:
+    - FlashFX was updated to integrate with VxWorks 6.9.
+    
+    ONFI 2.3:
+    - Added simplified ability to read and decode ONFI parameter pages.
+      This support is by no means complete; it only allows the
+      automatic configuration of device geometry in NTMs that use it.
+
+    Linux MTD FIM
+    - Added notes to the user documentation explaining the MTD FIM
+      and what it is for.  Also added a sample project that uses
+      the FIM.
+      
+    Bug Fixes:
+    - Fixed a bug in which the combination of a read into an unaligned
+      buffer with a correctable error occuring during that read could
+      cause a failure to copy all of the data into the buffer.
+    - Fixed an issue where for large flash arrays, a rounding error
+      in some integer arithmetic used to calculate the size of a
+      buffer used for compaction could cause an exception to be
+      thrown.
+    - Other minor fixes, cleanup and reformatting of debug messages.
+
+    ---------------------------------------------------------------------- 
+    FlashFX Tera v2.0.2 Betas - (May and October 2011)
+                                Linux -- SDKs and CSKs
+
+    - Improved performance at startup time when recovering from an
+      interrupted compaction (more significant on hardware where 
+      region mounting is very slow).
+    - Fixed a minor issue so we build correctly on systems with 40-bit
+      longs.
+    - Corrected the ONFI READ_PARAM command.
+    - Fixed Bug 3380, where the VBF write interruption tests, when running
+      under simulation, could cause some spurious failures (not an issue
+      on real hardware).
+
+    Linux Port:
+    - Added a FIM which interfaces to a Linux MTD.
+    - Fixed Bug 3503 to get FXINFO fully functional under Linux.
+    - Updated the Linux driver to support creating a Linux device when
+      there is no valid VBF format on the flash. 
+
+    ----------------------------------------------------------------------
+    FlashFX Tera v2.0.1 Build 2128AC - General Release (February 2011)
+                        WinCE, VxWorks, Linux, RTOS -- SDKs and CSKs
+
+    - Fixed a problem in the Device Manager which prevented scrubbing
+      notifications from making it up the call stack.
+    - Minor revamping of the RTOS driver interfaces to use abstracted
+      data types.
+
+    ----------------------------------------------------------------------
+    FlashFX Tera v2.0 Build 2128N - General Release (December 2010)
+                      WinCE, VxWorks, Linux, RTOS -- SDKs and CSKs
+
+    General Concepts:
+    - Major update to support the concept of a Disk which spans multiple 
+      Devices.
+    - Major update to support "QuickMount" feature.
+    - Widespread documentation updates.
+                       
+    Project Configuration:
+    - Each project now has its own dclproj.c and dclproj.mak.  Overridden
+      OS Services files which formerly were listed in ffxproj.mak are now
+      listed in dclproj.mak.
+    - The mechanism for specifying the overridden files, whether they are
+      DCL OS Services, FlashFX OS Services, or FlashFX Project Hooks, is
+      much simpler and less error prone.
+    - Added the ability to configure a Device such that it is specified to 
+      start and/or end on a chip boundary, where the exact chip size is not
+      known at compile-time.
+    - A flag in the FFX_DISKn_SETTINGS setting is used to indicate that you 
+      want a RAW mapping. 
+    - Updated so that several NAND special features are documented and 
+      configurable in the ffxconf.h file, including OTP Support, Legacy,
+      SSFDC, and OffsetZero style spare areas.
+    - Added a number of new VBF configuration options pertaining to 
+      compaction and deferred discards.
+      
+    Driver Framework Enhancements: 
+    - Added a generalized Loader set of functions which provide simpler low 
+      level read/write access to the flash. 
+      
+    VBF Enhancements:
+    - Added the ability to defer discards on NAND flash to improve write 
+      performance.
+    - Major enhancement to the mechanisms used to track candidates for 
+      background compaction. 
+    - Enhanced so that idle-time (background) compaction can be suspended
+      and resumed at run-time.
+    - Fixed the region cache size to be configurable either as a percentage 
+      of the regions, or using the old, fixed-count mechanism.  In either
+      case, memory for the region cache is dynamically allocated in a fashion 
+      where none is wasted, regardless what the configuration settings are.
+    - Updated so that VBF "cushion" can be specified in vbfconf.h.
+    - Fixed a problem in the VBF write interruption test (Bug 2955) for 
+      Windows CE 5.x, where bad pointer could be used, corrupting in- 
+      memory structures.
+      
+    Device Manager Enhancements:
+    - Resolved Bug 2607, where some latency reduction features had been 
+      disabled to avoid a potential corruption of the erase state 
+      information in some geometries.     
+    - Increased the number of Devices supported in devflash.c from 4 to 8.
+    
+    Miscellaneous Enhancements:
+    - Added support for power suspend and resume.  This feature is controlled 
+      with the FFXCONF_POWERSUSPENDRESUME preprocessor setting.  This is
+      currently defined at the OS level, in oesl.h.  This is set to TRUE
+      only for those operating systems which support it.  The fhaccess.c 
+      modules have been updated to support the new types ACCESS_SUSPEND and 
+      ACCESS_RESUME. 
+    - Updated FXINFO to display more detailed information about region and
+      unit metadata.
+    - Factored DCLTEST out of the other "DriverAutoTests" so that it can run 
+      prior to FlashFX attempting to initialize any Devices and Disks. 
+    - Updated the BeagleBoard project to simultaneously support hardware ECC 
+      and prefetch mode.
+    - Updated the Loader interface to provide a configuration option 
+      controlling the AutoUnlock feature.
+    - Updated the general call stack to support chip serial numbers.
+    - Fixed numerous minor issues that caused compiler warnings when
+      building with higher warning levels and newer compilers.
+    - Updated the code to work around va_arg() problems with 64-bit types 
+      when using the Code Sourcery ARM GNU tools.
+    - Corrected the licensing validation logic to work properly with some
+      environments where a "long" type is 40-bits wide.
+    - Updated FXDUMP to work with NAND "OffsetZero" style images, rather 
+      than just SSFDC images.
+    - Updated FXIMAGE to ignore areas of the flash which appear to be 
+      erased.
+      
+    NAND Read/Write Modes:
+    - Two new NAND specific macros have been added, FMLREAD/
+      WRITE_UNCORRECTEDPAGES(), which do what FMLREAD/WRITE_PAGES <used>
+      to do when operating on NAND.
+    - The functionality of the FMLREAD/WRITE_PAGES() NOW does an ECC 
+      validated read or write when running on NAND.  The functionality
+      is unchanged when running on NOR.
+    - The FMLREAD_CORRECTEDPAGES() macro still exists, but is deprecated -- 
+      internally it simply does the same thing as the new FMLREAD_PAGES().
+    - These changes allow ECC corrected data to be read and written even if 
+      tags are not being used at all, which was not possible before.
+    - Updated FMLSTEST to chop out a bunch of logic which is now unnecessary 
+      due to the cleaned up FML read/write interfaces.  Now regardless 
+      whether running on NAND or NOR, one can use the FMLREAD/WRITE_PAGES()
+      macros to read and write corrected data.
+
+    NAND FIM Enhancements:
+    - Added support and tests for block lock/unlocking, as well as
+      "lock-freeze".
+    - Renamed the Get/SetBlockStatus() functions to Get/SetRawBlockStatus() 
+      for interface consistency.
+    - Added a GetBlockStatus() interface which allows it to be easily 
+      determined whether a logical block has been remapped or not.
+    - Refactored some NAND related headers to allow easier access to NAND 
+      specific functionality from outside the FMSL tree.
+    - Enhanced support for Numonyx flash.  
+    - Added support for a few Toshiba parts. 
+    - Changed most ST Micro references to Numonyx.
+    
+    General NTM Enhancements:
+    - Added an optional IORequest() interface into the NTMs.  The NAND FIM 
+      will call this first if it exists.  If the NTM does not handle the
+      request,  hen the standard logic in the NAND FIM is used.  Only works
+      for non-BBM requests at this time.  This interface is required if
+      the block locking, power suspend/resume or OTP functionality is to be 
+      supported.
+    - Modified all the NTMs so the PageWrite() functionality allows a page to 
+      be written with ECC, but no tags.  As before, if ECC is turned
+      off, then tags may not be written.
+    - Added support for querying and returning chip ID values to higher level 
+      software.
+    - Refactored the ECC hooks modules, to include the ability to hook the 
+      correction function.  Updated NTMs which use those hooks accordingly. 
+    - Many NTM helper functions were renamed to avoid naming conflicts.
+    
+    Micron NTM Enhancements:
+    - Enhanced support for Micron M60 devices.
+    - Refactored the Micron NTM and hooks modules to be more flexible.
+    - Refactored the hooks modules so that the entire spare area is under
+      control of project code.
+    - Updated so that any buffer alignment requirements are specified by 
+      the hook module.
+    - Updated the Micron NTM to support multiple chip selects.
+    - Updated the Micron NTM to support block locking.
+    - Updated the Micron NTM to support chip serial numbers.
+    
+    PXA320 NTM Enhancements:
+    - Updated to fully support two flash chips.
+    - Modified to allow support for the second chip to be disabled at
+      compile-time.
+    - Now use allocated instance data, in the case that the OEM want to 
+      separately control the two chips (still requires some outside
+      synchronization).
+    - Fixed to cleanly fail initialization if there are no blocks 
+      remaining after the reserved space has been removed. 
+    - Refactored the initialization logic so the hooks modules have more 
+      control over the configuration.
+    - Most optional features are now run-time selectable rather than
+      compile-time selectable.
+    - Support querying for corrected and uncorrected error counts (for the 
+      life of the Device instance).
+    - Updated to allow cache mode reads to work with Numonyx chips.
+    - Updated the PXA320 NTM to support Micron M60 flash.
+    
+    OneNAND NTM Enhancements:
+    - Major cleanup of the NT1NAND debug messages to use NTMNAME, and to not 
+      display error messages using FFXTRACEPRINTF().
+    - Modified the Create() function to obtain configuration data from the 
+      hook's Create() function.
+    - Major update to all the fh1nand.c hooks modules to support unaligned 
+      access.  They now use a standard mechanism to report configuration 
+      characteristics back to the OneNAND NTM.  Made the debugging messages
+      useful.
+    - Updated to add support for locking and suspend/resume.
+    - Updated to add support for OTP (One-Time Programming)
+    - Updated to no longer use static data, to allow multiple NTM instances.
+    - Split OneNAND and FlexOneNAND support into separate NTMs.
+
+    WinCE Port:
+    - Updated the to support the concept of a store which is split across
+      two FlashFX Disks.
+    - Added a new DLPART utility which allows command-line control of 
+      creating, destroying, mounting and dismounting stores and partitions,
+      as well as formatting partitions.  The functionality is also usable 
+      from with the Datalight and FlashFX Shells.
+    - Updated to call LockPages() for all read buffers to prevent deadlocks
+      when multiple page faults occur.
+    - Updated to detect warmboot notifications and properly deinitialize the 
+      driver to any data is properly flushed and so any required restoration
+      of hardware states can be performed.
+    - Enhanced FlashFX' ability to run as an FMD with the Microsoft FAL
+      (primarily used for testing and debugging).   
+    - Added sample code for interfacing existing code which is currently 
+      using the FMD interface to use FlashFX instead. 
+    - Added support for power suspend/resume. 
+    - Added CE specific example applications -- FlashFX_FML.exe and 
+      FlashFX_DynamicDisk.exe, which demonstrate using the FML API, as
+      well as dynamically creating a Disk, respectively.  They build using 
+      the standard build processes -- however, they also have SOURCES
+      files and can be built using the generic CE BUILD utility as well.
+    - Modified the CE driver to set the STORAGE_DEVICE_FLAG_TRANSACTED for 
+      read-only (no allocator) Disks. 
+    - Modified so the CE "folder" registry setting is not required.  It will 
+      be used it if it's there, but CE will use a default if not.
+    - Added support for dynamically configuring the Disk definitions by 
+      scanning the media for the MBR and the Flash Layout Sector (FLS). 
+    - Updated the scatter/gather code to default to using stack buffers 
+      rather than dynamically allocating memory.
+    - Eliminated the FFX_DISK0_FORMAT setting for CE.  Disk format settings 
+      for Windows CE are now handled entirely in the registry.
+    - Updated the CE port to support auto-assigned Disk numbers.
+    - Stopped using DefaultFileSystem values of "None", and rather use "" to 
+      ensure no conflicts with CE's usage of that registry key.  The FlashFX
+      code still allows the value "None" for compatibility.
+    - Added GUI versions of some tests and tools.
+
+    RTOS Port:
+    - Added an example application -- FlashFX_FML.c, which demonstrates
+      using the FML API.
+
+    Linux Port:
+    - Kernel versions up to 2.6.35 are now supported.
+        
+    VxWorks Port:
+    - Added support for VxWorks 6.9.
+    - Resolved a bug where FlashFX was not working properly with HRFS. 
+
+    Win32 Port:
+    - Added GUI versions of some tests and tools.
+    
+    Deprecated features and settings:
+    - Deprecated the FMLREAD_CORRECTEDPAGES() macro. 
+
+    ----------------------------------------------------------------------
+    FlashFX Tera v1.2.3 Build 1850EY - General Release (October 2010)
+                        WinCE, VxWorks, Linux, RTOS -- SDKs and CSKs
+
+    - Added support for Micron M60 family of flash devices.
+    - Fixed an issue in BBM regarding remap table format in multi-chip 
+      configurations.
+    - Fixed a variety of issues in FMSLTEST regarding the acquisition and 
+      usage of test blocks that may be accessed using raw interfaces in
+      multi-chip configurations.
+    - Fixed an issue in FMSL Raw Page Test to ensure raw accesses don't
+      occur in BBM reserved areas in multi-chip configurations.
+    - Updated FMSL ECC test not to run on devices that don't require ECC.
+    - Simplified FXImage tool so that linking with FlashFX core libraries is 
+      no longer required. The tool now works only in VBF mode, and creates
+      images that only contain user data and tags. Raw and FS modes are no
+      longer available (this applies to the FlashFX Tera v1.x product only).
+    - Fix several issues to enable Microsoft CETK tests to fully pass.
+    - Fixed issue causing difficulty using HRFS with FlashFX.
+    - Updated supported hardware list.
+    - General cleanup of the device manager code.
+    - Additional updates to build cleanly with TI Code Composer Studio.
+    - A threading issue with the Latency Reduction feature was repaired.
+    
+    ------------------------------------------------------------------- 
+    FlashFX Tera v1.2.2 Build 1850DH - General Release (June 2010)
+                                       Linux and RTOS -- SDKs and CSKs
+
+    - Added support for Linux kernel 2.6.34.
+    - Added support for block I/O discard requests as implemented in
+      Linux kernel 2.6.28 and later.
+    - Updated to build cleanly with TI Code Composer Studio v4.0.
+    - Fixed several minor Linux build issues.
+
+    -------------------------------------------------------------------
+    FlashFX Tera v1.2.1 Build 1850CR - General Release (April 2010)
+                                       Linux SDK and CSK
+
+    - Added support for Linux kernels up to and including v2.6.33.
+    - Added a sample Linux boot loader project.
+
+    -------------------------------------------------------------------
+    FlashFX Tera v1.2 Build 1850CD - General Release (March 2010)
+                     WinCE, VxWorks, Linux, RTOS -- SDKs and CSKs
+
+    - Added support for Linux kernels up to and including v2.6.29.
+    - Refactored headers to support the proprietary, public, and dual-
+      licensed code.
+    - Fixed a variety of issues in BBM and the Device Manager pertaining
+      to reserved space and range checking.
+    - Fixed FMSLTEST to work properly with the PXA320 and its apparent
+      NAND controller bug.
+    - Fixed a variety of alignment issues in FMSLTEST.
+    - Reorganized the Device Manager Create/Destroy() functions to be
+      sure resources are released completely and in the proper order.
+    - Fixed the NOR FIM to avoid using 16-bit ID codes when the flash
+      bus width is only 8 bits.
+    - Fixed a variety of issues in the NOR FIM.
+    - Fixed the NTCADMLC NTM to work properly with non-8-bit NAND.
+    - Fixed problems with FXIOFUNC_FML_GET_BLOCK_STATUS().
+    - Updated support for VxWorks dosFs formatting options.
+    - Added a default VxWorks implementation of fhpxa320.c.
+    - Updated so VxWorks projects default to <not> using Reliance.
+
+    -------------------------------------------------------------------
+    FlashFX Tera v1.1 Build 1850F - First General Release (April 2009)
+                      WinCE, VxWorks, Linux, RTOS -- SDKs and CSKs
+
+    General Concepts:
+    - Added support for flash arrays up to 2 terabytes in size.
+    - Added support for MLC NAND flash parts.  See the "FlashFX Supported
+      Hardware.pdf" file for a detailed list.
+    - Major update to BBM to allow each chip in an FML Disk to have its
+      own BBM table, greatly simplifying manufacturing issues.
+    - Allow for both default and customer error management policies.
+    - Allow for MLC strength ECC, implemented in both hardware and software.
+    - Supports Samsung Flex OneNAND.
+    - Major update to the external requestor API to disassociate the
+      requestor handle from a specific Disk.  Added the FlashFX_Open()
+      and FlashFX_Close() functions.  Updated all tools and tests for
+      non-monolithic environments to use these functions.
+    - Implemented a unified, automated documentation generation system.
+
+    Project Configuration:
+    - The old FFX_DEVn_BBMFORMAT setting has been renamed to FFX_DEVn_BBM,
+      and a new field allows BBM to be disabled for a Device.  BBM support
+      can now be enabled/disabled both at compile-time and run-time.
+    - Added an FFX_MAX_PAGESIZE setting to ffxconf.h.
+    - Updated so that Allocator (VBF) support can be compiled out of the
+      binary.  Enhanced the Allocator initialization so that it can be
+      disabled at run-time, even if it is compiled into the binary.  The
+      ffxconf.h file now has an FFX_DISKn_ALLOCATOR setting which is used
+      to configure allocator settings.
+
+    Driver Framework Enhancements:
+    - Major enhancement so that Devices and Disks can be created and
+      destroyed on the fly by application level code.
+    - Major update to allow portions of the Driver Framework to be
+      accessible via the external requestor interface.
+    - Added functionality to enumerate Devices and Disks.
+    - Configuration of Devices and Disks has been greatly simplified.
+    - Modified FfxDriverCreate() to take a driver number rather than a name.
+    - Modified FfxDriverHandle() to take a driver number parameter.
+
+    VBF Enhancements:
+    - Supports active scrubbing of bit errors.
+    - Renamed the VBF region related functions to avoid namespace conflicts.
+    - Enhanced VBFTEST to test large I/O operations.
+    - Fixed the VBFTEST region size display to display the client size.
+
+    DevMgr Enhancements:
+    - Updated to fix several bugs with regard to the Device Create/Destroy
+      operations and the FfxHookAccessBegin/End() functionality.
+    - Modified so FfxDevCreate() honors a failure result from
+      FfxHookAccessBegin(ACCESS_MOUNTS).
+    - Fixed so that FfxHookAccessEnd(ACCESS_MOUNTS) is properly called
+      even if the Device creation fails (so long as the "begin" function
+      returned successfully).
+    - Fixed so that the ACCESS_UNMOUNTS is issued for Device destruction.
+    - Updated all the fhaccess.c modules to maintain a usage counter
+      tracking accesses to the flash.  Added pseudo-code to show how to
+      implement a global mutex in the event that the flash is shared with
+      another flash manager.
+
+    Miscellaneous Enhancements:
+    - Fixed the FfxFatFormat() function to not depend on structure packing.
+    - Updated MTSTRESS to increase the number of buffer blocks used by
+      default, to better exercise large flash arrays and large I/O
+      requests.
+    - Updated FXDUMP to add the /WRITTEN option to cause only those pages
+      which have been written to be displayed.
+    - Modified a number of uses of D_UINT16 types to the much preferred
+      "unsigned" type.
+    - Modified the various tag related I/O functions to take a tag width
+      parameter.
+    - Updated to allow CHS calculations to work for disks as small as two
+      sectors.
+    - Fixed FlashFX_VersionCheck() to return the documented error codes.
+    - Updated most OS ports to default to background compaction being on
+      if thread support is on, and off if it is not.
+
+    NAND FIM Enhancements:
+    - Modified the GetPageStatus() functionality to return the tag length,
+      if any.  Added macros to manage setting and retrieving the tag width
+      information from the ulPageStatus value.
+    - Added support for numerous additional Micron and OneNAND parts.
+
+    PXA320 NTM Enhancements:
+    - Updated to disable setting NCSX during initialization.
+    - Fixed DFCConfigure() to set RA_START and PG_PER_BLK_64 if large
+      block NAND is being used.
+    - Fixed a bug in GetBlockStatus() where the same page was being
+      examined twice.
+    - Fixed a bug in DFCShutdown() where a statically declared structure
+      was being freed.
+    - Updated to support variable length tags.
+    - Implemented the raw page read/write functions.
+    - Fixed hidden read/write to use raw reads/writes, rather than using
+      ECC.
+    - Modified so that status bits are explicitly cleared after they are
+      read.
+    - Updated to add support for 16-bit NAND.
+    - Corrected a bug in the definition of the page size mask.
+    - Fixed to properly wait for the chip reset to complete, per the
+      Marvell app note.
+
+    Micron NTM Enhancements:
+    - Updated to allow dual-plane support to be chosen at compile-time or
+      run-time, as desired.  As such, the NTM now supports Micron chips
+      which do not support dual-plane operations.
+    - Modified so that it will not work with any parts but Micron parts.
+    - Updated to support cache-mode reads and writes.
+
+    PageIO NTM Enhancements:
+    - Implemented the "raw" page read/write interface.
+
+    FMSLTEST Enhancements:
+    - Updated FMSLTEST to allow for the fact that an NTM may fix <more>
+      bit errors than the minimum required, and it should not cause a
+      test failure.
+    - Fixed so that the blocks are erased even when error code paths are
+      taken, rather than leaving the flash in a bad state.
+    - Added tests for the GetPageStatus() interface.
+    - Added a test to ensure that tags read from erased pages return all
+      0xFFs.
+    - Added a test to ensure that tags values which are all 0xFFs or
+      within 1 bit thereof (in any bit position) return the correct tag
+      values.
+    - Modified the test to exercise all possible tag sizes if the NTM
+      supports variable length tags.
+    - Enhanced the BlockStatusTest() to test more conditions.
+    - Enhanced the error handling and debug messages to be more useful.
+    - Fixed the NAND portion of the test in several places where the
+      ulBlockStatus value was not being properly masked before it was
+      examined, and one place where it was being examined without first
+      checking that the I/O operation was successful.
+    - Fixed the block status test to take into account whether BBM is
+      loaded for a Device, before drawing conclusions about whether raw
+      block status should match the regular block status.
+    - Simplified the logic for finding a range of good, unremapped blocks
+      to test.
+    - Updated the error handling to avoid asserting for out-of-range
+      requests.
+    - Modified the "BIG_BLOCK_SIZE" to be dynamically allocated and be the
+      same size as an erase block.  This allows the performance test to do
+      stuff which is more equivalent to what the VBFTEST performance test
+      is doing.
+    - Modified the performance tests to iterate through a range of sector
+      counts when reading and writing, so bottlenecks can be identified.
+    - Enhanced the alignment test to allow a smaller alignment size to be
+      specified on the command-line, to simplify testing and debugging of
+      alignment issues in FIMs and NTMs.
+
+    FXIMAGE Tool Enhancements:
+    - Added the ability to specify that the file contain high and/or low
+      reserved space.
+    - Added the XFORM option to allow tagged pages to be transformed into
+      standard SSFDC or OFFSETZERO style spare areas.
+    - Fixed a bug that prevented the tool from working properly in "VBF"
+      mode, when using NOR.
+
+    FlashFX Shell Enhancements:
+    - Added commands for dynamically creating, destroying, and enumerating
+      Devices and Disks.
+    - Added the BBMINFO and CB commands to the FlashFX Debugger.
+    - Updated the FlashFX Debugger to function even when there are no
+      Disks defined in the system.
+
+    Windows CE:
+    - Modified all the command-line tools to support an interface for
+      redirecting output.
+    - Added Datalight and FlashFX Shell extension DLLs, which allow the
+      shell to be fully usable from within a Target Control window.
+    - Turned FAT Monitor off for CE since it is not needed on CE 4.2 or
+      later.
+    - Updated the CE driver build process to link with B_DRIVERLIBS to
+      allow additional link libraries to be specified at the project
+      level.
+    - Updated the FFX and DCL shell extensions for CE to use the new
+      DclInputFunction() to remap how input is supplied, and avoid using
+      globals.
+    - Updated all the WinCE specific tools and tests wrappers to properly
+      use (the new) flashfx_wince.h has the top level header.
+    - Fixed the CE generation of flashfx.lib so it only contains the
+      libraries used for an application using the external API.  Modified
+      the build processes for all the CE specific tools to link with that
+      library, rather than all the individual libraries.
+    - Conditioned the "hidden sector issue" in ffxsgio.c with
+      CORRECT_HIDDEN_SECTORS, and disabled it by default.  Fixed that
+      same code to function correctly when structure packing is disabled.
+    - Renamed FlashFXDriverEntry() to DllMain().
+    - Eliminated the obsolete DetectDSKDisk() function.
+    - Eliminated the FXREMNT utility.
+
+    Win32 Port:
+    - Eliminated the FXREMNT utility.
+
+    Deprecated Features and Settings:
+    - Removed the NTBYTEIO, NTOPAP, NTATLAS, and NTMX21 NTMs.
+    - Removed the obsolete and unused FFX_IO_MAPPED setting and
+      IOPORTADDRESS type.
+    - Removed the obsolete and unused oeio.c modules.
+
+   -------------------------------------------------------------------
+   v3.4 Build 1621FV - General Release (October 2009)
+                       WinCE, VxWorks, Linux, RTOS, -- SDKs and CSKs
+   - Added support for VxWorks 6.8.
+   - Eliminated the readahead feature.
+   - Fixed a problem introduced in v3.3.5 where the NTRAM NTM would not
+     function properly.
+   - Added support for more OneNAND parts.
+   - Disabled cycling the DevMgr mutex to prevent possible loss of state
+     information of a multi-block erase operation.
+   - Fixed the NOR FIM to avoid using 16-bit ID codes when the flash bus
+     width is only 8 bits.
+   - Updated to work better with Windows CE Platform Builder (though
+     Datalight recommends using the command-line interface).
+   - Fixed an issue with regard to block device flushes in Linux 2.6.24.
+   - Added preconfigured WinCE and VxWorks projects for the Mistral OMAP35x.
+   - Added a preconfigured VxWorks project for the Freescale MPC5121e.
+
+   -------------------------------------------------------------------
+   v3.3.6 Build 1621EH - Windows CE SDK and CSK (December 2008)
+   - Fixed a bug (stemming from v3.3.5) in the calculation of sector sizes
+     when derived from a FAT boot record.
+
+   -------------------------------------------------------------------
+   v3.3.5 Build 1621EE - Windows CE SDK and CSK (November 2008)
+   - Added support for FlexOneNAND to be sure main page data is blank in
+     the page register when doing spare-only writes.
+   - Fixed a number of issues in the OneNAND NTM.
+   - Added support for the Eclipse FIM.
+   - Fixed the PageIO NTM to return the proper status code so the NAND
+     FIM correctly handles erase failures.
+
+   -------------------------------------------------------------------
+   v3.3.4 Build 1621DF - VxWorks Eval (September 2008)
+   - Added support for a number of parts to the NOR FIM.
+   - Fixed several issues in the OneNAND NTM.
+   - Added support for VxWorks 6.7.
+
+   -------------------------------------------------------------------
+   v3.3.3 Build 1621CV - Linux SDK and CSK (July 2008)
+   - The same general enhancements listed in v3.3.2, with kits released
+     for Linux.
+
+   -------------------------------------------------------------------
+   v3.3.2 Build 1621BV - General Release (June 2008)
+                         WinCE, VxWorks, RTOS, -- SDKs and CSKs
+   - Moved the Software Development Kits for Nucleus and ThreadX
+     support into the RTOS Software Development Kit.  Support for
+     these environments is provided as pre-configured projects.
+   - Modified the VBF Write Interruption Test to no longer attempt to
+     acquire a mutex which might already be owned.
+   - Removed the "ByteIO" and "MX21" NTMs, which have been replaced
+     with the "CAD" and "MX31" NTMs, respectively.
+   - Corrected issues in the OneNAND NTM to ensure that the tag are
+     covered by ECC, and to correctly return a NULL tag value if the
+     tag cannot be properly decoded.
+   - TagTest has been modified to account for devices that support
+     multi-bit internal ECC returning uncorrectable errors when
+     overwriting/invalidating a tag.
+   - Added support for Micron chip types 0xAA and 0xBA.
+   - Added support for FlexOneNAND devices and Partition Information
+     commands.
+   - Added entries into chip special characteristics table for
+     STMicro and OneNAND parts that have block locking.
+   - Added support for STMicro NAND04GW3B and NAND08GW3B parts.
+   - FfxNtmOffsetZeroIsBadBlock has been enhanced to accommodate devices
+     with page sizes greater than 2K.
+   - Modified the NORFIM write procedures to support a more accurate
+     representation of the standard flowchart for how AMD-style devices
+     detect write completion.
+   - Fixed NORFIM to remove an invalid assert from ErasePoll().
+   - Added support for AMD Advanced Sector Protection block locking
+     mechanism and Spansion NS-P parts.
+
+   -------------------------------------------------------------------
+   v3.3.1 Build 1621AS - Engineering Release (April 2008)
+                         Linux SDK and CSK
+   - Fixed some discard metadata on NAND which was being stored in native-
+     endian byte order.  See the README file for more information on this
+     issue.
+   - Fixed a media compatibility error introduced in the previous release,
+     where a metadata identifer was incorrect.
+
+   -------------------------------------------------------------------
+   v3.3 Build 1621AJ - General Release (February 2008)
+                       Linux SDK and CSK
+   - Added a generalized Linux SDK with support for Linux kernel
+     versions 2.6.13, 2.6.14, 2.6.18, 2.6.19, and 2.6.21.  Other
+     versions in this range should work, but have not been tested.
+   - Added initialization of projects (call to FfxProjMain()) in
+     All-In-One-Framework builds (mostly effects simulator builds)
+   - Major refactoring of the format related settings in ffxconf.h to
+     allow any or all of the formatting features to be scaled out of
+     the code, as well as to allow each disk to have its own format
+     settings (state, file system, MBR, etc).
+   - Modified so Device and Disk settings in ffxconf.h are specified
+     in terms of KB, rather than bytes.
+   - Added dclconf.h settings to control message output.
+   - Added a generalized shell interface, both at the FlashFX and DCL
+     levels, to allow more flexible interaction with FlashFX.
+   - Added high-resolution ticker and timestamp services (optional).
+   - Added a statistics interface to allow gathering and reporting
+     statistics at a variety of levels.
+   - Modified so that flash timing and desired project latency
+     characteristics are configurable on a per device basis, in the
+     ffxconf.h file.  Updated the latency reduction code to allow
+     self-tuning, in the event that the flash timing information is
+     not known.
+   - Updated to consistently use the FFXIOSTATUS model up and down the
+     stack, from the NTM all the way through the Driver Framework.
+   - Made a number of enhancements to the NAND simulator.
+   - Eliminated the deprecated "old" FML interface.
+   - Major enhancements to MTSTRESS to support performance and latency
+     measurements (among other things).
+   - Added the NTMICRON NTM which supports dual-plane Micron parts.
+   - Enhanced the NTRAM NTM to better support page overwrites, as well
+     as an 8 byte tag size.
+   - Refactored the "FXLoader", generalizing it, moving it into DCL,
+     and naming it the "DL Loader".
+   - Modified the evaluation SDK limit to be 1/4th the Device size,
+     rather than fixed at 2MB.
+   - Updated the FORCEALIGNEDIO feature to now align reads if necessary.
+   - Updated the FIMs and NTMs to use a default alignment based on
+     DCL_CPU_ALIGNSIZE rather than DCL_ALIGNSIZE.
+   - Fixed several issues in the NTPXA320 NTM:
+      - Properly handle large-block NAND
+      - Fixed a bug in GetBlockStatus() where only the first page was
+        being examined for a factory bad block mark.
+      - Fixed a potential memory corruption issue on shutdown.
+
+   -------------------------------------------------------------------
+   v3.17 Build 1337CP - Engineering Release (October 2007)
+                        VxWorks Evaluation SDK
+   - Added support for VxWorks 6.6.
+
+   -------------------------------------------------------------------
+   v3.16 Build 1337CG - Engineering Release (July 2007)
+                        CE SDK, CSK
+   - Added support for WinCE 6.0.
+   - Added a new universal NOR FIM (FFXFIM_norfim) with CFI support.
+   - Corrected an issue with the PXA320 NTM that caused it to overwrite
+     factory bad block marks in some cases.
+
+   -------------------------------------------------------------------
+   v3.15 Build 1337BZ - Engineering Release (June 2007)
+                        Nucleus SDK, CSK, RTOS Kit
+   - Added support to the MX31 NTM for Native 2KB page NAND.
+   - Added support to the MX31 NTM for emulating 512B pages for Native 2KB
+     page NAND.
+
+   -------------------------------------------------------------------
+   v3.14 Build 1337BJ - Engineering Release (May 2007)
+                        CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Fixed MX31 NTM to initialize spare area buffer to avoid writing
+     undefined contents to unused spare areas.
+   - Added support for configuring the MX31 for x8 or x16 NAND, based
+     on information in the chip tables.
+   - Corrected a problem introduced in v3.13 where the spare area on NAND
+     flash is formatted wrong by NTMs using the NTM helper routines.
+
+   -------------------------------------------------------------------
+   v3.13 Build 1337BC - Engineering Release (May 2007)
+                        CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Freescale i.MX31 Support
+     - Added support for 8-bit wide NAND
+     - Added example projects (MX31CENAND and Nucleus\mcimx31adse)
+     - Fixed GetBlockStatus() to look at the first two pages in a
+       block.
+     - Added writing of tag indicator to allow BBM re-format to
+       distinguish between OFFSETZERO-style factory bad blocks and
+       those written with a tag.  Modified GetBlockStatus() to handle
+       BBM re-formats of existing formatted SSFDC-style flash, even
+       without the tag indicators added in this version of the NTM.
+   - Marvell PXA320 Support (Monahans)
+     - Added a new NTM (ntpxa320.c) to support the NAND flash controller in
+       the Marvell PXA320 processor.  This replaces the previous Monahans
+       NTM (ntpxa290.c).
+     - Removed the the ntpxa290 NTM.
+     - Added an example project for the Sophia Systems Sandgate 3 reference
+       board and WindowsCE 5.0 (sandgate3_ce).
+   - Tool Support
+     - Updated support for Green Hills.
+     - Added support for Microtec PowerPC tools.
+     - Added support for RealView Developer Suite 3.0.
+     - Added support for Microsoft Visual Studio 8.
+     - Removed build support for Windows 98.
+   - Fixed an issue where the ECC on-media layout could be wrong because
+     the code previously expected in memory structure to match the on-media
+     format.
+   - Fixed a potential memory leak during media manager creation.
+   - Fixed several small issues that caused FlashFX Pro to fail to build
+     using the WinCE 4.2 Platform Builder (mswcepb) toolset.
+   - Fixed incorrect assertions in Windows CE external request API
+     that fire whenever FFX_MAX_DISKS is 1.
+   - Fixed a problem with the CAD NTM (ntcad.c) when requested to only
+     write the spare area.
+
+   -------------------------------------------------------------------
+   v3.12 Build 1337AP - Engineering Release (March 2007)
+                        VxWorks Evaluation SDK
+   - Added support for VxWorks 6.5.
+   - Fixed a problem when FlashFX Pro writes an MBR and formats the
+     disk with FAT which results in an incorrect number of sectors
+     written to the BPB.
+   - Added support for Hynix 16Gb NAND device HY27UH08AG(5/D)M Series
+   - Added support for Micron 16Gb NAND device MT29F16G08FAA
+   - Improved handling of I/O errors during compaction.
+
+   -------------------------------------------------------------------
+   v3.11 Build 1337Z - Engineering Release (December 2006)
+                       Linux SDK, CSK
+   - Added BBM statistics interface.
+   - Corrected a rounding error in BBM that could cause the remap list to
+     be larger than necessary.
+   - Added a Level II NTM (ntpxa290) with support for the Marvell Monahans.
+   - Enhanced the NAND Simulator by:
+       adding support for initializing factory bad blocks
+       adding a table driven error policy
+
+   -------------------------------------------------------------------
+   v3.10 Build 1337T - General Release (November 2006)
+                       CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Added support for Nucleus FILE 3.1.
+   - Added support for VxWorks 6.3 and 6.4.
+   - Added Spansion ORNAND support.
+   - Added the MX31 NTM (MX21 is deprecated).
+   - Added support for ARM RealView Developer's Suite 3.0
+   - Replaced the BYTEIO NTM with the CAD NTM.
+   - Updated the FXDUMP tool to support NAND.
+   - Made major enhancements to the write interruption tests.
+   - Fixed the NOR implementations to properly support boot blocks.
+   - Fixed the "WindowMap" functionality used with NOR to properly
+     deal with reserved space.
+   - Added a high resolution timer interface.
+   - Added the NAND simulator subsystem.
+   - Fixed a number of issues in VBF pertaining to "zombie discards".
+   - Improved VBF and BBM error handling when dealing with I/O errors.
+   - Updated to properly support "BIGFAT" disks.
+   - Added support for a number of new NAND and NOR parts -- see the
+     FlashFX Supported Hardware document.
+   - Enhanced the standard build process so it will function even
+     if there is an SH in the path.
+   - Enhanced the statistics interface.
+   - Changed the default alignment from 4 to 8 bytes if native 64-bit
+     types are supported (unless the processor does not require
+     alignment, such as the x86, in which case it remains at 4 bytes).
+   - Updated support for Spansion MirrorBit NOR parts to more closely
+     follow the device specifications when performing buffered writes.
+
+   -------------------------------------------------------------------
+   v3.01.1361 - FlashFX Pro v3.01 Engineering Release (November 2006)
+                CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   FlashFX Pro v3.01 is an engineering maintenance release for v3.0.
+   - Fixed a number of issues in VBF pertaining to "zombie discards".
+   - Improved VBF and BBM error handling when dealing with I/O errors.
+   - Added support for ARM Real View Developer Suite 3.0.
+   - Added support for Green Hills Software MULTI v4.3.2 for ARM and MIPS.
+
+   -------------------------------------------------------------------
+   v3.00 Build 1253 - General Release (March 2006)
+                      CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   NOTE:  FlashFX Pro v3.0 introduces a forward compatible media
+          format when used with NAND.  Once NAND flash has been
+          used with v3.0 or later, it may not be readable by
+          older versions of flashfx.  Contact Datalight for more
+          details.
+   FlashFX Pro v3.0 is a major architectural update which supports
+   the following features:
+   - Native support for 2KB page NAND flash.
+   - Support for multiple VBF disks on one flash device, as well as
+     multiple VBF instances with different allocation block sizes.
+   - Refactored the NAND FIM into modularized components (NTMs).
+   - The NTM architecture allows:
+     - NAND flash and/or NAND controller specific implementations
+       which can make use of different spare area formats and take
+       advantage of advanced features such as hardware ECC.
+     - Complete independence from BBM.
+   - Modified the NAND FIM and BBM to allow multiple instances.
+   - Modified the NAND FIM to follow the multitheaded FIM model.
+   - Replaced the "OEM layer" interface with the DevMgr and Flash
+     Mapping Layer (FML) interfaces.
+   - Eliminated support for the legacy single-threaded FIM model.
+   - Greatly improved BBM initial format time.
+   - Adds the ability to "unformat" NAND and return it to its
+     factory state.
+   - Moved some product independent functionality into DCL.
+   - Added timing characteristics to the FIMs to allow project
+     specific latency configuration.
+   - Support for multiple NAND and NOR flash arrays in the same
+     device.
+   - Modified the FAT Monitor to support FAT32 disks.
+   - Added support for Samsung OneNAND.
+   - Added support device specific reserved space at the bottom and/or
+     top of the array.
+   - Implemented a new I/O request architecture, which allows
+     multi-page read/write requests.
+   - Now supports compile time feature selection so that reduced image
+     sizes can be produced by trimming out unnecessary features.
+   - Updated the VBF API to operate on page-sized read/write/discard
+     requests.
+   - The FXRDIMG/FXWRIMG utilities have been replaced with FXIMAGE.
+
+   -------------------------------------------------------------------
+   v2.03.1364 - FlashFX Pro v2.03 Engineering Release (December 2006)
+                CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   FlashFX Pro v2.03 is an engineering maintenance release for v2.00,
+   v2.01 and v2.02.
+   - Fixed a number of issues in VBF pertaining to "zombie discards".
+   - Improved VBF and BBM error handling when dealing with I/O errors.
+   - Fixed an issue in BBM where a power interruption or reset could leave
+     the flash in an unrecoverable state.
+   - Fixed an issue with the NAND FIM and BBM where EraseBlock loops if an
+     error occurs while erasing a block in the spare area.
+
+   -------------------------------------------------------------------
+   v2.02 Build 988 - Engineering Release (January 2006)
+                     VxWorks SDK, CSK
+   - Added support for VxWorks 6.2 and the XBD interface.
+
+   -------------------------------------------------------------------
+   v2.01 Build 980 - General Release (December 2005)
+                     CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Updated Reliance Reader to work with Reliance 2.x
+
+   -------------------------------------------------------------------
+   v2.00 Build 966 - General Release (October 2005)
+                     CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Updated Windows CE 5.0 support.
+   - Moved a variety of generic functionality into the Datalight Common
+     Libraries (DCL).
+   - Eliminated unnecessary waits for chip to be ready in the NAND FIM.
+   - Added option for setting VBF cushion.
+   - Added FFXCONF_xxxSUPPORT for the different Flash types and text to
+     explain other optional settings having to do with sector lengths,
+     reasonable reads and writes for various memory access types.
+   - Added ReadControl and WriteControl to FIMDEVICE.
+   - Added support for Intel 90nm Flash (Sibley).
+   - Added support for Intel L18/Tyax.
+   - Added support for Intel StrataFlash(R) 28F256K3.
+   - Changed the BBM bad block replacement policy.  Block replacement
+     now occurs only when the NAND chip status indicates a program or
+     erase error, never for an ECC error.  Correctable ECC errors are
+     now corrected without block replacement.  Uncorrectable ECC errors
+     now cause read errors.
+   - A flash programming error in a NAND redundant write no longer
+     attempts block replacement.
+   - Linked TEST_BLOCK_SIZE with VBF_BLOCK_SIZE.
+   - Eliminated the need to use software ECCs during block replacement.
+   - Removed warnings generated by the ADS 1.2 toolset.
+   - Updated offsets into the Reliance boot sector that contain the
+     number of blocks and block size.
+
+   -------------------------------------------------------------------
+   v1.21.1368 - FlashFX Pro v1.21 Engineering Release (December 2006)
+                CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   FlashFX Pro v1.21 is an engineering maintenance release for v1.20.
+   - Fixed a number of issues in VBF pertaining to "zombie discards".
+   - Improved VBF and BBM error handling when dealing with I/O errors.
+   - Fixed an issue in BBM where a power interruption or reset could leave
+     the flash in an unrecoverable state.
+   - Fixed an issue for big endian systems where single bit errors on NAND
+     flash are not corrected.
+   - Fixed an issue with the NAND FIM and BBM where EraseBlock loops if an
+     error occurs while erasing a block in the spare area.
+
+   -------------------------------------------------------------------
+   v1.20 Build 916 - General Release (May 2005)
+                     CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Added support for VxWorks 6.1.
+   - Updated the entire code base to use indentations of 4 rather than 3,
+     and eliminated the use of hard tabs.
+   - Added a variety of new options to FSIOTEST to provide more robust
+     testing and configurability.
+   - Moved the build process logic to the DCL tree (Datalight Common
+     Libraries).
+   - Eliminated the FFXCONF_FORCEALIGNEDIO setting.  Now handled by the
+     FMSL and FIM internally (general performance boost as well).
+   - Modified to statically mount region 0, for performance reasons.
+   - Increased the number of region cache entries from 2 to 3.
+   - Updated the region locking algorithms to be more efficient.
+   - Enhanced compatibility with CE 5.0.
+   - Changed the evaluation SDK disk size limit from 1MB to 2MB.
+   - Modified to allow the BBM spare region percentage to be (optionally)
+     specified at BBM format time.
+   - Added the DCLPACK directive to selectively allow structures to be
+     packed (when the tools support this).
+   - Fixed the CE memory mapping code to accommodate flash such as NAND
+     where no virtual mapping needs to take place.
+   - Updated the bbmformat() function to format according to the
+     FFX_FORMATBBM_STATE setting.
+   - Added the isf4x8 and iff2x16 FIMs.
+   - Updated the amdx8 FIM to be a "MT" FIM named asux8.
+   - Added device IDs for a large number of "missing link" flash parts
+     to the FIMs.
+   - Added a missing DEV_NOT_MLC flag to some FIMs where appropriate
+     (performance boost).
+   - Major cleanup of all the "MT" FIMs to use standard flash command,
+     status, and identification macros.
+   - Major cleanup of the NAND FIM chip identification process.
+   - Generalized the old P_BYTEORDER setting and standardized it across
+     all the ToolSets, now using the name B_BYTEORDER.
+   - Abstracted out the VxWorks timestamp functionality and added the
+     FFXCONF_USEVXWORKSTIMESTAMP setting for VxWorks based projects.
+   - Added many new pre-configured projects for VxWorks.
+   - Split the DIAB and GNU ToolSets into DIABVX5X/6X and GNUVX5X/6X.
+
+   -------------------------------------------------------------------
+   v1.12.1367 - FlashFX Pro v1.12 Engineering Release (December 2006)
+                CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   FlashFX Pro v1.12 is an engineering maintenance release for v1.11
+   and 1.10.
+   - Fixed a number of issues in VBF pertaining to "zombie discards".
+   - Improved VBF and BBM error handling when dealing with I/O errors.
+   - Fixed an issue in BBM where a power interruption or reset could
+     leave the flash in an unrecoverable state.
+   - Fixed an issue for big endian systems where single bit errors
+     on NAND flash are not corrected.
+   - Fixed an issue with the NAND FIM and BBM where EraseBlock loops
+     if an error occurs while erasing a block in the spare area.
+
+   -------------------------------------------------------------------
+   v1.11 Build 856 - General Release (December 2004)
+                     CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Enhanced compatibility with Datalight Reliance on VxWorks,
+     Nucleus, and Windows CE.
+   - Added support for VxWorks 6.0.
+   - Improved VxWorks driver support for low level formatting.
+   - Improved VxWorks driver multithreading support.
+   - Added FFX_CACHE_SIZE and FFX_RELIANCE_FILE_SYSTEM settings for
+     VxWorks, which can now be configured through Tornado.
+   - Improved support for background Compaction on multithreaded OSs.
+   - Fixed Reliance discard interface in VxWorks.
+   - Added support for MBRs that manage disks with sector sizes other
+     than 512 bytes.
+   - FlashFX format tool can now write Reliance MBRs.
+   - Removed dependencies on Nucleus FILE if using Reliance instead.
+   - Added Reliance partition ID to FlashFX registry in CE.
+   - Accept the discard IOCTL under CE 4.1 with Reliance (not FAT).
+   - Improved support for FFX_RESERVED_SPACE in FMSL unit test, read
+     image tool, and write image tool.
+   - Several updates to FSIO, VBF, and FMSL unit tests, including
+     command line parameters.
+   - FSIO test now includes cumulative read and write performance for
+     the entire test run, and user may specify a maximum amount of
+     disk space to use for all tests.
+   - Added support for displaying compile-time FlashFX configuration
+     information in the FXINFO tool.
+   - FXDUMP tool displays diagnostics for a FlashFX disk image file.
+   - Added support for pentium and simulator CPUs in the DIAB toolset.
+   - Added AMD Alchemy DBAU1500 project for Windows CE.
+   - Added Intel PXA270 project for Windows CE.
+   - Added in L18 flash support to isf2x16 FIM.
+   - Fixed isf2x16 FIM to put blocks in read array mode after unlock.
+   - Added a new FIM that emulates NOR flash using a file (norfile.c).
+   - Fixed a structure alignment problem in FFXFORMATINFO struct.
+   - Fixed reserved space handling of flash size in BBM.
+   - BBM can now be formatted never, once, or always, like VBF.
+   - Temporarily allow no more than one spare unit in format until IR
+     4305 is resolved.
+   - Updated FXFMT to work with Reliance and Windows CE.
+
+   -------------------------------------------------------------------
+   v1.10 Build 813 - General Release (September 2004)
+                     CE/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Added support for Reliance in Nucleus.
+   - Added bootloader support for reading Reliance-formatted drives.
+   - Added example bootloader OESL in Windows CE SDK (WINCEBL).
+   - Added support for building for Windows CE 5.0 (MSWCE4 toolset).
+   - FXFMT tool now works in Windows CE.
+   - Windows CE driver now loads even if flash isn't formatted, in
+     order to use command line tools.
+   - Added support for MIPSII in Windows CE toolset (mswcepb).
+   - Added support for ARM XSCALE in VxWorks gnu toolset.
+   - Renamed Garbage Collection in VBF to Compaction.
+   - Added support for background compaction on multithreaded OSs.
+   - Several improvements to make VBF more robust.
+   - Removed VBF_API_BLOCK_SIZE (only VBF_BLOCK_SIZE remains).
+   - Added support for multiple FlashFX drives in a single driver.
+   - Added multithreaded stress test (mtstress).
+   - Various new configuration options (FFXCONF_) for OEMCONF.H.
+   - Improved external API interface, for customer applications and
+     FlashFX tools.
+   - Modified several NOR FIMs to be multithreaded (FIMMT directory).
+   - Added support for ST NAND flash devices.
+   - Added support for Intel K3/K18 (ISF2X16, previously INTL2X16).
+   - Full release AMD MirrorBit FIM (AMB2X16).
+   - Modified the build process to be more generalized.
+
+FlashFX becomes FlashFX Pro.  All future releases are for FlashFX Pro.
+
+   -------------------------------------------------------------------
+   v6.21 Build 1324 - Engineering Release (September 2006)
+                     OSE
+
+   -------------------------------------------------------------------
+   v6.20 Build 760 - Engineering Release (March 2004)
+                     OSE
+   - Added support for multithreaded operations which allow reads to
+     interrupt write and erase operations.
+   - Created an updated FIM architecture for FIMs which supported
+     multithreading operations.
+   - Implemented the Project Hooks layer which replaces the now
+     obsolete Hardware Services functions.
+
+   -------------------------------------------------------------------
+   v6.13 Build 756 - Engineering Release (December 2003)
+                     CE/DOS/Nucleus/VxWorks/ThreadX SDKs, CSK, RTOS Kit
+   - Improved VBF performance with multi-region cache in VBF.
+   - Improved efficiency of wear-leveling garbage collections in VBF.
+   - Removed potential for error after interrupted garbage collection.
+   - Prerelease AMD MirrorBit FIM (AMB2X16) is provided for reference.
+   - Added /Q switch to FSIOTEST for more accurate performance results.
+   - Added MIPS little endian support to DIAB and GNU toolsets.
+   - Added MIPS32 support to the GNU toolset and the TX4938 project.
+   - Renamed Adaptation Kits to SDKs.
+   - Added support for mounting Reliance partitions in CE and VxWorks.
+
+   -------------------------------------------------------------------
+   v6.12 Build 736 - Engineering Release (October 2003)
+                     UPK, CE/DOS/Nucleus/VxWorks/ThreadX AKs, CSK, RTOS Kit
+   - Added new NAND FIM supporting 2K page flash parts.
+   - Extracted project-specific portions of NAND FIM to NANDCTL.C.
+   - Moved general configuration options of NAND FIM to NANDCONF.H.
+   - Support project-specific hardware ECC implementations in HWECC.C.
+   - Added FFX_RESERVED_SPACE to restrict VBF and BBM use of flash.
+   - MAX_RESERVED_SPACE has been changed to VBF_MAX_RESERVED_SPACE.
+   - Added Toshiba TX4938 project for VxWorks.
+   - Moved file system specific code in the VxWorks OESL to USRFFX.C.
+   - Improved the DIAB toolset to support the VxWorks environment.
+   - Added support for the CPU types supported by GNU and DIAB tools.
+   - Added MIPS64 support.
+   - Support IOCTL_DISK_DELETE_SECTORS only for CE 4.2 (not 4.1).
+   - Allow flash address 0 under Windows CE in HWINIT.C.
+   - Updated the MSWCEPB toolset so that the CPU tree is traversed.
+   - Updated INTL2X16 FIM for MXIC MX26F640/128J3 and ST M58LW064D.
+   - Improved handling of decreased VBF partition size.
+   - Now offering evaluation Adaptation Kits (1MB partition limit).
+
+   -------------------------------------------------------------------
+   v6.11 Build 710 - Engineering Release (July 2003)
+                     UPK, CE/DOS/Nucleus/VxWorks/ThreadX AKs, CSK, RTOS Kit
+   - Addressed FlashFX Technical Bulletin FX511.012, where BBM may
+     consume excessive CPU time during normal operations, or process
+     bad blocks incorrectly during a low-level format.
+   - Addressed a problem in VBF4, where a VBF partition formatted with
+     multiple spare units can fail to mount.
+   - Improved support in OESLs for the RAMDISK FIM.
+   - Added FlashFX RTOS Porting Kit.
+
+   -------------------------------------------------------------------
+   v6.10 Build 699 - General Release (June 2003)
+                     UPK, CE/DOS/Nucleus/VxWorks/ThreadX AKs, CSK
+   - New allocator (VBF4) replaced VBF3 and NVBF.  It improves
+     performance on NAND flash and abstracts differences between NOR
+     and NAND in a media manager layer.  On NAND flash, VBF4 only
+     writes once to each 512B page, and only writes pages sequentially
+     within an erase zone (block).
+   - Added driver support for Express Logic ThreadX.
+   - Added Core Source Kit product (human-readable core modules).
+   - BBM now supports erase zones (blocks) up to 128KB.
+   - Added ThreadX support (OESL and PXA255 project).
+   - Updated Nucleus support for the PXA255 BSP.
+   - Several improvements to unit tests, including targeting the new
+     characteristics of VBF4.
+   - Bad block replacement now uses ECCs, and was moved from FIMs to
+     the BBM layer.
+   - NANDHiddenRead() performance optimization in the NAND FIM.
+   - Toolset support for Green Hills ARM tools.
+   - Included toolset support for Diab C/C++ tools from Wind River
+     and Tasking from Altium are provided as beta (not fully tested).
+   - CE 4.x command line toolset (mswce4) now also supports CE 3.0.
+   - fatformat() now takes a structure containing a number of
+     parameters.  See the function definition in FATFMT.C for more
+     information.
+   - ApiInstallCheck() now takes a drive number rather than a drive
+     string.
+   - The external API will now return a cookie/signature so that it is
+     possible to determine if the call was really serviced especially
+     in the case of calling the external API with non FlashFX drive
+     number.
+   - Added RAMDISK FIM (based off of TestRAM), which emulates NOR.
+   - The VBF4 Media Manager looks for flash capability information via
+     oemmediainfo() during vbfmount().
+   - Moved FX_BOOT code from the CE OESL to the BOOTLDR project.
+   - Added external API support for vbftestwriteinterruptions() and
+     vbftestregionmountper().
+   - Added ACCESS_MOUNTS in OESL to limit the flash size used.
+   - Added vbfgetunitinfo() and vbfgetpartitioninfo() to the external
+     API.  Removed MountEUH(), ReadEUH(), and ReadAllocationList().
+   - Reorganized and improved FATFS code.
+   - The bbmpercentage parameter is now obsolete for BBM routines
+     bbmlowlevelformat() and bbmformat().
+   - Simplified NAND FIM by factoring BBM format logic and bad
+     block processing into BBM layer.
+   - Moved obsolete FIMs to extras: amdbtx8, a010x8, a8dlx16
+     ienh2x16.
+   - Added device capability bits (DEV_NOT_MLC, DEV_MERGE_WRITES)
+     to applicable FIM mount routines.
+   - Improved performance in several FIMs by skipping writes of all 1s
+
+   -------------------------------------------------------------------
+   v6.03 Build 661 - Engineering Release (April 2003)
+                     VxWorks Adaptation Kit
+   - Added driver support for Wind River VxWorks.
+   - Build process now supports any extension for library file names.
+   - Added support for the ColdFire and PPC CPU families.
+   - Added FfxGetCurrentMillisec() and FfxGetElapsedMillisec()
+   - Added I/O port access routines in the OESL.
+   - Enhanced the disktest tool and renamed it to fsiotest.
+   - oemmount() now returns success/failure status.
+   - Redesigned unit tests and tools to use the external interface
+     or build as stand-alone applications.
+   - Reorganized most of the utility code.
+   - Added the GNU and ADS12 ToolSets.
+   - Added support for Diab C/C++ tools from Wind River.
+
+   -------------------------------------------------------------------
+   v6.02 Build 649 - Engineering Release (February 2003)
+                     CE Design Ready Kits
+   - Added support for Windows CE.net 4.1.
+   - Added support for the XScale CPU.
+   - Added the NEC2X16 FIM to Design Ready Kits.
+   - NEC2x16 FIM now supports the Fujitsu MBM29LV650/651UE.
+   - Added support for logical drives within an extended partition,
+     which is the standard method used when CE formats a disk.
+
+   -------------------------------------------------------------------
+   v6.01 Build 638 - Engineering Release (January 2003)
+                     UPK, CE/DOS/Nucleus Kits
+   - FIMNXMS and NAND FIMs now only copy pages that have actually been
+     written when replacing an erase zone that has gone bad.
+   - Eliminated the SORT_TYPE option from VBF.   The only sort type
+     now is "Pigeon Hole".
+   - Avoid rewriting any bits 0 when rewriting an allocation entry.
+   - Enable ECCs for NVBF page operations.
+   - Modified CFLAGS and CPU settings in the MSWCE4 toolset to
+     better match what Platform Builder uses.
+   - Modified DclOsTickCount() to work around an apparent CE bug.
+
+   -------------------------------------------------------------------
+   v6.00 Build 630 - General Release (December 2002)
+                     UPK, CE/DOS/Nucleus Adaptation Kits
+   - Released the FlashFX Adaptation Kit for Windows CE (Build 630).
+   - Released the FlashFX Adaptation Kit for Nucleus.
+   - Released the FlashFX Adaptation Kit for DOS.
+   - Released the FlashFX Universal Porting Kit.
+   - Changed LITTLE_ENDIAN to FFX_LITTLE_ENDIAN.
+   - Eliminated _sysgetc() and _sysputc().
+   - Made several significant improvements to FMSLTEST (TESTOEM.C)
+     and modified it to be an external API application by default.
+   - Standardized the Assert message to include the FlashFX version.
+   - Added an XMS FIM that emulates NAND flash (FIMNXMS.C).
+   - Removed NVBF dependencies from the FMSL and tools.
+   - Added MGM switch to FXRDIMG and FXWRIMG tools for NVBF support.
+   - Fixed DOS tools to work under a DOS version that supports FAT32.
+   - Improved detection of VBF signature in erase unit headers.
+   - Renamed SIGNATURE_SIZE to VBF_SIGNATURE_SIZE.
+   - Modified the build process to use Win32 MAKE if on NT or later.
+   - Moved DOS-only FIMs to the EXTRAS tree (for the UPK).
+
+   -------------------------------------------------------------------
+   v6.00 Build 612 - General Release (November 2002)
+                     CE Adaptation Kit
+   - Released the FlashFX Adaptation Kit for Windows CE (Build 612).
+   - Moved FlashFX to a new directory structure with generic
+     makefiles.  Currently supports DOS and Windows CE (MSC or
+     Platform Builder) compiles.
+   - Improved abstraction of code into modules and libraries.
+   - Added CPU-specific tree and APIs.
+   - Implemented FfxPrintf, timer routines, and other OESL APIs.
+   - Added SXIP FIM code example for SA1110 and Intel Strata flash.
+   - Removed support for CE 2.1.  CE v3.0 and 4.x are supported.
+   - Implemented generic command line parsing for unit tests and
+     utilities.  Currently, the unit test /c option (FAML command
+     line) requires no spaces in the string that follows it.
+   - Modifed INTL2X16 FIM timeouts for the new OESL API, and to better
+     support multitasking, preemptive operating systems.
+
+   -------------------------------------------------------------------
+   v5.11 Build 524 - Engineering Release (October 2002)
+   - NVBF, a new allocator, greatly improves FlashFX performance
+     on NAND flash memory.  Please refer to the README.TXT file for
+     details.
+   - Corrected two flaws in NVBF that could result in data loss.  The
+     symptom of attempting to read lost data is a buffer filled with
+     the 0xFE character.
+   - Added a new cache for the physical addresses of allocations. This
+     cache option greatly improves NAND performance with zero impact
+     on FlashFX reliability.
+   - Improved BBM to handle reformatting the entire flash without loss
+     of bad block mapping information.
+   - Major FAT Monitor improvements for performance and compatibility.
+   - Added flag to regionCache to avoid creating duplicate allocation
+     entries after a downward resize operation was interrupted.
+   - Modified WinCE driver to format based on registry settings rather
+     than the FORMAT_MEDIA define.  Also now works with the Storage
+     Manager Control Panel applet.
+   - Removed support for CE 2.0.  CE v2.1 is still supported.
+   - Several improvements to the NAND FIM.
+   - Added ST M58LW064D support to the INTL2X16 FIM.
+   - Added the NEC2X16 FIM (also supports Am29LV641D).
+   - Changed VBF write interruption tests to use setjmp/longjmp to
+     more accurately simulate a loss of power.
+   - Modified NEWPROJ.BAT to accept only one parameter, which is the
+     new project name.
+
+   -------------------------------------------------------------------
+   v5.10 Build 492 - General Release (March 2002)
+   - Added support for the new FSD name in CE.net (FATFSD.DLL).
+   - Changed the device prefix from FFX to DSK.
+   - Added the Storage Manager profiles for CE.net compatibility.
+   - Added support for the new IOCTLs in CE.net.
+   - Added support for scatter/gather buffers that are not sized on
+     multiples of 512.
+   - Added buffered writes in the Intel Strata flash FIM, INTL2X16.
+   - Moved project sources from the CPU leaf to the OS leaf.
+   - TESTOEM now supports devices with small erase zones.
+   - Added 32 bit read assembly routine dl_dos_fmemmove32.
+   - Added checks for type sizes and structures in the unit tests.
+   - BBM now handles big and little endian systems.
+   - Moved _sysassert from general to project-specific code.
+   - VBF now handles failed attempts to find a spare unit.
+   - SEFS is now more robust and readable.
+   - BBM is now more robust and has improved interaction with VBF.
+   - Improved BBM detection of bad block in factory-fresh chips.
+   - Improved performance and read back verify in the NAND FIM.
+   - NAND FIM now supports 256Mbit devices.
+
+   -------------------------------------------------------------------
+   v5.00 Build 435 - General Release (August 2001)
+   - Added support for Windows CE Platform Builder 3.0, including
+     FLASHFX.CEC, which is added to the catalog during the FlashFX
+     Porting Kit installation.
+   - Changed the CPU directory for the WINCE tree from 486 to i486 to
+     use the _TGTCPU environment variable for FX_CPU in FLASHFX.CEC.
+   - Implemented support for two FlashFX drives under Windows CE.
+   - Modified FFX_Open() and FFX_Close() in OS/WINCE/DRVR/FFXDRV.C to
+     allow multiple opens for a given device.
+   - Also in OS/WINCE/DRVR/FFXDRV.C, now get disk start and size
+     arguments from vbfformat from the user registry settings "Start"
+     and "Length".
+   - Added the Simple Embedded File System (SEFS) for a stream
+     interface to files on a FlashFX disk.
+   - Added support for booting Windows CE directly from a FlashFX
+     disk, using SEFS.
+   - Added support for persistent storage of the Windows CE registry
+     on a FlashFX disk, using SEFS.
+   - Added SAVEREG application to flush Windows CE registry to a
+     FlashFX disk.
+   - The FAT monitor code now determines at run-time whether its use
+     is appropriate, since it only works with FAT12 and FAT16 disks.
+     Modified to detect writes to the BPB and re-save our copy of the
+     BPB so that the FAT monitor will work (or be avoided) correctly.
+   - Modified FlashFX for Windows CE to be FAT32 aware.
+   - Changed the Windows CE DLL so the FORMAT_MEDIA state is undefined
+     by default.
+   - Added Windows CE 3.0 compatible suspend/resume code in FFXDRV.C.
+   - Added the _PADDED_FIELD_ macro to the VBF layer to pad structure
+     members that are arrays of configurable dimension.
+   - Added OS specific _sysassert calls in MACHINE.C.
+   - Added OS specific _syssleep function that may be used to give up
+     the device's time slice while waiting for an erase operation to
+     complete.
+   - Added new Intel Strata flash FIMs BIST2X16 and INTL2X16.
+   - Expanded the INTEL2X8 FIM to also support 28F016S5, 28F008S5,
+     and 28F004S5 devices (dropped 28F008SC support).
+   - Expanded the INTELX16 FIM to also support 28F160S3, 28F320S3,
+     and 28F640/320/160/800C3 devices.
+   - Expanded the INTELX8 FIM to also support 28F016S5, 28F008S5,
+     28F004S5, 28F160S3, and 28F320S3 devices.  Also added ReadNorId()
+     to avoid 32 bit writes on an 8 bit bus.
+   - Renamed the PLATFORM tree to OS.
+   - Removed the CUSTOM project tree.
+   - Porting Kit installation in Windows creates a new project (name
+     defaults to MYPROJ).  Also added the myproj tree to linux.tgz.
+   - Improved NEWPROJ.BAT to work without the FlashFX environment
+     variables.
+   - Changed the syntax for SETFXENV.BAT from "os project cpu ..." to
+     "project os cpu ...", which reflects the directory structure.
+   - Added COPYREL script files for QNX.
+   - Added BIN\DOS\RECURSE.EXE, which overrides RECURSE in the SDTK.
+   - Removed all .pt files and PROTO.EXE.  Moved prototypes into .h
+     files.
+
+   -------------------------------------------------------------------
+   v4.08 Build 369 - Engineering Release (March 2001)
+   - FlashFX now builds for WinCE 3.0 Platform Builder "out of the box".
+   - Removed VxWorks from Porting Kit and removed WinCE from SDK.
+   - Floppy emulation now gives proper floppy media ID.
+   - Fixed Cylinder off by one bug in CHS.c.
+   - Updated copyright and patent information.
+   - Now preserve extended registers.
+   - Optimized FindPhysAlloc().
+   - Fixed BuildMBR() bug in FATFMT.C.
+   - Redefined MAX_OEM_REGIONS to use long constants (vs ints) to avoid
+     overflow in max boundary case.
+   - Implemented Pigeon Hole sort, which allows detecting interrupted
+     downward resize operations and allows for direct selection of
+     allocation records from a sorted region cache.
+
+   -------------------------------------------------------------------
+   v4.07 Build 351 - General Release (January 2001)
+   - Added second reset in Intelx8Mount to avoid receiving 0x80 from a
+     previous operation in the case of a write interruption.
+   - Corrected BBM and NAND FIM.  No longer lose data when replacing
+     failed MGM blocks.
+   - NAND and AND FIMs no longer propagate bad ECC errors throughout
+     the entire reserved areas.
+   - Corrected serialization code in BBM.C
+   - Updated ExtensiveWrite() in TESTOEM.C to detect data loss when
+     BBM block replacement fails.
+   - Corrected AMTB2X16 FIM erase sector address offsets for top/bottom
+     bank 1 second 64K for devices with 128K bank 1;
+   - Moved #include <common.h> statement to top of module to insure
+     that __LINUX_TARGET__ is defined before it is used - will allow
+     exclusion of module from build. This was done in all FIM and test
+     files.
+   - Fixed the BuildCHS while loop in CHS.C to prevent a System hang-up.
+   - Removed the FATFS subdirectory with included files not actually
+     used in FlashFX.
+
+   -------------------------------------------------------------------
+   v4.06 Build 338 - General Release (August 2000)
+   - Corrected a Linux Driver failure to unlink properly during
+     failed init (insmod).
+   - Changed Linux HDIO_GETGEO IOCTL to return correct geometry
+     parameters.
+   - Changed Linux _sys...timeout() functions to timeshare.
+   - Redefined _sysdelay() as the linux udelay(), which is
+     accurate.
+   - Setup defines in OEMCONF.H to control code that is added
+     to Linux FlashFX driver.  Under Linux all code in each FIM and
+     unit test is now only built if its define is declared.
+   - Corrected Linux init-time mount problems, incorporated support
+     for removable media and created the fxctl utility to support
+     testing of removable media.
+   - Provided access semaphore to protect critical code during
+     re-entrancy.
+   - Implemented FAT monitor code under Linux.
+   - Added '#pragma pack(1)' to MACHINE.H to force packing of structures.
+   - Altered disktest utility to allow re-direction to file.
+   - VxWorks: Corrected the format and init functions to ensure that
+     the disk is mounted and the appropriate CHS values are set.
+
+   -------------------------------------------------------------------
+   v4.05 Build 315 - General Release (May 2000)
+   - Changed DoDiscard to handle a start block address boundary problem.
+   - Fixed a FindSpareUnit initialization problem.
+   - Changed VBFSort to require at least two entries before sorting.
+   - Changed MountRegion to not set the sorted indicator until
+     after sorted.
+
+   -------------------------------------------------------------------
+   v4.04 Build 309 - Engineering Release (April 2000)
+   - FlashFX has been ported to the VxWorks Real-Time Operating
+     System.  Since it has not yet been thoroughly tested or
+     documented, it is classified as a BETA version.
+   - The erase zone size support has been increased from a maximum
+     of 128KB to a maximum of 256KB.
+   - A number of additional flash devices are now being supported:
+       Toshiba TH58V128FT
+       AMD     am29LV640/641DU
+       AMD     am29LV116B/T
+       AMD     am29LV017B
+       AMD     am29F016B (x8 in Big Real Mode only)
+       AMD     am29F040B (x8 in Big Real Mode only)
+       ATMEL     29C040A (x8 in Big Real Mode only)
+       SST       28F040  (x8 in Big Real Mode only)
+   - The BBM (Bad Block Manager) is now automatically formatted at
+     the start of TESTOEM execution when the /x option (Extensive
+     Hidden Tests) is selected.
+   - Removed a discard restriction to improve overall system
+     performance.
+   - Fixed a write problem in the istrtx16 and istrt2x8 Intel strata
+     flash FIMs which only occurred when length was greater than and
+     not a multiple of 32 bytes.
+
+   -------------------------------------------------------------------
+   v4.04 Build 292 - General Release (March 2000)
+   - Incorporated a port to Linux in the Porting Kit.  Tested on Red
+     Hat v6.0, kernel 2.2.5-15.  The port should work with any other
+     version of Linux with little or no changes.
+   - Added support for Intel 32Mbit, 64Mbit and 128Mbit StrataFlash.
+   - Added command line switch to disable the FAT monitor.
+   - Corrected a Write interruption problem with AND and NAND
+     flash memories.  The problem was due to an invalid
+     entry into the state machine during a discard of data
+     from the FAT monitor.  An interruption during a discard
+     could cause corruption of the data being deleted.
+   - Added support for Windows CE v2.11 and Windows CE v2.12.
+
+   -------------------------------------------------------------------
+   v4.03 Build 255 - Engineering Release (June 1999)
+   - Removed a test parameter which affected number of blocks
+     per block map.  To speed-up the testing of multiple chunks,
+     the number of blocks per chunk was set to 8 instead of 120.
+     in BBM.H.  This temporary change was accidentally included
+     in the last engineering release.  It has been fixed in this
+     engineering release.
+
+   -------------------------------------------------------------------
+   v4.03 Build 254 - Engineering Release (June 1999)
+   - Significant performance enhancements have been completed in
+     the BBM, eliminating performance degradation over time.
+   - Added new FIM ISTRTX8.C for Strata Flash support.
+   - Created a new unit test, Testbbm, which will test write
+     interruptions using either random data/addresses or fixed
+     data/addresses.  It will also create the desired number of
+     chucks for performance testing.
+   - Incorporated write interruption tests in BBMCHUNK.C and
+     BBMFMT.C, which can only be activated by Testbbm.
+   - Modified the AND.C and NAND.C FIMs to use a simulate write
+     error macro activated by Testbbm to test write interruptions in
+     the BBM code.
+
+   -------------------------------------------------------------------
+   v4.02 Build 229 - Engineering Release (April 1999)
+   - Modified FlashFX utilities to support RAM disks.
+   - Various improvements to FlashFX Volume Management API
+   - Various improvements to the fxfmt utility.
+   - Added undocumented /U option in FORMAT.C to unconditionally
+     format the media as if it had never been formatted before,
+     i.e., no defaults.
+   - Re-defined lpcScratchData in VBFDATA.H to satisfy all compilers.
+   - Modified the WINCE file structure and FlashFX source to handle
+     3 new CPUs (arm720, sa1100, r3000).
+   - Made modifications to numerous files to avoid warning messages
+     from CE 2.10 SH3 compiler (VBFDATA.H, OEM.C, TESTOEM.C,
+     FIMRAM.C, AMDX8.C, AMD2X8.C, A010X8.C and VBF.C).
+   - Added 2 new FIMs, AMDTBX16 and AMTB2X16, for the Am29Fx00B/T
+     interleaved and non-interleaved devices, and the Fujitsu MBM
+     series devices.
+   - Incorporated support for the Intel 28F008SC device in the
+     INTELX8.C FIM and the INTEL2X8.C FIM.
+   - Improved checks and error reports in SETFXENV.BAT.
+   - Incorporated support for the Am29F032B device in both the
+     AMDX8.C and AMD2X8.c FIMs.
+   - Added a new FIM (UNAND.C) and changed the NAND.H, BCDOS.MAK,
+     GCPRT.MAK, OEMFLASH.C files to support the new AMD 30LV0064
+     Ultra-Nand device.
+   - Increased the default maximum number of drives from 2 to 4 in
+     the BIOSCONF.INC module.
+   - Flagged all printfs in FDINFO.C, REMOUNT.C, RECLAIM.C,
+     RDIMAGE.C, WRIMAGE.C, CHKUNITS.C and FORMAT.C (DOS and
+     QNX) to make them easier to find for modification.
+
+   -------------------------------------------------------------------
+   v4.02 Build 204 - Engineering Release (February 1999)
+   - Fixed memclien.c and biosdisk.asm to return correct error
+     code to DOS for write-protect (funcs 02&03).
+   - Changed constants in VBF.H to improve performance.
+
+   -------------------------------------------------------------------
+   v4.02 Build 200 - General Release (February 1999)
+   - Moved borland compiler from FlashFX to a separate CD.
+   - Makefiles, SETFXENV, and MAKEALL now use FX_COMPILER if set
+     and assume the tools and environment is valid if FX_COMPILER
+     is not set.
+   - Added code to guarantee the minimum number of free bytes
+     before garbage collection is required (~5% performance boost).
+   - Improved performance of the BBM.
+   - Changed ASSERT.H to _ASSERT.H in order to avoid clashes with
+     the C library's ASSERT.H.
+   - Corrected problem in FATMON that caused valid data to be
+     discarded when it shouldn't.  This problem was exercised by
+     ROMDOS CHKDSK which performs multi-sector writes to the disk
+     when freeing lost clusters.
+   - Added pSOS boot sector detection code for DOS and BIOS drivers
+     to allow pSOS to be booted and accessed from DOS.
+   - Enhanced error checking in the OEM layer media access calls.
+   - Changed SetTimer call to StartTimer call in unit test modules in
+     order to avoid clash with Windows API calls with the same names.
+   - Implemented work-around in FFXDRV.C in order to prevent WinCE
+     v2.0 FATFS from calling into GWES before it is ready.
+   - Added OEM HardwareInterface() call into OEMHDWR.C and OEMHDWR.PT
+     in all TEMPLATE and CUSTOMER projects.
+   - Wrote registry code into WINCE projects TEMPLATE and CUSTOM to
+     allow start and length to be defined from within the registry
+     via "Start" and "Length" values.
+   - Added stub'd printf into TESTOEM and TESTVBF.  The WinCE v2.1
+     build environment does not have an easy method to control the
+     library link order and causes the CE printf to be linked instead
+     of ours.  To avoid this problem, the unit test modules just stub
+     printf in a NO_DISPLAY environment.
+   - Changed QNX makeall from custom to $FX_PROJECT.
+   - wcqnx.def FX_COPTION includes -fr to create error file.
+
+   -------------------------------------------------------------------
+   v4.01 Build 153 - General Release (December 1998)
+   - Minor modifications to build tools for better WinCE support.
+   - Changed output format of FXINFO for easy readability.
+   - Added new utility (FXCHK) to verify validity of spare units.
+   - Minor modifications to correct Porting Kit builds with GNU.
+
+   -------------------------------------------------------------------
+   v4.01 Build 119 - v4.01 Pre-Release
+   - Windows CE v2.10 is now supported!  Support for various CPUs
+     is now included in the WinCE supplement.
+   - Windows CE supplement now includes support for the NEC Vr43xx,
+     NEC Vr41xx, Hitachi SH3 and Hitachi SH4.
+   - Datalight has licensed Borland C v5 for FlashFX DOS builds.
+   - Microsoft C support for DOS builds has been removed.
+   - Device driver and BIOS disk driver include files have been moved
+     to the PROJECT\PLATFORM\CPU directory in order to allow multiple
+     projects to have different configurations such as emulating hard
+     or floppy disks, or different sized BIOS extensions.
+   - A bug that caused file corruption in the BIOS extension when
+     first drive - floppy emulation was enabled has been corrected.
+   - The Porting Kit can now support 256KB erase zones at a
+     significant cost to performance.  Just increase the
+     VBF_BLOCK_SIZE from 512 to 1024.  VBF handles buffering.
+   - Added delay option in the QNX Fsys driver to allow booting
+     off a flash disk.  The system was locking in faster systems
+     when access to the disk was made before the driver completed the
+     hookup with the file system.
+
+   -------------------------------------------------------------------
+   v4.00 Build 109 - Engineering Release (July 1998)
+   - Support for Hitachi's AND flash device (HN29W6411)
+     This is an engineering release and support for AND flash is
+     in BETA.  It has been tested to the best of Datalight's ability
+     on an ISA test board built by Hitachi.  See FIM\AND.TXT for more
+     details.
+   - Bad Block Management and ECC included in order to support
+     Mostly Good Memory (MGM).  Hamming codes that can detect
+     and correct single bit errors in 256 byte pages are implemented
+     and used by the AND FIM.  Multi bit errors are detected.
+   - Added Flash Interface Modules (FIM) to support AND and NAND
+     flash memory.
+   - Updated VBF to use new types for access to the media in
+     order to control the use of ECC within the FIMs.
+     MEM_VALIDATE now sets the bUseEcc flag in the media structure
+     and MEM_COMMON and MEM_CONTROL re-set the flag to avoid
+     use of ECC on data that normally changes during use.
+   - Corrected error in VBFSUP - FindPhysAlloc().  Error was causing
+     stack corruptions when the system was big endian, with
+     128KB erase units in the flash.
+
+   -------------------------------------------------------------------
+   v4.00 Build 88 - Engineering Release (March 1998)
+   - Numerous updates in order to support WinCE builds 7228,
+     7281, and the v2.0 ETK release.
+   - Corrected unlock sequence calculations in AMD FIMs in order
+     to avoid compiler bugs with the MSVC2.0.
+   - Corrected pointer manipulation in AMD2X8 and INTEL2X8 that
+     caused writes larger than the windows size to fail, but less
+     than 32KB to fail, updated TESTOEM to catch this error.
+   - Added vbfprogressmessage() to VBFFMT for systems that needed
+     progress messages, but no display output.
+   - Renamed E2PROM directory to EEPROM to avoid confusion.
+   - Setup SETFXENV to work with projects that don't have platform
+     directory trees.
+
+   -------------------------------------------------------------------
+   v4.00 Build 72 - FlashFX v4 Initial Release (February 1998)
+
+
+---[ Contacting Datalight ]-------------------------------------------
+
+        Datalight can be contacted at:
+
+        Datalight, Inc              Phone:  425-951-8086
+        21520 30th Drive SE                 800-221-6630
+        Suite 110                   Fax:    425-951-8094
+        Bothell, WA  98021          Web:    http://www.datalight.com
+

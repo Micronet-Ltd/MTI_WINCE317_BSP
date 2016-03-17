@@ -1,0 +1,360 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+
+#include <windows.h>
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+IDI_IE                  ICON    DISCARDABLE     "RES\\rc_frame.ico"
+IDI_HTML                ICON    DISCARDABLE     "RES\\html.ico"
+
+IDI_ZONE                ICON    DISCARDABLE     "RES\\mycomp.ico"
+IDI_INTRANET            ICON    DISCARDABLE     "RES\\mynet.ico"
+IDI_TRUSTED             ICON    DISCARDABLE     "RES\\trusted.ico"
+IDI_INTERNET            ICON    DISCARDABLE     "RES\\zone_int.ico"
+IDI_RESTRICTED          ICON    DISCARDABLE     "RES\\nottrust.ico"
+IDI_LOCK                ICON    DISCARDABLE     "RES\\lock.ico"
+
+IDI_FLAG                ICON    DISCARDABLE     "RES\\windows_new.ico"
+IDI_RUNDLG              ICON    DISCARDABLE     "RES\\rundlg_new.ico"
+IDI_POWER               ICON    DISCARDABLE     "RES\\power.ico"
+IDI_LOW                 ICON    DISCARDABLE     "RES\\mlow.ico"
+IDI_VERYLOW             ICON    DISCARDABLE     "RES\\mverylow.ico"
+IDI_LOWBKUP             ICON    DISCARDABLE     "RES\\blow.ico"
+IDI_VLOWBKUP            ICON    DISCARDABLE     "RES\\bverylow.ico"
+IDI_CHARGING            ICON    DISCARDABLE     "RES\\charge.ico"
+IDI_DESKTOP             ICON    DISCARDABLE     "RES\\desktop_new.ico"
+IDI_SIP                 ICON    DISCARDABLE     "RES\\sip.ico"
+IDI_SIP2                ICON    DISCARDABLE     "RES\\sip2.ico"
+IDI_CAPSLOCK            ICON    DISCARDABLE     "RES\\caps.ICO"
+IDI_RECYCLERFULL        ICON    DISCARDABLE     "RES\\recycle2.ico"
+IDI_SPINNER             ICON    DISCARDABLE     "RES\\spinner.ico"
+
+// start menu icons
+IDI_STPROGS             ICON    DISCARDABLE     "RES\\STPROGS_new.ico"
+IDI_STDOCS              ICON    DISCARDABLE     "RES\\STDOCS_new.ico"
+IDI_STSETNGS            ICON    DISCARDABLE     "RES\\STSETNGS_new.ico"
+IDI_STHELP              ICON    DISCARDABLE     "RES\\STHELP.ico"
+IDI_STRUN               ICON    DISCARDABLE     "RES\\STRUN_new.ico"
+IDI_STSUSPD             ICON    DISCARDABLE     "RES\\STSUSPD.ico"
+IDI_STFAVORITES         ICON    DISCARDABLE     "RES\\stfav_new.ico"
+IDI_STTASKBAR           ICON    DISCARDABLE     "RES\\sttaskbr_new.ico"
+IDI_STCTLPNL            ICON    DISCARDABLE     "RES\\stcpanel_new.ico"
+IDI_STCONNMC            ICON    DISCARDABLE     "RES\\remotenw_new.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//Bitmap
+IDB_TBBITMAP            BITMAP  DISCARDABLE     "RES\\tbhot16.bmp"
+IDB_COOLBARIMAGES       BITMAP  DISCARDABLE     "RES\\cbarimg.bmp"
+IDB_ANIMATION           BITMAP  DISCARDABLE     "RES\\xpbrand.bmp"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINMENU MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open"                  ID_FILE_OPEN
+        MENUITEM "&Save As..."            ID_FILE_SAVEAS
+        MENUITEM SEPARATOR
+        MENUITEM "&Find",                 ID_FILE_FIND
+    MENUITEM SEPARATOR
+        MENUITEM "&Close",                ID_CLOSE
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t",                  ID_EDIT_CUT
+        MENUITEM "&Copy",                 ID_EDIT_COPY
+        MENUITEM "&Paste",                ID_EDIT_PASTE
+    END
+    POPUP "&View"
+    BEGIN
+        POPUP "Te&xt Size"
+        BEGIN
+            MENUITEM "Lar&gest",          ID_VIEW_FONTSLARGEST
+            MENUITEM "&Larger",           ID_VIEW_FONTSLARGER
+            MENUITEM "&Medium",           ID_VIEW_FONTSMEDIUM
+            MENUITEM "&Smaller",          ID_VIEW_FONTSSMALLER
+            MENUITEM "Sm&allest",         ID_VIEW_FONTSSMALLEST
+        END
+        POPUP "Enco&ding"
+        BEGIN
+            MENUITEM "Default",           ID_VIEW_ENCODING
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Stop\tEsc",            ID_VIEW_STOP
+        MENUITEM "&Refresh\tF5",          ID_VIEW_REFRESH
+        MENUITEM SEPARATOR
+        MENUITEM "&Address Bar",          ID_ADDRESSBAR_TOGGLE
+        MENUITEM "&Status Bar",           IDM_STATUSBAR_TOGGLE
+        MENUITEM "Hide Toolbars",         ID_TOOLBARS_TOGGLE
+        MENUITEM "Internet &Options",     ID_INTERNET_OPTIONS
+    END
+    POPUP "&Go"
+    BEGIN
+        MENUITEM "&Back\tAlt + <-",       ID_GO_BACK
+        MENUITEM "&Forward\tAlt + ->",    ID_GO_FORWARD
+        MENUITEM "&Home",                 ID_GO_HOME
+        MENUITEM "&Search",               ID_GO_SEARCH
+    END   
+    POPUP "F&avorites"
+    BEGIN
+        MENUITEM "<Empty>"                ID_FAV_PLACEHOLDER
+    END   
+END
+
+IDR_MAINMENU_PIE MENU
+BEGIN
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Forward",              ID_GO_FORWARD
+        MENUITEM SEPARATOR
+        MENUITEM "Fi&t to Screen",        IDM_FITTOSCREEN
+        MENUITEM "Show &Images",          IDM_SHOWPICTURES
+        MENUITEM "&Address Bar",          ID_ADDRESSBAR_TOGGLE
+        MENUITEM "&Status Bar",           IDM_STATUSBAR_TOGGLE
+        MENUITEM SEPARATOR
+        POPUP "Te&xt Size"
+           BEGIN
+               MENUITEM "Lar&gest",       ID_VIEW_FONTSLARGEST
+               MENUITEM "&Larger",        ID_VIEW_FONTSLARGER
+               MENUITEM "&Medium",        ID_VIEW_FONTSMEDIUM
+               MENUITEM "&Smaller",       ID_VIEW_FONTSSMALLER
+               MENUITEM "Sm&allest",      ID_VIEW_FONTSSMALLEST
+           END
+           POPUP "Enco&ding"
+           BEGIN
+               MENUITEM "Default",        ID_VIEW_ENCODING
+           END
+        
+        MENUITEM SEPARATOR
+        MENUITEM "P&roperties",           IDM_FILE_PROPERTIES
+    END 
+    POPUP "&Tools"
+    BEGIN
+        POPUP "Favorites"
+        BEGIN
+            MENUITEM "<Empty>"            ID_FAV_PLACEHOLDER
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t",                  ID_EDIT_CUT
+        MENUITEM "&Copy",                 ID_EDIT_COPY
+        MENUITEM "&Paste",                ID_EDIT_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "&Options"               ID_INTERNET_OPTIONS
+    END     
+END
+
+IDM_CONTEXT_TASKBAR MENU DISCARDABLE 
+BEGIN
+    POPUP "T"
+    BEGIN
+        MENUITEM "Tas&k Manager...",      IDM_TASKBAR_TASKMAN
+        MENUITEM SEPARATOR
+        MENUITEM "P&roperties",           IDM_TASKBAR_PROPERTIES
+    END
+END
+
+IDM_CONTEXT_TASKBAR_BUTTON MENU DISCARDABLE 
+BEGIN
+    POPUP "T"
+    BEGIN
+        MENUITEM "&Close",                IDM_TASKBAR_CLOSE
+    END
+END
+
+IDM_CONTEXT_TASKBAR_EXTRAS MENU DISCARDABLE
+BEGIN
+    POPUP "T"
+    BEGIN
+        MENUITEM "None",                  IDM_TASKBAR_EXTRAS_PLACEHOLDER
+    END
+END
+
+IDM_CONTEXT_TASKBAR_SIP MENU DISCARDABLE
+BEGIN
+    POPUP "T"
+    BEGIN
+        MENUITEM "None",                  IDM_TASKBAR_SIP_PLACEHOLDER
+    END
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CLOSE_SIP    "&Hide Input Panel"
+    IDS_SIP_DESC     "SipPanel"
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_ACCELERATOR ACCELERATORS DISCARDABLE
+BEGIN
+    VK_ESCAPE,      ID_VIEW_STOP,           VIRTKEY, NOINVERT
+    VK_LEFT,        ID_GO_BACK,             VIRTKEY, ALT, NOINVERT
+    VK_RIGHT,       ID_GO_FORWARD,          VIRTKEY, ALT, NOINVERT
+    "D",            ID_FOCUS_URL,           VIRTKEY, ALT, NOINVERT
+    "O",            ID_OPEN,                VIRTKEY, CONTROL, NOINVERT
+    "H",            ID_GO_HOME,             VIRTKEY, CONTROL, NOINVERT
+    "F",            ID_FILE_FIND,           VIRTKEY, CONTROL, NOINVERT
+    "T",            ID_TOOLBARS_TOGGLE,     VIRTKEY, CONTROL, NOINVERT
+    "L",            ID_FULLSCREEN,          VIRTKEY, CONTROL, NOINVERT    
+    VK_F1,          ID_HELP_TOPICS,         VIRTKEY, NOINVERT
+    VK_F4,          ID_CLOSE,               VIRTKEY, ALT, NOINVERT
+    VK_F4,          ID_POPUP_URL,           VIRTKEY, NOINVERT
+    VK_F5,          ID_VIEW_REFRESH,        VIRTKEY, NOINVERT
+    VK_F6,          ID_ZOOMDOWN,            VIRTKEY, NOINVERT        
+    VK_F7,          ID_ZOOMUP,              VIRTKEY, NOINVERT
+//    VK_F10,       ID_INTERNET_OPTIONS,    VIRTKEY, NOINVERT
+    VK_F11,         ID_FULLSCREEN,          VIRTKEY, NOINVERT
+END
+
+
+
+STRINGTABLE
+BEGIN
+    IDS_IE                   "Internet Explorer"
+    IDS_ADDRESS              "A&ddress"
+    IDS_FILESCHEME           "file://"
+    IDS_HYPHEN               " - "
+    IDS_ORGANIZEFAVORITES    "&Organize Favorites..."
+    IDS_ADDTOFAVORITES       "&Add To Favorites..."
+    IDS_ADDFAVTITLE          "Add To Favorites"
+    IDS_BROWSEFILTER         "HTML Files@*.htm;*.html@Text Files@*.txt@GIF Files@*.gif@JPEG Files@*.jpg;*.jpeg@AIFF Files@*.aif;*.aiff@XBM Files@*.xbm@All Files@*.*@"
+    IDS_ERR_GENERIC          "Cannot find the file '%s'. Make sure the path and file name are correct and that all required libraries are available."
+    IDS_UNKNOWN              "Unknown"
+    IDS_ZONELOCAL            "My Device"
+    IDS_ZONEINTRA            "Local intranet"
+    IDS_ZONETRUSTED          "Trusted site"
+    IDS_ZONEINTER            "Internet"
+    IDS_ZONERESTRICTED       "Restricted"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EXPLORER             "Explore"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_START                "Start"
+    IDS_DESKTOP              "Desktop"
+    IDS_PROGRAMS             "Programs (*.exe)"
+    IDS_PROGRAMS1            "*.exe"
+    IDS_PROGRAMS2            "All Files (*.*)"
+    IDS_PROGRAMS3            "*.*"
+    IDS_CTLPNLKEYBOARD       "main.cpl,keyboard,0"
+    IDS_CTLPNLSTYLUS         "screen.cpl,stylus,1"
+    IDS_CTLPNLPOWER          "power.cpl,power,1"
+    IDS_TASKBAR_OPTIONS      "General"
+    IDS_STARTMENU            "Advanced"
+    IDS_HELPFILE             "mainhelp.htm#Help_Contents"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_RUN                  "Run"
+    IDS_BROWSE               "Browse"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CLICK_HERE_TO_BEGIN  "Click here to begin"
+    IDS_SHOW_DESKTOP         "Show Desktop"
+    IDS_POWER_TRAY           "Power"
+    IDS_APP_BUTTON_TT        "Open Applications"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_EMPTY                "(Empty)"
+END
+
+// DST strings
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_DSTCHANGED           "Windows CE has automatically adjusted your clock for\nDaylight Savings time.\n\nPlease verify that the current time is correct."
+    IDS_DSTTIMEINFO          "Time Change"
+END
+
+// start menu
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MENUPROGRAMS        "&Programs"
+    IDS_MENUDOCUMENTS       "&Documents"
+    IDS_MENUSETTING         "&Settings"
+    IDS_MENUFIND            "&Find"
+    IDS_MENUHELP            "&Help"
+    IDS_MENURUN             "&Run..."
+    IDS_MENUSUSPEND         "S&uspend"
+    IDS_MENUFAVORITES       "F&avorites"
+    IDS_MENUCTLPNL          "&Control Panel"
+    IDS_MENUTASKBAR         "&Taskbar and Start Menu..."
+    IDS_MENUCONNMC          "&Network and Dial-up Connections"
+END
+
+// Shared Menu
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_FILE                "&File"
+    IDS_FILE_CLOSE          "&Close"
+    IDS_EDIT                "&Edit"
+    IDS_VIEW                "&View"
+    IDS_VIEW_REFRESH        "&Refresh\tF5"
+    IDS_VIEW_HIDETOOLBARS   "Hide Toolbars"
+    IDS_VIEW_ADDRESSBAR     "&Address Bar"
+    IDS_VIEW_STATUSBAR      "&Status Bar"
+    IDS_GO                  "&Go"
+    IDS_GO_BACK             "&Back\tAlt + <-"
+    IDS_GO_FORWARD          "&Forward\tAlt + ->"
+    IDS_FAVORITES           "F&avorites"
+
+    IDS_IE_TTSTR            "Back"
+    IDS_IE_TTSTR1           "Forward"
+    IDS_IE_TTSTR2           "Stop"
+    IDS_IE_TTSTR3           "Refresh"
+    IDS_IE_TTSTR4           "Home"
+    IDS_IE_TTSTR5           "Search"
+    IDS_IE_TTSTR6           "Favorites"
+END
+
+// Keyboard layouts
+// New Input Locales should be appended to this table.
+// NOTE: It is OEM responsibility to keep this in sync with inputlang.cpp.
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_HKL_00000401      "Arabic (Saudi Arabia)"
+    IDS_HKL_00000409      "English (United States)$US"
+    IDS_HKL_00010409      "English (United States)$Dvorak"
+    IDS_HKL_0000040D      "Hebrew"
+    IDS_HKL_00000411      "Japanese"
+    IDS_HKL_00000412      "Korean"
+    IDS_HKL_0000041E      "Thai"
+    IDS_HKL_00010439      "Hindi"
+    IDS_HKL_00000446      "Punjabi"
+    IDS_HKL_00000447      "Gujarati"
+    IDS_HKL_00000449      "Tamil"
+    IDS_HKL_0000044A      "Telugu"
+    IDS_HKL_0000044B      "Kannada"
+    IDS_HKL_0000044E      "Marathi"
+END

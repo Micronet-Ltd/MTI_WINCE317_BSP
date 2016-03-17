@@ -1,0 +1,66 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_KEYPAD_ICON             ICON    DISCARDABLE     "KeyPad.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+//EXSTYLE WS_EX_CAPTIONOKBTN
+
+
+IDD_DLG DIALOG DISCARDABLE 0, 10, 206, 122
+STYLE WS_OVERLAPPED | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Keypad Configuration"
+BEGIN
+    CONTROL         "Dependence KeyPad LED's Brightness On Light",IDC_CHB_LS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,13,191,10
+    CONTROL         "",IDC_TRACKBAR_KEYPAD_HIGH,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,70,26,107,16
+    CONTROL         "",IDC_TRACKBAR_KEYPAD_NORM,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,70,42,107,16
+    CONTROL         "",IDC_TRACKBAR_KEYPAD_LOW,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,70,58,107,16
+    CTEXT           "0",IDC_STATIC,54,35,15,8
+    LTEXT           "100%",IDC_STATIC,178,35,20,8
+    CTEXT           "0",IDC_STATIC,54,50,15,8
+    LTEXT           "100%",IDC_STATIC,178,50,20,8
+    CTEXT           "0",IDC_STATIC,54,65,15,8
+    LTEXT           "100%",IDC_STATIC,178,65,20,8
+    LTEXT           "High Light",IDC_STATIC,8,35,45,8
+    LTEXT           "Normal Light",IDC_STATIC,8,50,45,8
+    LTEXT           "Low Light",IDC_STATIC,8,65,45,8
+    CONTROL         "Enable shutdown key",IDC_SHDOWND_EN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,156,10
+    CONTROL         "Enable standby key",IDC_SUSP_EN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,105,156,10
+    GROUPBOX        "Power keys",IDC_STATIC,1,80,203,38
+    GROUPBOX        "KeyPad LED's",IDC_STATIC,1,3,203,76
+END
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_KEYPAD_TITLE		"Keypad"
+    IDS_KEYPAD_DESCRIPTION	"Keypad Configuration"
+END
+
+
+
+
+

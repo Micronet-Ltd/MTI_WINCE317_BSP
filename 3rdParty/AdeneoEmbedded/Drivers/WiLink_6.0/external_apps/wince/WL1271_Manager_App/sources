@@ -1,0 +1,75 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+TARGETNAME=WL1271_Manager_App
+TARGETTYPE=PROGRAM
+
+INCLUDES=$(INCLUDES);$(_WINCEROOT)\3rdParty\TI_ECS\WL1271\CUDK\configurationutility\inc
+INCLUDES=$(INCLUDES);$(_WINCEROOT)\3rdParty\TI_ECS\WL1271\CUDK\os\common\inc
+INCLUDES=$(INCLUDES);$(_WINCEROOT)\3rdParty\TI_ECS\WL1271\CUDK\os\win\inc
+
+SOURCELIBS= \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\osapi_um.lib \
+	$(_TARGETPLATROOT)\lib\$(_CPUINDPATH)\cu_common.lib \
+	
+    
+TARGETLIBS= \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+	$(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\Iphlpapi.lib \
+	$(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\ws2.lib \
+    $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\Btdrt.lib
+
+
+CDEFINES= $(CDEFINES) \
+	-D_USER_MODE
+
+
+SOURCES= \
+    WL1271_Manager_App.cpp \
+    WL1271_Manager_App.rc \
+    Bluetooth.cpp \
+    FM.cpp \
+    Wifi.cpp \
+    BIN2REG.cpp \
+    REG2BIN.cpp \
+    DTI_Channel.cpp \
+    DTI_Modes.cpp \
+    AS_Global.cpp \
+    AS_Channel.cpp \
+    Conf_Global.cpp \
+    Roaming.cpp \
+
+
+FILE_VIEW_PARAMETER_FOLDER= \
+  ProjSysgen.bat \
+
+
+FILE_VIEW_ROOT_FOLDER= \
+  prelink.bat \
+  postlink.bat \
+
+
+PRELINK_PASS_CMD=prelink.bat
+POSTLINK_PASS_CMD=postlink.bat
+FILE_VIEW_INCLUDES_FOLDER= \
+    resource.h \
+    Bluetooth.h \
+    FM.h \
+    Wifi.h \
+    WL1271_Manager_App.h \
+    BIN2REG.h \
+    REG2BIN.h \
+    Conf_Global.h \
+    DTI_Channel.h \
+    DTI_Modes.h \
+    AS_Global.h \
+    AS_Channel.h \
+    Roaming.h \
+
+
+FILE_VIEW_RESOURCE_FOLDER= \
+  WL1271_Manager_App.link \

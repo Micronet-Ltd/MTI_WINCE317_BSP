@@ -1,0 +1,408 @@
+<html>
+<head>
+<title>
+Creating a New DCL Project
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Creating a New DCL Project
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Creating a New DCL Project">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        <b>NOTE</b> -- If DCL is being used in typical fashion as a sub-product of a
+        different master product, see the master product's documentation
+        regarding creating new projects.  This section <b>only</b> applies if you
+        are using DCL as a standalone project.
+
+<p>        <h4>Project Concepts</h4>
+
+<p>        Datalight products use the term "project" to refer to a custom
+        configuration for a specific target platform, flash type, and operating
+        system.  Each project is stored in a unique location called the
+        <font class=HighText>Project Directory</font>. Many Project Directories may exist within a
+        single product installation.
+
+<p>        The Project Directory contains the following items
+        (among others):
+        <ul>
+<li>Batch commands describing the characteristics of the project.
+        <li>Header files for configuring common DCL settings.
+        <li>Batch commands for initiating build and clean operations on the DCL code tree.
+        <li>The results of a DCL build operation (libraries and/or binary device drivers).
+</ul>
+        The vast majority of DCL configuration options are completely
+        configurable from within the Project Directory.  It is rare that other
+        code elsewhere in the DCL tree needs to be modified to configure and
+        use DCL.
+
+<p>        <h4>Understanding ToolSets</h4>
+
+<p>        DCL uses a concept called a ToolSet to abstract the build
+        process so that DCL remains portable across many environments.
+        The ToolSet abstraction is implemented in the dcl\host\win32 directory
+        tree.  Each ToolSet has a sub-directory under dcl\host\win32.
+
+<p>        It is not necessary to understand how the ToolSet abstraction works in
+        order to build DCL.  However, if you are using DCL with a tool chain
+        which does not already have a ToolSet abstraction, you will need to
+        create one if you want to use the standard Datalight build process.
+        Note that using the Datalight build process is not a requirement to use
+        DCL, it is simply a convenience.  You are free to compile and link the
+        DCL code in any fashion you desire.
+
+<p>        When a new project is created using newproj.bat, the ToolSet name is
+        specified as one of the parameters.  The P_TOOLSET setting, stored in
+        the <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> file, permanently records this information for the new
+        project.
+
+<p>        DCL includes a variety of ToolSet abstractions, which are itemized in
+        the <i>"ToolSet Overview"</i> section of this documentation.  A list of the
+        available ToolSets can be display using the "newproj /?" command.
+
+<p>        <b>Running NEWPROJ.BAT</b>
+
+<p>        Creating a new project is done by using the newproj.bat batch file,
+        which resides in the root of the DCL installation. Upon successful
+        completion, NEWPROJ will create the specified project directory, copy
+        the default project files into the directory, and generate a
+        <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> file.  NEWPROJ has the following syntax:
+
+<p>        &#67&#58&#92&#68&#76&#92&#68&#67&#76&#62&#32&#32&#78&#69&#87&#80&#82&#79&#74&#32&#32&#112&#114&#111&#100&#117&#99&#116&#114&#111&#111&#116&#32&#32&#112&#114&#111&#106&#101&#99&#116&#100&#105&#114&#32&#32&#111&#115&#32&#32&#99&#112&#117&#32&#32&#116&#111&#111&#108&#115&#101&#116&#32&#32&#91&#116&#111&#111&#108&#114&#111&#111&#116&#93
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+productroot
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This must be the full path to the root of the DCL installation.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+projectdir
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This is the location where the project is to reside.  This location must be on the same drive that DCL is installed on.  The projectdir specification must be the full path, and must not refer to a directory that already exists.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+os
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This is the OS to use, which must always be lower case.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+cpu
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This specifies the CPU to target. For a list of supported CPUs within a given ToolSet, please refer to the ToolSet's CPUCHECK.BAT. Also, refer to the section on ToolSets within the Datalight Common Libraries documentation for further details.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+toolset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This specifies the ToolSet to use.  The ToolSet name must be specified in lower case.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+[toolroot]
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This specifies the root of the tool chain installation.  If this value is not specified, an attempt will be made automatically to determine what it is.
+</td>
+</tr>
+</table>
+
+<p>
+        <b>Note</b> -- The os, cpu, and toolset parameters must be specified in lower case.
+
+<p>        <b>Examining PRJINFO.BAT</b>
+
+<p>        NEWPROJ creates a <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> file that contains the settings for the
+        new project.  Whenever a project is built, the DCL build process calls
+        <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> to retrieve the settings for the project.  A typical
+        <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> will look similar to the following:
+
+<p>        <pre>
+        REM ---------- Product/Project Settings ----------
+        set P_ROOT=c:\dl\dcl
+        set P_PROJDIR=c:\dl\dcl\projects\myproj
+        set P_OS=wince
+        set P_TOOLSET=toolsetname
+        set P_TOOLROOT=c:\toolchainroot
+        set P_CPUFAMILY=arm
+        set P_CPUTYPE=xscale
+        set P_PRIVATE=1
+
+<p>        REM --------------- Build Settings ---------------
+        REM Define any product-wide C compiler flags to use
+        set B_CFLAGS=
+        </pre>
+
+<p>        <h4>Project Files</h4>
+
+<p>        When a new project is created, the following files will be placed in
+        the Project Directory.  These files are be described in more detail in
+        the section on customizing your project.
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This batch file is used to configure the build process.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This batch file is used to build DCL.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<a HREF=UD720_ProjectFiles.c.htm#prjclean.bat>prjclean.bat</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This batch file is used to clean the DCL project.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<a HREF=UD720_ProjectFiles.c.htm#dclconf.h>dclconf.h</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This header file is used to configure for your project.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<a HREF=UD720_ProjectFiles.c.htm#dclproj.c>dclproj.c</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This contains the DCL project startup and shutdown code, which may be customized by an OEM.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+<a HREF=UD720_ProjectFiles.c.htm#dclproj.mak>dclproj.mak</a>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This is the DCL project make file.
+</td>
+</tr>
+</table>
+
+<p>
+        <h4>Customizing DCL OS Services Modules</h4>
+        
+<p>        If a default OS Service implementation in the \dcl\os\wince\services
+        directory needs to be modified, the file should be copied into the
+        project directory and modified there.  The build process and <a HREF=UD720_ProjectFiles.c.htm#dclproj.mak>dclproj.mak</a>
+        will automatically ensure that the project specific version of the code
+        will be used, rather than the default version.
+
+<p>        <b>Datalight strongly discourages directly modifying any code in the \dcl\os\wince\services directory.</b>
+        
+<p>        <h4>Cloning a Project</h4>
+
+<p>        Sometimes it's easier to begin with a copy of an existing project
+        rather than creating a new project from scratch.  To clone a project,
+        follow these steps:
+
+<p>        <ul>
+<li>XCOPY the original project directory to the new project directory.
+        <li>Edit the <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> file and change the P_PROJDIR value to the new directory specification.
+        <li>If you copied the project from one DCL installation to another, update the P_ROOT value in <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a>.
+        <li>Depending on the kinds of changes you are planning to make, other changes to <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> may also be necessary.
+</ul>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

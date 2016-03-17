@@ -1,0 +1,15 @@
+
+Demo title: 		Particles
+
+Demonstrates: 		Particles
+
+Short Description:	Shows particle effects with frame buffer blending.
+
+Full Description:	
+This demo shows a physics based particle effect displaying a total of 900 particles (600 real + 300 reflected). 
+
+VGP: 			Not Required
+Polygon Count: 		Around 1802 (Variable)
+Vertex Count: 		Around 3604 (Variable)
+
+

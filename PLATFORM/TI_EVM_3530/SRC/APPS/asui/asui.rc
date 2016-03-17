@@ -1,0 +1,139 @@
+//Microsoft eMbedded Visual C++ generated resource script.
+//
+#include "resrc1.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINBOX DIALOG DISCARDABLE  0, 0, 270, 121
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Bluetooth ActiveSync"
+FONT 8, "System"
+BEGIN
+    LISTBOX         IDC_DEVICELIST,2,7,204,81,LBS_SORT | 
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "Static",IDC_CURRENT,4,96,204,11
+    DEFPUSHBUTTON   "&OK",IDOK,214,7,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,214,21,50,14
+    PUSHBUTTON      "&Inquiry",IDC_INQUIRY,214,35,50,14
+    PUSHBUTTON      "E&xit",IDC_EXIT,214,49,50,14
+    PUSHBUTTON      "&Deregister",IDC_DEREGISTER,214,63,50,14
+    PUSHBUTTON      "S&tart",IDC_STARTSTOP,214,76,50,14
+END
+
+IDD_ENTERCHANNEL DIALOG DISCARDABLE  0, 0, 116, 45
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Bluetooth ActiveSync"
+FONT 8, "System"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,24,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,59,24,50,14
+    LTEXT           "Select channel:",-1,7,7,52,11
+    EDITTEXT        IDC_CHANNEL,63,7,46,12,ES_AUTOHSCROLL
+END
+
+IDD_STARTBOX DIALOG DISCARDABLE  0, 0, 115, 55
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Bluetooth ActiveSync"
+FONT 8, "System"
+BEGIN
+    DEFPUSHBUTTON   "S&ync",IDOK,5,7,50,14
+    PUSHBUTTON      "Mo&re...",IDC_OPTIONS,60,7,50,14
+    LTEXT           "Static",IDC_CURRENT,5,25,105,30
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BTHICON             ICON    DISCARDABLE     "icon1.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resrc1.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAINBOX, DIALOG
+    BEGIN
+        RIGHTMARGIN, 124
+        BOTTOMMARGIN, 110
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

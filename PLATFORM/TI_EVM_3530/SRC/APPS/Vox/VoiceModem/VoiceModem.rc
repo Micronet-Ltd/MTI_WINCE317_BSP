@@ -1,0 +1,151 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_VOICE_MODEM_DIALOG DIALOG  0, 0, 258, 127
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Voice Modem"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Modem On/Off",IDC_VOICE_MODEM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,2,64,10
+    EDITTEXT        IDC_DIAL_EDIT_BOX,7,44,62,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Call",IDC_CALL_KEY,7,62,35,12
+    PUSHBUTTON      "End",IDC_END_KEY,48,62,35,12
+    CONTROL         "0",IDC_AP_0,"Button",BS_AUTORADIOBUTTON,9,94,20,10
+    CONTROL         "1",IDC_AP_1,"Button",BS_AUTORADIOBUTTON,37,93,20,10
+    CONTROL         "2",IDC_AP_2,"Button",BS_AUTORADIOBUTTON,9,107,20,10
+    CONTROL         "3",IDC_AP_3,"Button",BS_AUTORADIOBUTTON,37,107,20,10
+    GROUPBOX        "Audio Profiles",IDC_AUDIO_PROFILES,8,83,53,37
+    CONTROL         "",IDC_SLIDER_VOICE_VOL_IN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,90,23,14,89,WS_EX_STATICEDGE
+    LTEXT           "0",IDC_VOL_IN_MAX,74,100,13,10
+    LTEXT           "0",IDC_VOL_IN_MIN,73,19,13,9
+    LTEXT           "",IDC_VOLUME_VOICE_IN,90,12,13,9,0,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_VOICE_VOL_OUT,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,130,24,14,88,WS_EX_STATICEDGE
+    LTEXT           "0",IDC_VOL_OUT_MAX,115,101,13,10
+    LTEXT           "0",IDC_VOL_OUT_MIN,114,19,13,10
+    LTEXT           "",IDC_VOLUME_VOICE_OUT,129,12,17,10,0,WS_EX_STATICEDGE
+    ICON            IDI_BT_VOICE_OFF_ICON,IDC_BT_VOICE_ICON,218,2,20,20
+    CONTROL         "HS AUDIO",HS_AUDIO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,165,6,49,10
+    CONTROL         "MUX",IDC_MUX_ON,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,19,31,10
+    LTEXT           "Voice In",IDC_VOICE_IN_GAIN,82,2,27,9
+    LTEXT           "Voice Out",IDC_VOICE_OUT_GAIN,122,1,44,9
+    CONTROL         "Mute",IDC_VOICE_IN_MUTE,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,68,112,31,8
+    CONTROL         "Mute",IDC_VOICE_OUT_MUTE,"Button",BS_AUTOCHECKBOX | BS_LEFTTEXT | WS_TABSTOP,108,112,31,8
+    CONTROL         "",IDC_SLIDER_BT_SPK,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,221,42,21,70,WS_EX_STATICEDGE
+    CONTROL         "",IDC_SLIDER_BT_MIC,"msctls_trackbar32",TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,172,41,21,71,WS_EX_STATICEDGE
+    LTEXT           "",IDC_BT_MIC,173,26,17,10,0,WS_EX_STATICEDGE
+    LTEXT           "",IDC_BT_SPK,220,27,17,10,0,WS_EX_STATICEDGE
+    LTEXT           "0",IDC_BT_SPK_MIN,206,43,13,10
+    LTEXT           "0",IDC_BT_MIC_MIN,154,43,13,10
+    LTEXT           "0",IDC_BT_MIC_MAX,152,100,13,10
+    LTEXT           "0",IDC_BT_SPK_MAX,203,100,13,10
+    CONTROL         "Ext",IDC_EXT_AUDIO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,106,41,20,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_VOICE_MODEM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 254
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 120
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_BT_VOICE_ON_ICON    ICON                    "BT_yes.ico"
+IDI_BT_VOICE_OFF_ICON   ICON                    "BT_none.ico"
+IDI_BT_VOICE_CONNECT_ICON ICON                    "BT_active.ico"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Hebrew resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE LANG_HEBREW, SUBLANG_DEFAULT
+#pragma code_page(1255)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Hebrew resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

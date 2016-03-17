@@ -1,0 +1,45 @@
+!IF 0
+#--------------------------------------------------------------------------
+# Name         : sources
+#
+# Created      : May 2008
+#
+# Copyright    : 2008 by Imagination Technologies Limited.
+#
+# Description  : Makefile for demos in the PowerVR SDK
+#
+#--------------------------------------------------------------------------
+!ENDIF
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+API = OGLES2
+PROJECTNAME=AnisotropicLighting
+
+TARGETNAME=$(API)$(PROJECTNAME)
+TARGETTYPE=PROGRAM
+
+APPROOT=..\..
+
+WINCETARGETFILE0 = \
+	$(OBJDIR)\$(TARGETNAME).obj \
+	$(OBJDIR)\Basetex.obj \
+	$(OBJDIR)\FastFragShader.obj \
+	$(OBJDIR)\FastVertShader.obj \
+	$(OBJDIR)\SlowFragShader.obj \
+	$(OBJDIR)\SlowVertShader.obj \
+	$(OBJDIR)\Mask.obj
+		
+SOURCES = \
+	$(APPROOT)\$(TARGETNAME).cpp \
+	$(APPROOT)\Content\Basetex.cpp \
+	$(APPROOT)\Content\FastFragShader.cpp \
+	$(APPROOT)\Content\FastVertShader.cpp \
+	$(APPROOT)\Content\SlowFragShader.cpp \
+	$(APPROOT)\Content\SlowVertShader.cpp \
+	$(APPROOT)\Content\Mask.cpp
+	
+!INCLUDE $(SDKROOT)\builds\PlatformBuilder\sources.inc
+

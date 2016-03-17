@@ -1,0 +1,1160 @@
+<html>
+<head>
+<title>
+DCL Structures, Enumerations, and Handles
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Structures, Enumerations, and Handles
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Structures, Enumerations, and Handles">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLDATETIME">DCLDATETIME</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The DCLDATETIME is a structure used to hold date and time
+    information.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLENVHANDLE">DCLENVHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLENVHANDLE is an opaque pointer which is used to reference
+    an "environment" object which is created with <a HREF=UD750_Environment.c.htm#DclEnvCreate>DclEnvCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLFSDIRHANDLE">DCLFSDIRHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    DCLFSDIRHANDLE is an opaque pointer to a directory object which
+    was opened with <a HREF=UD750_FileSys.c.htm#DclFsDirOpen>DclFsDirOpen()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLFSFILEHANDLE">DCLFSFILEHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    DCLFSFILEHANDLE is an opaque pointer to a directory object which
+    was opened with <a HREF=UD750_FileSys.c.htm#DclFsFileOpen>DclFsFileOpen()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLFSSTAT">DCLFSSTAT</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The DCLFSSTAT structure type contains file system information
+    returned by <a HREF=UD750_FileSys.c.htm#DclFsStat>DclFsStat()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLFSSTATFS">DCLFSSTATFS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The DCLFSSTATFS structure type contains file system information
+    returned by <a HREF=UD750_FileSys.c.htm#DclFsStatFs>DclFsStatFs()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLHRTIMESTAMP">DCLHRTIMESTAMP</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLHRTIMESTAMP type is used to track high-res timer infor-
+    mation.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLINSTANCEHANDLE">DCLINSTANCEHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLINSTANCEHANDLE is an opaque pointer used to refer to a DCL
+    instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLIOSTATUS">DCLIOSTATUS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Contains the results of an I/O request.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLLOADERFILEHANDLE">DCLLOADERFILEHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Type for a DL loader file handle.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLLOADERHANDLE">DCLLOADERHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Type for a DL loader instance handle.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLLOGHANDLE">DCLLOGHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLLOGHANDLE is used to reference a logging object which is
+    created with <a HREF=UD750_Logging.c.htm#DclLogOpen>DclLogOpen()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLPROJECTHANDLE">DCLPROJECTHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLPROJECTHANDLE is an opaque pointer used to refer to a
+    project instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLREADERIO">DCLREADERIO</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Type for a DL loader block device instance handle.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLSERVICEHANDLE">DCLSERVICEHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLSERVICEHANDLE is an opaque pointer used to refer to a
+    service instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLSTATUS">DCLSTATUS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A structured status code used to return error/status information.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLTHREADATTR">DCLTHREADATTR</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The DCLTHREADATTR type is an opaque structure used to store
+    thread attributes.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLTHREADHANDLE">DCLTHREADHANDLE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The DCLTHREADHANDLE type is an opaque pointer to a thread object
+    which was craeted by <a HREF=UD800_OsServThread.c.htm#DclOsThreadCreate>DclOsThreadCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLTHREADID">DCLTHREADID</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The DCLTHREADID type is used to store a thread ID, as returned
+    by <a HREF=UD800_OsServThread.c.htm#DclOsThreadID>DclOsThreadID()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLTIMER">DCLTIMER</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLTIMER structure is used by the timer services to track
+    timing information.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLTIMESTAMP">DCLTIMESTAMP</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A DCLTIMESTAMP type is used to track timer information.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DCLTOOLPARAMS">DCLTOOLPARAMS</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    A structure used to pass parameters to tests and tools.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#PDCLMUTEX">PDCLMUTEX</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The PDCLMUTEX type is an opaque pointer to a mutex object which
+    was created with <a HREF=UD750_Mutex.c.htm#DclMutexCreate>DclMutexCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#PDCLSEMAPHORE">PDCLSEMAPHORE</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The PDCLSEMAPHORE type is an opaque pointer to a counting
+    semaphore object which was created with <a HREF=UD750_Semaphore.c.htm#DclSemaphoreCreate>DclSemaphoreCreate()</a>.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#PDCLSEMAPHORERDWR">PDCLSEMAPHORERDWR</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    The PDCLSEMAPHORERDWR type is an opaque pointer to a read/write
+    semaphore object which was created with <a HREF=UD750_SemaphoreRW.c.htm#DclSemaphoreRdWrCreate>DclSemaphoreRdWrCreate()</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DCLDATETIME"></a>
+<a NAME="DCLDATETIME"></a>
+DCLDATETIME
+</h3>
+<div class=SectionText>
+
+    The DCLDATETIME is a structure used to hold date and time
+    information.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLENVHANDLE"></a>
+<a NAME="DCLENVHANDLE"></a>
+DCLENVHANDLE
+</h3>
+<div class=SectionText>
+
+    A DCLENVHANDLE is an opaque pointer which is used to reference
+    an "environment" object which is created with <a HREF=UD750_Environment.c.htm#DclEnvCreate>DclEnvCreate()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLFSDIRHANDLE"></a>
+<a NAME="DCLFSDIRHANDLE"></a>
+DCLFSDIRHANDLE
+</h3>
+<div class=SectionText>
+
+    DCLFSDIRHANDLE is an opaque pointer to a directory object which
+    was opened with <a HREF=UD750_FileSys.c.htm#DclFsDirOpen>DclFsDirOpen()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLFSFILEHANDLE"></a>
+<a NAME="DCLFSFILEHANDLE"></a>
+DCLFSFILEHANDLE
+</h3>
+<div class=SectionText>
+
+    DCLFSFILEHANDLE is an opaque pointer to a directory object which
+    was opened with <a HREF=UD750_FileSys.c.htm#DclFsFileOpen>DclFsFileOpen()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLFSSTAT"></a>
+<a NAME="DCLFSSTAT"></a>
+DCLFSSTAT
+</h3>
+<div class=Api>
+DCLSTATUS DclFsStat(<br>&nbsp;&nbsp;&nbsp; const char * pszPath,<br>&nbsp;&nbsp;&nbsp; DCLFSSTAT * pStat);
+</div>
+<div class=SectionText>
+
+    The DCLFSSTAT structure type contains file system information
+    returned by <a HREF=UD750_FileSys.c.htm#DclFsStat>DclFsStat()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLFSSTATFS"></a>
+<a NAME="DCLFSSTATFS"></a>
+DCLFSSTATFS
+</h3>
+<div class=Api>
+DCLSTATUS <a HREF=UD750_FileSys.c.htm#DclFsStat>DclFsStat()</a>Fs(<br>&nbsp;&nbsp;&nbsp; const char * pszDevName,<br>&nbsp;&nbsp;&nbsp; DCLFSSTATFS * pStatFs);
+</div>
+<div class=SectionText>
+
+    The DCLFSSTATFS structure type contains file system information
+    returned by <a HREF=UD750_FileSys.c.htm#DclFsStatFs>DclFsStatFs()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLHRTIMESTAMP"></a>
+<a NAME="DCLHRTIMESTAMP"></a>
+DCLHRTIMESTAMP
+</h3>
+<div class=SectionText>
+
+    A DCLHRTIMESTAMP type is used to track high-res timer infor-
+    mation.  This type must be operated on solely by the high-res
+    timer functions -- software should not attempt to interpret the
+    meaning of this type.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLINSTANCEHANDLE"></a>
+<a NAME="DCLINSTANCEHANDLE"></a>
+DCLINSTANCEHANDLE
+</h3>
+<div class=Api>
+DCLINSTANCEHANDLE   DclInstanceHandle(unsigned nInstNum);
+</div>
+<div class=SectionText>
+
+    A DCLINSTANCEHANDLE is an opaque pointer used to refer to a DCL
+    instance.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLIOSTATUS"></a>
+<a NAME="DCLIOSTATUS"></a>
+DCLIOSTATUS
+</h3>
+<div class=SectionText>
+
+    Contains the results of an I/O request.  The DCLIOSTATUS structure
+    has the following layout:
+
+<p>	<pre>
+    &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#116&#121&#112&#101&#100&#101&#102&#32&#115&#116&#114&#117&#99&#116&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#123&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#68&#95&#85&#73&#78&#84&#51&#50&#32&#32&#32&#32&#117&#108&#67&#111&#117&#110&#116&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#68&#67&#76&#83&#84&#65&#84&#85&#83&#32&#32&#32&#100&#99&#108&#83&#116&#97&#116&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#125&#32&#68&#67&#76&#73&#79&#83&#84&#65&#84&#85&#83&#59&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+	</pre>
+
+<p>    
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+<b>ulcount</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The count of elements which were successfully
+                transferred.
+</td>
+</tr>
+
+<p>    
+<tr class=Def>
+<td class=Def>
+<b>dclStat</b>
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The standard <a HREF="#DCLSTATUS">DCLSTATUS</a> value.
+</td>
+</tr>
+</table>
+
+<p>
+   The following methods are used to determine the state of
+   an operation:
+
+<p>   1) If dclStat == DCLSTAT_SUCCESS, then the operation was entirely
+      successful.  ulCount will indicate the count of elements
+      transferred, however examining this value is not necessary.
+
+<p>   2) If dclStat != DCLSTAT_SUCCESS, then the operation <may> have
+      been partially successful.  ulCount will indicate the number
+      of elements that were transferred successfully, if any.  The
+      element indicated by ulCount+1 will be the element where the
+      error occurred.  For write operations, it should be assumed
+      that the element where the I/O error occurred was modified.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLLOADERFILEHANDLE"></a>
+<a NAME="DCLLOADERFILEHANDLE"></a>
+DCLLOADERFILEHANDLE
+</h3>
+<div class=SectionText>
+
+    Type for a DL loader file handle.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLLOADERHANDLE"></a>
+<a NAME="DCLLOADERHANDLE"></a>
+DCLLOADERHANDLE
+</h3>
+<div class=SectionText>
+
+    Type for a DL loader instance handle.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLLOGHANDLE"></a>
+<a NAME="DCLLOGHANDLE"></a>
+DCLLOGHANDLE
+</h3>
+<div class=SectionText>
+
+    A DCLLOGHANDLE is used to reference a logging object which is
+    created with <a HREF=UD750_Logging.c.htm#DclLogOpen>DclLogOpen()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLPROJECTHANDLE"></a>
+<a NAME="DCLPROJECTHANDLE"></a>
+DCLPROJECTHANDLE
+</h3>
+<div class=Api>
+DCLPROJECTHANDLE    DclProjectHandle(           <a HREF="#DCLINSTANCEHANDLE">DCLINSTANCEHANDLE</a> hDclInst);
+</div>
+<div class=SectionText>
+
+    A DCLPROJECTHANDLE is an opaque pointer used to refer to a
+    project instance.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLREADERIO"></a>
+<a NAME="DCLREADERIO"></a>
+DCLREADERIO
+</h3>
+<div class=SectionText>
+
+    Type for a DL loader block device instance handle.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLSERVICEHANDLE"></a>
+<a NAME="DCLSERVICEHANDLE"></a>
+DCLSERVICEHANDLE
+</h3>
+<div class=SectionText>
+
+    A DCLSERVICEHANDLE is an opaque pointer used to refer to a
+    service instance.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLSTATUS"></a>
+<a NAME="DCLSTATUS"></a>
+DCLSTATUS
+</h3>
+<div class=SectionText>
+
+    A structured status code used to return error/status information.
+
+<p>    DCLSTATUS is a 32-bit structured status code upon which all other
+    product status codes are based.  The code has the following layout:
+
+<p>    <pre>
+    &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#72&#105&#103&#104&#32&#49&#54&#45&#98&#105&#116&#115&#32&#32&#32&#32&#32&#45&#32&#32&#32&#32&#32&#76&#111&#119&#32&#49&#54&#45&#98&#105&#116&#115&#32&#32&#32&#32&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#114&#99&#99&#99&#32&#114&#114&#114&#112&#32&#112&#112&#112&#112&#32&#108&#108&#108&#108&#32&#45&#32&#108&#108&#108&#108&#32&#115&#115&#115&#115&#32&#115&#115&#115&#115&#32&#115&#115&#115&#115&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#47&#92&#32&#47&#32&#92&#32&#47&#92&#32&#32&#32&#32&#47&#32&#92&#32&#32&#32&#32&#32&#32&#32&#32&#32&#47&#32&#92&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#47&#32&#32&#32&#124
+    &#124&#32&#32&#82&#101&#115&#101&#114&#118&#101&#100&#32&#32&#124&#32&#32&#32&#124&#32&#32&#92&#32&#32&#47&#32&#32&#124&#92&#32&#32&#32&#32&#32&#32&#32&#47&#32&#32&#32&#92&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#47&#124&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#67&#108&#97&#115&#115&#32&#124&#67&#111&#100&#101&#66&#97&#115&#101&#124&#32&#92&#32&#32&#32&#32&#32&#47&#32&#32&#32&#32&#83&#116&#97&#116&#117&#115&#32&#86&#97&#108&#117&#101&#124&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#82&#101&#115&#101&#114&#118&#101&#100&#32&#32&#32&#32&#32&#124&#32&#76&#111&#99&#97&#108&#101&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#45&#45&#45&#45&#45&#45&#45&#45&#32&#76&#105&#110&#101&#32&#78&#117&#109&#32&#45&#45&#45&#45&#45&#45&#45&#45&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#45&#45&#45&#45&#45&#45&#45&#45&#32&#32&#85&#73&#78&#84&#50&#48&#32&#45&#45&#45&#45&#45&#45&#45&#45&#45&#32&#32&#32&#124
+    &#124&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#124
+    &#43&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#45&#43
+    </pre>
+
+<p>    This bit-mapped status code is laid out to make it reasonably
+    easy to decode the hex value at a glance.  This is facilitated
+    by ensuring that the major components of the status, the Class,
+    CodeBase, Locale, and Status Value, are each aligned so their
+    least signficant bits fall on a nybble boundary.
+
+<p>    The "class" field defines the type of status code, which will be
+    one of the following:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+DCLSTATUSCLASS_ERROR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+1
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLSTATUSCLASS_INFO
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+2
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLSTATUSCLASS_LINENUM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+3
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLSTATUSCLASS_UINT20
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+4
+</td>
+</tr>
+</table>
+
+<p>
+    The "CodeBase" field defines the code base in which the error
+    originated.  This value will identical to the product codes
+    defined in dlprod.h.
+
+<p>    The "Locale" field defines the location within the CodeBase
+    where the error orginated.  The following Locales are defined
+    for DCL:
+
+<p>        
+<table class=DefTable>
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_GENERAL
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+1
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_OSSERV
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+2
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_INSTANCE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+3
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_MEMORY
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+4
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_FILE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+5
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_LOG
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+6
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_SHELL
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+7
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_ENV
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+8
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_DRIVERFW
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+9
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_PERFLOG
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+10
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_MISC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+11
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_LOADER
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+12
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_TIME
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+13
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLLOCALE_WIN
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+14
+</td>
+</tr>
+</table>
+
+<p>
+    The "Status Value" is a unique status code within each Locale.
+    See dlstatus.h for a detailed list of Locales and Status Values.
+
+<p>    The DCLSTATUSCLASS_LINENUM is a special class of DCLSTATUS values
+    where the locale and status bits together are used to indicate a
+    line number.
+
+<p>    The DCLSTATUSCLASS_UINT20 is a special class of DCLSTATUS values
+    where the locale and status bits together are used to indicate a
+    20-bit unsigned integer value.  The macros DCLSTAT_SETUINT20
+    and DCLSTAT_GETUINT20 are used to encode and decode these status
+    values.
+
+<p>    Several status codes have special
+    definitions:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+DCLSTAT_SUCCESS
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This is the standard success status code.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+DCLSTAT_FAILURE
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This is the default status code for for
+                          failure, when a more specific status code
+                          is not defined.  The use of specific status
+                          codes is highly preferable.
+</td>
+</tr>
+</table>
+
+<p>
+    Along with DCLSTAT_SUCCESS and DCLSTAT_FAILURE, the entire Locale
+    of "General" status codes is designed to be shared across products.
+    Any product specific names are for convenience only -- the actual
+    definition is the same across products, meaning that the "CodeBase"
+    field for a "General" status code cannot be used to differentiate
+    an identical status originating on one CodeBase versus another.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLTHREADATTR"></a>
+<a NAME="DCLTHREADATTR"></a>
+DCLTHREADATTR
+</h3>
+<div class=SectionText>
+
+    The DCLTHREADATTR type is an opaque structure used to store
+    thread attributes.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLTHREADHANDLE"></a>
+<a NAME="DCLTHREADHANDLE"></a>
+DCLTHREADHANDLE
+</h3>
+<div class=SectionText>
+
+    The DCLTHREADHANDLE type is an opaque pointer to a thread object
+    which was craeted by <a HREF=UD800_OsServThread.c.htm#DclOsThreadCreate>DclOsThreadCreate()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLTHREADID"></a>
+<a NAME="DCLTHREADID"></a>
+DCLTHREADID
+</h3>
+<div class=SectionText>
+
+    The DCLTHREADID type is used to store a thread ID, as returned
+    by <a HREF=UD800_OsServThread.c.htm#DclOsThreadID>DclOsThreadID()</a>.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLTIMER"></a>
+<a NAME="DCLTIMER"></a>
+DCLTIMER
+</h3>
+<div class=SectionText>
+
+    A DCLTIMER structure is used by the timer services to track
+    timing information.  This structure is defined in a non-opaque
+    fashion to allow it to be declared on the caller's stack to
+    allow thread-safe implementations without requiring explicit
+    memory allocations.  However the contents of this structure are
+    to be considered private to the timer functions and must not be
+    manipulated by timer client code.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLTIMESTAMP"></a>
+<a NAME="DCLTIMESTAMP"></a>
+DCLTIMESTAMP
+</h3>
+<div class=Api>
+DCLTIMESTAMP  DclTimeStamp(void);
+</div>
+<div class=SectionText>
+
+    A DCLTIMESTAMP type is used to track timer information.  This
+    type must be operated on solely by the timer functions --
+    software should not attempt to interpret the meaning of this
+    type.
+
+<p>    
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DCLTOOLPARAMS"></a>
+<a NAME="DCLTOOLPARAMS"></a>
+DCLTOOLPARAMS
+</h3>
+<div class=SectionText>
+
+    A structure used to pass parameters to tests and tools.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="PDCLMUTEX"></a>
+<a NAME="PDCLMUTEX"></a>
+PDCLMUTEX
+</h3>
+<div class=SectionText>
+
+    The PDCLMUTEX type is an opaque pointer to a mutex object which
+    was created with <a HREF=UD750_Mutex.c.htm#DclMutexCreate>DclMutexCreate()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="PDCLSEMAPHORE"></a>
+<a NAME="PDCLSEMAPHORE"></a>
+PDCLSEMAPHORE
+</h3>
+<div class=SectionText>
+
+    The PDCLSEMAPHORE type is an opaque pointer to a counting
+    semaphore object which was created with <a HREF=UD750_Semaphore.c.htm#DclSemaphoreCreate>DclSemaphoreCreate()</a>.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="PDCLSEMAPHORERDWR"></a>
+<a NAME="PDCLSEMAPHORERDWR"></a>
+PDCLSEMAPHORERDWR
+</h3>
+<div class=SectionText>
+
+    The PDCLSEMAPHORERDWR type is an opaque pointer to a read/write
+    semaphore object which was created with <a HREF=UD750_SemaphoreRW.c.htm#DclSemaphoreRdWrCreate>DclSemaphoreRdWrCreate()</a>.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

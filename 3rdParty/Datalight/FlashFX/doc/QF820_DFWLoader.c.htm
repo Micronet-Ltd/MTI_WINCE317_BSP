@@ -1,0 +1,1542 @@
+<html>
+<head>
+<title>
+FlashFX API: Driver Framework: Loader
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+FlashFX API: Driver Framework: Loader
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): FlashFX API: Driver Framework: Loader">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+    This module provides an interface for a low-level read/write page, erase
+    block level version of FlashFX, typically in a boot loader environment.
+
+<p>    This interface is designed such that client code calling these functions
+    do NOT need to include <a HREF=QF640_Headers.c.htm#flashfx.h>flashfx.h</a>, but rather need only include
+    flashfx_osname.h along with <a HREF=QF640_Headers.c.htm#fxloaderapi.h>fxloaderapi.h</a>.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderCreate">FfxLoaderCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Initialize an instance of the FlashFX loader.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderDestroy">FfxLoaderDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy an instance of the FlashFX Loader.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderDeviceCreate">FfxLoaderDeviceCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a FlashFX Loader Device object using the supplied char-
+    acteristics.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderDeviceDestroy">FfxLoaderDeviceDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy a FlashFX Loader Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderDiskCreate">FfxLoaderDiskCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a FlashFX Loader Disk object using the supplied char-
+    acteristics.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderDiskDestroy">FfxLoaderDiskDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy a FlashFX Loader Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderEraseBlocks">FfxLoaderEraseBlocks</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Erases blocks from the flash array at the specified logical
+    block.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderGetBlockStatus">FfxLoaderGetBlockStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get the block status for the specified erase block.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderGetDeviceInfo">FfxLoaderGetDeviceInfo</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get information about a FlashFX Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderGetDiskInfo">FfxLoaderGetDiskInfo</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get information about a FlashFX Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderLockBlocks">FfxLoaderLockBlocks</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Lock a range of erase blocks.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderLockFreeze">FfxLoaderLockFreeze</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Freeze the lock state for a range of erase blocks.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderReadFmlPages">FfxLoaderReadFmlPages</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read sectors from the flash array at the specified logical
+    sector location.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderReadSectors">FfxLoaderReadSectors</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read sectors from the flash array at the specified logical
+    sector location.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderUnlockBlocks">FfxLoaderUnlockBlocks</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Unlock a range of erase blocks.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderWriteFmlPages">FfxLoaderWriteFmlPages</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write sectors to the flash array at the specified logical
+    sector location.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxLoaderWriteSectors">FfxLoaderWriteSectors</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write sectors to the flash array at the specified logical
+    sector location.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderCreate"></a>
+<a NAME="FfxLoaderCreate"></a>
+FfxLoaderCreate
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXLOADERHANDLE>FFXLOADERHANDLE</a> <font class=ApiName>FfxLoaderCreate</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>   hDclInst)
+</div>
+<div class=SectionText>
+
+    Initialize an instance of the FlashFX loader.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL Instance handle to use.  This value may be
+                   NULL to cause the DCL Instance to be automatically
+                   initialized.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the loader handle if successful, or NULL otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderDestroy"></a>
+<a NAME="FfxLoaderDestroy"></a>
+FfxLoaderDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderDestroy</font>(
+    <a HREF=QF660_Structures.c.htm#FFXLOADERHANDLE>FFXLOADERHANDLE</a>     hLdr)
+</div>
+<div class=SectionText>
+
+    Destroy an instance of the FlashFX Loader.  
+
+<p>    <b>Note</b> -- The caller must ensure that all Loader Devices and Disks
+              have been destroyed prior to calling this function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle of the loader instance to destroy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderDeviceCreate"></a>
+<a NAME="FfxLoaderDeviceCreate"></a>
+FfxLoaderDeviceCreate
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXLOADERDEVHANDLE>FFXLOADERDEVHANDLE</a> <font class=ApiName>FfxLoaderDeviceCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERHANDLE>FFXLOADERHANDLE</a>     hLdr,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nDevNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulExtraReservedLowKB,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulExtraReservedHighKB,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulMaxArraySizeKB,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulFlags)
+</div>
+<div class=SectionText>
+
+    Create a FlashFX Loader Device object using the supplied char-
+    acteristics.  Note that Devices created with this interface
+    do not use the standard FlashFX Device Project Hooks functions 
+    <a HREF=QF960_ProjectHooks.c.htm#FfxHookDeviceCreate>FfxHookDeviceCreate()</a> and <a HREF=QF960_ProjectHooks.c.htm#FfxHookDeviceDestroy>FfxHookDeviceDestroy()</a> as implemented
+    in fhdevice.c.  All Device configuration is done with this 
+    function, in combination with the settings in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>, as
+    described below.
+
+<p>    <b>Note!</b> -- The basic Device settings values are retrieved
+    from the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file, however the ulMaxArraySizeKB and 
+    FFXLOADER_DEV_USEBBM parameters specified in this interface
+    will override the equivalent settings from the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The loader instance handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nDevNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of the Device to create
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulExtraReservedLowKB
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This specifies any "extra" reserved
+                                space to use, <b>above and beyond</b> any
+                                which may be specified in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulExtraReservedHighKB
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This specifies any "extra" reserved
+                                space to use, <b>above and beyond</b> any
+                                which may be specified in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulMaxArraySizeKB
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This specifies the maximum size of
+                                the flash array.  If specified, this
+                                value <b>overrides</b> any which might be
+                                specified in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulFlags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device flags to use, which must
+                                be zero or more of the following:
+                              <ul>
+</td>
+</tr>
+
+<p>
+<tr class=Def>
+<td class=Def>
+<li>FFXLOADER_DEV_USEBBM
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that
+                                the Device should be initialized with
+                                BBM.  BBM will not be used otherwise.
+                                This flag is only valid with NAND.
+</td>
+</tr>
+
+<p>                              
+<tr class=Def>
+<td class=Def>
+<li>FFXLOADER_DEV_UNLOCK
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that
+                                the Device should be automatically
+                                unlocked at creation time.
+</ul>
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXLOADERDEVHANDLE>FFXLOADERDEVHANDLE</a> if successful, or NULL
+        otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderDeviceDestroy"></a>
+<a NAME="FfxLoaderDeviceDestroy"></a>
+FfxLoaderDeviceDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderDeviceDestroy</font>(
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDEVHANDLE>FFXLOADERDEVHANDLE</a>  hLdrDev)
+</div>
+<div class=SectionText>
+
+    Destroy a FlashFX Loader Device.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderDiskCreate"></a>
+<a NAME="FfxLoaderDiskCreate"></a>
+FfxLoaderDiskCreate
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> <font class=ApiName>FfxLoaderDiskCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERHANDLE>FFXLOADERHANDLE</a>     hLdr,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nDiskNum,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nDevNum,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulFlags)
+</div>
+<div class=SectionText>
+
+    Create a FlashFX Loader Disk object using the supplied char-
+    acteristics.  Note that Disks created with this interface do
+    not use the standard FlashFX Device Project Hooks functions 
+    <a HREF=QF960_ProjectHooks.c.htm#FfxHookDiskCreate>FfxHookDiskCreate()</a> and <a HREF=QF960_ProjectHooks.c.htm#FfxHookDiskDestroy>FfxHookDiskDestroy()</a> as implemented in
+    fhdisk.c.  All Disk configuration is done with this function,
+    in combination with the settings in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>, as described
+    below.
+
+<p>    <b>Note!</b> -- The basic Disk settings values are retrieved from the
+    <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file, however the nDevNum value and ulFlags parameters
+    specified in this interface will override the equivalent settings
+    from the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The loader instance handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nDiskNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of the Disk to create
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nDevNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device number on which the Disk is to reside.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulFlags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Disk flags to use, which must be zero or
+                   more of the following:
+                 <ul>
+</td>
+</tr>
+
+<p>
+<tr class=Def>
+<td class=Def>
+<li>FFXLOADER_DISK_USEALLOCATOR
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that the
+                   Disk should be initialized with the allocator.
+                   It will not be used otherwise.
+</td>
+</tr>
+
+<p>                 
+<tr class=Def>
+<td class=Def>
+<li>FFXLOADER_DISK_SPANDEVICES
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that the
+                   Disk is allowed to span Devices if necessary.
+                   This flag overrides the "SpanDevices" flag which
+                   may be specified in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.
+</td>
+</tr>
+
+<p>                 
+<tr class=Def>
+<td class=Def>
+<li>FFXLOADER_DISK_ALTUNLOCK
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that the
+                   unlock command should ignore unlock requests for
+                   blocks which are higher than previously requested
+                   blocks.  See the notes for <a HREF="#FfxLoaderUnlockBlocks">FfxLoaderUnlockBlocks</a>.
+</ul>
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> if successful, or NULL
+        otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderDiskDestroy"></a>
+<a NAME="FfxLoaderDiskDestroy"></a>
+FfxLoaderDiskDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderDiskDestroy</font>(
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk)
+</div>
+<div class=SectionText>
+
+    Destroy a FlashFX Loader Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderEraseBlocks"></a>
+<a NAME="FfxLoaderEraseBlocks"></a>
+FfxLoaderEraseBlocks
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxLoaderEraseBlocks</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount)
+</div>
+<div class=SectionText>
+
+    Erases blocks from the flash array at the specified logical
+    block.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Logical block number for first block
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the blocks
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns number of blocks erased.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderGetBlockStatus"></a>
+<a NAME="FfxLoaderGetBlockStatus"></a>
+FfxLoaderGetBlockStatus
+</h3>
+<div class=Api>
+unsigned <font class=ApiName>FfxLoaderGetBlockStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulBlockNum)
+</div>
+<div class=SectionText>
+
+    Get the block status for the specified erase block.  This function
+    is only available on NAND, and will return UINT_MAX if it is some
+    other flash type.
+
+<p>    <b>Note</b> -- This returns status of "Raw" blocks -- unmapped by BBM.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Block number
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns 1 if the block is good, 0 if the block is bad, and
+        UINT_MAX if the block status could not be read.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderGetDeviceInfo"></a>
+<a NAME="FfxLoaderGetDeviceInfo"></a>
+FfxLoaderGetDeviceInfo
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderGetDeviceInfo</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDEVHANDLE>FFXLOADERDEVHANDLE</a>  hLdrDev,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDEVINFO>FFXLOADERDEVINFO</a>   *pDevInfo)
+</div>
+<div class=SectionText>
+
+    Get information about a FlashFX Device.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Device handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pDevInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=QF660_Structures.c.htm#FFXLOADERDEVINFO>FFXLOADERDEVINFO</a> structure to fill.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderGetDiskInfo"></a>
+<a NAME="FfxLoaderGetDiskInfo"></a>
+FfxLoaderGetDiskInfo
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderGetDiskInfo</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKINFO>FFXLOADERDISKINFO</a>  *pInfo)
+</div>
+<div class=SectionText>
+
+    Get information about a FlashFX Disk.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Disk information
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderLockBlocks"></a>
+<a NAME="FfxLoaderLockBlocks"></a>
+FfxLoaderLockBlocks
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderLockBlocks</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount)
+</div>
+<div class=SectionText>
+
+    Lock a range of erase blocks.
+
+<p>    <b>Warning!</b> -- Locking APIs must be used with extreme caution, as
+                  some flash types apply locking/unlocking operations
+                  to the entire chip.  FlashFX Disk boundaries cannot
+                  apply in this case.  
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Logical block number for first block
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the blocks
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderLockFreeze"></a>
+<a NAME="FfxLoaderLockFreeze"></a>
+FfxLoaderLockFreeze
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderLockFreeze</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount)
+</div>
+<div class=SectionText>
+
+    Freeze the lock state for a range of erase blocks.
+
+<p>    <b>Warning!</b> -- Locking APIs must be used with extreme caution, as
+                  some flash types apply locking/unlocking operations
+                  to the entire chip.  FlashFX Disk boundaries cannot
+                  apply in this case.  
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Logical block number for first block
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the blocks
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderReadFmlPages"></a>
+<a NAME="FfxLoaderReadFmlPages"></a>
+FfxLoaderReadFmlPages
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxLoaderReadFmlPages</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+	<a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pTags,<br>&nbsp;&nbsp;&nbsp;
+	unsigned            nTagSize)
+</div>
+<div class=SectionText>
+
+    Read sectors from the flash array at the specified logical
+    sector location.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the pages
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer to store the read data
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An optional pointer to a buffer in which
+                          tags will be stored.  Only used if the
+                          flash is NAND, and must be NULL otherwise.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of each tag.  Must be non-zero
+                          if pTags is not NULL.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns number of pages read.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderReadSectors"></a>
+<a NAME="FfxLoaderReadSectors"></a>
+FfxLoaderReadSectors
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxLoaderReadSectors</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartSector,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pBuffer)
+</div>
+<div class=SectionText>
+
+    Read sectors from the flash array at the specified logical
+    sector location.
+
+<p>    <b>Note</b> -- This function is usable only if the allocator (VBF)
+              is enabled, and the Disk is formatted and mounted.
+              Allocator support (FFXCONF_ALLOCATORSUPPORT) is often
+              disabled in boot loaders.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartSector
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting sector
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the sectors
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer to store the read data
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns number of sectors read.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderUnlockBlocks"></a>
+<a NAME="FfxLoaderUnlockBlocks"></a>
+FfxLoaderUnlockBlocks
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxLoaderUnlockBlocks</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>              fInvert)
+</div>
+<div class=SectionText>
+
+    Unlock a range of erase blocks.
+
+<p>    <b>Warning!</b> -- Locking APIs must be used with extreme caution, as
+                  some flash types apply locking/unlocking operations
+                  to the entire chip.  FlashFX Disk boundaries cannot
+                  apply in this case.  
+
+<p>    For flash which only supports unlocking a single range of erase
+    blocks, this function tracks the lowest erase block that is 
+    unlocked.  Some software (unnamed) has no knowledge of the single
+    range erase characteristic and iteratively tries unlocking most 
+    if not all the flash, one block at a time, resulting in all the
+    flash blocks being locked, except the very last block.
+
+<p>    This depends on the behavior of FlashFX which requires that all
+    BBM blocks be unlocked, and therefore, since only one range can
+    be unlocked, everything from that lowest block to the end of the
+    flash must be unlocked.  
+
+<p>    Note that this special behavior is only performed if the fInvert
+    flag is FALSE.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Logical block number for first block
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the blocks
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fInvert
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates that the inverse of the specified
+                          range should be unlocked.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderWriteFmlPages"></a>
+<a NAME="FfxLoaderWriteFmlPages"></a>
+FfxLoaderWriteFmlPages
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxLoaderWriteFmlPages</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+	const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pTags,<br>&nbsp;&nbsp;&nbsp;
+	unsigned            nTagSize)
+</div>
+<div class=SectionText>
+
+    Write sectors to the flash array at the specified logical
+    sector location.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the pages
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Data to write
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pTags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An optional pointer to a buffer containing
+                          the tags.  Only used if the flash is NAND,
+                          and must be NULL otherwise.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nTagSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of each tag.  Must be non-zero
+                          if pTags is not NULL.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns number of pages written.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxLoaderWriteSectors"></a>
+<a NAME="FfxLoaderWriteSectors"></a>
+FfxLoaderWriteSectors
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxLoaderWriteSectors</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXLOADERDISKHANDLE>FFXLOADERDISKHANDLE</a> hLdrDisk,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulStartSector,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulCount,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pBuffer)
+</div>
+<div class=SectionText>
+
+    Write sectors to the flash array at the specified logical
+    sector location.
+
+<p>    <b>Note</b> -- This function is usable only if the allocator (VBF)
+              is enabled, and the Disk is formatted and mounted.
+              Allocator support (FFXCONF_ALLOCATORSUPPORT) is often
+              disabled in boot loaders.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hLdrDisk
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Loader Disk handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartSector
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting sector
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Count of the sectors
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Data to write
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns number of sectors written.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

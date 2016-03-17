@@ -1,0 +1,359 @@
+<html>
+<head>
+<title>
+Building FlashFX Tera for Windows CE
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Building FlashFX Tera for Windows CE
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Building FlashFX Tera for Windows CE">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        Once your project has been created and customized as described in the
+        preceding sections, you are ready to build FlashFX Tera.
+
+<p>        <b>NOTE</b> -- When using FlashFX Tera with Windows CE 5.0 and CE 6.0, FlashFX Tera
+        must be built from the command line; it cannot be built using Platform
+        Builder.
+
+<p>        <h4>Building FlashFX Tera from the Command Line</h4>
+
+<p>        When the NEWPROJ batch file is run, the Project Directory will contain
+        <a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a> and <a HREF=UD720_ProjectFiles.c.htm#prjclean.bat>prjclean.bat</a> which may be used to build and clean the
+        FlashFX Tera project.
+
+<p>        The <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> file contains the project settings including the
+        ToolSet to use, which will be MSWCE for command-line builds.
+
+<p>        The prjcopy.bat file is provided to copy the FlashFX Tera binaries into the
+        Windows CE directory tree.  This batch file is automatically called from
+        <a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a> after a successful build.
+
+<p>        <b>NOTE</b> -- When building FlashFX Tera from the command-line, you must
+        manually ensure that the appropriate Reliance.bib file settings get
+        included in the final CE image, as described earlier.
+
+<p>        <b>Open a Release Directory</b>
+
+<p>        The command-line build process requires environment variables that are
+        typically set up by Platform Builder.  To gain access to these
+        variables with a minimal amount of hassle, from within Platform
+        Builder, choose "Open Release Directory" from the "Build OS" menu.
+        This will give you a command-line prompt that has the necessary
+        variables set.  You can then conveniently use the various batch files
+        described later in this section to build FlashFX Tera.
+
+<p>        <b>Notes for Windows CE 5.0 and CE 6.0</b>
+
+<p>        Windows CE 5.0 and 6.0 add some complexity to the mix when building
+        FlashFX Tera because it does not provide the same facilities as earlier
+        versions that allow third party products to be built as a part of the
+        CE build process.  FlashFX Tera must therefore be built from the
+        command-line, the binary drivers copied into the Windows CE directory
+        tree, and then Windows CE itself can be built.  However, FlashFX Tera
+        itself must link with libraries that are not generated until Windows CE
+        is built.
+
+<p>        To resolve this problem, follow
+        these steps:
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Create your Windows CE project without FlashFX Tera, build it
+           successfully, and ensure that the image operates properly.  This will
+           cause the libraries that FlashFX Tera requires to be generated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+2
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Next, build FlashFX Tera using <a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a>, and use prjcopy.bat to
+           copy the results into the Windows CE directory tree.  (See the 
+           instructions later in this section for more information on this process.)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+3
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add the contents of flashfx.bib to the project.bib settings in Platform Builder.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+4
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Add the contents of flashfx.reg to the project.reg settings in Platform Builder.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+5
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Ensure that the Platform Builder project has both a storage manager
+           and partition manager component enabled.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+6
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Use the "Make Run-Time Image" option on the Build menu to create a
+           new Windows CE image that now includes FlashFX Tera.
+</td>
+</tr>
+</table>
+
+<p>
+        <h4>Using PRJBUILD</h4>
+
+<p>        The <a HREF=UD720_ProjectFiles.c.htm#prjbuild.bat>prjbuild.bat</a> batch file located in the Project Directory is used to
+        build the product.  PRJBUILD has the following syntax:
+
+<p>        PRJBUILD [/nopause] [0 | 1 | 2 | 3]
+
+<p>        By default if no parameters are supplied, the build process will use the
+        value of the B_DEBUG environment variable. If the B_DEBUG environment
+        variable is not set, the debug setting will default to '0'. This value
+        indicates the debug level to use, with '0' indicating that the build is a
+        release build.
+
+<p>        The optional command line argument "/nopause" will disable any pauses in
+        the build process.  This is useful for facilitating automation.
+
+<p>        The build process will iterate through the product directory tree,
+        building each component in turn.
+
+<p>        The build messages and errors will be logged to the files BUILDn.LOG
+        and ERRORn.LOG, where 'n' is the specified debug level.
+
+<p>        Upon completion of a successful build, a directory with the same name
+        as the P_CPUTYPE will be created in the project directory.  Under this
+        directory will be either a DEBUG or RELEASE directory, depending on the
+        specified debug level.  This directory will contain the target device
+        driver or library, as well as any related tools and tests that are
+        created as part of the build process.  A LIB directory will also be
+        created that contains the individual component libraries created during
+        the build process.
+
+<p>        Additionally, after a successful build, the resulting libraries, DLLs,
+        and executables will be copied into the appropriate locations in the
+        Windows CE tree.
+        
+<p>        <h4>Using PRJCLEAN</h4>
+
+<p>        <a HREF=UD720_ProjectFiles.c.htm#prjclean.bat>prjclean.bat</a> is used to clean the product tree.  PRJCLEAN has the
+        following syntax:
+
+<p>        PRJCLEAN [all | everything]
+
+<p>        By default, PRJCLEAN simply iterates over the product directory tree
+        and deletes all files generated during the build.  However it does NOT
+        delete the files created in the DEBUG and RELEASE directories for your
+        project (or any other project).
+
+<p>        If the "all" option is used, PRJCLEAN will also additionally delete the
+        DEBUG and RELEASE directories for your project only.
+
+<p>        If the "everything" option is used, PRJCLEAN will additionally delete
+        the DEBUG and RELEASE directories for all projects in the product's
+        "projects" directory tree.
+
+<p>        <b>Note</b> -- The "all" and "everything" options are case sensitive and must
+        be lowercase.
+
+<p>        <h4>Using PRJCOPY</h4>
+
+<p>        prjcopy.bat is used to copy the results of a build into the proper
+        locations in the CE build tree.  Normally after a successful build,
+        prjcopy.bat will be automatically invoked.  However it may be run
+        manually as well.
+
+<p>        prjcopy.bat takes no command-line parameters.
+
+<p>        <h4>Switching to a Different Target CPU</h4>
+
+<p>        Some platforms and projects have no unique CPU code in the Project
+        Directory.  If you wish to create a project that can be used to target
+        different CPUs, simply edit the <a HREF=UD720_ProjectFiles.c.htm#prjinfo.bat>prjinfo.bat</a> file and change the
+        P_CPUFAMILY and P_CPUTYPE settings as desired.
+
+<p>        Prior to building, be sure you run PRJCLEAN to eliminate any previously
+        existing build related files, and then run PRJBUILD as usual to build
+        the product.  The resulting files will be located under the Project
+        Directory in the subdirectory tree corresponding to the new P_CPUTYPE
+        setting.
+
+<p>
+
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

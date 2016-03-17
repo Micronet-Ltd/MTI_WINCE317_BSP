@@ -1,0 +1,13 @@
+
+Demo title: 		IntroducingPVG
+
+Demonstrates: 		PVG format load
+
+Short Description:	PVG format load
+
+Full Description:	
+Basic Tutorial that shows step-by-step how to load a PVG file (exported from Illustrator) into OpenVG
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

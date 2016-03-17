@@ -1,0 +1,6 @@
+!if 0
+Common definitions for FlashFX build
+!endif
+
+!INCLUDE $(_TARGETPLATROOT)\sources.cmn
+

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DigVoice", "DigVoice\DigVoice.vcproj", "{6A53A327-3869-4D73-9615-2FDCC859A8C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|CE500_CORE (ARMV4I) = Debug|CE500_CORE (ARMV4I)
+		Release|CE500_CORE (ARMV4I) = Release|CE500_CORE (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A53A327-3869-4D73-9615-2FDCC859A8C5}.Debug|CE500_CORE (ARMV4I).ActiveCfg = Debug|CE500_CORE (ARMV4I)
+		{6A53A327-3869-4D73-9615-2FDCC859A8C5}.Debug|CE500_CORE (ARMV4I).Build.0 = Debug|CE500_CORE (ARMV4I)
+		{6A53A327-3869-4D73-9615-2FDCC859A8C5}.Debug|CE500_CORE (ARMV4I).Deploy.0 = Debug|CE500_CORE (ARMV4I)
+		{6A53A327-3869-4D73-9615-2FDCC859A8C5}.Release|CE500_CORE (ARMV4I).ActiveCfg = Release|CE500_CORE (ARMV4I)
+		{6A53A327-3869-4D73-9615-2FDCC859A8C5}.Release|CE500_CORE (ARMV4I).Build.0 = Release|CE500_CORE (ARMV4I)
+		{6A53A327-3869-4D73-9615-2FDCC859A8C5}.Release|CE500_CORE (ARMV4I).Deploy.0 = Release|CE500_CORE (ARMV4I)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

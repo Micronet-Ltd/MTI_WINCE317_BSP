@@ -1,0 +1,806 @@
+<html>
+<head>
+<title>
+DCL OS Services: Threads
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL OS Services: Threads
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL OS Services: Threads">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsSleep">DclOsSleep</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Sleep for the specified number of milliseconds.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadAttrCreate">DclOsThreadAttrCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Allocate a thread attributes object and initialize it with
+    default values.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadAttrDestroy">DclOsThreadAttrDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy a thread attributes object.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadAttrSetPriority">DclOsThreadAttrSetPriority</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set the thread priority attribute.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadAttrSetStackSize">DclOsThreadAttrSetStackSize</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set the stack size attribute.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadCreate">DclOsThreadCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a new thread of execution that calls the function pointed
+    to by pFunc with the argument pointer pArgs.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadDestroy">DclOsThreadDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy the specified thread and releases its resources.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadID">DclOsThreadID</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Return the thread ID for the current thread.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadResume">DclOsThreadResume</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Resume execution of a suspended thread.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadSuspend">DclOsThreadSuspend</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Suspend execution of the specified thread.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadTerminate">DclOsThreadTerminate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Terminate an active thread.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclOsThreadWait">DclOsThreadWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Cause execution of the current thread to wait for completion of
+    the specified thread.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclOsSleep"></a>
+<a NAME="DclOsSleep"></a>
+DclOsSleep
+</h3>
+<div class=Api>
+void <font class=ApiName>DclOsSleep</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> ulMilliseconds)
+</div>
+<div class=SectionText>
+
+    Sleep for the specified number of milliseconds.  This function
+    is typically used when running under a multitasking OS.  It is
+    called to allow other tasks or threads to run.
+
+<p>    Note that the behavior for a ulMilliseconds value of 0 is
+    undefined.  In some environments this may release the remainder
+    of the time slice, but that behavior must not be relied upon
+    when this function is called from in portable code.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+ulMilliseconds
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of milliseconds to sleep.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadAttrCreate"></a>
+<a NAME="DclOsThreadAttrCreate"></a>
+DclOsThreadAttrCreate
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADATTR>DCLTHREADATTR</a> *<font class=ApiName>DclOsThreadAttrCreate</font>(void)
+</div>
+<div class=SectionText>
+
+    Allocate a thread attributes object and initialize it with
+    default values.
+
+<p>    <h4>Parameters</h4>
+        None.
+
+<p>    <h4>Return Value</h4>
+        Returns a pointer to a thread attributes object (opaque type).
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadAttrDestroy"></a>
+<a NAME="DclOsThreadAttrDestroy"></a>
+DclOsThreadAttrDestroy
+</h3>
+<div class=Api>
+void <font class=ApiName>DclOsThreadAttrDestroy</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADATTR>DCLTHREADATTR</a> *pAttr)
+</div>
+<div class=SectionText>
+
+    Destroy a thread attributes object.
+
+<p>    It is an error for the caller to dereference pAttr after
+    this function returns.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pAttr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a thread attributes object previously
+                allocated with <a HREF="#DclOsThreadAttrCreate">DclOsThreadAttrCreate</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadAttrSetPriority"></a>
+<a NAME="DclOsThreadAttrSetPriority"></a>
+DclOsThreadAttrSetPriority
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadAttrSetPriority</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADATTR>DCLTHREADATTR</a>  *pAttr,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uPriority)
+</div>
+<div class=SectionText>
+
+    Set the thread priority attribute.  This function must be
+    called prior to calling <a HREF="#DclOsThreadCreate">DclOsThreadCreate</a>.  Dynamic
+    changing of thread priorities is not supported.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pAttr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the thread attributes object
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uPriority
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+One of the thread priority values defined in
+                      <a HREF=UD640_Headers.c.htm#dlosconf.h>dlosconf.h</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadAttrSetStackSize"></a>
+<a NAME="DclOsThreadAttrSetStackSize"></a>
+DclOsThreadAttrSetStackSize
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadAttrSetStackSize</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADATTR>DCLTHREADATTR</a>  *pAttr,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulStacksize)
+</div>
+<div class=SectionText>
+
+    Set the stack size attribute.  Threads created using this
+    thread attributes object will have at least this much stack
+    space allocated.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pAttr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+thread attributes object
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStackSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the stack size
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadCreate"></a>
+<a NAME="DclOsThreadCreate"></a>
+DclOsThreadCreate
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADHANDLE>DCLTHREADHANDLE</a>    *phThread,<br>&nbsp;&nbsp;&nbsp;
+    char               *pszName,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADATTR>DCLTHREADATTR</a>      *pAttr,<br>&nbsp;&nbsp;&nbsp;
+    DCLTHREADFUNC       pFunc,<br>&nbsp;&nbsp;&nbsp;
+    void               *pArg)
+</div>
+<div class=SectionText>
+
+    Create a new thread of execution that calls the function pointed
+    to by pFunc with the argument pointer pArgs.
+
+<p>    If phThread is not NULL, a handle representing the thread is
+    returned.
+
+<p>    Characteristics of the thread may be controlled using a
+    thread attributes object pointed to by pAttr.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+phThread
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a location to receive a handle for
+                   the new thread.  May be NULL if the thread handle
+                   is not desired.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszName
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated thread name.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pAttr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the attributes object describing the
+                   thread to be created.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pFunc
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the entry point of the thread.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pArgs
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an argument passed to the thread.
+                   May be NULL if no argument is required.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadDestroy"></a>
+<a NAME="DclOsThreadDestroy"></a>
+DclOsThreadDestroy
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadDestroy</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADHANDLE>DCLTHREADHANDLE</a> hThread)
+</div>
+<div class=SectionText>
+
+    Destroy the specified thread and releases its resources.  This
+    function is corollary to <a HREF="#DclOsThreadCreate">DclOsThreadCreate</a>.  It must not be used
+    to terminate a running thread.  The thread must have either
+    exited normally, or have been terminated prior to calling this
+    function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hThread
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The target thread to destroy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadID"></a>
+<a NAME="DclOsThreadID"></a>
+DclOsThreadID
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADID>DCLTHREADID</a> <font class=ApiName>DclOsThreadID</font>(void)
+</div>
+<div class=SectionText>
+
+    Return the thread ID for the current thread.  A valid thread ID
+    may never be zero.
+
+<p>    Note that this function must be implemented even if the
+    <a HREF=UD700_OSAbstractionSymbols.c.htm#DCL_OSFEATURE_THREADS>DCL_OSFEATURE_THREADS</a> setting is FALSE.  In an environment
+    where threading is disabled or not supported, this function
+    should be stubbed to return any legal (non-zero) value.
+
+<p>    <h4>Parameters</h4>
+        None.
+
+<p>    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADID>DCLTHREADID</a> value if successful, otherwise zero.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadResume"></a>
+<a NAME="DclOsThreadResume"></a>
+DclOsThreadResume
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadResume</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADHANDLE>DCLTHREADHANDLE</a> hThread)
+</div>
+<div class=SectionText>
+
+    Resume execution of a suspended thread.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hThread
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The target thread to resume
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadSuspend"></a>
+<a NAME="DclOsThreadSuspend"></a>
+DclOsThreadSuspend
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadSuspend</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADHANDLE>DCLTHREADHANDLE</a> hThread)
+</div>
+<div class=SectionText>
+
+    Suspend execution of the specified thread.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hThread
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The target thread to suspend
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadTerminate"></a>
+<a NAME="DclOsThreadTerminate"></a>
+DclOsThreadTerminate
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadTerminate</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADHANDLE>DCLTHREADHANDLE</a> hThread)
+</div>
+<div class=SectionText>
+
+    Terminate an active thread.  It should only be used in extreme
+    circumstances if the thread cannot complete its execution run
+    normally.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hThread
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The target thread to terminate
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclOsThreadWait"></a>
+<a NAME="DclOsThreadWait"></a>
+DclOsThreadWait
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclOsThreadWait</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLTHREADHANDLE>DCLTHREADHANDLE</a> hThread,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> ulTimeout)
+</div>
+<div class=SectionText>
+
+    Cause execution of the current thread to wait for completion of
+    the specified thread.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hThread
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The target thread to wait on.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulTimeout
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The timeout value in milliseconds.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> code indicating the result.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

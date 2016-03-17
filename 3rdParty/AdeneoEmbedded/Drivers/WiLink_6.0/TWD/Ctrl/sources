@@ -1,0 +1,21 @@
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=Ctrl
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+CmdQueue.c \
+CmdBld.c \
+CmdBldCfg.c \
+CmdBldCfgIE.c \
+CmdBldCmd.c \
+CmdBldCmdIE.c \
+CmdBldItr.c \
+CmdBldItrIE.c
+

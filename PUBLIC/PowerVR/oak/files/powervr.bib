@@ -1,0 +1,208 @@
+; Copyright (C) 2010 Texas Instruments Incorporated - http://www.ti.com/ 
+; ALL RIGHTS RESERVED 
+;
+; Copyright (c) Microsoft Corporation.  All rights reserved.
+;
+;
+; Use of this sample source code is subject to the terms of the Microsoft
+; license agreement under which you licensed this sample source code. If
+; you did not accept the terms of the license agreement, you are not
+; authorized to use this sample source code. For the terms of the license,
+; please see the license agreement between you and Microsoft or, if applicable,
+; see the LICENSE.RTF on your install media or the root of your tools installation.
+; THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+;
+
+;###############################################################################
+; Detect the appropriate SGX Default selection to minimize Boot-up time.
+
+#if ! defined DEFAULT_SGX_REV
+#if  $(SYSGEN_PVR_SGXCOREREV_121)==1
+#if  $(SYSGEN_PVR_SGXCOREREV_125)!=1
+#define DEFAULT_SGX_REV 121
+#else
+#define DEFAULT_SGX_REV 125
+#endif
+#else
+#define DEFAULT_SGX_REV 125
+#endif
+#endif
+
+#if $(DEFAULT_SGX_REV)==121
+#define SGX_DIR Rev121
+#define REV121_SUFFIX
+#define REV125_SUFFIX _Rev125
+#endif
+#if $(DEFAULT_SGX_REV)==125
+#define SGX_DIR Rev125
+#define REV121_SUFFIX _Rev121
+#define REV125_SUFFIX
+#endif
+
+#if !defined SGX_DIR
+#error POWERVR: Invalid DEFAULT_SGX_REV defined "$(DEFAULT_SGX_REV)"
+#endif
+
+#message POWERVR: Selected SGX Revision "$(DEFAULT_SGX_REV)"
+
+################################################################################
+
+MODULES
+;  Name            	Path                                           Memory Type
+;  --------------  	---------------------------------------------  -----------
+; @CESYSGEN IF POWERVR_MODULES_PVRPDP
+; @CESYSGEN ENDIF
+; @CESYSGEN IF POWERVR_MODULES_DC_NOHW
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_GPE || POWERVR_MODULES_OMAPSGXGPE
+IF BSP_MODIFY_DDI
+ELSE
+;ddi_powervr.dll	$(_FLATRELEASEDIR)\ddi_powervr.dll				NK	SHK
+wince6_proxy.dll	$(_FLATRELEASEDIR)\wince6_proxy.dll				NK	SHK
+ENDIF
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_DC_VESA
+; @CESYSGEN ENDIF
+
+; Exception for Default SGX Revision Settings
+IF SYSGEN_PVR_SGXCOREREV_125
+srvkm_Rev125.dll		$(_FLATRELEASEDIR)\srvkm_Rev125.dll			NK	SHK
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+srvkm_Rev121.dll		$(_FLATRELEASEDIR)\srvkm_Rev121.dll			NK	SHK
+ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_PDUMP
+; @CESYSGEN ENDIF
+
+FILES
+;  Name            Path                                           Memory Type
+;  --------------  ---------------------------------------------  -----------
+; ---------------  POWERVR --------------------------------------------------
+;
+; Services binaries 
+IF SYSGEN_PVR_SGXCOREREV_125
+srvclum$(REV125_SUFFIX).dll			$(_FLATRELEASEDIR)\srvclum$(REV125_SUFFIX).dll			NK	SH
+; @CESYSGEN IF POWERVR_MODULES_SERVICES4VGX 
+; @CESYSGEN ELSE 
+services_test$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\services_test$(REV125_SUFFIX).exe	NK	SH
+sgx_blit_test$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_blit_test$(REV125_SUFFIX).exe	NK	SH
+sgx_flip_test$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_flip_test$(REV125_SUFFIX).exe	NK	SH
+sgx_init_test$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_init_test$(REV125_SUFFIX).exe	NK	SH
+sgx_render_flip_test$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_render_flip_test$(REV125_SUFFIX).exe									NK	SH
+sgx_clipblit_test$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_clipblit_test$(REV125_SUFFIX).exe									NK	SH
+; @CESYSGEN ENDIF
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+srvclum$(REV121_SUFFIX).dll			$(_FLATRELEASEDIR)\srvclum$(REV121_SUFFIX).dll			NK	SH
+; @CESYSGEN IF POWERVR_MODULES_SERVICES4VGX 
+; @CESYSGEN ELSE 
+services_test$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\services_test$(REV121_SUFFIX).exe	NK	SH
+sgx_blit_test$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_blit_test$(REV121_SUFFIX).exe	NK	SH
+sgx_flip_test$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_flip_test$(REV121_SUFFIX).exe	NK	SH
+sgx_init_test$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_init_test$(REV121_SUFFIX).exe	NK	SH
+sgx_render_flip_test$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_render_flip_test$(REV121_SUFFIX).exe									NK	SH
+sgx_clipblit_test$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\sgx_clipblit_test$(REV121_SUFFIX).exe									NK	SH
+; @CESYSGEN ENDIF
+ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_PVR2D
+; @CESYSGEN ENDIF
+
+; EGL libraries
+; @CESYSGEN IF POWERVR_MODULES_OPENGLES1 || POWERVR_MODULES_OPENGLES2 || POWERVR_MODULES_OPENGL2 || POWERVR_MODULES_OPENVG
+eglinfo.exe		$(_FLATRELEASEDIR)\eglinfo.exe		NK	SH
+
+IF SYSGEN_PVR_SGXCOREREV_121
+libimgegl$(REV121_SUFFIX).dll	$(_FLATRELEASEDIR)\libimgegl$(REV121_SUFFIX).dll		NK	SH
+libegl$(REV121_SUFFIX).dll		$(_FLATRELEASEDIR)\libegl$(REV121_SUFFIX).dll		NK	SH
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_125
+libimgegl$(REV125_SUFFIX).dll	$(_FLATRELEASEDIR)\libimgegl$(REV125_SUFFIX).dll		NK	SH
+libegl$(REV125_SUFFIX).dll		$(_FLATRELEASEDIR)\libegl$(REV125_SUFFIX).dll		NK	SH
+ENDIF
+
+; WSEGL
+IF SYSGEN_PVR_SGXCOREREV_125
+nullws$(REV125_SUFFIX).dll		$(_FLATRELEASEDIR)\nullws$(REV125_SUFFIX).dll		NK	SH
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+nullws$(REV121_SUFFIX).dll		$(_FLATRELEASEDIR)\nullws$(REV121_SUFFIX).dll		NK	SH
+ENDIF
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_OPENGL2
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_OGLCOMPILER
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_OPENGLES1
+; OpenGLES1 binaries
+IF SYSGEN_PVR_SGXCOREREV_125
+libGLES_CM$(REV125_SUFFIX).dll		$(_FLATRELEASEDIR)\libGLES_CM$(REV125_SUFFIX).dll		NK	SH
+gles1test1$(REV125_SUFFIX).exe		$(_FLATRELEASEDIR)\gles1test1$(REV125_SUFFIX).exe		NK	SH
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+libGLES_CM$(REV121_SUFFIX).dll		$(_FLATRELEASEDIR)\libGLES_CM$(REV121_SUFFIX).dll		NK	SH
+gles1test1$(REV121_SUFFIX).exe		$(_FLATRELEASEDIR)\gles1test1$(REV121_SUFFIX).exe		NK	SH
+ENDIF
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_OPENGLES2
+; OpenGLES2 binaries
+IF SYSGEN_PVR_SGXCOREREV_125
+libglesv2$(REV125_SUFFIX).dll	$(_FLATRELEASEDIR)\libglesv2$(REV125_SUFFIX).dll			NK	SH
+gles2test1$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\gles2test1$(REV125_SUFFIX).exe			NK	SH
+gles2_texture_stream$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\gles2_texture_stream$(REV125_SUFFIX).exe		NK	SH
+glslcompiler$(REV125_SUFFIX).dll		$(_FLATRELEASEDIR)\glslcompiler$(REV125_SUFFIX).dll	NK	SH
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+libglesv2$(REV121_SUFFIX).dll	$(_FLATRELEASEDIR)\libglesv2$(REV121_SUFFIX).dll			NK	SH
+gles2test1$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\gles2test1$(REV121_SUFFIX).exe			NK	SH
+gles2_texture_stream$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\gles2_texture_stream$(REV121_SUFFIX).exe									NK	SH
+glslcompiler$(REV121_SUFFIX).dll		$(_FLATRELEASEDIR)\glslcompiler$(REV121_SUFFIX).dll	NK	SH
+ENDIF
+glsltest1_fragshaderA.txt	$(_PUBLICROOT)\powervr\oak\data\glsltest1_fragshaderA.txt	NK	U
+glsltest1_fragshaderB.txt	$(_PUBLICROOT)\powervr\oak\data\glsltest1_fragshaderB.txt	NK	U
+glsltest1_vertshader.txt	$(_PUBLICROOT)\powervr\oak\data\glsltest1_vertshader.txt	NK	U
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_OPENVG
+; OpenVG binaries
+IF SYSGEN_PVR_SGXCOREREV_125
+libopenvg$(REV125_SUFFIX).dll		$(_FLATRELEASEDIR)\libopenvg$(REV125_SUFFIX).dll			NK	SH
+libopenvgu$(REV125_SUFFIX).dll		$(_FLATRELEASEDIR)\libopenvgu$(REV125_SUFFIX).dll			NK	SH
+ovg_unit_test$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\ovg_unit_test$(REV125_SUFFIX).exe		NK	SH
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+libopenvg$(REV121_SUFFIX).dll		$(_FLATRELEASEDIR)\libopenvg$(REV121_SUFFIX).dll			NK	SH
+libopenvgu$(REV121_SUFFIX).dll		$(_FLATRELEASEDIR)\libopenvgu$(REV121_SUFFIX).dll			NK	SH
+ovg_unit_test$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\ovg_unit_test$(REV121_SUFFIX).exe		NK	SH
+ENDIF
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_BC_EXAMPLE
+IF SYSGEN_PVR_SGXCOREREV_125
+bc_example$(REV125_SUFFIX).dll			$(_FLATRELEASEDIR)\bc_example$(REV125_SUFFIX).dll	NK	SH
+gles1_texture_stream$(REV125_SUFFIX).exe	$(_FLATRELEASEDIR)\gles1_texture_stream$(REV125_SUFFIX).exe		NK	SH
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+bc_example$(REV121_SUFFIX).dll			$(_FLATRELEASEDIR)\bc_example$(REV121_SUFFIX).dll	NK	SH
+gles1_texture_stream$(REV121_SUFFIX).exe	$(_FLATRELEASEDIR)\gles1_texture_stream$(REV121_SUFFIX).exe		NK	SH
+ENDIF
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_PDUMP
+; @CESYSGEN ENDIF
+
+; @CESYSGEN IF POWERVR_MODULES_PVRSCOPESERVICES
+IF SYSGEN_PVR_SGXCOREREV_125
+pvrscopeservices$(REV125_SUFFIX).dll		$(_FLATRELEASEDIR)\pvrscopeservices$(REV125_SUFFIX).dll		NK	SH
+ENDIF
+IF SYSGEN_PVR_SGXCOREREV_121
+pvrscopeservices$(REV121_SUFFIX).dll		$(_FLATRELEASEDIR)\pvrscopeservices$(REV121_SUFFIX).dll		NK	SH
+ENDIF
+; @CESYSGEN ENDIF

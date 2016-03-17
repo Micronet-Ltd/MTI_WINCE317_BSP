@@ -1,0 +1,14 @@
+;
+;               Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+;
+;   Use of this software is controlled by the terms and conditions found
+;   in the license agreement under which this software has been supplied.
+;
+;===============================================================================
+IF BSP_BSQUARE_FLASH_DEMO=1
+root:-Directory("\Windows")
+Directory("\Windows"):-Directory("LOC_DESKTOP_DIR")
+Directory("\Windows\LOC_DESKTOP_DIR"):-File("Welcome Tour.lnk", "\Windows\Welcome Tour.lnk")
+ENDIF

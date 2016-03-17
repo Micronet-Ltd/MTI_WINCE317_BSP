@@ -1,0 +1,11 @@
+Demo title: 		Paints
+
+Demonstrates: 		How to use the OpenVG paints to fill a path
+Short Description:	How to use the OpenVG paints to fill a path
+
+Full Description:	
+This training course shows how to fill a path with an OpenVG paint. The paints shown are colour, linear gradient and radial gradient.
+
+VGP: 			Not Required
+Polygon Count: 		0
+Vertex Count: 		0

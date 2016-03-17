@@ -1,0 +1,41 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+!if 0
+Copyright (c) Texas Instruments Incorporated.  All rights reserved.
+!endif
+
+!IF "$(BSP_NOTOUCH)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+
+TARGETNAME=touch
+TARGETTYPE=DYNLINK
+
+PREPROCESSDEFFILE=1
+DEFFILE=$(_COMMONOAKROOT)\INC\touch.def
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+INCLUDES=$(INCLUDES);$(_TARGETPLATROOT)\src\inc; 
+DLLENTRY=_DllMainCRTStartup
+
+SOURCES=\
+     touchscreen.cpp
+
+SOURCELIBS= \
+        $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\tch_cal.lib \
+        $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\tchmdd.lib  
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib
+

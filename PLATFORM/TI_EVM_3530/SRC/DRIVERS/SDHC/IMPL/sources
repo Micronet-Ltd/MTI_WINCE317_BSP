@@ -1,0 +1,60 @@
+!if 0
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+!endif
+
+!IF "$(BSP_NOSDHC)" == "1"
+SKIPBUILD=1
+!ENDIF
+
+TARGETNAME=sdhc
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+DLLENTRY=_DllEntryCRTStartup
+
+DEFFILE=sdhc.def
+PREPROCESSDEFFILE=1
+
+# OMAP hardware can use direct access to memory
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+!IF "$(SD_4BIT_SUPPORT)" == "1"
+CDEFINES=$(CDEFINES) -DSD_4BIT_SUPPORT
+!ENDIF
+
+!IF "$(MMCHS1_LOW_VOLTAGE)" == "1"
+CDEFINES=$(CDEFINES) -DMMCHS1_LOW_VOLTAGE
+!ENDIF
+
+!IF "$(MMCHS2_LOW_VOLTAGE)" == "1"
+CDEFINES=$(CDEFINES) -DMMCHS2_LOW_VOLTAGE
+!ENDIF
+
+    
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib 
+    
+
+    
+SOURCELIBS= \
+     $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\sdcardlib.lib \
+     $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\sdhclib.lib \
+     $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\sdbus.lib \
+     $(_PLATCOMMONLIB)\$(_CPUINDPATH)\sdhcbase_omap35xx_tps659xx_ti_v1.lib \
+    
+INCLUDES=\
+    $(INCLUDES);                            \
+	$(_TARGETPLATROOT)\SRC\sdk\inc;			\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\GPRS;			\
+	    
+SOURCES= \
+    SDController.cpp 
+          

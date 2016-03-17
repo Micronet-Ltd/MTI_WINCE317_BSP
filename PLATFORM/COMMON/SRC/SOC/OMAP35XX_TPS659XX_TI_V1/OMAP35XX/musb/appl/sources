@@ -1,0 +1,17 @@
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+TARGETNAME=musb_sessreq_omap35xx_tps659xx_ti_v1
+TARGETTYPE=PROGRAM
+SYNCHRONIZE_DRAIN=1
+
+INCLUDES = $(INCLUDES);$(_PLATFORMROOT)\COMMON\src\soc\omap35xx_tps659xx_ti_v1\omap35xx\musb\include;
+
+
+SOURCELIBS=\
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+
+
+SOURCES= \
+    musb_sessreq.cpp \
+

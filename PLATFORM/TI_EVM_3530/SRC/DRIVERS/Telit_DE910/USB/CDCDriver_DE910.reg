@@ -1,0 +1,130 @@
+[HKEY_LOCAL_MACHINE\Comm\CdcSerial]
+    "RemoteWakeUp"=dword:1     
+	"DeviceTimeOut"=dword:3E8 
+	
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\CdcSerial1]
+;   "Prefix"="COM"
+   "Dll"="CDCDRIVER.DLL"
+
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\CdcSerial2]
+;   "Prefix"="COM"
+   "Dll"="CDCDRIVER.DLL"
+   
+[HKEY_LOCAL_MACHINE\Drivers\USB\ClientDrivers\CdcSerial3]
+;   "Prefix"="COM"
+   "Dll"="CDCDRIVER.DLL"
+   
+; UC864-E modem
+;[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4099\Default\Default\CdcSerial]
+;   "Dll"="CDCDRIVER.DLL"
+;   "Prefix"="COM"
+;   "Index"=dword:0
+;   "Order"=dword:0
+;   "DeviceArrayIndex"=dword:0
+;   "Irq"=dword:0			
+;   "IoLen"=dword:10
+      
+; UC864-G (GT863-3GG) modem primary port
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4100\Default\Default\CdcSerial]
+   "Dll"="CDCDRIVER.DLL"
+   "Prefix"="COM"
+   "Index"=dword:6
+   "Order"=dword:0
+   "DeviceArrayIndex"=dword:0
+   "Irq"=dword:0			
+   "IoLen"=dword:10
+
+; UC864-G modem secondary port
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4100\Default\Default\CdcSerial3]
+   "Dll"="CDCDRIVER.DLL"
+   "Prefix"="COM"
+   "Index"=dword:8
+   "Order"=dword:0
+   "DeviceArrayIndex"=dword:3
+   "Irq"=dword:0			
+   "IoLen"=dword:10	
+   
+; UC864-G GPS
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4100\Default\Default\CdcSerial2]
+   "Dll"="CDCDRIVER.DLL"
+   "Prefix"="TLT"
+   "Index"=dword:7
+   "Order"=dword:0
+   "DeviceArrayIndex"=dword:2
+   "Irq"=dword:0			
+   "IoLen"=dword:10   
+
+; CC864-DUAL modem
+;[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4101\Default\Default\CdcSerial]
+;   "Dll"="CDCDRIVER.DLL"
+;   "Prefix"="TLT"
+;   "Index"=dword:0
+;   "Order"=dword:0
+;   "DeviceArrayIndex"=dword:0
+;   "Irq"=dword:0			
+;   "IoLen"=dword:10			
+   
+; CC864-DUAL GPS      
+;[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4101\Default\Default\CdcSerial2]
+;   "Dll"="CDCDRIVER.DLL"
+;   "Prefix"="TLT"
+;   "Index"=dword:7
+;   "Order"=dword:0
+;   "DeviceArrayIndex"=dword:2
+;   "Irq"=dword:0			
+;   "IoLen"=dword:10
+   
+; CC864-SINGLE modem   
+;[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4102\Default\Default\CdcSerial]
+;   "Dll"="CDCDRIVER.DLL"
+;   "Prefix"="TLT"
+;   "Index"=dword:0
+;   "Order"=dword:0
+;   "DeviceArrayIndex"=dword:0
+;   "Irq"=dword:0                         
+;   "IoLen"=dword:10 
+      
+; DE910 modem primary port
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4112\Default\Default\CdcSerial3]
+   "Dll"="CDCDRIVER.DLL"
+   "Prefix"="COM"
+   "Index"=dword:6
+   "Order"=dword:0
+   "DeviceArrayIndex"=dword:3
+   "Irq"=dword:0			
+   "IoLen"=dword:10		
+
+; DE910 modem secondary port   
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4112\Default\Default\CdcSerial2]
+   "Dll"="CDCDRIVER.DLL"
+   "Prefix"="COM"
+   "Index"=dword:8
+   "Order"=dword:0
+   "DeviceArrayIndex"=dword:2
+   "Irq"=dword:0			
+   "IoLen"=dword:10   	
+	      
+; DE910 GPS
+[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4112\Default\Default\CdcSerial1]
+   "Dll"="CDCDRIVER.DLL"
+   "Prefix"="TLT"
+   "Index"=dword:7
+   "Order"=dword:0
+   "DeviceArrayIndex"=dword:1
+   "Irq"=dword:0			
+   "IoLen"=dword:10			
+   "Ver"=hex:20,08,02,12,00,00
+
+; CE910 modem
+;[HKEY_LOCAL_MACHINE\Drivers\USB\LoadClients\7111_4113\Default\Default\CdcSerial2]
+;   "Dll"="CDCDRIVER.DLL"
+;   "Prefix"="TLT"
+;   "Index"=dword:0
+;   "Order"=dword:0
+;   "DeviceArrayIndex"=dword:1
+;   "Irq"=dword:0			
+;   "IoLen"=dword:10
+
+
+   
+

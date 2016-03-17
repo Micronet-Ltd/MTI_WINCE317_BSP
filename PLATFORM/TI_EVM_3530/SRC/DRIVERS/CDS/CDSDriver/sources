@@ -1,0 +1,28 @@
+TARGETNAME=cds
+
+DLLENTRY=_DllMainCRTStartup
+
+SOURCES= \
+    cds.cpp \
+
+TARGETTYPE=DYNLINK
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+TARGETLIBS= \
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\bsp_drvlib.lib \
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib
+
+TARGETDEFNAME=cds
+DEFFILE=$(TARGETDEFNAME).def
+
+INCLUDES= \
+    $(INCLUDES); \
+    $(_TARGETPLATROOT)\SRC\SDK\INC; \
+	$(_TARGETPLATROOT)\SRC\DRIVERS\pwrkey;
+
+FILE_VIEW_INCLUDES_FOLDER= \
+    cds.h \
+    cdsInterface.h \
+

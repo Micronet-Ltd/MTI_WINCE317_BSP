@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "btmodem_service_test", "btmodem_service_test.vcproj", "{1616A678-4DB9-411F-8EC9-108489529351}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|CE500_CORE (ARMV4I) = Debug|CE500_CORE (ARMV4I)
+		Debug|CE500_PRO (ARMV4I) = Debug|CE500_PRO (ARMV4I)
+		Debug|Platform Builder (_TGTCPU) = Debug|Platform Builder (_TGTCPU)
+		Debug|Pocket PC 2003 (ARMV4) = Debug|Pocket PC 2003 (ARMV4)
+		Debug|Smartphone 2003 (ARMV4) = Debug|Smartphone 2003 (ARMV4)
+		Release|CE500_CORE (ARMV4I) = Release|CE500_CORE (ARMV4I)
+		Release|CE500_PRO (ARMV4I) = Release|CE500_PRO (ARMV4I)
+		Release|Platform Builder (_TGTCPU) = Release|Platform Builder (_TGTCPU)
+		Release|Pocket PC 2003 (ARMV4) = Release|Pocket PC 2003 (ARMV4)
+		Release|Smartphone 2003 (ARMV4) = Release|Smartphone 2003 (ARMV4)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|CE500_CORE (ARMV4I).ActiveCfg = Debug|CE500_CORE (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|CE500_CORE (ARMV4I).Build.0 = Debug|CE500_CORE (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|CE500_CORE (ARMV4I).Deploy.0 = Debug|CE500_CORE (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|CE500_PRO (ARMV4I).ActiveCfg = Debug|CE500_PRO (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|CE500_PRO (ARMV4I).Build.0 = Debug|CE500_PRO (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|CE500_PRO (ARMV4I).Deploy.0 = Debug|CE500_PRO (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Platform Builder (_TGTCPU).ActiveCfg = Debug|Platform Builder (_TGTCPU)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Platform Builder (_TGTCPU).Build.0 = Debug|Platform Builder (_TGTCPU)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Platform Builder (_TGTCPU).Deploy.0 = Debug|Platform Builder (_TGTCPU)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Pocket PC 2003 (ARMV4).ActiveCfg = Debug|Pocket PC 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Pocket PC 2003 (ARMV4).Build.0 = Debug|Pocket PC 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Pocket PC 2003 (ARMV4).Deploy.0 = Debug|Pocket PC 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Smartphone 2003 (ARMV4).ActiveCfg = Debug|Smartphone 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Smartphone 2003 (ARMV4).Build.0 = Debug|Smartphone 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Debug|Smartphone 2003 (ARMV4).Deploy.0 = Debug|Smartphone 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|CE500_CORE (ARMV4I).ActiveCfg = Release|CE500_CORE (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|CE500_CORE (ARMV4I).Build.0 = Release|CE500_CORE (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|CE500_CORE (ARMV4I).Deploy.0 = Release|CE500_CORE (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|CE500_PRO (ARMV4I).ActiveCfg = Release|CE500_PRO (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|CE500_PRO (ARMV4I).Build.0 = Release|CE500_PRO (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|CE500_PRO (ARMV4I).Deploy.0 = Release|CE500_PRO (ARMV4I)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Platform Builder (_TGTCPU).ActiveCfg = Release|Platform Builder (_TGTCPU)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Platform Builder (_TGTCPU).Build.0 = Release|Platform Builder (_TGTCPU)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Platform Builder (_TGTCPU).Deploy.0 = Release|Platform Builder (_TGTCPU)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Pocket PC 2003 (ARMV4).ActiveCfg = Release|Pocket PC 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Pocket PC 2003 (ARMV4).Build.0 = Release|Pocket PC 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Pocket PC 2003 (ARMV4).Deploy.0 = Release|Pocket PC 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Smartphone 2003 (ARMV4).ActiveCfg = Release|Smartphone 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Smartphone 2003 (ARMV4).Build.0 = Release|Smartphone 2003 (ARMV4)
+		{1616A678-4DB9-411F-8EC9-108489529351}.Release|Smartphone 2003 (ARMV4).Deploy.0 = Release|Smartphone 2003 (ARMV4)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

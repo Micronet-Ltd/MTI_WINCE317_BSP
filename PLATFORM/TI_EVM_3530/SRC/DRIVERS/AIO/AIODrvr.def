@@ -1,0 +1,13 @@
+LIBRARY 	AIODrvr
+
+EXPORTS
+   AIO_Init
+   AIO_Deinit
+   AIO_Open
+   AIO_Close
+   AIO_Read
+   AIO_Write
+   AIO_Seek
+   AIO_PowerUp
+   AIO_PowerDown
+   AIO_IOControl

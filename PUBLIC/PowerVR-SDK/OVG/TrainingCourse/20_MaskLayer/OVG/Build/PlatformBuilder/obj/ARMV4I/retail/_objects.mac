@@ -1,0 +1,8 @@
+OBJECTS=\
+    obj\ARMV4I\retail\OVGMaskLayer.obj\
+    obj\ARMV4I\retail\mask1.obj\
+    obj\ARMV4I\retail\mask2.obj\
+    obj\ARMV4I\retail\PVRShell.obj\
+    obj\ARMV4I\retail\PVRShellOS.obj\
+    obj\ARMV4I\retail\PVRShellAPI.obj
+

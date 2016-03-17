@@ -1,0 +1,68 @@
+
+!ifndef SDKROOT
+!error SDKROOT is undefined. 
+!endif
+
+!INCLUDE $(SDKROOT)\Builds\PlatformBuilder\sources.cmn
+
+API=OGLES2
+TARGETNAME=$(API)PVREngine
+TARGETTYPE=LIBRARY
+
+SHELLROOT    = $(SDKROOT)\Shell
+SHELLAPIROOT = $(SDKROOT)\Shell\API\KEGL
+SHELLOSROOT  = $(SDKROOT)\Shell\OS\Windows
+
+WINCETARGETFILE0=\
+	$(OBJDIR)\BoundingBox.obj		\
+	$(OBJDIR)\BoundingHex.obj		\
+	$(OBJDIR)\ConsoleLog.obj 		\
+	$(OBJDIR)\LightBase.obj 		\
+	$(OBJDIR)\LightManager.obj		\
+	$(OBJDIR)\MaterialBase.obj		\
+	$(OBJDIR)\MaterialManager.obj 	\
+	$(OBJDIR)\MeshBase.obj			\
+	$(OBJDIR)\MeshManager.obj		\
+	$(OBJDIR)\Option.obj			\
+	$(OBJDIR)\OptionsMenu.obj 		\
+	$(OBJDIR)\PVRESettingsBase.obj	\
+	$(OBJDIR)\PVREngine.obj			\
+	$(OBJDIR)\Plane.obj				\
+	$(OBJDIR)\SimpleCamera.obj		\
+	$(OBJDIR)\TextureBase.obj		\
+	$(OBJDIR)\TextureManager.obj 	\
+	$(OBJDIR)\TimeController.obj	\
+	$(OBJDIR)\UniformBase.obj		\
+	$(OBJDIR)\UniformHandlerBase.obj \
+	$(OBJDIR)\ContextManager.obj	\
+	$(OBJDIR)\Light.obj				\
+	$(OBJDIR)\Material.obj			\
+	$(OBJDIR)\Mesh.obj				\
+	$(OBJDIR)\PVRESettings.obj 		\
+	$(OBJDIR)\Texture.obj			\
+	$(OBJDIR)\Uniform.obj			\
+	$(OBJDIR)\UniformHandler.obj 	\
+	$(OBJDIR)\PVRShell.obj			\
+	$(OBJDIR)\PVRShellAPI.obj		\
+	$(OBJDIR)\PVRShellOS.obj		
+
+
+CDEFINES = $(CDEFINES) -DBUILD_$(API)=1
+
+INCLUDES=\
+	$(INCLUDES)								\
+	..\..\..\Include;						\
+	..\..\..\Include\OGLES2;				\
+	$(SDKROOT)\Tools;						\
+	$(SDKROOT)\Tools\OGLES2;				\
+	$(SDKROOT)\Builds\OGLES2\Include;		\
+	$(SDKROOT)\Builds\OGLES2\WindowsPC\Include;	\
+	$(SHELLROOT);							\
+	$(SHELLAPIROOT);						\
+	$(SHELLOSROOT);
+
+SOURCES=
+	 
+SOURCELIBS = $(WINCETARGETFILE0)
+
+	

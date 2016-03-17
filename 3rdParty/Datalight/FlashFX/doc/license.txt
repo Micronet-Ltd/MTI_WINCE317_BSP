@@ -1,0 +1,75 @@
+                 Datalight Software Development Kit
+                          LICENSE AGREEMENT
+
+    YOU SHOULD CAREFULLY READ THE FOLLOWING TERMS AND CONDITIONS
+    BEFORE INSTALLING THIS PACKAGE.  INSTALLING THIS PACKAGE INDICATES
+    YOUR ACCEPTANCE OF THESE TERMS AND CONDITIONS.  IF YOU DO
+    NOT AGREE WITH THESE TERMS AND CONDITIONS, YOU SHOULD PROMPTLY
+    RETURN THE SOFTWARE.
+
+The software and documentation (Information) to be installed is Datalight
+confidential and proprietary.
+
+Recipient acknowledges that the Information constitutes the proprietary trade
+secret property of Datalight and is subject to disclosure and use restrictions
+imposed by Datalight.
+
+Recipient agrees that all software installed shall be governed by the following
+terms and conditions:
+
+                        Handling Information
+
+Recipient shall maintain the Information in confidence, and limit the
+disclosure of the Information only to those of its employees who must
+necessarily use the Information for the purpose set forth in a signed
+FlashFX Tera Non-Disclosure Agreement or a signed FlashFX Tera OEM License
+Agreement.  Recipient shall use its best efforts to ensure that its employees
+and agents do not violate the terms of this Agreement and shall notify
+Datalight immediately upon the violation of this Agreement.
+
+                         Limitations on Use
+
+Recipient may use or copy the Information, in whole or in part, solely for its
+own internal use.
+
+You must have either a signed FlashFX Tera Non-Disclosure Agreement or a signed
+FlashFX Tera OEM License Agreement to use the information in any way.
+
+                           Applicable Law
+
+This Agreement shall be governed by the laws of the State of Washington,
+without regard to its choice of law rules.  Recipient hereby consents to venue
+and jurisdiction of the state and federal courts located in Seattle, King County,
+Washington.  All rights granted in this Agreement are cumulative and in addition
+to any rights at law or equity.  The parties agree that Information disclosed
+hereunder shall be deemed Trade Secrets as defined in the Washington
+Uniform Trade Secrets Act.
+
+                         Injunctive Relief
+
+Recipient acknowledges that disclosure or use of any Information in violation of
+the terms of this Agreement will irreparably injure Datalight, which injury could
+not adequately be compensated by money damages.  Accordingly, Recipient
+agrees that Datalight may seek and obtain injunctive relief from the breach or
+threatened breach of any provision, requirement or covenant of this Agreement,
+in addition to and not in limitation of any other legal remedies.
+
+                          Attorneys Fees
+
+This Agreement is specifically enforceable without proof of monetary damages.
+In any action to enforce this Agreement which includes, as applicable, gaining
+injunctive relief, the prevailing party shall be entitled to recover, in addition
+to all other relief, its reasonable attorneys' fees, costs and expenses incurred
+in such enforcement action.
+
+
+Datalight, Inc.
+21520 30th Drive SE,
+Suite 110
+Bothell, WA 98021 USA
+
+Tel:	425-951-8086
+	800-221-6630
+Fax:	425-951-8094
+Web:	http://www.datalight.com
+

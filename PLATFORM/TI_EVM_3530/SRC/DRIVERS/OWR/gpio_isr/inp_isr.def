@@ -1,0 +1,7 @@
+LIBRARY inp_isr
+
+EXPORTS
+	ISRHandler
+	CreateInstance
+	DestroyInstance
+	IOControl

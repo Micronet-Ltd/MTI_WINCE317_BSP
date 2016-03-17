@@ -1,0 +1,56 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+#include <windows.h>
+#include "resource.h"
+
+DONUTS_ICON             ICON    donuts.ico
+
+DONUTS8                 BITMAP  donuts.bmp
+SPLASH                  BITMAP  SPLASH.BMP
+
+BeginLevel              WAV     level.wav
+
+EngineIdle              WAV     hum.wav
+EngineRev               WAV     rev.wav
+SkidToStop              WAV     skid.wav
+ShieldBuzz              WAV     shield.wav
+
+Gunfire                 WAV     gunfire.wav
+ShipBounce              WAV     bounce.wav
+ShipExplode             WAV     bangbang.wav
+
+DonutExplode            WAV     d_bang.wav
+PyramidExplode          WAV     p_bang.wav
+CubeExplode             WAV     c_bang.wav
+SphereExplode           WAV     s_bang.wav
+
+
+/*****************************************************************************
+ *
+ *  DONUTS_ACCEL 
+ *
+ *****************************************************************************/
+
+DONUTS_ACCEL ACCELERATORS
+BEGIN
+    VK_RETURN,  IDC_STARTGAME,  VIRTKEY, NOINVERT
+
+    VK_ESCAPE,  IDC_QUIT,       VIRTKEY, NOINVERT
+    VK_F12,     IDC_QUIT,       VIRTKEY, NOINVERT
+
+    VK_F1,      IDC_TRAILS,     VIRTKEY, NOINVERT
+    VK_F3,      IDC_AUDIO,      VIRTKEY, NOINVERT
+    VK_F5,      IDC_FRAMERATE,  VIRTKEY, NOINVERT
+END

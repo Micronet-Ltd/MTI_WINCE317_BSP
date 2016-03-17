@@ -1,0 +1,21 @@
+, 0 errors, 0 serious errors
+-Werror
+-errors
+warning LNK4204
+warning LNK4221
+warning LNK4006
+warning LNK4099
+not found in library
+LIB : warning U4155:
+Error messages:    None
+Warning messages:  None
+Warning: No module definition file specified: using defaults
+Warning: No stack
+** error 1 ** deleting dlffs.img
+Libraries [.lib]: SLIBCE.LIB OLDNAMES.LIB,,LINK : warning L4021: no stack segment
+LIB : warning U4156: output-library specification ignored
+Warning: running program in real mode: CPU already in protected or virtual mode
+B_ERROR
+warning D9025 :
+warning D4025 :
+

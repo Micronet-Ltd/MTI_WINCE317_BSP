@@ -1,0 +1,1602 @@
+<html>
+<head>
+<title>
+DCL Public API: File System
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Public API: File System
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Public API: File System">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsBecomeFileUser">DclFsBecomeFileUser</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Allow this thread to access the file system.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirClose">DclFsDirClose</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Close an open directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirCreate">DclFsDirCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirGetWorking">DclFsDirGetWorking</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Retrieve the current working directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirOpen">DclFsDirOpen</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Open a directory for reading.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirRead">DclFsDirRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read the next entry in a directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirRemove">DclFsDirRemove</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Remove a directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirRename">DclFsDirRename</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Rename or move a directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirRewind">DclFsDirRewind</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Reset the position within an open directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirSetWorking">DclFsDirSetWorking</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Set the current working directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirTreeDelete">DclFsDirTreeDelete</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Remove the specified directory tree.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsDirTreeEnumerate">DclFsDirTreeEnumerate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Enumerate everything in the specified directory tree.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileClose">DclFsFileClose</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Close an open file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileDelete">DclFsFileDelete</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Delete a file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileFlush">DclFsFileFlush</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Flushes any pending file data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileOpen">DclFsFileOpen</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Open a file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileRead">DclFsFileRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read data from a file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileRename">DclFsFileRename</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Rename or move a file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileSeek">DclFsFileSeek</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Seek to a position in a file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileTell">DclFsFileTell</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Obtain the current position in a file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsFileWrite">DclFsFileWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write data to a file.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsReleaseFileUser">DclFsReleaseFileUser</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Indicate that this thread is finished accessing the file system.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsStat">DclFsStat</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Retrieve information about a file or directory.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclFsStatFs">DclFsStatFs</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Retrieve information about a file system.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclFsBecomeFileUser"></a>
+<a NAME="DclFsBecomeFileUser"></a>
+DclFsBecomeFileUser
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsBecomeFileUser</font>(void)
+</div>
+<div class=SectionText>
+
+    Allow this thread to access the file system.
+
+<p>    <h4>Parameters</h4>
+        None.
+
+<p>    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirClose"></a>
+<a NAME="DclFsDirClose"></a>
+DclFsDirClose
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirClose</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSDIRHANDLE>DCLFSDIRHANDLE</a> hDir)
+</div>
+<div class=SectionText>
+
+    Close an open directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDir
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to <a HREF=UD800_OsServFileSys.c.htm#DclOsFsDirOpen>DclOsFsDirOpen()</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirCreate"></a>
+<a NAME="DclFsDirCreate"></a>
+DclFsDirCreate
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirCreate</font>(
+    const char * pszPath)
+</div>
+<div class=SectionText>
+
+    Create a directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The path to the directory to create.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>    <h4>See Also</h4>
+        <a HREF="#DclFsDirRemove">DclFsDirRemove</a>
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirGetWorking"></a>
+<a NAME="DclFsDirGetWorking"></a>
+DclFsDirGetWorking
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirGetWorking</font>(<br>&nbsp;&nbsp;&nbsp; 
+    char * pszPath,<br>&nbsp;&nbsp;&nbsp;
+    unsigned nMaxPathLength)
+</div>
+<div class=SectionText>
+
+    Retrieve the current working directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the current working
+                         directory.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uMaxPathLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Size of buffer including the NULL terminator.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>    <h4>NOTE</h4> If this functionality is not supported, this function may
+          return an error code (without asserting), and things like
+          the shell will take note of that and avoid using either of
+          the "Get/SetCWD" functions.
+
+<p>    <h4>See Also</h4>
+        <a HREF="#DclFsDirSetWorking">DclFsDirSetWorking</a>
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirOpen"></a>
+<a NAME="DclFsDirOpen"></a>
+DclFsDirOpen
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirOpen</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char * pszPath,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSDIRHANDLE>DCLFSDIRHANDLE</a> * phDir)
+</div>
+<div class=SectionText>
+
+    Open a directory for reading.
+
+<p>    Parameters
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The path to the directory.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+phDir
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Populated with a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSDIRHANDLE>DCLFSDIRHANDLE</a> used to access
+                  the directory.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>    <h4>See Also</h4>
+        <a HREF="#DclFsDirRead">DclFsDirRead</a>
+        <a HREF="#DclFsDirRewind">DclFsDirRewind</a>
+        <a HREF="#DclFsDirClose">DclFsDirClose</a>
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirRead"></a>
+<a NAME="DclFsDirRead"></a>
+DclFsDirRead
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSDIRHANDLE>DCLFSDIRHANDLE</a> hDir,<br>&nbsp;&nbsp;&nbsp;
+    char * pszName,<br>&nbsp;&nbsp;&nbsp;
+    unsigned nMaxNameLength,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSSTAT>DCLFSSTAT</a> * pStat)
+</div>
+<div class=SectionText>
+
+    Read the next entry in a directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDir
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to
+                         <a HREF="#DclFsDirOpen">DclFsDirOpen</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszName
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Populated with the next name in the directory.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uMaxNameLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Size of pszName including the NULL terminator.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Populated with information about the entry.
+                         This can be NULL if the information is not
+                         desired.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirRemove"></a>
+<a NAME="DclFsDirRemove"></a>
+DclFsDirRemove
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirRemove</font>(
+    const char * pszPath)
+</div>
+<div class=SectionText>
+
+    Remove a directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The path to the directory to remove.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>    <h4>See Also</h4>
+        <a HREF="#DclFsDirCreate">DclFsDirCreate</a>
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirRename"></a>
+<a NAME="DclFsDirRename"></a>
+DclFsDirRename
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirRename</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char * pszOrigPath,<br>&nbsp;&nbsp;&nbsp;
+    const char * pszNewPath)
+</div>
+<div class=SectionText>
+
+    Rename or move a directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszOrigPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The old path.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszNewPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The new path.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirRewind"></a>
+<a NAME="DclFsDirRewind"></a>
+DclFsDirRewind
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirRewind</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSDIRHANDLE>DCLFSDIRHANDLE</a> hDir)
+</div>
+<div class=SectionText>
+
+    Reset the position within an open directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDir
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to <a HREF="#DclFsDirOpen">DclFsDirOpen</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirSetWorking"></a>
+<a NAME="DclFsDirSetWorking"></a>
+DclFsDirSetWorking
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirSetWorking</font>(
+    const char * pszPath)
+</div>
+<div class=SectionText>
+
+    Set the current working directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The path of the directory to set as the CWD.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value representing a class of errors
+        defined in dlstatus.h.
+
+<p>    <h4>See Also</h4>
+        <a HREF="#DclFsDirGetWorking">DclFsDirGetWorking</a>
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirTreeDelete"></a>
+<a NAME="DclFsDirTreeDelete"></a>
+DclFsDirTreeDelete
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirTreeDelete</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char     *pszDirSpec,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nVerbosity,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>          fHiddenSystem,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>          fDeleteReadonly,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>          fIgnoreErrors)
+</div>
+<div class=SectionText>
+
+    Remove the specified directory tree.
+
+<p>    <b>Note</b> -- The fDeleteReadonly flag is not yet supported.  It may
+              be used, but it is not functional.
+
+<p>    <b>Note</b> -- There is no special handling of the current working
+              directory.  Attempting to remove it will result in
+              undefined behavior.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszDirSpec
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated directory
+                          name to remove.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nVerbosity
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The standard DCL verbosity level to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fHiddenSystem
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+TRUE to process files and directories
+                          which have either of the hidden or system
+                          attributes set.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fDeleteReadonly
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+TRUE to forcibly delete readonly files and
+                          directories.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fIgnoreErrors
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+TRUE if errors should be ignored rather than
+                          causing the operation to abort.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsDirTreeEnumerate"></a>
+<a NAME="DclFsDirTreeEnumerate"></a>
+DclFsDirTreeEnumerate
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsDirTreeEnumerate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char             *pszDirSpec,<br>&nbsp;&nbsp;&nbsp;
+    DCLFSDIRENUMCALLBACK   *pfnCallback,<br>&nbsp;&nbsp;&nbsp;
+    void                   *pCallbackContext,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a>                  fHiddenSystem)
+</div>
+<div class=SectionText>
+
+    Enumerate everything in the specified directory tree.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszDirSpec
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the null-terminated directory
+                           name to enumerate.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pfnCallback
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The callback function to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pCallbackContext
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A context pointer to pass to the callback
+                           function.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fHiddenSystem
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+TRUE to process files and directories
+                           which have either of the hidden or system
+                           attributes set.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileClose"></a>
+<a NAME="DclFsFileClose"></a>
+DclFsFileClose
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileClose</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a> hFile)
+</div>
+<div class=SectionText>
+
+    Close an open file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to <a HREF="#DclFsFileOpen">DclFsFileOpen</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileDelete"></a>
+<a NAME="DclFsFileDelete"></a>
+DclFsFileDelete
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileDelete</font>(
+    const char             *pszPath)
+</div>
+<div class=SectionText>
+
+    Delete a file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The path of the file to delete.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileFlush"></a>
+<a NAME="DclFsFileFlush"></a>
+DclFsFileFlush
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileFlush</font>(
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a> hFile)
+</div>
+<div class=SectionText>
+
+    Flushes any pending file data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to <a HREF="#DclFsFileOpen">DclFsFileOpen</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileOpen"></a>
+<a NAME="DclFsFileOpen"></a>
+DclFsFileOpen
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileOpen</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char         *pszPath,<br>&nbsp;&nbsp;&nbsp;
+    const char         *pszMode,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a>    *phFile)
+</div>
+<div class=SectionText>
+
+    Open a file.  This API can also be used to create or truncate
+    files.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The path to the file.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszMode
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The file open mode.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+phFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Populated with a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a> used to access
+                  the file.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileRead"></a>
+<a NAME="DclFsFileRead"></a>
+DclFsFileRead
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a> hFile,<br>&nbsp;&nbsp;&nbsp;
+    void           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulSize,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>       *pulTransfered)
+</div>
+<div class=SectionText>
+
+    Read data from a file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to
+                         <a HREF="#DclFsFileOpen">DclFsFileOpen</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer to fill.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of bytes to read.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulTransfered
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Populated with the number of bytes
+                         actually read.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileRename"></a>
+<a NAME="DclFsFileRename"></a>
+DclFsFileRename
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileRename</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char             *pszOrigPath,<br>&nbsp;&nbsp;&nbsp;
+    const char             *pszNewPath)
+</div>
+<div class=SectionText>
+
+    Rename or move a file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszOrigPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The old path.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszNewPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The new path.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileSeek"></a>
+<a NAME="DclFsFileSeek"></a>
+DclFsFileSeek
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileSeek</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a> hFile,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_INT32>D_INT32</a>         lOffset,<br>&nbsp;&nbsp;&nbsp;
+    int             iOrigin)
+</div>
+<div class=SectionText>
+
+    Seek to a position in a file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to <a HREF="#DclFsFileOpen">DclFsFileOpen</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+lOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Relative file position.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+iOrgin
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Relative to what location in a file.  DCLFSFILESEEK_SET,
+                   DCLFSFILESEEK_CUR, or DCLFSFILESEEK_END.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileTell"></a>
+<a NAME="DclFsFileTell"></a>
+DclFsFileTell
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileTell</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a> hFile,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>       *pulPosition)
+</div>
+<div class=SectionText>
+
+    Obtain the current position in a file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to
+                       <a HREF="#DclFsFileOpen">DclFsFileOpen</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulPosition
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Populated with the current file position.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsFileWrite"></a>
+<a NAME="DclFsFileWrite"></a>
+DclFsFileWrite
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsFileWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSFILEHANDLE>DCLFSFILEHANDLE</a> hFile,<br>&nbsp;&nbsp;&nbsp;
+    const void     *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulSize,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>       *pulTransfered)
+</div>
+<div class=SectionText>
+
+    Write data to a file.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hFile
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle returned by an earlier call to
+                         <a HREF="#DclFsFileOpen">DclFsFileOpen</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer from which to write.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of bytes to write.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pulTransfered
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Populated with the number of bytes
+                         actually written.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsReleaseFileUser"></a>
+<a NAME="DclFsReleaseFileUser"></a>
+DclFsReleaseFileUser
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsReleaseFileUser</font>(void)
+</div>
+<div class=SectionText>
+
+    Indicate that this thread is finished accessing the file system.
+
+<p>    <h4>Parameters</h4>
+        None.
+
+<p>    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsStat"></a>
+<a NAME="DclFsStat"></a>
+DclFsStat
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsStat</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char             *pszPath,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSSTAT>DCLFSSTAT</a>              *pStat)
+</div>
+<div class=SectionText>
+
+    Retrieve information about a file or directory.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The path of the object to get info about.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pStat
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the Stat information.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclFsStatFs"></a>
+<a NAME="DclFsStatFs"></a>
+DclFsStatFs
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclFsStatFs</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char             *pszPath,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLFSSTATFS>DCLFSSTATFS</a>            *pStatFs)
+</div>
+<div class=SectionText>
+
+    Retrieve information about a file system.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pszPath
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A path on the target file system.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pStatFs
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A buffer to receive the StatFs information.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value indicating the operation result.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

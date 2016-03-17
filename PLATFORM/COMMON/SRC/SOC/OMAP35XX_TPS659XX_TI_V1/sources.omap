@@ -1,0 +1,31 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this sample source code is subject to the terms of the Microsoft
+license agreement under which you licensed this sample source code. If
+you did not accept the terms of the license agreement, you are not
+authorized to use this sample source code. For the terms of the license,
+please see the license agreement between you and Microsoft or, if applicable,
+see the LICENSE.RTF on your install media or the root of your tools installation.
+THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+!endif
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+CDEFINES=$(CDEFINES) -D_WINCEOSVER=$(_WINCEOSVER)
+
+!IF "$(BSP_DEBUG_SERIAL)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_DEBUG_SERIAL=1
+ADEFINES=-pd "BSP_DEBUG_SERIAL SETA 1" $(ADEFINES)
+!ELSE
+ADEFINES=-pd "BSP_DEBUG_SERIAL SETA 0" $(ADEFINES)
+!ENDIF
+
+_COMMONOAKLIB=$(_COMMONPUBROOT)\oak\lib
+_COMMONSDKLIB=$(_COMMONPUBROOT)\sdk\lib
+
+INCLUDES=$(INCLUDES);$(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\inc
+INCLUDES=$(INCLUDES);$(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\omap\inc
+INCLUDES=$(INCLUDES);$(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\omap35xx\inc
+INCLUDES=$(INCLUDES);$(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\omap35xx\oal\inc
+INCLUDES=$(INCLUDES);$(_TARGETPLATROOT)\src\inc

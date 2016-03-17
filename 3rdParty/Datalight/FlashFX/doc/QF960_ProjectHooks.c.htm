@@ -1,0 +1,5640 @@
+<html>
+<head>
+<title>
+FlashFX API: Project Hooks
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+FlashFX API: Project Hooks
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): FlashFX API: Project Hooks">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        FlashFX provides an abstracted set of functions which may be
+        implemented in the <font class=HighText>Project Directory</font>, which can be used to
+        override the default FlashFX functionality for certain operations.
+        These hooks are called <font class=HighText>Project Hooks</font> or <font class=HighText>FlashFX Hooks</font>.
+
+<p>        FlashFX Hooks modules are all prefixed with "fh" (FlashFX Hooks).
+        The default implementation of these hook functions can be found in
+        the \flashfx\os\wince\hooks directory.  To implement a hooks module
+        which overrides the default behavior, copy the file from the
+        appropriate hooks directory into the <font class=HighText>Project Directory</font>, and
+        modify the copy.  The project's make file will automatically build
+        it in a fashion that ensure that new implementation supersedes the
+        old one.
+
+<p>        <h4><b>NOTE</h4> The default implementation of a given hooks module may be different from one OS to another, so do not assume they are the same.  If migrating a project from one OS to another be careful to ensure that any given hooks modules are implemented correctly for the new OS.</b>
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookAccessBegin">FfxHookAccessBegin</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Notify project code when access to the flash is about to begin.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookAccessEnd">FfxHookAccessEnd</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Notify project code when access to the flash has completed.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookBbmFormatBlock">FfxHookBbmFormatBlock</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Hook the BBM format functionality.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookDeviceCreate">FfxHookDeviceCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Hook the creation of a Device, allowing project specific,
+    run-time customization of the Device configuration parameters.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookDeviceDestroy">FfxHookDeviceDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Hook the destruction of a Device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookDiskCreate">FfxHookDiskCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Hook the creation of a Disk, allowing project specific, run-time
+    customization of the Disk configuration parameters.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookDiskDestroy">FfxHookDiskDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Hook the destruction of a Disk.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookDriverCreate">FfxHookDriverCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function is called once at driver initialization time
+    from the Driver Framework, prior to any access to the media.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookDriverDestroy">FfxHookDriverDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function is called once at driver instance destruction
+    time, after all devices and disks have been destroyed.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookEccCalcRead">FfxHookEccCalcRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Obtain the results of the ECC calculation.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookEccCalcStart">FfxHookEccCalcStart</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Prepare for the start of ECC calculation before a data transfer.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookEccCorrectPage">FfxHookEccCorrectPage</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Examine the original ECC and a newly calculated ECC, and perform
+    any necessary and possible corrections on a page.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookMapWindow">FfxHookMapWindow</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function is used by NOR FIMs to map a window into the
+    flash array.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADAddressOut">FfxHookNTCADAddressOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADCreate">FfxHookNTCADCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a NAND Control Module instance which is associated with
+    the ntcad NTM.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADDataIn">FfxHookNTCADDataIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADDataOut">FfxHookNTCADDataOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADDestroy">FfxHookNTCADDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy a NAND Control Module instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADReadyWait">FfxHookNTCADReadyWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Poll the BSY/RDY pin of the NAND chip until it indicates that
+    the device is ready or a timeout limit is reached.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADSetChipCommand">FfxHookNTCADSetChipCommand</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Wait for the chip to be ready and then sends a command using
+                                                FfxHookNTCADSetChipCommandNoWait    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADSetChipCommandNoWait">FfxHookNTCADSetChipCommandNoWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Send a command to the chip without waiting for status.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADSetChipSelect">FfxHookNTCADSetChipSelect</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Select a particular NAND chip.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTCADStatusIn">FfxHookNTCADStatusIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and return the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandAddressOut">FfxHookNTECLRNandAddressOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandCreate">FfxHookNTECLRNandCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a NAND Control Module instance which is associated with
+    the nteclrnand NTM.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandDataIn">FfxHookNTECLRNandDataIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandDataOut">FfxHookNTECLRNandDataOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandDestroy">FfxHookNTECLRNandDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy a NAND Control Module instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandReadyWait">FfxHookNTECLRNandReadyWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Poll the status indications of the Enhanced ClearNAND chip
+    until it indicates that the device is in the state requested
+    or timeout limit is reached.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandSetChipCommand">FfxHookNTECLRNandSetChipCommand</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Wait for the chip to be ready and then sends a command using
+                                                     FfxHookNTECLRNandSetChipCommandNoWait    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandSetChipCommandNoWait">FfxHookNTECLRNandSetChipCommandNoWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Send a command to the chip without waiting for status.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandSetChipSelect">FfxHookNTECLRNandSetChipSelect</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Select a particular NAND chip.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTECLRNandStatusIn">FfxHookNTECLRNandStatusIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and return the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronAddressOut">FfxHookNTMicronAddressOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronConfigure">FfxHookNTMicronConfigure</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Configure an NTM Hook instance for the given chip.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronCreate">FfxHookNTMicronCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a NTM Hook instance which is associated with the Micron NTM.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronDataIn">FfxHookNTMicronDataIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronDataOut">FfxHookNTMicronDataOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronDestroy">FfxHookNTMicronDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy a Micron NTM Hook instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronGetPageStatus">FfxHookNTMicronGetPageStatus</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Extract the page status bits from the supplied spare area data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronPageRead">FfxHookNTMicronPageRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent page read, with or without ECC.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronPageWrite">FfxHookNTMicronPageWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent page write, with or without ECC.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronReadyWait">FfxHookNTMicronReadyWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Poll the BSY/RDY pin of the NAND chip until it indicates that
+    the device is ready or a timeout limit is reached.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronSetChipCommand">FfxHookNTMicronSetChipCommand</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Wait for the chip to be ready and then send a command using
+                                                   FfxHookNTMicronSetChipCommandNoWait    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronSetChipCommandNoWait">FfxHookNTMicronSetChipCommandNoWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Send a command to the chip without waiting for status.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronSetChipSelect">FfxHookNTMicronSetChipSelect</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Select a particular NAND chip.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMicronStatusIn">FfxHookNTMicronStatusIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and returns the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMX31Create">FfxHookNTMX31Create</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Allocate (if necessary) and inialize the private control
+    structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMX31Destroy">FfxHookNTMX31Destroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Deallocate (if necessary) and deinialize the
+    MX31 control structure and any relevant hardware shutdown.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTMX31SetParameters">FfxHookNTMX31SetParameters</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Configure the MX31 with the chip parameters.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDBusyWait">FfxHookNTOneNANDBusyWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Wait for a OneNAND Sync Burst Block Read operation to complete,
+    typically by polling the interrupt status register, polling a GPIO
+    for the OneNAND INT signal, or waiting for the processor interrupt
+    to besignalled.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDCreate">FfxHookNTOneNANDCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Allocate (if necessary) and initialize the OneNAND control
+    structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDDestroy">FfxHookNTOneNANDDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Deallocate (if necessary) and deinitialize the OneNAND control
+    structure and corresponding OneNAND device.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDReadBuffer">FfxHookNTOneNANDReadBuffer</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read a buffer of data from the OneNAND device, starting at the
+    specified offset, and extending for the specified uCount of
+    ONENAND_IO_TYPE-size data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDReadRegister">FfxHookNTOneNANDReadRegister</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Read a value from the OneNAND register at the given offset,
+    typically by using the address stored in the NTMHOOKHANDLE
+    structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDReadyWait">FfxHookNTOneNANDReadyWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Wait for a OneNAND operation to complete, typically by polling
+    the interrupt status register, polling a GPIO for the OneNAND
+    INT signal, or waiting for the processor interrupt to be
+    signalled.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDWriteBuffer">FfxHookNTOneNANDWriteBuffer</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write a buffer of data to the OneNAND device, starting at the
+    specified offset, and extending for the specified uCount of
+    ONENAND_IO_TYPE-size data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTOneNANDWriteRegister">FfxHookNTOneNANDWriteRegister</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Write a value into the OneNAND register at the given offset,
+    typically by using the address stored in the NTMHOOKHANDLE
+    structure.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageCreate">FfxHookNTPageCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function creates a NAND Control Module instance which
+    is associated with the ntpageio NTM.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageDestroy">FfxHookNTPageDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function destroys a NAND Control Module instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageEraseBlock">FfxHookNTPageEraseBlock</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function erases one flash block.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageRead">FfxHookNTPageRead</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function reads one or more pages, and their associated
+    spare areas, into the specified buffers.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageReadComplete">FfxHookNTPageReadComplete</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function completes a page read operation which was
+    started with FfxHookReadPageStart.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageReadStart">FfxHookNTPageReadStart</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function starts a page read operation which must be
+    completed by calling FfxHookReadPageComplete.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageWrite">FfxHookNTPageWrite</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function writes data to one or more pages.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageWriteComplete">FfxHookNTPageWriteComplete</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function completes a page write operation which was
+    started with FfxHookWritePageStart.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPageWriteStart">FfxHookNTPageWriteStart</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    This function starts a page write operation which must be
+    completed by calling FfxHookWritePageComplete.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPxa320Configure">FfxHookNTPxa320Configure</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform any necessary configuration of the PXA320 NAND controller,
+    as necessary for the flash with the specified NAND ID.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPxa320Create">FfxHookNTPxa320Create</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Allocate and initialize the PXA320 control structure, as well as
+    map the PXA320 NAND controller's memory into the address space of
+    the calling process.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTPxa320Destroy">FfxHookNTPxa320Destroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Deallocate and deinitialize the PXA320 control structure and
+    corresponding PXA320 NAND controller.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandAddressOut">FfxHookNTSTDCLRNandAddressOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandCreate">FfxHookNTSTDCLRNandCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Create a NAND Control Module instance which is associated with
+    the ntstdclrnand NTM.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandDataIn">FfxHookNTSTDCLRNandDataIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandDataOut">FfxHookNTSTDCLRNandDataOut</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandDestroy">FfxHookNTSTDCLRNandDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroy a NAND Control Module instance.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandReadyWait">FfxHookNTSTDCLRNandReadyWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Poll the BSY/RDY pin of the NAND chip until it indicates that
+    the device is ready or a timeout limit is reached.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandSetChipCommand">FfxHookNTSTDCLRNandSetChipCommand</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Wait for the chip to be ready and then sends a command using
+                                                       FfxHookNTSTDCLRNandSetChipCommandNoWait    .
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandSetChipCommandNoWait">FfxHookNTSTDCLRNandSetChipCommandNoWait</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Send a command to the chip without waiting for status.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandSetChipSelect">FfxHookNTSTDCLRNandSetChipSelect</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Select a particular NAND chip.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookNTSTDCLRNandStatusIn">FfxHookNTSTDCLRNandStatusIn</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and return the result.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxHookOptionGet">FfxHookOptionGet</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Get a configuration option.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#FfxProjStub">FfxProjStub</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+ 
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="FfxHookAccessBegin"></a>
+<a NAME="FfxHookAccessBegin"></a>
+FfxHookAccessBegin
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookAccessBegin</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>    hDev,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uType)
+</div>
+<div class=SectionText>
+
+    Notify project code when access to the flash is about to begin.
+
+<p>    The FlashFX Device Manager calls this function before all accesses
+    to the physical media.  If necessary, it should enable Vpp or
+    perform any other operations to allow updates to the media.
+
+<p>    This code may also be used to serialize access to the flash when
+    necessary.  Two possible scenarios when this may be necessary are 
+    described below:
+
+<p>    1) If FlashFX is NOT the only code which touches the flash at any
+       given moment, accesses to the flash by FlashFX and the "other"
+       code must be serialized, otherwise the state of the flash
+       hardware is likely to be corrupted.
+
+<p>    2) If FlashFX is configured such that more than one Device
+       instance is used for a single piece of flash hardware, the
+       accesses must be serialized.  For example, if a FIM or NTM is
+       configured such that a single flash chip is partitioned to
+       create more than one Device, access must be serialized.  
+       Similarly, if there are multiple flash chips with separate
+       Device instances, but they are physically managed by a single
+       flash controller, access must be serialized (in both cases
+       the assumption is that the FIM/NTM does not already contain
+       code to serialize the accesses).
+
+<p>    In either of these examples, the use of a binary semaphore, is
+    recommended, which which is acquired and released at the points
+    shown in the pseudo-code below.  For the first scenario described
+    above, the semaphore must be a globally visible object which can
+    be seen by both FlashFX and the "other" code.  For the second
+    scenario described above, the semaphore need not be globally
+    visible, and the standard Datalight semaphore functions -- 
+    <a HREF=UD750_Semaphore.c.htm#DclSemaphoreAcquire>DclSemaphoreAcquire()</a>/Release are sufficient.
+
+<p>    <b>Note</b> -- A binary semaphore is recommended rather than a mutex,
+              because in the second scenario, it is possible that
+              the thread which is releasing the semaphore will be a 
+              different thread from the one which acquired it.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uType
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This parameter will be one of the ACCESS_* types
+                defined in oeslapi.h.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookAccessEnd"></a>
+<a NAME="FfxHookAccessEnd"></a>
+FfxHookAccessEnd
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookAccessEnd</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>    hDev,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uType)
+</div>
+<div class=SectionText>
+
+    Notify project code when access to the flash has completed.
+
+<p>    The FlashFX Device Manager calls this function after access to
+    the physical media.  If necessary, it should disable Vpp or 
+    perform any other operations that might need to be performed.
+
+<p>    <b>NOTE</b> -- See the comments for <a HREF="#FfxHookAccessBegin">FfxHookAccessBegin</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uType
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+This parameter will be one of the ACCESS_* types
+                defined in oeslapi.h.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookBbmFormatBlock"></a>
+<a NAME="FfxHookBbmFormatBlock"></a>
+FfxHookBbmFormatBlock
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxHookBbmFormatBlock</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>    hDev,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBlock,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBlockStatus)
+</div>
+<div class=SectionText>
+
+    Hook the BBM format functionality.
+
+<p>    This function is called during BBM format operations when
+    a block is about to be formatted.  The ulBlockStatus value
+    indicates the state of the block.  BBM's default behavior
+    with regard to the specified block may be changed by
+    returning a different block status value than what was
+    passed in.
+
+<p>    The return value indicates the desired action to perform.
+    Simply return the original ulBlockStatus value to cause BBM
+    to treat the block in its normal fashion.  Return a different
+    block status value to change the BBM behavior.  Return
+    BLOCKSTATUS_NOTBAD to treat the block as a good block even
+    if it was originally bad.  Good blocks can be treated as
+    factory-bad (and therefore ignored) as a means for mapping
+    out blocks in the middle of the flash array that may be
+    required for other purposes (some NAND controllers do this).
+
+<p>    Note that there may be other bits, such as lock flags, set in
+    the ulBlockStatus value.  These should generally be left
+    unchanged.  See fxiosys.h for the definitions of the various
+    block status bits.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlock
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockStatus
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The type of bad block, one of the following
+                        values will be set:
+</td>
+</tr>
+</table>
+
+<p>
+            
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+BLOCKSTATUS_NOTBAD
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block is good
+</td>
+</tr>
+
+<p>            
+<tr class=Def>
+<td class=Def>
+BLOCKSTATUS_FACTORYBAD
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Bad from the factory
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The potentially updated block status value.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookDeviceCreate"></a>
+<a NAME="FfxHookDeviceCreate"></a>
+FfxHookDeviceCreate
+</h3>
+<div class=Api>
+FFXDEVHOOK *<font class=ApiName>FfxHookDeviceCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const FFXDRIVERINFO    *pDI,<br>&nbsp;&nbsp;&nbsp;
+    const FFXDEVINITDATA   *pDevData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXDEVCONFIG>FFXDEVCONFIG</a>           *pConf)
+</div>
+<div class=SectionText>
+
+    Hook the creation of a Device, allowing project specific,
+    run-time customization of the Device configuration parameters.
+
+<p>    Upon successful completion, this function must fill in the
+    pConf->nDevNum field with the appropriate DEVn number.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDRIVERINFO structure to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pDevData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDEVINITDATA structure to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pConf
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=QF660_Structures.c.htm#FFXDEVCONFIG>FFXDEVCONFIG</a> structure to use.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        A pointer to the FFXDEVHOOK object if successful, or NULL 
+        otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookDeviceDestroy"></a>
+<a NAME="FfxHookDeviceDestroy"></a>
+FfxHookDeviceDestroy
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookDeviceDestroy</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const FFXDRIVERINFO    *pDI,<br>&nbsp;&nbsp;&nbsp;
+    FFXDEVHOOK             *pHook)
+</div>
+<div class=SectionText>
+
+    Hook the destruction of a Device.  This function should release
+    any resources which were allocated by <a HREF="#FfxHookDeviceCreate">FfxHookDeviceCreate</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDRIVERINFO structure to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDEVHOOK object to destroy.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookDiskCreate"></a>
+<a NAME="FfxHookDiskCreate"></a>
+FfxHookDiskCreate
+</h3>
+<div class=Api>
+FFXDISKHOOK *<font class=ApiName>FfxHookDiskCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const FFXDRIVERINFO    *pDI,<br>&nbsp;&nbsp;&nbsp;
+    const FFXDISKINITDATA  *pDiskData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=QF660_Structures.c.htm#FFXDISKCONFIG>FFXDISKCONFIG</a>          *pConf)
+</div>
+<div class=SectionText>
+
+    Hook the creation of a Disk, allowing project specific, run-time
+    customization of the Disk configuration parameters.
+
+<p>    Upon successful completion, this function must fill in the
+    pConf->nDiskNum field with the appropriate DISKn number.
+
+<p>    Other configuration parameters may be filled in as well.  Any
+    parameters which are not set by this function will use default
+    values.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDRIVERINFO structure to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pDiskData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDISKINITDATA structure to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pConf
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the <a HREF=QF660_Structures.c.htm#FFXDISKCONFIG>FFXDISKCONFIG</a> structure to use
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        If successful, returns an opaque pointer/handle for the
+        newly created FFXDISKHOOK object, or NULL otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookDiskDestroy"></a>
+<a NAME="FfxHookDiskDestroy"></a>
+FfxHookDiskDestroy
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookDiskDestroy</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const FFXDRIVERINFO    *pDI,<br>&nbsp;&nbsp;&nbsp;
+    FFXDISKHOOK            *pHook)
+</div>
+<div class=SectionText>
+
+    Hook the destruction of a Disk.  This function should release
+    any resources which were allocated by <a HREF="#FfxHookDiskCreate">FfxHookDiskCreate</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pDI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDRIVERINFO structure to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The opaque pointer/handle for the FFXDISKHOOK
+                  object to destroy
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookDriverCreate"></a>
+<a NAME="FfxHookDriverCreate"></a>
+FfxHookDriverCreate
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>FfxHookDriverCreate</font>(
+    FFXDRIVERINFO  *pFDI)
+</div>
+<div class=SectionText>
+
+    This function is called once at driver initialization time
+    from the Driver Framework, prior to any access to the media.
+
+<p>    If this function returns FALSE, the driver initialization
+    process will fail.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pFDI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDRIVERINFO structure.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns TRUE if successful, otherwise FALSE.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookDriverDestroy"></a>
+<a NAME="FfxHookDriverDestroy"></a>
+FfxHookDriverDestroy
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookDriverDestroy</font>(
+    FFXDRIVERINFO  *pFDI)
+</div>
+<div class=SectionText>
+
+    This function is called once at driver instance destruction
+    time, after all devices and disks have been destroyed.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pFDI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXDRIVERINFO structure.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookEccCalcRead"></a>
+<a NAME="FfxHookEccCalcRead"></a>
+FfxHookEccCalcRead
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookEccCalcRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pData,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLength,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pabECC,<br>&nbsp;&nbsp;&nbsp;
+    ECCMODE         eccMode)
+</div>
+<div class=SectionText>
+
+    Obtain the results of the ECC calculation.
+
+<p>    For software ECC, this function typically calculates the ECCs.
+    For some hardware ECC generators this function may shut down 
+    the ECC calculation hardware.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle to use.  This may be NULL
+                    for some NTMs.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data on which the ECCs are
+                    to be calculated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data length
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of bytes containing ECC
+                    values for a page.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+eccMode
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+ECC_MODE_READ or ECC_MODE_WRITE.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookEccCalcStart"></a>
+<a NAME="FfxHookEccCalcStart"></a>
+FfxHookEccCalcStart
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookEccCalcStart</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pData,<br>&nbsp;&nbsp;&nbsp;
+    size_t          nLength,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pabECC,<br>&nbsp;&nbsp;&nbsp;
+    ECCMODE         eccMode)
+</div>
+<div class=SectionText>
+
+    Prepare for the start of ECC calculation before a data transfer.
+
+<p>    The mode argument selects behavior appropriate to read or 
+    write operations as noted below.
+
+<p>    Depending on the implementation of the ECC calculation (software
+    or various types of hardware) this may cause ECC calculations to
+    be performed on the buffer after a read (when <a HREF="#FfxHookEccCalcRead">FfxHookEccCalcRead</a>
+    is called), or started on the buffer contents before a write
+    (useful if the hardware can calculate the ECC concurrently with
+    the write).  For hardware ECC this function may prepare the 
+    hardware for the data transfer.  For software ECC, this function
+    may do nothing.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle to use.  This may be NULL
+                    for some NTMs.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the data for which the ECCs are
+                    to be calculated.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nLength
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data length.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of bytes containing ECC
+                    values for a page.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+eccMode
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+ECC_MODE_READ or ECC_MODE_WRITE.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookEccCorrectPage"></a>
+<a NAME="FfxHookEccCorrectPage"></a>
+FfxHookEccCorrectPage
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxHookEccCorrectPage</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pData,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>     *pabECC,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo)
+</div>
+<div class=SectionText>
+
+    Examine the original ECC and a newly calculated ECC, and perform
+    any necessary and possible corrections on a page.  This function
+    is typically used in concert with <a HREF="#FfxHookEccCalcStart">FfxHookEccCalcStart</a> and 
+    <a HREF="#FfxHookEccCalcRead">FfxHookEccCalcRead</a>, and allows project-specific, custom ECC
+    handling to be implemented.
+
+<p>    Note that the length of the pabECC byte array may vary depending
+    on the implementation and strength of the ECC used in the ECC
+    calculation functions.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle to use.  This may be NULL
+                    for some NTMs.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to page of data read from the flash.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to spare area associated with the
+                    given page data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of bytes containing ECC
+                    values for a page.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure
+                    describing the chip being used.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> structure indicating the state of
+        the operation.
+
+<p>        ffxStat will be FFXSTAT_FIMCORRECTABLEDATA if one or more
+        bit errors were corrected with ECC.
+
+<p>        If ffxStat == FFXSTAT_FIMUNCORRECTABLEDATA, the ulCount
+        field will indicate the number of correct segments that
+        were found.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookMapWindow"></a>
+<a NAME="FfxHookMapWindow"></a>
+FfxHookMapWindow
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxHookMapWindow</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulOffset,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulMaxLen,<br>&nbsp;&nbsp;&nbsp;
+    volatile void     **ppMedia)
+</div>
+<div class=SectionText>
+
+    This function is used by NOR FIMs to map a window into the
+    flash array.  The window may be anywhere in the flash array
+    up the the length specified by ulMaxLen.  The function must
+    return a valid pointer which may be used to access the
+    flash, as well as a maximum length in bytes which may be
+    accessed using the returned pointer.
+
+<p>    If the flash array is linearly addressed and requires no
+    special mapping, the entire length, minus the supplied
+    offset can be returned, along with an appropriately
+    constructed pointer.
+
+<p>    If the flash hardware has particular windowing requirements,
+    the returned window size must be adjusted accordingly.
+
+<p>    Note that this function may be asked to map areas within
+    the reserved space in the flash array (during the mount
+    process).  This is expected and no special considerations
+    need to be made.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The device handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The byte offset into the flash array
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulMaxLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The maximum amount of flash which is addressable.
+                   The supplied offset, plus the returned window
+                   length may not exceed this value.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ppMedia
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the location in which to store the
+                   flash window pointer.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the window length in bytes which is accessible
+        using the returned pointer, or zero if an error occurred.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADAddressOut"></a>
+<a NAME="FfxHookNTCADAddressOut"></a>
+FfxHookNTCADAddressOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTCADAddressOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     address)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+address
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the data to store to the address port
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADCreate"></a>
+<a NAME="FfxHookNTCADCreate"></a>
+FfxHookNTCADCreate
+</h3>
+<div class=Api>
+NANDCTL * <font class=ApiName>FfxHookNTCADCreate</font>(
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev)
+</div>
+<div class=SectionText>
+
+    Create a NAND Control Module instance which is associated with
+    the ntcad NTM.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the NANDCTL structure to use if
+        successful, otherwise NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADDataIn"></a>
+<a NAME="FfxHookNTCADDataIn"></a>
+FfxHookNTCADDataIn
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTCADDataIn</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    NAND_IO_TYPE   *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer to be filled with the data
+                    read from the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be read from the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADDataOut"></a>
+<a NAME="FfxHookNTCADDataOut"></a>
+FfxHookNTCADDataOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTCADDataOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL            *pNC,<br>&nbsp;&nbsp;&nbsp;
+    const NAND_IO_TYPE *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>            uCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer containing the data to be
+                    sent to the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be sent to the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADDestroy"></a>
+<a NAME="FfxHookNTCADDestroy"></a>
+FfxHookNTCADDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTCADDestroy</font>(
+    NANDCTL        *pNC)
+</div>
+<div class=SectionText>
+
+    Destroy a NAND Control Module instance.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADReadyWait"></a>
+<a NAME="FfxHookNTCADReadyWait"></a>
+FfxHookNTCADReadyWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTCADReadyWait</font>(
+    NANDCTL    *pNC)
+</div>
+<div class=SectionText>
+
+    Poll the BSY/RDY pin of the NAND chip until it indicates that
+    the device is ready or a timeout limit is reached.  This is
+    often called before a command is written to the flash to be
+    sure the device will listen before the command is sent.  The
+    chip selects must/will be set prior to this function call.
+    This function could look at the busy pins of the device or
+    send a read status command.
+
+<p>    Note that if the read status command is used to check if
+    the device is ready when performing read operations, it
+    may be necessary to reissue the read command that was used
+    in order to get the chip out of the read status mode and
+    back into the read data mode. Consult your data sheet for
+    details.
+
+<p>    The timeout limit is specified by NAND_TIME_OUT in
+    nandconf.h.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADSetChipCommand"></a>
+<a NAME="FfxHookNTCADSetChipCommand"></a>
+FfxHookNTCADSetChipCommand
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTCADSetChipCommand</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucCommand)
+</div>
+<div class=SectionText>
+
+    Wait for the chip to be ready and then sends a command using
+    <a HREF="#FfxHookNTCADSetChipCommandNoWait">FfxHookNTCADSetChipCommandNoWait</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADSetChipCommandNoWait"></a>
+<a NAME="FfxHookNTCADSetChipCommandNoWait"></a>
+FfxHookNTCADSetChipCommandNoWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTCADSetChipCommandNoWait</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucCommand)
+</div>
+<div class=SectionText>
+
+    Send a command to the chip without waiting for status.
+
+<p>    Universal "send arbitrary command" helper routine used by all
+    higher level chip-specific routines. This routine only takes
+    care of making sure that the proper interface pins are
+    manipulated so that the command is entered into a previously
+    selected chip.  The appropriate chip must already be selected
+    before calling this routine and subsequent address,
+    confirmation and data bytes must be sent to the chips using
+    calls to additional helper routines.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADSetChipSelect"></a>
+<a NAME="FfxHookNTCADSetChipSelect"></a>
+FfxHookNTCADSetChipSelect
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTCADSetChipSelect</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL            *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulChip,<br>&nbsp;&nbsp;&nbsp;
+    CHIP_SELECT_MODE    mode)
+</div>
+<div class=SectionText>
+
+    Select a particular NAND chip.  Any control bits are set to
+    zero and all other chips are deselected.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulChip
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The chip number (high bits of linear address)
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTCADStatusIn"></a>
+<a NAME="FfxHookNTCADStatusIn"></a>
+FfxHookNTCADStatusIn
+</h3>
+<div class=Api>
+NAND_IO_TYPE <font class=ApiName>FfxHookNTCADStatusIn</font>(
+    NANDCTL    *pNC)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and return the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The status data read from the chip.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandAddressOut"></a>
+<a NAME="FfxHookNTECLRNandAddressOut"></a>
+FfxHookNTECLRNandAddressOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTECLRNandAddressOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     address)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+address
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the data to store to the address port
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandCreate"></a>
+<a NAME="FfxHookNTECLRNandCreate"></a>
+FfxHookNTECLRNandCreate
+</h3>
+<div class=Api>
+NANDCTL * <font class=ApiName>FfxHookNTECLRNandCreate</font>(
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev)
+</div>
+<div class=SectionText>
+
+    Create a NAND Control Module instance which is associated with
+    the nteclrnand NTM.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the NANDCTL structure to use if
+        successful, otherwise NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandDataIn"></a>
+<a NAME="FfxHookNTECLRNandDataIn"></a>
+FfxHookNTECLRNandDataIn
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTECLRNandDataIn</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    NAND_IO_TYPE   *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer to be filled with the data
+                    read from the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be read from the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandDataOut"></a>
+<a NAME="FfxHookNTECLRNandDataOut"></a>
+FfxHookNTECLRNandDataOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTECLRNandDataOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL            *pNC,<br>&nbsp;&nbsp;&nbsp;
+    const NAND_IO_TYPE *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>            uCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer containing the data to be
+                    sent to the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be sent to the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandDestroy"></a>
+<a NAME="FfxHookNTECLRNandDestroy"></a>
+FfxHookNTECLRNandDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTECLRNandDestroy</font>(
+    NANDCTL        *pNC)
+</div>
+<div class=SectionText>
+
+    Destroy a NAND Control Module instance.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandReadyWait"></a>
+<a NAME="FfxHookNTECLRNandReadyWait"></a>
+FfxHookNTECLRNandReadyWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTECLRNandReadyWait</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucWaitFor,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucCommand)
+</div>
+<div class=SectionText>
+
+    Poll the status indications of the Enhanced ClearNAND chip
+    until it indicates that the device is in the state requested
+    or timeout limit is reached.  Enhanced ClearNAND has multiple
+    status indications and multiple commands for reading these
+    indications so the command to get status and what status
+    to look for must be passed as parameters to this function.
+
+<p>    Note that if one of the status commands is used to check if
+    the device is ready when performing read operations, it
+    may be necessary to reissue the read command that was used
+    in order to get the chip out of the read status mode and
+    back into the read data mode. Consult your data sheet for
+    details.
+
+<p>    The timeout limit is specified by NAND_TIME_OUT in
+    nandconf.h.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the
+                      device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucWaitFor
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Status code to look for
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+command to be used to access the status
+                      register containing the status codes.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandSetChipCommand"></a>
+<a NAME="FfxHookNTECLRNandSetChipCommand"></a>
+FfxHookNTECLRNandSetChipCommand
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTECLRNandSetChipCommand</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucCommand)
+</div>
+<div class=SectionText>
+
+    Wait for the chip to be ready and then sends a command using
+    <a HREF="#FfxHookNTECLRNandSetChipCommandNoWait">FfxHookNTECLRNandSetChipCommandNoWait</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandSetChipCommandNoWait"></a>
+<a NAME="FfxHookNTECLRNandSetChipCommandNoWait"></a>
+FfxHookNTECLRNandSetChipCommandNoWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTECLRNandSetChipCommandNoWait</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucCommand)
+</div>
+<div class=SectionText>
+
+    Send a command to the chip without waiting for status.
+
+<p>    Universal "send arbitrary command" helper routine used by all
+    higher level chip-specific routines. This routine only takes
+    care of making sure that the proper interface pins are
+    manipulated so that the command is entered into a previously
+    selected chip.  The appropriate chip must already be selected
+    before calling this routine and subsequent address,
+    confirmation and data bytes must be sent to the chips using
+    calls to additional helper routines.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandSetChipSelect"></a>
+<a NAME="FfxHookNTECLRNandSetChipSelect"></a>
+FfxHookNTECLRNandSetChipSelect
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTECLRNandSetChipSelect</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL            *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulChip,<br>&nbsp;&nbsp;&nbsp;
+    CHIP_SELECT_MODE    mode)
+</div>
+<div class=SectionText>
+
+    Select a particular NAND chip.  Any control bits are set to
+    zero and all other chips are deselected.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulChip
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The chip number (high bits of linear address)
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTECLRNandStatusIn"></a>
+<a NAME="FfxHookNTECLRNandStatusIn"></a>
+FfxHookNTECLRNandStatusIn
+</h3>
+<div class=Api>
+NAND_IO_TYPE <font class=ApiName>FfxHookNTECLRNandStatusIn</font>(
+    NANDCTL    *pNC)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and return the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The status data read from the chip.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronAddressOut"></a>
+<a NAME="FfxHookNTMicronAddressOut"></a>
+FfxHookNTMicronAddressOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTMicronAddressOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BYTE>D_BYTE</a>          bAddress)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+bAddress
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The data to store to the address port
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronConfigure"></a>
+<a NAME="FfxHookNTMicronConfigure"></a>
+FfxHookNTMicronConfigure
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronConfigure</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nChip,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BYTE>D_BYTE</a>             *pabID)
+</div>
+<div class=SectionText>
+
+    Configure an NTM Hook instance for the given chip.  If the NTM
+    instance supports multiple chips, this function will be called 
+    for each chip.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The hook handle returned from the Create function.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nChip
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The chip being configured.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabID
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of NAND ID bytes, which will
+                    contain at least NAND_ID_SIZE entries.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating the operation result.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronCreate"></a>
+<a NAME="FfxHookNTMicronCreate"></a>
+FfxHookNTMicronCreate
+</h3>
+<div class=Api>
+NTMHOOKHANDLE <font class=ApiName>FfxHookNTMicronCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev,<br>&nbsp;&nbsp;&nbsp;
+    FFXMICRONPARAMS    *pParams)
+</div>
+<div class=SectionText>
+
+    Create a NTM Hook instance which is associated with the Micron NTM.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pParams
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXMICRONPARAMS structure to use.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an NTMHOOKHANDLE if successful, or NULL otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronDataIn"></a>
+<a NAME="FfxHookNTMicronDataIn"></a>
+FfxHookNTMicronDataIn
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTMicronDataIn</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    NAND_IO_TYPE   *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer to be filled with the data
+                   read from the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                   to be read from the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronDataOut"></a>
+<a NAME="FfxHookNTMicronDataOut"></a>
+FfxHookNTMicronDataOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTMicronDataOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    const NAND_IO_TYPE *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer containing the data to be
+                   sent to the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                   to be sent to the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronDestroy"></a>
+<a NAME="FfxHookNTMicronDestroy"></a>
+FfxHookNTMicronDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronDestroy</font>(
+    NTMHOOKHANDLE hNtmHook)
+</div>
+<div class=SectionText>
+
+    Destroy a Micron NTM Hook instance.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The hook handle returned from the Create function.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or the nature of
+        any failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronGetPageStatus"></a>
+<a NAME="FfxHookNTMicronGetPageStatus"></a>
+FfxHookNTMicronGetPageStatus
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>FfxHookNTMicronGetPageStatus</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pSpare)
+</div>
+<div class=SectionText>
+
+    Extract the page status bits from the supplied spare area data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer containing the spare area 
+                   data.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> containing the page status bits.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronPageRead"></a>
+<a NAME="FfxHookNTMicronPageRead"></a>
+FfxHookNTMicronPageRead
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronPageRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    NAND_IO_TYPE   *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    unsigned        nCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pabECC)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent page read, with or without ECC.
+
+<p>    If a pabECC pointer is provided, the buffer must be large enough
+    to contain all the ECC bytes generated for during the operation,
+    based on the style of ECC scheme being used.  See the functions
+    <a HREF="#FfxHookEccCalcStart">FfxHookEccCalcStart</a> and <a HREF="#FfxHookEccCalcRead">FfxHookEccCalcRead</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer to be filled with the data
+                    read from the device.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be read from the device.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabECC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of bytes to receive the ECC
+                    for the page, or NULL if no ECC is to be performed.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronPageWrite"></a>
+<a NAME="FfxHookNTMicronPageWrite"></a>
+FfxHookNTMicronPageWrite
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronPageWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    const NAND_IO_TYPE *pData,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>           *pSpare)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent page write, with or without ECC.
+
+<p>    If a pSpare pointer is provided, ECC will be calculated and
+    placed into the spare area at the standard locations for 
+    OffsetZero style flash.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer containing the data to be
+                    sent to the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be sent to the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpare
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the spare area in which to place the
+                    ECC for the data, or NULL if no ECC is to be 
+                    performed.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> code indicating the results.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronReadyWait"></a>
+<a NAME="FfxHookNTMicronReadyWait"></a>
+FfxHookNTMicronReadyWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronReadyWait</font>(
+    NTMHOOKHANDLE       hNtmHook)
+</div>
+<div class=SectionText>
+
+    Poll the BSY/RDY pin of the NAND chip until it indicates that
+    the device is ready or a timeout limit is reached.  This is
+    often called before a command is written to the flash to be
+    sure the device will listen before the command is sent.  The
+    chip selects must/will be set prior to this function call.
+    This function could look at the busy pins of the device or
+    send a read status command.
+
+<p>    The timeout limit is specified by NAND_TIME_OUT in nandconf.h.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronSetChipCommand"></a>
+<a NAME="FfxHookNTMicronSetChipCommand"></a>
+FfxHookNTMicronSetChipCommand
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronSetChipCommand</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BYTE>D_BYTE</a>          bCommand)
+</div>
+<div class=SectionText>
+
+    Wait for the chip to be ready and then send a command using
+    <a HREF="#FfxHookNTMicronSetChipCommandNoWait">FfxHookNTMicronSetChipCommandNoWait</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+bCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronSetChipCommandNoWait"></a>
+<a NAME="FfxHookNTMicronSetChipCommandNoWait"></a>
+FfxHookNTMicronSetChipCommandNoWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronSetChipCommandNoWait</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE   hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BYTE>D_BYTE</a>          bCommand)
+</div>
+<div class=SectionText>
+
+    Send a command to the chip without waiting for status.
+
+<p>    Universal "send arbitrary command" helper routine used by all
+    higher level chip-specific routines. This routine only takes
+    care of making sure that the proper interface pins are
+    manipulated so that the command is entered into a previously
+    selected chip.  The appropriate chip must already be selected
+    before calling this routine and subsequent address,
+    confirmation and data bytes must be sent to the chips using
+    calls to additional helper routines.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+bCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronSetChipSelect"></a>
+<a NAME="FfxHookNTMicronSetChipSelect"></a>
+FfxHookNTMicronSetChipSelect
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMicronSetChipSelect</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            nChip,<br>&nbsp;&nbsp;&nbsp;
+    CHIP_SELECT_MODE    nMode)
+</div>
+<div class=SectionText>
+
+    Select a particular NAND chip.  Any control bits are set to
+    zero and all other chips are deselected.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nChip
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The chip number
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+nMode
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The mode to use, either MODE_READ or MODE_WRITE
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMicronStatusIn"></a>
+<a NAME="FfxHookNTMicronStatusIn"></a>
+FfxHookNTMicronStatusIn
+</h3>
+<div class=Api>
+NAND_IO_TYPE <font class=ApiName>FfxHookNTMicronStatusIn</font>(
+    NTMHOOKHANDLE       hNtmHook)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and returns the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The status data read from the chip.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMX31Create"></a>
+<a NAME="FfxHookNTMX31Create"></a>
+FfxHookNTMX31Create
+</h3>
+<div class=Api>
+PNANDCTL <font class=ApiName>FfxHookNTMX31Create</font>(
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>       hDev)
+</div>
+<div class=SectionText>
+
+    Allocate (if necessary) and inialize the private control
+    structure.  Typically this will involve mapping the
+    MX31 CCM registers into the address space of the
+    calling process.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The device handle.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a non-NULL opaque private pointer for this module,
+        or NULL on failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMX31Destroy"></a>
+<a NAME="FfxHookNTMX31Destroy"></a>
+FfxHookNTMX31Destroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTMX31Destroy</font>(PNANDCTL pNC)
+</div>
+<div class=SectionText>
+
+    Deallocate (if necessary) and deinialize the
+    MX31 control structure and any relevant hardware shutdown.
+    Typically this will involve unmapping the CCM registers.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pMX31Ctl
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+pointer to the MX31 control structure, private
+                   to this module.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or the nature of
+        any failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTMX31SetParameters"></a>
+<a NAME="FfxHookNTMX31SetParameters"></a>
+FfxHookNTMX31SetParameters
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>FfxHookNTMX31SetParameters</font>(<br>&nbsp;&nbsp;&nbsp; 
+    PNANDCTL        pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>         ucByteWidth,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        ucPageSize)
+</div>
+<div class=SectionText>
+
+    Configure the MX31 with the chip parameters.  Typically
+    this only involves programming the RCSR register in
+    a fashion that is synchronized with other system
+    components that may be accessing the RCSR register.
+
+<p>    NOTE!   There is a timing hole here that cannot
+            be closed solely within the module that calls this
+            function.
+
+<p>            System software MUST ensure that this module synchronizes
+            access to the RCSR register with any other component that
+            may be accessing the RCSR register.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the private NANDCTL structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucWidthBytes
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+number of bytes of width of the NAND device
+</td>
+</tr>
+
+<p>                       
+<tr class=Def>
+<td class=Def>
+data bus (1
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+x8, 2 - x16)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uPageSize
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+page size of the NAND device
+</td>
+</tr>
+</table>
+
+<p>
+
+<p>    <h4>Return Value</h4>
+        Returns TRUE if the system is configured for the width
+        and page size specified.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDBusyWait"></a>
+<a NAME="FfxHookNTOneNANDBusyWait"></a>
+FfxHookNTOneNANDBusyWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTOneNANDBusyWait</font>(
+    NTMHOOKHANDLE       hHook)
+</div>
+<div class=SectionText>
+
+    Wait for a OneNAND Sync Burst Block Read operation to complete,
+    typically by polling the interrupt status register, polling a GPIO
+    for the OneNAND INT signal, or waiting for the processor interrupt
+    to besignalled.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or the nature of
+        any failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDCreate"></a>
+<a NAME="FfxHookNTOneNANDCreate"></a>
+FfxHookNTOneNANDCreate
+</h3>
+<div class=Api>
+NTMHOOKHANDLE <font class=ApiName>FfxHookNTOneNANDCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev,<br>&nbsp;&nbsp;&nbsp;
+    FFXONENANDPARAMS   *pONP)
+</div>
+<div class=SectionText>
+
+    Allocate (if necessary) and initialize the OneNAND control
+    structure.  Typically this will involve allocating memory
+    for the OneNAND control structure, as well as mapping the
+    OneNAND device's memory into the address space of the calling
+    process.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pONP
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXONENANDPARAMS structure to use.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to an allocated data structure for this
+        private data for this module, or NULL on failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDDestroy"></a>
+<a NAME="FfxHookNTOneNANDDestroy"></a>
+FfxHookNTOneNANDDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTOneNANDDestroy</font>(
+    NTMHOOKHANDLE   hHook)
+</div>
+<div class=SectionText>
+
+    Deallocate (if necessary) and deinitialize the OneNAND control
+    structure and corresponding OneNAND device.  Typically this will
+    involve allocating memory for the OneNAND control structure, as
+    well as mapping the OneNAND device's memory into the address
+    space of the calling process.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or the nature of
+        any failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDReadBuffer"></a>
+<a NAME="FfxHookNTOneNANDReadBuffer"></a>
+FfxHookNTOneNANDReadBuffer
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTOneNANDReadBuffer</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE               hHook,<br>&nbsp;&nbsp;&nbsp;
+    void                       *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>                    uOffset,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>                    uCount)
+</div>
+<div class=SectionText>
+
+    Read a buffer of data from the OneNAND device, starting at the
+    specified offset, and extending for the specified uCount of
+    ONENAND_IO_TYPE-size data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Buffer into which the data will be stored.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Offset (in units of sizeof ONENAND_IO_TYPE)
+                  from the beginning of the OneNAND of the register
+                  from which this function will read a value.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of bytes to be copied from the
+                  OneNAND buffer into the caller's buffer.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDReadRegister"></a>
+<a NAME="FfxHookNTOneNANDReadRegister"></a>
+FfxHookNTOneNANDReadRegister
+</h3>
+<div class=Api>
+ONENAND_IO_TYPE <font class=ApiName>FfxHookNTOneNANDReadRegister</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE               hHook,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>                    uOffset)
+</div>
+<div class=SectionText>
+
+    Read a value from the OneNAND register at the given offset,
+    typically by using the address stored in the NTMHOOKHANDLE
+    structure.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Offset from the beginning of the OneNAND of the
+                  register from which this function will read a
+                  value.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the value at the specified offset.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDReadyWait"></a>
+<a NAME="FfxHookNTOneNANDReadyWait"></a>
+FfxHookNTOneNANDReadyWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTOneNANDReadyWait</font>(
+    NTMHOOKHANDLE       hHook)
+</div>
+<div class=SectionText>
+
+    Wait for a OneNAND operation to complete, typically by polling
+    the interrupt status register, polling a GPIO for the OneNAND
+    INT signal, or waiting for the processor interrupt to be
+    signalled.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or the nature of
+        any failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDWriteBuffer"></a>
+<a NAME="FfxHookNTOneNANDWriteBuffer"></a>
+FfxHookNTOneNANDWriteBuffer
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTOneNANDWriteBuffer</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE               hHook,<br>&nbsp;&nbsp;&nbsp;
+    const void                 *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>                    uOffset,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>                    uCount)
+</div>
+<div class=SectionText>
+
+    Write a buffer of data to the OneNAND device, starting at the
+    specified offset, and extending for the specified uCount of
+    ONENAND_IO_TYPE-size data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+buffer from which the data will be copied.  The
+                  address will be aligned on a sector (512B) boundary
+                  and accessible in any units (byte, word, etc.).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+offset from the beginning of the OneNAND of the
+                  OneNAND buffer into which this function copy the
+                  data.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the number of bytes to be copied from the caller's
+                  buffer into the OneNAND buffer.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTOneNANDWriteRegister"></a>
+<a NAME="FfxHookNTOneNANDWriteRegister"></a>
+FfxHookNTOneNANDWriteRegister
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTOneNANDWriteRegister</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE               hHook,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>                    uOffset,<br>&nbsp;&nbsp;&nbsp;
+    ONENAND_IO_TYPE             Value)
+</div>
+<div class=SectionText>
+
+    Write a value into the OneNAND register at the given offset,
+    typically by using the address stored in the NTMHOOKHANDLE
+    structure.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The NTM Hook handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uOffset
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+offset from the beginning of the OneNAND of the
+                  register into which this function will write a
+                  value.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+Value
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+value to place into the OneNAND register.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageCreate"></a>
+<a NAME="FfxHookNTPageCreate"></a>
+FfxHookNTPageCreate
+</h3>
+<div class=Api>
+PNANDCTL <font class=ApiName>FfxHookNTPageCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev,<br>&nbsp;&nbsp;&nbsp;
+    NANDFLASHINFO      *pNFI,<br>&nbsp;&nbsp;&nbsp;
+    FFXFIMBOUNDS       *pBounds)
+</div>
+<div class=SectionText>
+
+    This function creates a NAND Control Module instance which
+    is associated with the ntpageio NTM.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pNFI
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDFLASHINFO structure to fill
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBounds
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXFIMBOUNDS structure to use
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the NANDCTL structure to use if
+        successful, otherwise NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageDestroy"></a>
+<a NAME="FfxHookNTPageDestroy"></a>
+FfxHookNTPageDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTPageDestroy</font>(
+    NANDCTL        *pNC)
+</div>
+<div class=SectionText>
+
+    This function destroys a NAND Control Module instance.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageEraseBlock"></a>
+<a NAME="FfxHookNTPageEraseBlock"></a>
+FfxHookNTPageEraseBlock
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxHookNTPageEraseBlock</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBlockNum)
+</div>
+<div class=SectionText>
+
+    This function erases one flash block.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBlockNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The block to erase
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageRead"></a>
+<a NAME="FfxHookNTPageRead"></a>
+FfxHookNTPageRead
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxHookNTPageRead</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uCount,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pPageBuff,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pSpareBuff)
+</div>
+<div class=SectionText>
+
+    This function reads one or more pages, and their associated
+    spare areas, into the specified buffers.
+
+<p>    Either pPageBuff or pSpareBuff may be NULL if either
+    respective areas are not required.  They cannot both be
+    NULL as their would be no purpose for calling this function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page to read (relative to zero)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of pages to read
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPageBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to fill with page data.  May be
+                      NULL if the page data is not required.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to fill with spare data.  May be
+                      NULL if the spare data is not required.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageReadComplete"></a>
+<a NAME="FfxHookNTPageReadComplete"></a>
+FfxHookNTPageReadComplete
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxHookNTPageReadComplete</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pPageBuff,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a>       *pSpareBuff)
+</div>
+<div class=SectionText>
+
+    This function completes a page read operation which was
+    started with FfxHookReadPageStart.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPageBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to fill.  If this value is NULL, a
+                     previously started readahead operation must be
+                     completed, but no data returned.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Must be NULL if pPageBuff is NULL.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageReadStart"></a>
+<a NAME="FfxHookNTPageReadStart"></a>
+FfxHookNTPageReadStart
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTPageReadStart</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulPageNum)
+</div>
+<div class=SectionText>
+
+    This function starts a page read operation which must be
+    completed by calling FfxHookReadPageComplete.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPageNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page to read
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageWrite"></a>
+<a NAME="FfxHookNTPageWrite"></a>
+FfxHookNTPageWrite
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxHookNTPageWrite</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulStartPage,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulCount,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pPageBuff,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pSpareBuff)
+</div>
+<div class=SectionText>
+
+    This function writes data to one or more pages.
+
+<p>    Either pPageBuff or pSpareBuff may be NULL if either
+    respective area is not to be modified.  They cannot both be
+    NULL as their would be no purpose for calling this function.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulStartPage
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The starting page to write (relative to zero)
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The number of pages to write
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPageBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to fill with page data.  May be
+                      NULL if the page data is not to be modified.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The buffer to fill with spare data.  May be
+                      NULL if the spare data is not to be modified.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageWriteComplete"></a>
+<a NAME="FfxHookNTPageWriteComplete"></a>
+FfxHookNTPageWriteComplete
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> <font class=ApiName>FfxHookNTPageWriteComplete</font>(
+    NANDCTL        *pNC)
+</div>
+<div class=SectionText>
+
+    This function completes a page write operation which was
+    started with FfxHookWritePageStart.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXIOSTATUS>FFXIOSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPageWriteStart"></a>
+<a NAME="FfxHookNTPageWriteStart"></a>
+FfxHookNTPageWriteStart
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTPageWriteStart</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulPageNum,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pPageBuff,<br>&nbsp;&nbsp;&nbsp;
+    const <a HREF=UD660_DataTypes.c.htm#D_BUFFER>D_BUFFER</a> *pSpareBuff)
+</div>
+<div class=SectionText>
+
+    This function starts a page write operation which must be
+    completed by calling FfxHookWritePageComplete.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulPageNum
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The page to write
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pPageBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer containing page data
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pSpareBuff
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer containing spare data
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPxa320Configure"></a>
+<a NAME="FfxHookNTPxa320Configure"></a>
+FfxHookNTPxa320Configure
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTPxa320Configure</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NTMHOOKHANDLE       hNtmHook,<br>&nbsp;&nbsp;&nbsp;
+    const FFXNANDCHIP  *pChipInfo,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_BYTE>D_BYTE</a>             *pabID)
+</div>
+<div class=SectionText>
+
+    Perform any necessary configuration of the PXA320 NAND controller,
+    as necessary for the flash with the specified NAND ID.
+
+<p>    <b>Note</b> -- In the event that there are multiple instances of this
+              NTM, this function will only be called when the first
+              instance is initialized (the PXA320 has only one set of
+              timing registers, regardless whether one or two chips
+              are used).  This means that if there are multiple NAND
+              chips which have different timing characteristics, the
+              timing for the first chip will be what is used.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The hook handle returned from the Create function.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pChipInfo
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXNANDCHIP structure to use
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pabID
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to an array of NAND ID bytes, which will
+                    contain at least NAND_ID_SIZE entries.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or the nature of
+        any failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPxa320Create"></a>
+<a NAME="FfxHookNTPxa320Create"></a>
+FfxHookNTPxa320Create
+</h3>
+<div class=Api>
+NTMHOOKHANDLE <font class=ApiName>FfxHookNTPxa320Create</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev,<br>&nbsp;&nbsp;&nbsp;
+    FFXPXA320PARAMS    *pParams)
+</div>
+<div class=SectionText>
+
+    Allocate and initialize the PXA320 control structure, as well as
+    map the PXA320 NAND controller's memory into the address space of
+    the calling process.  Also supplies basic run-time configuration
+    information to the NTM.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pParams
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the FFXPXA320PARAMS structure to use.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a NTMHOOKHANDLE if successful, or NULL otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTPxa320Destroy"></a>
+<a NAME="FfxHookNTPxa320Destroy"></a>
+FfxHookNTPxa320Destroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTPxa320Destroy</font>(
+    NTMHOOKHANDLE hNtmHook)
+</div>
+<div class=SectionText>
+
+    Deallocate and deinitialize the PXA320 control structure and
+    corresponding PXA320 NAND controller.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hNtmHook
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The hook handle returned from the Create function.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        An <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or the nature of
+        any failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandAddressOut"></a>
+<a NAME="FfxHookNTSTDCLRNandAddressOut"></a>
+FfxHookNTSTDCLRNandAddressOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTSTDCLRNandAddressOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     address)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent output operation to the
+    NAND address port, storing the provided address value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+address
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the data to store to the address port
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandCreate"></a>
+<a NAME="FfxHookNTSTDCLRNandCreate"></a>
+FfxHookNTSTDCLRNandCreate
+</h3>
+<div class=Api>
+NANDCTL * <font class=ApiName>FfxHookNTSTDCLRNandCreate</font>(
+    <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a>        hDev)
+</div>
+<div class=SectionText>
+
+    Create a NAND Control Module instance which is associated with
+    the ntstdclrnand NTM.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDev
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The Device handle
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the NANDCTL structure to use if
+        successful, otherwise NULL.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandDataIn"></a>
+<a NAME="FfxHookNTSTDCLRNandDataIn"></a>
+FfxHookNTSTDCLRNandDataIn
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTSTDCLRNandDataIn</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL        *pNC,<br>&nbsp;&nbsp;&nbsp;
+    NAND_IO_TYPE   *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>        uCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream input operation from the
+    NAND data port and return the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer to be filled with the data
+                    read from the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be read from the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandDataOut"></a>
+<a NAME="FfxHookNTSTDCLRNandDataOut"></a>
+FfxHookNTSTDCLRNandDataOut
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxHookNTSTDCLRNandDataOut</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL            *pNC,<br>&nbsp;&nbsp;&nbsp;
+    const NAND_IO_TYPE *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a>            uCount)
+</div>
+<div class=SectionText>
+
+    Perform a platform-dependent stream output operation to the
+    NAND data port, storing the provided data.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a buffer containing the data to be
+                    sent to the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+uCount
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Number of NAND_IO_TYPE elements in the buffer
+                    to be sent to the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandDestroy"></a>
+<a NAME="FfxHookNTSTDCLRNandDestroy"></a>
+FfxHookNTSTDCLRNandDestroy
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTSTDCLRNandDestroy</font>(
+    NANDCTL        *pNC)
+</div>
+<div class=SectionText>
+
+    Destroy a NAND Control Module instance.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandReadyWait"></a>
+<a NAME="FfxHookNTSTDCLRNandReadyWait"></a>
+FfxHookNTSTDCLRNandReadyWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTSTDCLRNandReadyWait</font>(
+    NANDCTL    *pNC)
+</div>
+<div class=SectionText>
+
+    Poll the BSY/RDY pin of the NAND chip until it indicates that
+    the device is ready or a timeout limit is reached.  This is
+    often called before a command is written to the flash to be
+    sure the device will listen before the command is sent.  The
+    chip selects must/will be set prior to this function call.
+    This function could look at the busy pins of the device or
+    send a read status command.
+
+<p>    Note that if the read status command is used to check if
+    the device is ready when performing read operations, it
+    may be necessary to reissue the read command that was used
+    in order to get the chip out of the read status mode and
+    back into the read data mode. Consult your data sheet for
+    details.
+
+<p>    The timeout limit is specified by NAND_TIME_OUT in
+    nandconf.h.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandSetChipCommand"></a>
+<a NAME="FfxHookNTSTDCLRNandSetChipCommand"></a>
+FfxHookNTSTDCLRNandSetChipCommand
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTSTDCLRNandSetChipCommand</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucCommand)
+</div>
+<div class=SectionText>
+
+    Wait for the chip to be ready and then sends a command using
+    <a HREF="#FfxHookNTSTDCLRNandSetChipCommandNoWait">FfxHookNTSTDCLRNandSetChipCommandNoWait</a>.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandSetChipCommandNoWait"></a>
+<a NAME="FfxHookNTSTDCLRNandSetChipCommandNoWait"></a>
+FfxHookNTSTDCLRNandSetChipCommandNoWait
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTSTDCLRNandSetChipCommandNoWait</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL    *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UCHAR>D_UCHAR</a>     ucCommand)
+</div>
+<div class=SectionText>
+
+    Send a command to the chip without waiting for status.
+
+<p>    Universal "send arbitrary command" helper routine used by all
+    higher level chip-specific routines. This routine only takes
+    care of making sure that the proper interface pins are
+    manipulated so that the command is entered into a previously
+    selected chip.  The appropriate chip must already be selected
+    before calling this routine and subsequent address,
+    confirmation and data bytes must be sent to the chips using
+    calls to additional helper routines.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ucCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the command to send
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandSetChipSelect"></a>
+<a NAME="FfxHookNTSTDCLRNandSetChipSelect"></a>
+FfxHookNTSTDCLRNandSetChipSelect
+</h3>
+<div class=Api>
+<a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> <font class=ApiName>FfxHookNTSTDCLRNandSetChipSelect</font>(<br>&nbsp;&nbsp;&nbsp; 
+    NANDCTL            *pNC,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>            ulChip,<br>&nbsp;&nbsp;&nbsp;
+    CHIP_SELECT_MODE    mode)
+</div>
+<div class=SectionText>
+
+    Select a particular NAND chip.  Any control bits are set to
+    zero and all other chips are deselected.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulChip
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The chip number (high bits of linear address)
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns an <a HREF=QF660_Structures.c.htm#FFXSTATUS>FFXSTATUS</a> value indicating success or failure.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookNTSTDCLRNandStatusIn"></a>
+<a NAME="FfxHookNTSTDCLRNandStatusIn"></a>
+FfxHookNTSTDCLRNandStatusIn
+</h3>
+<div class=Api>
+NAND_IO_TYPE <font class=ApiName>FfxHookNTSTDCLRNandStatusIn</font>(
+    NANDCTL    *pNC)
+</div>
+<div class=SectionText>
+
+    Perform a single platform-dependent input operation from the
+    NAND data port, for a status read, and return the result.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+pNC
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the NANDCTL structure for the device
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        The status data read from the chip.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxHookOptionGet"></a>
+<a NAME="FfxHookOptionGet"></a>
+FfxHookOptionGet
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_BOOL>D_BOOL</a> <font class=ApiName>FfxHookOptionGet</font>(<br>&nbsp;&nbsp;&nbsp; 
+    FFXOPTION       opt,<br>&nbsp;&nbsp;&nbsp;
+    void           *handle,<br>&nbsp;&nbsp;&nbsp;
+    void           *pBuffer,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a>        ulBuffLen)
+</div>
+<div class=SectionText>
+
+    Get a configuration option.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+opt
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The option identifier (FFXOPT_*).
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+handle
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The <a HREF=QF660_Structures.c.htm#FFXDEVHANDLE>FFXDEVHANDLE</a> or <a HREF=QF660_Structures.c.htm#FFXDISKHANDLE>FFXDISKHANDLE</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pBuffer
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to object to receive the option value.
+                    May be NULL.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+ulBuffLen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size of object to receive the option value.
+                    May be zero if pBuffer is NULL.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        TRUE if the option identifier is valid, the option value is
+        available and either pBuffer is NULL or ulBuffLen is the
+        appropriate size for the option value, otherwise FALSE.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="FfxProjStub"></a>
+<a NAME="FfxProjStub"></a>
+FfxProjStub
+</h3>
+<div class=Api>
+void <font class=ApiName>FfxProjStub</font>(
+    void)
+</div>
+<div class=SectionText>
+
+    <h4>Parameters</h4>
+
+<p>    <h4>Return Value</h4>
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

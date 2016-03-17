@@ -1,0 +1,5 @@
+IF BTH_MANAGER=1
+root:-Directory("\Windows")
+Directory("\Windows"):-Directory("LOC_DESKTOP_DIR")
+Directory("\Windows\LOC_DESKTOP_DIR"):-File("Bluetooth Manager.lnk", "\Windows\BthManager.lnk")
+ENDIF

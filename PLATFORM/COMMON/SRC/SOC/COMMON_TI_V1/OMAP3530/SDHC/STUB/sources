@@ -1,0 +1,7 @@
+# All rights reserved ADENEO EMBEDDED 2010
+!INCLUDE "..\..\sources.inc"
+
+TARGETNAME=$(OMAP3530)_sdhc_stub
+TARGETTYPE=LIBRARY
+
+SOURCES = sdhc_stub.c

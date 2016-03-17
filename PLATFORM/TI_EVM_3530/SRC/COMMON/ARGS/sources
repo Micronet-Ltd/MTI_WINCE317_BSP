@@ -1,0 +1,11 @@
+!if 0
+Copyright (c) BSQUARE Corporation.  All rights reserved.
+!endif
+
+TARGETNAME=bsp_args
+RELEASETYPE=PLATFORM
+TARGETTYPE=LIBRARY
+
+SOURCES=\
+    args.c
+    

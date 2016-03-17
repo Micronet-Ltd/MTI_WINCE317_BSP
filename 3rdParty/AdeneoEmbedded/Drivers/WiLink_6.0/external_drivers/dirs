@@ -1,0 +1,10 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+DIRS=\
+	btpwr
+
+OPTIONAL_DIRS=\
+standard_bus \
+omap2430 \
+GEM

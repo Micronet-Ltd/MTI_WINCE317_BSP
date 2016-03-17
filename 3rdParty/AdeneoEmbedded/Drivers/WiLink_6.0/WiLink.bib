@@ -1,0 +1,104 @@
+;
+;
+;
+
+;-------------------------------------------------------------------------------
+MODULES
+;-------------------------------------------------------------------------------
+
+
+
+;-- WLAN Interface -------------------------------------------------------------
+;
+IF WL1271_WLAN
+; WL1271 WLAN Driver
+sdi.dll				$(_FLATRELEASEDIR)\sdi_$(_TGTPLAT).dll		NK SHK
+tiwlnapi.dll        $(_FLATRELEASEDIR)\tiwlnapi.dll				NK SHK
+wl1271helper.dll    $(_FLATRELEASEDIR)\wl1271helper.dll         NK
+
+; WL1271 CLI
+ticon.exe			$(_FLATRELEASEDIR)\ticon.exe			NK
+
+; Microsoft ZeroConfig Tool
+wzctool.exe      	$(_FLATRELEASEDIR)\wzctool.exe          NK
+ENDIF WL1271_WLAN
+
+;-------------------------------------------------------------------------------
+;-- Bluetooth Interface --------------------------------------------------------
+;
+; WL1271 Bluetooth Driver
+IF WL1271_BTH
+brf6300.dll         $(_FLATRELEASEDIR)\brf6300.dll			NK SHK
+btpwr.dll			$(_FLATRELEASEDIR)\btpwr.dll			NK SHK
+ENDIF WL1271_BTH
+;-------------------------------------------------------------------------------
+
+
+;-- WL1271 Manager -------------------------------------------------------------
+;
+IF BSP_WL1271_APPLET
+; WL1271 Control Panel Applet
+WL1271Manager.cpl	$(_FLATRELEASEDIR)\WL1271Manager.cpl			   NK
+ENDIF BSP_WL1271_APPLET
+
+IF BSP_WL1271_APP
+; WL1271 Manager application
+WL1271_Manager_App.exe $(_FLATRELEASEDIR)\WL1271_Manager_App.exe			   NK
+ENDIF BSP_WL1271_APP
+;-------------------------------------------------------------------------------
+
+;-- WL1271 Serial Test ---------------------------------------------------------
+;
+IF BSP_WL1271_SERIAL_TEST
+; 
+SerialTest_App.exe $(_FLATRELEASEDIR)\SerialTest_App.exe			   NK
+ENDIF BSP_WL1271_SERIAL_TEST
+;-------------------------------------------------------------------------------
+
+;-- WL1271 Logger ---------------------------------------------------------
+;
+IF BSP_WL1271_LOGGER
+logger.exe 			$(_FLATRELEASEDIR)\logger.exe			NK
+ENDIF BSP_WL1271_LOGGER
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+FILES
+;-------------------------------------------------------------------------------
+
+
+;-- WLAN Interface -------------------------------------------------------------
+;
+IF WL1271_WLAN
+; WL1271 WLAN Firmware
+;nvs_map.bin		$(_WINCEROOT)\3rdParty\AdeneoEmbedded\WLAN\TI-WiLink\fw\nvs_map.bin		NK
+Fw1273_CHIP.bin		$(_WINCEROOT)\\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\fw\Fw1273_CHIP.bin	NK
+ENDIF WL1271_WLAN
+;-------------------------------------------------------------------------------
+
+;-- WL1271 Manager -------------------------------------------------------------
+;
+IF BSP_WL1271_APP
+WL1271_Manager_App.lnk $(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\external_apps\WinCe\WL1271_Manager_App\WL1271_Manager_App.link			   NK 
+ENDIF BSP_WL1271_APP
+;-------------------------------------------------------------------------------
+
+;-- WL1271 Serial Test ---------------------------------------------------------
+;
+IF BSP_WL1271_SERIAL_TEST
+SerialTest_App.lnk $(_WINCEROOT)\\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\external_apps\WinCe\SerialTest_App\SerialTest_App.link			   NK 
+ENDIF BSP_WL1271_SERIAL_TEST
+;-------------------------------------------------------------------------------
+
+;-- WL1271 Bluetooth Init Scripts ---------------------------------------------------------
+;
+
+IF WL1271_BTH
+brf61_4.2.38.bts         $(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\fw\brf61_4.2.38.bts         NK
+brf61_5.2.34.bts         $(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\fw\brf61_5.2.34.bts         NK
+brf61_5.3.53.bts         $(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\fw\brf61_5.3.53.bts         NK
+brf61_7.1.24.bts         $(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\fw\brf61_7.1.24.bts         NK
+brf61_7.2.31.bts         $(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\fw\brf61_7.2.31.bts         NK
+brf61_7.6.15.bts         $(_WINCEROOT)\3rdParty\AdeneoEmbedded\Drivers\WiLink_6.0\fw\brf61_7.6.15.bts         NK
+ENDIF WL1271_BTH
+;-------------------------------------------------------------------------------

@@ -1,0 +1,290 @@
+ gles2test1
+
+ Timestamp is 4c9a62fe (Wed Sep 22 16:11:42 2010)
+
+ Preferred load address is 00010000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000004H .CRT$XCA                CODE
+ 0001:00000004 00000004H .CRT$XCZ                CODE
+ 0001:00000008 00000004H .CRT$XIA                CODE
+ 0001:0000000c 00000004H .CRT$XIZ                CODE
+ 0001:00000010 00000004H .CRT$XPA                CODE
+ 0001:00000014 00000004H .CRT$XPZ                CODE
+ 0001:00000018 00000004H .CRT$XTA                CODE
+ 0001:0000001c 00000004H .CRT$XTZ                CODE
+ 0001:00000020 0000068cH .rdata                  CODE
+ 0001:000006ac 00000027H .rdata$debug            CODE
+ 0001:000006d4 0000279cH .text                   CODE
+ 0001:00002e70 00000018H .xdata                  CODE
+ 0001:00002e88 0000003cH .idata$2                CODE
+ 0001:00002ec4 00000014H .idata$3                CODE
+ 0001:00002ed8 00000180H .idata$4                CODE
+ 0001:00003058 00000026H .idata$6                CODE
+ 0001:0000307e 00000000H .edata                  CODE
+ 0002:00000000 00000180H .idata$5                DATA
+ 0002:00000180 00000198H .data                   DATA
+ 0002:00000318 00000040H .bss                    DATA
+ 0003:00000000 000000c0H .pdata                  DATA
+
+  Address         Publics by Value              Rva+Base       Lib:Object
+
+ 0000:00000000       ___safe_se_handler_count   00000000     <absolute>
+ 0000:00000000       ___safe_se_handler_table   00000000     <absolute>
+ 0001:00000000       __xc_a                     00011000     corelib0:crt0init.obj
+ 0001:00000004       __xc_z                     00011004     corelib0:crt0init.obj
+ 0001:00000008       __xi_a                     00011008     corelib0:crt0init.obj
+ 0001:0000000c       __xi_z                     0001100c     corelib0:crt0init.obj
+ 0001:00000010       __xp_a                     00011010     corelib0:crt0init.obj
+ 0001:00000014       __xp_z                     00011014     corelib0:crt0init.obj
+ 0001:00000018       __xt_a                     00011018     corelib0:crt0init.obj
+ 0001:0000001c       __xt_z                     0001101c     corelib0:crt0init.obj
+ 0001:0000003c       ??_C@_0CD@JFIHFGKD@?2windows?2glsltest1_fragshaderB?4t@ 0001103c     gles2test1.obj
+ 0001:00000060       ??_C@_0CD@BDBDCEAN@?2windows?2glsltest1_fragshaderA?4t@ 00011060     gles2test1.obj
+ 0001:00000084       ??_C@_0CC@HPPKLPE@?2windows?2glsltest1_vertshader?4tx@ 00011084     gles2test1.obj
+ 0001:000000a8       ??_C@_0BB@BCECMJFP@EGL_CONTEXT_LOST?$AA@ 000110a8     gles2test1.obj
+ 0001:000000bc       ??_C@_0BA@ECMACICF@EGL_BAD_SURFACE?$AA@ 000110bc     gles2test1.obj
+ 0001:000000cc       ??_C@_0BC@OMABNJPB@EGL_BAD_PARAMETER?$AA@ 000110cc     gles2test1.obj
+ 0001:000000e0       ??_C@_0BG@JCAPPMPM@EGL_BAD_NATIVE_WINDOW?$AA@ 000110e0     gles2test1.obj
+ 0001:000000f8       ??_C@_0BG@IANPFEBH@EGL_BAD_NATIVE_PIXMAP?$AA@ 000110f8     gles2test1.obj
+ 0001:00000110       ??_C@_0O@GCFMIHO@EGL_BAD_MATCH?$AA@ 00011110     gles2test1.obj
+ 0001:00000120       ??_C@_0BA@KHKFAGME@EGL_BAD_DISPLAY?$AA@ 00011120     gles2test1.obj
+ 0001:00000130       ??_C@_0BI@KBFIGPCO@EGL_BAD_CURRENT_SURFACE?$AA@ 00011130     gles2test1.obj
+ 0001:00000148       ??_C@_0BA@FPCJCEFK@EGL_BAD_CONTEXT?$AA@ 00011148     gles2test1.obj
+ 0001:00000158       ??_C@_0P@HOPKKPDK@EGL_BAD_CONFIG?$AA@ 00011158     gles2test1.obj
+ 0001:00000168       ??_C@_0BC@NLAJAPHP@EGL_BAD_ATTRIBUTE?$AA@ 00011168     gles2test1.obj
+ 0001:0000017c       ??_C@_0O@PGDEJDGL@EGL_BAD_ALLOC?$AA@ 0001117c     gles2test1.obj
+ 0001:0000018c       ??_C@_0P@ELJNOEME@EGL_BAD_ACCESS?$AA@ 0001118c     gles2test1.obj
+ 0001:0000019c       ??_C@_0BE@JIJLFFAN@EGL_NOT_INITIALIZED?$AA@ 0001119c     gles2test1.obj
+ 0001:000001b0       ??_C@_0M@JFIJMCIK@EGL_SUCCESS?$AA@ 000111b0     gles2test1.obj
+ 0001:00000204       ??_C@_0CF@GLNKALBC@?8?$CFs?8?5returned?5egl?5error?5?8?$CFs?8?5?$CI0x@ 00011204     gles2test1.obj
+ 0001:0000022c       ??_C@_0CO@MKHMKJB@Warning?3?5Only?5read?5?$CFu?5bytes?5of?5?$CF@ 0001122c     gles2test1.obj
+ 0001:0000025c       ??_C@_0DG@DAFCAJKD@Error?3?5Failed?5to?5allocate?5?$CFd?5byt@ 0001125c     gles2test1.obj
+ 0001:00000294       ??_C@_0CJ@FEMOKIID@Error?3?5Failed?5to?5open?5shader?5fil@ 00011294     gles2test1.obj
+ 0001:000002c0       ??_C@_01KDCPPGHE@r?$AA@    000112c0     gles2test1.obj
+ 0001:000002c4       ??_C@_0O@OGCHLAPC@inputtexcoord?$AA@ 000112c4     gles2test1.obj
+ 0001:000002d4       ??_C@_0O@BANECLJM@GL?5ERROR?5?$DN?5?$CFx?$AA@ 000112d4     gles2test1.obj
+ 0001:000002e4       ??_C@_0CI@GINLBBIE@Error?3?5Failed?5to?5validate?5GLSL?5p@ 000112e4     gles2test1.obj
+ 0001:0000030c       ??_C@_0CE@JCBAGDPL@Error?3?5Failed?5to?5link?5GLSL?5progr@ 0001130c     gles2test1.obj
+ 0001:00000330       ??_C@_03GILEGCCJ@mvp?$AA@  00011330     gles2test1.obj
+ 0001:00000334       ??_C@_0M@NDDKDOHG@basetexture?$AA@ 00011334     gles2test1.obj
+ 0001:00000340       ??_C@_08OAGMDKAF@position?$AA@ 00011340     gles2test1.obj
+ 0001:0000034c       ??_C@_0L@MGILDIMO@inputcolor?$AA@ 0001134c     gles2test1.obj
+ 0001:00000358       ??_C@_0CG@NICEALEG@Error?3?5Failed?5to?5compile?5GLSL?5sh@ 00011358     gles2test1.obj
+ 0001:00000380       ??_C@_0CH@NPOCEOP@Compiling?5program?5?8?$CFs?8?0?5?$CFd?5bytes@ 00011380     gles2test1.obj
+ 0001:000003a8       ??_C@_02DKCKIIND@?$CFs?$AA@ 000113a8     gles2test1.obj
+ 0001:000003ac       ??_C@_0BA@GKADIFMO@eglChooseConfig?$AA@ 000113ac     gles2test1.obj
+ 0001:000003bc       ??_C@_0DG@HMPOADHB@?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?5finished?5?9@ 000113bc     gles2test1.obj
+ 0001:000003f4       ??_C@_0P@PNPBPNLI@eglMakeCurrent?$AA@ 000113f4     gles2test1.obj
+ 0001:00000404       ??_C@_0BB@KEKMNHDF@eglCreateContext?$AA@ 00011404     gles2test1.obj
+ 0001:00000418       ??_C@_0L@HJOCIPHF@eglBindAPI?$AA@ 00011418     gles2test1.obj
+ 0001:00000424       ??_C@_0BH@MDMCFBDG@eglCreateWindowSurface?$AA@ 00011424     gles2test1.obj
+ 0001:0000043c       ??_C@_0O@OMNEJBKO@eglGetConfigs?$AA@ 0001143c     gles2test1.obj
+ 0001:0000044c       ??_C@_0O@EEJFKEKH@eglInitialize?$AA@ 0001144c     gles2test1.obj
+ 0001:0000045c       ??_C@_0DF@DFKFEDON@?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?9?5started?5?9?9@ 0001145c     gles2test1.obj
+ 0001:00000498       ??_C@_1EI@KHNCANBJ@?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAc?$AAr?$AAe?$AAa?$AAt?$AAe?$AA?5?$AAt?$AAh?$AAe?$AA?5?$AAd?$AAe?$AAv?$AAi?$AAc?$AAe?$AA?5?$AAc?$AAo?$AAn?$AAt@ 00011498     wince_unittests.obj
+ 0001:000004e0       ??_C@_1BO@KHIAJBLA@?$AAI?$AAn?$AAi?$AAt?$AAi?$AAa?$AAl?$AAi?$AAz?$AAa?$AAt?$AAi?$AAo?$AAn?$AA?$AA@ 000114e0     wince_unittests.obj
+ 0001:00000500       ??_C@_1EI@HEMGLDEE@?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAr?$AAe?$AAg?$AAi?$AAs?$AAt?$AAe?$AAr?$AA?5?$AAt?$AAh?$AAe?$AA?5?$AAw?$AAi?$AAn?$AAd?$AAo?$AAw?$AA?5?$AAc?$AAl@ 00011500     wince_unittests.obj
+ 0001:00000548       ??_C@_1BM@GPEKOMLI@?$AAP?$AAV?$AAR?$AAS?$AAh?$AAe?$AAl?$AAl?$AAC?$AAl?$AAa?$AAs?$AAs?$AA?$AA@ 00011548     wince_unittests.obj
+ 0001:00000564       ??_C@_07CHIKDHJG@?9height?$AA@ 00011564     wince_unittests.obj
+ 0001:0000056c       ??_C@_06EGEBBOP@?9width?$AA@ 0001156c     wince_unittests.obj
+ 0001:00000574       ??_C@_05MHNCFLJI@?9posy?$AA@ 00011574     wince_unittests.obj
+ 0001:0000057c       ??_C@_05NOMJGKNJ@?9posx?$AA@ 0001157c     wince_unittests.obj
+ 0001:00000588       ??_C@_1HC@FHLJBOEE@?$AAC?$AA?3?$AA?2?$AAW?$AAi?$AAn?$AAC?$AAE?$AA?2?$AAO?$AAM?$AAA?$AAP?$AA?2?$AAD?$AAD?$AAK?$AA1?$AA?4?$AA5?$AA?2?$AAe?$AAu?$AAr?$AAa?$AAs?$AAi?$AAa?$AA?2?$AAu?$AAn?$AAi@ 00011588     wince_unittests.obj
+ 0001:000005fc       ??_C@_1CI@OHCJFJPM@?$AAE?$AAR?$AAR?$AAO?$AAR?$AA?3?$AA?5?$AA?$CF?$AAs?$AA?5?$AAl?$AAi?$AAn?$AAe?$AA?5?$AA?$CF?$AAd?$AA?3?$AA?5?$AA?$AA@ 000115fc     wince_unittests.obj
+ 0001:00000624       ??_C@_1CC@HNHLKECD@?$AA?$CI?$AAe?$AAr?$AAr?$AAo?$AAr?$AA?5?$AAc?$AAo?$AAd?$AAe?$AA?3?$AA?5?$AA?$CF?$AAd?$AA?$CJ?$AA?$AA@ 00011624     wince_unittests.obj
+ 0001:00000648       ??_C@_1M@DMCDIEDK@?$AAP?$AAK?$AAM?$AA1?$AA?3?$AA?$AA@ 00011648     wince_unittests.obj
+ 0001:00000654       ??_C@_0L@GPAGIAIC@?9disablepm?$AA@ 00011654     wince_unittests.obj
+ 0001:00000660       ??_C@_1M@ILHOPKA@?$AAE?$AAr?$AAr?$AAo?$AAr?$AA?$AA@ 00011660     wince_unittests.obj
+ 0001:0000066c       ??_C@_1DG@PCJNAHOH@?$AAF?$AAa?$AAi?$AAl?$AAe?$AAd?$AA?5?$AAt?$AAo?$AA?5?$AAg?$AAe?$AAt?$AA?5?$AAm?$AAo?$AAn?$AAi?$AAt?$AAo?$AAr?$AA?5?$AAi?$AAn?$AAf?$AAo?$AA?$AA@ 0001166c     wince_unittests.obj
+ 0001:000006a4       ??_C@_07FBLHGNAH@app?4exe?$AA@ 000116a4     wince_unittests.obj
+ 0001:0000072c       init                       0001172c f   gles2test1.obj
+ 0001:00000ee4       display                    00011ee4 f   gles2test1.obj
+ 0001:00001110       main                       00012110 f   gles2test1.obj
+ 0001:00001464       Normalize                  00012464 f   maths.obj
+ 0001:00001628       myMultMatrix               00012628 f   maths.obj
+ 0001:000019bc       myPersp                    000129bc f   maths.obj
+ 0001:00001c64       myTranslate                00012c64 f   maths.obj
+ 0001:00001eec       myIdentity                 00012eec f   maths.obj
+ 0001:00001f34       myRotate                   00012f34 f   maths.obj
+ 0001:0000232c       AppWndProc                 0001332c f   wince_unittests.obj
+ 0001:00002394       WinMain                    00013394 f   wince_unittests.obj
+ 0001:00002890       GetDC                      00013890 f   coredll:COREDLL.dll
+ 0001:000028a0       PostQuitMessage            000138a0 f   coredll:COREDLL.dll
+ 0001:000028b0       DefWindowProcW             000138b0 f   coredll:COREDLL.dll
+ 0001:000028c0       ReleasePowerRequirement    000138c0 f   coredll:COREDLL.dll
+ 0001:000028d0       DestroyWindow              000138d0 f   coredll:COREDLL.dll
+ 0001:000028e0       ReleaseDC                  000138e0 f   coredll:COREDLL.dll
+ 0001:000028f0       CreateWindowExW            000138f0 f   coredll:COREDLL.dll
+ 0001:00002900       RegisterClassW             00013900 f   coredll:COREDLL.dll
+ 0001:00002910       GetStockObject             00013910 f   coredll:COREDLL.dll
+ 0001:00002920       NKDbgPrintfW               00013920 f   coredll:COREDLL.dll
+ 0001:00002930       GetLastError               00013930 f   coredll:COREDLL.dll
+ 0001:00002940       SetPowerRequirement        00013940 f   coredll:COREDLL.dll
+ 0001:00002950       WideCharToMultiByte        00013950 f   coredll:COREDLL.dll
+ 0001:00002960       SetCursorPos               00013960 f   coredll:COREDLL.dll
+ 0001:00002970       GetCursorPos               00013970 f   coredll:COREDLL.dll
+ 0001:00002980       MessageBoxW                00013980 f   coredll:COREDLL.dll
+ 0001:00002990       GetMonitorInfo             00013990 f   coredll:COREDLL.dll
+ 0001:000029a0       MonitorFromPoint           000139a0 f   coredll:COREDLL.dll
+ 0001:000029b0       GetSystemMetrics           000139b0 f   coredll:COREDLL.dll
+ 0001:00002a40       WinMainCRTStartup          00013a40 f   corelib0:pegwmain.obj
+ 0001:00002b3c       exit                       00013b3c f   corelib0:cexit.obj
+ 0001:00002b54       _exit                      00013b54 f   corelib0:cexit.obj
+ 0001:00002b94       __GSHandlerCheckCommon     00013b94 f   corelib0:gshandler.obj
+ 0001:00002bd0       __GSHandlerCheck           00013bd0 f   corelib0:gshandler.obj
+ 0001:00002bf4       __security_init_cookie     00013bf4 f   corelib0:seccinit.obj
+ 0001:00002c50       __security_check_cookie    00013c50 f   corelib0:armsecgs.obj
+ 0001:00002c64       __gsfailure                00013c64 f   corelib0:armsecgs.obj
+ 0001:00002ca8       _initterm                  00013ca8 f   corelib0:crt0dat.obj
+ 0001:00002cdc       _cinit                     00013cdc f   corelib0:crt0dat.obj
+ 0001:00002d10       printf                     00013d10 f   corelib1:COREDLL.dll
+ 0001:00002d20       fread                      00013d20 f   corelib1:COREDLL.dll
+ 0001:00002d30       fclose                     00013d30 f   corelib1:COREDLL.dll
+ 0001:00002d40       malloc                     00013d40 f   corelib1:COREDLL.dll
+ 0001:00002d50       ftell                      00013d50 f   corelib1:COREDLL.dll
+ 0001:00002d60       fseek                      00013d60 f   corelib1:COREDLL.dll
+ 0001:00002d70       fopen                      00013d70 f   corelib1:COREDLL.dll
+ 0001:00002d80       free                       00013d80 f   corelib1:COREDLL.dll
+ 0001:00002d90       sprintf                    00013d90 f   corelib1:COREDLL.dll
+ 0001:00002da0       fprintf                    00013da0 f   corelib1:COREDLL.dll
+ 0001:00002db0       _getstdfilex               00013db0 f   corelib1:COREDLL.dll
+ 0001:00002dc0       atol                       00013dc0 f   corelib1:COREDLL.dll
+ 0001:00002dd0       atoi                       00013dd0 f   corelib1:COREDLL.dll
+ 0001:00002de0       _stricmp                   00013de0 f   corelib1:COREDLL.dll
+ 0001:00002df0       _isctype                   00013df0 f   corelib1:COREDLL.dll
+ 0001:00002e00       wcslen                     00013e00 f   corelib1:COREDLL.dll
+ 0001:00002e10       memset                     00013e10 f   corelib1:COREDLL.dll
+ 0001:00002e20       _XcptFilter                00013e20 f   corelib1:COREDLL.dll
+ 0001:00002e30       __C_specific_handler       00013e30 f   corelib1:COREDLL.dll
+ 0001:00002e40       __security_gen_cookie2     00013e40 f   corelib1:COREDLL.dll
+ 0001:00002e50       __report_gsfailure         00013e50 f   corelib1:COREDLL.dll
+ 0001:00002e60       TerminateProcess           00013e60 f   coredll:COREDLL.dll
+ 0001:00002e88       __IMPORT_DESCRIPTOR_libEGL 00013e88     libegl:libEGL.dll
+ 0001:00002e9c       __IMPORT_DESCRIPTOR_libGLESv2 00013e9c     libGLESv2:libGLESv2.dll
+ 0001:00002eb0       __IMPORT_DESCRIPTOR_COREDLL 00013eb0     coredll:COREDLL.dll
+ 0001:00002ec4       __NULL_IMPORT_DESCRIPTOR   00013ec4     libegl:libEGL.dll
+ 0002:00000000       __imp_RegisterClassW       00015000     coredll:COREDLL.dll
+ 0002:00000004       __imp___report_gsfailure   00015004     corelib1:COREDLL.dll
+ 0002:00000008       __imp___security_gen_cookie2 00015008     corelib1:COREDLL.dll
+ 0002:0000000c       __imp___C_specific_handler 0001500c     corelib1:COREDLL.dll
+ 0002:00000010       __imp__XcptFilter          00015010     corelib1:COREDLL.dll
+ 0002:00000014       __imp_memset               00015014     corelib1:COREDLL.dll
+ 0002:00000018       __imp_wcslen               00015018     corelib1:COREDLL.dll
+ 0002:0000001c       __imp__isctype             0001501c     corelib1:COREDLL.dll
+ 0002:00000020       __imp__stricmp             00015020     corelib1:COREDLL.dll
+ 0002:00000024       __imp_atoi                 00015024     corelib1:COREDLL.dll
+ 0002:00000028       __imp___negs               00015028     corelib1:COREDLL.dll
+ 0002:0000002c       __imp_cos                  0001502c     corelib1:COREDLL.dll
+ 0002:00000030       __imp_sin                  00015030     corelib1:COREDLL.dll
+ 0002:00000034       __imp___subs               00015034     corelib1:COREDLL.dll
+ 0002:00000038       __imp___divs               00015038     corelib1:COREDLL.dll
+ 0002:0000003c       __imp___dtos               0001503c     corelib1:COREDLL.dll
+ 0002:00000040       __imp_sqrt                 00015040     corelib1:COREDLL.dll
+ 0002:00000044       __imp___stod               00015044     corelib1:COREDLL.dll
+ 0002:00000048       __imp___eqs                00015048     corelib1:COREDLL.dll
+ 0002:0000004c       __imp___les                0001504c     corelib1:COREDLL.dll
+ 0002:00000050       __imp___adds               00015050     corelib1:COREDLL.dll
+ 0002:00000054       __imp_atol                 00015054     corelib1:COREDLL.dll
+ 0002:00000058       __imp__getstdfilex         00015058     corelib1:COREDLL.dll
+ 0002:0000005c       __imp_fprintf              0001505c     corelib1:COREDLL.dll
+ 0002:00000060       __imp___muls               00015060     corelib1:COREDLL.dll
+ 0002:00000064       __imp___itos               00015064     corelib1:COREDLL.dll
+ 0002:00000068       __imp_sprintf              00015068     corelib1:COREDLL.dll
+ 0002:0000006c       __imp_free                 0001506c     corelib1:COREDLL.dll
+ 0002:00000070       __imp_fopen                00015070     corelib1:COREDLL.dll
+ 0002:00000074       __imp_fseek                00015074     corelib1:COREDLL.dll
+ 0002:00000078       __imp_ftell                00015078     corelib1:COREDLL.dll
+ 0002:0000007c       __imp_malloc               0001507c     corelib1:COREDLL.dll
+ 0002:00000080       __imp_fclose               00015080     corelib1:COREDLL.dll
+ 0002:00000084       __imp_fread                00015084     corelib1:COREDLL.dll
+ 0002:00000088       __imp_printf               00015088     corelib1:COREDLL.dll
+ 0002:0000008c       __imp_GetSystemMetrics     0001508c     coredll:COREDLL.dll
+ 0002:00000090       __imp_MonitorFromPoint     00015090     coredll:COREDLL.dll
+ 0002:00000094       __imp_GetDC                00015094     coredll:COREDLL.dll
+ 0002:00000098       __imp_PostQuitMessage      00015098     coredll:COREDLL.dll
+ 0002:0000009c       __imp_DefWindowProcW       0001509c     coredll:COREDLL.dll
+ 0002:000000a0       __imp_ReleasePowerRequirement 000150a0     coredll:COREDLL.dll
+ 0002:000000a4       __imp_DestroyWindow        000150a4     coredll:COREDLL.dll
+ 0002:000000a8       __imp_ReleaseDC            000150a8     coredll:COREDLL.dll
+ 0002:000000ac       __imp_CreateWindowExW      000150ac     coredll:COREDLL.dll
+ 0002:000000b0       __imp_TerminateProcess     000150b0     coredll:COREDLL.dll
+ 0002:000000b4       __imp_GetStockObject       000150b4     coredll:COREDLL.dll
+ 0002:000000b8       __imp_NKDbgPrintfW         000150b8     coredll:COREDLL.dll
+ 0002:000000bc       __imp_GetLastError         000150bc     coredll:COREDLL.dll
+ 0002:000000c0       __imp_SetPowerRequirement  000150c0     coredll:COREDLL.dll
+ 0002:000000c4       __imp_WideCharToMultiByte  000150c4     coredll:COREDLL.dll
+ 0002:000000c8       __imp_SetCursorPos         000150c8     coredll:COREDLL.dll
+ 0002:000000cc       __imp_GetCursorPos         000150cc     coredll:COREDLL.dll
+ 0002:000000d0       __imp_MessageBoxW          000150d0     coredll:COREDLL.dll
+ 0002:000000d4       __imp_GetMonitorInfo       000150d4     coredll:COREDLL.dll
+ 0002:000000d8       \177COREDLL_NULL_THUNK_DATA 000150d8     coredll:COREDLL.dll
+ 0002:000000dc       __imp_eglGetError          000150dc     libegl:libEGL.dll
+ 0002:000000e0       __imp_eglDestroySurface    000150e0     libegl:libEGL.dll
+ 0002:000000e4       __imp_eglTerminate         000150e4     libegl:libEGL.dll
+ 0002:000000e8       __imp_eglSwapBuffers       000150e8     libegl:libEGL.dll
+ 0002:000000ec       __imp_eglMakeCurrent       000150ec     libegl:libEGL.dll
+ 0002:000000f0       __imp_eglCreateContext     000150f0     libegl:libEGL.dll
+ 0002:000000f4       __imp_eglBindAPI           000150f4     libegl:libEGL.dll
+ 0002:000000f8       __imp_eglCreateWindowSurface 000150f8     libegl:libEGL.dll
+ 0002:000000fc       __imp_eglChooseConfig      000150fc     libegl:libEGL.dll
+ 0002:00000100       __imp_eglGetConfigs        00015100     libegl:libEGL.dll
+ 0002:00000104       __imp_eglGetDisplay        00015104     libegl:libEGL.dll
+ 0002:00000108       __imp_eglInitialize        00015108     libegl:libEGL.dll
+ 0002:0000010c       __imp_eglDestroyContext    0001510c     libegl:libEGL.dll
+ 0002:00000110       \177libEGL_NULL_THUNK_DATA 00015110     libegl:libEGL.dll
+ 0002:00000114       __imp_glAttachShader       00015114     libGLESv2:libGLESv2.dll
+ 0002:00000118       __imp_glGetProgramiv       00015118     libGLESv2:libGLESv2.dll
+ 0002:0000011c       __imp_glLinkProgram        0001511c     libGLESv2:libGLESv2.dll
+ 0002:00000120       __imp_glBindAttribLocation 00015120     libGLESv2:libGLESv2.dll
+ 0002:00000124       __imp_glValidateProgram    00015124     libGLESv2:libGLESv2.dll
+ 0002:00000128       __imp_glUniform1i          00015128     libGLESv2:libGLESv2.dll
+ 0002:0000012c       __imp_glGetShaderInfoLog   0001512c     libGLESv2:libGLESv2.dll
+ 0002:00000130       __imp_glGetUniformLocation 00015130     libGLESv2:libGLESv2.dll
+ 0002:00000134       __imp_glGetProgramInfoLog  00015134     libGLESv2:libGLESv2.dll
+ 0002:00000138       __imp_glGetError           00015138     libGLESv2:libGLESv2.dll
+ 0002:0000013c       __imp_glVertexAttribPointer 0001513c     libGLESv2:libGLESv2.dll
+ 0002:00000140       __imp_glGetAttribLocation  00015140     libGLESv2:libGLESv2.dll
+ 0002:00000144       __imp_glEnableVertexAttribArray 00015144     libGLESv2:libGLESv2.dll
+ 0002:00000148       __imp_glShaderSource       00015148     libGLESv2:libGLESv2.dll
+ 0002:0000014c       __imp_glCompileShader      0001514c     libGLESv2:libGLESv2.dll
+ 0002:00000150       __imp_glGetShaderiv        00015150     libGLESv2:libGLESv2.dll
+ 0002:00000154       __imp_glTexImage2D         00015154     libGLESv2:libGLESv2.dll
+ 0002:00000158       __imp_glTexParameterf      00015158     libGLESv2:libGLESv2.dll
+ 0002:0000015c       __imp_glCreateShader       0001515c     libGLESv2:libGLESv2.dll
+ 0002:00000160       __imp_glCreateProgram      00015160     libGLESv2:libGLESv2.dll
+ 0002:00000164       __imp_glClearColor         00015164     libGLESv2:libGLESv2.dll
+ 0002:00000168       __imp_glClear              00015168     libGLESv2:libGLESv2.dll
+ 0002:0000016c       __imp_glDisableVertexAttribArray 0001516c     libGLESv2:libGLESv2.dll
+ 0002:00000170       __imp_glUniformMatrix4fv   00015170     libGLESv2:libGLESv2.dll
+ 0002:00000174       __imp_glDrawArrays         00015174     libGLESv2:libGLESv2.dll
+ 0002:00000178       __imp_glUseProgram         00015178     libGLESv2:libGLESv2.dll
+ 0002:0000017c       \177libGLESv2_NULL_THUNK_DATA 0001517c     libGLESv2:libGLESv2.dll
+ 0002:00000180       projection                 00015180     gles2test1.obj
+ 0002:000001c0       modelview                  000151c0     gles2test1.obj
+ 0002:00000200       mvp                        00015200     gles2test1.obj
+ 0002:00000300       gui32WindowWidth           00015300     wince_unittests.obj
+ 0002:00000304       gui32WindowHeight          00015304     wince_unittests.obj
+ 0002:00000308       gui32PosX                  00015308     wince_unittests.obj
+ 0002:0000030c       gui32PosY                  0001530c     wince_unittests.obj
+ 0002:00000310       __security_cookie          00015310     corelib0:seccinit.obj
+ 0002:00000314       __security_cookie_complement 00015314     corelib0:seccinit.obj
+ 0002:0000031c       gbWindow                   0001531c     wince_unittests.obj
+ 0002:00000320       ghWnd                      00015320     wince_unittests.obj
+ 0002:00000324       pfnRegisteredWndProc       00015324     wince_unittests.obj
+ 0002:00000328       _exitflag                  00015328     corelib0:cexit.obj
+ 0002:0000032c       gui32DisplayWidth          0001532c     <common>
+ 0002:00000330       gui32DisplayHeight         00015330     <common>
+ 0002:00000338       mvp_pos                    00015338     <common>
+ 0002:00000340       attriblocation             00015340     <common>
+ 0002:00000348       hProgramHandle             00015348     <common>
+ 0002:00000350       __onexitend                00015350     <common>
+ 0002:00000354       __onexitbegin              00015354     <common>
+
+ entry point at        0001:00002a40
+
+ Static symbols
+
+ 0001:000006d4       handle_egl_error           000116d4 f   gles2test1.obj
+ 0001:000029c8       WinMainCRTStartupHelper    000139c8 f   corelib0:pegwmain.obj
+ 0001:00002a74       doexit                     00013a74 f   corelib0:cexit.obj

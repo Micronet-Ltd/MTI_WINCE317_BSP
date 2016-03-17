@@ -1,0 +1,9 @@
+LIBRARY CDS
+
+EXPORTS 
+    CDS_Init
+    CDS_Deinit
+    CDS_Open
+    CDS_Close
+    CDS_IOControl
+    DllMain

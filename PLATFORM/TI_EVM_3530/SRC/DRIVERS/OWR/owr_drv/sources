@@ -1,0 +1,41 @@
+
+!IF "$(BSP_OWRDRIVER)" == ""
+SKIPBUILD=1
+!ENDIF
+
+SYNCHRONIZE_DRAIN=1
+
+TARGETNAME=owrdrvr
+TARGETTYPE=DYNLINK
+RELEASETYPE=PLATFORM
+
+DEFFILE=$(TARGETNAME).def
+DLLENTRY=_DllMainCRTStartup
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+
+INCLUDES=\
+    $(INCLUDES);                            \
+	$(_TARGETPLATROOT)\SRC\sdk\inc;			\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\OWR;			\
+	$(_TARGETPLATROOT)\SRC\DRIVERS\OWR\gpio_isr; \
+	$(_TARGETPLATROOT)\SRC\DRIVERS\OWR\iButton; \
+	
+SOURCES= \
+    OWRdrvr.cpp \
+	OWRgpt.cpp \
+	OWRgpio.cpp \
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUDEPPATH)\oal_prcm_omap35xx_tps659xx_ti_v1.lib \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib\
+    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\iButton.lib
+    
+#TARGETLIBS= \
+#    $(_TARGETPLATLIB)\$(_CPUDEPPATH)\iButton.lib
+   
+	
+	
+	

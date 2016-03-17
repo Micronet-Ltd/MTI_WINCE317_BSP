@@ -1,0 +1,778 @@
+<html>
+<head>
+<title>
+DCL OS Services: Networking
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL OS Services: Networking
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL OS Services: Networking">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+    This is the WinCE sockets abstraction layer.  It may be used as is, or
+    as a prototype for your project.
+
+<p>    Should these routines need customization for your project, copy this
+    module into your Project Directory, make your changes, and modify the
+    make file to build the new module.
+
+<p>
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetCloseSocket">DclNetCloseSocket</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Close a previously created and open network socket.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetConnect">DclNetConnect</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Establishes a connection to the given network socket.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetGetHostByAddr">DclNetGetHostByAddr</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Retrieves host information for the given address.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetHtons">DclNetHtons</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Converts a 16-bit host integer to network endian order.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetInetAddr">DclNetInetAddr</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Converts a string to a network address.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetRecv">DclNetRecv</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Recieves data from a connected network socket.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetSend">DclNetSend</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Sends data across a connected network socket.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetSetSockOpt">DclNetSetSockOpt</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Sets a created network socket's option value.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclNetSocket">DclNetSocket</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Creates an endpoint for network communication.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclNetCloseSocket"></a>
+<a NAME="DclNetCloseSocket"></a>
+DclNetCloseSocket
+</h3>
+<div class=Api>
+int <font class=ApiName>DclNetCloseSocket</font>(
+    DCLNETSOCKET socket)
+</div>
+<div class=SectionText>
+
+    Close a previously created and open network socket.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+socket
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+a socket created by <a HREF="#DclNetSocket">DclNetSocket</a>.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        If the function returns -1, then an error has occured. If
+        the function returns 0, then the function succeeded.  All
+        other values are undefined.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetConnect"></a>
+<a NAME="DclNetConnect"></a>
+DclNetConnect
+</h3>
+<div class=Api>
+int <font class=ApiName>DclNetConnect</font>(<br>&nbsp;&nbsp;&nbsp; 
+    DCLNETSOCKET socket,<br>&nbsp;&nbsp;&nbsp;
+    const DCLNETSOCKADDR * name,<br>&nbsp;&nbsp;&nbsp;
+    int namelen)
+</div>
+<div class=SectionText>
+
+    Establishes a connection to the given network socket.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+socket
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+a socket created by <a HREF="#DclNetSocket">DclNetSocket</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+name
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the name of the protocol to use. Currently, only
+                 DCLNET_AF_INET is supported.
+        namelen- the length of the name field.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        If the function returns -1, then an error has occured. If
+        the function returns 0, then the function succeeded.  All
+        other values are undefined.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetGetHostByAddr"></a>
+<a NAME="DclNetGetHostByAddr"></a>
+DclNetGetHostByAddr
+</h3>
+<div class=Api>
+DCLNETHOSTENT * <font class=ApiName>DclNetGetHostByAddr</font>(<br>&nbsp;&nbsp;&nbsp; 
+    const char * addr,<br>&nbsp;&nbsp;&nbsp;
+    int len,<br>&nbsp;&nbsp;&nbsp;
+    int type)
+</div>
+<div class=SectionText>
+
+    Retrieves host information for the given address.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+addr
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the address to be examined.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+len
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the length of the add string.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+type
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the type of address specified.  Currently, only
+                  DCLNET_AF_INET is supported.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        A pointer to an item of type struct DclNet_hostent.  This
+        is a static item, internal to the function and should not
+        be freed.  This also means that it is not thread-safe.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetHtons"></a>
+<a NAME="DclNetHtons"></a>
+DclNetHtons
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> <font class=ApiName>DclNetHtons</font>(
+    <a HREF=UD660_DataTypes.c.htm#D_UINT16>D_UINT16</a> hostshort)
+</div>
+<div class=SectionText>
+
+    Converts a 16-bit host integer to network endian order.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hostshort
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+value to be converted.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        hostshort translated to network byte order.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetInetAddr"></a>
+<a NAME="DclNetInetAddr"></a>
+DclNetInetAddr
+</h3>
+<div class=Api>
+<a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> <font class=ApiName>DclNetInetAddr</font>(
+    const char * cp)
+</div>
+<div class=SectionText>
+
+    Converts a string to a network address.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+cp
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The ip address in numeric format.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        A <a HREF=UD660_DataTypes.c.htm#D_UINT32>D_UINT32</a> containing an IPv4 address.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetRecv"></a>
+<a NAME="DclNetRecv"></a>
+DclNetRecv
+</h3>
+<div class=Api>
+int <font class=ApiName>DclNetRecv</font>(<br>&nbsp;&nbsp;&nbsp; 
+    DCLNETSOCKET socket,<br>&nbsp;&nbsp;&nbsp;
+    char * buf,<br>&nbsp;&nbsp;&nbsp;
+    int len,<br>&nbsp;&nbsp;&nbsp;
+    int flags)
+</div>
+<div class=SectionText>
+
+    Recieves data from a connected network socket.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+socket
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+a socket created by <a HREF="#DclNetSocket">DclNetSocket</a> or <a HREF="#DclNetConnect">DclNetConnect</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+buf
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the buffer containing the data to be transmitted.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+len
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the byte-count for the data block being transmitted.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+flags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+miscellanious flags modifying the send.  Currently,
+                 only DCLNET_MSG_DEFAULT and DCLNET_MSG_PEEK are
+                 supported.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        If the function returns -1, then an error has occured. Other
+        values indicate the number of bytes received.
+
+<p>    <h4>CAUTION</h4>  A MSG_PEEK read does not do an actual read on WINCE
+              targets.  WINCE does not have a PEEK-mode call.  It
+              does have an ioctl that will return the number of
+              bytes curently available.  This value is returned
+              to the caller if DCLNET_MSG_PEEK used.  THE BUFFER
+              WILL NOT BE MODIFIED IF DCLNET_MSG_PEEK IS USED.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetSend"></a>
+<a NAME="DclNetSend"></a>
+DclNetSend
+</h3>
+<div class=Api>
+int <font class=ApiName>DclNetSend</font>(<br>&nbsp;&nbsp;&nbsp; 
+    DCLNETSOCKET socket,<br>&nbsp;&nbsp;&nbsp;
+    const char * buf,<br>&nbsp;&nbsp;&nbsp;
+    int len,<br>&nbsp;&nbsp;&nbsp;
+    int flags)
+</div>
+<div class=SectionText>
+
+    Sends data across a connected network socket.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+socket
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+a socket created by <a HREF="#DclNetSocket">DclNetSocket</a> or <a HREF="#DclNetConnect">DclNetConnect</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+buf
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the buffer containing the data to be transmitted.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+len
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+the byte-count for the data block being transmitted.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+flags
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+miscellanious flags modifying the send.  Currently,
+                 only DCLNET_MSG_DEFAULT is supported.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        If the function returns -1, then an error has occured. Other
+        values indicate the number of bytes transmitted.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetSetSockOpt"></a>
+<a NAME="DclNetSetSockOpt"></a>
+DclNetSetSockOpt
+</h3>
+<div class=Api>
+int <font class=ApiName>DclNetSetSockOpt</font>(<br>&nbsp;&nbsp;&nbsp; 
+    DCLNETSOCKET socket,<br>&nbsp;&nbsp;&nbsp;
+    int level,<br>&nbsp;&nbsp;&nbsp;
+    int optname,<br>&nbsp;&nbsp;&nbsp;
+    const char * optval,<br>&nbsp;&nbsp;&nbsp;
+    int optlen)
+</div>
+<div class=SectionText>
+
+    Sets a created network socket's option value.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+socket
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+a socket created by <a HREF="#DclNetSocket">DclNetSocket</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+level
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The level at which the option is defined.
+        optname- The socket option for which the value is to be
+                 set. Currently, only DCLNET_SO_REUSEADDR is
+                 supported
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+optval
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to the buffer containing the option
+                 value.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+optlen
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The size, in bytes, of the buffer referred to by
+                 the optval parameter.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        If the function returns -1, then an error has occured. If
+        the function returns 0, then the function succeeded.  All
+        other values are undefined.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclNetSocket"></a>
+<a NAME="DclNetSocket"></a>
+DclNetSocket
+</h3>
+<div class=Api>
+DCLNETSOCKET <font class=ApiName>DclNetSocket</font>(<br>&nbsp;&nbsp;&nbsp; 
+    int af,<br>&nbsp;&nbsp;&nbsp;
+    int type,<br>&nbsp;&nbsp;&nbsp;
+    int protocol)
+</div>
+<div class=SectionText>
+
+    Creates an endpoint for network communication.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+af
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The address family for the call.  Currently, only
+                   INET is supported.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+type
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The address type for the call.  Currently, Stream,
+                   Datagram and Raw are supported.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+protocol
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The protocol required for the socket.  Currently,
+                   only IP, TCP and UDP are supported.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        If the return value is less than 0, then an error has occured.
+        Otherwise, the return value is a socket handle.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

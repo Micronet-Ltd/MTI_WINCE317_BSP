@@ -1,0 +1,294 @@
+<html>
+<head>
+<title>
+Testing FlashFX
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+Testing FlashFX
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): Testing FlashFX">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+        FlashFX Tera comes with a number of tests that are designed to help you
+        troubleshoot problems, and provide a high degree of confidence that
+        everything is functioning properly.
+
+<p>        Depending on the type of operating system implementation you are using,
+        these tests are designed so they can be used in several different forms:
+
+<p>        <ul>
+<li>For those non-monolithic operating systems which support interactively running standalone programs, the FlashFX Tera build process will generate separate executables for each test, which when executed will interface with the FlashFX Tera device driver.  Command-line options are available to customize the test execution.  Windows CE is a typical operating system where the tests exist as separate programs.
+</ul>
+        <ul>
+<li>For those monolithic operating systems which don't support standalone programs, these tests can be linked directly into the device driver by setting FFXCONF_DRIVERAUTOTEST to TRUE in the <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a> file.  The tests are run each time the device driver initializes.  Command-line options can be specified by editing the settings in <a HREF=QF640_Headers.c.htm#ffxconf.h>ffxconf.h</a>.  Nucleus and ThreadX are typical operating systems where you can link the functionality directly into the device driver.
+</ul>
+        <ul>
+<li>For those monolithic operating systems which don't support standalone programs, but can interactively execute commands, these tests can be linked directly into the device driver if desired, and the necessary logic added to interactively invoke them.  VxWorks is a good example of an operating system where you can interactively execute functionality that is linked directly into the driver.
+</ul>
+        <ul>
+<li>In environments where user input is supported, such as via terminal emulation, the FlashFX Shell can be used which includes all the FlashFX and DCL based tests.
+</ul>
+        When moving between different operating systems or different methods of
+        invoking a test, in most cases the available command-line options are
+        identical, however the command names may vary, and the method by which
+        Disks are specified may be different.  All the tests support the "/?"
+        option which will display the syntax and available options.
+
+<p>        These tests are structured from the simple to the more complex and it
+        is <b>strongly</b> recommended that these tests be run in order.  For example,
+        DCLTEST is the lowest level test available, which tests the fundamental
+        services that the entire rest of the product uses -- if it fails, there
+        is no point in trying to run FMSLTEST or VBFTEST.  Similarly, FMSLTEST is
+        the lowest level FlashFX specific test -- if it fails, there is no point
+        in trying to run VBFTEST, and so on.
+
+<p>        Additionally, it is highly recommended that the initial test runs be
+        performed using a DEBUG build of FlashFX.
+
+<p>        The following list shows the tests in the order they should be run,
+        from the lowest level to the highest:
+
+<p>        <ul>
+<li>The DCL Unit Test
+        <li>The FMSL Unit Test
+        <li>The VBF Unit Test
+        <li>The Multithreaded VBF Stress Test
+        <li>Any <i>other</i> file system tests which might be available
+        <li>The DCL File System I/O Test
+</ul>
+        <h4>The DCL Unit Test (DCLTEST)</h4>
+
+<p>        The Datalight Common Libraries implementation contains its own unit
+        test -- DCLTEST.  This tests the OS Services implemented in DCL, as well
+        as a variety of utility functions.
+
+<p>        DCLTEST should be run successfully prior to running any of the other
+        unit tests.
+
+<p>        <h4>The FMSL Unit Test (FMSLTEST)</h4>
+
+<p>        Testing is critical to the successful implementation of the FMSL.  Use
+        FMSLTEST to exercise and test all aspects of the FMSL -- not only to
+        test the FMSL customization, but also to verify successful
+        implementation of the FIM and hardware.  The FMSLTEST functionality is
+        built automatically when you build FlashFX Tera and the executable
+        and/or library is placed in the appropriate RELEASE or DEBUG
+        directory.  Full source code for FMSLTEST is included so a debugger can
+        be used to easily identify errors.
+
+<p>        <b>Note -- If you have difficulties getting FlashFX Tera to work on your system, the Datalight Technical Support team will need the results from your FMSLTEST runs to help diagnose the problem.</b>
+
+<p>        FMSLTEST extensively tests the FMSL to make sure it reads, writes, and
+        erases the flash array properly.  FMSLTEST reports any problems with
+        the FMSL as the test proceeds on your development system.
+
+<p>        FMSLTEST initializes the hardware and makes various calls to the FMSL
+        to verify that each function works properly.  FMSLTEST reports progress
+        and problems it encounters.  The term media refers to the flash array.
+
+<p>        <b>CAUTION</b> -- Running FMSLTEST will destroy any data on your FlashFX Tera
+        disk, and the disk will need to be reformatted.
+
+<p>        FMSLTEST returns zero if no problems are found and non-zero if a
+        problem is detected.  It also displays a status message if any problems
+        are detected.
+
+<p>        <h4>The VBF Unit Test (VBFTEST)</h4>
+
+<p>        VBFTEST tests the functionality of the VBF layer.  Full source code for
+        VBFTEST is included so a debugger can be used to easily identify errors.
+
+<p>        <b>Note -- If you have difficulties getting FlashFX Tera to work on your system, the Datalight Technical Support team will need the results from your VBFTEST runs to help diagnose the problem.</b>
+
+<p>        <b>CAUTION</b> -- Running VBFTEST will destroy any data on your FlashFX Tera disk, and the disk will need to be reformatted.
+
+<p>        <b>Note</b> -- Several more extensive tests can be executed.  See the
+        command-line help for more details on this unit test.
+
+<p>        <h4>The Multithreaded VBF Stress Test (MTSTRESS)</h4>
+
+<p>        MTSTRESS is a multithreaded VBF stress test and exercises the
+        multithreaded characteristics of VBF. It starts multiple threads, each
+        of which makes random calls to FfxVbfReadPages, FfxVbfWritePages,
+        FfxVbfDiscardPages, and FfxVbfCompact. The master thread
+        periodically requests the other threads to stop, and remounts the
+        Disk .
+
+<p>        Operations of the threads are coordinated and tracked.  Reads are
+        checked to make sure they return what was last written (or return the
+        fill value if the client address was discarded).
+
+<p>        As part of the coordination process, threads claim ownership of the
+        area of client address space in which they wish to read, write, or
+        discard.  A thread may read anywhere, but only verify what was read,
+        written, or discarded in an area it owns.
+
+<p>        <b>Multithreading Characteristics</b>
+
+<p>        The MTSTRESS program only provides a meaningful stress test if
+        preemptive, time-sliced multithreading is enabled.  Some multithreaded
+        environments may not provide time-sliced thread preemption, but rather,
+        rely on individual threads to either complete, sleep, or otherwise
+        explicitly yield, so that other threads can execute.  Some OS
+        environments can be customized to enable time-sliced thread preemption
+        even if it is not the default behavior.
+
+<p>        MTSTRESS is designed so that each thread yields the remainder of its
+        time-slice once an iteration is complete, however this does not truly
+        exercise VBF in a manner that causes actual VBF operations to be
+        interrupted.  If possible, enable time-sliced thread preemption.
+
+<p>        <h4>The File System I/O Performance Test (FSIOTEST)</h4>
+
+<p>        FSIOTEST uses standard C library functions to perform file I/O.  It
+        does not make any FlashFX Tera calls directly, and in fact can be run on
+        any file system which is accessed using Standard C file I/O functions,
+        as abstracted in the DCL OS Services functions osfile.c, osfileio.c,
+        and osdir.c.
+
+<p>
+                                                                                                    
+</div>
+<div class=AllSections>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

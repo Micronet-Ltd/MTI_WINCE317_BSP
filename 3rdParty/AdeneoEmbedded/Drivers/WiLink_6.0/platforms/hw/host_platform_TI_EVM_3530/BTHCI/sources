@@ -1,0 +1,34 @@
+!if 0
+**|     Copyright (c)      2005 Texas Instruments Incorporated           |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+!IF "$(_TGTPLAT)" != "TI_EVM_3530"
+SKIPBUILD=1
+!ENDIF
+
+!IF "$(HOST_PLAT_EVM_OMAP3530)" != "1"
+SKIPBUILD=1
+!ENDIF
+
+!INCLUDE $(DK_ROOT)\SOURCES.CMN
+
+TARGETNAME=brf6300_TI_EVM_3530
+TARGETTYPE=LIBRARY
+
+INCLUDES=$(INCLUDES);$(_PLATFORMROOT)\common\src\inc
+INCLUDES=$(INCLUDES);$(_TARGETPLATROOT)\SRC\INC
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+SOURCES= \
+    bthci.cpp \
+
+FILE_VIEW_INCLUDES_FOLDER= \
+    ceddkex.h \
+    bthci.h \
+
+FILE_VIEW_RESOURCE_FOLDER= \
+
+FILE_VIEW_ROOT_FOLDER= \
+

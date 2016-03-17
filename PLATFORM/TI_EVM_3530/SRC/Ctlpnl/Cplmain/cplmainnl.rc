@@ -1,0 +1,300 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+/**
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+
+Abstract: Resource file for CPL dll
+**/
+
+#include <windows.h>
+#include <commctrl.h>
+#include "cplglobl.h"
+#include "cplres.h"
+
+#define IDC_STATIC (-1)
+
+//----------------------------------------------------------------------------
+//
+// This RC file MUST contain ONLY non-localizable resources (icons & bitmaps)
+// Any other resources placed here will *not* get localized
+//
+//----------------------------------------------------------------------------
+
+//@CESYSGEN IF CPLMAIN_COMM
+#ifdef NONEW_ICONS
+		IDI_RAS			ICON	DISCARDABLE   	"RES\\direct.ico"
+#else		
+		IDI_RAS			ICON	DISCARDABLE   	"RES\\direct.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DIALING
+#ifdef NONEW_ICONS
+		IDI_DIALING		ICON    DISCARDABLE   	"RES\\dialing.ico"
+#else		
+		IDI_DIALING		ICON    DISCARDABLE   	"RES\\dialing_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_KEYBOARD
+#ifdef NONEW_ICONS
+		IDI_KEYBD		ICON    DISCARDABLE     "RES\\keyboard.ico"
+		IDI_DELAY       ICON    DISCARDABLE     "RES\\dly_rate.ico"
+		IDI_RATE        ICON    DISCARDABLE     "RES\\rpt_rate.ico"
+#else
+		IDI_KEYBD		ICON    DISCARDABLE     "RES\\keyboard_new.ico"
+		IDI_DELAY       ICON    DISCARDABLE     "RES\\dly_rate.ico"
+		IDI_RATE        ICON    DISCARDABLE     "RES\\rpt_rate.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_OWNER
+#ifdef NONEW_ICONS
+		IDI_PROFILE		ICON    DISCARDABLE     "res\\profile.ico"
+#else
+		IDI_PROFILE		ICON    DISCARDABLE     "res\\profile_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POWER
+		IDI_POWER_AC	ICON    DISCARDABLE     "RES\\power_ac.ico"
+		IDI_POWER_BAT	ICON    DISCARDABLE     "RES\\power_bat.ico"
+
+#ifdef NONEW_ICONS
+		IDI_POWER		ICON    DISCARDABLE     "RES\\power.ico"
+		IDI_MAIN_BAT	ICON    DISCARDABLE     "RES\\battery.ico"
+		IDI_BACK_BAT	ICON    DISCARDABLE     "RES\\back_bat.ico"
+#else
+		IDI_POWER		ICON    DISCARDABLE     "RES\\power_new.ico"
+		IDI_MAIN_BAT	ICON    DISCARDABLE     "RES\\battery.ico"
+		IDI_BACK_BAT	ICON    DISCARDABLE     "RES\\back_bat.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DISPLAY
+#ifdef NONEW_ICONS
+		IDI_SCREEN		ICON    DISCARDABLE     "RES\\screen.ico"
+#else
+	IDI_SCREEN		ICON    DISCARDABLE     "RES\\screen_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_COLORSCHEME
+ 		IDB_SCHEME      BITMAP  DISCARDABLE     "RES\\scheme.bmp"
+		IDB_CLOSE       BITMAP  DISCARDABLE     "RES\\close.2bp"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_STYLUS
+#ifdef NONEW_ICONS
+		IDI_STYLUS		ICON    DISCARDABLE     "RES\\stylus.ico"
+#else
+		IDI_STYLUS		ICON    DISCARDABLE     "RES\\stylus_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_MOUSE
+#ifdef NONEW_ICONS
+		IDI_MOUSE		ICON    DISCARDABLE     "RES\\mouse.ico"
+#else
+		IDI_MOUSE		ICON    DISCARDABLE     "RES\\mouse_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POINTERCMN
+		// Shared by stylus & mouse
+		IDI_CLAPPER		ICON    DISCARDABLE     "RES\\clapper.ico"
+		IDI_CLAPDOWN	ICON    DISCARDABLE     "RES\\clap_dn.ico"
+		IDB_CLAPGRID1	BITMAP  DISCARDABLE     "RES\\clapp1.bmp"
+		IDB_CLAPGRID2	BITMAP  DISCARDABLE     "RES\\clapp2.bmp"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SOUNDS
+#ifdef NONEW_ICONS
+		IDI_SOUNDS		ICON    DISCARDABLE     "RES\\sounds.ico"
+#else
+		IDI_SOUNDS		ICON    DISCARDABLE     "RES\\sounds_new.ico"
+#endif
+		// Sound scheme icons
+		IDI_AUDIO       ICON    DISCARDABLE     "RES\\audio.ico"
+		IDI_PROGRAM     ICON    DISCARDABLE     "RES\\program.ico"
+		IDI_BLANK       ICON    DISCARDABLE     "RES\\blank.ico"
+		IDB_STOP        BITMAP  DISCARDABLE     "RES\\stop.2bp"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SIP
+#ifdef NONEW_ICONS
+		IDI_SIP         ICON    DISCARDABLE     "RES\\sip.ico"
+#else
+		IDI_SIP         ICON    DISCARDABLE     "RES\\sip_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_REMOVE
+#ifdef NONEW_ICONS
+		IDI_REMOVE		ICON	DISCARDABLE		"RES\\remove.ico"
+		IDI_ALERT		ICON	DISCARDABLE		"RES\\alert.ico"
+#else
+		IDI_REMOVE		ICON	DISCARDABLE		"RES\\remove_new.ico"
+		IDI_ALERT		ICON	DISCARDABLE		"RES\\alert.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_DATETIME
+//
+// Date/Time Icons
+//
+#ifdef NONEW_ICONS
+        IDI_TIME                ICON    DISCARDABLE     "RES\\date.ico"
+#else
+        IDI_TIME                ICON    DISCARDABLE     "RES\\date_new.ico"
+#endif  
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_Certs
+// Certificate icons
+#ifdef NONEW_ICONS
+        IDI_CERT                ICON    DISCARDABLE     "RES\\cert.ico"
+#else
+        IDI_CERT                ICON    DISCARDABLE     "RES\\cert_new.ico"
+#endif  
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_Accessib
+// Certificate icons
+#ifdef NONEW_ICONS
+        IDI_ACCESS              ICON    DISCARDABLE     "RES\\accessib.ico"
+#else
+        IDI_ACCESS              ICON    DISCARDABLE     "RES\\accessib_new.ico"
+#endif  
+		IDI_ACC_STICKY			ICON    DISCARDABLE     "RES\\Acc_StickyK.ico"
+		IDI_ACC_TOGGLE			ICON    DISCARDABLE     "RES\\Acc_ToggleK.ico"
+		IDI_ACC_SNDSENTRY       ICON    DISCARDABLE     "RES\\Acc_SoundS.ico"
+		IDI_ACC_DISP			ICON	DISCARDABLE     "RES\\Acc_HighC.ico"
+		IDI_ACC_MKEYS			ICON    DISCARDABLE     "RES\\Acc_MouseK.ico"
+		IDI_ACC_SHORTCUT		ICON    DISCARDABLE     "RES\\Acc_Shortcut.ico"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_CPLMAIN
+		// Shared by KEYBD and portrait version of Sound-volume
+		IDB_LEFT        BITMAP  DISCARDABLE     "RES\\left.2bp"
+		// Shared by KEYBD, portrait version of Sound-volume, and both versions of Sound-scheme
+		IDB_RIGHT       BITMAP  DISCARDABLE     "RES\\right.2bp"
+
+		// Shared by owner, password & anyone else who prompts for passwd
+		IDI_PASSWD		ICON    DISCARDABLE     "res\\passwrd.ico"
+//@CESYSGEN ENDIF
+
+
+/**
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Abstract: Defines the landscape form factor icons
+**/
+
+//----------------------------------------------------------------------------
+//
+// This RC file MUST contain ONLY non-localizable resources (icons & bitmaps)
+// Any other resources placed here will *not* get localized
+//
+//----------------------------------------------------------------------------
+
+
+//
+// Icons that differ between the two modes
+//
+//@CESYSGEN IF CPLMAIN_LANDSCAPE
+
+//@CESYSGEN IF CPLMAIN_COMM
+#ifdef NONEW_ICONS
+		IDI_COMM		ICON    DISCARDABLE		"RES\\comm.ico"
+#else
+		IDI_COMM		ICON    DISCARDABLE		"RES\\comm_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POWER
+		IDI_SLEEP		ICON    DISCARDABLE     "RES\\sleep.ico"
+//@CESYSGEN ENDIF
+
+
+//@CESYSGEN IF CPLMAIN_SYSTEM
+#ifdef NONEW_ICONS
+		IDI_SYSTEM		ICON    DISCARDABLE     "RES\\system.ico"
+#else
+		IDI_SYSTEM		ICON    DISCARDABLE     "RES\\system_new.ico"
+#endif
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_BACKLIGHT
+		IDI_BACKLIGHT	ICON	DISCARDABLE		"RES\\backlite.ico"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SOUNDS
+		IDB_UP			BITMAP  DISCARDABLE     "RES\\up.2bp"
+		IDB_DOWN		BITMAP  DISCARDABLE     "RES\\down.2bp"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_REMOVE
+		IDI_TRASH		ICON	DISCARDABLE     "RES\\trash.ico"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN ENDIF CPLMAIN_LANDSCAPE
+
+/**
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+PARTICULAR PURPOSE.
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Abstract: Defines the portrait form factor icons
+**/
+
+//----------------------------------------------------------------------------
+//
+// This RC file MUST contain ONLY non-localizable resources (icons & bitmaps)
+// Any other resources placed here will *not* get localized
+//
+//----------------------------------------------------------------------------
+
+//
+// Icons that differ between the two modes
+//
+//@CESYSGEN IF CPLMAIN_PORTRAIT
+
+//@CESYSGEN IF CPLMAIN_COMM
+		IDI_COMM		ICON    DISCARDABLE		"RES\\comm_p.ico"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_POWER
+		IDI_SLEEP		ICON    DISCARDABLE     "RES\\sleep_p.ico"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_SYSTEM
+		IDI_SYSTEM		ICON    DISCARDABLE     "RES\\system_p.ico"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN IF CPLMAIN_BACKLIGHT
+		IDI_BACKLIGHT	ICON	DISCARDABLE		"RES\\bcklit_p.ico"
+//@CESYSGEN ENDIF
+
+//@CESYSGEN ENDIF CPLMAIN_PORTRAIT
+
+

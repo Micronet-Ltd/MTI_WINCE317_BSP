@@ -1,0 +1,9 @@
+DIRS=\
+	SDHC\
+	SOCCFG\
+	OAL\
+	MCBSP\
+	USB\
+	PM\
+	EMAC
+

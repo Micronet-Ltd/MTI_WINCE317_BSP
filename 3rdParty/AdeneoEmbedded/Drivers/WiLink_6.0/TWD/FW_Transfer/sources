@@ -1,0 +1,20 @@
+!if 0
+**|     Copyright (c)      1998-2007 Texas Instruments Incorporated      |**
+**|                        ALL RIGHTS RESERVED                           |**
+!endif
+
+TARGETNAME=FW_Transfer
+TARGETTYPE=LIBRARY
+RELEASETYPE=$(TI_RELEASE)
+
+!INCLUDE $(DK_ROOT)\sources.cmn
+
+SOURCES= \
+txXfer.c \
+txResult.c \
+RxXfer.c \
+HwInit.c \
+FwEvent.c \
+fwDebug.c \
+eventMbox.c \
+CmdMBox.c

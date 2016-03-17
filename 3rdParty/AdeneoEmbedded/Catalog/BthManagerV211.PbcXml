@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CatalogFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" RequiredVersion="6.00" xsi:schemaLocation="urn:Microsoft.PlatformBuilder/Catalog PbcXml600.xsd" xmlns="urn:Microsoft.PlatformBuilder/Catalog">
+  <FileInformation Id="FileInformation:BthManagerv211">
+    <Title>Bth Manager</Title>
+    <Description>Bluetooth Manager</Description>
+    <Comment>Adeneo Embedded</Comment>
+    <Vendor>Adeneo Embedded</Vendor>
+    <OSVersion>6.00</OSVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </FileInformation>
+  <Item Id="Item:AdeneoEmbedded:BthManager:v211">
+    <Title>Bluetooth Manager</Title>
+    <Description>Bluetooth Connections Manager</Description>
+    <Comment>Bleutooth Connections Manager</Comment>
+    <Variable>BTH_MANAGER</Variable>
+    <Variable>SYSGEN_AYGSHELL</Variable>
+    <Variable>SYSGEN_STANDARDSHELL</Variable>
+    <Variable>SYSGEN_OBEX_CLIENT</Variable>
+    <Variable>SYSGEN_OBEX_SERVER</Variable>
+    <Variable>SYSGEN_OBEX_FILEBROWSER</Variable>
+    <Variable>SYSGEN_OBEX_INBOX</Variable>
+    <Variable>SYSGEN_OBEX_INBOX</Variable>
+    <Variable>SYSGEN_BTH_HID_KEYBOARD</Variable>
+    <Variable>SYSGEN_BTH_HID_MOUSE</Variable>
+    <Variable>SYSGEN_OLE</Variable>
+    <Variable>SYSGEN_DCOM</Variable>
+    <Variable>SYSGEN_BTH_MODEM</Variable>
+    <Variable>SYSGEN_BTH_AUDIO</Variable>
+    <Variable>SYSGEN_BTH_AG</Variable>
+    <Variable>SYSGEN_BTH_A2DP</Variable>
+    <Variable>SYSGEN_BTH_PAN</Variable>
+    <Variable>SYSGEN_MSXML_DOM</Variable>
+    <Module>BthManager.exe</Module>
+    <Module>BthManagerDll.dll</Module>
+    <Module>BthManager.htm</Module>
+    <Project>$(_WINCEROOT)\3rdParty\AdeneoEmbedded\BluetoothManager_V211\BthManager.pbpxml</Project>
+    <Location>\Adeneo Embedded</Location>
+  </Item>
+</CatalogFile>

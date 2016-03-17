@@ -1,0 +1,26 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+TARGETNAME=pwrdom_constraint_lib_omap35xx_tps659xx_ti_v1
+TARGETTYPE=LIBRARY
+
+INCLUDES=$(INCLUDES);..\..\inc
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO -EHsc
+
+SOURCES= \
+    powerdomainconstraint.cpp \
+    powerdomaincontext.cpp \
+
+    

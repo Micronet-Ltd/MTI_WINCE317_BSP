@@ -1,0 +1,90 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+!IF 0
+Note on DOSYSGEN: the sysgen process runs "build" on this sources file to
+produce a LIB file, even though the end target will be a DLL or an EXE.  This
+is because COREDLL, which is linked implicitly to all such targets, can be
+componentized and we want to avoid invoking COREDLL APIs that may not be
+available after sysgen.  If you want to build and link this target AFTER the sysgen
+is complete, comment out the following line -- otherwise you will get a LIB
+file.
+!ENDIF
+DOSYSGEN=1
+
+WINCEOEM=1
+
+SYNCHRONIZE_DRAIN=1
+
+TARGETNAME=ftdi_ser
+RELEASETYPE=PLATFORM
+TARGETTYPE=DYNLINK
+
+DLLENTRY=DllEntry
+
+PREPROCESSDEFFILE=1
+TARGETDEFNAME=ftdi_ser
+
+DEFFILE=$(TARGETDEFNAME).def
+#WINCETARGETFILE0=$(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\$(TARGETDEFNAME).def
+
+
+CDEFINES=$(CDEFINES) -DUSE_NEW_SERIAL_MODEL -DWINCE -DWINCE6
+
+INCLUDES=$(_COMMONSDKROOT)\inc; \
+	$(_COMMONOAKROOT)\inc; \
+	$(_COMMONDDKROOT)\inc; \
+	$(_WINCEROOT)\Public\Common\OAK\Drivers\USB\usbd; \
+	$(_TARGETPLATROOT)\SRC\SDK\INC;
+
+_OEMINCPATH=$(_OEMINCPATH);$(_PLATFORMROOT)\COMMON\src\SOC\omap35xx_tps659xx_ti_v1\omap35xx\inc
+
+TARGETLIBS= \
+    $(_PROJECTROOT)\cesysgen\sdk\lib\$(_CPUINDPATH)\coredll.lib \
+    $(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\ceddk.lib \
+    $(_COMMONSDKROOT)\lib\$(_CPUINDPATH)\Mmtimer.lib \
+    $(_COMMONOAKLIB)\$(_CPUINDPATH)\usbd.lib 
+
+SOURCELIBS= \
+	$(_COMMONOAKROOT)\lib\$(_CPUINDPATH)\USBCLIENT.lib
+
+SOURCES= \
+    ftdi_ser.rc \
+    mdd.c \
+    ftdi_utils.c \
+    ftdi_usb.cpp \
+    BUSBDBG.C \
+    STRING.C \
+    BAUD.C \
+    BULK_IN.C \
+    IRPQUEUE.C \
+    MultiPlatformFile.cpp \
+    INFParse.cpp \
+    EMUL.C \
+    MODMFLOW.C \
+    ftdi_debug.c \
+    ftdi_ser.c \
+
+
+#xref VIGUID {09657BAF_129C_4876_9914_903E3219C717}
+#xref VSGUID {3A45CEC3_DF50_422F_A349_2D5889C6A7D2}
+FILE_VIEW_INCLUDES_FOLDER= \
+    BUSBDBG.H \
+    EMUL.H \
+    ftdi_debug.h \
+    ftdi_ioctl.h \
+    ftdi_ser.h \
+    INFParse.h \
+    MultiPlatformFile.h \
+    resource.h \
+    serial.h \
+    serpriv.h \
+

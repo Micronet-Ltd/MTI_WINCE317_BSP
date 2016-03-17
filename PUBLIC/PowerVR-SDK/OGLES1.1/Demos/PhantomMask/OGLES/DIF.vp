@@ -1,0 +1,72 @@
+!!IMGvp1.0
+
+# Matrices
+
+PARAM mvp[4]	= { state.matrix.mvp };			# MVP Matrix
+PARAM model[4]	= { state.matrix.program[0] };		# Matrix for Normal
+
+# Inputs
+
+ATTRIB iVertex	= vertex.position;
+ATTRIB iTex	= vertex.texcoord;
+ATTRIB iNormal	= vertex.normal;
+
+# Outputs
+
+OUTPUT oPos	= result.position;
+OUTPUT oCol	= result.color;
+OUTPUT oTex	= result.texcoord;
+
+# Light Params
+
+PARAM LightDirection1	= program.env[7];
+PARAM LightDirection2	= program.env[8];
+PARAM LightDirection3	= program.env[9];
+PARAM LightDirection4	= program.env[10];
+PARAM Ambient		= program.env[11];
+
+# Temp Registers used
+
+TEMP		r0, r1, r2, r3, r4;
+
+# transform	the	position
+
+DP4	oPos.x,	mvp[0],	iVertex;
+DP4	oPos.y,	mvp[1],	iVertex;
+DP4	oPos.z,	mvp[2],	iVertex;
+DP4	oPos.w,	mvp[3],	iVertex;
+
+# transform 	the 	normal
+
+DP3	r0.x,	model[0], iNormal;
+DP3	r0.y,	model[1], iNormal;
+DP3	r0.z,	model[2], iNormal;
+
+# Normalise Normal
+
+DP3 r1.w, r0, r0;     	# temp.w = nx^2+ny^2+nz^2
+RSQ r1.w, r1.w;        	# temp.w = 1/sqrt(nx^2+ny^2+nz^2)
+MUL r0.xyz, r1.w, r0;
+
+# compute 	lighting
+
+DP3	r1.x,	r0,	LightDirection1;	# White Light
+DP3	r1.y,	r0,	LightDirection2;	# Blue Light
+DP3	r1.z,	r0,	LightDirection3;	# Green Light
+DP3	r1.w,	r0,	LightDirection4;	# Red Light
+
+MAX	r1, r1, {0.0, 0.0, 0.0, 0.0};
+
+MOV	r2, r1.x;	# White Light (BGRA)
+ADD	r2.x, r2, r1.w;	# Red Light (BGRA)
+ADD	r2.y, r2, r1.z;	# Green Light (BGRA)
+ADD	r2.z, r2, r1.y;	# Blue Light (BGRA)
+
+ADD	oCol,	r2,	Ambient;
+
+#pass through texture coordinate
+
+MOV	oTex.xy, iTex;
+
+END
+

@@ -1,0 +1,446 @@
+<html>
+<head>
+<title>
+DCL Public API: Shell
+</title>
+
+<style type="text/css">
+
+<!--
+/*  TwinText Style (c) PTLogica 2002 - 2004  */
+
+ 
+/* Body */
+body{font-family:"Verdana", sans-serif;font-size: 8pt; }
+
+/* Body (Chapter) */
+body.Main{background: #FFFFFF;color: #000000;  margin: 0;       }
+
+/*IE 5.5 */
+li, table {  font-family: "Verdana", sans-serif; font-size: 8pt;  }
+
+/* Project Title */
+div.ProjectTitle {
+	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+	color: White;
+	text-align: left;
+	padding-bottom: 3px;
+}
+
+/* Chapter's Title */
+h1{font-family:"Verdana", sans-serif;font-size: 14px;
+font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 9px;    padding-top: 15px;  padding-bottom: 15px;  padding-left: 10px;  background-color: #006699;  color: White;
+ border-bottom: 4px solid Black;}
+ 
+/* Feedback */
+div.Feedback {
+ 	font-style: italic;
+	font-size: 8pt;
+	font-weight: normal;
+    text-align: right;
+    margin: 0px;
+    padding: 2px;
+    background: #EFEFEF;
+    position: relative; top: -10px; left: 0px;
+} 
+
+/* Common to all section text, including first section */
+div.SectionText{margin-left: 10px;margin-right: 10px;margin-top: 10px;margin-bottom: 10px;   }
+
+/* Contents or Summary */
+h2{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 5px;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+
+/* Table of Contents */
+div.Toc{margin-top: 30px;margin-bottom: 30px;  border: 1px solid #CCCCCC;  padding: 5px;  margin-left: 30px;  margin-right: 30px;    }
+div.TocLinks{font-weight: normal;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0pt;margin-bottom: 0pt;}
+ul.TocLinks{}
+li.TocLink{}
+a.TocLink{}
+
+/* Summary */
+div.Summary{margin-top: 20px;margin-bottom: 40px;    padding: 5px;  margin-left: 30px;  margin-right: 20px; }
+table.SummaryTable{  margin-top: 15px;  margin-bottom: 15px;  background-color: transparent;                   }
+tr.SummaryRow { }
+td.SummaryLink{font-weight: normal;text-align: left;width: 15%;        padding: 5px;             }
+td.SummaryText{text-align: left;      padding: 5px;  background-color: transparent;  color: Black;                    }
+a.SummaryLink{ }
+
+/* Sections */
+div.AllSections{margin-top: 0;margin-bottom: 70px;  margin-left: 0;  margin-right: 0;  }
+
+div.Section{margin-top: 30px;margin-bottom: 10px;}
+h3{font-family:"Verdana", sans-serif;font-size: 11pt;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 10px;  padding-left: 10px;  padding-bottom: 3px;  background: #6699CC;  color: White;  border-bottom: 1px solid Black;     }
+
+/* API Box */
+div.Api{font-family:"Courier New", monospace;font-size: 9pt;margin-left: 15px;margin-right: 15px;margin-top: 15px;margin-bottom: 15px;padding: 7px;color: Black;  border: 1px solid #CCCCCC;  background: transparent;  }
+font.ApiName{font-weight: bold;  background-color: transparent;  color: Black;  }
+
+/* Section Text Elements */
+h4{font-family:"Verdana", sans-serif;font-size: 9pt;font-weight: bold;margin-left: 0pt;margin-right: 0pt;margin-top: 5pt;margin-bottom: 2pt;}
+pre{font-family:"Courier New", monospace;font-size: 11px;white-space: pre;margin-top: 7pt;margin-bottom: 7pt;  border: 1px dashed #CCCCCC;  padding: 5px;  margin-left: 5px;  margin-right: 5px;  color: Black;     }
+font.HighText{ background-color: #FFFF00; color: Black;  font-weight: normal;}
+ul{}
+li{list-style: disc;}
+a:link{text-decoration:none;color: #005499;background: transparent;}
+a:visited{text-decoration:none;color: #005499;background: transparent;}
+a:active{text-decoration:none;color: #005499;background: transparent;}
+a:hover{text-decoration:underline;color: #005499;background: transparent;}
+	
+	/* Definitions Table */
+table.DefTable{ margin-left: 20px;  margin-right: 20px;   }
+tr.Def{  }
+td.Def{font-family:"Courier New", monospace;font-size: 9pt;  font-weight: normal;   padding-left: 5px;  padding-right: 5px;      color: Black;  vertical-align: top;  white-space: nowrap;  text-align: left;            }
+td.DefSep{font-family:"Courier New", monospace;font-size: 9pt;padding-right: 5pt;padding-left: 5pt;  vertical-align: top;  text-align: center;  }
+td.DefText{ vertical-align: top;  text-align: left;  }
+
+/* Copyright */
+div.Copy { padding: 10px;  }
+
+/* Footer */
+div.Footer{ border-top: 1px solid #CCCCCC;  margin-top: 10px;  padding: 5px;  border-bottom: 1px solid #CCCCCC;    }
+
+div.SourceLocation{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-bottom: 10px;  margin-left: 10px;   }
+div.LastGenerated{background: transparent;color: rgb(130,130,130);  font-size: 8pt;  margin-left: 40px;  }
+
+
+/* Navigation */
+body.Side{background: #6699CC;color: White;  margin: 0px;  padding: 0px;  }
+div.Side{}
+/* not well supported in some versions of IE; remove background color and bottom border */
+/*div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: White;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  background-color: #006699;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 5px;  border-bottom: 4px solid Black;} */
+div.SideTitle{font-family:"Verdana", sans-serif;font-size: 14px;color: #000000;font-weight: bold;text-align: left;margin-left: 0pt;margin-right: 0pt;margin-top: 0px;margin-bottom: 0px;  padding-top: 15px;  padding-bottom: 15px;  padding-left: 7px; }
+div.SideText{text-align: left;margin-top: 0px;margin-bottom: 5px;  margin-left: 0px;  margin-right: 0px;  padding-bottom: 9px;    padding-left: 7px;  color: #FFCC00;  background: #6699CC;  padding-top: 10px;  font-weight: bold;               }
+div.SideDetail { font-family: Arial, serif;  font-size: 10pt;  font-weight: normal;  background: transparent;    margin: 0px;  background-color: transparent;  padding-top: 1px;  color: White;                              }
+ul.SideDetail{     }
+li.SideDetail{ white-space: nowrap;  list-style: square;        }
+a.SideDetail:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+a.SideDetail:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 12px; font-weight: bold; }
+table.LinksTable{margin-top: 10px;margin-bottom: 10px; padding-left: 7px;      }
+tr.SideLink{}
+td.SideLink{}
+a.SideLink:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+a.SideLink:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 11px; }
+
+
+
+
+
+
+
+-->
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="TwinText">
+
+</head>
+<body class=Main>
+<h1>
+DCL Public API: Shell
+</h1>
+<div class=Feedback><a href="mailto:support@datalight.com?subject=Documentation Feedback: FlashFX Tera SDK for Microsoft Windows CE -- v2.1.1 Build 2128DF (Win32 Host): DCL Public API: Shell">Send comments on this topic.</a></div>
+<div class=SectionText>
+
+
+                                                                                                    
+</div>
+<div class=Summary>
+<h2>
+Summary
+</h2>
+<table class=SummaryTable>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclShellAddCommand">DclShellAddCommand</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Add a command to an instance of the DCL Command Shell.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclShellCreate">DclShellCreate</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Creates an instance of the DCL Command Shell.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclShellDestroy">DclShellDestroy</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Destroys an instance of the DCL Command Shell.
+</td>
+</tr>
+<tr class=SummaryRow>
+<td class=SummaryLink>
+<a class=SummaryLink HREF="#DclShellRun">DclShellRun</a>&nbsp;&nbsp;
+</td>
+<td class=SummaryText valign=top>
+
+    Run the DCL Command Shell.
+</td>
+</tr>
+</table>
+</div>
+<div class=AllSections>
+<div class=Section>
+<h3>
+<a NAME="DclShellAddCommand"></a>
+<a NAME="DclShellAddCommand"></a>
+DclShellAddCommand
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclShellAddCommand</font>(<br>&nbsp;&nbsp;&nbsp; 
+    DCLSHELLHANDLE          hShell,<br>&nbsp;&nbsp;&nbsp;
+    const DCLSHELLCOMMAND  *pCommand)
+</div>
+<div class=SectionText>
+
+    Add a command to an instance of the DCL Command Shell.
+
+<p>    <h4>NOTE</h4>  The pszClass and pszDescription values must point to
+           static data that persists throughout the life of this
+           particular shell command.  A private copy of the
+           pszName value is stored, so that does not need to be
+           static.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hShell
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle of the shell instance to use.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pCommand
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The command to add.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Status indicating if the operation was successful.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclShellCreate"></a>
+<a NAME="DclShellCreate"></a>
+DclShellCreate
+</h3>
+<div class=Api>
+DCLSHELLHANDLE <font class=ApiName>DclShellCreate</font>(<br>&nbsp;&nbsp;&nbsp; 
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLINSTANCEHANDLE>DCLINSTANCEHANDLE</a>   hDclInst,<br>&nbsp;&nbsp;&nbsp;
+    const char         *pszTitle,<br>&nbsp;&nbsp;&nbsp;
+    const char         *pszScript,<br>&nbsp;&nbsp;&nbsp;
+    <a HREF=UD670_AdvancedDataTypes.c.htm#DCLENVHANDLE>DCLENVHANDLE</a>        hEnviron,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            fQuiet,<br>&nbsp;&nbsp;&nbsp;
+    unsigned            fEcho,<br>&nbsp;&nbsp;&nbsp;
+    void               *pUserData)
+</div>
+<div class=SectionText>
+
+    Creates an instance of the DCL Command Shell.
+
+<p>    <h4>NOTE</h4>  If an environment is supplied to this function,
+           on exit it will contain any final information
+           which was in use when the shell was exited.
+           This is a useful way to return information out
+           of a shell instantiation.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hDclInst
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The DCL instance handle.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszTitle
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The shell instance title, or NULL if none.
+                      This value will be used as the shell prompt.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pszScript
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+A pointer to a script to play or NULL if none.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+hEnviron
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The environment handle to use, or NULL to use
+                      a default internal environment.  An environment
+                      can be created with <a HREF=UD750_Environment.c.htm#DclEnvCreate>DclEnvCreate()</a>.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fQuiet
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Initialize without signing on.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+fEcho
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+Indicates whether input should be echoed.
+</td>
+</tr>
+
+<p>        
+<tr class=Def>
+<td class=Def>
+pUserData
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+An optional pointer to any arbitrary data
+                      which the caller needs to have available to
+                      the shell commands.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns a pointer to the shell if successful, or NULL
+        otherwise.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclShellDestroy"></a>
+<a NAME="DclShellDestroy"></a>
+DclShellDestroy
+</h3>
+<div class=Api>
+void <font class=ApiName>DclShellDestroy</font>(
+    DCLSHELLHANDLE  hShell)
+</div>
+<div class=SectionText>
+
+    Destroys an instance of the DCL Command Shell.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hShell
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle of the shell instance to destroy.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        None.
+
+<p>
+
+</div>
+</div>
+<div class=Section>
+<h3>
+<a NAME="DclShellRun"></a>
+<a NAME="DclShellRun"></a>
+DclShellRun
+</h3>
+<div class=Api>
+<a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> <font class=ApiName>DclShellRun</font>(
+    DCLSHELLHANDLE  hShell)
+</div>
+<div class=SectionText>
+
+    Run the DCL Command Shell.
+
+<p>    <h4>Parameters</h4>
+        
+<p><table class=DefTable>
+<tr class=Def>
+<td class=Def>
+hShell
+</td>
+<td class=DefSep>-</td>
+<td class=DefText>
+The handle of the shell instance to run.
+</td>
+</tr>
+</table>
+
+<p>
+    <h4>Return Value</h4>
+        Returns the <a HREF=UD670_AdvancedDataTypes.c.htm#DCLSTATUS>DCLSTATUS</a> value from the last command run.
+
+<p>
+
+</div>
+</div>
+</div>
+<div class=Copy>Datalight FlashFX Tera SDK for Microsoft Windows CE<br>Copyright &#169; 1993-2012 Datalight, Inc.  All Rights Reserved Worldwide.</div>
+</body>
+</html>
+

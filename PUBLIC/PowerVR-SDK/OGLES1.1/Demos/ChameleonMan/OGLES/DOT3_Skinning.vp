@@ -1,0 +1,117 @@
+!!IMGvp1.0
+
+# Constants 
+PARAM mvp[4]		= { state.matrix.mvp };
+PARAM Matrices[32]	= { state.matrix.program[0],
+			    state.matrix.program[1],
+			    state.matrix.program[2],
+			    state.matrix.program[3],
+			    state.matrix.program[4],
+			    state.matrix.program[5],
+			    state.matrix.program[6],
+			    state.matrix.program[7]
+			  };
+			  
+PARAM LightPos		= program.env[0];
+
+PARAM Constant		= { 0.5, 0.5, 1.0 ,1.0};
+
+# Input Streams
+
+ATTRIB iVertex		= vertex.position;
+ATTRIB iTex		= vertex.texcoord;
+ATTRIB iNormal		= vertex.normal;
+
+ATTRIB iVertexWeight 	= vertex.attrib[1];
+ATTRIB iVertexIndex  	= vertex.attrib[2];
+
+ATTRIB iBiNormal 	= vertex.attrib[3];
+ATTRIB iTangent	 	= vertex.attrib[4];
+
+# Outputs
+
+OUTPUT oPos	= result.position;
+OUTPUT oCol	= result.color;
+OUTPUT oTex0	= result.texcoord[0];
+OUTPUT oTex1	= result.texcoord[1];
+
+# Temporary Registers
+
+TEMP 	mv0, mv1, mv2, modelNormal, modelTangent, modelBiNormal, tempPos, LightDir, temp, LightVectorTSPC;
+
+# Address Register
+
+ADDRESS a;
+
+# Actual Code
+
+# Compute the modelview matrix by summing up the weighted bone matrices
+ARL a.x, iVertexIndex.x;
+MUL mv0, Matrices[a.x+0], iVertexWeight.x;
+MUL mv1, Matrices[a.x+1], iVertexWeight.x;
+MUL mv2, Matrices[a.x+2], iVertexWeight.x;
+
+ARL a.x, iVertexIndex.y;
+MAD mv0, Matrices[a.x+0], iVertexWeight.y, mv0;
+MAD mv1, Matrices[a.x+1], iVertexWeight.y, mv1;
+MAD mv2, Matrices[a.x+2], iVertexWeight.y, mv2;
+
+ARL a.x, iVertexIndex.z;
+MAD mv0, Matrices[a.x+0], iVertexWeight.z, mv0;
+MAD mv1, Matrices[a.x+1], iVertexWeight.z, mv1;
+MAD mv2, Matrices[a.x+2], iVertexWeight.z, mv2;
+
+# Transform the Normal to model coordinates
+DP3 modelNormal.x, mv0, iNormal;
+DP3 modelNormal.y, mv1, iNormal;
+DP3 modelNormal.z, mv2, iNormal;
+
+# Transform the BiNormal to model coordinates
+DP3 modelBiNormal.x, mv0, iBiNormal;
+DP3 modelBiNormal.y, mv1, iBiNormal;
+DP3 modelBiNormal.z, mv2, iBiNormal;
+
+# Transform the Tangen to model coordinates
+DP3 modelTangent.x, mv0, iTangent;
+DP3 modelTangent.y, mv1, iTangent;
+DP3 modelTangent.z, mv2, iTangent;
+
+# Calculate the Skinned Vertex Position
+DP4 tempPos.x, mv0, iVertex;
+DP4 tempPos.y, mv1, iVertex;
+DP4 tempPos.z, mv2, iVertex;
+MOV tempPos.w, Constant;
+
+# Calculate the LightDirection
+
+SUB LightDir, LightPos, tempPos;
+
+# Normalize the LightDirection
+
+DP3 temp.w, LightDir, LightDir;     	# temp.w = nx^2+ny^2+nz^2
+RSQ temp.w, temp.w;           		# temp.w = 1/sqrt(nx^2+ny^2+nz^2)
+MUL LightDir.xyz, temp.w, LightDir;
+
+# Transform LightVector to Tangent Space
+
+DP3 LightVectorTSPC.x, LightDir, modelTangent;
+DP3 LightVectorTSPC.y, LightDir, modelBiNormal;
+DP3 LightVectorTSPC.z, LightDir, modelNormal;
+MOV LightVectorTSPC.w, Constant;
+
+# BIAS into Diffuse Color
+
+MAD oCol.xyz, LightVectorTSPC, Constant.x, Constant.y; #LightVectorTSPC
+MOV oCol.w, Constant;
+
+# Calculate the Final Vertex Position
+DP4 oPos.x, mvp[0], tempPos;
+DP4 oPos.y, mvp[1], tempPos;
+DP4 oPos.z, mvp[2], tempPos;
+DP4 oPos.w, mvp[3], tempPos;
+
+# Texture Coord 
+MOV	oTex0.xy, iTex;
+MOV	oTex1.xy, iTex;
+
+END

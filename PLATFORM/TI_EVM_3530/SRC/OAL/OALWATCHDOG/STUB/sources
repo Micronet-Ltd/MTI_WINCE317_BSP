@@ -1,0 +1,9 @@
+# Copyright (c) 2008 BSQUARE Corporation. All rights reserved.
+
+
+TARGETNAME=oal_watchdog_stub_omap35xx
+TARGETTYPE=LIBRARY
+
+SOURCES= \
+    ..\watchdog.c
+

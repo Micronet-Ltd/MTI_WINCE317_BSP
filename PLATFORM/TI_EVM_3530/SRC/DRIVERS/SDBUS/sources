@@ -1,0 +1,55 @@
+!if 0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+!endif
+!if 0
+Use of this source code is subject to the terms of the Microsoft end-user
+license agreement (EULA) under which you licensed this SOFTWARE PRODUCT.
+If you did not accept the terms of the EULA, you are not authorized to use
+this source code. For a copy of the EULA, please see the LICENSE.RTF on your
+install media.
+!endif
+
+# Copyright (c) 2001-2004 BSQUARE Corporation. All rights reserved
+# DO NOT REMOVE --- BEGIN EXTERNALLY DEVELOPED SOURCE CODE ID 40973--- DO NOT REMOVE
+
+# Bus Driver files
+
+TARGETDEFNAME=SDBus2
+DEFFILE=$(TARGETDEFNAME).def
+
+TARGETNAME=$(TARGETDEFNAME)
+RELEASETYPE=PLATFORM
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+!IF "$(BSP_SDHIGHSPEEDSUPPORT_SDHC1)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_SDHIGHSPEEDSUPPORT_SDHC1
+!ENDIF
+
+!IF "$(BSP_SDHIGHSPEEDSUPPORT_SDHC2)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_SDHIGHSPEEDSUPPORT_SDHC2
+!ENDIF
+
+!IF "$(BSP_EMMCFEATURE)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_EMMCFEATURE
+!ENDIF
+
+DLLENTRY=_DllEntryCRTStartup
+
+SOURCES = \
+	sdbusreq.cpp \
+	sddevice.cpp \
+	sdbus.cpp \
+	sdslot.cpp \
+	sdclient.cpp \
+	sddevinf.cpp \
+	sdiofeat.cpp \
+	sdworki.cpp \
+	sddebug.cpp \
+
+TARGETLIBS=                                           \
+  $(_SYSGENOAKROOT)\lib\$(_CPUINDPATH)\defbuslib.lib  \
+  $(_SYSGENSDKROOT)\lib\$(_CPUINDPATH)\coredll.lib    \
+  $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib      \

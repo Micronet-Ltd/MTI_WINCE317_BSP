@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "key_map_test", "key_map_test\key_map_test.vcproj", "{50C2938F-CBED-4E38-8588-721C9017BD60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|CE500_CORE (ARMV4I) = Debug|CE500_CORE (ARMV4I)
+		Debug|CE500_PRO (ARMV4I) = Debug|CE500_PRO (ARMV4I)
+		Debug|Pocket PC 2003 (ARMV4) = Debug|Pocket PC 2003 (ARMV4)
+		Debug|Smartphone 2003 (ARMV4) = Debug|Smartphone 2003 (ARMV4)
+		Release|CE500_CORE (ARMV4I) = Release|CE500_CORE (ARMV4I)
+		Release|CE500_PRO (ARMV4I) = Release|CE500_PRO (ARMV4I)
+		Release|Pocket PC 2003 (ARMV4) = Release|Pocket PC 2003 (ARMV4)
+		Release|Smartphone 2003 (ARMV4) = Release|Smartphone 2003 (ARMV4)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|CE500_CORE (ARMV4I).ActiveCfg = Debug|CE500_CORE (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|CE500_CORE (ARMV4I).Build.0 = Debug|CE500_CORE (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|CE500_CORE (ARMV4I).Deploy.0 = Debug|CE500_CORE (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|CE500_PRO (ARMV4I).ActiveCfg = Debug|CE500_PRO (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|CE500_PRO (ARMV4I).Build.0 = Debug|CE500_PRO (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|CE500_PRO (ARMV4I).Deploy.0 = Debug|CE500_PRO (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|Pocket PC 2003 (ARMV4).ActiveCfg = Debug|Pocket PC 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|Pocket PC 2003 (ARMV4).Build.0 = Debug|Pocket PC 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|Pocket PC 2003 (ARMV4).Deploy.0 = Debug|Pocket PC 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|Smartphone 2003 (ARMV4).ActiveCfg = Debug|Smartphone 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|Smartphone 2003 (ARMV4).Build.0 = Debug|Smartphone 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Debug|Smartphone 2003 (ARMV4).Deploy.0 = Debug|Smartphone 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|CE500_CORE (ARMV4I).ActiveCfg = Release|CE500_CORE (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|CE500_CORE (ARMV4I).Build.0 = Release|CE500_CORE (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|CE500_CORE (ARMV4I).Deploy.0 = Release|CE500_CORE (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|CE500_PRO (ARMV4I).ActiveCfg = Release|CE500_PRO (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|CE500_PRO (ARMV4I).Build.0 = Release|CE500_PRO (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|CE500_PRO (ARMV4I).Deploy.0 = Release|CE500_PRO (ARMV4I)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|Pocket PC 2003 (ARMV4).ActiveCfg = Release|Pocket PC 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|Pocket PC 2003 (ARMV4).Build.0 = Release|Pocket PC 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|Pocket PC 2003 (ARMV4).Deploy.0 = Release|Pocket PC 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|Smartphone 2003 (ARMV4).ActiveCfg = Release|Smartphone 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|Smartphone 2003 (ARMV4).Build.0 = Release|Smartphone 2003 (ARMV4)
+		{50C2938F-CBED-4E38-8588-721C9017BD60}.Release|Smartphone 2003 (ARMV4).Deploy.0 = Release|Smartphone 2003 (ARMV4)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

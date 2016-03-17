@@ -1,0 +1,130 @@
+/*---------------------------------------------------------------------------
+               ----> DO NOT REMOVE THE FOLLOWING NOTICE <----
+
+                  Copyright (c) 1993 - 2010 Datalight, Inc.
+                       All Rights Reserved Worldwide.
+
+  Datalight, Incorporated is a Washington State corporation currently located
+  at:
+        21520 30th Dr SE, Suite 110,      Tel:  425-951-8086
+        Bothell, WA  98021                Fax:  425-951-8094
+        USA                               Web:  http://www.datalight.com
+
+  This software, including without limitation all source code and documen-
+  tation, is a trade secret and the confidential property of Datalight, 
+  Inc., protected under the copyright laws of the United States and other
+  jurisdictions. 
+
+  U.S. Government Restricted Rights:  Use, duplication, reproduction, or
+  transfer of this commercial product and accompanying documentation is
+  restricted in accordance with FAR 12.212 and DFARS 227.7202 and by a
+  License Agreement.
+
+  IN ADDITION TO COPYRIGHT AND PATENT LAW, THIS SOFTWARE IS PROTECTED UNDER
+  CONTRACT(S) BETWEEN DATALIGHT, INC. AND THE LICENSEE ("BINDING AGREEMENTS").
+  IF YOU ARE A LICENSEE, YOUR RIGHT, IF ANY, TO COPY, PUBLISH, MODIFY, OR
+  OTHERWISE USE THE SOFTWARE, IS SUBJECT TO THE TERMS AND CONDITIONS OF THE
+  BINDING AGREEMENTS.  BY USING THE SOFTWARE IN ANY MANNER, IN WHOLE OR IN
+  PART, YOU AGREE TO BE BOUND BY THE TERMS OF THE BINDING AGREEMENTS.
+
+  IF YOU ARE NOT A DATALIGHT LICENSEE, ANY USE MAY RESULT IN CIVIL AND
+  CRIMINAL ACTION AGAINST YOU.  CONTACT DATALIGHT, INC. AT THE ADDRESS
+  SET FORTH ABOVE IF YOU OBTAINED THIS SOFTWARE IN ERROR.
+
+  Notwithstanding the foregoing, Licensee acknowledges that the software may
+  be distributed as part of a package containing, and/or in conjunction with
+  other source code files, licensed under so-called "open source" software 
+  licenses.  If so, the following license will apply in lieu of the terms set
+  forth above:
+
+  Redistribution and use of this software in source and binary forms, with or
+  without modification, are permitted provided that the following conditions
+  are met:
+  1. Redistributions of source code must retain the above copyright notice,
+     this list of conditions, and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions, and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+  
+  THIS SOFTWARE IS PROVIDED BY DATALIGHT "AS IS" AND ANY EXPRESS OR IMPLIED
+  WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MER-
+  CHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT, ARE
+  DISCLAIMED.  IN NO EVENT SHALL DATALIGHT BE LIABLE FOR ANY DIRECT, INDIRECT,
+  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA,
+  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEG-
+  LIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+                                Description
+
+    Interface to DCL system info functions.
+---------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------
+                                Revision History
+    $Log: dlsysinfo.h $
+    Revision 1.2  2010/06/06 23:38:24Z  garyp
+    Protected against multiple inclusions.
+    Revision 1.1  2010/05/04 20:00:38Z  billr
+    Initial revision
+    Factored out of include/dlapiint.h revision 1.88
+---------------------------------------------------------------------------*/
+
+#ifndef DLSYSINFO_H_INCLUDED
+#define DLSYSINFO_H_INCLUDED
+
+typedef struct 
+{
+    size_t      nStrucLen;
+    D_UINT32    ulProductVer;
+    D_UINT32    ulSubProductVer;
+    unsigned    nProductNum;
+    unsigned    nSubProductNum;
+    char        szProductName[16];
+    char        szProductBuild[DCL_MAX_BUILDNUM_LENGTH+1];
+    char        szSubProductBuild[DCL_MAX_BUILDNUM_LENGTH+1];
+    char        szOSName[16];
+    char        szOSVer[16];
+    char        szCPUType[16];
+    unsigned    nToolSetNum;
+    unsigned    nAlignment;
+    unsigned    nProcessorAlignment;
+    unsigned    nDebugLevel;
+    D_UINT32    ulDebugTraceMask;
+    unsigned    fTraceAutoEnable       : 1;
+    unsigned    fProfiler              : 1;
+    unsigned    fProfilerAutoEnable    : 1;
+    unsigned    fMemoryTracking        : 1;
+    unsigned    fMutexTracking         : 1;
+    unsigned    fSemaphoreTracking     : 1;
+    unsigned    fOSFeatureUnicode      : 1;
+    unsigned    fOSFeatureThreads      : 1;
+    unsigned    fOSFeatureConsoleInput : 1;
+    unsigned    fBigEndian             : 1;
+    unsigned    fNative64BitSupport    : 1;
+    unsigned    fHighResTimeStamp      : 1;
+    unsigned    fOutputEnabled         : 1;
+} DCLSYSTEMINFO;
+
+typedef struct
+{
+    DCLIOREQUEST    ior;
+    DCLSYSTEMINFO   SysInfo;
+    DCLSTATUS       dclStat;
+} DCLREQ_SYSTEM_INFO;
+
+#define     DclSystemInfoQuery      DCLFUNC(DclSystemInfoQuery)
+#define     DclSystemInfoDisplay    DCLFUNC(DclSystemInfoDisplay)
+#define     DclSystemVersionDisplay DCLFUNC(DclSystemVersionDisplay)
+
+DCLSTATUS   DclSystemInfoQuery(     DCLSYSTEMINFO *pDSS);
+DCLSTATUS   DclSystemInfoDisplay(   const DCLSYSTEMINFO *pDSS);
+DCLSTATUS   DclSystemVersionDisplay(const DCLSYSTEMINFO *pDSS);
+
+ 
+#endif  /* DLSYSINFO_H_INCLUDED */
+

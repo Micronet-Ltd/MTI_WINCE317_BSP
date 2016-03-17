@@ -1,0 +1,59 @@
+//
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+//
+//
+// Use of this sample source code is subject to the terms of the Microsoft
+// license agreement under which you licensed this sample source code. If
+// you did not accept the terms of the license agreement, you are not
+// authorized to use this sample source code. For the terms of the license,
+// please see the license agreement between you and Microsoft or, if applicable,
+// see the LICENSE.RTF on your install media or the root of your tools installation.
+// THE SAMPLE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES.
+//
+#include "resource.h"
+#include <windows.h>
+#include <commctrl.h>
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MIC_ICON             ICON    DISCARDABLE     "Microphone.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+//EXSTYLE WS_EX_CAPTIONOKBTN
+
+
+IDD_MICDLG DIALOG DISCARDABLE 6, 15, 209, 82
+STYLE WS_OVERLAPPED | WS_VISIBLE | WS_CLIPSIBLINGS | DS_CENTER | WS_SYSMENU
+EXSTYLE WS_EX_CAPTIONOKBTN
+CAPTION "Advanced Microphone Configuration"
+BEGIN
+    LTEXT           "Microphone settings:",IDC_STATIC,8,3,100,8
+    CONTROL         "",IDC_DGAIN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,70,12,107,16
+    CONTROL         "",IDC_AGAIN,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,70,36,107,16
+    LTEXT           "Digital Gain:",IDC_STATIC,8,20,52,8
+    LTEXT           "Analog Gain:",IDC_STATIC,8,44,52,8
+    RTEXT           "0",IDC_STATIC,50,20,18,8
+    RTEXT           "0",IDC_STATIC,50,44,18,8
+    LTEXT           "31 dB",IDC_STATIC,180,20,21,8
+    LTEXT           "30 dB",IDC_STATIC,180,44,21,8
+    CONTROL         "Save As Default",IDC_MIC_SAVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,64,71,10
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_MIC_TITLE			"Microphone"
+    IDS_MIC_DESCRIPTION		"Advanced Microphone Configuration"
+END
+
+
+
+
+

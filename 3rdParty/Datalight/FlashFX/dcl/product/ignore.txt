@@ -1,0 +1,11 @@
+, 0 errors, 0 serious errors
+-errors
+-Werror
+warning LNK4204
+warning LNK4099: PDB
+warning LNK4070: /OUT:
+B_ERROR
+warning D9025 :
+warning D4025 :
+if errorlevel
+Found 0 errors and 0 warnings

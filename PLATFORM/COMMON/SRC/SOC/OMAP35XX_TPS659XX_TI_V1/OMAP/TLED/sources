@@ -1,0 +1,30 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+!INCLUDE $(_PLATFORMROOT)\common\src\soc\omap35xx_tps659xx_ti_v1\sources.omap
+
+TARGETNAME=tled_omap35xx_tps659xx_ti_v1
+TARGETTYPE=DYNLINK
+SYNCHRONIZE_DRAIN=1
+
+DEFFILE=omap_tled.def
+DLLENTRY=_DllMainCRTStartup
+
+CDEFINES=$(CDEFINES) -DCEDDK_USEDDKMACRO
+
+SOURCES= \
+    tled.cpp
+
+TARGETLIBS= \
+    $(_PLATCOMMONLIB)\$(_CPUINDPATH)\ceddk_omap35xx_tps659xx_ti_v1.lib \
+    $(_COMMONSDKLIB)\$(_CPUINDPATH)\coredll.lib

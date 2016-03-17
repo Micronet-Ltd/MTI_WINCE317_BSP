@@ -1,0 +1,43 @@
+!if 0
+;
+;================================================================================
+;             Texas Instruments OMAP(TM) Platform Software
+; (c) Copyright Texas Instruments, Incorporated. All Rights Reserved.
+;
+; Use of this software is controlled by the terms and conditions found
+; in the license agreement under which this software has been supplied.
+;
+;================================================================================
+;
+!endif
+
+TARGETNAME=oal
+RELEASETYPE=PLATFORM
+TARGETTYPE=LIBRARY
+
+!IF "$(BSP_NOUSBTLL2)" == "1"
+CDEFINES=$(CDEFINES) -DBSP_NOUSBTLL2
+!ENDIF
+
+CDEFINES=$(CDEFINES) -DCORE_OFF_ON_SUSPEND
+
+SOURCES=\
+    init.c \
+    debug.c \
+    ioctl.c \
+    intr.c \
+    power.c \
+    modem.c \
+    oem_pm.c \
+    opp_map.c \
+    oem_prof.c \
+    oem_latency.c \
+    oem_pinmux.c \
+    oem_padwakeup.c \
+	oem_intrex.c \
+    oem_prcm_device.c \
+    oem_ex.c \
+    oem_splash.c	
+    
+ARM_SOURCES=\
+    startup.s \

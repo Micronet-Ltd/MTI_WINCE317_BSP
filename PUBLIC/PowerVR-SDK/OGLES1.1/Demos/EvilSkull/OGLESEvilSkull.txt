@@ -1,0 +1,15 @@
+
+Demo title: 		EvilSkull
+
+Demonstrates: 		Morphing
+
+Short Description:	Shows Morphing in combination with multi-texturing. 
+
+Full Description:	
+Morphing creates the final object using weighted blending between a number of different configurations of the same object. Each configuration controls a certain aspect of the object. In the case of EvilSkull the different configurations represent the position of the eyebrows and cheekbones. By setting different weights its possible to generate a huge variety of facial expressions. Background shows multitexturing with 2 layers independently animated.  
+
+VGP: 			Not Required
+Polygon Count: 		1184
+Vertex Count: 		746
+
+
